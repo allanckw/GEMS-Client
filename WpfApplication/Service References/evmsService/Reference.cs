@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfApplication.evmsService {
+namespace Gems.UIWPF.evmsService {
     using System.Runtime.Serialization;
     using System;
     
@@ -111,19 +111,19 @@ namespace WpfApplication.evmsService {
     public interface IEvmsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetEmployeeDetails", ReplyAction="http://tempuri.org/IEvmsService/GetEmployeeDetailsResponse")]
-        WpfApplication.evmsService.User GetEmployeeDetails(string userid);
+        Gems.UIWPF.evmsService.User GetEmployeeDetails(string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/test", ReplyAction="http://tempuri.org/IEvmsService/testResponse")]
         string test();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IEvmsServiceChannel : WpfApplication.evmsService.IEvmsService, System.ServiceModel.IClientChannel {
+    public interface IEvmsServiceChannel : Gems.UIWPF.evmsService.IEvmsService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class EvmsServiceClient : System.ServiceModel.ClientBase<WpfApplication.evmsService.IEvmsService>, WpfApplication.evmsService.IEvmsService {
+    public partial class EvmsServiceClient : System.ServiceModel.ClientBase<Gems.UIWPF.evmsService.IEvmsService>, Gems.UIWPF.evmsService.IEvmsService {
         
         public EvmsServiceClient() {
         }
@@ -144,7 +144,7 @@ namespace WpfApplication.evmsService {
                 base(binding, remoteAddress) {
         }
         
-        public WpfApplication.evmsService.User GetEmployeeDetails(string userid) {
+        public Gems.UIWPF.evmsService.User GetEmployeeDetails(string userid) {
             return base.Channel.GetEmployeeDetails(userid);
         }
         

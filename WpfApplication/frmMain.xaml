@@ -1,0 +1,70 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="Gems.UIWPF.frmMain"
+	x:Name="Window"
+	Title="GEMS Event Management System"
+	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+	<Canvas Height="600" Width="800" Opacity="1.0">
+		<Path Data="M99,1 L701.00001,1 701.00001,1.0126522 702.55523,1.0323319 C755.20135,2.3661354 797.63387,44.798647 798.96767,97.444765 L798.98735,99.000009 799,99.000009 799,501 798.98735,501 798.96767,502.55524 C797.63387,555.20136 755.20135,597.63385 702.55523,598.96765 L701.00001,598.98737 701.00001,599 99,599 99,598.98737 97.444763,598.96765 C44.798645,597.63385 2.3661499,555.20136 1.0323486,502.55524 L1.0126343,501 1,501 1,99.000009 1.0126343,99.000009 1.0323486,97.444765 C2.3661499,44.798647 44.798645,2.3661363 97.444763,1.0323319 L99,1.0126522 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2">
+			<Path.Fill>
+				<LinearGradientBrush StartPoint=".2,0" EndPoint="0.8,1">
+					<GradientStop Color="Lightgray"  Offset="0"/>
+					<GradientStop Color="PaleGoldenrod"  Offset="1.0"/>
+					<GradientStop Color="AliceBlue" Offset="0.4"/>
+					<GradientStop Color="LightGoldenrodYellow" Offset="0.5"/>
+				</LinearGradientBrush>
+			</Path.Fill>
+		</Path>
+		<GroupBox Header="GEMS Event Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontSize="26.667" Width="700">
+			<Menu Margin="2,5,2,0" Background="{x:Null}">
+				<MenuItem Header="Event" FontSize="16"/>
+				<MenuItem Header="Task" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Location" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Guest" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Logout" Margin="10,0,0,0" FontSize="16"/>
+			</Menu>
+		</GroupBox>
+		<Button x:Name="btnClose" Canvas.Left="728.5" Canvas.Top="15" Height="0" Width="0" Click="btnExit_Click">
+			<Button.Template>
+				<ControlTemplate>
+					<Canvas>
+						<Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+							<Rectangle.Fill>
+								<SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+							</Rectangle.Fill>
+						</Rectangle>
+						<Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
+						<Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
+					</Canvas>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+		<GroupBox Header="My Event List" Height="480" Canvas.Left="50" Canvas.Top="99.88" Width="180" Foreground="Black" FontSize="21.333">
+			<ListBox x:Name="lstEventList" Margin="2,8.54,2,2"/>
+		</GroupBox>
+		<GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontSize="24" Foreground="Black" Width="514.5" Canvas.Left="235.5" Canvas.Top="97"/>
+		<GroupBox Header="Item Lists" Canvas.Left="250" Canvas.Top="130" Width="485" Height="60" Foreground="Black">
+			<Label x:Name="lblItemMsg" Content="This is a sample text"/>
+		</GroupBox>
+		<GroupBox Header="Task Lists" Canvas.Left="250" Canvas.Top="190" Width="485" Height="60" Foreground="Black">
+			<Label x:Name="lblTaskMsg" Content="This is a sample text"/>
+		</GroupBox>
+		<GroupBox Header="Location" Canvas.Left="250" Canvas.Top="250" Width="485" Height="60" Foreground="Black">
+			<Label x:Name="lblLocationMsg" Content="This is a sample text"/>
+		</GroupBox>
+		<GroupBox Header="Program Flow" Canvas.Left="250" Canvas.Top="310" Width="485" Height="60" Foreground="Black">
+			<Label x:Name="lblProgramMsg" Content="This is a sample text"/>
+		</GroupBox>
+		<GroupBox Header="Manpower" Canvas.Left="250" Canvas.Top="370" Width="485" Height="95" Foreground="Black">
+			<Label x:Name="lblManpowerMsg" Content="This is a sample text&#xd;&#xa;&#xd;&#xa;" VerticalAlignment="Top" Margin="0"/>
+		</GroupBox>
+		<GroupBox Header="Guest" Canvas.Left="250" Canvas.Top="465" Width="485" Height="95" Foreground="Black">
+			<Label x:Name="lblGuestMsg" Content="This is a sample text" Margin="0"/>
+		</GroupBox>
+    </Canvas>
+</Window>

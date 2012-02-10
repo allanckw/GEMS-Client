@@ -8,8 +8,8 @@
     <ProjectGuid>{C04AB8FA-AFBE-4F21-81DC-6D422C019C1A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfApplication</RootNamespace>
-    <AssemblyName>WpfApplication</AssemblyName>
+    <RootNamespace>Gems.UIWPF</RootNamespace>
+    <AssemblyName>Gems.UIWPF</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -20,6 +20,8 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
     <PublishUrl>http://localhost/WpfApplication/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -52,6 +54,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WpfApplication.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,6 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvmsService.cs" />
+    <Compile Include="frmMain.xaml.cs">
+      <DependentUpon>frmMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="frmSysAdmin.xaml.cs">
       <DependentUpon>frmSysAdmin.xaml</DependentUpon>
     </Compile>
@@ -132,7 +140,7 @@
     <None Include="Service References\evmsService\EvmsService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\evmsService\WpfApplication.evmsService.User.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -140,6 +148,10 @@
     <Page Include="frmLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
