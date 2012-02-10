@@ -34,5 +34,11 @@ namespace Gems.UIWPF
         {
             this.DragMove();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            mnuEvent.Visibility = System.Windows.Visibility.Collapsed;
+
+        }
 	}
 }

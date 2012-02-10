@@ -5,7 +5,7 @@
 	x:Class="Gems.UIWPF.frmMain"
 	x:Name="Window"
 	Title="GEMS Event Management System"
-	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
+	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
 
 	<Canvas Height="600" Width="800" Opacity="1.0">
 		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Height="592" Width="792">
@@ -18,17 +18,18 @@
 				</LinearGradientBrush>
 			</Path.Fill>
 		</Path>
-		<GroupBox Header="GEMS Event Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontSize="26.667" Width="700">
-			<Menu Margin="2,5,2,0" Background="{x:Null}">
-				<MenuItem Header="Event" FontSize="16">
-					<MenuItem Header="Add" Background="{x:Null}" Width="120"/>
+		<GroupBox Header="GEMS Event Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontSize="26.667" Width="700" FontFamily="Stencil">
+			<Menu x:Name="mnuMenuBar" Margin="2,5,2,0" Background="{x:Null}">
+				<MenuItem x:Name="mnuAdmin" Header="Admin" FontSize="16" Margin="10,0,0,0"/>
+				<MenuItem Header="Event" FontSize="16" x:Name="mnuEvent" Margin="10,0,0,0">
+					<MenuItem x:Name="mnuEventAdd" Header="Add" Width="120"/>
 				</MenuItem>
-				<MenuItem Header="Task" FontSize="16" Margin="10,0,0,0"/>
-				<MenuItem Header="Location" FontSize="16" Margin="10,0,0,0"/>
-				<MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0"/>
-				<MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0"/>
-				<MenuItem Header="Guest" FontSize="16" Margin="10,0,0,0"/>
-				<MenuItem Header="Logout" Margin="10,0,0,0" FontSize="16"/>
+				<MenuItem Header="Task" FontSize="16" Margin="10,0,0,0" x:Name="mnuTask" />
+				<MenuItem Header="Location" FontSize="16" Margin="10,0,0,0" x:Name="mnuLocation" />
+				<MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0" x:Name="mnuPrograms" />
+				<MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0" x:Name="mnuManpower" />
+				<MenuItem Header="Guest" FontSize="16" Margin="10,0,0,0" x:Name="mnuGuest" />
+				<MenuItem Header="Logout" Margin="10,0,0,0" FontSize="16" x:Name="mnuLogout" />
 			</Menu>
 		</GroupBox>
 		<Button x:Name="btnClose" Canvas.Left="728.5" Canvas.Top="15" Height="0" Width="0" Click="btnExit_Click">
@@ -46,10 +47,10 @@
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<GroupBox Header="My Event List" Height="307" Canvas.Left="50" Canvas.Top="273" Width="180" Foreground="Black" FontSize="21.333">
+		<GroupBox Header="My Event List" Height="307" Canvas.Left="50" Canvas.Top="273" Width="180" Foreground="Black" FontSize="18.667" FontFamily="Stencil">
 			<ListBox x:Name="lstEventList" Margin="2,8.54,2,2"/>
 		</GroupBox>
-		<GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontSize="24" Foreground="Black" Width="514.5" Canvas.Left="235.5" Canvas.Top="97"/>
+		<GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontSize="21.333" Foreground="Black" Width="514.5" Canvas.Left="235.5" Canvas.Top="97" FontFamily="Stencil"/>
 		<GroupBox Header="Item Lists" Canvas.Left="250" Canvas.Top="130" Width="485" Height="60" Foreground="Black">
 			<Label x:Name="lblItemMsg" Content="This is a sample text"/>
 		</GroupBox>
@@ -63,10 +64,10 @@
 			<Label x:Name="lblProgramMsg" Content="This is a sample text"/>
 		</GroupBox>
 		<GroupBox Header="Manpower" Canvas.Left="250" Canvas.Top="370" Width="485" Height="95" Foreground="Black">
-			<Label x:Name="lblManpowerMsg" Content="This is a sample text&#xd;&#xa;&#xd;&#xa;" VerticalAlignment="Top" Margin="0"/>
+			<TextBox x:Name="lblManpowerMsg" TextWrapping="Wrap" Text="This is a sample text" Background="{x:Null}" VerticalScrollBarVisibility="Auto"/>
 		</GroupBox>
 		<GroupBox Header="Guest" Canvas.Left="250" Canvas.Top="465" Width="485" Height="95" Foreground="Black">
-			<Label x:Name="lblGuestMsg" Content="This is a sample text" Margin="0"/>
+			<TextBox x:Name="lblGuestMsg" TextWrapping="Wrap" Text="This is a sample text&#xd;&#xa;" Background="{x:Null}" VerticalScrollBarVisibility="Auto"/>
 		</GroupBox>
         <Calendar Canvas.Left="50" Canvas.Top="97" Height="170" Name="dtpEvent" Width="180" />
     </Canvas>
