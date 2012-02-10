@@ -35,8 +35,6 @@ namespace evmsService.entities
         
         private string userIDField;
         
-        private string user_PasswordField;
-        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -139,19 +137,6 @@ namespace evmsService.entities
                 this.userIDField = value;
             }
         }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string user_Password
-        {
-            get
-            {
-                return this.user_PasswordField;
-            }
-            set
-            {
-                this.user_PasswordField = value;
-            }
-        }
     }
 }
 namespace evmsService.Controllers
@@ -206,8 +191,17 @@ public interface IEvmsService
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/loginInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User login(string userid, string password);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/test", ReplyAction="http://tempuri.org/IEvmsService/testResponse")]
-    string test();
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignLocationAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignLocationAdminResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignLocationAdminInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string assignLocationAdmin(string userid, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignEventOrganizer", ReplyAction="http://tempuri.org/IEvmsService/assignEventOrganizerResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string assignEventOrganizer(string userid, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/searchUserInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.User[] searchUser(string name, string userid);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -249,8 +243,18 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.login(userid, password);
     }
     
-    public string test()
+    public string assignLocationAdmin(string userid, string description)
     {
-        return base.Channel.test();
+        return base.Channel.assignLocationAdmin(userid, description);
+    }
+    
+    public string assignEventOrganizer(string userid, string description)
+    {
+        return base.Channel.assignEventOrganizer(userid, description);
+    }
+    
+    public evmsService.entities.User[] searchUser(string name, string userid)
+    {
+        return base.Channel.searchUser(name, userid);
     }
 }

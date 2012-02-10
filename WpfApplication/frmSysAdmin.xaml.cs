@@ -27,7 +27,8 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmSysAdmin(User u, frmLogin mainFrame):this()
+        public frmSysAdmin(User u, frmLogin mainFrame)
+            : this()
         {
             this.user = u;
             this.mainFrame = mainFrame;
@@ -38,36 +39,52 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
-
-
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             mainFrame.Visibility = Visibility.Visible;
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             EvmsServiceClient client = new EvmsServiceClient();
-
-            // Use the 'client' variable to call operations on the service.
-
-            // Always close the client.
             try
             {
                 
-                //User u = client.login(txtUserID.Text.Trim(), txtPassword.Text.Trim());
-                this.richTextBox1.AppendText(" " + user.Name + " " + user.isSystemAdmin);
-                //var admForm = new frmSysAdmin(u);
-                //admForm.ShowDialog();
+                List<User> list = client.searchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
+                lstUsers.SelectedValuePath = "userID";
+                lstUsers.ItemsSource = list;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             client.Close();
+        }
 
+        private void btnAssLocAdm_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstUsers.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select a user!");
+                return;
+            }
+            string uid = lstUsers.SelectedValue.ToString();
+            Console.WriteLine(uid);
+            var assignForm = new frmAssign(this.user, uid, EnumRoles.LocationAdmin);
+            assignForm.ShowDialog();
+        }
 
+        private void btnAssEventOrg_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstUsers.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select a user!");
+                return;
+            }
+            string uid = lstUsers.SelectedValue.ToString();
+            var assignForm = new frmAssign(this.user, uid, EnumRoles.EventExco);
+            assignForm.ShowDialog();
         }
     }
 }

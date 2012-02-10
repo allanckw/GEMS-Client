@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
 using evmsService.entities;
+using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace Gems.UIWPF
 {
@@ -16,6 +18,7 @@ namespace Gems.UIWPF
         public frmLogin()
         {
             InitializeComponent();
+            this.txtUserID.Focus();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -31,16 +34,17 @@ namespace Gems.UIWPF
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             EvmsServiceClient client = new EvmsServiceClient();
-            // Use the 'client' variable to call operations on the service.
             try
             {
                 User u = client.login(txtUserID.Text.Trim(), txtPassword.Password);
                 
                 var admForm = new frmSysAdmin(u, this);
                 this.Visibility = Visibility.Collapsed;
+
+                this.txtPassword.Clear();
+                this.txtUserID.Clear();
+
                 admForm.Show();
-               
-                
             }
             catch (Exception ex)
             {
@@ -50,7 +54,9 @@ namespace Gems.UIWPF
             {
                 client.Close();  // Always close the client.
             }
-
+           
         }
+
     }
 }
+
