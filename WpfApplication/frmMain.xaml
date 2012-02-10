@@ -8,7 +8,7 @@
 	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
 	<Canvas Height="600" Width="800" Opacity="1.0">
-		<Path Data="M99,1 L701.00001,1 701.00001,1.0126522 702.55523,1.0323319 C755.20135,2.3661354 797.63387,44.798647 798.96767,97.444765 L798.98735,99.000009 799,99.000009 799,501 798.98735,501 798.96767,502.55524 C797.63387,555.20136 755.20135,597.63385 702.55523,598.96765 L701.00001,598.98737 701.00001,599 99,599 99,598.98737 97.444763,598.96765 C44.798645,597.63385 2.3661499,555.20136 1.0323486,502.55524 L1.0126343,501 1,501 1,99.000009 1.0126343,99.000009 1.0323486,97.444765 C2.3661499,44.798647 44.798645,2.3661363 97.444763,1.0323319 L99,1.0126522 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2">
+		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Height="592" Width="792">
 			<Path.Fill>
 				<LinearGradientBrush StartPoint=".2,0" EndPoint="0.8,1">
 					<GradientStop Color="Lightgray"  Offset="0"/>
@@ -20,7 +20,9 @@
 		</Path>
 		<GroupBox Header="GEMS Event Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontSize="26.667" Width="700">
 			<Menu Margin="2,5,2,0" Background="{x:Null}">
-				<MenuItem Header="Event" FontSize="16"/>
+				<MenuItem Header="Event" FontSize="16">
+					<MenuItem Header="Add" Background="{x:Null}" Width="120"/>
+				</MenuItem>
 				<MenuItem Header="Task" FontSize="16" Margin="10,0,0,0"/>
 				<MenuItem Header="Location" FontSize="16" Margin="10,0,0,0"/>
 				<MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0"/>
@@ -44,7 +46,7 @@
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<GroupBox Header="My Event List" Height="480" Canvas.Left="50" Canvas.Top="99.88" Width="180" Foreground="Black" FontSize="21.333">
+		<GroupBox Header="My Event List" Height="307" Canvas.Left="50" Canvas.Top="273" Width="180" Foreground="Black" FontSize="21.333">
 			<ListBox x:Name="lstEventList" Margin="2,8.54,2,2"/>
 		</GroupBox>
 		<GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontSize="24" Foreground="Black" Width="514.5" Canvas.Left="235.5" Canvas.Top="97"/>
@@ -66,5 +68,6 @@
 		<GroupBox Header="Guest" Canvas.Left="250" Canvas.Top="465" Width="485" Height="95" Foreground="Black">
 			<Label x:Name="lblGuestMsg" Content="This is a sample text" Margin="0"/>
 		</GroupBox>
+        <Calendar Canvas.Left="50" Canvas.Top="97" Height="170" Name="dtpEvent" Width="180" />
     </Canvas>
 </Window>
