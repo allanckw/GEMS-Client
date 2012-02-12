@@ -141,6 +141,57 @@ namespace evmsService.entities
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SysRole", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class SysRole : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string RemarksField;
+        
+        private int RoleLevelField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleLevel
+        {
+            get
+            {
+                return this.RoleLevelField;
+            }
+            set
+            {
+                this.RoleLevelField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Event", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
     public partial class Event : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -628,15 +679,18 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignLocationAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignLocationAdminResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignLocationAdminInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    string assignLocationAdmin(string userid, string description);
+    bool assignLocationAdmin(evmsService.entities.User assigner, string userid, string description);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignEventOrganizer", ReplyAction="http://tempuri.org/IEvmsService/assignEventOrganizerResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    string assignEventOrganizer(string userid, string description);
+    bool assignEventOrganizer(evmsService.entities.User assigner, string userid, string description);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/searchUserInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User[] searchUser(string name, string userid);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewUserRole", ReplyAction="http://tempuri.org/IEvmsService/viewUserRoleResponse")]
+    evmsService.entities.SysRole viewUserRole(string userid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/CreateEventInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -694,19 +748,24 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.login(userid, password);
     }
     
-    public string assignLocationAdmin(string userid, string description)
+    public bool assignLocationAdmin(evmsService.entities.User assigner, string userid, string description)
     {
-        return base.Channel.assignLocationAdmin(userid, description);
+        return base.Channel.assignLocationAdmin(assigner, userid, description);
     }
     
-    public string assignEventOrganizer(string userid, string description)
+    public bool assignEventOrganizer(evmsService.entities.User assigner, string userid, string description)
     {
-        return base.Channel.assignEventOrganizer(userid, description);
+        return base.Channel.assignEventOrganizer(assigner, userid, description);
     }
     
     public evmsService.entities.User[] searchUser(string name, string userid)
     {
         return base.Channel.searchUser(name, userid);
+    }
+    
+    public evmsService.entities.SysRole viewUserRole(string userid)
+    {
+        return base.Channel.viewUserRole(userid);
     }
     
     public void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
