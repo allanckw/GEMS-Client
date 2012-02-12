@@ -57,16 +57,18 @@
   <PropertyGroup>
     <StartupObject>WpfApplication.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MultiThreading">
-      <HintPath>..\..\..\..\..\Desktop\MultiThreading\MultiThreading\bin\Debug\MultiThreading.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -95,10 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvmsService.cs" />
-    <Compile Include="frmAssign.xaml.cs">
+    <Compile Include="ADSS\frmAssign.xaml.cs">
       <DependentUpon>frmAssign.xaml</DependentUpon>
     </Compile>
-    <Compile Include="frmSysAdmin.xaml.cs">
+    <Compile Include="frmMain.xaml.cs">
+      <DependentUpon>frmMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ADSS\frmSysAdmin.xaml.cs">
       <DependentUpon>frmSysAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -119,7 +124,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.xaml.cs">
+    <Compile Include="ADSS\frmLogin.xaml.cs">
       <DependentUpon>frmLogin.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -149,17 +154,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="frmAssign.xaml">
+    <Page Include="ADSS\frmAssign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="frmLogin.xaml">
+    <Page Include="ADSS\frmLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="frmSysAdmin.xaml">
+    <Page Include="frmMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ADSS\frmSysAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +225,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BASS\" />
+    <Folder Include="EvMS\" />
+    <Folder Include="LogMS\" />
+    <Folder Include="Notifications\" />
+    <Folder Include="ProgMSS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

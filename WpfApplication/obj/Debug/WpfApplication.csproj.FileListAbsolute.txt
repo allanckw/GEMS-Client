@@ -16,10 +16,6 @@ C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplica
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\App.g.cs
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\GenerateResource-ResGen.read.1.tlog
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\GenerateResource-ResGen.write.1.tlog
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmLogin.baml
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmSysAdmin.baml
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmLogin.g.cs
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmSysAdmin.g.cs
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\bin\Debug\Gems.UIWPF.exe.config
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\bin\Debug\Gems.UIWPF.exe
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\bin\Debug\Gems.UIWPF.pdb
@@ -30,6 +26,11 @@ C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplica
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\Gems.UIWPF.exe
 C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\Gems.UIWPF.pdb
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\bin\Debug\MultiThreading.pdb
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmAssign.baml
-C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmAssign.g.cs
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmMain.baml
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\frmMain.g.cs
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmAssign.baml
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmLogin.baml
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmSysAdmin.baml
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmAssign.g.cs
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmLogin.g.cs
+C:\Users\Alander\Documents\Visual Studio 2010\Projects\WpfApplication\WpfApplication\obj\Debug\ADSS\frmSysAdmin.g.cs

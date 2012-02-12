@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -18,16 +19,25 @@ namespace Gems.UIWPF
 	/// </summary>
 	public partial class frmMain : Window
 	{
+        User user;
+        frmLogin mainFrame;
+
 		public frmMain()
 		{
 			this.InitializeComponent();
 			
 			// Insert code required on object creation below this point.
 		}
-
+        public frmMain(User u, frmLogin mainFrame)
+            : this()
+        {
+            this.user = u;
+            this.mainFrame = mainFrame;
+        }
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            mainFrame.Visibility = Visibility.Visible;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -37,8 +47,17 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            mnuEvent.Visibility = System.Windows.Visibility.Collapsed;
+            if (!user.isSystemAdmin)
+            {
+                this.mnuAdmin.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
 
+        private void mnuItemAssSR_Click(object sender, RoutedEventArgs e)
+        {
+            var admForm = new frmSysAdmin(user, this);
+            this.Visibility = Visibility.Collapsed;
+            admForm.Show();
         }
 	}
 }
