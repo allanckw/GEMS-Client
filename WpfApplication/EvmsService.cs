@@ -685,6 +685,10 @@ public interface IEvmsService
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     bool assignEventOrganizer(evmsService.entities.User assigner, string userid, string description);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignSystemAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignSystemAdminResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/assignSystemAdminInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    bool assignSystemAdmin(evmsService.entities.User assigner, string userid, string description);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/searchUserInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User[] searchUser(string name, string userid);
@@ -707,6 +711,12 @@ public interface IEvmsService
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteEvent", ReplyAction="http://tempuri.org/IEvmsService/DeleteEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.InvalidUserException), Action="http://tempuri.org/IEvmsService/DeleteEventInvalidUserExceptionFault", Name="InvalidUserException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void DeleteEvent(evmsService.entities.User u, evmsService.entities.Event e);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getNewMessage", ReplyAction="http://tempuri.org/IEvmsService/getNewMessageResponse")]
+    string getNewMessage(string rid);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessageCount", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessageCountResponse")]
+    int getUnreadMessageCount(string rid);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -758,6 +768,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.assignEventOrganizer(assigner, userid, description);
     }
     
+    public bool assignSystemAdmin(evmsService.entities.User assigner, string userid, string description)
+    {
+        return base.Channel.assignSystemAdmin(assigner, userid, description);
+    }
+    
     public evmsService.entities.User[] searchUser(string name, string userid)
     {
         return base.Channel.searchUser(name, userid);
@@ -786,5 +801,15 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public void DeleteEvent(evmsService.entities.User u, evmsService.entities.Event e)
     {
         base.Channel.DeleteEvent(u, e);
+    }
+    
+    public string getNewMessage(string rid)
+    {
+        return base.Channel.getNewMessage(rid);
+    }
+    
+    public int getUnreadMessageCount(string rid)
+    {
+        return base.Channel.getUnreadMessageCount(rid);
     }
 }

@@ -71,7 +71,7 @@ namespace Gems.UIWPF
             }
             string uid = lstUsers.SelectedValue.ToString();
             Console.WriteLine(uid);
-            var assignForm = new frmAssign(this.user, uid, EnumRoles.LocationAdmin, this);
+            var assignForm = new frmAssign(this.user, uid, EnumRoles.Location_Admin, this);
             assignForm.ShowDialog();
         }
 
@@ -83,7 +83,7 @@ namespace Gems.UIWPF
                 return;
             }
             string uid = lstUsers.SelectedValue.ToString();
-            var assignForm = new frmAssign(this.user, uid, EnumRoles.EventExco,this);
+            var assignForm = new frmAssign(this.user, uid, EnumRoles.Event_Exco,this);
             assignForm.ShowDialog();
         }
     }

@@ -7,7 +7,7 @@
     <Canvas Height="346" Width="532" Opacity="1.0">
 
         <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.9" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="0">
+        <Path Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.9" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="12" Canvas.Top="-14">
             <Path.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="CornflowerBlue"  Offset="0.0" />
@@ -17,7 +17,7 @@
             </Path.Fill>
         </Path>
         <!--Close button-->
-        <Button Canvas.Left="489" Canvas.Top="35" Height="0" Width="0" Click="btnExit_Click">
+        <Button Canvas.Left="497" Canvas.Top="14" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
@@ -32,10 +32,16 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Canvas.Left="114" Canvas.Top="105" Height="28" Name="label1" Width="59">User ID :</Label>
-        <TextBox Canvas.Left="168" Canvas.Top="107" Height="23" Name="txtUserID" Width="200" />
-        <Label Canvas.Left="107" Canvas.Top="140" Height="28" Name="label2" Width="66">Password :</Label>
-        <Button Canvas.Left="293" Canvas.Top="171" Content="Confirm" Height="23" Name="btnConfirm" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnConfirm_Click" IsDefault="True" />
-        <TextBox Canvas.Left="168" Canvas.Top="140" Height="23" Name="txtDesc" Width="200"  />
+        <Label Canvas.Left="150" Canvas.Top="76" Height="28" Name="label1" Width="59">User ID :</Label>
+        <TextBox Canvas.Left="204" Canvas.Top="78" Height="23" Name="txtUserID" Width="200" IsReadOnly="true" />
+        <Label Canvas.Left="127" Canvas.Top="169" Height="28" Name="label2" Width="82" Content="Description :"></Label>
+        <Button Canvas.Left="329" Canvas.Top="200" Content="Confirm" Height="23" Name="btnConfirm" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnConfirm_Click" IsDefault="True" />
+        <TextBox Canvas.Left="204" Canvas.Top="171" Height="23" Name="txtDesc" Width="200"  />
+        <Label Canvas.Left="127" Canvas.Top="138" Height="28" Name="label3" Width="82" Content="Assigning to:"></Label>
+        <TextBox Canvas.Left="204" Canvas.Top="140" Height="23" Name="txtAssn" Width="200" IsReadOnly="true"  />
+        <Label Canvas.Left="107" Canvas.Top="30" Content="GEMS System Roles Assignment" FontFamily="Stencil" FontSize="20" Height="38" Name="label4" Width="338" />
+        <Label Canvas.Left="127" Canvas.Top="107" Content="Current Role:" Height="28" Name="label5" Width="82" />
+        <TextBox Canvas.Left="204" Canvas.Top="109" Height="23" IsReadOnly="true" Name="txtCurrRole" Width="200" />
+        <Label Canvas.Left="108" Canvas.Top="244" Content="Note that you will overwrite the current role of the user" Height="28" Name="label6" Width="321" Foreground="#FFF20000" FontWeight="SemiBold" />
     </Canvas>
 </Window>

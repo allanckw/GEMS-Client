@@ -12,37 +12,22 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using WPFTaskbarNotifier;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
-    /// <summary>
-    /// This is just a mock object to hold something of interest. 
-    /// </summary>
+
     public class NotifyObject
     {
-        public NotifyObject(string message, string title)
+        string message;
+        public String Message
         {
-            this.message = message;
-            this.title = title;
-        }
-
-        private string title;
-        public string Title
-        {
-            get { return this.title; }
-            set { this.title = value; }
-        }
-
-        private string message;
-        public string Message
-        {
-            get { return this.message; }
-            set { this.message = value; }
+            get { return message; }
+            set { message = value; }
         }
     }
-
     /// <summary>
-    /// This is a TaskbarNotifier that contains a list of NotifyObjects to be displayed.
+    /// This is a TaskbarNotifier that contains a list of Notificationss to be displayed.
     /// </summary>
     public partial class Notifier : TaskbarNotifier
     {
@@ -53,7 +38,7 @@ namespace Gems.UIWPF
 
         private ObservableCollection<NotifyObject> notifyContent;
         /// <summary>
-        /// A collection of NotifyObjects that the main window can add to.
+        /// A collection of Notificationss that the main window can add to.
         /// </summary>
         public ObservableCollection<NotifyObject> NotifyContent
         {
@@ -78,13 +63,15 @@ namespace Gems.UIWPF
         {
             Hyperlink hyperlink = sender as Hyperlink;
 
-            if(hyperlink == null)
+            if (hyperlink == null)
                 return;
 
-            NotifyObject notifyObject = hyperlink.Tag as NotifyObject;
-            if(notifyObject != null)
+            NotifyObject Notifications = hyperlink.Tag as NotifyObject;
+            if (Notifications != null)
             {
-                MessageBox.Show("\"" + notifyObject.Message + "\"" + " clicked!");
+                //TODO: Add Form to read for notifications
+                //Open the god damn form
+                MessageBox.Show("test");
             }
         }
 

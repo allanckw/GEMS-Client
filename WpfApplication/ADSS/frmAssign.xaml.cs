@@ -16,9 +16,9 @@ namespace Gems.UIWPF
 {
     public enum EnumRoles
     {
-        SystemAdmin = 0,
-        LocationAdmin = 1,
-        EventExco = 2,
+        System_Admin = 0,
+        Location_Admin = 1,
+        Event_Exco = 2,
         Nil = 3
 
     }
@@ -46,6 +46,13 @@ namespace Gems.UIWPF
             this.idToAssign = uid;
             this.action = x;
             this.admFrame = f;
+
+            this.txtAssn.Text = x.ToString().Replace("_", " ");
+            this.txtUserID.Text = uid;
+            EvmsServiceClient client = new EvmsServiceClient();
+
+            this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid).RoleLevel).ToString();
+            client.Close();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -61,7 +68,55 @@ namespace Gems.UIWPF
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
+            EvmsServiceClient client = new EvmsServiceClient();
+            bool success = false;
+            if (txtCurrRole.Text.CompareTo(EnumRoles.Nil.ToString()) == 0)
+            {
+                if (action == EnumRoles.Event_Exco)
+                {
+                    success = client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                }
+                else if (action == EnumRoles.Location_Admin)
+                {
+                    success = client.assignLocationAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                }
+                else if (action == EnumRoles.System_Admin)
+                {
+                    success = client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                }
+            }
+            else
+            {
+                if(MessageBox.Show("Are you sure that you want to overwrite " + txtUserID.Text + "'s Role?",
+                    "Confirm Role Change",MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes){
+                        if (action == EnumRoles.Event_Exco)
+                        {
+                            success = client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                        }
+                        else if (action == EnumRoles.Location_Admin)
+                        {
+                            success = client.assignLocationAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                        }
+                        else if (action == EnumRoles.System_Admin)
+                        {
+                            success = client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                        }
+                    }
+            }
 
+            if (success)
+            {
+                MessageBox.Show("Role have been added/updated", "Updated Role", 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                admFrame.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("An Error have occured, please try again or contact service administrator!", "Error", 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
     }

@@ -22,8 +22,10 @@ namespace Gems.UIWPF
     {
         User user;
         frmLogin mainFrame;
-        private DispatcherTimer timer;
+        private DispatcherTimer timer, hourlyTimer;
         private Notifier taskbarNotifier;
+
+
 
         public frmMain()
         {
@@ -41,17 +43,21 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.mainFrame = mainFrame;
-            getAllNotifications();
+            getNewNotifications();
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(15);
             timer.Tick += new EventHandler(timer1_Tick);
             timer.Start();
 
+            hourlyTimer = new DispatcherTimer();
+            hourlyTimer.Interval = TimeSpan.FromMinutes(0.8); //remember to change to 60
+            hourlyTimer.Tick += new EventHandler(hourlyTimer1_Tick);
+            hourlyTimer.Start();
         }
-        
+
         private void btnExit_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             this.Close();
             mainFrame.Visibility = Visibility.Visible;
         }
@@ -67,13 +73,32 @@ namespace Gems.UIWPF
             {
                 this.mnuAdmin.Visibility = System.Windows.Visibility.Collapsed;
             }
+            getHourlyNotifications();
+            notify();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (this.taskbarNotifier != null)
             {
-                this.taskbarNotifier.Notify();
+                this.getNewNotifications();
+                notify();
+            }
+
+        }
+
+        private void notify()
+        {
+            if (taskbarNotifier.NotifyContent.Count > 0)
+                taskbarNotifier.Notify();
+        }
+
+        private void hourlyTimer1_Tick(object sender, EventArgs e)
+        {
+            if (this.taskbarNotifier != null)
+            {
+                this.getHourlyNotifications();
+                notify();
             }
 
         }
@@ -85,19 +110,43 @@ namespace Gems.UIWPF
             admForm.Show();
         }
 
-        private void getAllNotifications()
+        private void getNewNotifications()
         {
-            string title = "Test Title";
-            string message = "Testing message :(";
+            EvmsServiceClient client = new EvmsServiceClient();
+            taskbarNotifier.NotifyContent.Clear();
+            string sender = client.getNewMessage(user.userID);
 
-            if ((title != string.Empty) && (message != string.Empty))
+            if (sender.Length > 0)
+            {
+                NotifyObject n = new NotifyObject();
+                n.Message = "You have 1 new message from " + sender;
+                taskbarNotifier.NotifyContent.Add(n);
+            }
+            client.Close();
+        }
+
+        private void getHourlyNotifications()
+        {
+            EvmsServiceClient client = new EvmsServiceClient();
+            taskbarNotifier.NotifyContent.Clear();
+            int noOfUnreadMsg = client.getUnreadMessageCount(user.userID);
+
+            if (noOfUnreadMsg > 0)
             {
                 // The title and message are both not empty.
 
                 // Add the new title and message to the TaskbarNotifier's content.
-                this.taskbarNotifier.NotifyContent.Add(new NotifyObject(message, title));
-
+                NotifyObject n = new NotifyObject();
+                n.Message = "You have " + noOfUnreadMsg + " new messages";
+                taskbarNotifier.NotifyContent.Add(n);
             }
+            client.Close();
+        }
+
+
+        private void getAllUnReadNotifications()
+        {
+            taskbarNotifier.NotifyContent.Clear();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -108,7 +157,7 @@ namespace Gems.UIWPF
 
             timer.Stop();
             base.Close();
-           
+
         }
     }
 }

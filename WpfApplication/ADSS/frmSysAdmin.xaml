@@ -67,6 +67,6 @@
         <Button Canvas.Left="463" Canvas.Top="349"  Height="61" Name="btnAssEventOrg" Width="92" Click="btnAssEventOrg_Click">
             <TextBlock>Assign<LineBreak></LineBreak>Event<LineBreak></LineBreak>Organiser</TextBlock>
         </Button>
-        <Label Canvas.Left="43" Canvas.Top="52" Content="GEMS System Roles Assignment" FontFamily="Stencil" FontSize="20" Height="38" Name="label3" Width="409" />
+        <Label Canvas.Left="43" Canvas.Top="52" Content="GEMS User Search " FontFamily="Stencil" FontSize="20" Height="38" Name="label3" Width="409" />
     </Canvas>
 </Window>

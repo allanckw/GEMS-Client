@@ -25,6 +25,7 @@
 *.tlh
 *.tmp
 *.vspscc
+!*.dll
 .builds
 
 # Visual C++ cache files
