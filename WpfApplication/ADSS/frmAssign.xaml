@@ -1,13 +1,13 @@
 ﻿<Window x:Class="Gems.UIWPF.frmAssign"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GEMS Client" Height="400" Width="600"
-    AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowState="Normal"
-    MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="GEMS Client" Height="400" Width="600"    AllowsTransparency="True"  
+        WindowStyle="None" WindowState="Normal"    MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
     <Canvas Height="346" Width="532" Opacity="1.0">
 
         <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.9" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="12" Canvas.Top="-14">
+        <Path Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="1.0" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="12" Canvas.Top="-14">
             <Path.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="CornflowerBlue"  Offset="0.0" />
@@ -34,7 +34,7 @@
         </Button>
         <Label Canvas.Left="150" Canvas.Top="76" Height="28" Name="label1" Width="59">User ID :</Label>
         <TextBox Canvas.Left="204" Canvas.Top="78" Height="23" Name="txtUserID" Width="200" IsReadOnly="true" />
-        <Label Canvas.Left="127" Canvas.Top="169" Height="28" Name="label2" Width="82" Content="Description :"></Label>
+        <Label Canvas.Left="134" Canvas.Top="167" Height="28" Name="label2" Width="72" Content="Description:"></Label>
         <Button Canvas.Left="329" Canvas.Top="200" Content="Confirm" Height="23" Name="btnConfirm" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnConfirm_Click" IsDefault="True" />
         <TextBox Canvas.Left="204" Canvas.Top="171" Height="23" Name="txtDesc" Width="200"  />
         <Label Canvas.Left="127" Canvas.Top="138" Height="28" Name="label3" Width="82" Content="Assigning to:"></Label>

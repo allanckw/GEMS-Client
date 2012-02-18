@@ -6,9 +6,11 @@
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
     <GenerateInternalTypes>false</GenerateInternalTypes>
-    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -21,11 +23,12 @@
     <MetadataSource Address="http://localhost:62709/EvmsService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="EvmsService.wsdl" MetadataType="Wsdl" ID="bf4236e3-ba38-40c9-9e31-4a4125959752" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?wsdl" />
+    <MetadataFile FileName="EvmsService2.xsd" MetadataType="Schema" ID="bd227b19-a3ba-49ba-812a-239e18faa89d" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?xsd=xsd1" />
     <MetadataFile FileName="EvmsService.xsd" MetadataType="Schema" ID="b6fa0f6e-41b9-41df-a431-640cf06ea269" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EvmsService3.xsd" MetadataType="Schema" ID="71e8238b-51e7-4a54-a8a2-3e5c7723369d" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?xsd=xsd3" />
+    <MetadataFile FileName="EvmsService.wsdl" MetadataType="Wsdl" ID="bf4236e3-ba38-40c9-9e31-4a4125959752" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?wsdl" />
     <MetadataFile FileName="EvmsService1.xsd" MetadataType="Schema" ID="c277695f-a08b-4fa2-a8ee-fdac12713e0d" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?xsd=xsd2" />
     <MetadataFile FileName="EvmsService.disco" MetadataType="Disco" ID="cc9684ea-09d3-459a-ae3a-0bbd775db68b" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?disco" />
-    <MetadataFile FileName="EvmsService2.xsd" MetadataType="Schema" ID="bd227b19-a3ba-49ba-812a-239e18faa89d" SourceId="1" SourceUrl="http://localhost:62709/EvmsService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

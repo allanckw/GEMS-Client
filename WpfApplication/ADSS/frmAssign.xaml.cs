@@ -18,7 +18,7 @@ namespace Gems.UIWPF
     {
         System_Admin = 0,
         Location_Admin = 1,
-        Event_Exco = 2,
+        Event_Organizer = 2,
         Nil = 3
 
     }
@@ -29,7 +29,7 @@ namespace Gems.UIWPF
     public partial class frmAssign : Window
     {
         User user;
-        frmSysAdmin admFrame;
+        frmSearchUsers admFrame;
 
         string idToAssign;
         EnumRoles action;
@@ -39,7 +39,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmAssign(User u, string uid, EnumRoles x, frmSysAdmin f)
+        public frmAssign(User u, string uid, EnumRoles x, frmSearchUsers f)
             : this()
         {
             this.user = u;
@@ -72,7 +72,7 @@ namespace Gems.UIWPF
             bool success = false;
             if (txtCurrRole.Text.CompareTo(EnumRoles.Nil.ToString()) == 0)
             {
-                if (action == EnumRoles.Event_Exco)
+                if (action == EnumRoles.Event_Organizer)
                 {
                     success = client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                 }
@@ -90,7 +90,7 @@ namespace Gems.UIWPF
                 if(MessageBox.Show("Are you sure that you want to overwrite " + txtUserID.Text + "'s Role?",
                     "Confirm Role Change",MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes){
-                        if (action == EnumRoles.Event_Exco)
+                        if (action == EnumRoles.Event_Organizer)
                         {
                             success = client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                         }

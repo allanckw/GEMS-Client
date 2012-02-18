@@ -21,19 +21,25 @@
         <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="750" Canvas.Left="-20">
             <Menu Margin="2,5,2,0" Background="{x:Null}">
                 <MenuItem Header="Administrative" FontSize="16" Margin="10,0,0,0" x:Name="mnuAdmin">
+                    <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
-                    <MenuItem Header="View Location Admins" Background="{x:Null}" Width="250" x:Name="mnuItemViewLocAdm"/>
-                    <MenuItem Header="View Event Organizers" Background="{x:Null}" Width="250" x:Name="mnuItemViewEventOrgs"/>
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="16" x:Name="mnuEvent" >
-                    <MenuItem Header="Add" Background="{x:Null}" Width="120" x:Name="mnuItemAddEvent"/>
+                    <MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>
+                    <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
-                <MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0" x:Name="mnuPrograms"/>
-                <MenuItem Header="Location" FontSize="16" Margin="10,0,0,0" x:Name="mnuLocation"/>
-                <MenuItem Header="Tasks" FontSize="16" Margin="10,0,0,0" x:Name="mnuTasks" />
-                <MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0" x:Name="mnuManpower"/>
-                <MenuItem Header="Guests" FontSize="16" Margin="10,0,0,0" x:Name="mnuGuests" />
-                <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="16" x:Name="mnuNotify"/>
+                <MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0" x:Name="mnuPrograms">
+                </MenuItem>
+                <MenuItem Header="Location" FontSize="16" Margin="10,0,0,0" x:Name="mnuLocation">
+                </MenuItem>
+                <MenuItem Header="Tasks" FontSize="16" Margin="10,0,0,0" x:Name="mnuTasks" >
+                </MenuItem>
+                <MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0" x:Name="mnuManpower">
+                </MenuItem>
+                <MenuItem Header="Guests" FontSize="16" Margin="10,0,0,0" x:Name="mnuGuests" >
+                </MenuItem>
+                <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="16" x:Name="mnuNotify" Click="mnuNotify_Click">
+                </MenuItem>
             </Menu>
         </GroupBox>
         <Button x:Name="btnClose" Canvas.Left="762" Canvas.Top="12" Height="0" Width="0" Click="btnExit_Click">
@@ -52,7 +58,8 @@
             </Button.Template>
         </Button>
         <GroupBox Header="My Event List" Height="351" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="234" Width="180" Foreground="Black" FontSize="16">
-            <ListBox x:Name="lstEventList" Margin="2,8.54,2,2"/>
+            <ListBox x:Name="lstEventList" Margin="2,8.54,2,2">
+            </ListBox>
         </GroupBox>
         <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontFamily="Stencil" FontSize="20" Foreground="Black" Width="544" Canvas.Left="235.5" Canvas.Top="97"/>
         <GroupBox Header="Item Lists" Canvas.Left="250" Canvas.Top="130" Width="522" Height="60" Foreground="Black">
@@ -76,7 +83,7 @@
         <DatePicker Canvas.Left="38" Canvas.Top="127" Height="25" Name="dtpFrom" Width="172" />
         <DatePicker Canvas.Left="38" Canvas.Top="175" Height="25" Name="dtpTo" Width="172" />
         <Label Canvas.Left="35" Canvas.Top="107" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
-        
+
         <Label Canvas.Left="38" Canvas.Top="156" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
         <Button Canvas.Left="38" Canvas.Top="207" Content="GO!" Height="23" Name="btnGetEvents" Width="75" />
     </Canvas>

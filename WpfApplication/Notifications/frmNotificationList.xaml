@@ -1,0 +1,65 @@
+﻿<Window x:Class="Gems.UIWPF.frmNotificationList"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    Title="Notifications" Height="600" Width="650"
+    AllowsTransparency="True" WindowStyle="None" WindowState="Normal"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"  Loaded="Window_Loaded"
+    ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
+
+    <Canvas Height="600" Width="630" Opacity="1.0">
+
+        <!--Non-Rectangular window edge, created with PathGeometry-->
+        <Path Stroke="DarkGray" StrokeThickness="2" Height="640" Width="659" Opacity="1.0" Data="M40,20 L580,20 A40,55,0,0,1,620,50 L620,530 A40,55,0,0,1,580,570 L40,570 A40,55,0,0,1,10,530 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="-13">
+            <Path.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="CornflowerBlue"  Offset="0.0" />
+                    <GradientStop Color="AliceBlue" Offset="0.5" />
+                    <GradientStop Color="CadetBlue" Offset="0.9" />
+                </LinearGradientBrush>
+            </Path.Fill>
+        </Path>
+        <!--Close button-->
+        <Button Canvas.Left="586" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"></Line>
+                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"></Line>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Canvas.Left="30" Canvas.Top="12" Content="GEMS NOTIFICATIONS" FontFamily="Stencil" FontSize="20" Height="38" Name="label3" Width="215" />
+        <GroupBox Canvas.Left="28" Canvas.Top="46" FontFamily="Stencil" FontSize="16" Foreground="Black" Header="My Messages" Height="424" Width="558">
+            <ListBox Margin="2,8.54,2,2" Name="lstMsg" Height="365"  FontFamily="Segoe UI" FontSize="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5" Orientation="Vertical">
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="Sender: " /><TextBlock Text="{Binding Sender}" />
+                                <TextBlock Text=" @ " />
+                                <TextBlock Text="{Binding SendDateTime, StringFormat=dd MMM yyyy hh:mm:ss}"  />         
+                            </StackPanel>
+                            <WrapPanel >
+                                <TextBlock Text="Subject: " />
+                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <Button Canvas.Left="404" Canvas.Top="477" Content="Delete Selected" Height="26" Name="btnDeleteSel" Width="88" Click="btnDeleteSel_Click" />
+        <Button Canvas.Left="498" Canvas.Top="477" Content="Delete All" Height="26" Name="btnDeleteAll" Width="88" Click="btnDeleteAll_Click" />
+        <RadioButton Canvas.Left="97" Canvas.Top="70" Content="All" Height="16" Name="radAll" Checked="radUnread_Checked" />
+        <RadioButton Canvas.Left="36" Canvas.Top="70" Content="Unread" Height="16" Name="radUnread" IsChecked="True" Checked="radUnread_Checked" />
+        <Button Canvas.Left="310" Canvas.Top="477" Content="View" Height="26" Name="btnVIew" Width="88" Click="btnVIew_Click"/>
+    </Canvas>
+</Window>

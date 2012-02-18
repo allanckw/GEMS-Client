@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -17,6 +19,10 @@ namespace Gems.UIWPF
 	/// </summary>
 	public partial class frmEventAdd : Window
 	{
+
+        frmMain mainFrame;
+        User user;
+
 		public frmEventAdd()
 		{
 			this.InitializeComponent();
@@ -24,9 +30,23 @@ namespace Gems.UIWPF
 			// Insert code required on object creation below this point.
 		}
 
+        public frmEventAdd(User u, frmMain f)
+            : this()
+        {
+            this.mainFrame = f;
+            this.user = u;
+        }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            mainFrame.Visibility = Visibility.Visible;
+
         }
 	}
 }

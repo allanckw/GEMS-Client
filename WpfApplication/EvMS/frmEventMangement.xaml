@@ -2,18 +2,11 @@
 	x:Class="Gems.UIWPF.frmEventMangement"
 	x:Name="Window"
 	Title="Event Management"
-	Width="700" Height="450" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" >
+	Width="720" Height="490" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" >
 	<Canvas Opacity="1.0">
 		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="450" Width="700">
 			<Path.Fill>
-				<!--
-			<LinearGradientBrush StartPoint=".2,0" EndPoint="0.8,1">
-				<GradientStop Color="Lightgray"  Offset="0"/>
-				<GradientStop Color="PaleGoldenrod"  Offset="1.0"/>
-				<GradientStop Color="AliceBlue" Offset="0.4"/>
-				<GradientStop Color="LightGoldenrodYellow" Offset="0.5"/>
-			</LinearGradientBrush>
-			-->
+
 				<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 					<GradientStop Color="CornflowerBlue"  Offset="0.0" />
 					<GradientStop Color="AliceBlue" Offset="0.5" />
@@ -37,12 +30,12 @@
 			</Button.Template>
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Manage Events" Height="38" x:Name="label3" Width="613.5" FontFamily="Stencil" FontSize="24" />
-		<GroupBox Header="Event List" Canvas.Left="21" Canvas.Top="60" Height="380" Width="156.197" FontSize="21.333">
+		<GroupBox Header="Event List" Canvas.Left="21" Canvas.Top="60" Height="380" Width="156.197" FontSize="20">
 			<StackPanel Height="350">
-				<ListBox Height="340" FontSize="13.333"/>
+				<ListBox Height="340" FontSize="12"/>
 			</StackPanel>
 		</GroupBox>
-		<GroupBox Header="Event Detail" Canvas.Left="181.197" Canvas.Top="64" Height="380" Width="494.5" FontSize="21.333">
+		<GroupBox Header="Event Detail" Canvas.Left="181.197" Canvas.Top="64" Height="380" Width="494.5" FontSize="20">
 			<StackPanel Margin="0,8,0,0" Height="330" VerticalAlignment="Top">
 				<Canvas Height="40">
 					<Label Canvas.Left="15" Canvas.Top="3" Content="Event Name :" Height="28" x:Name="label1" FontSize="16" />
@@ -127,8 +120,9 @@
 					<TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="340" FontSize="13.333" />
 				</Canvas>
 				<StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
-					<Button Content="Delete" Height="30" x:Name="btnEventDelete" Width="60" FontSize="16" HorizontalAlignment="Left" RenderTransformOrigin="-1.437,0.571" Margin="0,5" />
-					<Button x:Name="btnEventEdit" Content="Edit" Width="60" FontSize="16" HorizontalAlignment="Left" Margin="10,0,25,0" Height="30"/>
+                    <Button x:Name="btnEventEdit" Content="Edit" Width="60" FontSize="16" HorizontalAlignment="Left" Margin="10,0,25,0" Height="30"/>
+					<Button Content="Delete" Height="30" x:Name="btnEventDelete" Width="60" FontSize="16" RenderTransformOrigin="-1.437,0.571" Margin="0,5" />
+					
 				</StackPanel>
 			</StackPanel>
 		</GroupBox>

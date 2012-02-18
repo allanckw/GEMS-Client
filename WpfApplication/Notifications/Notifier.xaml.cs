@@ -31,9 +31,18 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class Notifier : TaskbarNotifier
     {
+        User user;
+        frmMain mainFrame;
         public Notifier()
         {
             InitializeComponent();
+        }
+
+        public Notifier(User u, frmMain f)
+            :this()
+        {
+            user = u;
+            mainFrame = f;
         }
 
         private ObservableCollection<NotifyObject> notifyContent;
@@ -69,9 +78,9 @@ namespace Gems.UIWPF
             NotifyObject Notifications = hyperlink.Tag as NotifyObject;
             if (Notifications != null)
             {
-                //TODO: Add Form to read for notifications
-                //Open the god damn form
-                MessageBox.Show("test");
+                var notiForm = new frmNotificationList(user, mainFrame);
+                //this.Visibility = Visibility.Collapsed;
+                notiForm.ShowDialog();
             }
         }
 
