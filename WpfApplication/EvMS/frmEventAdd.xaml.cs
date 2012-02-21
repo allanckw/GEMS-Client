@@ -28,7 +28,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
 
             // Insert code required on object creation below this point.
-            for (int i = 0; i < 23; i++)
+            for (int i = 0; i <= 23; i++)
             {
                 if (i < 10)
                 {
