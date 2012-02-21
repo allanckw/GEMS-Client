@@ -46,6 +46,7 @@ namespace Gems.UIWPF
                 MessageBox.Show(ex.Message);
             }
             client.Close();
+            
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -75,5 +76,11 @@ namespace Gems.UIWPF
             }
             client.Close();
         }
+
+        private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+ 
+        }
+
     }
 }

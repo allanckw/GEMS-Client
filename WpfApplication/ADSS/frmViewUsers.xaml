@@ -38,7 +38,7 @@
         <Label Canvas.Left="68" Canvas.Top="103" Height="28" Name="label2" Width="52" Content="User ID: "></Label>
         <TextBox Canvas.Left="116" Canvas.Top="105" Height="23" Name="txtUserID" Width="317" />
         <Button Canvas.Left="439" Canvas.Top="139" Height="23" Name="btnSearch" Width="75" Content="Search" IsDefault="True" Click="btnSearch_Click"></Button>
-        <ListBox Canvas.Left="116" Canvas.Top="174" Height="346" Name="lstUsers" Width="398">
+        <ListBox Canvas.Left="68" Canvas.Top="174" Height="346" Name="lstUsers" Width="365">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10" Orientation="Vertical">
@@ -55,6 +55,6 @@
         </ListBox>
         <Label Canvas.Left="45" Canvas.Top="26" Content="GEMS Users Search - By Roles" FontFamily="Stencil" FontSize="20" Height="38" Name="label3" Width="409" />
         <Label Canvas.Left="84" Canvas.Top="138" Content="Role:" Height="28" Name="label4" />
-        <ComboBox Canvas.Left="116" Canvas.Top="139" Height="23" Name="cboRole" Width="317" />
+        <ComboBox Canvas.Left="116" Canvas.Top="139" Height="23" Name="cboRole" Width="317" SelectionChanged="cboRole_SelectionChanged" />
     </Canvas>
 </Window>

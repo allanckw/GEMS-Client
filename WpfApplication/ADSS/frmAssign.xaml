@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="GEMS Client" Height="400" Width="600"    AllowsTransparency="True"  
+        Loaded="Window_Loaded"
         WindowStyle="None" WindowState="Normal"    MouseLeftButtonDown="Window_MouseLeftButtonDown" 
         ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
     <Canvas Height="346" Width="532" Opacity="1.0">
@@ -17,7 +18,7 @@
             </Path.Fill>
         </Path>
         <!--Close button-->
-        <Button Canvas.Left="497" Canvas.Top="14" Height="0" Width="0" Click="btnExit_Click">
+        <Button Canvas.Left="497" Canvas.Top="14" Height="0" Width="0" x:Name="btnExit" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>

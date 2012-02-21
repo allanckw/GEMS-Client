@@ -21,8 +21,9 @@
         <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="750" Canvas.Left="-20">
             <Menu Margin="2,5,2,0" Background="{x:Null}">
                 <MenuItem Header="Administrative" FontSize="16" Margin="10,0,0,0" x:Name="mnuAdmin">
-                    <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
+
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
+                    <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="16" x:Name="mnuEvent" >
                     <MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>

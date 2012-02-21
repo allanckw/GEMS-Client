@@ -25,7 +25,7 @@ namespace evmsService.entities
         
         private string NameField;
         
-        private string UserFacultyField;
+        private evmsService.entities.Faculty UserFacultyField;
         
         private bool isEventOrganizerField;
         
@@ -76,7 +76,7 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserFaculty
+        public evmsService.entities.Faculty UserFaculty
         {
             get
             {
@@ -154,6 +154,72 @@ namespace evmsService.entities
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Faculty", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum Faculty : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Science = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Engineering = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Arts_and_Social_Science = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Dentistry = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Law = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Computing = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Loo_Lin_School_of_Medicine = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Siew_Toh_Conservatory_Of_Music = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Design_and_Environment = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Business = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Development_of_Teaching_and_Learning = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Instructional_Technology = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Computing_Commons = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Education_Resource_Centre = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EduSports = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Lee_Kuan_Yew_School_of_Public_Policy = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PC_Cluster = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Science_Cluster = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UTown = 19,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SysRole", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
@@ -219,7 +285,9 @@ namespace evmsService.entities
         
         private string NameField;
         
-        private string OrganizerIDField;
+        private evmsService.entities.User OrganizerField;
+        
+        private string OrganizeridField;
         
         private System.DateTime StartDateTimeField;
         
@@ -277,15 +345,28 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OrganizerID
+        public evmsService.entities.User Organizer
         {
             get
             {
-                return this.OrganizerIDField;
+                return this.OrganizerField;
             }
             set
             {
-                this.OrganizerIDField = value;
+                this.OrganizerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Organizerid
+        {
+            get
+            {
+                return this.OrganizeridField;
+            }
+            set
+            {
+                this.OrganizeridField = value;
             }
         }
         
@@ -502,6 +583,9 @@ public interface IEvmsService
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewUserRole", ReplyAction="http://tempuri.org/IEvmsService/viewUserRoleResponse")]
     evmsService.entities.SysRole viewUserRole(string userid);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/unAssignRole", ReplyAction="http://tempuri.org/IEvmsService/unAssignRoleResponse")]
+    bool unAssignRole(evmsService.entities.User assigner, string userid);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
@@ -541,6 +625,15 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/sendNotification", ReplyAction="http://tempuri.org/IEvmsService/sendNotificationResponse")]
     void sendNotification(string sender, string receiver, string title, string msg);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/addFacility", ReplyAction="http://tempuri.org/IEvmsService/addFacilityResponse")]
+    void addFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/removeFacility", ReplyAction="http://tempuri.org/IEvmsService/removeFacilityResponse")]
+    void removeFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/updateFacility", ReplyAction="http://tempuri.org/IEvmsService/updateFacilityResponse")]
+    void updateFacility(evmsService.entities.User u, string locID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -612,6 +705,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.viewUserRole(userid);
     }
     
+    public bool unAssignRole(evmsService.entities.User assigner, string userid)
+    {
+        return base.Channel.unAssignRole(assigner, userid);
+    }
+    
     public void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
     {
         base.Channel.CreateEvent(u, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
@@ -670,5 +768,20 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public void sendNotification(string sender, string receiver, string title, string msg)
     {
         base.Channel.sendNotification(sender, receiver, title, msg);
+    }
+    
+    public void addFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
+    {
+        base.Channel.addFacility(u, LocID, fac, loc, bookingCon, techCon, cap);
+    }
+    
+    public void removeFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac)
+    {
+        base.Channel.removeFacility(u, LocID, fac);
+    }
+    
+    public void updateFacility(evmsService.entities.User u, string locID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
+    {
+        base.Channel.updateFacility(u, locID, fac, loc, bookingCon, techCon, cap);
     }
 }

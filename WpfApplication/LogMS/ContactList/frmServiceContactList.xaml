@@ -1,0 +1,103 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="Gems.UIWPF.frmServiceContactList"
+	x:Name="Window"
+	Title="frmServiceContactList"
+Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" >
+	<Canvas Opacity="1.0">
+		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="650" Width="700">
+			<Path.Fill>
+				<!--
+			<LinearGradientBrush StartPoint=".2,0" EndPoint="0.8,1">
+				<GradientStop Color="Lightgray"  Offset="0"/>
+				<GradientStop Color="PaleGoldenrod"  Offset="1.0"/>
+				<GradientStop Color="AliceBlue" Offset="0.4"/>
+				<GradientStop Color="LightGoldenrodYellow" Offset="0.5"/>
+			</LinearGradientBrush>
+			-->
+				<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+					<GradientStop Color="CornflowerBlue"  Offset="0.0" />
+					<GradientStop Color="AliceBlue" Offset="0.5" />
+					<GradientStop Color="CadetBlue" Offset="0.9" />
+				</LinearGradientBrush>
+			</Path.Fill>
+		</Path>
+		<Button x:Name="btnClose" Canvas.Left="658.5" Canvas.Top="22" Height="0" Width="0" Click="btnExit_Click">
+			<Button.Template>
+				<ControlTemplate>
+					<Canvas>
+						<Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+							<Rectangle.Fill>
+								<SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+							</Rectangle.Fill>
+						</Rectangle>
+						<Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
+						<Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
+					</Canvas>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="18.667" />
+		<GroupBox Header="Service List" Canvas.Left="21" Canvas.Top="60" Height="560" Width="156.197" FontSize="21.333">
+			<ListBox x:Name="lstServiceList"/>
+		</GroupBox>
+		<GroupBox Header="Service Detail" Canvas.Left="181.197" Canvas.Top="64" Height="560" Width="494.5" FontSize="21.333">
+			<StackPanel Margin="0,8,0,0" Height="515" VerticalAlignment="Top">
+				<StackPanel Height="145">
+					<Canvas Height="40">
+						<Label Canvas.Left="15" Canvas.Top="3" Content="Company Name :" Height="35" x:Name="label1" FontSize="13.333" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtCompanyName" Width="300" IsReadOnly="True" FontSize="13.333" />
+					</Canvas>
+					<Canvas Height="40">
+						<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label7" FontSize="13.333" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="13.333" />
+					</Canvas>
+					<Canvas Height="115">
+						<Label Canvas.Top="8" Content="Notes :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="13.333" HorizontalAlignment="Left" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="50" x:Name="txtNote" Width="300" FontSize="13.333" />
+					</Canvas>
+				</StackPanel>
+				<Canvas Height="210">
+					<StackPanel Height="200" Width="500">
+						<StackPanel Height="175" Orientation="Horizontal" Margin="0" Width="500">
+							<GroupBox Header="Contact List" FontSize="16" Height="170" Margin="0,0,-39.873,0" Width="150">
+								<ListBox x:Name="lstContactList"/>
+							</GroupBox>
+							<GroupBox Header="Point of Contact" Width="322.627" Height="170" FontSize="16" HorizontalAlignment="Right" Margin="0,0,-366.5,0">
+								<StackPanel>
+									<Canvas Height="35">
+										<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
+										<TextBox x:Name="txtContactEmail" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+									</Canvas>
+									<Canvas Height="35">
+										<Label Content="Name :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
+										<TextBox x:Name="txtContactName" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+									</Canvas>
+									<Canvas Height="35">
+										<Label Content="Position :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
+										<TextBox x:Name="txtContactPosition" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+									</Canvas>
+									<Canvas Height="35">
+										<Label Content="Contact :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
+										<TextBox x:Name="txtContactTel" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+									</Canvas>
+								</StackPanel>
+							</GroupBox>
+						</StackPanel>
+						<StackPanel Height="50" Width="500" Orientation="Horizontal">
+							<Button x:Name="btnAddNewPOC" Content="Add New" FontSize="13.333" Margin="5,0,0,0" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13.333" VerticalAlignment="Top"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13.333" Margin="0"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13.333" VerticalAlignment="Top"/>
+						</StackPanel>
+					</StackPanel>
+				</Canvas>
+				<GroupBox Header="Review" Height="160">
+					<ListBox Margin="0,0,-12,2.627" VerticalAlignment="Top" Height="125" Width="465" HorizontalAlignment="Left"/>
+				</GroupBox>
+			</StackPanel>
+		</GroupBox>
+	</Canvas>
+</Window>

@@ -35,6 +35,7 @@ namespace Gems.UIWPF
             this.cboAssign.ItemsSource = System.Enum.GetValues(typeof(EnumRoles));
         }
 
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -51,8 +52,16 @@ namespace Gems.UIWPF
             EvmsServiceClient client = new EvmsServiceClient();
             try
             {
-                
-                List<User> list = client.searchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
+                List<User> list;
+                if (cboRole.SelectedIndex == 0)
+                {
+                    list = client.searchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
+                }
+                else
+                {
+                    list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
+                      cboRole.SelectedIndex-1).ToList<User>();
+                }
                 lstUsers.SelectedValuePath = "userID";
                 lstUsers.ItemsSource = list;
             }
@@ -76,9 +85,34 @@ namespace Gems.UIWPF
                 return;
             }
             string uid = lstUsers.SelectedValue.ToString();
-            Console.WriteLine(uid);
-            var assignForm = new frmAssign(this.user, uid, (EnumRoles)cboAssign.SelectedIndex, this);
-            assignForm.ShowDialog();
+            if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Nil)
+            {
+                EvmsServiceClient client = new EvmsServiceClient();
+                try
+                {
+                    if (MessageBox.Show("Are you sure you want to remove the role of " + uid + "? ",
+                        "Confirm Role Removal",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        client.unAssignRole(user, uid);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                client.Close();
+            }
+            else
+            {
+                var assignForm = new frmAssign(this.user, uid, (EnumRoles)cboAssign.SelectedIndex, this);
+                assignForm.ShowDialog();
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cboRole.SelectedIndex = 0;
         }
 
 

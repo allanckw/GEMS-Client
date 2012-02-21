@@ -120,8 +120,23 @@
     <Compile Include="ADSS\frmSearchUsers.xaml.cs">
       <DependentUpon>frmSearchUsers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\frmServiceContactList.xaml.cs">
+    <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Location\frmLocationAdminAdd.xaml.cs">
+      <DependentUpon>frmLocationAdminAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Location\frmLocationAdminManagement.xaml.cs">
+      <DependentUpon>frmLocationAdminManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Location\frmLocationAdminRequest.xaml.cs">
+      <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Location\frmLocationBooking.xaml.cs">
+      <DependentUpon>frmLocationBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Location\frmLocationSelection.xaml.cs">
+      <DependentUpon>frmLocationSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\frmNotificationList.xaml.cs">
       <DependentUpon>frmNotificationList.xaml</DependentUpon>
@@ -243,7 +258,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LogMS\frmServiceContactList.xaml">
+    <Page Include="LogMS\ContactList\frmServiceContactList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Location\frmLocationAdminAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Location\frmLocationAdminManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Location\frmLocationAdminRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Location\frmLocationBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Location\frmLocationSelection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -321,6 +356,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BASS\" />
+    <Folder Include="LogMS\Guests\" />
+    <Folder Include="LogMS\Manpower\" />
     <Folder Include="ProgMSS\" />
   </ItemGroup>
   <ItemGroup>

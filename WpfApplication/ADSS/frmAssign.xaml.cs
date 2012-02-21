@@ -20,7 +20,6 @@ namespace Gems.UIWPF
         Location_Admin = 1,
         Event_Organizer = 2,
         Nil = 3
-
     }
 
     /// <summary>
@@ -47,12 +46,14 @@ namespace Gems.UIWPF
             this.action = x;
             this.admFrame = f;
 
-            this.txtAssn.Text = x.ToString().Replace("_", " ");
+            this.txtAssn.Text = x.ToString();
             this.txtUserID.Text = uid;
             EvmsServiceClient client = new EvmsServiceClient();
 
             this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid).RoleLevel).ToString();
             client.Close();
+
+          
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -118,6 +119,16 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (txtAssn.Text.Trim().CompareTo(txtCurrRole.Text.Trim()) == 0)
+            {
+                MessageBox.Show("User " + txtUserID.Text + " has already been assigned as " + txtCurrRole.Text,
+                    "Already Assigned", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                btnExit_Click(this.btnExit, new RoutedEventArgs());
+            }
         }
     }
 }
