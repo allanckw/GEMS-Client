@@ -25,8 +25,34 @@ namespace Gems.UIWPF
 		public frmEventMangement()
 		{
 			this.InitializeComponent();
-			
-			// Insert code required on object creation below this point.
+
+            for (int i = 0; i <= 23; i++)
+            {
+                if (i < 10)
+                {
+                    cboStartHr.Items.Add("0" + i.ToString());
+                    cboEndHr.Items.Add("0" + i.ToString());
+                }
+                else
+                {
+                    cboStartHr.Items.Add(i.ToString());
+                    cboEndHr.Items.Add(i.ToString());
+                }
+            }
+
+            for (int i = 0; i <= 55; i += 5)
+            {
+                if (i < 10)
+                {
+                    cboStartMin.Items.Add("0" + i.ToString());
+                    cboEndMin.Items.Add("0" + i.ToString());
+                }
+                else
+                {
+                    cboStartMin.Items.Add(i.ToString());
+                    cboEndMin.Items.Add(i.ToString());
+                }
+            }
 		}
 
         public frmEventMangement(User u, frmMain f)

@@ -24,7 +24,7 @@
 				</LinearGradientBrush>
 			</Path.Fill>
 		</Path>
-		<Label Canvas.Left="8" Canvas.Top="22" Content="GEMS Event Management System - Add Events" Height="38" x:Name="label3" Width="450" FontFamily="Stencil" FontSize="18.667" />
+		<Label Canvas.Left="8" Canvas.Top="22" Content="GEMS Event Management System - Add Events" Height="38" x:Name="label3" Width="450" FontFamily="Stencil" FontSize="18" />
 		<Button x:Name="btnClose" Canvas.Left="464" Canvas.Top="8" Height="0" Width="0" Click="btnExit_Click">
 			<Button.Template>
 				<ControlTemplate>
@@ -42,79 +42,29 @@
 		</Button>
 		<StackPanel Height="375" VerticalAlignment="Top" Canvas.Top="53" Width="482.5">
 			<Canvas Height="40">
-				<Label Canvas.Left="15" Canvas.Top="3" Content="Event Name :" Height="28" x:Name="label1" FontSize="16" />
-				<TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtEventName" Width="268" IsReadOnly="True" />
+				<Label Canvas.Left="16" Canvas.Top="2" Content="Event Name :" Height="28" x:Name="label1" FontSize="16" />
+				<TextBox Canvas.Left="120" Canvas.Top="7" Height="23" x:Name="txtEventName" Width="344" IsReadOnly="True" />
 			</Canvas>
 			<Canvas Height="85">
-				<Label Canvas.Left="15" Canvas.Top="8" Content="Start Time :" Height="28" x:Name="label2" FontSize="16" />
-				<Label Canvas.Left="16" Canvas.Top="50" Content="End Time :" Height="28" x:Name="label4" FontSize="16" HorizontalAlignment="Left" />
+				<Label Canvas.Left="30" Canvas.Top="8" Content="Start Date :" Height="28" x:Name="label2" FontSize="16" />
+				<Label Canvas.Left="41" Canvas.Top="50" Content="End Date:" Height="28" x:Name="label4" FontSize="16" HorizontalAlignment="Left" />
 				<DatePicker Canvas.Left="120" Canvas.Top="12" Height="25" x:Name="dtpStart" Width="130" FontSize="13.333" />
 				<DatePicker Canvas.Left="120" Canvas.Top="54" Height="25" x:Name="dtpEnd" Width="130" FontSize="13.333" />
-				<ComboBox Canvas.Left="260" Canvas.Top="12" Height="23" x:Name="cboStartHr" Width="43" FontSize="13.333">
-					<ComboBoxItem Content="1" />
-					<ComboBoxItem Content="2" />
-					<ComboBoxItem Content="3" />
-					<ComboBoxItem Content="4" />
-					<ComboBoxItem Content="5" />
-					<ComboBoxItem Content="6" />
-					<ComboBoxItem Content="7" />
-					<ComboBoxItem Content="8" />
-					<ComboBoxItem Content="9" />
-					<ComboBoxItem Content="10" />
-					<ComboBoxItem Content="11" />
-					<ComboBoxItem Content="12" />
+				<ComboBox Canvas.Left="304" Canvas.Top="14" Height="23" x:Name="cboStartHr" Width="43" FontSize="13.333">
+
 				</ComboBox>
-				<ComboBox Canvas.Left="260" Canvas.Top="54" Height="23" x:Name="cboEndHr" Width="43" FontSize="13.333">
-					<ComboBoxItem Content="1" />
-					<ComboBoxItem Content="2" />
-					<ComboBoxItem Content="3" />
-					<ComboBoxItem Content="4" />
-					<ComboBoxItem Content="5" />
-					<ComboBoxItem Content="6" />
-					<ComboBoxItem Content="7" />
-					<ComboBoxItem Content="8" />
-					<ComboBoxItem Content="9" />
-					<ComboBoxItem Content="10" />
-					<ComboBoxItem Content="11" />
-					<ComboBoxItem Content="12" />
+				<ComboBox Canvas.Left="304" Canvas.Top="54" Height="23" x:Name="cboEndHr" Width="43" FontSize="13.333">
+
 				</ComboBox>
-				<ComboBox Canvas.Left="310" Canvas.Top="12" Height="23" x:Name="cboStartMin" Width="56" FontSize="13.333">
-					<ComboBoxItem Content="00" />
-					<ComboBoxItem Content="05" />
-					<ComboBoxItem Content="10" />
-					<ComboBoxItem Content="15" />
-					<ComboBoxItem Content="20" />
-					<ComboBoxItem Content="25" />
-					<ComboBoxItem Content="30" />
-					<ComboBoxItem Content="35" />
-					<ComboBoxItem Content="40" />
-					<ComboBoxItem Content="45" />
-					<ComboBoxItem Content="50" />
-					<ComboBoxItem Content="55" />
+				<ComboBox Canvas.Left="350" Canvas.Top="14" Height="23" x:Name="cboStartMin" Width="56" FontSize="13.333">
+
 				</ComboBox>
-				<ComboBox Canvas.Left="310" Canvas.Top="54" Height="23" x:Name="cboEndMin" Width="56" FontSize="13.333">
-					<ComboBoxItem Content="00" />
-					<ComboBoxItem Content="05" />
-					<ComboBoxItem Content="10" />
-					<ComboBoxItem Content="15" />
-					<ComboBoxItem Content="20" />
-					<ComboBoxItem Content="25" />
-					<ComboBoxItem Content="30" />
-					<ComboBoxItem Content="35" />
-					<ComboBoxItem Content="40" />
-					<ComboBoxItem Content="45" />
-					<ComboBoxItem Content="50" />
-					<ComboBoxItem Content="55" />
+				<ComboBox Canvas.Left="350" Canvas.Top="54" Height="23" x:Name="cboEndMin" Width="56" FontSize="13.333">
+
 				</ComboBox>
-				<ComboBox Canvas.Left="380" Canvas.Top="12" Height="23" x:Name="cboStartDayNight" Width="46" FontSize="13.333">
-					<ComboBoxItem Content="am" />
-					<ComboBoxItem Content="pm" />
-				</ComboBox>
-				<ComboBox Canvas.Left="380" Canvas.Top="54" Height="23" x:Name="cboEndDayNight" Width="46" FontSize="13.333">
-					<ComboBoxItem Content="am" />
-					<ComboBoxItem Content="pm" />
-				</ComboBox>
-			</Canvas>
+                <Label Canvas.Left="250" Canvas.Top="9" Content="Time:" FontSize="16" Height="28" Name="label5" />
+                <Label Canvas.Left="250" Canvas.Top="49" Content="Time:" FontSize="16" Height="28" Name="label8" />
+            </Canvas>
 			<Canvas Height="115">
 				<Label Canvas.Top="8" Content="Description :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="16" HorizontalAlignment="Left" />
 				<TextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="340" />
