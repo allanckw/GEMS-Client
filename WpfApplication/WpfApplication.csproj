@@ -95,6 +95,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ADSS\frmAssignFacAdmin.xaml.cs">
+      <DependentUpon>frmAssignFacAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ADSS\frmViewUsers.xaml.cs">
       <DependentUpon>frmViewUsers.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ADSS\frmAssign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ADSS\frmAssignFacAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

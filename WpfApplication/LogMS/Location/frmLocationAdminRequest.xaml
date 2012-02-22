@@ -38,7 +38,7 @@ Width="800" Height="475" AllowsTransparency="True" WindowStyle="None" Background
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Location Approval" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
+		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facility Approval" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
 		<StackPanel Height="400" Canvas.Left="21" Canvas.Top="60" Width="750" Orientation="Horizontal">
 			<GroupBox Header="Requestor list" FontSize="18.667" FontWeight="Bold" Width="200">
 				<ListBox x:Name="lstRequestor"/>

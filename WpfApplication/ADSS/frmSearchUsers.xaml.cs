@@ -60,7 +60,7 @@ namespace Gems.UIWPF
                 else
                 {
                     list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
-                      cboRole.SelectedIndex-1).ToList<User>();
+                      (EnumRoles)cboRole.SelectedIndex - 1).ToList<User>();
                 }
                 lstUsers.SelectedValuePath = "userID";
                 lstUsers.ItemsSource = list;
@@ -102,6 +102,11 @@ namespace Gems.UIWPF
                     MessageBox.Show(ex.Message);
                 }
                 client.Close();
+            }
+            else if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Facility_Admin)
+            {
+                var assignForm = new frmAssignFacAdmin(this.user, uid,  this);
+                assignForm.ShowDialog();
             }
             else
             {

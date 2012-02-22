@@ -220,55 +220,22 @@ namespace evmsService.entities
         UTown = 19,
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SysRole", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class SysRole : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="EnumRoles", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum EnumRoles : int
     {
         
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        System_Admin = 0,
         
-        private string RemarksField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Facility_Admin = 1,
         
-        private int RoleLevelField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Event_Organizer = 2,
         
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks
-        {
-            get
-            {
-                return this.RemarksField;
-            }
-            set
-            {
-                this.RemarksField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleLevel
-        {
-            get
-            {
-                return this.RoleLevelField;
-            }
-            set
-            {
-                this.RoleLevelField = value;
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nil = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -562,15 +529,15 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignLocationAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignLocationAdminResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/assignLocationAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool assignLocationAdmin(evmsService.entities.User assigner, string userid, string description);
+    void assignLocationAdmin(evmsService.entities.User assigner, string userid, evmsService.entities.Faculty fac);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignEventOrganizer", ReplyAction="http://tempuri.org/IEvmsService/assignEventOrganizerResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool assignEventOrganizer(evmsService.entities.User assigner, string userid, string description);
+    void assignEventOrganizer(evmsService.entities.User assigner, string userid, string description);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignSystemAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignSystemAdminResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/assignSystemAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool assignSystemAdmin(evmsService.entities.User assigner, string userid, string description);
+    void assignSystemAdmin(evmsService.entities.User assigner, string userid, string description);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/searchUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -578,13 +545,15 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUserByRole", ReplyAction="http://tempuri.org/IEvmsService/searchUserByRoleResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/searchUserByRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.User[] searchUserByRole(string name, string userid, int r);
+    evmsService.entities.User[] searchUserByRole(string name, string userid, evmsService.entities.EnumRoles r);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewUserRole", ReplyAction="http://tempuri.org/IEvmsService/viewUserRoleResponse")]
-    evmsService.entities.SysRole viewUserRole(string userid);
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/viewUserRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.EnumRoles viewUserRole(string userid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/unAssignRole", ReplyAction="http://tempuri.org/IEvmsService/unAssignRoleResponse")]
-    bool unAssignRole(evmsService.entities.User assigner, string userid);
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/unAssignRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void unAssignRole(evmsService.entities.User assigner, string userid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -675,19 +644,19 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.login(userid, password);
     }
     
-    public bool assignLocationAdmin(evmsService.entities.User assigner, string userid, string description)
+    public void assignLocationAdmin(evmsService.entities.User assigner, string userid, evmsService.entities.Faculty fac)
     {
-        return base.Channel.assignLocationAdmin(assigner, userid, description);
+        base.Channel.assignLocationAdmin(assigner, userid, fac);
     }
     
-    public bool assignEventOrganizer(evmsService.entities.User assigner, string userid, string description)
+    public void assignEventOrganizer(evmsService.entities.User assigner, string userid, string description)
     {
-        return base.Channel.assignEventOrganizer(assigner, userid, description);
+        base.Channel.assignEventOrganizer(assigner, userid, description);
     }
     
-    public bool assignSystemAdmin(evmsService.entities.User assigner, string userid, string description)
+    public void assignSystemAdmin(evmsService.entities.User assigner, string userid, string description)
     {
-        return base.Channel.assignSystemAdmin(assigner, userid, description);
+        base.Channel.assignSystemAdmin(assigner, userid, description);
     }
     
     public evmsService.entities.User[] searchUser(string name, string userid)
@@ -695,19 +664,19 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.searchUser(name, userid);
     }
     
-    public evmsService.entities.User[] searchUserByRole(string name, string userid, int r)
+    public evmsService.entities.User[] searchUserByRole(string name, string userid, evmsService.entities.EnumRoles r)
     {
         return base.Channel.searchUserByRole(name, userid, r);
     }
     
-    public evmsService.entities.SysRole viewUserRole(string userid)
+    public evmsService.entities.EnumRoles viewUserRole(string userid)
     {
         return base.Channel.viewUserRole(userid);
     }
     
-    public bool unAssignRole(evmsService.entities.User assigner, string userid)
+    public void unAssignRole(evmsService.entities.User assigner, string userid)
     {
-        return base.Channel.unAssignRole(assigner, userid);
+        base.Channel.unAssignRole(assigner, userid);
     }
     
     public void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)

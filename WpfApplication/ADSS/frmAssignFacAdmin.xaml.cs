@@ -2,40 +2,49 @@
 using System.Windows.Input;
 using evmsService.entities;
 using System;
+using evmsService.entities;
+using evmsService.Controllers;
 
 namespace Gems.UIWPF
 {
-
-
     /// <summary>
-    /// Interaction logic for frmAssign.xaml
+    /// Interaction logic for frmAssignFacilityAdmin.xaml
     /// </summary>
-    public partial class frmAssign : Window
+    public partial class frmAssignFacAdmin : Window
     {
         User user;
         frmSearchUsers admFrame;
-        EnumRoles action;
 
-        public frmAssign()
+        public frmAssignFacAdmin()
         {
             InitializeComponent();
         }
 
-        public frmAssign(User u, string uid, EnumRoles x, frmSearchUsers f)
+        public frmAssignFacAdmin(User u, string uid, frmSearchUsers f)
             : this()
         {
             this.user = u;
-            this.action = x;
-            this.admFrame = f;
 
-            this.txtAssn.Text = x.ToString();
+            this.admFrame = f;
             this.txtUserID.Text = uid;
             EvmsServiceClient client = new EvmsServiceClient();
 
             this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid)).ToString();
             client.Close();
 
+            cboFaculty.ItemsSource = Enum.GetValues(typeof(Faculty));
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Check if already an location admin
+            if (EnumRoles.Facility_Admin.ToString().CompareTo(txtCurrRole.Text.Trim()) == 0)
+            {
+                MessageBox.Show("User " + txtUserID.Text + " has already been assigned as " + txtCurrRole.Text,
+                    "Already Assigned", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                btnExit_Click(this.btnExit, new RoutedEventArgs());
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -57,14 +66,7 @@ namespace Gems.UIWPF
             {
                 if (txtCurrRole.Text.CompareTo(EnumRoles.Nil.ToString()) == 0)
                 {
-                    if (action == EnumRoles.Event_Organizer)
-                    {
-                        client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
-                    }
-                    else if (action == EnumRoles.System_Admin)
-                    {
-                        client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
-                    }
+                    client.assignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                 }
                 else
                 {
@@ -72,36 +74,23 @@ namespace Gems.UIWPF
                         "Confirm Role Change", MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        if (action == EnumRoles.Event_Organizer)
-                        {
-                            client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
-                        }
-                        else if (action == EnumRoles.System_Admin)
-                        {
-                            client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
-                        }
+                        client.assignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                     }
                 }
+
+
                 MessageBox.Show("Role have been added/updated", "Updated Role",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
                 admFrame.Visibility = Visibility.Visible;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (txtAssn.Text.Trim().CompareTo(txtCurrRole.Text.Trim()) == 0)
-            {
-                MessageBox.Show("User " + txtUserID.Text + " has already been assigned as " + txtCurrRole.Text,
-                    "Already Assigned", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                btnExit_Click(this.btnExit, new RoutedEventArgs());
-            }
-        }
+
     }
 }

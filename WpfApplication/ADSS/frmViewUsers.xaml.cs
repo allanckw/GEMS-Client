@@ -33,20 +33,6 @@ namespace Gems.UIWPF
             this.user = u;
             this.mainFrame = mainFrame;
             this.cboRole.ItemsSource = System.Enum.GetValues(typeof(EnumRoles));
-
-            EvmsServiceClient client = new EvmsServiceClient();
-            try
-            {
-                List<User> list = client.searchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
-                lstUsers.SelectedValuePath = "userID";
-                lstUsers.ItemsSource = list;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            client.Close();
-            
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -66,7 +52,7 @@ namespace Gems.UIWPF
             try
             {
                 List<User> list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 
-                    cboRole.SelectedIndex).ToList<User>();
+                    (EnumRoles)cboRole.SelectedIndex).ToList<User>();
                 lstUsers.SelectedValuePath = "userID";
                 lstUsers.ItemsSource = list;
             }
