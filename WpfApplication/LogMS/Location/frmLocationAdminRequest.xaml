@@ -1,12 +1,15 @@
 ﻿<Window
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:Gems.UIWPF"
 	x:Class="Gems.UIWPF.frmLocationAdminRequest"
+	
 	x:Name="Window"
 	Title="frmLocationAdminRequest"
-Width="800" Height="475" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
+Width="1000" Height="475" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
+
 	<Canvas Opacity="1.0">
-		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="475" Width="800">
+		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="475" Width="1020">
 			<Path.Fill>
 				<!--
 			<LinearGradientBrush StartPoint=".2,0" EndPoint="0.8,1">
@@ -23,7 +26,7 @@ Width="800" Height="475" AllowsTransparency="True" WindowStyle="None" Background
 				</LinearGradientBrush>
 			</Path.Fill>
 		</Path>
-		<Button x:Name="btnClose" Canvas.Left="764.5" Canvas.Top="18" Height="0" Width="0">
+		<Button x:Name="btnClose" Canvas.Left="966.5" Canvas.Top="18" Height="0" Width="0">
 			<Button.Template>
 				<ControlTemplate>
 					<Canvas>
@@ -39,12 +42,12 @@ Width="800" Height="475" AllowsTransparency="True" WindowStyle="None" Background
 			</Button.Template>
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facility Approval" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
-		<StackPanel Height="400" Canvas.Left="21" Canvas.Top="60" Width="750" Orientation="Horizontal">
-			<GroupBox Header="Requestor list" FontSize="18.667" FontWeight="Bold" Width="200">
-				<ListBox x:Name="lstRequestor"/>
+		<StackPanel Canvas.Left="21" Canvas.Top="60" Orientation="Horizontal" Height="400" Width="980">
+			<GroupBox Header="Requestor list" FontSize="18.667" FontWeight="Bold" Width="180">
+				<ListBox x:Name="lstRequestor" FontSize="13.333"/>
 			</GroupBox>
-			<StackPanel Width="550" Margin="6,0,0,0">
-				<GroupBox Header="Requestor Location Listing" FontSize="18.667" Margin="0,0,-150,0" Height="350" Width="530" HorizontalAlignment="Left" FontWeight="Bold">
+			<StackPanel Width="480" Margin="6,0,0,0">
+				<GroupBox Header="Requestor Facility Listing" FontSize="18.667" Margin="0,0,-150,0" Height="350" Width="480" HorizontalAlignment="Left" FontWeight="Bold">
 					<DataGrid x:Name="dgLocation" FontSize="14.667">
 						<DataGrid.Columns>
 							<DataGridTemplateColumn>
@@ -54,11 +57,21 @@ Width="800" Height="475" AllowsTransparency="True" WindowStyle="None" Background
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
+							<DataGridTemplateColumn>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<Button x:Name="btnViewTimeslot" Click="btnViewTimeslot_Click">View</Button>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
 						</DataGrid.Columns>
 					</DataGrid>
 				</GroupBox>
-				<Button x:Name="btnApproved" Content="Approved" FontSize="14" Width="75" HorizontalAlignment="Left" Margin="5,10,0,0"/>
+				<Button x:Name="btnApproved" Content="Approved" FontSize="16" Width="75" HorizontalAlignment="Left" Margin="5,10,0,0"/>
 			</StackPanel>
+			<GroupBox Header="View Time" Width="300" Height="350" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold">
+				<local:ucLVTime x:Name="lvTimeslot" FontSize="10.667" Width="280" Height="300"></local:ucLVTime>
+				</GroupBox>
 		</StackPanel>
 	</Canvas>
 </Window>

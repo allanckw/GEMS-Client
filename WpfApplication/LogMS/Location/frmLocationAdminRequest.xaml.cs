@@ -29,5 +29,17 @@ namespace Gems.UIWPF
         {
             ApprovedLocIdx = dgLocation.SelectedIndex;
         }
+
+        private void btnViewTimeslot_Click(object sender, RoutedEventArgs e)
+        {
+		    //pass in venue id, grab from the watever data den pass and process
+            //Just ret a list of activities for tat day for mi
+            //i will code for tix part(i only nid the activites, start time and end time for tix part)
+			//lvTime.SetSource(list<item(start time, end time, purpose)>) can still decide whether to leave the purpose out
+			
+			//to scroll into the index
+			//lvTime.ScrollToItem();
+		
+        }
 	}
 }
