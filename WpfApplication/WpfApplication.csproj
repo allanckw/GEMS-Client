@@ -126,6 +126,9 @@
     <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogMS\Guests\frmGuestList.xaml.cs">
+      <DependentUpon>frmGuestList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogMS\Location\frmLocationAdminAdd.xaml.cs">
       <DependentUpon>frmLocationAdminAdd.xaml</DependentUpon>
     </Compile>
@@ -269,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LogMS\Guests\frmGuestList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogMS\Location\frmLocationAdminAdd.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -363,7 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BASS\" />
-    <Folder Include="LogMS\Guests\" />
     <Folder Include="LogMS\Manpower\" />
     <Folder Include="ProgMSS\" />
   </ItemGroup>
