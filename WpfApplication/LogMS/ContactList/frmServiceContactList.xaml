@@ -62,10 +62,10 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
 				<Canvas Height="210">
 					<StackPanel Height="200" Width="500">
 						<StackPanel Height="175" Orientation="Horizontal" Margin="0" Width="500">
-							<GroupBox Header="Contact List" FontSize="16" Height="170" Margin="0,0,-39.873,0" Width="150">
+							<GroupBox Header="Contact List" FontSize="14" Height="170" Margin="0,0,-39.873,0" Width="150">
 								<ListBox x:Name="lstContactList"/>
 							</GroupBox>
-							<GroupBox Header="Point of Contact" Width="322.627" Height="170" FontSize="16" HorizontalAlignment="Right" Margin="0,0,-366.5,0">
+							<GroupBox Header="Point of Contact" Width="322.627" Height="170" FontSize="14" HorizontalAlignment="Right" Margin="0,0,-366.5,0">
 								<StackPanel>
 									<Canvas Height="35">
 										<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>

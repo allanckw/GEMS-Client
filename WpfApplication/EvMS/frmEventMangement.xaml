@@ -38,12 +38,12 @@
 		<GroupBox Header="Event Detail" Canvas.Left="181.197" Canvas.Top="64" Height="380" Width="494.5" FontSize="20">
 			<StackPanel Margin="0,8,0,0" Height="330" VerticalAlignment="Top">
 				<Canvas Height="40">
-					<Label Canvas.Left="15" Canvas.Top="3" Content="Event Name :" Height="28" x:Name="label1" FontSize="16" />
+					<Label Canvas.Left="15" Canvas.Top="3" Content="Event Name :" Height="28" x:Name="label1" FontSize="14" />
 					<TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtEventName" Width="268" IsReadOnly="True" FontSize="13.333" />
 				</Canvas>
 				<Canvas Height="85">
-					<Label Canvas.Left="35" Canvas.Top="8" Content="Start Date:" Height="28" x:Name="label2" FontSize="16" />
-					<Label Canvas.Left="41" Canvas.Top="50" Content="End Date:" Height="28" x:Name="label4" FontSize="16" HorizontalAlignment="Left" />
+					<Label Canvas.Left="35" Canvas.Top="8" Content="Start Date:" Height="28" x:Name="label2" FontSize="14" />
+					<Label Canvas.Left="41" Canvas.Top="50" Content="End Date:" Height="28" x:Name="label4" FontSize="14" HorizontalAlignment="Left" />
 					<DatePicker Canvas.Left="120" Canvas.Top="12" Height="25" x:Name="dtpStart" Width="130" FontSize="13.333" />
 					<DatePicker Canvas.Left="120" Canvas.Top="54" Height="25" x:Name="dtpEnd" Width="130" FontSize="13.333" />
 					<ComboBox Canvas.Left="308" Canvas.Top="12" Height="23" x:Name="cboStartHr" Width="43" FontSize="13.333">
@@ -58,20 +58,20 @@
 					<ComboBox Canvas.Left="358" Canvas.Top="54" Height="23" x:Name="cboEndMin" Width="56" FontSize="13.333">
 
 					</ComboBox>
-                    <Label Canvas.Left="264" Canvas.Top="8" Content="Time:" FontSize="16" Height="28" Name="label5" />
-                    <Label Canvas.Left="264" Canvas.Top="51" Content="Time:" FontSize="16" Height="28" Name="label8" />
+                    <Label Canvas.Left="264" Canvas.Top="8" Content="Time:" FontSize="14" Height="28" Name="label5" />
+                    <Label Canvas.Left="264" Canvas.Top="51" Content="Time:" FontSize="14" Height="28" Name="label8" />
                 </Canvas>
 				<Canvas Height="115">
-					<Label Canvas.Top="8" Content="Description :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="16" HorizontalAlignment="Left" />
+					<Label Canvas.Top="8" Content="Description :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="14" HorizontalAlignment="Left" />
 					<TextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="340" FontSize="13.333" />
 				</Canvas>
 				<Canvas Height="40">
-					<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label7" FontSize="16" />
+					<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label7" FontSize="14" />
 					<TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="340" FontSize="13.333" />
 				</Canvas>
 				<StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button x:Name="btnEventEdit" Content="Edit" Width="60" FontSize="16" HorizontalAlignment="Left" Margin="10,0,25,0" Height="30"/>
-					<Button Content="Delete" Height="30" x:Name="btnEventDelete" Width="60" FontSize="16" RenderTransformOrigin="-1.437,0.571" Margin="0,5" />
+                    <Button x:Name="btnEventEdit" Content="Edit" Width="60" FontSize="14" HorizontalAlignment="Left" Margin="10,0,25,0" Height="30"/>
+					<Button Content="Delete" Height="30" x:Name="btnEventDelete" Width="60" FontSize="14" RenderTransformOrigin="-1.437,0.571" Margin="0,5" />
 					
 				</StackPanel>
 			</StackPanel>

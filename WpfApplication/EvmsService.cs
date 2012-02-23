@@ -13,6 +13,183 @@ namespace evmsService.entities
     using System.Runtime.Serialization;
     
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Faculty", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum Faculty : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Science = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Engineering = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Arts_and_Social_Science = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Dentistry = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Law = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Computing = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Loo_Lin_School_of_Medicine = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Siew_Toh_Conservatory_Of_Music = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Design_and_Environment = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Business = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Development_of_Teaching_and_Learning = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Instructional_Technology = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Computing_Commons = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Education_Resource_Centre = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EduSports = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Lee_Kuan_Yew_School_of_Public_Policy = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PC_Cluster = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Science_Cluster = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UTown = 19,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Facility", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Facility : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string BookingContactField;
+        
+        private int CapacityField;
+        
+        private string FacilityIDField;
+        
+        private evmsService.entities.Faculty FacultyField;
+        
+        private string LocationField;
+        
+        private string TechContactField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BookingContact
+        {
+            get
+            {
+                return this.BookingContactField;
+            }
+            set
+            {
+                this.BookingContactField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Capacity
+        {
+            get
+            {
+                return this.CapacityField;
+            }
+            set
+            {
+                this.CapacityField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FacilityID
+        {
+            get
+            {
+                return this.FacilityIDField;
+            }
+            set
+            {
+                this.FacilityIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Faculty Faculty
+        {
+            get
+            {
+                return this.FacultyField;
+            }
+            set
+            {
+                this.FacultyField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location
+        {
+            get
+            {
+                return this.LocationField;
+            }
+            set
+            {
+                this.LocationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TechContact
+        {
+            get
+            {
+                return this.TechContactField;
+            }
+            set
+            {
+                this.TechContactField = value;
+            }
+        }
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
@@ -152,72 +329,6 @@ namespace evmsService.entities
                 this.userIDField = value;
             }
         }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Faculty", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public enum Faculty : int
-    {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Faculty_of_Science = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Faculty_of_Engineering = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Faculty_of_Arts_and_Social_Science = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Faculty_of_Dentistry = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Faculty_of_Law = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        School_of_Computing = 5,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Yong_Loo_Lin_School_of_Medicine = 6,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Yong_Siew_Toh_Conservatory_Of_Music = 7,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        School_of_Design_and_Environment = 8,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        School_of_Business = 9,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Centre_for_Development_of_Teaching_and_Learning = 10,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Centre_for_Instructional_Technology = 11,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Computing_Commons = 12,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Education_Resource_Centre = 13,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EduSports = 14,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 15,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Lee_Kuan_Yew_School_of_Public_Policy = 16,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        PC_Cluster = 17,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Science_Cluster = 18,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        UTown = 19,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -523,6 +634,10 @@ namespace evmsService.Controllers
 public interface IEvmsService
 {
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getVenues", ReplyAction="http://tempuri.org/IEvmsService/getVenuesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getVenuesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Facility[] getVenues(evmsService.entities.Faculty f);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/login", ReplyAction="http://tempuri.org/IEvmsService/loginResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/loginSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User login(string userid, string password);
@@ -572,37 +687,56 @@ public interface IEvmsService
     void DeleteEvent(evmsService.entities.User u, evmsService.entities.Event e);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getNewMessage", ReplyAction="http://tempuri.org/IEvmsService/getNewMessageResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getNewMessageSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     string getNewMessage(string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessageCount", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessageCountResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessageCountSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     int getUnreadMessageCount(string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessages", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessagesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Notifications[] getUnreadMessages(string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getAllMessages", ReplyAction="http://tempuri.org/IEvmsService/getAllMessagesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getAllMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Notifications[] getAllMessages(string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteNotifications", ReplyAction="http://tempuri.org/IEvmsService/deleteNotificationsResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/deleteNotificationsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void deleteNotifications(evmsService.entities.Notifications n);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUser", ReplyAction="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void deleteAllNotificationsOfUser(string uid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/setNotificationRead", ReplyAction="http://tempuri.org/IEvmsService/setNotificationReadResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/setNotificationReadSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void setNotificationRead(evmsService.entities.Notifications n);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/sendNotification", ReplyAction="http://tempuri.org/IEvmsService/sendNotificationResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/sendNotificationSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void sendNotification(string sender, string receiver, string title, string msg);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/addFacility", ReplyAction="http://tempuri.org/IEvmsService/addFacilityResponse")]
-    void addFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/addFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void addFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/removeFacility", ReplyAction="http://tempuri.org/IEvmsService/removeFacilityResponse")]
-    void removeFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac);
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void removeFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/updateFacility", ReplyAction="http://tempuri.org/IEvmsService/updateFacilityResponse")]
-    void updateFacility(evmsService.entities.User u, string locID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void updateFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdminFaculty", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminFacultyResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Faculty getFacilityAdminFaculty(string userid);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdmins", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminsResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.User[] getFacilityAdmins();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -637,6 +771,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public EvmsServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
             base(binding, remoteAddress)
     {
+    }
+    
+    public evmsService.entities.Facility[] getVenues(evmsService.entities.Faculty f)
+    {
+        return base.Channel.getVenues(f);
     }
     
     public evmsService.entities.User login(string userid, string password)
@@ -739,18 +878,28 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         base.Channel.sendNotification(sender, receiver, title, msg);
     }
     
-    public void addFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
+    public void addFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
     {
-        base.Channel.addFacility(u, LocID, fac, loc, bookingCon, techCon, cap);
+        base.Channel.addFacility(u, venue, fac, loc, bookingCon, techCon, cap);
     }
     
-    public void removeFacility(evmsService.entities.User u, string LocID, evmsService.entities.Faculty fac)
+    public void removeFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac)
     {
-        base.Channel.removeFacility(u, LocID, fac);
+        base.Channel.removeFacility(u, venue, fac);
     }
     
-    public void updateFacility(evmsService.entities.User u, string locID, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
+    public void updateFacility(evmsService.entities.User u, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
     {
-        base.Channel.updateFacility(u, locID, fac, loc, bookingCon, techCon, cap);
+        base.Channel.updateFacility(u, venue, fac, loc, bookingCon, techCon, cap);
+    }
+    
+    public evmsService.entities.Faculty getFacilityAdminFaculty(string userid)
+    {
+        return base.Channel.getFacilityAdminFaculty(userid);
+    }
+    
+    public evmsService.entities.User[] getFacilityAdmins()
+    {
+        return base.Channel.getFacilityAdmins();
     }
 }

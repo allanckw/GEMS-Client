@@ -49,7 +49,7 @@ namespace Gems.UIWPF
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 List<User> list;
@@ -87,7 +87,7 @@ namespace Gems.UIWPF
             string uid = lstUsers.SelectedValue.ToString();
             if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Nil)
             {
-                EvmsServiceClient client = new EvmsServiceClient();
+                WCFHelperClient client = new WCFHelperClient();
                 try
                 {
                     if (MessageBox.Show("Are you sure you want to remove the role of " + uid + "? ",

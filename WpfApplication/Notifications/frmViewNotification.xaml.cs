@@ -31,7 +31,7 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             txtSenderName.Text = client.searchUser("", note.Sender).FirstOrDefault<User>().Name;
             txtSenderID.Text = note.Sender;
             txtMessage.AppendText(note.Message);
@@ -67,7 +67,7 @@ namespace Gems.UIWPF
             {
                 title = "RE: " + title;
             }
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 client.sendNotification(user.userID, txtSenderID.Text, title, message);

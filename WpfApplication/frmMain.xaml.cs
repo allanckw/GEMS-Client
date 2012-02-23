@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using evmsService.entities;
 using System.Windows.Threading;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -73,7 +64,11 @@ namespace Gems.UIWPF
         {
             if (!user.isSystemAdmin)
             {
-                this.mnuAdmin.Visibility = System.Windows.Visibility.Collapsed;
+                this.mnuAdmin.Visibility =Visibility.Collapsed;
+            }
+            if (!user.isLocationAdmin)
+            {
+                this.mnuLocAdmin.Visibility = Visibility.Collapsed;
             }
             getHourlyNotifications();
             notify();
@@ -109,14 +104,14 @@ namespace Gems.UIWPF
         {
             var admForm = new frmSearchUsers(user, this);
             this.Visibility = Visibility.Collapsed;
-            admForm.Show();
+            admForm.ShowDialog();
         }
 
         private void mnuItemViewUsers_Click(object sender, RoutedEventArgs e)
         {
             var viewUserForm = new frmViewUsers(user, this);
             this.Visibility = Visibility.Collapsed;
-            viewUserForm.Show();
+            viewUserForm.ShowDialog();
         }
 
         private void mnuNotify_Click(object sender, RoutedEventArgs e)
@@ -129,7 +124,7 @@ namespace Gems.UIWPF
 
         private void getNewNotifications()
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             taskbarNotifier.NotifyContent.Clear();
             string sender = client.getNewMessage(user.userID);
 
@@ -144,7 +139,7 @@ namespace Gems.UIWPF
 
         private void getHourlyNotifications()
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             taskbarNotifier.NotifyContent.Clear();
             int noOfUnreadMsg = client.getUnreadMessageCount(user.userID);
 
@@ -173,14 +168,44 @@ namespace Gems.UIWPF
         {
             var addEventForm = new frmEventAdd(user, this);
             this.Visibility = Visibility.Collapsed;
-            addEventForm.Show();
+            addEventForm.ShowDialog();
         }
 
         private void mnuItemManageEvent_Click(object sender, RoutedEventArgs e)
         {
             var manageEventForm = new  frmEventMangement(user, this);
             this.Visibility = Visibility.Collapsed;
-            manageEventForm.Show();
+            manageEventForm.ShowDialog();
+        }
+
+        private void mnuAddFac_Click(object sender, RoutedEventArgs e)
+        {
+            var facAdd = new frmAddFacility(user, this);
+            this.Visibility = Visibility.Collapsed;
+            facAdd.ShowDialog();
+        }
+
+        private void mnuManageFac_Click(object sender, RoutedEventArgs e)
+        {
+            var facManage = new frmManageFacility(user, this);
+            this.Visibility = Visibility.Collapsed;
+            facManage.ShowDialog();
+        }
+
+        private void mnuGuests_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to add guest!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                Event ev = (Event) lstEventList.SelectedItem;
+                var frmGuestList= new frmGuestList(user, this, ev);
+                this.Visibility = Visibility.Collapsed;
+                frmGuestList.ShowDialog();
+            }
         }
     }
 }

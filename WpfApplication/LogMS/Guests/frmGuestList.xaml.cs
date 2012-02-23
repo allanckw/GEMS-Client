@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -18,9 +9,22 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmGuestList : Window
     {
+
+        User user;
+        frmMain mainFrame;
+        Event event_;
+
         public frmGuestList()
         {
             this.InitializeComponent();
+        }
+
+        public frmGuestList(User u, frmMain f, Event e)
+            : this()
+        {
+            this.user = u;
+            this.mainFrame = f;
+            this.event_ = e;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

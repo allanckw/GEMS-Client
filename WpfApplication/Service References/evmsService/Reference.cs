@@ -29,6 +29,9 @@ namespace Gems.UIWPF.evmsService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Gems.UIWPF.evmsService.Faculty UserFacultyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool isEventOrganizerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -75,6 +78,19 @@ namespace Gems.UIWPF.evmsService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Gems.UIWPF.evmsService.Faculty UserFaculty {
+            get {
+                return this.UserFacultyField;
+            }
+            set {
+                if ((this.UserFacultyField.Equals(value) != true)) {
+                    this.UserFacultyField = value;
+                    this.RaisePropertyChanged("UserFaculty");
                 }
             }
         }
@@ -154,6 +170,71 @@ namespace Gems.UIWPF.evmsService {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Faculty", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum Faculty : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Science = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Engineering = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Arts_and_Social_Science = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Dentistry = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Faculty_of_Law = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Computing = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Loo_Lin_School_of_Medicine = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Yong_Siew_Toh_Conservatory_Of_Music = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Design_and_Environment = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        School_of_Business = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Development_of_Teaching_and_Learning = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Centre_for_Instructional_Technology = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Computing_Commons = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Education_Resource_Centre = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EduSports = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Lee_Kuan_Yew_School_of_Public_Policy = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PC_Cluster = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Science_Cluster = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UTown = 19,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -199,65 +280,21 @@ namespace Gems.UIWPF.evmsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SysRole", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class SysRole : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="EnumRoles", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum EnumRoles : int {
         
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        System_Admin = 0,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarksField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Facility_Admin = 1,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleLevelField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Event_Organizer = 2,
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks {
-            get {
-                return this.RemarksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
-                    this.RemarksField = value;
-                    this.RaisePropertyChanged("Remarks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleLevel {
-            get {
-                return this.RoleLevelField;
-            }
-            set {
-                if ((this.RoleLevelField.Equals(value) != true)) {
-                    this.RoleLevelField = value;
-                    this.RaisePropertyChanged("RoleLevel");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nil = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -276,40 +313,16 @@ namespace Gems.UIWPF.evmsService {
         private System.DateTime EndDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.EventContact> EventContactListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Guest> GuestListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Item> ItemListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.ItemType> ItemTypeListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Location> LocationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.ManPower> ManPowerListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Gems.UIWPF.evmsService.User OrganizerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Participant> ParticipantListField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Program> ProgramsListField;
+        private string OrganizeridField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime StartDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Gems.UIWPF.evmsService.Task> TaskListField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WebsiteField;
@@ -351,84 +364,6 @@ namespace Gems.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.EventContact> EventContactList {
-            get {
-                return this.EventContactListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EventContactListField, value) != true)) {
-                    this.EventContactListField = value;
-                    this.RaisePropertyChanged("EventContactList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Guest> GuestList {
-            get {
-                return this.GuestListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GuestListField, value) != true)) {
-                    this.GuestListField = value;
-                    this.RaisePropertyChanged("GuestList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Item> ItemList {
-            get {
-                return this.ItemListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ItemListField, value) != true)) {
-                    this.ItemListField = value;
-                    this.RaisePropertyChanged("ItemList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.ItemType> ItemTypeList {
-            get {
-                return this.ItemTypeListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ItemTypeListField, value) != true)) {
-                    this.ItemTypeListField = value;
-                    this.RaisePropertyChanged("ItemTypeList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Location> Location {
-            get {
-                return this.LocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
-                    this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.ManPower> ManPowerList {
-            get {
-                return this.ManPowerListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManPowerListField, value) != true)) {
-                    this.ManPowerListField = value;
-                    this.RaisePropertyChanged("ManPowerList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -455,27 +390,14 @@ namespace Gems.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Participant> ParticipantList {
+        public string Organizerid {
             get {
-                return this.ParticipantListField;
+                return this.OrganizeridField;
             }
             set {
-                if ((object.ReferenceEquals(this.ParticipantListField, value) != true)) {
-                    this.ParticipantListField = value;
-                    this.RaisePropertyChanged("ParticipantList");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Program> ProgramsList {
-            get {
-                return this.ProgramsListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProgramsListField, value) != true)) {
-                    this.ProgramsListField = value;
-                    this.RaisePropertyChanged("ProgramsList");
+                if ((object.ReferenceEquals(this.OrganizeridField, value) != true)) {
+                    this.OrganizeridField = value;
+                    this.RaisePropertyChanged("Organizerid");
                 }
             }
         }
@@ -489,19 +411,6 @@ namespace Gems.UIWPF.evmsService {
                 if ((this.StartDateTimeField.Equals(value) != true)) {
                     this.StartDateTimeField = value;
                     this.RaisePropertyChanged("StartDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Task> TaskList {
-            get {
-                return this.TaskListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TaskListField, value) != true)) {
-                    this.TaskListField = value;
-                    this.RaisePropertyChanged("TaskList");
                 }
             }
         }
@@ -531,12 +440,30 @@ namespace Gems.UIWPF.evmsService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventContact", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Notifications", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
     [System.SerializableAttribute()]
-    public partial class EventContact : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Notifications : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReceiverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SendDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isReadField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -548,235 +475,81 @@ namespace Gems.UIWPF.evmsService {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Guest", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Guest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
             get {
-                return this.extensionDataField;
+                return this.MessageField;
             }
             set {
-                this.extensionDataField = value;
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Item", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Item : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Receiver {
             get {
-                return this.extensionDataField;
+                return this.ReceiverField;
             }
             set {
-                this.extensionDataField = value;
+                if ((object.ReferenceEquals(this.ReceiverField, value) != true)) {
+                    this.ReceiverField = value;
+                    this.RaisePropertyChanged("Receiver");
+                }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemType", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class ItemType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime SendDateTime {
             get {
-                return this.extensionDataField;
+                return this.SendDateTimeField;
             }
             set {
-                this.extensionDataField = value;
+                if ((this.SendDateTimeField.Equals(value) != true)) {
+                    this.SendDateTimeField = value;
+                    this.RaisePropertyChanged("SendDateTime");
+                }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Location", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Location : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sender {
             get {
-                return this.extensionDataField;
+                return this.SenderField;
             }
             set {
-                this.extensionDataField = value;
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
+                }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ManPower", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class ManPower : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
             get {
-                return this.extensionDataField;
+                return this.TitleField;
             }
             set {
-                this.extensionDataField = value;
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Participant", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Participant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isRead {
             get {
-                return this.extensionDataField;
+                return this.isReadField;
             }
             set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Program", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Program : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    [System.SerializableAttribute()]
-    public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
+                if ((this.isReadField.Equals(value) != true)) {
+                    this.isReadField = value;
+                    this.RaisePropertyChanged("isRead");
+                }
             }
         }
         
@@ -796,515 +569,95 @@ namespace Gems.UIWPF.evmsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/login", ReplyAction="http://tempuri.org/IEvmsService/loginResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/loginSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.loginResponse login(Gems.UIWPF.evmsService.loginRequest request);
+        Gems.UIWPF.evmsService.User login(string userid, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignLocationAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignLocationAdminResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignLocationAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.assignLocationAdminResponse assignLocationAdmin(Gems.UIWPF.evmsService.assignLocationAdminRequest request);
+        void assignLocationAdmin(Gems.UIWPF.evmsService.User assigner, string userid, Gems.UIWPF.evmsService.Faculty fac);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignEventOrganizer", ReplyAction="http://tempuri.org/IEvmsService/assignEventOrganizerResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.assignEventOrganizerResponse assignEventOrganizer(Gems.UIWPF.evmsService.assignEventOrganizerRequest request);
+        void assignEventOrganizer(Gems.UIWPF.evmsService.User assigner, string userid, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignSystemAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignSystemAdminResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignSystemAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.assignSystemAdminResponse assignSystemAdmin(Gems.UIWPF.evmsService.assignSystemAdminRequest request);
+        void assignSystemAdmin(Gems.UIWPF.evmsService.User assigner, string userid, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.searchUserResponse searchUser(Gems.UIWPF.evmsService.searchUserRequest request);
+        Gems.UIWPF.evmsService.User[] searchUser(string name, string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUserByRole", ReplyAction="http://tempuri.org/IEvmsService/searchUserByRoleResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserByRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.searchUserByRoleResponse searchUserByRole(Gems.UIWPF.evmsService.searchUserByRoleRequest request);
+        Gems.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, Gems.UIWPF.evmsService.EnumRoles r);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewUserRole", ReplyAction="http://tempuri.org/IEvmsService/viewUserRoleResponse")]
-        Gems.UIWPF.evmsService.viewUserRoleResponse viewUserRole(Gems.UIWPF.evmsService.viewUserRoleRequest request);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/viewUserRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.EnumRoles viewUserRole(string userid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/unAssignRole", ReplyAction="http://tempuri.org/IEvmsService/unAssignRoleResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/unAssignRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void unAssignRole(Gems.UIWPF.evmsService.User assigner, string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.CreateEventResponse CreateEvent(Gems.UIWPF.evmsService.CreateEventRequest request);
+        void CreateEvent(Gems.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEvent", ReplyAction="http://tempuri.org/IEvmsService/ViewEventResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.ViewEventResponse ViewEvent(Gems.UIWPF.evmsService.ViewEventRequest request);
+        Gems.UIWPF.evmsService.Event[] ViewEvent(Gems.UIWPF.evmsService.User u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditEvent", ReplyAction="http://tempuri.org/IEvmsService/EditEventResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.EditEventResponse EditEvent(Gems.UIWPF.evmsService.EditEventRequest request);
+        void EditEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteEvent", ReplyAction="http://tempuri.org/IEvmsService/DeleteEventResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        Gems.UIWPF.evmsService.DeleteEventResponse DeleteEvent(Gems.UIWPF.evmsService.DeleteEventRequest request);
+        void DeleteEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getNewMessage", ReplyAction="http://tempuri.org/IEvmsService/getNewMessageResponse")]
-        Gems.UIWPF.evmsService.getNewMessageResponse getNewMessage(Gems.UIWPF.evmsService.getNewMessageRequest request);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getNewMessageSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        string getNewMessage(string rid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessageCount", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessageCountResponse")]
-        Gems.UIWPF.evmsService.getUnreadMessageCountResponse getUnreadMessageCount(Gems.UIWPF.evmsService.getUnreadMessageCountRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="login", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class loginRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string userid;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string password;
-        
-        public loginRequest() {
-        }
-        
-        public loginRequest(string userid, string password) {
-            this.userid = userid;
-            this.password = password;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="loginResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class loginResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User loginResult;
-        
-        public loginResponse() {
-        }
-        
-        public loginResponse(Gems.UIWPF.evmsService.User loginResult) {
-            this.loginResult = loginResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignLocationAdmin", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignLocationAdminRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User assigner;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userid;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public string description;
-        
-        public assignLocationAdminRequest() {
-        }
-        
-        public assignLocationAdminRequest(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
-            this.assigner = assigner;
-            this.userid = userid;
-            this.description = description;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignLocationAdminResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignLocationAdminResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool assignLocationAdminResult;
-        
-        public assignLocationAdminResponse() {
-        }
-        
-        public assignLocationAdminResponse(bool assignLocationAdminResult) {
-            this.assignLocationAdminResult = assignLocationAdminResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignEventOrganizer", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignEventOrganizerRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User assigner;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userid;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public string description;
-        
-        public assignEventOrganizerRequest() {
-        }
-        
-        public assignEventOrganizerRequest(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
-            this.assigner = assigner;
-            this.userid = userid;
-            this.description = description;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignEventOrganizerResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignEventOrganizerResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool assignEventOrganizerResult;
-        
-        public assignEventOrganizerResponse() {
-        }
-        
-        public assignEventOrganizerResponse(bool assignEventOrganizerResult) {
-            this.assignEventOrganizerResult = assignEventOrganizerResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignSystemAdmin", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignSystemAdminRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User assigner;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userid;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public string description;
-        
-        public assignSystemAdminRequest() {
-        }
-        
-        public assignSystemAdminRequest(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
-            this.assigner = assigner;
-            this.userid = userid;
-            this.description = description;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="assignSystemAdminResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class assignSystemAdminResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool assignSystemAdminResult;
-        
-        public assignSystemAdminResponse() {
-        }
-        
-        public assignSystemAdminResponse(bool assignSystemAdminResult) {
-            this.assignSystemAdminResult = assignSystemAdminResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="searchUser", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class searchUserRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string name;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userid;
-        
-        public searchUserRequest() {
-        }
-        
-        public searchUserRequest(string name, string userid) {
-            this.name = name;
-            this.userid = userid;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="searchUserResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class searchUserResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.User> searchUserResult;
-        
-        public searchUserResponse() {
-        }
-        
-        public searchUserResponse(System.Collections.Generic.List<Gems.UIWPF.evmsService.User> searchUserResult) {
-            this.searchUserResult = searchUserResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="searchUserByRole", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class searchUserByRoleRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string name;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userid;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public int r;
-        
-        public searchUserByRoleRequest() {
-        }
-        
-        public searchUserByRoleRequest(string name, string userid, int r) {
-            this.name = name;
-            this.userid = userid;
-            this.r = r;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="searchUserByRoleResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class searchUserByRoleResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.User> searchUserByRoleResult;
-        
-        public searchUserByRoleResponse() {
-        }
-        
-        public searchUserByRoleResponse(System.Collections.Generic.List<Gems.UIWPF.evmsService.User> searchUserByRoleResult) {
-            this.searchUserByRoleResult = searchUserByRoleResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="viewUserRole", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class viewUserRoleRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string userid;
-        
-        public viewUserRoleRequest() {
-        }
-        
-        public viewUserRoleRequest(string userid) {
-            this.userid = userid;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="viewUserRoleResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class viewUserRoleResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.SysRole viewUserRoleResult;
-        
-        public viewUserRoleResponse() {
-        }
-        
-        public viewUserRoleResponse(Gems.UIWPF.evmsService.SysRole viewUserRoleResult) {
-            this.viewUserRoleResult = viewUserRoleResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CreateEvent", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class CreateEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User u;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string EventName;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public System.DateTime EventStartDateTime;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
-        public System.DateTime EventEndDatetime;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=4)]
-        public string EventDescription;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=5)]
-        public string EventWebsite;
-        
-        public CreateEventRequest() {
-        }
-        
-        public CreateEventRequest(Gems.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
-            this.u = u;
-            this.EventName = EventName;
-            this.EventStartDateTime = EventStartDateTime;
-            this.EventEndDatetime = EventEndDatetime;
-            this.EventDescription = EventDescription;
-            this.EventWebsite = EventWebsite;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CreateEventResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class CreateEventResponse {
-        
-        public CreateEventResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ViewEvent", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class ViewEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User u;
-        
-        public ViewEventRequest() {
-        }
-        
-        public ViewEventRequest(Gems.UIWPF.evmsService.User u) {
-            this.u = u;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ViewEventResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class ViewEventResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<Gems.UIWPF.evmsService.Event> ViewEventResult;
-        
-        public ViewEventResponse() {
-        }
-        
-        public ViewEventResponse(System.Collections.Generic.List<Gems.UIWPF.evmsService.Event> ViewEventResult) {
-            this.ViewEventResult = ViewEventResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="EditEvent", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class EditEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User u;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Gems.UIWPF.evmsService.Event e;
-        
-        public EditEventRequest() {
-        }
-        
-        public EditEventRequest(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e) {
-            this.u = u;
-            this.e = e;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="EditEventResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class EditEventResponse {
-        
-        public EditEventResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteEvent", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class DeleteEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Gems.UIWPF.evmsService.User u;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Gems.UIWPF.evmsService.Event e;
-        
-        public DeleteEventRequest() {
-        }
-        
-        public DeleteEventRequest(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e) {
-            this.u = u;
-            this.e = e;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteEventResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class DeleteEventResponse {
-        
-        public DeleteEventResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="getNewMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class getNewMessageRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string rid;
-        
-        public getNewMessageRequest() {
-        }
-        
-        public getNewMessageRequest(string rid) {
-            this.rid = rid;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="getNewMessageResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class getNewMessageResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string getNewMessageResult;
-        
-        public getNewMessageResponse() {
-        }
-        
-        public getNewMessageResponse(string getNewMessageResult) {
-            this.getNewMessageResult = getNewMessageResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="getUnreadMessageCount", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class getUnreadMessageCountRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string rid;
-        
-        public getUnreadMessageCountRequest() {
-        }
-        
-        public getUnreadMessageCountRequest(string rid) {
-            this.rid = rid;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="getUnreadMessageCountResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class getUnreadMessageCountResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public int getUnreadMessageCountResult;
-        
-        public getUnreadMessageCountResponse() {
-        }
-        
-        public getUnreadMessageCountResponse(int getUnreadMessageCountResult) {
-            this.getUnreadMessageCountResult = getUnreadMessageCountResult;
-        }
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessageCountSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        int getUnreadMessageCount(string rid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessages", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessagesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getAllMessages", ReplyAction="http://tempuri.org/IEvmsService/getAllMessagesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getAllMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Notifications[] getAllMessages(string rid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteNotifications", ReplyAction="http://tempuri.org/IEvmsService/deleteNotificationsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteNotificationsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void deleteNotifications(Gems.UIWPF.evmsService.Notifications n);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUser", ReplyAction="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void deleteAllNotificationsOfUser(string uid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/setNotificationRead", ReplyAction="http://tempuri.org/IEvmsService/setNotificationReadResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/setNotificationReadSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void setNotificationRead(Gems.UIWPF.evmsService.Notifications n);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/sendNotification", ReplyAction="http://tempuri.org/IEvmsService/sendNotificationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/sendNotificationSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void sendNotification(string sender, string receiver, string title, string msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/addFacility", ReplyAction="http://tempuri.org/IEvmsService/addFacilityResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/addFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void addFacility(Gems.UIWPF.evmsService.User u, string LocID, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/removeFacility", ReplyAction="http://tempuri.org/IEvmsService/removeFacilityResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void removeFacility(Gems.UIWPF.evmsService.User u, string LocID, Gems.UIWPF.evmsService.Faculty fac);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/updateFacility", ReplyAction="http://tempuri.org/IEvmsService/updateFacilityResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void updateFacility(Gems.UIWPF.evmsService.User u, string locID, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1334,56 +687,96 @@ namespace Gems.UIWPF.evmsService {
                 base(binding, remoteAddress) {
         }
         
-        public Gems.UIWPF.evmsService.loginResponse login(Gems.UIWPF.evmsService.loginRequest request) {
-            return base.Channel.login(request);
+        public Gems.UIWPF.evmsService.User login(string userid, string password) {
+            return base.Channel.login(userid, password);
         }
         
-        public Gems.UIWPF.evmsService.assignLocationAdminResponse assignLocationAdmin(Gems.UIWPF.evmsService.assignLocationAdminRequest request) {
-            return base.Channel.assignLocationAdmin(request);
+        public void assignLocationAdmin(Gems.UIWPF.evmsService.User assigner, string userid, Gems.UIWPF.evmsService.Faculty fac) {
+            base.Channel.assignLocationAdmin(assigner, userid, fac);
         }
         
-        public Gems.UIWPF.evmsService.assignEventOrganizerResponse assignEventOrganizer(Gems.UIWPF.evmsService.assignEventOrganizerRequest request) {
-            return base.Channel.assignEventOrganizer(request);
+        public void assignEventOrganizer(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
+            base.Channel.assignEventOrganizer(assigner, userid, description);
         }
         
-        public Gems.UIWPF.evmsService.assignSystemAdminResponse assignSystemAdmin(Gems.UIWPF.evmsService.assignSystemAdminRequest request) {
-            return base.Channel.assignSystemAdmin(request);
+        public void assignSystemAdmin(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
+            base.Channel.assignSystemAdmin(assigner, userid, description);
         }
         
-        public Gems.UIWPF.evmsService.searchUserResponse searchUser(Gems.UIWPF.evmsService.searchUserRequest request) {
-            return base.Channel.searchUser(request);
+        public Gems.UIWPF.evmsService.User[] searchUser(string name, string userid) {
+            return base.Channel.searchUser(name, userid);
         }
         
-        public Gems.UIWPF.evmsService.searchUserByRoleResponse searchUserByRole(Gems.UIWPF.evmsService.searchUserByRoleRequest request) {
-            return base.Channel.searchUserByRole(request);
+        public Gems.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, Gems.UIWPF.evmsService.EnumRoles r) {
+            return base.Channel.searchUserByRole(name, userid, r);
         }
         
-        public Gems.UIWPF.evmsService.viewUserRoleResponse viewUserRole(Gems.UIWPF.evmsService.viewUserRoleRequest request) {
-            return base.Channel.viewUserRole(request);
+        public Gems.UIWPF.evmsService.EnumRoles viewUserRole(string userid) {
+            return base.Channel.viewUserRole(userid);
         }
         
-        public Gems.UIWPF.evmsService.CreateEventResponse CreateEvent(Gems.UIWPF.evmsService.CreateEventRequest request) {
-            return base.Channel.CreateEvent(request);
+        public void unAssignRole(Gems.UIWPF.evmsService.User assigner, string userid) {
+            base.Channel.unAssignRole(assigner, userid);
         }
         
-        public Gems.UIWPF.evmsService.ViewEventResponse ViewEvent(Gems.UIWPF.evmsService.ViewEventRequest request) {
-            return base.Channel.ViewEvent(request);
+        public void CreateEvent(Gems.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
+            base.Channel.CreateEvent(u, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
         }
         
-        public Gems.UIWPF.evmsService.EditEventResponse EditEvent(Gems.UIWPF.evmsService.EditEventRequest request) {
-            return base.Channel.EditEvent(request);
+        public Gems.UIWPF.evmsService.Event[] ViewEvent(Gems.UIWPF.evmsService.User u) {
+            return base.Channel.ViewEvent(u);
         }
         
-        public Gems.UIWPF.evmsService.DeleteEventResponse DeleteEvent(Gems.UIWPF.evmsService.DeleteEventRequest request) {
-            return base.Channel.DeleteEvent(request);
+        public void EditEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e) {
+            base.Channel.EditEvent(u, e);
         }
         
-        public Gems.UIWPF.evmsService.getNewMessageResponse getNewMessage(Gems.UIWPF.evmsService.getNewMessageRequest request) {
-            return base.Channel.getNewMessage(request);
+        public void DeleteEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e) {
+            base.Channel.DeleteEvent(u, e);
         }
         
-        public Gems.UIWPF.evmsService.getUnreadMessageCountResponse getUnreadMessageCount(Gems.UIWPF.evmsService.getUnreadMessageCountRequest request) {
-            return base.Channel.getUnreadMessageCount(request);
+        public string getNewMessage(string rid) {
+            return base.Channel.getNewMessage(rid);
+        }
+        
+        public int getUnreadMessageCount(string rid) {
+            return base.Channel.getUnreadMessageCount(rid);
+        }
+        
+        public Gems.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid) {
+            return base.Channel.getUnreadMessages(rid);
+        }
+        
+        public Gems.UIWPF.evmsService.Notifications[] getAllMessages(string rid) {
+            return base.Channel.getAllMessages(rid);
+        }
+        
+        public void deleteNotifications(Gems.UIWPF.evmsService.Notifications n) {
+            base.Channel.deleteNotifications(n);
+        }
+        
+        public void deleteAllNotificationsOfUser(string uid) {
+            base.Channel.deleteAllNotificationsOfUser(uid);
+        }
+        
+        public void setNotificationRead(Gems.UIWPF.evmsService.Notifications n) {
+            base.Channel.setNotificationRead(n);
+        }
+        
+        public void sendNotification(string sender, string receiver, string title, string msg) {
+            base.Channel.sendNotification(sender, receiver, title, msg);
+        }
+        
+        public void addFacility(Gems.UIWPF.evmsService.User u, string LocID, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap) {
+            base.Channel.addFacility(u, LocID, fac, loc, bookingCon, techCon, cap);
+        }
+        
+        public void removeFacility(Gems.UIWPF.evmsService.User u, string LocID, Gems.UIWPF.evmsService.Faculty fac) {
+            base.Channel.removeFacility(u, LocID, fac);
+        }
+        
+        public void updateFacility(Gems.UIWPF.evmsService.User u, string locID, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap) {
+            base.Channel.updateFacility(u, locID, fac, loc, bookingCon, techCon, cap);
         }
     }
 }

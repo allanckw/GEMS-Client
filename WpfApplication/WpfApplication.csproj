@@ -20,6 +20,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>http://localhost/WpfApplication/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -30,11 +31,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.9.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,23 +62,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -105,6 +96,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\ConfigHelper.cs" />
+    <Compile Include="Service References\evmsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvmsService.cs" />
@@ -123,17 +120,15 @@
     <Compile Include="ADSS\frmSearchUsers.xaml.cs">
       <DependentUpon>frmSearchUsers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\WCFHelper.cs" />
     <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\Guests\frmGuestList.xaml.cs">
-      <DependentUpon>frmGuestList.xaml</DependentUpon>
+    <Compile Include="LogMS\Location\frmAddFacility.xaml.cs">
+      <DependentUpon>frmAddFacility.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\Location\frmLocationAdminAdd.xaml.cs">
-      <DependentUpon>frmLocationAdminAdd.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmLocationAdminManagement.xaml.cs">
-      <DependentUpon>frmLocationAdminManagement.xaml</DependentUpon>
+    <Compile Include="LogMS\Location\frmManageFacility.xaml.cs">
+      <DependentUpon>frmManageFacility.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogMS\Location\frmLocationAdminRequest.xaml.cs">
       <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
@@ -166,11 +161,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Service References\evmsService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ADSS\frmLogin.xaml.cs">
       <DependentUpon>frmLogin.xaml</DependentUpon>
     </Compile>
@@ -184,9 +174,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\evmsService\EvmsService.wsdl">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\evmsService\EvmsService.wsdl" />
     <None Include="Service References\evmsService\EvmsService.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -199,37 +187,16 @@
     <None Include="Service References\evmsService\EvmsService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.assignEventOrganizerResponse.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.EnumRoles.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.assignLocationAdminResponse.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Event.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.assignSystemAdminResponse.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Notifications.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.CreateEventResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.DeleteEventResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.EditEventResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.getNewMessageResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.getUnreadMessageCountResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.loginResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.searchUserByRoleResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.searchUserResponse.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -272,15 +239,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Guests\frmGuestList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LogMS\Location\frmLocationAdminAdd.xaml">
+    <Page Include="LogMS\Location\frmAddFacility.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmLocationAdminManagement.xaml">
+    <Page Include="LogMS\Location\frmManageFacility.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -345,6 +308,15 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BASS\" />
+    <Folder Include="LogMS\Guests\" />
+    <Folder Include="LogMS\Manpower\" />
+    <Folder Include="ProgMSS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Service References\evmsService\" />
   </ItemGroup>
   <ItemGroup>
@@ -357,24 +329,10 @@
     <None Include="Service References\evmsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.ViewEventResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.viewUserRoleResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\evmsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BASS\" />
-    <Folder Include="LogMS\Manpower\" />
-    <Folder Include="ProgMSS\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,8 +32,8 @@ Width="732" Height="520" AllowsTransparency="True" WindowStyle="None" Background
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Location" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
 		<StackPanel Height="460" Canvas.Left="21" Canvas.Top="60" Width="650">
-			<GroupBox Header="Please Arrange Your choice of Location" Height="350" FontSize="16">
-				<DataGrid x:Name="dgLocation" FontSize="16">
+			<GroupBox Header="Please Arrange Your choice of Location" Height="350" FontSize="14">
+				<DataGrid x:Name="dgLocation" FontSize="14">
 					 <DataGrid.Columns>
                         <DataGridComboBoxColumn x:Name="cboPriority" ItemsSource="{Binding Path=Collection}" TextBinding="{Binding Path=Collection}" Header="Priority" />
                     </DataGrid.Columns>
@@ -41,8 +41,8 @@ Width="732" Height="520" AllowsTransparency="True" WindowStyle="None" Background
 			</GroupBox>
 			<StackPanel Height="80" Orientation="Horizontal">
 				<Canvas Height="85" Margin="0" Width="500" HorizontalAlignment="Left" VerticalAlignment="Top">
-					<Label Canvas.Left="15" Canvas.Top="8" Content="Start Time :" Height="28" x:Name="label2" FontSize="16" />
-					<Label Canvas.Left="16" Canvas.Top="50" Content="End Time :" Height="28" x:Name="label4" FontSize="16" HorizontalAlignment="Left" />
+					<Label Canvas.Left="15" Canvas.Top="8" Content="Start Time :" Height="28" x:Name="label2" FontSize="14" />
+					<Label Canvas.Left="16" Canvas.Top="50" Content="End Time :" Height="28" x:Name="label4" FontSize="14" HorizontalAlignment="Left" />
 					<DatePicker Canvas.Left="120" Canvas.Top="12" Height="25" x:Name="dtpStart" Width="130" FontSize="13.333" />
 					<DatePicker Canvas.Left="120" Canvas.Top="54" Height="25" x:Name="dtpEnd" Width="130" FontSize="13.333" />
 					<ComboBox Canvas.Left="260" Canvas.Top="12" Height="23" x:Name="cboStartHr" Width="43" FontSize="13.333">
@@ -126,7 +126,7 @@ Width="732" Height="520" AllowsTransparency="True" WindowStyle="None" Background
 						<ComboBoxItem Content="55" />
 					</ComboBox>
 				</Canvas>
-				<Button Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="75,8,0,0" Height="30" VerticalAlignment="Top"/>
+				<Button Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="14" Margin="75,8,0,0" Height="30" VerticalAlignment="Top"/>
 			</StackPanel>
 		</StackPanel>
 	</Canvas>

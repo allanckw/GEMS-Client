@@ -48,7 +48,7 @@ namespace Gems.UIWPF
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 List<User> list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 

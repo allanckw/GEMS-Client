@@ -33,7 +33,12 @@ namespace Gems.UIWPF
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            if (String.Compare(txtSvAddr.Text.Trim(), ConfigHelper.GetEndpointAddress(), true) != 0)
+            {
+                ConfigHelper.SaveEndpointAddress(txtSvAddr.Text.Trim());
+            }
+
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 User u = client.login(txtUserID.Text.Trim(), txtPassword.Password);
@@ -43,17 +48,18 @@ namespace Gems.UIWPF
                 this.txtUserID.Clear();
                 this.txtUserID.Focus();
                 admForm.Show();
-                
+                client.Close();  // Always close the client.
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                client.Close();  // Always close the client.
-            }
            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtSvAddr.Text = ConfigHelper.GetEndpointAddress();
         }
 
     }

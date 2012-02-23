@@ -1,785 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EvmsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:ProtectionToken>
-              <wsp:Policy>
-                <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
-                  <wsp:Policy>
-                    <sp:RequireDerivedKeys />
-                    <sp:BootstrapPolicy>
-                      <wsp:Policy>
-                        <sp:SignedParts>
-                          <sp:Body />
-                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-                          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-                        </sp:SignedParts>
-                        <sp:EncryptedParts>
-                          <sp:Body />
-                        </sp:EncryptedParts>
-                        <sp:SymmetricBinding>
-                          <wsp:Policy>
-                            <sp:ProtectionToken>
-                              <wsp:Policy>
-                                <sp:SpnegoContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
-                                  <wsp:Policy>
-                                    <sp:RequireDerivedKeys />
-                                  </wsp:Policy>
-                                </sp:SpnegoContextToken>
-                              </wsp:Policy>
-                            </sp:ProtectionToken>
-                            <sp:AlgorithmSuite>
-                              <wsp:Policy>
-                                <sp:Basic256 />
-                              </wsp:Policy>
-                            </sp:AlgorithmSuite>
-                            <sp:Layout>
-                              <wsp:Policy>
-                                <sp:Strict />
-                              </wsp:Policy>
-                            </sp:Layout>
-                            <sp:IncludeTimestamp />
-                            <sp:EncryptSignature />
-                            <sp:OnlySignEntireHeadersAndBody />
-                          </wsp:Policy>
-                        </sp:SymmetricBinding>
-                        <sp:Wss11>
-                          <wsp:Policy />
-                        </sp:Wss11>
-                        <sp:Trust10>
-                          <wsp:Policy>
-                            <sp:MustSupportIssuedTokens />
-                            <sp:RequireClientEntropy />
-                            <sp:RequireServerEntropy />
-                          </wsp:Policy>
-                        </sp:Trust10>
-                      </wsp:Policy>
-                    </sp:BootstrapPolicy>
-                  </wsp:Policy>
-                </sp:SecureConversationToken>
-              </wsp:Policy>
-            </sp:ProtectionToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-            <sp:IncludeTimestamp />
-            <sp:EncryptSignature />
-            <sp:OnlySignEntireHeadersAndBody />
-          </wsp:Policy>
-        </sp:SymmetricBinding>
-        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy />
-        </sp:Wss11>
-        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:MustSupportIssuedTokens />
-            <sp:RequireClientEntropy />
-            <sp:RequireServerEntropy />
-          </wsp:Policy>
-        </sp:Trust10>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_login_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_login_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_login_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignLocationAdmin_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignLocationAdmin_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignLocationAdmin_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignEventOrganizer_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignEventOrganizer_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignEventOrganizer_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignSystemAdmin_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignSystemAdmin_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_assignSystemAdmin_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUser_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUser_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUser_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUserByRole_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUserByRole_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_searchUserByRole_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_viewUserRole_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_viewUserRole_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_CreateEvent_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_CreateEvent_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_CreateEvent_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_ViewEvent_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_ViewEvent_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_ViewEvent_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_EditEvent_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_EditEvent_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_EditEvent_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_DeleteEvent_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_DeleteEvent_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_DeleteEvent_SExceptionFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_getNewMessage_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_getNewMessage_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_getUnreadMessageCount_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEvmsService_getUnreadMessageCount_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:62709/EvmsService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -848,6 +68,18 @@
   <wsdl:message name="IEvmsService_viewUserRole_OutputMessage">
     <wsdl:part name="parameters" element="tns:viewUserRoleResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvmsService_viewUserRole_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q7:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_unAssignRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:unAssignRole" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_unAssignRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:unAssignRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_unAssignRole_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q8:SException" />
+  </wsdl:message>
   <wsdl:message name="IEvmsService_CreateEvent_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateEvent" />
   </wsdl:message>
@@ -855,7 +87,7 @@
     <wsdl:part name="parameters" element="tns:CreateEventResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_CreateEvent_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q7:SException" />
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q9:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_ViewEvent_InputMessage">
     <wsdl:part name="parameters" element="tns:ViewEvent" />
@@ -864,7 +96,7 @@
     <wsdl:part name="parameters" element="tns:ViewEventResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_ViewEvent_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q8:SException" />
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q10:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_EditEvent_InputMessage">
     <wsdl:part name="parameters" element="tns:EditEvent" />
@@ -873,7 +105,7 @@
     <wsdl:part name="parameters" element="tns:EditEventResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_EditEvent_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q9:SException" />
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q11:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_DeleteEvent_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEvent" />
@@ -882,7 +114,7 @@
     <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_DeleteEvent_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q10:SException" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q12:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_getNewMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:getNewMessage" />
@@ -890,11 +122,98 @@
   <wsdl:message name="IEvmsService_getNewMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:getNewMessageResponse" />
   </wsdl:message>
+  <wsdl:message name="IEvmsService_getNewMessage_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q13:SException" />
+  </wsdl:message>
   <wsdl:message name="IEvmsService_getUnreadMessageCount_InputMessage">
     <wsdl:part name="parameters" element="tns:getUnreadMessageCount" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_getUnreadMessageCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:getUnreadMessageCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getUnreadMessageCount_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q14:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getUnreadMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUnreadMessages" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getUnreadMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUnreadMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getUnreadMessages_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q15:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getAllMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMessages" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getAllMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getAllMessages_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q16:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteNotifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteNotifications" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteNotifications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteNotifications_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q17:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteAllNotificationsOfUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteAllNotificationsOfUser" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteAllNotificationsOfUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteAllNotificationsOfUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_deleteAllNotificationsOfUser_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q18:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_setNotificationRead_InputMessage">
+    <wsdl:part name="parameters" element="tns:setNotificationRead" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_setNotificationRead_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setNotificationReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_setNotificationRead_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q19:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_sendNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:sendNotification" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_sendNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sendNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_sendNotification_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q20:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_addFacility_InputMessage">
+    <wsdl:part name="parameters" element="tns:addFacility" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_addFacility_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addFacilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_addFacility_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q21:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_removeFacility_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeFacility" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_removeFacility_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeFacilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_removeFacility_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q22:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_updateFacility_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateFacility" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_updateFacility_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateFacilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_updateFacility_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q23:SException" />
   </wsdl:message>
   <wsdl:portType name="IEvmsService">
     <wsdl:operation name="login">
@@ -930,6 +249,12 @@
     <wsdl:operation name="viewUserRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/viewUserRole" message="tns:IEvmsService_viewUserRole_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/viewUserRoleResponse" message="tns:IEvmsService_viewUserRole_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/viewUserRoleSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_viewUserRole_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="unAssignRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/unAssignRole" message="tns:IEvmsService_unAssignRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/unAssignRoleResponse" message="tns:IEvmsService_unAssignRole_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/unAssignRoleSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_unAssignRole_SExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateEvent">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/CreateEvent" message="tns:IEvmsService_CreateEvent_InputMessage" />
@@ -954,208 +279,341 @@
     <wsdl:operation name="getNewMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getNewMessage" message="tns:IEvmsService_getNewMessage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/getNewMessageResponse" message="tns:IEvmsService_getNewMessage_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/getNewMessageSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_getNewMessage_SExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="getUnreadMessageCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessageCount" message="tns:IEvmsService_getUnreadMessageCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessageCountResponse" message="tns:IEvmsService_getUnreadMessageCount_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessageCountSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_getUnreadMessageCount_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUnreadMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessages" message="tns:IEvmsService_getUnreadMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessagesResponse" message="tns:IEvmsService_getUnreadMessages_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/getUnreadMessagesSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_getUnreadMessages_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getAllMessages" message="tns:IEvmsService_getAllMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/getAllMessagesResponse" message="tns:IEvmsService_getAllMessages_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/getAllMessagesSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_getAllMessages_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteNotifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/deleteNotifications" message="tns:IEvmsService_deleteNotifications_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/deleteNotificationsResponse" message="tns:IEvmsService_deleteNotifications_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/deleteNotificationsSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_deleteNotifications_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAllNotificationsOfUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUser" message="tns:IEvmsService_deleteAllNotificationsOfUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserResponse" message="tns:IEvmsService_deleteAllNotificationsOfUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_deleteAllNotificationsOfUser_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setNotificationRead">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/setNotificationRead" message="tns:IEvmsService_setNotificationRead_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/setNotificationReadResponse" message="tns:IEvmsService_setNotificationRead_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/setNotificationReadSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_setNotificationRead_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/sendNotification" message="tns:IEvmsService_sendNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/sendNotificationResponse" message="tns:IEvmsService_sendNotification_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/sendNotificationSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_sendNotification_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addFacility">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/addFacility" message="tns:IEvmsService_addFacility_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/addFacilityResponse" message="tns:IEvmsService_addFacility_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/addFacilitySExceptionFault" name="SExceptionFault" message="tns:IEvmsService_addFacility_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeFacility">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/removeFacility" message="tns:IEvmsService_removeFacility_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/removeFacilityResponse" message="tns:IEvmsService_removeFacility_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault" name="SExceptionFault" message="tns:IEvmsService_removeFacility_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateFacility">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/updateFacility" message="tns:IEvmsService_updateFacility_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/updateFacilityResponse" message="tns:IEvmsService_updateFacility_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault" name="SExceptionFault" message="tns:IEvmsService_updateFacility_SExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="WSHttpBinding_IEvmsService" type="tns:IEvmsService">
-    <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_policy" />
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+  <wsdl:binding name="BasicHttpBinding_IEvmsService" type="tns:IEvmsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="login">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/login" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/login" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_login_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_login_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_login_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="assignLocationAdmin">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/assignLocationAdmin" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/assignLocationAdmin" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignLocationAdmin_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignLocationAdmin_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignLocationAdmin_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="assignEventOrganizer">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/assignEventOrganizer" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/assignEventOrganizer" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignEventOrganizer_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignEventOrganizer_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignEventOrganizer_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="assignSystemAdmin">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/assignSystemAdmin" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/assignSystemAdmin" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignSystemAdmin_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignSystemAdmin_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_assignSystemAdmin_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="searchUser">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/searchUser" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/searchUser" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUser_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUser_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUser_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="searchUserByRole">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/searchUserByRole" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/searchUserByRole" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUserByRole_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUserByRole_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_searchUserByRole_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="viewUserRole">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/viewUserRole" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/viewUserRole" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_viewUserRole_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_viewUserRole_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateEvent">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/CreateEvent" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_CreateEvent_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_CreateEvent_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_CreateEvent_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unAssignRole">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/unAssignRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEvent">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/CreateEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ViewEvent">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/ViewEvent" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/ViewEvent" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_ViewEvent_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_ViewEvent_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_ViewEvent_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="EditEvent">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/EditEvent" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/EditEvent" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_EditEvent_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_EditEvent_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_EditEvent_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteEvent">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/DeleteEvent" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/DeleteEvent" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_DeleteEvent_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_DeleteEvent_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="SExceptionFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_DeleteEvent_SExceptionFault_Fault" />
-        <soap12:fault use="literal" name="SExceptionFault" namespace="" />
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getNewMessage">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/getNewMessage" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/getNewMessage" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_getNewMessage_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_getNewMessage_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getUnreadMessageCount">
-      <soap12:operation soapAction="http://tempuri.org/IEvmsService/getUnreadMessageCount" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/getUnreadMessageCount" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_getUnreadMessageCount_Input_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEvmsService_getUnreadMessageCount_output_policy" />
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnreadMessages">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/getUnreadMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllMessages">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/getAllMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteNotifications">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/deleteNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAllNotificationsOfUser">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setNotificationRead">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/setNotificationRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sendNotification">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/sendNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addFacility">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/addFacility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeFacility">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/removeFacility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateFacility">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/updateFacility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="EvmsService">
-    <wsdl:port name="WSHttpBinding_IEvmsService" binding="tns:WSHttpBinding_IEvmsService">
-      <soap12:address location="http://localhost:62709/EvmsService.svc" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:62709/EvmsService.svc</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>Alander-NB\Alander</Upn>
-        </Identity>
-      </wsa10:EndpointReference>
+    <wsdl:port name="BasicHttpBinding_IEvmsService" binding="tns:BasicHttpBinding_IEvmsService">
+      <soap:address location="http://localhost:62709/EvmsService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

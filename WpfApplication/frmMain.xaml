@@ -20,26 +20,30 @@
         </Path>
         <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="750" Canvas.Left="-20">
             <Menu Margin="2,5,2,0" Background="{x:Null}">
-                <MenuItem Header="Administrative" FontSize="16" Margin="10,0,0,0" x:Name="mnuAdmin">
-
+                <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
                     <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
                 </MenuItem>
-                <MenuItem Header="Event" FontSize="16" x:Name="mnuEvent" >
+                <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
                     <MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>
                     <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
-                <MenuItem Header="Programs" FontSize="16" Margin="10,0,0,0" x:Name="mnuPrograms">
+                <MenuItem Header="Facility" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
+                    <MenuItem Header="Admin" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocAdmin">
+                        <MenuItem Header="Add Facility" Background="{x:Null}" Width="250" x:Name="mnuAddFac" Click="mnuAddFac_Click" />
+                        <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
+                    </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Location" FontSize="16" Margin="10,0,0,0" x:Name="mnuLocation">
+                <MenuItem Header="Programs" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
                 </MenuItem>
-                <MenuItem Header="Tasks" FontSize="16" Margin="10,0,0,0" x:Name="mnuTasks" >
+
+                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
                 </MenuItem>
-                <MenuItem Header="Manpower" FontSize="16" Margin="10,0,0,0" x:Name="mnuManpower">
+                <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
                 </MenuItem>
-                <MenuItem Header="Guests" FontSize="16" Margin="10,0,0,0" x:Name="mnuGuests" >
+                <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" >
                 </MenuItem>
-                <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="16" x:Name="mnuNotify" Click="mnuNotify_Click">
+                <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="15" x:Name="mnuNotify" Click="mnuNotify_Click">
                 </MenuItem>
             </Menu>
         </GroupBox>
@@ -58,7 +62,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox Header="My Event List" Height="351" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="234" Width="180" Foreground="Black" FontSize="16">
+        <GroupBox Header="My Event List" Height="351" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="234" Width="180" Foreground="Black" FontSize="15">
             <ListBox x:Name="lstEventList" Margin="2,8.54,2,2">
             </ListBox>
         </GroupBox>

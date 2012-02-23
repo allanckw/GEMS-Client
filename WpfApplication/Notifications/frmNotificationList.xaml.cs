@@ -36,7 +36,7 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             lstMsg.ItemsSource = client.getUnreadMessages(user.userID);
             client.Close();
         }
@@ -57,7 +57,7 @@ namespace Gems.UIWPF
             if (user == null)
                 return;
 
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             if (radUnread.IsChecked == true)
             { 
                 lstMsg.ItemsSource = client.getUnreadMessages(user.userID);
@@ -74,7 +74,7 @@ namespace Gems.UIWPF
             Notifications n = (Notifications)lstMsg.SelectedItem;
             if (!n.isRead)
             {
-                EvmsServiceClient client = new EvmsServiceClient();
+                WCFHelperClient client = new WCFHelperClient();
                 client.setNotificationRead(n);
                 client.Close();
             }
@@ -85,7 +85,7 @@ namespace Gems.UIWPF
 
         private void btnDeleteSel_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 if (MessageBox.Show("Are you sure you want to delete this message?", "Confirm deletion",
@@ -110,7 +110,7 @@ namespace Gems.UIWPF
 
         private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
             try
             {
                 if (MessageBox.Show("Are you sure you want to delete all messages in your inbox?", "Confirm deletion",
