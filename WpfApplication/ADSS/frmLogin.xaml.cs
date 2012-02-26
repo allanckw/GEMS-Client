@@ -1,18 +1,13 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.ServiceModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Input;
 using evmsService.entities;
-using System.ComponentModel;
-using System.Windows.Threading;
 
 namespace Gems.UIWPF
 {
-    /// <summary>
-    /// Interaction logic for WindowStyleSampleTest.xaml
-    /// </summary>
     public partial class frmLogin : Window
     {
         public frmLogin()
@@ -54,7 +49,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

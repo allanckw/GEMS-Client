@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 using evmsService.entities;
@@ -27,7 +30,7 @@ namespace Gems.UIWPF
             timer.Start();
 
             hourlyTimer = new DispatcherTimer();
-            hourlyTimer.Interval = TimeSpan.FromMinutes(0.8); //remember to change to 60
+            hourlyTimer.Interval = TimeSpan.FromMinutes(59.99); //remember to change to 60
             hourlyTimer.Tick += new EventHandler(hourlyTimer1_Tick);
             hourlyTimer.Start();
 
@@ -70,8 +73,18 @@ namespace Gems.UIWPF
             {
                 this.mnuLocAdmin.Visibility = Visibility.Collapsed;
             }
+
             getHourlyNotifications();
             notify();
+            loadEvents();
+        }
+
+        private void loadEvents()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            List<Event> list = client.ViewEvent(user).ToList<Event>();
+            lstEventList.ItemsSource = list;
+            client.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -206,6 +219,22 @@ namespace Gems.UIWPF
                 this.Visibility = Visibility.Collapsed;
                 frmGuestList.ShowDialog();
             }
+        }
+
+        private void btnGetEvents_Click(object sender, RoutedEventArgs e)
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            List<Event> list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                dtpTo.SelectedDate.Value).ToList<Event>(); ;
+            lstEventList.ItemsSource = list;
+            client.Close();
+        }
+
+        private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
+        {
+            var facSearch = new frmBookingFacility(user, this);
+            this.Visibility = Visibility.Collapsed;
+            facSearch.ShowDialog();
         }
     }
 }

@@ -41,7 +41,7 @@ Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" Background
         </Button>
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Edit/Delete Facility" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="18.667" />
         <StackPanel Height="425" Width="629" Orientation="Horizontal" Canvas.Left="21" Canvas.Top="56">
-            <StackPanel Width="210" Height="430" Margin="0" VerticalAlignment="Top">
+            <StackPanel Width="207" Height="430" Margin="0" VerticalAlignment="Top">
                 <Label Content="Faculty" FontSize="14" FontWeight="Bold"/>
                 <ComboBox Canvas.Left="200" Canvas.Top="8" Height="33" Name="cboFaculty" Width="208" SelectionChanged="cboFaculty_SelectionChanged" />
                 <Label Content="Venues" FontSize="14" FontWeight="Bold"/>
@@ -61,7 +61,7 @@ Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" Background
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
-            <GroupBox Header="Location Details" Width="410" FontSize="18.667" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Top" Height="420">
+            <GroupBox Header="Location Details" Width="410" FontSize="18.667" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Top" Height="420">
                 <StackPanel Height="350" Margin="0" VerticalAlignment="Top">
                     <StackPanel Height="275" Margin="0">
                         <Canvas Height="45">

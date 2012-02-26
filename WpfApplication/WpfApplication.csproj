@@ -97,10 +97,51 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\ConfigHelper.cs" />
+    <Compile Include="LogMS\FacBooking\frmBookingFacility.xaml.cs">
+      <DependentUpon>frmBookingFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml.cs">
+      <DependentUpon>frmBookingFacilityPriority.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmLocationAdminRequest.xaml.cs">
+      <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmViewCurrentBooking.xaml.cs">
+      <DependentUpon>frmViewCurrentBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmAddFacility.xaml.cs">
+      <DependentUpon>frmAddFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmManageFacility.xaml.cs">
+      <DependentUpon>frmManageFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmViewFacilityDetail.xaml.cs">
+      <DependentUpon>frmViewFacilityDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Guests\frmGuestList.xaml.cs">
+      <DependentUpon>frmGuestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Item\frmItemManagement.xaml.cs">
+      <DependentUpon>frmItemManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\evmsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Listview\BoolToVisibilityConverter.cs" />
+    <Compile Include="UserControl\Listview\NumberToPolarValueConverter.cs" />
+    <Compile Include="UserControl\Listview\ucLVCurrentBooking.xaml.cs">
+      <DependentUpon>ucLVCurrentBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Listview\ucLVItem.xaml.cs">
+      <DependentUpon>ucLVItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Listview\ucLVItemType.xaml.cs">
+      <DependentUpon>ucLVItemType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Listview\ucLVTime.xaml.cs">
+      <DependentUpon>ucLVTime.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -123,21 +164,6 @@
     <Compile Include="Helper\WCFHelper.cs" />
     <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmAddFacility.xaml.cs">
-      <DependentUpon>frmAddFacility.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmManageFacility.xaml.cs">
-      <DependentUpon>frmManageFacility.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmLocationAdminRequest.xaml.cs">
-      <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmLocationBooking.xaml.cs">
-      <DependentUpon>frmLocationBooking.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Location\frmLocationSelection.xaml.cs">
-      <DependentUpon>frmLocationSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\frmNotificationList.xaml.cs">
       <DependentUpon>frmNotificationList.xaml</DependentUpon>
@@ -239,23 +265,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmAddFacility.xaml">
+    <Page Include="LogMS\FacBooking\frmBookingFacility.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmManageFacility.xaml">
+    <Page Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmLocationAdminRequest.xaml">
+    <Page Include="LogMS\FacBooking\frmLocationAdminRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmLocationBooking.xaml">
+    <Page Include="LogMS\FacBooking\frmViewCurrentBooking.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\Location\frmLocationSelection.xaml">
+    <Page Include="LogMS\Facility\frmAddFacility.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Facility\frmManageFacility.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Facility\frmViewFacilityDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Guests\frmGuestList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Item\frmItemManagement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -268,6 +310,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Notifications\Notifier.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl\Listview\ucLVCurrentBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl\Listview\ucLVItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl\Listview\ucLVItemType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl\Listview\ucLVTime.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -309,7 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BASS\" />
-    <Folder Include="LogMS\Guests\" />
     <Folder Include="LogMS\Manpower\" />
     <Folder Include="ProgMSS\" />
   </ItemGroup>

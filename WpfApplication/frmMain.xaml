@@ -23,16 +23,18 @@
                 <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
                     <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
+                    <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocAdmin">
+                        <MenuItem Header="Add Facility" Background="{x:Null}" Width="250" x:Name="mnuAddFac" Click="mnuAddFac_Click" />
+                        <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
                     <MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>
                     <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
-                <MenuItem Header="Facility" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
-                    <MenuItem Header="Admin" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocAdmin">
-                        <MenuItem Header="Add Facility" Background="{x:Null}" Width="250" x:Name="mnuAddFac" Click="mnuAddFac_Click" />
-                        <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
-                    </MenuItem>
+                <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
+                    <MenuItem Header="Search" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
+
                 </MenuItem>
                 <MenuItem Header="Programs" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
                 </MenuItem>
@@ -41,7 +43,7 @@
                 </MenuItem>
                 <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
                 </MenuItem>
-                <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" >
+                <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>
                 <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="15" x:Name="mnuNotify" Click="mnuNotify_Click">
                 </MenuItem>
@@ -62,34 +64,53 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox Header="My Event List" Height="351" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="234" Width="180" Foreground="Black" FontSize="15">
-            <ListBox x:Name="lstEventList" Margin="2,8.54,2,2">
+        <GroupBox Header="My Event List" Height="486" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="99" Width="199" Foreground="Black" FontSize="16">
+            <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10" Orientation="Vertical">
+                            <WrapPanel Orientation="Horizontal"  >
+                                <TextBlock Text="Event: "  Foreground="DarkBlue"/>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue"/>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock Text="From "/>
+                                <TextBlock Text="{Binding Path=StartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+                                <TextBlock Text=" to "/>
+                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </GroupBox>
-        <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="480" FontFamily="Stencil" FontSize="20" Foreground="Black" Width="544" Canvas.Left="235.5" Canvas.Top="97"/>
-        <GroupBox Header="Item Lists" Canvas.Left="250" Canvas.Top="130" Width="522" Height="60" Foreground="Black">
+        <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" Height="416" FontFamily="Stencil" FontSize="20" Foreground="Black" Width="544" Canvas.Left="235.5" Canvas.Top="161"/>
+        <GroupBox Header="Item Lists" Canvas.Left="250" Canvas.Top="241" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblItemMsg" Content="This is a sample text"/>
         </GroupBox>
-        <GroupBox Header="Task Lists" Canvas.Left="250" Canvas.Top="190" Width="522" Height="60" Foreground="Black">
+        <GroupBox Header="Task Lists" Canvas.Left="250" Canvas.Top="419" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblTaskMsg" Content="This is a sample text"/>
         </GroupBox>
-        <GroupBox Header="Location" Canvas.Left="250" Canvas.Top="250" Width="522" Height="60" Foreground="Black">
+        <GroupBox Header="Location" Canvas.Left="250" Canvas.Top="300" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblLocationMsg" Content="This is a sample text"/>
         </GroupBox>
-        <GroupBox Header="Program Flow" Canvas.Left="250" Canvas.Top="310" Width="522" Height="60" Foreground="Black">
+        <GroupBox Header="Program Flow" Canvas.Left="250" Canvas.Top="184" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblProgramMsg" Content="This is a sample text"/>
         </GroupBox>
-        <GroupBox Header="Manpower" Canvas.Left="250" Canvas.Top="370" Width="522" Height="95" Foreground="Black">
+        <GroupBox Header="Manpower" Canvas.Left="250" Canvas.Top="359" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblManpowerMsg" Content="This is a sample text&#xd;&#xa;&#xd;&#xa;" VerticalAlignment="Top" Margin="0"/>
         </GroupBox>
-        <GroupBox Header="Guest" Canvas.Left="250" Canvas.Top="465" Width="522" Height="95" Foreground="Black">
+        <GroupBox Header="Guest" Canvas.Left="250" Canvas.Top="475" Width="522" Height="60" Foreground="Black">
             <Label x:Name="lblGuestMsg" Content="This is a sample text" Margin="0"/>
         </GroupBox>
-        <DatePicker Canvas.Left="38" Canvas.Top="127" Height="25" Name="dtpFrom" Width="172" />
-        <DatePicker Canvas.Left="38" Canvas.Top="175" Height="25" Name="dtpTo" Width="172" />
-        <Label Canvas.Left="35" Canvas.Top="107" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
+        <DatePicker Canvas.Left="279" Canvas.Top="127" Height="25" Name="dtpFrom" Width="172" />
+        <DatePicker Canvas.Left="483" Canvas.Top="127" Height="25" Name="dtpTo" Width="172" />
+        <Label Canvas.Left="236" Canvas.Top="127" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
 
-        <Label Canvas.Left="38" Canvas.Top="156" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
-        <Button Canvas.Left="38" Canvas.Top="207" Content="GO!" Height="23" Name="btnGetEvents" Width="75" />
+        <Label Canvas.Left="453" Canvas.Top="127" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
+        <Button Canvas.Left="667" Canvas.Top="127" Content="GO!" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
     </Canvas>
 </Window>
