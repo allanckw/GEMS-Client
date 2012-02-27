@@ -1,0 +1,8 @@
+﻿<Application x:Class="GemsClientApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="ADSS/frmLogin.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

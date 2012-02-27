@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{396B674E-A559-4932-A323-D2E971F1889B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GEMS.UIWPF</RootNamespace>
+    <AssemblyName>GemsClientApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GemsClientApp.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFTaskbarNotifier, Version=1.0.4425.27593, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPFTaskbarNotifier.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomConts\Listview\BoolToVisibilityConverter.cs" />
+    <Compile Include="CustomConts\Listview\NumberToPolarValueConverter.cs" />
+    <Compile Include="CustomConts\Listview\ucLVCurrentBooking.xaml.cs">
+      <DependentUpon>ucLVCurrentBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomConts\Listview\ucLVItem.xaml.cs">
+      <DependentUpon>ucLVItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomConts\Listview\ucLVItemType.xaml.cs">
+      <DependentUpon>ucLVItemType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomConts\Listview\ucLVTime.xaml.cs">
+      <DependentUpon>ucLVTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EvmsService.cs" />
+    <Compile Include="EvMS\frmEventAdd.xaml.cs">
+      <DependentUpon>frmEventAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EvMS\frmEventMangement.xaml.cs">
+      <DependentUpon>frmEventMangement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.xaml.cs">
+      <DependentUpon>frmMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ConfigHelper.cs" />
+    <Compile Include="Helper\WCFHelper.cs" />
+    <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
+      <DependentUpon>frmServiceContactList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmBookingFacility.xaml.cs">
+      <DependentUpon>frmBookingFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml.cs">
+      <DependentUpon>frmBookingFacilityPriority.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmLocationAdminRequest.xaml.cs">
+      <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\FacBooking\frmViewCurrentBooking.xaml.cs">
+      <DependentUpon>frmViewCurrentBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmAddFacility.xaml.cs">
+      <DependentUpon>frmAddFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmManageFacility.xaml.cs">
+      <DependentUpon>frmManageFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Facility\frmViewFacilityDetail.xaml.cs">
+      <DependentUpon>frmViewFacilityDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Guests\frmGuestList.xaml.cs">
+      <DependentUpon>frmGuestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Item\frmItemManagement.xaml.cs">
+      <DependentUpon>frmItemManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\frmNotificationList.xaml.cs">
+      <DependentUpon>frmNotificationList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\frmViewNotification.xaml.cs">
+      <DependentUpon>frmViewNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Notifier.xaml.cs">
+      <DependentUpon>Notifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\evmsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Page Include="ADSS\frmAssign.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ADSS\frmAssignFacAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ADSS\frmLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ADSS\frmSearchUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ADSS\frmViewUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ADSS\frmAssign.xaml.cs">
+      <DependentUpon>frmAssign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ADSS\frmAssignFacAdmin.xaml.cs">
+      <DependentUpon>frmAssignFacAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ADSS\frmLogin.xaml.cs">
+      <DependentUpon>frmLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ADSS\frmSearchUsers.xaml.cs">
+      <DependentUpon>frmSearchUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ADSS\frmViewUsers.xaml.cs">
+      <DependentUpon>frmViewUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="CustomConts\Listview\ucLVCurrentBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomConts\Listview\ucLVItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomConts\Listview\ucLVItemType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomConts\Listview\ucLVTime.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EvMS\frmEventAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EvMS\frmEventMangement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\ContactList\frmServiceContactList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\FacBooking\frmBookingFacility.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\FacBooking\frmLocationAdminRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\FacBooking\frmViewCurrentBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Facility\frmAddFacility.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Facility\frmManageFacility.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Facility\frmViewFacilityDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Guests\frmGuestList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Item\frmItemManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\frmNotificationList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\frmViewNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\Notifier.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\evmsService\EvmsService.wsdl" />
+    <None Include="Service References\evmsService\EvmsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\evmsService\EvmsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\evmsService\EvmsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\evmsService\EvmsService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\evmsService\EvmsService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.EnumRoles.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Event.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Facility.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Faculty.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Guest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Notifications.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Program.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\evmsService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\evmsService\EvmsService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\evmsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\evmsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\evmsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BASS\" />
+    <Folder Include="LogMS\Manpower\" />
+    <Folder Include="ProgMSS\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
