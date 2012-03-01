@@ -96,20 +96,17 @@
     <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\FacBooking\frmBookingFacility.xaml.cs">
-      <DependentUpon>frmBookingFacility.xaml</DependentUpon>
+    <Compile Include="LogMS\FacBooking\frmFacBooking.xaml.cs">
+      <DependentUpon>frmFacBooking.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml.cs">
-      <DependentUpon>frmBookingFacilityPriority.xaml</DependentUpon>
+    <Compile Include="LogMS\FacBooking\frmFacBookingDetails.xaml.cs">
+      <DependentUpon>frmFacBookingDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogMS\FacBooking\frmLocationAdminRequest.xaml.cs">
-      <DependentUpon>frmLocationAdminRequest.xaml</DependentUpon>
+    <Compile Include="LogMS\FacBooking\frmFacBookingAdmin.xaml.cs">
+      <DependentUpon>frmFacBookingAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogMS\FacBooking\frmViewCurrentBooking.xaml.cs">
       <DependentUpon>frmViewCurrentBooking.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LogMS\Facility\frmAddFacility.xaml.cs">
-      <DependentUpon>frmAddFacility.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogMS\Facility\frmManageFacility.xaml.cs">
       <DependentUpon>frmManageFacility.xaml</DependentUpon>
@@ -208,23 +205,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\FacBooking\frmBookingFacility.xaml">
+    <Page Include="LogMS\FacBooking\frmFacBooking.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\FacBooking\frmBookingFacilityPriority.xaml">
+    <Page Include="LogMS\FacBooking\frmFacBookingDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LogMS\FacBooking\frmLocationAdminRequest.xaml">
+    <Page Include="LogMS\FacBooking\frmFacBookingAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="LogMS\FacBooking\frmViewCurrentBooking.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="LogMS\Facility\frmAddFacility.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -329,6 +322,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BASS\" />
+    <Folder Include="LogMS\Manpower\" />
+    <Folder Include="ProgMSS\" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Service References\evmsService\" />
   </ItemGroup>
   <ItemGroup>
@@ -345,11 +343,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BASS\" />
-    <Folder Include="LogMS\Manpower\" />
-    <Folder Include="ProgMSS\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

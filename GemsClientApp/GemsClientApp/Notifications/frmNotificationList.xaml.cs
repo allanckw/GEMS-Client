@@ -20,14 +20,14 @@ namespace Gems.UIWPF
     public partial class frmNotificationList : Window
     {
         User user;
-        frmMain mainFrame;
+        Window mainFrame;
 
         public frmNotificationList()
         {
             InitializeComponent();
         }
 
-        public frmNotificationList(User u, frmMain f)
+        public frmNotificationList(User u, Window f)
             : this()
         {
             this.user = u;

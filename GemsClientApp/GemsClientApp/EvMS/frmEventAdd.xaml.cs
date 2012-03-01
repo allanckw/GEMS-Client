@@ -10,40 +10,26 @@ namespace Gems.UIWPF
     public partial class frmEventAdd : Window
     {
 
-        frmMain mainFrame;
+        Window mainFrame;
         User user;
 
         public frmEventAdd()
         {
             this.InitializeComponent();
-
-            // Insert code required on object creation below this point.
+            CreateDTPData();
+        }
+        public void CreateDTPData()
+        {
             for (int i = 0; i <= 23; i++)
             {
-                if (i < 10)
-                {
-                    cboStartHr.Items.Add("0" + i.ToString());
-                    cboEndHr.Items.Add("0" + i.ToString());
-                }
-                else
-                {
-                    cboStartHr.Items.Add(i.ToString());
-                    cboEndHr.Items.Add(i.ToString());
-                }
+                cboStartHr.Items.Add(string.Format("{0:00}", i));
+                cboEndHr.Items.Add(string.Format("{0:00}", i));
             }
 
-            for (int i = 0; i <= 55; i += 5)
+            for (int i = 0; i <= 55; i += 30)
             {
-                if (i < 10)
-                {
-                    cboStartMin.Items.Add("0" + i.ToString());
-                    cboEndMin.Items.Add("0" + i.ToString());
-                }
-                else
-                {
-                    cboStartMin.Items.Add(i.ToString());
-                    cboEndMin.Items.Add(i.ToString());
-                }
+                cboStartMin.Items.Add(string.Format("{0:00}", i));
+                cboEndMin.Items.Add(string.Format("{0:00}", i));
             }
         }
 

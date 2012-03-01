@@ -63,15 +63,6 @@
   <wsdl:message name="IEvmsService_DeleteGuest_SExceptionFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q6:SException" />
   </wsdl:message>
-  <wsdl:message name="IEvmsService_addFacility_InputMessage">
-    <wsdl:part name="parameters" element="tns:addFacility" />
-  </wsdl:message>
-  <wsdl:message name="IEvmsService_addFacility_OutputMessage">
-    <wsdl:part name="parameters" element="tns:addFacilityResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEvmsService_addFacility_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q7:SException" />
-  </wsdl:message>
   <wsdl:message name="IEvmsService_removeFacility_InputMessage">
     <wsdl:part name="parameters" element="tns:removeFacility" />
   </wsdl:message>
@@ -79,7 +70,7 @@
     <wsdl:part name="parameters" element="tns:removeFacilityResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_removeFacility_SExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q8:SException" />
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q7:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_updateFacility_InputMessage">
     <wsdl:part name="parameters" element="tns:updateFacility" />
@@ -88,6 +79,15 @@
     <wsdl:part name="parameters" element="tns:updateFacilityResponse" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_updateFacility_SExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q8:SException" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getFacilityAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFacilityAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getFacilityAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFacilityAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEvmsService_getFacilityAdmin_SExceptionFault_FaultMessage">
     <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/evmsService.Controllers" name="detail" element="q9:SException" />
   </wsdl:message>
   <wsdl:message name="IEvmsService_getFacilityAdminFaculty_InputMessage">
@@ -391,11 +391,6 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/DeleteGuestResponse" message="tns:IEvmsService_DeleteGuest_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/DeleteGuestSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_DeleteGuest_SExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="addFacility">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/addFacility" message="tns:IEvmsService_addFacility_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/addFacilityResponse" message="tns:IEvmsService_addFacility_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/addFacilitySExceptionFault" name="SExceptionFault" message="tns:IEvmsService_addFacility_SExceptionFault_FaultMessage" />
-    </wsdl:operation>
     <wsdl:operation name="removeFacility">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/removeFacility" message="tns:IEvmsService_removeFacility_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/removeFacilityResponse" message="tns:IEvmsService_removeFacility_OutputMessage" />
@@ -405,6 +400,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/updateFacility" message="tns:IEvmsService_updateFacility_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/updateFacilityResponse" message="tns:IEvmsService_updateFacility_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault" name="SExceptionFault" message="tns:IEvmsService_updateFacility_SExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFacilityAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getFacilityAdmin" message="tns:IEvmsService_getFacilityAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEvmsService/getFacilityAdminResponse" message="tns:IEvmsService_getFacilityAdmin_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEvmsService/getFacilityAdminSExceptionFault" name="SExceptionFault" message="tns:IEvmsService_getFacilityAdmin_SExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="getFacilityAdminFaculty">
       <wsdl:input wsaw:Action="http://tempuri.org/IEvmsService/getFacilityAdminFaculty" message="tns:IEvmsService_getFacilityAdminFaculty_InputMessage" />
@@ -631,18 +631,6 @@
         <soap:fault use="literal" name="SExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="addFacility">
-      <soap:operation soapAction="http://tempuri.org/IEvmsService/addFacility" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="SExceptionFault">
-        <soap:fault use="literal" name="SExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
     <wsdl:operation name="removeFacility">
       <soap:operation soapAction="http://tempuri.org/IEvmsService/removeFacility" style="document" />
       <wsdl:input>
@@ -657,6 +645,18 @@
     </wsdl:operation>
     <wsdl:operation name="updateFacility">
       <soap:operation soapAction="http://tempuri.org/IEvmsService/updateFacility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SExceptionFault">
+        <soap:fault use="literal" name="SExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getFacilityAdmin">
+      <soap:operation soapAction="http://tempuri.org/IEvmsService/getFacilityAdmin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

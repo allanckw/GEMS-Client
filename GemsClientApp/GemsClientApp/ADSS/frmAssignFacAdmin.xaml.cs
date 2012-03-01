@@ -1,9 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
-using evmsService.entities;
-using System;
-using evmsService.entities;
 using evmsService.Controllers;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {

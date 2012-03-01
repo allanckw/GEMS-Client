@@ -35,7 +35,7 @@ namespace GEMS.UIWPF.evmsService {
         private bool isEventOrganizerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool isLocationAdminField;
+        private bool isFacilityAdminField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool isNormalUserField;
@@ -109,14 +109,14 @@ namespace GEMS.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool isLocationAdmin {
+        public bool isFacilityAdmin {
             get {
-                return this.isLocationAdminField;
+                return this.isFacilityAdminField;
             }
             set {
-                if ((this.isLocationAdminField.Equals(value) != true)) {
-                    this.isLocationAdminField = value;
-                    this.RaisePropertyChanged("isLocationAdmin");
+                if ((this.isFacilityAdminField.Equals(value) != true)) {
+                    this.isFacilityAdminField = value;
+                    this.RaisePropertyChanged("isFacilityAdmin");
                 }
             }
         }
@@ -214,25 +214,22 @@ namespace GEMS.UIWPF.evmsService {
         Computing_Commons = 12,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Education_Resource_Centre = 13,
+        EduSports = 13,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EduSports = 14,
+        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 14,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Khoo_Teck_Puat_Advanced_Surgery_Training_Centre = 15,
+        Lee_Kuan_Yew_School_of_Public_Policy = 15,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Lee_Kuan_Yew_School_of_Public_Policy = 16,
+        PC_Cluster = 16,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        PC_Cluster = 17,
+        Science_Cluster = 17,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Science_Cluster = 18,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        UTown = 19,
+        UTown = 18,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -966,10 +963,6 @@ namespace GEMS.UIWPF.evmsService {
         [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         void DeleteGuest(GEMS.UIWPF.evmsService.User u, int GuestID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/addFacility", ReplyAction="http://tempuri.org/IEvmsService/addFacilityResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/addFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void addFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/removeFacility", ReplyAction="http://tempuri.org/IEvmsService/removeFacilityResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         void removeFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac);
@@ -978,9 +971,13 @@ namespace GEMS.UIWPF.evmsService {
         [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         void updateFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdmin", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        GEMS.UIWPF.evmsService.Faculty getFacilityAdmin(string userid);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdminFaculty", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminFacultyResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Faculty getFacilityAdminFaculty(string userid);
+        string getFacilityAdminFaculty(GEMS.UIWPF.evmsService.Faculty userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdmins", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -1150,10 +1147,6 @@ namespace GEMS.UIWPF.evmsService {
             base.Channel.DeleteGuest(u, GuestID);
         }
         
-        public void addFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap) {
-            base.Channel.addFacility(u, venue, fac, loc, bookingCon, techCon, cap);
-        }
-        
         public void removeFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac) {
             base.Channel.removeFacility(u, venue, fac);
         }
@@ -1162,7 +1155,11 @@ namespace GEMS.UIWPF.evmsService {
             base.Channel.updateFacility(u, venue, fac, loc, bookingCon, techCon, cap);
         }
         
-        public GEMS.UIWPF.evmsService.Faculty getFacilityAdminFaculty(string userid) {
+        public GEMS.UIWPF.evmsService.Faculty getFacilityAdmin(string userid) {
+            return base.Channel.getFacilityAdmin(userid);
+        }
+        
+        public string getFacilityAdminFaculty(GEMS.UIWPF.evmsService.Faculty userid) {
             return base.Channel.getFacilityAdminFaculty(userid);
         }
         

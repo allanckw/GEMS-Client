@@ -39,7 +39,7 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="18.667" />
+		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="16" />
 		<GroupBox Header="Service List" Canvas.Left="21" Canvas.Top="60" Height="560" Width="156.197" FontSize="21.333">
 			<ListBox x:Name="lstServiceList"/>
 		</GroupBox>

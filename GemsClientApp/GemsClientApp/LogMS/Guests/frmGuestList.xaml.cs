@@ -11,7 +11,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        frmMain mainFrame;
+        Window mainFrame;
         Event event_;
 
         public frmGuestList()

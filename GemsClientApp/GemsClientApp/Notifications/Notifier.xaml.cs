@@ -32,7 +32,7 @@ namespace Gems.UIWPF
     public partial class Notifier : TaskbarNotifier
     {
         User user;
-        frmMain mainFrame;
+        Window mainFrame;
         public Notifier()
         {
             InitializeComponent();

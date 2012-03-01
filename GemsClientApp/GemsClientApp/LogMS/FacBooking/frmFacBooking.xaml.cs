@@ -5,23 +5,31 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using evmsService.entities;
+using System.Windows.Controls;
+using System.Data;
+using System.Windows.Media;
+
 namespace Gems.UIWPF
 {
 
-    public partial class frmBookingFacility : Window
+    public partial class frmFacBooking : Window
     {
-        private frmMain mainFrame;
+        private Window mainFrame;
         private User user;
+        private Event event_;
+        private List<Facility> selectedFacs;
 
-        public frmBookingFacility()
+        public frmFacBooking()
         {
             InitializeComponent();
         }
-        public frmBookingFacility(User u, frmMain f)
+        public frmFacBooking(User u, Event e, frmMain f)
             : this()
         {
             user = u;
             mainFrame = f;
+            this.event_ = e;
+            selectedFacs = new List<Facility>();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -131,9 +139,10 @@ namespace Gems.UIWPF
         private void cboFaculty_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (cboFaculty.SelectedIndex == -1)
-            {
                 return;
-            }
+            cboVenue.SelectedIndex = -1;
+            cboSeat.SelectedIndex = -1;
+
             WCFHelperClient client = new WCFHelperClient();
             cboVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
             client.Close();
@@ -145,5 +154,102 @@ namespace Gems.UIWPF
             cboVenue.SelectedIndex = -1;
             cboSeat.SelectedIndex = -1;
         }
+
+        private void btnBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (cboFaculty.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a faculty", "Select Faculty", 
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            selectedFacs.Clear();
+            getListOfSelectedFacilities();
+            if (this.selectedFacs.Count == 0)
+            {
+                MessageBox.Show("Please select at least 1 venue that you would like to book!", 
+                    "Select Venue", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            WCFHelperClient client = new WCFHelperClient();
+            bool exist = client.checkRequestExist(event_.EventID);
+            client.Close();
+
+            if (exist)
+            {
+                MessageBox.Show("The event already have a pending or confirmed request!",
+                    "Request already Exist", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            var bkFacPrior = new frmFacBookingDetails(user,event_,this.selectedFacs);
+            bkFacPrior.ShowDialog();
+        }
+
+        private void getListOfSelectedFacilities()
+        {
+            for (int i = 0; i < lstFacility.Items.Count; i++)
+            {
+                // Get a all list items from listbox
+                ListBoxItem ListBoxItemObj = (ListBoxItem)lstFacility.ItemContainerGenerator.ContainerFromItem(lstFacility.Items[i]);
+
+                // find a ContentPresenter of that list item.. [Call FindVisualChild Method]
+                ContentPresenter ContentPresenterObj = FindVisualChild<ContentPresenter>(ListBoxItemObj);
+                if (ContentPresenterObj != null)
+                {
+                    // call FindName on the DataTemplate of that ContentPresenter
+                    DataTemplate DataTemplateObj = ContentPresenterObj.ContentTemplate;
+                    CheckBox Chk = (CheckBox)DataTemplateObj.FindName("ChkList", ContentPresenterObj);
+
+                    // get a selected checkbox items.
+                    if (Chk.IsChecked == true)
+                    {
+                        selectedFacs.Add((Facility) lstFacility.Items[i]);
+                    }
+                }
+            }
+        }
+
+        private ChildControl FindVisualChild<ChildControl>(DependencyObject DependencyObj)
+            where ChildControl : DependencyObject
+        {
+            if (DependencyObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(DependencyObj); i++)
+                {
+                    DependencyObject Child = VisualTreeHelper.GetChild(DependencyObj, i);
+
+                    if (Child != null && Child is ChildControl)
+                    {
+                        return (ChildControl)Child;
+                    }
+                    else
+                    {
+                        ChildControl ChildOfChild = FindVisualChild<ChildControl>(Child);
+                        if (ChildOfChild != null)
+                        {
+                            return ChildOfChild;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstFacility.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a facility!", "Select facility",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                frmViewFacilityDetail viewfac = new frmViewFacilityDetail(this, (Facility)lstFacility.SelectedItem);
+                viewfac.ShowDialog();
+            }
+        }
+
     }
 }

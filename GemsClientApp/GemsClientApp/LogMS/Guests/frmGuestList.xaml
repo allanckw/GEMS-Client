@@ -39,7 +39,7 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Guest List" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="18.667" />
+        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Guest List" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="16" />
         <StackPanel Height="444" Canvas.Left="21" Canvas.Top="60" Width="637.5" Orientation="Horizontal">
         	<GroupBox Header="Guest List" Width="156.197" FontSize="21.333" HorizontalAlignment="Left" Margin="0,0,10,8">
         		<StackPanel>

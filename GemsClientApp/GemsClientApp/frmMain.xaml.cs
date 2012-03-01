@@ -30,7 +30,7 @@ namespace Gems.UIWPF
             timer.Start();
 
             hourlyTimer = new DispatcherTimer();
-            hourlyTimer.Interval = TimeSpan.FromMinutes(59.99); //remember to change to 60
+            hourlyTimer.Interval = TimeSpan.FromMinutes(59.99);
             hourlyTimer.Tick += new EventHandler(hourlyTimer1_Tick);
             hourlyTimer.Start();
 
@@ -69,9 +69,9 @@ namespace Gems.UIWPF
             {
                 this.mnuAdmin.Visibility =Visibility.Collapsed;
             }
-            if (!user.isLocationAdmin)
+            if (!user.isFacilityAdmin)
             {
-                this.mnuLocAdmin.Visibility = Visibility.Collapsed;
+                this.mnuManageFac.Visibility = Visibility.Collapsed;
             }
 
             getHourlyNotifications();
@@ -85,6 +85,7 @@ namespace Gems.UIWPF
             List<Event> list = client.ViewEvent(user).ToList<Event>();
             lstEventList.ItemsSource = list;
             client.Close();
+            lstEventList.SelectedIndex = 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -191,13 +192,6 @@ namespace Gems.UIWPF
             manageEventForm.ShowDialog();
         }
 
-        private void mnuAddFac_Click(object sender, RoutedEventArgs e)
-        {
-            var facAdd = new frmAddFacility(user, this);
-            this.Visibility = Visibility.Collapsed;
-            facAdd.ShowDialog();
-        }
-
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
         {
             var facManage = new frmManageFacility(user, this);
@@ -232,7 +226,13 @@ namespace Gems.UIWPF
 
         private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
         {
-            var facSearch = new frmBookingFacility(user, this);
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to add guest!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            Event ev = (Event)lstEventList.SelectedItem;
+            var facSearch = new frmFacBooking(user,ev, this);
             this.Visibility = Visibility.Collapsed;
             facSearch.ShowDialog();
         }

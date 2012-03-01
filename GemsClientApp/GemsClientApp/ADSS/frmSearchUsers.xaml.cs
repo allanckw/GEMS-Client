@@ -15,7 +15,7 @@ namespace Gems.UIWPF
     public partial class frmSearchUsers : Window
     {
         User user;
-        frmMain mainFrame;
+        Window mainFrame;
         public frmSearchUsers()
         {
             InitializeComponent();

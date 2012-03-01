@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Gems.UIWPF.frmSearchUsers"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-     xmlns:local="clr-namespace:evmsService.entities"
+     xmlns:evms="clr-namespace:evmsService.entities"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="GEMS Administrator" Height="600" Width="630"
     AllowsTransparency="True" WindowStyle="None" WindowState="Normal" Loaded="Window_Loaded"
@@ -9,7 +9,7 @@
     <Window.Resources>
         <ObjectDataProvider x:Key="roleData" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="local:EnumRoles" />
+                <x:Type TypeName="evms:EnumRoles" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 

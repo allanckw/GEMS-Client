@@ -38,9 +38,9 @@
                 <TextBox Canvas.Left="200" Canvas.Top="10" FontSize="12" Height="30" 
                          Name="txtFaculty" TextWrapping="Wrap" Width="250" IsReadOnly="true"/>
             </Canvas>
-            <Canvas Height="45">
+            <Canvas Height="65">
                 <Label Content="Venue :" Canvas.Left="8" Canvas.Top="8" FontSize="14"/>
-                <TextBox x:Name="txtVenue" TextWrapping="Wrap" Width="250" Height="30" 
+                <TextBox x:Name="txtVenue" TextWrapping="Wrap" Width="250" Height="60" 
                          FontSize="12" Margin="200,8,0,0" IsReadOnly="true"/>
             </Canvas>
             <Canvas Height="45">

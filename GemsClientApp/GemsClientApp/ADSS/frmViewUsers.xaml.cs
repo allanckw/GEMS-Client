@@ -20,7 +20,7 @@ namespace Gems.UIWPF
     public partial class frmViewUsers : Window
     {
         User user;
-        frmMain mainFrame;
+        Window mainFrame;
 
         public frmViewUsers()
         {

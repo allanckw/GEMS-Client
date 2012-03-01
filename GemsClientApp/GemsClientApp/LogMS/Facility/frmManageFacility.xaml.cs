@@ -10,7 +10,7 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmManageFacility : Window
     {
-        frmMain mainFrame;
+        Window mainFrame;
         User user;
 
         public frmManageFacility()
@@ -33,21 +33,21 @@ namespace Gems.UIWPF
             cboEditFac.ItemsSource = cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
             cboFacAdmin.ItemsSource = client.getFacilityAdmins();
 
-            //EnumRoles r = client.viewUserRole(user.userID);
-            if (user.isSystemAdmin)//if (r == EnumRoles.System_Admin)
+
+            if (user.isSystemAdmin)
             {
                 cboFacAdmin.IsEnabled = cboEditFac.IsEnabled = cboFaculty.IsEnabled = true;
                 cboEditFac.SelectedIndex = cboFaculty.SelectedIndex = 0;
             }
-            if (user.isSystemAdmin)//if (r == EnumRoles.System_Admin)
+            else if (user.isFacilityAdmin)
             {
-                Faculty f = client.getFacilityAdminFaculty(user.userID);
+                Faculty f = client.getFacilityAdmin(user.userID);
                 cboEditFac.SelectedIndex = cboFaculty.SelectedIndex = (int)f;
                 cboFacAdmin.IsEnabled = cboEditFac.IsEnabled = cboFaculty.IsEnabled = false;
                 cboFacAdmin.SelectedValue = user.userID;
 
             }
-            
+
             client.Close();
         }
 
@@ -84,14 +84,12 @@ namespace Gems.UIWPF
             client.Close();
 
             cboEditFac.SelectedIndex = cboFaculty.SelectedIndex;
-            txtVenue.Text = "";
-            txtTechContact.Text = "";
-            txtSeatCapacity1.Text = "";
+            clearAllTextBoxes();
             if (user.isSystemAdmin)
             {
                 cboFacAdmin.SelectedValue = -1;
             }
-            txtLocation.Text = "";
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -113,9 +111,10 @@ namespace Gems.UIWPF
                     client.updateFacility(user, txtVenue.Text.Trim(), (Faculty)cboEditFac.SelectedIndex,
                     txtLocation.Text.Trim(), cboFacAdmin.SelectedValue.ToString(),
                     txtTechContact.Text.Trim(), cap);
-                    MessageBox.Show("Facility successfully updated", "Update Success", 
+                    MessageBox.Show("Facility successfully updated", "Update Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex,0, int.MaxValue);
+                    lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                    clearAllTextBoxes();
                 }
                 catch (Exception ex)
                 {
@@ -131,19 +130,42 @@ namespace Gems.UIWPF
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            
             WCFHelperClient client = new WCFHelperClient();
             try
             {
                 client.removeFacility(user, txtVenue.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                 MessageBox.Show("Facility successfully deleted", "Delete Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex,0, int.MaxValue);
+                lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                clearAllTextBoxes();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error have occured: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             client.Close();
+        }
+
+        private void clearAllTextBoxes()
+        {
+           // txtLocation.Text = txtSeatCapacity1.Text = txtTechContact.Text = txtVenue.Text = "";
+
+        }
+
+        private void cboEditFac_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            cboFaculty.SelectedIndex = cboEditFac.SelectedIndex;
+            //try
+            //{
+            //    WCFHelperClient client = new WCFHelperClient();
+            //    string u = client.getFacilityAdminFaculty((Faculty) cboEditFac.SelectedIndex);
+            //    cboFacAdmin.SelectedValue = u;
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
         }
 
 

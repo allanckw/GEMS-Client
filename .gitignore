@@ -7,8 +7,9 @@
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
+![Dd]ebug/
 [Rr]elease/
+[Oo]bj
 *_i.c
 *_p.c
 *.ilk
@@ -59,8 +60,6 @@ DocProject/Help/html
 publish
 
 # Others
-![Bb]in
-![Oo]bj
 sql
 TestResults
 *.Cache

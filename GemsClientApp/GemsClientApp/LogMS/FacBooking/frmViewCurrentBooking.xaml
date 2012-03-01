@@ -40,7 +40,7 @@ Width="637" Height="463" AllowsTransparency="True" WindowStyle="None" Background
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Booking" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="18.667" />
+		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Booking" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
 		<StackPanel Height="325" Canvas.Left="21" Canvas.Top="56" Width="550" Orientation="Horizontal">
 			<GroupBox Header="Event List" FontSize="16" Width="150" FontWeight="Bold" Height="325">
 				<ListBox x:Name="lstEvent" FontSize="13.333"/>
