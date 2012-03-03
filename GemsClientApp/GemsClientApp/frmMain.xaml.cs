@@ -16,6 +16,8 @@ namespace Gems.UIWPF
     {
         User user;
         frmLogin mainFrame;
+        
+
         private DispatcherTimer timer, hourlyTimer;
         private Notifier taskbarNotifier;
 
@@ -190,6 +192,7 @@ namespace Gems.UIWPF
             var manageEventForm = new  frmEventMangement(user, this);
             this.Visibility = Visibility.Collapsed;
             manageEventForm.ShowDialog();
+            loadEvents();
         }
 
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
@@ -217,11 +220,34 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
-            List<Event> list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                dtpTo.SelectedDate.Value).ToList<Event>(); ;
-            lstEventList.ItemsSource = list;
-            client.Close();
+
+            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) || (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
+            {
+                MessageBox.Show("Invalid Date Range");
+                return;
+            }
+            try
+            {
+
+                WCFHelperClient client = new WCFHelperClient();
+                List<Event> list;
+                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                {
+                    list = client.ViewEvent(user).ToList<Event>();
+                }
+                else
+                {
+                    list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                    dtpTo.SelectedDate.Value).ToList<Event>();
+                }
+                 
+                lstEventList.ItemsSource = list;
+                client.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void mnuSearchFac_Click(object sender, RoutedEventArgs e)

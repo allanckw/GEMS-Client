@@ -27,8 +27,8 @@
 
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
-                    <MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>
-                    <MenuItem Header="Manage (Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
+                    <!--<MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>-->
+                    <MenuItem Header="Manage (Add/Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
                     <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
