@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GEMS.UIWPF.evmsService {
+namespace Gems.UIWPF.evmsService {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,7 +29,7 @@ namespace GEMS.UIWPF.evmsService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GEMS.UIWPF.evmsService.Faculty UserFacultyField;
+        private Gems.UIWPF.evmsService.Faculty UserFacultyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool isEventOrganizerField;
@@ -83,7 +83,7 @@ namespace GEMS.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GEMS.UIWPF.evmsService.Faculty UserFaculty {
+        public Gems.UIWPF.evmsService.Faculty UserFaculty {
             get {
                 return this.UserFacultyField;
             }
@@ -405,7 +405,7 @@ namespace GEMS.UIWPF.evmsService {
         private string FacilityIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GEMS.UIWPF.evmsService.Faculty FacultyField;
+        private Gems.UIWPF.evmsService.Faculty FacultyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LocationField;
@@ -463,7 +463,7 @@ namespace GEMS.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GEMS.UIWPF.evmsService.Faculty Faculty {
+        public Gems.UIWPF.evmsService.Faculty Faculty {
             get {
                 return this.FacultyField;
             }
@@ -675,7 +675,7 @@ namespace GEMS.UIWPF.evmsService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GEMS.UIWPF.evmsService.User OrganizerField;
+        private Gems.UIWPF.evmsService.User OrganizerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OrganizeridField;
@@ -749,7 +749,7 @@ namespace GEMS.UIWPF.evmsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GEMS.UIWPF.evmsService.User Organizer {
+        public Gems.UIWPF.evmsService.User Organizer {
             get {
                 return this.OrganizerField;
             }
@@ -940,169 +940,169 @@ namespace GEMS.UIWPF.evmsService {
     public interface IEvmsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddRole", ReplyAction="http://tempuri.org/IEvmsService/AddRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        int AddRole(GEMS.UIWPF.evmsService.User u, string RoleUserID, int EventID, string RolePost, string RoleDescription, int[] functionID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        int AddRole(Gems.UIWPF.evmsService.User u, string RoleUserID, int EventID, string RolePost, string RoleDescription, int[] functionID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteRole", ReplyAction="http://tempuri.org/IEvmsService/DeleteRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void DeleteRole(GEMS.UIWPF.evmsService.User u, int RoleID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void DeleteRole(Gems.UIWPF.evmsService.User u, int RoleID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddGuest", ReplyAction="http://tempuri.org/IEvmsService/AddGuestResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        int AddGuest(GEMS.UIWPF.evmsService.User u, int EventID, string GuestName, string GuestContact, string GuestDescription);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        int AddGuest(Gems.UIWPF.evmsService.User u, int EventID, string GuestName, string GuestContact, string GuestDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewGuest", ReplyAction="http://tempuri.org/IEvmsService/ViewGuestResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Guest[] ViewGuest(GEMS.UIWPF.evmsService.User u, int EventID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Guest[] ViewGuest(Gems.UIWPF.evmsService.User u, int EventID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditGuest", ReplyAction="http://tempuri.org/IEvmsService/EditGuestResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void EditGuest(GEMS.UIWPF.evmsService.User u, int GuestID, string GuestName, string GuestDescription, string GuestContact);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void EditGuest(Gems.UIWPF.evmsService.User u, int GuestID, string GuestName, string GuestDescription, string GuestContact);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteGuest", ReplyAction="http://tempuri.org/IEvmsService/DeleteGuestResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void DeleteGuest(GEMS.UIWPF.evmsService.User u, int GuestID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void DeleteGuest(Gems.UIWPF.evmsService.User u, int GuestID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/removeFacility", ReplyAction="http://tempuri.org/IEvmsService/removeFacilityResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void removeFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/removeFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void removeFacility(Gems.UIWPF.evmsService.User u, string venue, Gems.UIWPF.evmsService.Faculty fac);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/updateFacility", ReplyAction="http://tempuri.org/IEvmsService/updateFacilityResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void updateFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/updateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void updateFacility(Gems.UIWPF.evmsService.User u, string venue, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdmin", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Faculty getFacilityAdmin(string userid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Faculty getFacilityAdmin(string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdminFaculty", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminFacultyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        string getFacilityAdminFaculty(GEMS.UIWPF.evmsService.Faculty userid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        string getFacilityAdminFaculty(Gems.UIWPF.evmsService.Faculty userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getFacilityAdmins", ReplyAction="http://tempuri.org/IEvmsService/getFacilityAdminsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.User[] getFacilityAdmins();
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.User[] getFacilityAdmins();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getVenuesByFaculty", ReplyAction="http://tempuri.org/IEvmsService/getVenuesByFacultyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesByFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Facility[] getVenuesByFaculty(GEMS.UIWPF.evmsService.Faculty f, int minCap, int maxCap);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesByFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Facility[] getVenuesByFaculty(Gems.UIWPF.evmsService.Faculty f, int minCap, int maxCap);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getVenues", ReplyAction="http://tempuri.org/IEvmsService/getVenuesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Facility[] getVenues(int minCap, int maxCap);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Facility[] getVenues(int minCap, int maxCap);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getVenuesByCap", ReplyAction="http://tempuri.org/IEvmsService/getVenuesByCapResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesByCapSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Facility[] getVenuesByCap(GEMS.UIWPF.evmsService.Faculty fac, string faciID, int minCap, int maxCap);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getVenuesByCapSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Facility[] getVenuesByCap(Gems.UIWPF.evmsService.Faculty fac, string faciID, int minCap, int maxCap);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/login", ReplyAction="http://tempuri.org/IEvmsService/loginResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/loginSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.User login(string userid, string password);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/loginSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.User login(string userid, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignLocationAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignLocationAdminResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignLocationAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void assignLocationAdmin(GEMS.UIWPF.evmsService.User assigner, string userid, GEMS.UIWPF.evmsService.Faculty fac);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignLocationAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void assignLocationAdmin(Gems.UIWPF.evmsService.User assigner, string userid, Gems.UIWPF.evmsService.Faculty fac);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignEventOrganizer", ReplyAction="http://tempuri.org/IEvmsService/assignEventOrganizerResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void assignEventOrganizer(GEMS.UIWPF.evmsService.User assigner, string userid, string description);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignEventOrganizerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void assignEventOrganizer(Gems.UIWPF.evmsService.User assigner, string userid, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/assignSystemAdmin", ReplyAction="http://tempuri.org/IEvmsService/assignSystemAdminResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignSystemAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void assignSystemAdmin(GEMS.UIWPF.evmsService.User assigner, string userid, string description);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/assignSystemAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void assignSystemAdmin(Gems.UIWPF.evmsService.User assigner, string userid, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUser", ReplyAction="http://tempuri.org/IEvmsService/searchUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.User[] searchUser(string name, string userid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.User[] searchUser(string name, string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/searchUserByRole", ReplyAction="http://tempuri.org/IEvmsService/searchUserByRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserByRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, GEMS.UIWPF.evmsService.EnumRoles r);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/searchUserByRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, Gems.UIWPF.evmsService.EnumRoles r);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewUserRole", ReplyAction="http://tempuri.org/IEvmsService/viewUserRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/viewUserRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.EnumRoles viewUserRole(string userid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/viewUserRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.EnumRoles viewUserRole(string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/unAssignRole", ReplyAction="http://tempuri.org/IEvmsService/unAssignRoleResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/unAssignRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void unAssignRole(GEMS.UIWPF.evmsService.User assigner, string userid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/unAssignRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void unAssignRole(Gems.UIWPF.evmsService.User assigner, string userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getNewMessage", ReplyAction="http://tempuri.org/IEvmsService/getNewMessageResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getNewMessageSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getNewMessageSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         string getNewMessage(string rid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessageCount", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessageCountResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessageCountSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessageCountSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         int getUnreadMessageCount(string rid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getUnreadMessages", ReplyAction="http://tempuri.org/IEvmsService/getUnreadMessagesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getUnreadMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/getAllMessages", ReplyAction="http://tempuri.org/IEvmsService/getAllMessagesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getAllMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Notifications[] getAllMessages(string rid);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/getAllMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Notifications[] getAllMessages(string rid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteNotifications", ReplyAction="http://tempuri.org/IEvmsService/deleteNotificationsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteNotificationsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void deleteNotifications(GEMS.UIWPF.evmsService.Notifications n);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteNotificationsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void deleteNotifications(Gems.UIWPF.evmsService.Notifications n);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUser", ReplyAction="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/deleteAllNotificationsOfUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         void deleteAllNotificationsOfUser(string uid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/setNotificationRead", ReplyAction="http://tempuri.org/IEvmsService/setNotificationReadResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/setNotificationReadSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void setNotificationRead(GEMS.UIWPF.evmsService.Notifications n);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/setNotificationReadSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void setNotificationRead(Gems.UIWPF.evmsService.Notifications n);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/sendNotification", ReplyAction="http://tempuri.org/IEvmsService/sendNotificationResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/sendNotificationSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/sendNotificationSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
         void sendNotification(string sender, string receiver, string title, string msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        int CreateEvent(GEMS.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        int CreateEvent(Gems.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEvent", ReplyAction="http://tempuri.org/IEvmsService/ViewEventResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Event[] ViewEvent(GEMS.UIWPF.evmsService.User u);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Event[] ViewEvent(Gems.UIWPF.evmsService.User u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditEvent", ReplyAction="http://tempuri.org/IEvmsService/EditEventResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void EditEvent(GEMS.UIWPF.evmsService.User u, GEMS.UIWPF.evmsService.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void EditEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteEvent", ReplyAction="http://tempuri.org/IEvmsService/DeleteEventResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void DeleteEvent(GEMS.UIWPF.evmsService.User u, GEMS.UIWPF.evmsService.Event e);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void DeleteEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/viewEventsbyDate", ReplyAction="http://tempuri.org/IEvmsService/viewEventsbyDateResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/viewEventsbyDateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Event[] viewEventsbyDate(GEMS.UIWPF.evmsService.User u, System.DateTime start, System.DateTime end);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/viewEventsbyDateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Event[] viewEventsbyDate(Gems.UIWPF.evmsService.User u, System.DateTime start, System.DateTime end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddProgram", ReplyAction="http://tempuri.org/IEvmsService/AddProgramResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        int AddProgram(GEMS.UIWPF.evmsService.User u, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramEventID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/AddProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        int AddProgram(Gems.UIWPF.evmsService.User u, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramEventID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewProgram", ReplyAction="http://tempuri.org/IEvmsService/ViewProgramResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        GEMS.UIWPF.evmsService.Program[] ViewProgram(GEMS.UIWPF.evmsService.User u, int EventID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/ViewProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        Gems.UIWPF.evmsService.Program[] ViewProgram(Gems.UIWPF.evmsService.User u, int EventID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditProgram", ReplyAction="http://tempuri.org/IEvmsService/EditProgramResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void EditProgram(GEMS.UIWPF.evmsService.User u, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/EditProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void EditProgram(Gems.UIWPF.evmsService.User u, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteProgram", ReplyAction="http://tempuri.org/IEvmsService/DeleteProgramResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GEMS.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-        void DeleteProgram(GEMS.UIWPF.evmsService.User u, int ProgramID);
+        [System.ServiceModel.FaultContractAttribute(typeof(Gems.UIWPF.evmsService.SException), Action="http://tempuri.org/IEvmsService/DeleteProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+        void DeleteProgram(Gems.UIWPF.evmsService.User u, int ProgramID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IEvmsServiceChannel : GEMS.UIWPF.evmsService.IEvmsService, System.ServiceModel.IClientChannel {
+    public interface IEvmsServiceChannel : Gems.UIWPF.evmsService.IEvmsService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class EvmsServiceClient : System.ServiceModel.ClientBase<GEMS.UIWPF.evmsService.IEvmsService>, GEMS.UIWPF.evmsService.IEvmsService {
+    public partial class EvmsServiceClient : System.ServiceModel.ClientBase<Gems.UIWPF.evmsService.IEvmsService>, Gems.UIWPF.evmsService.IEvmsService {
         
         public EvmsServiceClient() {
         }
@@ -1123,91 +1123,91 @@ namespace GEMS.UIWPF.evmsService {
                 base(binding, remoteAddress) {
         }
         
-        public int AddRole(GEMS.UIWPF.evmsService.User u, string RoleUserID, int EventID, string RolePost, string RoleDescription, int[] functionID) {
+        public int AddRole(Gems.UIWPF.evmsService.User u, string RoleUserID, int EventID, string RolePost, string RoleDescription, int[] functionID) {
             return base.Channel.AddRole(u, RoleUserID, EventID, RolePost, RoleDescription, functionID);
         }
         
-        public void DeleteRole(GEMS.UIWPF.evmsService.User u, int RoleID) {
+        public void DeleteRole(Gems.UIWPF.evmsService.User u, int RoleID) {
             base.Channel.DeleteRole(u, RoleID);
         }
         
-        public int AddGuest(GEMS.UIWPF.evmsService.User u, int EventID, string GuestName, string GuestContact, string GuestDescription) {
+        public int AddGuest(Gems.UIWPF.evmsService.User u, int EventID, string GuestName, string GuestContact, string GuestDescription) {
             return base.Channel.AddGuest(u, EventID, GuestName, GuestContact, GuestDescription);
         }
         
-        public GEMS.UIWPF.evmsService.Guest[] ViewGuest(GEMS.UIWPF.evmsService.User u, int EventID) {
+        public Gems.UIWPF.evmsService.Guest[] ViewGuest(Gems.UIWPF.evmsService.User u, int EventID) {
             return base.Channel.ViewGuest(u, EventID);
         }
         
-        public void EditGuest(GEMS.UIWPF.evmsService.User u, int GuestID, string GuestName, string GuestDescription, string GuestContact) {
+        public void EditGuest(Gems.UIWPF.evmsService.User u, int GuestID, string GuestName, string GuestDescription, string GuestContact) {
             base.Channel.EditGuest(u, GuestID, GuestName, GuestDescription, GuestContact);
         }
         
-        public void DeleteGuest(GEMS.UIWPF.evmsService.User u, int GuestID) {
+        public void DeleteGuest(Gems.UIWPF.evmsService.User u, int GuestID) {
             base.Channel.DeleteGuest(u, GuestID);
         }
         
-        public void removeFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac) {
+        public void removeFacility(Gems.UIWPF.evmsService.User u, string venue, Gems.UIWPF.evmsService.Faculty fac) {
             base.Channel.removeFacility(u, venue, fac);
         }
         
-        public void updateFacility(GEMS.UIWPF.evmsService.User u, string venue, GEMS.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap) {
+        public void updateFacility(Gems.UIWPF.evmsService.User u, string venue, Gems.UIWPF.evmsService.Faculty fac, string loc, string bookingCon, string techCon, int cap) {
             base.Channel.updateFacility(u, venue, fac, loc, bookingCon, techCon, cap);
         }
         
-        public GEMS.UIWPF.evmsService.Faculty getFacilityAdmin(string userid) {
+        public Gems.UIWPF.evmsService.Faculty getFacilityAdmin(string userid) {
             return base.Channel.getFacilityAdmin(userid);
         }
         
-        public string getFacilityAdminFaculty(GEMS.UIWPF.evmsService.Faculty userid) {
+        public string getFacilityAdminFaculty(Gems.UIWPF.evmsService.Faculty userid) {
             return base.Channel.getFacilityAdminFaculty(userid);
         }
         
-        public GEMS.UIWPF.evmsService.User[] getFacilityAdmins() {
+        public Gems.UIWPF.evmsService.User[] getFacilityAdmins() {
             return base.Channel.getFacilityAdmins();
         }
         
-        public GEMS.UIWPF.evmsService.Facility[] getVenuesByFaculty(GEMS.UIWPF.evmsService.Faculty f, int minCap, int maxCap) {
+        public Gems.UIWPF.evmsService.Facility[] getVenuesByFaculty(Gems.UIWPF.evmsService.Faculty f, int minCap, int maxCap) {
             return base.Channel.getVenuesByFaculty(f, minCap, maxCap);
         }
         
-        public GEMS.UIWPF.evmsService.Facility[] getVenues(int minCap, int maxCap) {
+        public Gems.UIWPF.evmsService.Facility[] getVenues(int minCap, int maxCap) {
             return base.Channel.getVenues(minCap, maxCap);
         }
         
-        public GEMS.UIWPF.evmsService.Facility[] getVenuesByCap(GEMS.UIWPF.evmsService.Faculty fac, string faciID, int minCap, int maxCap) {
+        public Gems.UIWPF.evmsService.Facility[] getVenuesByCap(Gems.UIWPF.evmsService.Faculty fac, string faciID, int minCap, int maxCap) {
             return base.Channel.getVenuesByCap(fac, faciID, minCap, maxCap);
         }
         
-        public GEMS.UIWPF.evmsService.User login(string userid, string password) {
+        public Gems.UIWPF.evmsService.User login(string userid, string password) {
             return base.Channel.login(userid, password);
         }
         
-        public void assignLocationAdmin(GEMS.UIWPF.evmsService.User assigner, string userid, GEMS.UIWPF.evmsService.Faculty fac) {
+        public void assignLocationAdmin(Gems.UIWPF.evmsService.User assigner, string userid, Gems.UIWPF.evmsService.Faculty fac) {
             base.Channel.assignLocationAdmin(assigner, userid, fac);
         }
         
-        public void assignEventOrganizer(GEMS.UIWPF.evmsService.User assigner, string userid, string description) {
+        public void assignEventOrganizer(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
             base.Channel.assignEventOrganizer(assigner, userid, description);
         }
         
-        public void assignSystemAdmin(GEMS.UIWPF.evmsService.User assigner, string userid, string description) {
+        public void assignSystemAdmin(Gems.UIWPF.evmsService.User assigner, string userid, string description) {
             base.Channel.assignSystemAdmin(assigner, userid, description);
         }
         
-        public GEMS.UIWPF.evmsService.User[] searchUser(string name, string userid) {
+        public Gems.UIWPF.evmsService.User[] searchUser(string name, string userid) {
             return base.Channel.searchUser(name, userid);
         }
         
-        public GEMS.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, GEMS.UIWPF.evmsService.EnumRoles r) {
+        public Gems.UIWPF.evmsService.User[] searchUserByRole(string name, string userid, Gems.UIWPF.evmsService.EnumRoles r) {
             return base.Channel.searchUserByRole(name, userid, r);
         }
         
-        public GEMS.UIWPF.evmsService.EnumRoles viewUserRole(string userid) {
+        public Gems.UIWPF.evmsService.EnumRoles viewUserRole(string userid) {
             return base.Channel.viewUserRole(userid);
         }
         
-        public void unAssignRole(GEMS.UIWPF.evmsService.User assigner, string userid) {
+        public void unAssignRole(Gems.UIWPF.evmsService.User assigner, string userid) {
             base.Channel.unAssignRole(assigner, userid);
         }
         
@@ -1219,15 +1219,15 @@ namespace GEMS.UIWPF.evmsService {
             return base.Channel.getUnreadMessageCount(rid);
         }
         
-        public GEMS.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid) {
+        public Gems.UIWPF.evmsService.Notifications[] getUnreadMessages(string rid) {
             return base.Channel.getUnreadMessages(rid);
         }
         
-        public GEMS.UIWPF.evmsService.Notifications[] getAllMessages(string rid) {
+        public Gems.UIWPF.evmsService.Notifications[] getAllMessages(string rid) {
             return base.Channel.getAllMessages(rid);
         }
         
-        public void deleteNotifications(GEMS.UIWPF.evmsService.Notifications n) {
+        public void deleteNotifications(Gems.UIWPF.evmsService.Notifications n) {
             base.Channel.deleteNotifications(n);
         }
         
@@ -1235,7 +1235,7 @@ namespace GEMS.UIWPF.evmsService {
             base.Channel.deleteAllNotificationsOfUser(uid);
         }
         
-        public void setNotificationRead(GEMS.UIWPF.evmsService.Notifications n) {
+        public void setNotificationRead(Gems.UIWPF.evmsService.Notifications n) {
             base.Channel.setNotificationRead(n);
         }
         
@@ -1243,39 +1243,39 @@ namespace GEMS.UIWPF.evmsService {
             base.Channel.sendNotification(sender, receiver, title, msg);
         }
         
-        public int CreateEvent(GEMS.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
+        public int CreateEvent(Gems.UIWPF.evmsService.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
             return base.Channel.CreateEvent(u, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
         }
         
-        public GEMS.UIWPF.evmsService.Event[] ViewEvent(GEMS.UIWPF.evmsService.User u) {
+        public Gems.UIWPF.evmsService.Event[] ViewEvent(Gems.UIWPF.evmsService.User u) {
             return base.Channel.ViewEvent(u);
         }
         
-        public void EditEvent(GEMS.UIWPF.evmsService.User u, GEMS.UIWPF.evmsService.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
+        public void EditEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite) {
             base.Channel.EditEvent(u, e, EventOrganizerID, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
         }
         
-        public void DeleteEvent(GEMS.UIWPF.evmsService.User u, GEMS.UIWPF.evmsService.Event e) {
+        public void DeleteEvent(Gems.UIWPF.evmsService.User u, Gems.UIWPF.evmsService.Event e) {
             base.Channel.DeleteEvent(u, e);
         }
         
-        public GEMS.UIWPF.evmsService.Event[] viewEventsbyDate(GEMS.UIWPF.evmsService.User u, System.DateTime start, System.DateTime end) {
+        public Gems.UIWPF.evmsService.Event[] viewEventsbyDate(Gems.UIWPF.evmsService.User u, System.DateTime start, System.DateTime end) {
             return base.Channel.viewEventsbyDate(u, start, end);
         }
         
-        public int AddProgram(GEMS.UIWPF.evmsService.User u, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramEventID) {
+        public int AddProgram(Gems.UIWPF.evmsService.User u, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramEventID) {
             return base.Channel.AddProgram(u, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription, ProgramEventID);
         }
         
-        public GEMS.UIWPF.evmsService.Program[] ViewProgram(GEMS.UIWPF.evmsService.User u, int EventID) {
+        public Gems.UIWPF.evmsService.Program[] ViewProgram(Gems.UIWPF.evmsService.User u, int EventID) {
             return base.Channel.ViewProgram(u, EventID);
         }
         
-        public void EditProgram(GEMS.UIWPF.evmsService.User u, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription) {
+        public void EditProgram(Gems.UIWPF.evmsService.User u, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription) {
             base.Channel.EditProgram(u, ProgramID, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription);
         }
         
-        public void DeleteProgram(GEMS.UIWPF.evmsService.User u, int ProgramID) {
+        public void DeleteProgram(Gems.UIWPF.evmsService.User u, int ProgramID) {
             base.Channel.DeleteProgram(u, ProgramID);
         }
     }

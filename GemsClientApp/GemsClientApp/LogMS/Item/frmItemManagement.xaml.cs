@@ -1,59 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
-	/// <summary>
-	/// Interaction logic for frmItemManagement.xaml
-	/// </summary>
+    /// <summary>
+    /// Interaction logic for frmItemManagement.xaml
+    /// </summary>
     public partial class frmItemManagement : Window
     {
-
+        private Window mainFrame;
+        private User user;
+        private Event event_;
 
         public frmItemManagement()
         {
             this.InitializeComponent();
-
-            // Insert code required on object creation below this point.
-            preprocessing();
         }
 
-        private void preprocessing()
+        public frmItemManagement(User u, Event e, Window f)
+            : this()
         {
-            cboItemType.Items.Add("Food");
-            cboItemType.Items.Add("Entertainment");
+            this.user = u;
+            this.event_ = e;
+            this.mainFrame = f;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            radItemType.IsChecked = true;
+            refreshItemTypes();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            mainFrame.Visibility = Visibility.Visible;
+        }
+
+
+        private void refreshItemTypes()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            cboItemType.ItemsSource = client.getItemsTypes();
+            client.Close();
         }
 
         private void btnAddItemType_Click(object sender, RoutedEventArgs e)
         {
-            if (radItemType.IsChecked == false)
-            {
-                if (radOthers.IsChecked == false)
-                {
-                    return;
-                }
-            }
-
-            String ItemType2Add = "";
+            String itemType2Add = "";
             if (radItemType.IsChecked == true)
             {
-                ItemType2Add = cboItemType.SelectedItem.ToString();
+
+                itemType2Add = cboItemType.SelectedItem.ToString();
             }
             else
             {
-                ItemType2Add = txtOthers.Text.ToString().Trim();
+                //Save to item type repository here
+                itemType2Add = txtOthers.Text.ToString().Trim();
+                WCFHelperClient client = new WCFHelperClient();
+                client.addItemsTypes(itemType2Add);
+                client.Close();
+                refreshItemTypes();
             }
-            lvItemType.AddNewItemType(ItemType2Add, (bool)chkNecessary.IsChecked);
+            lvItemType.AddNewItemType(itemType2Add, (bool)chkNecessary.IsChecked);
             rebindcboItemType4Item();
             clear();
         }
@@ -86,24 +103,28 @@ namespace Gems.UIWPF
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            if (cont2AddItem())
+            if (validateInput())
             {
                 double price;
                 bool isDouble = double.TryParse(txtItemPrice.Text, out price);
                 if (!isDouble)
                 {
-                    MessageBox.Show("Invalid Price");//fill in later
+                    MessageBox.Show("Invalid Price");
                     return;
                 }
                 int satisfactionValue;
                 bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
                 if (!isInt)
                 {
-                    MessageBox.Show("Invalid Satisfaction Value");//fill in later
+                    MessageBox.Show("Invalid Satisfaction Value");
                     return;
                 }
 
                 lvItem.AddNewItem(txtItemName.Text, this.cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+            }
+            else
+            {
+                MessageBox.Show("Invalid input!");
             }
         }
 
@@ -112,9 +133,9 @@ namespace Gems.UIWPF
 
         }
 
-        public bool cont2AddItem()
+        public bool validateInput()
         {
-            if (txtItemName.Text.Trim() == "")
+            if (txtItemName.Text.Trim().Length == 0)
                 return false;
 
             if (cboItemTypeIL.SelectedIndex == -1)
@@ -122,5 +143,7 @@ namespace Gems.UIWPF
 
             return true;
         }
+
+
     }
 }

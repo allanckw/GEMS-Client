@@ -18,25 +18,26 @@
                 </LinearGradientBrush>
             </Path.Fill>
         </Path>
-        <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="750" Canvas.Left="-20">
-            <Menu Margin="2,5,2,0" Background="{x:Null}">
+        <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="762" Canvas.Left="-31">
+            <Menu Margin="2,5,2,0" Background="{x:Null}" Width="742">
                 <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
                     <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
                     <MenuItem Header="Manage Facility" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
-
+                    <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="250" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />    
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
-                    <!--<MenuItem Header="Add Event" Background="{x:Null}" Width="240" x:Name="mnuItemAddEvent" Click="mnuItemAddEvent_Click"/>-->
                     <MenuItem Header="Manage (Add/Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
                     <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
-
                 </MenuItem>
                 <MenuItem Header="Programs" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
                 </MenuItem>
-
+                <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
+                    <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
+                </MenuItem>
+                
                 <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
                 </MenuItem>
                 <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
@@ -62,8 +63,9 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox Header="My Event List" Height="486" FontFamily="Stencil" Canvas.Left="30" Canvas.Top="99" Width="199" Foreground="Black" FontSize="16">
-            <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <GroupBox Header="My Event List" Height="486" FontFamily="Stencil" Canvas.Left="20" Canvas.Top="99" Width="199" Foreground="Black" FontSize="16">
+            <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
+                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10" Orientation="Vertical">

@@ -9,19 +9,15 @@ using evmsService.entities;
 
 namespace Gems.UIWPF
 {
-     //<summary>
-     //Interaction logic for frmMain.xaml
-     //</summary>
+    //<summary>
+    //Interaction logic for frmMain.xaml
+    //</summary>
     public partial class frmMain : Window
     {
         User user;
         frmLogin mainFrame;
-        
-
         private DispatcherTimer timer, hourlyTimer;
         private Notifier taskbarNotifier;
-
-
 
         public frmMain()
         {
@@ -35,7 +31,6 @@ namespace Gems.UIWPF
             hourlyTimer.Interval = TimeSpan.FromMinutes(59.99);
             hourlyTimer.Tick += new EventHandler(hourlyTimer1_Tick);
             hourlyTimer.Start();
-
         }
 
         public frmMain(User u, frmLogin mainFrame)
@@ -69,7 +64,7 @@ namespace Gems.UIWPF
         {
             if (!user.isSystemAdmin)
             {
-                this.mnuAdmin.Visibility =Visibility.Collapsed;
+                this.mnuAdmin.Visibility = Visibility.Collapsed;
             }
             if (!user.isFacilityAdmin)
             {
@@ -97,7 +92,6 @@ namespace Gems.UIWPF
                 this.getNewNotifications();
                 notify();
             }
-
         }
 
         private void notify()
@@ -113,7 +107,6 @@ namespace Gems.UIWPF
                 this.getHourlyNotifications();
                 notify();
             }
-
         }
 
         private void mnuItemAssSR_Click(object sender, RoutedEventArgs e)
@@ -136,7 +129,6 @@ namespace Gems.UIWPF
             this.Visibility = Visibility.Collapsed;
             notiForm.ShowDialog();
         }
-
 
         private void getNewNotifications()
         {
@@ -177,22 +169,13 @@ namespace Gems.UIWPF
 
             timer.Stop();
             base.Close();
-
-        }
-
-        private void mnuItemAddEvent_Click(object sender, RoutedEventArgs e)
-        {
-            var addEventForm = new frmEventAdd(user, this);
-            this.Visibility = Visibility.Collapsed;
-            addEventForm.ShowDialog();
         }
 
         private void mnuItemManageEvent_Click(object sender, RoutedEventArgs e)
         {
-            var manageEventForm = new  frmEventMangement(user, this);
+            var manageEventForm = new frmEventMangement(user, this);
             this.Visibility = Visibility.Collapsed;
             manageEventForm.ShowDialog();
-            loadEvents();
         }
 
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
@@ -208,11 +191,12 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("Please select an event to add guest!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
             }
             else
             {
-                Event ev = (Event) lstEventList.SelectedItem;
-                var frmGuestList= new frmGuestList(user, this, ev);
+                Event ev = (Event)lstEventList.SelectedItem;
+                var frmGuestList = new frmGuestList(user, this, ev);
                 this.Visibility = Visibility.Collapsed;
                 frmGuestList.ShowDialog();
             }
@@ -220,31 +204,27 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
-
-            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) || (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
+            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
+                (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
             {
                 MessageBox.Show("Invalid Date Range");
                 return;
             }
             try
             {
-
                 WCFHelperClient client = new WCFHelperClient();
                 List<Event> list;
                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                {
                     list = client.ViewEvent(user).ToList<Event>();
-                }
+
                 else
-                {
                     list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
                                     dtpTo.SelectedDate.Value).ToList<Event>();
-                }
-                 
+
                 lstEventList.ItemsSource = list;
                 client.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -254,13 +234,35 @@ namespace Gems.UIWPF
         {
             if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select an event to add guest!", "No Event Selected!",
+                MessageBox.Show("Please select an event to book facility!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
             }
             Event ev = (Event)lstEventList.SelectedItem;
-            var facSearch = new frmFacBooking(user,ev, this);
+            var facSearch = new frmFacBooking(user, ev, this);
             this.Visibility = Visibility.Collapsed;
             facSearch.ShowDialog();
+        }
+
+        private void mnuManageItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to add items!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            Event ev = (Event)lstEventList.SelectedItem;
+            var manageItem = new frmItemManagement(user, ev, this);
+            this.Visibility = Visibility.Collapsed;
+            manageItem.ShowDialog();
+        }
+
+        private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
+        {
+            var manageBookings = new frmFacBookingAdmin(user, this);
+            this.Visibility = Visibility.Collapsed;
+            manageBookings.ShowDialog();
         }
     }
 }

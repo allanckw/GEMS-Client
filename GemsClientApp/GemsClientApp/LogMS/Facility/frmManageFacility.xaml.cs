@@ -149,7 +149,7 @@ namespace Gems.UIWPF
 
         private void clearAllTextBoxes()
         {
-           // txtLocation.Text = txtSeatCapacity1.Text = txtTechContact.Text = txtVenue.Text = "";
+           txtLocation.Text = txtSeatCapacity1.Text = txtTechContact.Text = txtVenue.Text = "";
 
         }
 

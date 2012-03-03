@@ -40,6 +40,17 @@ namespace Gems.UIWPF
             dgFacility.AutoGenerateColumns = false;
             dgFacility.CanUserAddRows = false;
             cboAdd();
+
+            dtpStart.DisplayDateStart = DateTime.Now;
+            dtpEnd.DisplayDateStart = DateTime.Now;
+
+            dtpStart.SelectedDate = event_.StartDateTime;
+            dtpEnd.SelectedDate = event_.EndDateTime;
+
+            cboStartHr.SelectedValue = event_.StartDateTime.Hour;
+            cboEndHr.SelectedValue = event_.EndDateTime.Hour;
+            cboStartMin.SelectedValue = event_.StartDateTime.Minute;
+            cboEndMin.SelectedValue = event_.EndDateTime.Minute;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

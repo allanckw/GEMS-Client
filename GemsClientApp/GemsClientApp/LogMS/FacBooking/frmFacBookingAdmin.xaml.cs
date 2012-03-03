@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using evmsService.entities;
 
 namespace Gems.UIWPF
@@ -16,14 +12,12 @@ namespace Gems.UIWPF
 
     public partial class frmFacBookingAdmin : Window
     {
-        int ApprovedLocIdx = -1;
+        private int ApprovedLocIdx = -1;
         private Window mainFrame;
         private User user;
         public frmFacBookingAdmin()
         {
             this.InitializeComponent();
-
-            // Insert code required on object creation below this point.
         }
 
         public frmFacBookingAdmin(User u, Window f)
@@ -32,13 +26,13 @@ namespace Gems.UIWPF
             this.user = u;
             this.mainFrame = f;
         }
-        
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO: Fill in the requestor details
 
             WCFHelperClient client = new WCFHelperClient();
-            lstRequestor.ItemsSource = client.getAllFacilityBookingsRequest(user);
+            lstRequestor.ItemsSource = client.getFacBookingRequestList(user);
             client.Close();
         }
 
@@ -60,19 +54,121 @@ namespace Gems.UIWPF
 
         private void btnViewTimeslot_Click(object sender, RoutedEventArgs e)
         {
-            //pass in venue id, grab from the watever data den pass and process
-            //Just ret a list of activities for tat day for mi
+            if (lstRequestor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a booking request", "No request selected",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+            FacilityBookingRequestDetails fbrDetails = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
+            DateTime day = fbr.RequestStartDateTime;
+            day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
+
+            List<FacilityBookingConfirmed> fbcList;
+            WCFHelperClient client = new WCFHelperClient();
+            try
+            {
+                //HERE:
+                //pass in venue id, grab from the watever data den pass and process
+                //Just ret a list of activities for tat day for mi 
+                fbcList = client.getActivitiesForDay(user, day,
+                     fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
             //i will code for tix part(i only nid the activites, start time and end time for tix part)
             //lvTime.SetSource(list<item(start time, end time, purpose)>) can still decide whether to leave the purpose out
 
             //to scroll into the index
             //lvTime.ScrollToItem();
-
         }
+
 
         private void lstRequestor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //fill in the details
+            if (lstRequestor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a booking request", "No request selected",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            try
+            {
+                FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+                WCFHelperClient client = new WCFHelperClient();
+                txtEventName.Text = client.getEventName(fbr.EventID);
+                txtRequestor.Text = client.getUserName(fbr.RequestorID);
+                lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
+                lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
+
+                dgLocation.ItemsSource = fbr.RequestDetails;
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnApprove_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstRequestor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a booking request", "No request selected",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+
+            try
+            {
+                FacilityBookingRequestDetails fbrd = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
+                client.approveFacilityBooking(user, fbr.RequestID, fbr.EventID, fbrd.RequestDetailsID,
+                    txtRemarks.Text.Trim(), txtEventName.Text.Trim());
+                MessageBox.Show("Request have been approved!", "Approved",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error have occured with the following message: " + ex.Message,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            client.Close();
+        }
+
+        private void btnReject_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstRequestor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a booking request", "No request selected",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+
+            try
+            {
+                client.rejectFacilityBooking(user, fbr.RequestID, fbr.EventID, txtRemarks.Text.Trim());
+                MessageBox.Show("Request have been rejected!", "Rejected",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error have occured with the following message: " + ex.Message,
+                   "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            client.Close();
         }
     }
 }

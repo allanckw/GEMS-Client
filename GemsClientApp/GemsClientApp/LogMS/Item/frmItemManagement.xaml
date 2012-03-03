@@ -4,7 +4,7 @@
 	xmlns:local="clr-namespace:Gems.UIWPF"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-	x:Class="Gems.UIWPF.frmItemManagement"
+	x:Class="Gems.UIWPF.frmItemManagement" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	x:Name="Window"
 	Title="frmItemManagement"
 Width="720" Height="650" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
@@ -19,7 +19,7 @@ Width="720" Height="650" AllowsTransparency="True" WindowStyle="None" Background
 				</LinearGradientBrush>
 			</Path.Fill>
 		</Path>
-		<Button x:Name="btnClose" Canvas.Left="681.5" Canvas.Top="18" Height="0" Width="0">
+		<Button x:Name="btnClose" Canvas.Left="681.5" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
 			<Button.Template>
 				<ControlTemplate>
 					<Canvas>

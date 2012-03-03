@@ -41,7 +41,7 @@
         <ListBox Canvas.Left="68" Canvas.Top="174" Height="346" Name="lstUsers" Width="365">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="10" Orientation="Vertical">
+                    <StackPanel Margin="5" Orientation="Vertical">
                         <StackPanel  Orientation="Horizontal">
                             <Label Content="{Binding userID}" />
                             <Label Content="{Binding Name}" />

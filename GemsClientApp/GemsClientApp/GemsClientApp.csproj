@@ -8,7 +8,7 @@
     <ProjectGuid>{396B674E-A559-4932-A323-D2E971F1889B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GEMS.UIWPF</RootNamespace>
+    <RootNamespace>Gems.UIWPF</RootNamespace>
     <AssemblyName>GemsClientApp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -40,6 +40,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -82,9 +85,6 @@
       <DependentUpon>ucLVTime.xaml</DependentUpon>
     </Compile>
     <Compile Include="EvmsService.cs" />
-    <Compile Include="EvMS\frmEventAdd.xaml.cs">
-      <DependentUpon>frmEventAdd.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EvMS\frmEventMangement.xaml.cs">
       <DependentUpon>frmEventMangement.xaml</DependentUpon>
     </Compile>
@@ -189,10 +189,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="EvMS\frmEventAdd.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="EvMS\frmEventMangement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -290,28 +286,25 @@
     <None Include="Service References\evmsService\EvmsService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.EnumRoles.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.EnumRoles2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Event.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Event2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Facility.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Facility2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Faculty.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Faculty2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Guest.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Guest2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Notifications.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Notifications2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.Program.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\evmsService\GEMS.UIWPF.evmsService.User.datasource">
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.Program2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -339,6 +332,9 @@
     <None Include="Service References\evmsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\evmsService\Gems.UIWPF.evmsService.User2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\evmsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

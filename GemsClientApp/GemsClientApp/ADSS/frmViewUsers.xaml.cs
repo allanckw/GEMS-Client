@@ -48,6 +48,13 @@ namespace Gems.UIWPF
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            if (cboRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a role!", "Invalid selection", 
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
             WCFHelperClient client = new WCFHelperClient();
             try
             {
