@@ -41,11 +41,18 @@ Width="637" Height="463" AllowsTransparency="True" WindowStyle="None" Background
 			</Button.Template>
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Booking" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
-		<StackPanel Height="325" Canvas.Left="21" Canvas.Top="56" Width="550" Orientation="Horizontal">
-			<GroupBox Header="Event List" FontSize="16" Width="150" FontWeight="Bold" Height="325">
-				<ListBox x:Name="lstEvent" FontSize="13.333"/>
+		<StackPanel Height="325" Canvas.Left="21" Canvas.Top="56" Width="600" Orientation="Horizontal">
+			<GroupBox Header="Filter" FontSize="16" Width="170" FontWeight="Bold" Height="325">
+				<StackPanel Margin="0" Width="160" Height="295" VerticalAlignment="Top">
+					<Label Content="Event List" FontSize="13.333"/>
+					<ComboBox x:Name="cboEventList" Width="145" HorizontalAlignment="Left" Height="25" FontSize="13.333" Margin="5,0,0,0"/>
+					<CheckBox x:Name="chkAllEvent" Content="View All Events" FontSize="13.333" Margin="5,5,0,0"/>
+					<CheckBox x:Name="chkAllStatus" Content="View All Status" FontSize="13.333" Margin="5,5,0,0"/>
+					<Label Content="Request List" FontSize="13.333" Margin="0,5,0,0"/>
+					<ListBox x:Name="lstRequest" FontSize="13.333" Height="155" Margin="5,0,0,0" Width="145" HorizontalAlignment="Left"/>
+				</StackPanel>
 			</GroupBox>
-			<GroupBox Header="Current Facility Booking List" Width="380" FontSize="16" Margin="15,0,0,0" FontWeight="Bold" Height="325">
+			<GroupBox Header="Current Facility Booking List" Width="380" FontSize="16" Margin="10,0,0,0" FontWeight="Bold" Height="325">
 				<StackPanel Height="300" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top">
 					<local:ucLVCurrentBooking x:Name="lvCurrentBooking" Width="360" Height="260" VerticalAlignment="Top" FontSize="13.333" FontWeight="Normal" Margin="5,5,0,0" BorderThickness="0"/>
 					<Button x:Name="btnDrop" Content="Drop" Width="60" Height="25" FontWeight="Normal" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="13.333"/>
