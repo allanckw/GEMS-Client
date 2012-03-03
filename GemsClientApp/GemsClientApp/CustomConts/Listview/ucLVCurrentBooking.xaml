@@ -27,11 +27,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
             <Style.Triggers>
-                <!-- When a customer owes money, color them green. -->
+                <!-- Color them green. -->
                 <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="+1">
                     <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
                 </DataTrigger>
-                <!-- When a customer is owed money, color them red. -->
+                <!-- Color them red. -->
                 <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="-1">
                     <Setter Property="Background" Value="{StaticResource LossBrush}" />
                 </DataTrigger>
@@ -42,12 +42,12 @@
     <ListView Name="lv" ItemContainerStyle="{StaticResource ItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.View>
             <GridView>
-                <GridViewColumn Width="60" Header="Pirority" 
-             DisplayMemberBinding="{Binding Pirority}"  />
-                <GridViewColumn Width="150" Header="Facility" 
-             DisplayMemberBinding="{Binding Facility}"  />
-                <GridViewColumn Width="150" Header="Location"  
-             DisplayMemberBinding="{Binding location}" />
+                <GridViewColumn Width="60" Header="Priority" 
+             DisplayMemberBinding="{Binding Priority}"  />
+                <GridViewColumn Width="200" Header="Faculty" 
+             DisplayMemberBinding="{Binding Faculty}"  />
+                <GridViewColumn Width="200" Header="Venue"  
+             DisplayMemberBinding="{Binding FacilityID}" />
                 <GridViewColumn Width="0" Header="Balance" 
              DisplayMemberBinding="{Binding Balance}" />
             </GridView>

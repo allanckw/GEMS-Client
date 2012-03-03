@@ -15,7 +15,7 @@ namespace Gems.UIWPF
 			this.InitializeComponent();
 		}
 		
-		public void setSource(ObservableCollection<TimeSlot> temp)
+		public void setSource(ObservableCollection<BookingDetail> temp)
         {
             lv.ItemsSource = temp;
         }
@@ -31,9 +31,9 @@ namespace Gems.UIWPF
 	
 	public class BookingDetail
     {
-        public string Pirority { get; set; }
-        public string Facility { get; set; }
-        public string location { get; set; }
+        public string Priority { get; set; }
+        public string Faculty { get; set; }
+        public string FacilityID { get; set; }
         public int balance { get; set; }
     }
 }

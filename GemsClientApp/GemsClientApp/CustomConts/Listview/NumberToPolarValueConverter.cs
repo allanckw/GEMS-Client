@@ -15,13 +15,13 @@ namespace Gems.UIWPF
 		{
 			double number = (double)System.Convert.ChangeType( value, typeof(double) );
 
-			if( number > 300.0 )
-				return -1;
+			if( number == -1 )
+				return -1;//red
 
-			if( number < 300 && number >200 )
-				return 0;
+			if( number == 1 )
+				return +1; //green
 
-			return +1;
+			return 0;//normal
 		}
 
 		public object ConvertBack(
