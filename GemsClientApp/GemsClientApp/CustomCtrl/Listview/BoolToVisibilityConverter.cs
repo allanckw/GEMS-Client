@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Gems.UIWPF
+namespace Gems.UIWPF.CustomCtrl
 {
    public class BoolToVisibilityConverter : IValueConverter
     {

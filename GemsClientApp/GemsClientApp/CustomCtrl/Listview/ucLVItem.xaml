@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Gems.UIWPF.CustomCtrl.ucLVItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             x:Name="listview">
+    <ListView x:Name="lv" FontSize="13.333" Width="425" HorizontalAlignment="Left">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Width="150">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding ItemName}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader 
+											Tag="ItemName" 
+											Content="ItemName" />
+                </GridViewColumn>
+
+                <GridViewColumn Width="80">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding ItemType}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader 
+											Tag="ItemType" 
+											Content="ItemType" />
+                </GridViewColumn>
+
+                <GridViewColumn Width="80">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding ItemPrice}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader 
+											Tag="ItemPrice" 
+											Content="ItemPrice" />
+                </GridViewColumn>
+
+                <GridViewColumn Width="80">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding ItemSValue}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader 
+											Tag="Satisfaction" 
+											Content="Satisfaction" />
+                </GridViewColumn>
+            </GridView>
+        </ListView.View>
+    </ListView>
+</UserControl>

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Gems.UIWPF
+namespace Gems.UIWPF.CustomCtrl
 {
 [ValueConversion( typeof( object ), typeof( int ) )]
 	public class NumberToPolarValueConverter : IValueConverter

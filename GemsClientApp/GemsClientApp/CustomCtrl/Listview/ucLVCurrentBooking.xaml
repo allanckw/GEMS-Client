@@ -3,9 +3,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:local="clr-namespace:Gems.UIWPF"
+	xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
 	mc:Ignorable="d"
-	x:Class="Gems.UIWPF.ucLVTime"
+	x:Class="Gems.UIWPF.CustomCtrl.ucLVCurrentBooking"
   x:Name="listview">
     <UserControl.Resources>
         <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
@@ -18,7 +18,7 @@
                     <GradientStop Offset="0.1" Color="#AACC0000" />
                     <GradientStop Offset="0.8" Color="#55880000" />
                 </LinearGradientBrush>
-                <!-- Reduces Balance to either -1, 0, or +1 -->
+                <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
                 <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
             </Style.Resources>
 
@@ -42,14 +42,12 @@
     <ListView Name="lv" ItemContainerStyle="{StaticResource ItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.View>
             <GridView>
-                <GridViewColumn Width="80" Header="Start Time" 
-             DisplayMemberBinding="{Binding StartTime}"  />
-                <GridViewColumn Width="80" Header="End Time" 
-             DisplayMemberBinding="{Binding EndTime}"  />
-                <GridViewColumn Width="200" Header="Purpose"  
-             DisplayMemberBinding="{Binding Purpose}" />
-                <GridViewColumn Width="0" Header="Balance" 
-             DisplayMemberBinding="{Binding Balance}" />
+                <GridViewColumn Width="60" Header="Priority" 
+             DisplayMemberBinding="{Binding Priority}"  />
+                <GridViewColumn Width="200" Header="Faculty" 
+             DisplayMemberBinding="{Binding Faculty}"  />
+                <GridViewColumn Width="200" Header="Venue"  
+             DisplayMemberBinding="{Binding FacilityID}" />
             </GridView>
         </ListView.View>
     </ListView>

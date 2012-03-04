@@ -9,30 +9,26 @@
 	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
 
     <Canvas Height="600" Width="800" Opacity="1.0">
-        <Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Height="592" Width="792">
-            <Path.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="CornflowerBlue"  Offset="0.0" />
-                    <GradientStop Color="AliceBlue" Offset="0.5" />
-                    <GradientStop Color="CadetBlue" Offset="0.9" />
-                </LinearGradientBrush>
-            </Path.Fill>
+        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Height="592" Width="792">
+
         </Path>
         <GroupBox Header="GEMS Events Management System" Height="78" Margin="50,15,50,0" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="24" Width="762" Canvas.Left="-31">
             <Menu Margin="2,5,2,0" Background="{x:Null}" Width="742">
                 <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
                     <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
                     <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
-                    <MenuItem Header="Manage Facility" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
-                    <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="250" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />    
+                    
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
                     <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
+                    <MenuItem Header="Manage Facility" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
+                    <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="250" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />
                     <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
+                    <MenuItem Header="View Current Bookings" Background="{x:Null}" Width="240" x:Name="mnuViewBookings" Click="mnuViewBookings_Click"/>
                 </MenuItem>
-                <MenuItem Header="Program" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
+                <MenuItem Header="Program" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click">
                 </MenuItem>
                 <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>

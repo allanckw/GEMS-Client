@@ -10,14 +10,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     <Canvas Height="600" Width="630" Opacity="1.0">
 
         <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Stroke="DarkGray" StrokeThickness="2" Height="640" Width="659" Opacity="1.0" Data="M40,20 L580,20 A40,55,0,0,1,620,50 L620,530 A40,55,0,0,1,580,570 L40,570 A40,55,0,0,1,10,530 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="-13">
-            <Path.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="CornflowerBlue"  Offset="0.0" />
-                    <GradientStop Color="AliceBlue" Offset="0.5" />
-                    <GradientStop Color="CadetBlue" Offset="0.9" />
-                </LinearGradientBrush>
-            </Path.Fill>
+        <Path Fill="{StaticResource BlueThemeBG}" Stroke="DarkGray" StrokeThickness="2" Height="640" Width="659" Opacity="1.0" Data="M40,20 L580,20 A40,55,0,0,1,620,50 L620,530 A40,55,0,0,1,580,570 L40,570 A40,55,0,0,1,10,530 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="-13">
         </Path>
         <!--Close button-->
         <Button Canvas.Left="586" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">

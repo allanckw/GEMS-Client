@@ -70,14 +70,10 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                //HERE:
-                //pass in venue id, grab from the watever data den pass and process
-                //Just ret a list of activities for tat day for mi 
                 fbcList = client.getActivitiesForDay(user, day,
                      fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
                 lvTimeslot.SetBookingTimeRange(fbr.RequestStartDateTime, fbr.RequestEndDateTime);
                 lvTimeslot.SetSource(fbcList);
-               
             }
             catch (Exception ex)
             {
@@ -168,28 +164,5 @@ namespace Gems.UIWPF
             client.Close();
         }
 
-//        private void btntest_Click(object sender, RoutedEventArgs e)
-//        {
-//            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
-//            FacilityBookingRequestDetails fbrDetails = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
-//            DateTime day = fbr.RequestStartDateTime;
-//            day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
-//
-//            List<FacilityBookingConfirmed> fbcList;
-//            WCFHelperClient client = new WCFHelperClient();
-//            try
-//            {
-//                //HERE:
-//                //pass in venue id, grab from the watever data den pass and process
-//                //Just ret a list of activities for tat day for mi 
-//                fbcList = client.getActivitiesForDay(user, day,
-//                     fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
-//            }
-//            catch (Exception ex)
-//            {
-//                MessageBox.Show("An error has occured: " + ex.Message, "Error",
-//                    MessageBoxButton.OK, MessageBoxImage.Error);
-//            }
-//        }
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using evmsService.entities;
 
-namespace Gems.UIWPF
+namespace Gems.UIWPF.CustomCtrl
 {
 	/// <summary>
 	/// Interaction logic for ucLVTime.xaml
@@ -28,12 +28,6 @@ namespace Gems.UIWPF
         {
             lv.ItemsSource=TimeCollection;
         }
-
-        //public void SetTime(int shr, int ehr)
-        //{
-        //    startHr = shr;
-        //    endHr = ehr;
-        //}
 
         public void SetBookingTimeRange(DateTime bookingStart, DateTime bookingEnd)
         {
@@ -94,7 +88,7 @@ namespace Gems.UIWPF
 			int tempidx=hr*2;
             if (min>0)
             {
-                tempidx =+ 1;
+                tempidx += 1;
             }
 
             return tempidx;
@@ -108,7 +102,7 @@ namespace Gems.UIWPF
 		
         private void ScrollToItem(int posIdx)
         {
-            var listView = lv; ;
+            var listView = lv; 
             listView.SelectedItem = listView.Items.GetItemAt(posIdx);
             listView.ScrollIntoView(listView.Items[0]);
             listView.ScrollIntoView(listView.SelectedItem);
@@ -134,7 +128,6 @@ namespace Gems.UIWPF
 
         private void SlotGeneration()
         {
-			System.Random r=new System.Random();
             _TimeCollection = new ObservableCollection<TimeSlot>();
             List<string> temp = ProcessTimeSlot();
             for (int i = 0; i < temp.Count - 1; i++)

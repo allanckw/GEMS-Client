@@ -65,6 +65,7 @@ namespace Gems.UIWPF
             if (!user.isFacilityAdmin)
             {
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
+                this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
 
             getHourlyNotifications();
@@ -117,9 +118,9 @@ namespace Gems.UIWPF
 
         private void mnuItemAssSR_Click(object sender, RoutedEventArgs e)
         {
-            var admForm = new frmSearchUsers(user, this);
+            var frmAssn = new frmSearchUsers(user, this);
             this.Visibility = Visibility.Collapsed;
-            admForm.ShowDialog();
+            frmAssn.ShowDialog();
         }
 
         private void mnuItemViewUsers_Click(object sender, RoutedEventArgs e)
@@ -131,9 +132,9 @@ namespace Gems.UIWPF
 
         private void mnuNotify_Click(object sender, RoutedEventArgs e)
         {
-            var notiForm = new frmNotificationList(user, this);
+            var frmNotif = new frmNotificationList(user, this);
             this.Visibility = Visibility.Collapsed;
-            notiForm.ShowDialog();
+            frmNotif.ShowDialog();
         }
 
         private void getNewNotifications()
@@ -179,16 +180,16 @@ namespace Gems.UIWPF
 
         private void mnuItemManageEvent_Click(object sender, RoutedEventArgs e)
         {
-            var manageEventForm = new frmEventMangement(user, this);
+            var frmManageEvent = new frmEventMangement(user, this);
             this.Visibility = Visibility.Collapsed;
-            manageEventForm.ShowDialog();
+            frmManageEvent.ShowDialog();
         }
 
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
         {
-            var facManage = new frmManageFacility(user, this);
+            var frmFacManage = new frmManageFacility(user, this);
             this.Visibility = Visibility.Collapsed;
-            facManage.ShowDialog();
+            frmFacManage.ShowDialog();
         }
 
         private void mnuGuests_Click(object sender, RoutedEventArgs e)
@@ -265,9 +266,9 @@ namespace Gems.UIWPF
             else
             {
                 Event ev = (Event)lstEventList.SelectedItem;
-                var facSearch = new frmFacBooking(user, ev, this);
+                var frmFacSearch = new frmFacBooking(user, ev, this);
                 this.Visibility = Visibility.Collapsed;
-                facSearch.ShowDialog();
+                frmFacSearch.ShowDialog();
             }
         }
 
@@ -277,22 +278,21 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("Please select an event to add items!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
             }
             else
             {
                 Event ev = (Event)lstEventList.SelectedItem;
-                var manageItem = new frmItemManagement(user, ev, this);
+                var frmManageItem = new frmItemManagement(user, ev, this);
                 this.Visibility = Visibility.Collapsed;
-                manageItem.ShowDialog();
+                frmManageItem.ShowDialog();
             }
         }
 
         private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
         {
-            var manageBookings = new frmFacBookingAdmin(user, this);
+            var frmManageBookings = new frmFacBookingAdmin(user, this);
             this.Visibility = Visibility.Collapsed;
-            manageBookings.ShowDialog();
+            frmManageBookings.ShowDialog();
         }
 
         private void mnuRoles_Click(object sender, RoutedEventArgs e)
@@ -306,9 +306,17 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 //var frmRoleList = new frmRoleList(user, this, ev);
-                this.Visibility = Visibility.Collapsed;
+                //this.Visibility = Visibility.Collapsed; 
+                //Disabled for now or else accidental clicking result in main form cannot come back lol
                 //frmRoleList.ShowDialog();
             }
+        }
+
+        private void mnuViewBookings_Click(object sender, RoutedEventArgs e)
+        {
+            var frmViewBookings = new frmViewCurrentBooking(user, this);
+            this.Visibility = Visibility.Collapsed;
+            frmViewBookings.ShowDialog();
         }
 
     }

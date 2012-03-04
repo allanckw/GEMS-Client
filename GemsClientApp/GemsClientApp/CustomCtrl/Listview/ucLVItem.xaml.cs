@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
-namespace Gems.UIWPF
+namespace Gems.UIWPF.CustomCtrl
 {
     /// <summary>
     /// Interaction logic for ucLVItem.xaml

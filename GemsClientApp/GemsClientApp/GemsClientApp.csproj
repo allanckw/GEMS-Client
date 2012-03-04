@@ -72,21 +72,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomConts\DTP\DateTimePicker.xaml.cs">
+    <Compile Include="CustomCtrl\DTP\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomConts\Listview\BoolToVisibilityConverter.cs" />
-    <Compile Include="CustomConts\Listview\NumberToPolarValueConverter.cs" />
-    <Compile Include="CustomConts\Listview\ucLVCurrentBooking.xaml.cs">
+    <Compile Include="CustomCtrl\Listview\BoolToVisibilityConverter.cs" />
+    <Compile Include="CustomCtrl\Listview\NumberToPolarValueConverter.cs" />
+    <Compile Include="CustomCtrl\Listview\ucLVCurrentBooking.xaml.cs">
       <DependentUpon>ucLVCurrentBooking.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomConts\Listview\ucLVItem.xaml.cs">
+    <Compile Include="CustomCtrl\Listview\ucLVItem.xaml.cs">
       <DependentUpon>ucLVItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomConts\Listview\ucLVItemType.xaml.cs">
+    <Compile Include="CustomCtrl\Listview\ucLVItemType.xaml.cs">
       <DependentUpon>ucLVItemType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomConts\Listview\ucLVTime.xaml.cs">
+    <Compile Include="CustomCtrl\Listview\ucLVTime.xaml.cs">
       <DependentUpon>ucLVTime.xaml</DependentUpon>
     </Compile>
     <Compile Include="EvmsService.cs" />
@@ -181,23 +181,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="CustomConts\DTP\DateTimePicker.xaml">
+    <Page Include="CustomCtrl\DTP\DateTimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomConts\Listview\ucLVCurrentBooking.xaml">
+    <Page Include="CustomCtrl\Listview\ucLVCurrentBooking.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomConts\Listview\ucLVItem.xaml">
+    <Page Include="CustomCtrl\Listview\ucLVItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomConts\Listview\ucLVItemType.xaml">
+    <Page Include="CustomCtrl\Listview\ucLVItemType.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomConts\Listview\ucLVTime.xaml">
+    <Page Include="CustomCtrl\Listview\ucLVTime.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

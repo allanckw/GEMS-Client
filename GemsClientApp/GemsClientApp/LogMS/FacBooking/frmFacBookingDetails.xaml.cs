@@ -91,16 +91,16 @@ namespace Gems.UIWPF
             }
 
 
-            //WCFHelperClient client = new WCFHelperClient();
-            //bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
-            //client.Close();
+            WCFHelperClient client = new WCFHelperClient();
+            bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+            client.Close();
 
-            //if (success)
-            //{
-            //    MessageBox.Show("Your request for the facilities booking is submitted, please wait for an administrator to respond to your request",
-            //        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            //    this.Close();
-            //}
+            if (success)
+            {
+                MessageBox.Show("Your request for the facilities booking is submitted, please wait for an administrator to respond to your request",
+                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
 
         }
         public void cboAdd()

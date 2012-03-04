@@ -8,16 +8,8 @@
     <Canvas Height="346" Width="532" Opacity="1.0">
 
         <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.95" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="0">
-            <Path.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="CornflowerBlue"  Offset="0.0" />
-                    <GradientStop Color="AliceBlue" Offset="0.5" />
-                    <GradientStop Color="CadetBlue" Offset="0.9" />
-                </LinearGradientBrush>
-            </Path.Fill>
+        <Path Fill="{StaticResource BlueThemeBG}" Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.95" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="0">
         </Path>
-        <!--Close button-->
         <Button Canvas.Left="489" Canvas.Top="35" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>

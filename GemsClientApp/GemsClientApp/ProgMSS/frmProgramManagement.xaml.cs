@@ -206,5 +206,10 @@ namespace Gems.UIWPF
             }
             loadPrograms();
         }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            loadPrograms();
+        }
     }
 }

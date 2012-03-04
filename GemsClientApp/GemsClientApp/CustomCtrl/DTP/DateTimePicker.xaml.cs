@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Gems.UIWPF
+namespace Gems.UIWPF.CustomCtrl
 {
     /// <summary>
     /// Interaction logic for DateTimePicker.xaml
