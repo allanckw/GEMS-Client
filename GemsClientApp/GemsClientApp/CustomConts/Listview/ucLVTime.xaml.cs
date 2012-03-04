@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Collections.Generic;
-
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -11,18 +11,102 @@ namespace Gems.UIWPF
 	/// </summary>
 	public partial class ucLVTime : UserControl
 	{
-	    
+	    private int startHr=0;
+		private int endHr=24;
+        private int BookStartIdx=0;
+        private int BookEndIdx=0;
+
+        ObservableCollection<TimeSlot> _TimeCollection;
+
 		public ucLVTime()
 		{
 			this.InitializeComponent();
-            SlotGeneration();
+            Reset();
 		}
-		public void setSource(ObservableCollection<TimeSlot> temp)
+
+        private void RefreshTime()
         {
-            lv.ItemsSource = temp;
+            lv.ItemsSource=TimeCollection;
         }
 
-        public void ScrollToItem(int posIdx)
+        //public void SetTime(int shr, int ehr)
+        //{
+        //    startHr = shr;
+        //    endHr = ehr;
+        //}
+
+        public void SetBookingTimeRange(DateTime bookingStart, DateTime bookingEnd)
+        {
+            int BookingSHr = bookingStart.Hour;
+            int BookingSMin = bookingStart.Minute;
+            int BookingEHr = bookingEnd.Hour;
+            int BookingEMin = bookingEnd.Minute;
+            BookStartIdx = PreprocessTime(BookingSHr, BookingSMin);
+            BookEndIdx = PreprocessTime(BookingEHr, BookingEMin);
+        }
+
+        public ObservableCollection<TimeSlot> TimeCollection 
+        { get { return _TimeCollection; } }
+
+        public void SetSource(List<FacilityBookingConfirmed> temp)
+        {
+            Reset();
+            foreach (FacilityBookingConfirmed item in temp)
+            {
+                DateTime start = item.RequestStartDateTime;
+                DateTime end = item.RequestEndDateTime;
+
+                int shr = start.Hour;
+                int smin = start.Minute;
+                int ehr = end.Hour;
+                int emin = end.Minute;
+
+                string EventName = item.Purpose;
+                int sIdx = PreprocessTime(shr, smin);
+                int eIdx = PreprocessTime(ehr, emin);
+                for (int i = sIdx; i < eIdx; i++)
+                {
+                    TimeCollection[i].Purpose = EventName;
+                }
+            }
+            CheckCrash();
+            
+            ScrollToItem(BookStartIdx);
+            
+        }
+
+        private void CheckCrash()
+        {
+            for (int i = BookStartIdx; i < BookEndIdx; i++)
+            {
+                if (TimeCollection[i].Purpose.Trim().Length > 0)
+                {
+                    TimeCollection[i].Balance = -1;
+                }
+                else
+                    TimeCollection[i].Balance = 1;
+            }
+            RefreshTime();
+        }
+
+		private int PreprocessTime(int hr, int min)
+		{
+			int tempidx=hr*2;
+            if (min>0)
+            {
+                tempidx =+ 1;
+            }
+
+            return tempidx;
+		}
+		
+		public void Reset()
+		{
+            SlotGeneration();
+            ScrollToItem(0);
+		}
+		
+        private void ScrollToItem(int posIdx)
         {
             var listView = lv; ;
             listView.SelectedItem = listView.Items.GetItemAt(posIdx);
@@ -30,10 +114,10 @@ namespace Gems.UIWPF
             listView.ScrollIntoView(listView.SelectedItem);
         }
 
-        public List<string> ProcessTimeSlot()
+        private List<string> ProcessTimeSlot()
 		{
             List<string> temp = new List<String>();
-            for (int h = 8; h <= 22; h++)
+            for (int h = startHr; h <= endHr; h++)
             {
                 for (int m = 0; m < 60; )
                 {
@@ -48,10 +132,10 @@ namespace Gems.UIWPF
             return temp;
 		}
 
-        public void SlotGeneration()
+        private void SlotGeneration()
         {
 			System.Random r=new System.Random();
-            ObservableCollection<TimeSlot> _TimeCollection = new ObservableCollection<TimeSlot>();
+            _TimeCollection = new ObservableCollection<TimeSlot>();
             List<string> temp = ProcessTimeSlot();
             for (int i = 0; i < temp.Count - 1; i++)
             {
@@ -60,10 +144,10 @@ namespace Gems.UIWPF
                     StartTime = temp[i],
                     EndTime = temp[i + 1],
                     Purpose = "",
-                    Balance = r.Next(500)
+                    Balance = 0
                 });
             }
-            setSource(_TimeCollection);
+            RefreshTime();
         }
 
 	}

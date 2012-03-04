@@ -18,7 +18,7 @@
                     <GradientStop Offset="0.1" Color="#AACC0000" />
                     <GradientStop Offset="0.8" Color="#55880000" />
                 </LinearGradientBrush>
-                <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
+                <!-- Reduces Balance to either -1, 0, or +1 -->
                 <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
             </Style.Resources>
 
@@ -27,11 +27,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
             <Style.Triggers>
-                <!-- When a customer owes money, color them green. -->
+                <!-- Color them green. -->
                 <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="+1">
                     <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
                 </DataTrigger>
-                <!-- When a customer is owed money, color them red. -->
+                <!-- Color them red. -->
                 <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="-1">
                     <Setter Property="Background" Value="{StaticResource LossBrush}" />
                 </DataTrigger>
@@ -46,7 +46,7 @@
              DisplayMemberBinding="{Binding StartTime}"  />
                 <GridViewColumn Width="80" Header="End Time" 
              DisplayMemberBinding="{Binding EndTime}"  />
-                <GridViewColumn Width="120" Header="Purpose"  
+                <GridViewColumn Width="200" Header="Purpose"  
              DisplayMemberBinding="{Binding Purpose}" />
                 <GridViewColumn Width="0" Header="Balance" 
              DisplayMemberBinding="{Binding Balance}" />

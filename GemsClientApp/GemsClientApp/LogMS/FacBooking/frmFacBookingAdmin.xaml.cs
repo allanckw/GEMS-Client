@@ -29,6 +29,8 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //TODO: Fill in the requestor details
+
             WCFHelperClient client = new WCFHelperClient();
             lstRequestor.ItemsSource = client.getFacBookingRequestList(user);
             client.Close();
@@ -73,7 +75,9 @@ namespace Gems.UIWPF
                 //Just ret a list of activities for tat day for mi 
                 fbcList = client.getActivitiesForDay(user, day,
                      fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
-                
+                lvTimeslot.SetBookingTimeRange(fbr.RequestStartDateTime, fbr.RequestEndDateTime);
+                lvTimeslot.SetSource(fbcList);
+               
             }
             catch (Exception ex)
             {
@@ -81,12 +85,6 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-
-            //i will code for tix part(i only nid the activites, start time and end time for tix part)
-            //lvTime.SetSource(list<item(start time, end time, purpose)>) can still decide whether to leave the purpose out
-
-            //to scroll into the index
-            //lvTime.ScrollToItem();
         }
 
 
@@ -169,5 +167,29 @@ namespace Gems.UIWPF
             }
             client.Close();
         }
+
+//        private void btntest_Click(object sender, RoutedEventArgs e)
+//        {
+//            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+//            FacilityBookingRequestDetails fbrDetails = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
+//            DateTime day = fbr.RequestStartDateTime;
+//            day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
+//
+//            List<FacilityBookingConfirmed> fbcList;
+//            WCFHelperClient client = new WCFHelperClient();
+//            try
+//            {
+//                //HERE:
+//                //pass in venue id, grab from the watever data den pass and process
+//                //Just ret a list of activities for tat day for mi 
+//                fbcList = client.getActivitiesForDay(user, day,
+//                     fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show("An error has occured: " + ex.Message, "Error",
+//                    MessageBoxButton.OK, MessageBoxImage.Error);
+//            }
+//        }
     }
 }
