@@ -66,8 +66,9 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                         <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13.333" Margin="8,0" Name="txtDescription" TextChanged="onTextChanged"/>
         			</StackPanel>
         			<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-        				<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
                         <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
+        				<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+                        
         				<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
         			</DockPanel>
         		</StackPanel>

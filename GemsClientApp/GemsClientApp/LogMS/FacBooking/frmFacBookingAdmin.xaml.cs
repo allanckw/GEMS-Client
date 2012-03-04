@@ -29,8 +29,6 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //TODO: Fill in the requestor details
-
             WCFHelperClient client = new WCFHelperClient();
             lstRequestor.ItemsSource = client.getFacBookingRequestList(user);
             client.Close();
@@ -75,6 +73,7 @@ namespace Gems.UIWPF
                 //Just ret a list of activities for tat day for mi 
                 fbcList = client.getActivitiesForDay(user, day,
                      fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
+                
             }
             catch (Exception ex)
             {

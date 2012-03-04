@@ -71,10 +71,10 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                         <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" FontSize="13.333" x:Name="txtName" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="31.314">
-                    	<Label Content="Start Time:" Width="76.803" FontSize="13.333"/>
+                        <Label Content="Start Time:" Width="76.803" FontSize="13.333"/>
                         <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="13.333"/>
                         <ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="13.333"/>
-                	</StackPanel>
+                    </StackPanel>
                     <StackPanel Height="31.314" Orientation="Horizontal">
                         <Label Content="End Time:" Width="76.803" FontSize="13.333"/>
                         <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="13.333"/>
@@ -85,8 +85,9 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                         <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="230" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
                     </StackPanel>
                     <DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-                        <Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
                         <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
+                        <Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+
                         <Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
                     </DockPanel>
                 </StackPanel>

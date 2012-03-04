@@ -45,14 +45,14 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" Background
 		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="56" Width="900" Orientation="Horizontal">
 			<GroupBox Header="Filter" FontSize="16" Width="240" FontWeight="Bold" Height="500" VerticalAlignment="Top">
 				<StackPanel Margin="0" Width="220" Height="500" VerticalAlignment="Top">
-					<Label Content="Event List" FontSize="13.333"/>
-					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="13.333" Margin="5,0,0,0"/>
-					<Label Content="Status List" FontSize="13.333"/>
-					<ComboBox x:Name="cboStatus" Width="200" HorizontalAlignment="Left" Height="25" FontSize="13.333" Margin="5,0,0,0"/>
-					<CheckBox x:Name="chkAllEvent" Content="View All Events" FontSize="13.333" Margin="5,5,0,0"/>
-					<CheckBox x:Name="chkAllStatus" Content="View All Status" FontSize="13.333" Margin="5,5,0,0"/>
-					<Label Content="Request List" FontSize="13.333" Margin="0,5,0,0"/>
-					<ListBox x:Name="lstRequest" FontSize="13.333" Height="280" Margin="5,0,0,0" Width="200" HorizontalAlignment="Left"/>
+					<Label Content="Event List" FontSize="13"/>
+					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="13" Margin="5,0,0,0"/>
+					<Label Content="Status List" FontSize="13"/>
+					<ComboBox x:Name="cboStatus" Width="200" HorizontalAlignment="Left" Height="25" FontSize="13" Margin="5,0,0,0"/>
+					<CheckBox x:Name="chkAllEvent" Content="View All Events" FontSize="13" Margin="5,5,0,0"/>
+					<CheckBox x:Name="chkAllStatus" Content="View All Status" FontSize="13" Margin="5,5,0,0"/>
+					<Label Content="Request List" FontSize="13" Margin="0,5,0,0"/>
+					<ListBox x:Name="lstRequest" FontSize="13" Height="280" Margin="5,0,0,0" Width="200" HorizontalAlignment="Left"/>
 				</StackPanel>
 			</GroupBox>
 			<GroupBox Header="Current Facility Booking List" Width="600" FontSize="16" Margin="10,0,0,0" FontWeight="Bold" Height="500" VerticalAlignment="Top">
@@ -60,35 +60,35 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" Background
 					<StackPanel Height="150" Margin="0" Width="600" HorizontalAlignment="Left">
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
 							<StackPanel Width="275" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-								<Label Content="Event Name:" Height="30" FontSize="13.333" Width="100"/>
-								<TextBox x:Name="txtEventName" TextWrapping="Wrap" Height="30" Width="160" FontSize="13.333" IsReadOnly="True"/>
+								<Label Content="Event Name:" Height="30" FontSize="13" Width="100"/>
+								<TextBox x:Name="txtEventName" TextWrapping="Wrap" Height="30" Width="160" FontSize="13" IsReadOnly="True"/>
 							</StackPanel>
 							<StackPanel Width="275" Orientation="Horizontal" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top">
-								<Label Content="Requestor:" Height="30" FontSize="13.333" Width="100"/>
-								<TextBox x:Name="txtRequestor" TextWrapping="Wrap" Height="30" FontSize="13.333" IsReadOnly="True" HorizontalAlignment="Left" Width="200"/>
+								<Label Content="Requestor:" Height="30" FontSize="13" Width="100"/>
+								<TextBox x:Name="txtRequestor" TextWrapping="Wrap" Height="30" FontSize="13" IsReadOnly="True" HorizontalAlignment="Left" Width="200"/>
 							</StackPanel>
 						</StackPanel>
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
 							<StackPanel Width="275" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-								<Label Content="Start Time:" FontSize="13.333" Width="100"/>
-								<Label x:Name="lblStartTime" Content="" FontSize="13.333"/>
+								<Label Content="Start Time:" FontSize="13" Width="100"/>
+								<Label x:Name="lblStartTime" Content="" FontSize="13"/>
 							</StackPanel>
 							<StackPanel Width="275" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-								<Label Content="End Time:" FontSize="13.333" Width="100"/>
+								<Label Content="End Time:" FontSize="13" Width="100"/>
 								<Label x:Name="lblEndTime" Content="" FontSize="12"/>
 							</StackPanel>
 						</StackPanel>
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
-							<Label Content="Status:" Height="30" FontSize="13.333" d:LayoutOverrides="VerticalMargin" Width="100"/>
-							<TextBox x:Name="txtEventName1" TextWrapping="Wrap" Height="30" Width="160" FontSize="13.333" IsReadOnly="True" d:LayoutOverrides="VerticalMargin"/>
+							<Label Content="Status:" Height="30" FontSize="13" d:LayoutOverrides="VerticalMargin" Width="100"/>
+							<TextBox x:Name="txtEventName1" TextWrapping="Wrap" Height="30" Width="160" FontSize="13" IsReadOnly="True" d:LayoutOverrides="VerticalMargin"/>
 						</StackPanel>
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
-							<Label Content="Remarks:" Height="30" FontSize="13.333" d:LayoutOverrides="VerticalMargin" Width="100"/>
-							<TextBox x:Name="txtEventName2" TextWrapping="Wrap" Height="30" Width="450" FontSize="13.333" IsReadOnly="True" d:LayoutOverrides="VerticalMargin"/>
+							<Label Content="Remarks:" Height="30" FontSize="13" d:LayoutOverrides="VerticalMargin" Width="100"/>
+							<TextBox x:Name="txtEventName2" TextWrapping="Wrap" Height="30" Width="450" FontSize="13" IsReadOnly="True" d:LayoutOverrides="VerticalMargin"/>
 						</StackPanel>
 					</StackPanel>
-					<local:ucLVCurrentBooking x:Name="lvCurrentBooking" Width="550" Height="280" VerticalAlignment="Top" FontSize="13.333" FontWeight="Normal" Margin="5,5,0,0" BorderThickness="0" HorizontalAlignment="Left"/>
-					<Button x:Name="btnDrop" Content="Drop" Width="60" Height="25" FontWeight="Normal" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="13.333"/>
+					<local:ucLVCurrentBooking x:Name="lvCurrentBooking" Width="550" Height="280" VerticalAlignment="Top" FontSize="13" FontWeight="Normal" Margin="5,5,0,0" BorderThickness="0" HorizontalAlignment="Left"/>
+					<Button x:Name="btnDrop" Content="Drop" Width="60" Height="25" FontWeight="Normal" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="13"/>
 				</StackPanel>
 			</GroupBox>
 		</StackPanel>

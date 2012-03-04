@@ -22,7 +22,7 @@ namespace Gems.UIWPF
         public frmFacBookingDetails()
         {
             this.InitializeComponent();
-            CreateDTPData();
+            
         }
 
         public frmFacBookingDetails(User u, Event e, List<Facility> m)
@@ -41,16 +41,10 @@ namespace Gems.UIWPF
             dgFacility.CanUserAddRows = false;
             cboAdd();
 
-            dtpStart.DisplayDateStart = DateTime.Now;
-            dtpEnd.DisplayDateStart = DateTime.Now;
 
-            dtpStart.SelectedDate = event_.StartDateTime;
-            dtpEnd.SelectedDate = event_.EndDateTime;
+            dtpStart.SelectedDateTime = event_.StartDateTime;
+            dtpEnd.SelectedDateTime = event_.EndDateTime;
 
-            cboStartHr.SelectedValue = event_.StartDateTime.Hour;
-            cboEndHr.SelectedValue = event_.EndDateTime.Hour;
-            cboStartMin.SelectedValue = event_.StartDateTime.Minute;
-            cboEndMin.SelectedValue = event_.EndDateTime.Minute;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -58,22 +52,7 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
-        //DTP preprocessing
-        public void CreateDTPData()
-        {
-            for (int i = 0; i <= 23; i++)
-            {
-                cboStartHr.Items.Add(string.Format("{0:00}", i));
-                cboEndHr.Items.Add(string.Format("{0:00}", i));
-            }
-
-            for (int i = 0; i <= 55; i += 30)
-            {
-                cboStartMin.Items.Add(string.Format("{0:00}", i));
-                cboEndMin.Items.Add(string.Format("{0:00}", i));
-            }
-            cboStartHr.SelectedIndex = cboStartMin.SelectedIndex = cboEndHr.SelectedIndex = cboEndMin.SelectedIndex = 0;
-        }
+ 
 
         private void saveRequest(DateTime start, DateTime end)
         {
@@ -86,6 +65,13 @@ namespace Gems.UIWPF
                 Facility f = (Facility)dgFacility.Items[i];
                 DataGridRow row = dgFacility.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
                 ComboBox cbo = dgFacility.Columns[0].GetCellContent(row) as ComboBox;
+
+                if (cbo.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select the priority in all your selected venues!",
+                        "Invalid Input!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
 
                 if (priorityList.Contains(cbo.SelectedIndex + 1))
                 {
@@ -105,16 +91,16 @@ namespace Gems.UIWPF
             }
 
 
-            WCFHelperClient client = new WCFHelperClient();
-            bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
-            client.Close();
+            //WCFHelperClient client = new WCFHelperClient();
+            //bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+            //client.Close();
 
-            if (success)
-            {
-                MessageBox.Show("Your request for the facilities booking is submitted, please wait for an administrator to respond to your request",
-                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
-            }
+            //if (success)
+            //{
+            //    MessageBox.Show("Your request for the facilities booking is submitted, please wait for an administrator to respond to your request",
+            //        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    this.Close();
+            //}
 
         }
         public void cboAdd()
@@ -134,20 +120,16 @@ namespace Gems.UIWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if ((dtpEnd.SelectedDate == null) || (dtpStart.SelectedDate == null))
+            if ((dtpEnd.SelectedDateTime == null) || (dtpStart.SelectedDateTime == null))
             {
                 MessageBox.Show("Please select the Dates", "Validation Error",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
-            DateTime start = (DateTime)dtpStart.SelectedDate;
-            start = start.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
-            start = start.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
+            DateTime start = dtpStart.SelectedDateTime;
 
-            DateTime end = (DateTime)dtpEnd.SelectedDate;
-            end = end.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
-            end = end.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
+            DateTime end = dtpEnd.SelectedDateTime;
 
             if (end < start)
             {

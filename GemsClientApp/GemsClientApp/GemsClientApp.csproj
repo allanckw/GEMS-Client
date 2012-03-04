@@ -47,8 +47,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomConts\DTP\DateTimePicker.xaml.cs">
+      <DependentUpon>DateTimePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomConts\Listview\BoolToVisibilityConverter.cs" />
     <Compile Include="CustomConts\Listview\NumberToPolarValueConverter.cs" />
     <Compile Include="CustomConts\Listview\ucLVCurrentBooking.xaml.cs">
@@ -176,6 +181,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="CustomConts\DTP\DateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomConts\Listview\ucLVCurrentBooking.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

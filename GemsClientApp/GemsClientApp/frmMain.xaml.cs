@@ -55,10 +55,6 @@ namespace Gems.UIWPF
             mainFrame.Visibility = Visibility.Visible;
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -74,6 +70,16 @@ namespace Gems.UIWPF
             getHourlyNotifications();
             notify();
             loadEvents();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            loadEvents();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
 
         private void loadEvents()
@@ -201,6 +207,7 @@ namespace Gems.UIWPF
             }
         }
 
+
         private void mnuProgram_Click(object sender, RoutedEventArgs e)
         {
             if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
@@ -215,6 +222,77 @@ namespace Gems.UIWPF
                 this.Visibility = Visibility.Collapsed;
                 frmProgramManagement.ShowDialog();
             }
+        }
+
+        private void btnGetEvents_Click(object sender, RoutedEventArgs e)
+        {
+            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
+                (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
+            {
+                MessageBox.Show("Invalid Date Range");
+            }
+            else
+            {
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    List<Event> list;
+                    if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                        list = client.ViewEvent(user).ToList<Event>();
+
+                    else
+                        list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                        dtpTo.SelectedDate.Value).ToList<Event>();
+
+                    lstEventList.ItemsSource = list;
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to book facility!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                var facSearch = new frmFacBooking(user, ev, this);
+                this.Visibility = Visibility.Collapsed;
+                facSearch.ShowDialog();
+            }
+        }
+
+        private void mnuManageItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to add items!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                var manageItem = new frmItemManagement(user, ev, this);
+                this.Visibility = Visibility.Collapsed;
+                manageItem.ShowDialog();
+            }
+        }
+
+        private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
+        {
+            var manageBookings = new frmFacBookingAdmin(user, this);
+            this.Visibility = Visibility.Collapsed;
+            manageBookings.ShowDialog();
         }
 
         private void mnuRoles_Click(object sender, RoutedEventArgs e)
@@ -233,67 +311,5 @@ namespace Gems.UIWPF
             }
         }
 
-        private void btnGetEvents_Click(object sender, RoutedEventArgs e)
-        {
-            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
-                (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
-            {
-                MessageBox.Show("Invalid Date Range");
-                return;
-            }
-            try
-            {
-                WCFHelperClient client = new WCFHelperClient();
-                List<Event> list;
-                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                    list = client.ViewEvent(user).ToList<Event>();
-
-                else
-                    list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                    dtpTo.SelectedDate.Value).ToList<Event>();
-
-                lstEventList.ItemsSource = list;
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
-        {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to book facility!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            Event ev = (Event)lstEventList.SelectedItem;
-            var facSearch = new frmFacBooking(user, ev, this);
-            this.Visibility = Visibility.Collapsed;
-            facSearch.ShowDialog();
-        }
-
-        private void mnuManageItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to add items!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            Event ev = (Event)lstEventList.SelectedItem;
-            var manageItem = new frmItemManagement(user, ev, this);
-            this.Visibility = Visibility.Collapsed;
-            manageItem.ShowDialog();
-        }
-
-        private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
-        {
-            var manageBookings = new frmFacBookingAdmin(user, this);
-            this.Visibility = Visibility.Collapsed;
-            manageBookings.ShowDialog();
-        }
     }
 }

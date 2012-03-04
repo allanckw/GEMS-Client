@@ -29,30 +29,12 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CreateDTPData();
             Load_Event();
-            dtpStart.DisplayDateStart = DateTime.Now;
-            dtpEnd.DisplayDateStart = DateTime.Now;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-        }
-
-        public void CreateDTPData()
-        {
-            for (int i = 0; i <= 23; i++)
-            {
-                cboStartHr.Items.Add(string.Format("{0:00}", i));
-                cboEndHr.Items.Add(string.Format("{0:00}", i));
-            }
-
-            for (int i = 0; i <= 55; i += 30)
-            {
-                cboStartMin.Items.Add(string.Format("{0:00}", i));
-                cboEndMin.Items.Add(string.Format("{0:00}", i));
-            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -75,12 +57,8 @@ namespace Gems.UIWPF
             txtEventName.Text = E.Name;
             txtDesc.Text = E.Description;
             txtWebsite.Text = E.Website;
-            dtpStart.SelectedDate = E.StartDateTime;
-            dtpEnd.SelectedDate = E.EndDateTime;
-            cboStartHr.SelectedIndex = E.StartDateTime.Hour;
-            cboStartMin.SelectedIndex = E.StartDateTime.Minute / 30;
-            cboEndHr.SelectedIndex = E.EndDateTime.Hour;
-            cboEndMin.SelectedIndex = E.EndDateTime.Minute / 30;
+            dtpStart.SelectedDateTime = E.StartDateTime;
+            dtpEnd.SelectedDateTime = E.EndDateTime;
         }
 
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -99,12 +77,8 @@ namespace Gems.UIWPF
 
             try
             {
-                DateTime startTime = dtpStart.SelectedDate.Value;
-                DateTime endTime = dtpEnd.SelectedDate.Value;
-                startTime = startTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-                startTime = startTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
-                endTime = endTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
-                endTime = endTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+                DateTime startTime = dtpStart.SelectedDateTime;
+                DateTime endTime = dtpEnd.SelectedDateTime;
 
                 if (startTime.CompareTo(endTime) >= 0)
                 {
@@ -132,12 +106,8 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                DateTime startTime = dtpStart.SelectedDate.Value;
-                DateTime endTime = dtpEnd.SelectedDate.Value;
-                startTime = startTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-                startTime = startTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
-                endTime = endTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
-                endTime = endTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+                DateTime startTime = dtpStart.SelectedDateTime;
+                DateTime endTime = dtpEnd.SelectedDateTime;
 
                 if (startTime.CompareTo(endTime) >= 0)
                 {
@@ -182,39 +152,15 @@ namespace Gems.UIWPF
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            else if (dtpStart.SelectedDate == null)
+            else if (dtpStart.SelectedDateTime == null)
             {
                 MessageBox.Show("Invalid Event Start Date",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            else if (dtpEnd.SelectedDate == null)
+            else if (dtpEnd.SelectedDateTime == null)
             {
                 MessageBox.Show("Invalid Event End Date",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-            else if (cboStartHr.SelectedIndex == -1)
-            {
-                MessageBox.Show("Invalid Event Start Hour",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-            else if (cboStartMin.SelectedIndex == -1)
-            {
-                MessageBox.Show("Invalid Event Start Minute",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-            else if (cboEndHr.SelectedIndex == -1)
-            {
-                MessageBox.Show("Invalid Event End Hour",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-            else if (cboEndMin.SelectedIndex == -1)
-            {
-                MessageBox.Show("Invalid Event End Minute",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }

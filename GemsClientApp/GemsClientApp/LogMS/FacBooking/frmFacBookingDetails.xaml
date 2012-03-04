@@ -5,7 +5,7 @@
 	x:Name="Window" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Title="frmBookingFacilityPriority"
     Width="732" Height="580" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" 
-    WindowStartupLocation="CenterScreen" >
+    WindowStartupLocation="CenterScreen" xmlns:my="clr-namespace:Gems.UIWPF">
 	<Canvas Opacity="1.0">
 		<Path Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="570" Width="700">
 			<Path.Fill>
@@ -33,19 +33,13 @@
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Location" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
 		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="60" Width="650">
-            <GroupBox Header="Facility Booking Time"  Width="600" FontSize="16" FontWeight="Bold" Height="69">
+            <GroupBox Header="Facility Booking Time"  Width="649" FontSize="16" FontWeight="Bold" Height="69">
 				<StackPanel Height="80" Orientation="Horizontal" Margin="0,0,-12,0">
 					<Canvas Height="51" Margin="0" Width="591" HorizontalAlignment="Left" VerticalAlignment="Top">
-						<Label Canvas.Left="15" Canvas.Top="8" Content="From: " x:Name="label2" FontSize="16" />
-						<Label Canvas.Left="313" Canvas.Top="8" Content="To" x:Name="label4" FontSize="16" HorizontalAlignment="Left" />
-						<DatePicker Canvas.Left="66" Canvas.Top="12" Height="25" x:Name="dtpStart" Width="130" FontSize="13.333" />
-						<DatePicker Canvas.Left="340" Canvas.Top="12" Height="25" x:Name="dtpEnd" Width="130" FontSize="13.333" />
-						<ComboBox Canvas.Left="199" Canvas.Top="14" Height="23" x:Name="cboStartHr" Width="43" FontSize="13.333"/>
-						<ComboBox Canvas.Left="476" Canvas.Top="16" Height="23" x:Name="cboEndHr" Width="43" FontSize="13.333"/>
-						<ComboBox Canvas.Left="251" Canvas.Top="14" Height="23" x:Name="cboStartMin" Width="56" FontSize="13.333"/>
-						<ComboBox Canvas.Left="529" Canvas.Top="16" Height="23" x:Name="cboEndMin" Width="56" FontSize="13.333"/>
-                        <Label Canvas.Left="240" Canvas.Top="6" Content=":" FontSize="16" Name="label1" />
-                        <Label Canvas.Left="518" Canvas.Top="10" Content=":" FontSize="16" Name="label5" />
+						<Label Canvas.Left="-1" Canvas.Top="11" Content="From: " x:Name="label2" FontSize="14" />
+						<Label Canvas.Left="327" Canvas.Top="14" Content="To" x:Name="label4" FontSize="14" HorizontalAlignment="Left" />
+                        <my:DateTimePicker Canvas.Left="44" Canvas.Top="12" x:Name="dtpStart"  FontSize="12" Width="298" />
+                        <my:DateTimePicker Canvas.Left="351" Canvas.Top="12" FontSize="12" x:Name="dtpEnd" Width="298" />
                     </Canvas>
 				</StackPanel>
 			</GroupBox>

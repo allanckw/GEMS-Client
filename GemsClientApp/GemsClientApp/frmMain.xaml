@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	xmlns:tn="clr-namespace:WPFTaskbarNotifier;assembly=WPFTaskbarNotifier"
-    x:Class="Gems.UIWPF.frmMain"	x:Name="Window"
+    x:Class="Gems.UIWPF.frmMain"	x:Name="Window" Activated="Window_Activated"
 	Title="GEMS Event Management System" Closed="Window_Closed"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Width="830" Height="660" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
@@ -27,12 +27,12 @@
                     <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="250" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />    
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
-                    <MenuItem Header="Manage (Add/Edit/Delete)" Background="{x:Null}" Width="240" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
+                    <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
                 </MenuItem>
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
                     <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
                 </MenuItem>
-                <MenuItem Header="Program" FontSize="15" Margin="10,0,0,0" x:Name="mnuProgram" Click="mnuProgram_Click">
+                <MenuItem Header="Program" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
                 </MenuItem>
                 <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>

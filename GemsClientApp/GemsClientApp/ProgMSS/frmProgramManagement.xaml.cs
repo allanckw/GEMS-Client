@@ -109,18 +109,24 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please enter ending minute of program segment.");
                 return;
             }
-            DateTime SegmentStartDateTime = event_.StartDateTime.Date;
-            DateTime SegmentEndDateTime = event_.EndDateTime.Date;
+            DateTime evStart = event_.StartDateTime.Date;
+            DateTime evEnd = event_.EndDateTime.Date;
+
+            //Required to strip off the time portion, even though it is not reflected in the control.
+            DateTime SegmentStartDateTime = evStart.AddHours(-evStart.Hour).AddMinutes(evStart.Minute).AddSeconds(evStart.Second);
+            DateTime SegmentEndDateTime = evEnd.AddHours(-evStart.Hour).AddMinutes(evStart.Minute).AddSeconds(evStart.Second);
+            
             SegmentStartDateTime = SegmentStartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
             SegmentStartDateTime = SegmentStartDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
-            if (SegmentStartDateTime < event_.StartDateTime)
+
+            if (SegmentStartDateTime < evStart)
             {
                 MessageBox.Show("Event starts at " + event_.EndDateTime + ", program segment must start after that.");
                 return;
             }
-            if (SegmentEndDateTime > event_.EndDateTime)
+            if (SegmentEndDateTime > evEnd)
             {
                 MessageBox.Show("Event ends at " + event_.EndDateTime + ", program segment must end before that.");
                 return;
