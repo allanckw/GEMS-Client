@@ -129,6 +129,9 @@
     <Compile Include="Notifications\Notifier.xaml.cs">
       <DependentUpon>Notifier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgMSS\frmProgramManagement.xaml.cs">
+      <DependentUpon>frmProgramManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\evmsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ProgMSS\frmProgramManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -317,7 +324,6 @@
   <ItemGroup>
     <Folder Include="BASS\" />
     <Folder Include="LogMS\Manpower\" />
-    <Folder Include="ProgMSS\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\evmsService\" />

@@ -32,7 +32,7 @@
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
                     <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
                 </MenuItem>
-                <MenuItem Header="Programs" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms">
+                <MenuItem Header="Program" FontSize="15" Margin="10,0,0,0" x:Name="mnuProgram" Click="mnuProgram_Click">
                 </MenuItem>
                 <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
@@ -41,6 +41,7 @@
                 <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
                 </MenuItem>
                 <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
+                    <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
                 </MenuItem>
                 <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>

@@ -189,9 +189,8 @@ namespace Gems.UIWPF
         {
             if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select an event to add guest!", "No Event Selected!",
+                MessageBox.Show("Please select an event to edit guests!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
             }
             else
             {
@@ -199,6 +198,38 @@ namespace Gems.UIWPF
                 var frmGuestList = new frmGuestList(user, this, ev);
                 this.Visibility = Visibility.Collapsed;
                 frmGuestList.ShowDialog();
+            }
+        }
+
+        private void mnuProgram_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to edit program!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                var frmProgramManagement = new frmProgramManagement(user, this, ev);
+                this.Visibility = Visibility.Collapsed;
+                frmProgramManagement.ShowDialog();
+            }
+        }
+
+        private void mnuRoles_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to manage roles!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                //var frmRoleList = new frmRoleList(user, this, ev);
+                this.Visibility = Visibility.Collapsed;
+                //frmRoleList.ShowDialog();
             }
         }
 
