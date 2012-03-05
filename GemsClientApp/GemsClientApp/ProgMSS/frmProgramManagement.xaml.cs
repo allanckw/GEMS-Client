@@ -21,7 +21,7 @@ namespace Gems.UIWPF
         public frmProgramManagement()
         {
             this.InitializeComponent();
-            CreateDTPData();
+            
         }
 
         public void CreateDTPData()
@@ -49,6 +49,8 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CreateDTPData();
+            txtDate.Text = event_.StartDateTime.ToString("dd MMM yyyy");
             lstProgram.SelectedValuePath = "ProgramId";
             loadPrograms();
         }
@@ -68,12 +70,10 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
-                lstProgram.ItemsSource = client.ViewProgram(user, event_.EventID)
+                lstProgram.ItemsSource = event_.Programs
                                                 .OrderBy(x => x.StartDateTime)
                                                 .ThenBy(x => x.EndDateTime)
                                                 .ToList<Program>();
-                client.Close();
             }
             catch (Exception ex)
             {
@@ -109,24 +109,18 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please enter ending minute of program segment.");
                 return;
             }
-            DateTime evStart = event_.StartDateTime.Date;
-            DateTime evEnd = event_.EndDateTime.Date;
 
-            //Required to strip off the time portion, even though it is not reflected in the control.
-            DateTime SegmentStartDateTime = evStart.AddHours(-evStart.Hour).AddMinutes(evStart.Minute).AddSeconds(evStart.Second);
-            DateTime SegmentEndDateTime = evEnd.AddHours(-evStart.Hour).AddMinutes(evStart.Minute).AddSeconds(evStart.Second);
-            
-            SegmentStartDateTime = SegmentStartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-            SegmentStartDateTime = SegmentStartDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
+            DateTime SegmentStartDateTime = event_.StartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
+            DateTime SegmentEndDateTime = event_.EndDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
 
-            if (SegmentStartDateTime < evStart)
+            if (SegmentStartDateTime < event_.StartDateTime)
             {
                 MessageBox.Show("Event starts at " + event_.EndDateTime + ", program segment must start after that.");
                 return;
             }
-            if (SegmentEndDateTime > evEnd)
+            if (SegmentEndDateTime > event_.EndDateTime)
             {
                 MessageBox.Show("Event ends at " + event_.EndDateTime + ", program segment must end before that.");
                 return;

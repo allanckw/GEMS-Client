@@ -167,5 +167,16 @@ namespace Gems.UIWPF
 
             return true;
         }
+
+        private void dtpStart_DateChanged(object sender, RoutedEventArgs e)
+        {
+            dtpEnd.Date = dtpStart.Date;
+        }
+
+        private void dtpEnd_DateChanged(object sender, RoutedEventArgs e)
+        {
+            dtpStart.Date = dtpEnd.Date;
+        }
+
     }
 }

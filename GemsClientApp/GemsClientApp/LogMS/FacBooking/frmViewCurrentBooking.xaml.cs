@@ -145,8 +145,8 @@ namespace Gems.UIWPF
                         "Confirm Drop Request", MessageBoxButton.YesNo, MessageBoxImage.Question)
                         == MessageBoxResult.Yes)
                     {
-                        //Prompt box for y he want to drop
-                        client.dropConfirmedRequest(user, fbr.RequestID, fbr.EventID, "");
+                        string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for dropping", "Remarks", "");
+                        client.dropConfirmedRequest(user, fbr.RequestID, fbr.EventID, remarks);
                     }
                 }
                 else if (fbr.Status == BookingStatus.Pending)
@@ -155,8 +155,8 @@ namespace Gems.UIWPF
                         "Confirm Cancel Request", MessageBoxButton.YesNo, MessageBoxImage.Question)
                         == MessageBoxResult.Yes)
                     {
-                        //Prompt box for y he want to drop
-                        client.cancelFacilityBooking(user, fbr.RequestID, fbr.EventID, "");
+                        string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for cancelling", "Remarks", "");
+                        client.cancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
                     }
                 }
 

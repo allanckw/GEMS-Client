@@ -56,10 +56,8 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
-                guestList = client.ViewGuest(user, event_.EventID).ToList<Guest>();
+                guestList = event_.Guests.ToList<Guest>();
                 lstGuestList.ItemsSource = guestList;
-                client.Close();
             }
             catch (Exception ex)
             {

@@ -67,6 +67,10 @@ namespace Gems.UIWPF
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
+            DateTime d = DateTime.Now;
+
+            dtpFrom.SelectedDate = dtpTo.SelectedDate = 
+                d.AddHours(-d.Hour).AddMinutes(-d.Minute).AddSeconds(-d.Second);
 
             getHourlyNotifications();
             notify();

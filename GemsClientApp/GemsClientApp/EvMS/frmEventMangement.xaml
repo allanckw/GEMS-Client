@@ -59,8 +59,8 @@
                 <Canvas Height="85">
                     <Label Canvas.Left="51" Canvas.Top="14" Content="Start Date:" Height="28" x:Name="label2" FontSize="12" FontFamily="Tahoma" />
                     <Label Canvas.Left="57" Canvas.Top="54" Content="End Date:" Height="28" x:Name="label4" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
-                    <local:DateTimePicker x:Name="dtpStart" Canvas.Left="120" Canvas.Top="10" FontFamily="Tahoma" FontSize="12" />
-                    <local:DateTimePicker Canvas.Left="120" Canvas.Top="50" FontFamily="Tahoma" FontSize="12" x:Name="dtpEnd" />
+                    <local:DateTimePicker x:Name="dtpStart" Canvas.Left="120" Canvas.Top="10" FontFamily="Tahoma" FontSize="12" DateChanged="dtpStart_DateChanged"  />
+                    <local:DateTimePicker Canvas.Left="120" Canvas.Top="50" FontFamily="Tahoma" FontSize="12" x:Name="dtpEnd"  DateChanged="dtpEnd_DateChanged"/>
                 </Canvas>
                 <Canvas Height="115">
                     <Label Canvas.Top="5" Content="Description:" Height="23" x:Name="label6" Canvas.Left="51" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />

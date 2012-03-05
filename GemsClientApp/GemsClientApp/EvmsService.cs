@@ -1071,11 +1071,15 @@ namespace evmsService.entities
         
         private int EventIDField;
         
+        private evmsService.entities.Guest[] GuestsField;
+        
         private string NameField;
         
         private evmsService.entities.User OrganizerField;
         
         private string OrganizeridField;
+        
+        private evmsService.entities.Program[] ProgramsField;
         
         private System.DateTime StartDateTimeField;
         
@@ -1133,6 +1137,19 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Guest[] Guests
+        {
+            get
+            {
+                return this.GuestsField;
+            }
+            set
+            {
+                this.GuestsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name
         {
             get
@@ -1168,6 +1185,19 @@ namespace evmsService.entities
             set
             {
                 this.OrganizeridField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Program[] Programs
+        {
+            get
+            {
+                return this.ProgramsField;
+            }
+            set
+            {
+                this.ProgramsField = value;
             }
         }
         
@@ -1409,7 +1439,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewProgram", ReplyAction="http://tempuri.org/IEvmsService/ViewProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Program[] ViewProgram(evmsService.entities.User u, int EventID);
+    evmsService.entities.Program[] ViewProgram(int EventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditProgram", ReplyAction="http://tempuri.org/IEvmsService/EditProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/EditProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -1441,7 +1471,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewGuest", ReplyAction="http://tempuri.org/IEvmsService/ViewGuestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Guest[] ViewGuest(evmsService.entities.User u, int EventID);
+    evmsService.entities.Guest[] ViewGuest(int EventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditGuest", ReplyAction="http://tempuri.org/IEvmsService/EditGuestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/EditGuestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -1682,9 +1712,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         base.Channel.deleteItemType(itemType);
     }
     
-    public evmsService.entities.Program[] ViewProgram(evmsService.entities.User u, int EventID)
+    public evmsService.entities.Program[] ViewProgram(int EventID)
     {
-        return base.Channel.ViewProgram(u, EventID);
+        return base.Channel.ViewProgram(EventID);
     }
     
     public void EditProgram(evmsService.entities.User u, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription)
@@ -1722,9 +1752,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.AddGuest(u, EventID, GuestName, GuestContact, GuestDescription);
     }
     
-    public evmsService.entities.Guest[] ViewGuest(evmsService.entities.User u, int EventID)
+    public evmsService.entities.Guest[] ViewGuest(int EventID)
     {
-        return base.Channel.ViewGuest(u, EventID);
+        return base.Channel.ViewGuest(EventID);
     }
     
     public void EditGuest(evmsService.entities.User u, int GuestID, string GuestName, string GuestDescription, string GuestContact)

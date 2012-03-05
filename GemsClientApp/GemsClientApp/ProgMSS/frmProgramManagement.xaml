@@ -25,10 +25,10 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Program" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="16" />
+        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Programs" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="20" />
         <StackPanel Height="444" Canvas.Left="21" Canvas.Top="60" Width="637.5" Orientation="Horizontal">
-            <GroupBox Header="Program Segments" Width="287" FontSize="21.333" HorizontalAlignment="Left" Margin="0,0,10,8">
-                <ListView x:Name="lstProgram" Height="401" SelectionChanged="lstProgram_SelectionChanged" FontSize="13.333" Width="271" SelectionMode="Single">
+            <GroupBox Header="Program Segments" Width="287" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8">
+                <ListView x:Name="lstProgram" Height="401" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" Width="271" SelectionMode="Single">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="70" Header="Start">
@@ -50,31 +50,35 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
                     </ListView.View>
                 </ListView>
             </GroupBox>
-            <GroupBox Header="Segment Details" FontSize="21.333" Width="338" Margin="0,0,0,8">
+            <GroupBox Header="Segment Details" FontSize="18" Width="338" Margin="0,0,0,8">
                 <StackPanel>
                     <StackPanel Height="31.313" Orientation="Horizontal">
-                        <Label Content="Name:" Width="76.803" FontSize="13.333"/>
-                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" FontSize="13.333" x:Name="txtName" />
+                        <Label Content="Event Date:" Width="76.803" FontSize="12"/>
+                        <TextBlock TextWrapping="Wrap" Text=""  Width="240" FontSize="12" x:Name="txtDate" />
+                    </StackPanel>
+                    <StackPanel Height="31.313" Orientation="Horizontal">
+                        <Label Content="Name:" Width="76.803" FontSize="12"/>
+                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" FontSize="12" x:Name="txtName" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="31.314">
-                        <Label Content="Start Time:" Width="76.803" FontSize="13.333"/>
-                        <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="13.333"/>
-                        <ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="13.333"/>
+                        <Label Content="Start Time:" Width="76.803" FontSize="12"/>
+                        <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="12"/>
+                        <ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="12"/>
                     </StackPanel>
                     <StackPanel Height="31.314" Orientation="Horizontal">
-                        <Label Content="End Time:" Width="76.803" FontSize="13.333"/>
-                        <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="13.333"/>
-                        <ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="13.333"/>
+                        <Label Content="End Time:" Width="76.803" FontSize="12"/>
+                        <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="12"/>
+                        <ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="12"/>
                     </StackPanel>
-                    <StackPanel Height="270">
-                        <Label Content="Description:" FontSize="13.333"/>
-                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="230" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
+                    <StackPanel Height="250">
+                        <Label Content="Description:" FontSize="12"/>
+                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtDescription" />
                     </StackPanel>
                     <DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-                        <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
-                        <Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+                        <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnSave_Click" />
+                        <Button Content="Delete" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnDelete_Click"/>
 
-                        <Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
+                        <Button Content="Cancel" Width="75" FontSize="12" Margin="0,0,10,0" Click="clearAll"/>
                     </DockPanel>
                 </StackPanel>
             </GroupBox>

@@ -21,7 +21,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         public void setSource(FacilityBookingRequest fbr)
         {
-            _details = new ObservableCollection<BookingDetail>();
+            _details.Clear();
             List<FacilityBookingRequestDetails> temp = fbr.RequestDetails.ToList<FacilityBookingRequestDetails>(); ;
             int confirmedLocationIdx = 0;
             if (fbr.Status == BookingStatus.Approved)
@@ -47,7 +47,6 @@ namespace Gems.UIWPF.CustomCtrl
 
             lv.ItemsSource = _details;
 
-            //Change the color here..
         }
 
         

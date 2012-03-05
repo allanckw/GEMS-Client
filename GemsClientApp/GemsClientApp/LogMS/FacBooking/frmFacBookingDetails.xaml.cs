@@ -146,5 +146,15 @@ namespace Gems.UIWPF
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void dtpStart_DateChanged(object sender, RoutedEventArgs e)
+        {
+            dtpEnd.Date = dtpStart.Date;
+        }
+
+        private void dtpEnd_DateChanged(object sender, RoutedEventArgs e)
+        {
+            dtpStart.Date = dtpEnd.Date;
+        }
     }
 }

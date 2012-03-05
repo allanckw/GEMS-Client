@@ -23,12 +23,32 @@ namespace Gems.UIWPF.CustomCtrl
         {
             InitializeComponent();
             CreateDTPData();
-            //dtpDate.DisplayDateStart = DateTime.Now;
+            DateTime d = DateTime.Now;
+            dtpDate.SelectedDate =
+                d.AddHours(-d.Hour).AddMinutes(-d.Minute).AddSeconds(-d.Second);
+            dtpDate.SelectedDate = DateTime.Now;
         }
+
+        public static readonly RoutedEvent DateChangedEvent = EventManager.RegisterRoutedEvent(
+        "DateChangedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(DateTimePicker));
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        // Provide CLR accessors for the event
+        public event RoutedEventHandler DateChanged
+        {
+            add { AddHandler(DateChangedEvent, value); }
+            remove { RemoveHandler(DateChangedEvent, value); }
+        }
+
+        // This method raises the Tap event
+        void RaiseDateChangedEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(DateTimePicker.DateChangedEvent);
+            RaiseEvent(newEventArgs);
         }
 
         //DTP preprocessing
@@ -100,6 +120,23 @@ namespace Gems.UIWPF.CustomCtrl
                 else
                     cboMin.SelectedIndex = 0;
             }
+        }
+
+        public Boolean isDateEnabled
+        {
+            get
+            {
+               return dtpDate.IsEnabled;
+            }
+            set
+            {
+                dtpDate.IsEnabled = value;
+            }
+        }
+
+        private void dtpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseDateChangedEvent();
         }
     }
 }
