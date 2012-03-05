@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using evmsService.entities;
 
 namespace Gems.UIWPF.CustomCtrl
 {
@@ -28,15 +29,24 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemCollection;
         }
 
-        public void AddNewItem(string n, string t, double p, int s)
+        public void AddNewItem(ItemTypes itemtype, string n, string t, double p, int s)
         {
             ItemCollection.Add(new clsItem(n,t,p,s));
         }
 
-        public void DeleteItem()
+        public void EditItem(ItemTypes itemtype, double p, int s)
+        {
+            clsItem temp = ItemCollection[lv.SelectedIndex];
+            temp.ItemPrice = p;
+            temp.ItemSValue = s;
+            ItemCollection[lv.SelectedIndex] = temp;
+        }
+
+        public void DeleteItem(ItemTypes itemtype)
         {
             if (lv.SelectedIndex != -1)
             {
+                clsItem Item2Delete = ItemCollection[lv.SelectedIndex];
                 ItemCollection.RemoveAt(lv.SelectedIndex);
                 refresh();
             }

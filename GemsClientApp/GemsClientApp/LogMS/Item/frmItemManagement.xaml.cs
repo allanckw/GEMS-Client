@@ -14,7 +14,8 @@ namespace Gems.UIWPF
         private Window mainFrame;
         private User user;
         private Event event_;
-
+        private ItemTypes itemtype;
+        
         public frmItemManagement()
         {
             this.InitializeComponent();
@@ -70,7 +71,7 @@ namespace Gems.UIWPF
                 client.Close();
                 refreshItemTypes();
             }
-            lvItemType.AddNewItemType(itemType2Add, (bool)chkNecessary.IsChecked);
+            lvItemType.AddNewItemType(user,event_ ,itemType2Add, (bool)chkNecessary.IsChecked);
             rebindcboItemType4Item();
             clear();
         }
@@ -88,7 +89,7 @@ namespace Gems.UIWPF
 
         private void btnDeleteItemType_Click(object sender, RoutedEventArgs e)
         {
-            lvItemType.DeleteItemType();
+            lvItemType.DeleteItemType(user,event_);
         }
 
         private void cboItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -120,7 +121,7 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                lvItem.AddNewItem(txtItemName.Text, this.cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+                lvItem.AddNewItem(itemtype, txtItemName.Text, this.cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
             }
             else
             {
@@ -130,7 +131,7 @@ namespace Gems.UIWPF
 
         private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
         {
-
+            lvItem.DeleteItem(itemtype);
         }
 
         public bool validateInput()
@@ -144,6 +145,29 @@ namespace Gems.UIWPF
             return true;
         }
 
+        private void btnEditItemType_Click(object sender, RoutedEventArgs e)
+        {
+            lvItemType.EditItemType(user, event_, (bool)chkNecessary.IsChecked);
+        }
 
+        private void btnEditItem_Click(object sender, RoutedEventArgs e)
+        {
+            double price;
+            bool isDouble = double.TryParse(txtItemPrice.Text, out price);
+            if (!isDouble)
+            {
+                MessageBox.Show("Invalid Price");
+                return;
+            }
+            int satisfactionValue;
+            bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
+            if (!isInt)
+            {
+                MessageBox.Show("Invalid Satisfaction Value");
+                return;
+            }
+
+            lvItem.EditItem(itemtype, price, satisfactionValue);
+        }
     }
 }

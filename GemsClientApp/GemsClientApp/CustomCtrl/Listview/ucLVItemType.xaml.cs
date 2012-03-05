@@ -25,23 +25,27 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemTypeCollection;
         }
 
-        public void AddNewItemType(String ItemType, Boolean Important)
+        public void AddNewItemType(User u,Event event_, String ItemType, Boolean Important)
         {
             WCFHelperClient client = new WCFHelperClient();
-            ItemTypes type = client.addEventItemType();
+            ItemTypes type = client.addEventItemType(u,event_.EventID,ItemType,Important);
             client.Close();
             ItemTypeCollection.Add(type);
         }
-        
-        public void DeleteItemType()
+
+        public void EditItemType(User u, Event event_, Boolean Important)
+        {
+            ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
+        }
+
+        public void DeleteItemType(User u, Event event_)
         {
             if (lv.SelectedIndex != -1)
             {
+                ItemTypes type2delete = ItemTypeCollection[lv.SelectedIndex];
                 ItemTypeCollection.RemoveAt(lv.SelectedIndex);
             }
         }
-
-
 
         public ObservableCollection<ItemTypes> ItemTypeCollection
         { get { return _Collection; } }
