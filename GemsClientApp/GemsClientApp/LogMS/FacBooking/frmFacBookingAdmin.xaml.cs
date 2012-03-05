@@ -120,6 +120,13 @@ namespace Gems.UIWPF
                 return;
             }
 
+            if (!lvTimeslot.CanApproved())
+            {
+                MessageBox.Show("There is a crash for this timeslot", "Timeslot Crash",
+                   MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
             WCFHelperClient client = new WCFHelperClient();
             FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
 
@@ -162,6 +169,35 @@ namespace Gems.UIWPF
                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             client.Close();
+        }
+
+        private void dgLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgLocation.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
+            FacilityBookingRequestDetails fbrDetails = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
+            DateTime day = fbr.RequestStartDateTime;
+            day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
+
+            List<FacilityBookingConfirmed> fbcList;
+            WCFHelperClient client = new WCFHelperClient();
+            try
+            {
+                fbcList = client.getActivitiesForDay(user, day,
+                     fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
+                lvTimeslot.SetBookingTimeRange(fbr.RequestStartDateTime, fbr.RequestEndDateTime);
+                lvTimeslot.SetSource(fbcList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
     }

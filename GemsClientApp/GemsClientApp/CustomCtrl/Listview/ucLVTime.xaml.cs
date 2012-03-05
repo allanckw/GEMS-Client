@@ -6,28 +6,36 @@ using evmsService.entities;
 
 namespace Gems.UIWPF.CustomCtrl
 {
-	/// <summary>
-	/// Interaction logic for ucLVTime.xaml
-	/// </summary>
-	public partial class ucLVTime : UserControl
-	{
-	    private int startHr=0;
-		private int endHr=24;
-        private int BookStartIdx=0;
-        private int BookEndIdx=0;
+    /// <summary>
+    /// Interaction logic for ucLVTime.xaml
+    /// </summary>
+    public partial class ucLVTime : UserControl
+    {
+        private int startHr = 0;
+        private int endHr = 24;
+        private int BookStartIdx = 0;
+        private int BookEndIdx = 0;
+        private bool SlotCrash = false;
+        private int CrashIdx = -1;
 
         ObservableCollection<TimeSlot> _TimeCollection;
 
-		public ucLVTime()
-		{
-			this.InitializeComponent();
+        public ucLVTime()
+        {
+            this.InitializeComponent();
             Reset();
-		}
+        }
 
         private void RefreshTime()
         {
-            lv.ItemsSource=TimeCollection;
+            lv.ItemsSource = TimeCollection;
         }
+
+        //public void SetTime(int shr, int ehr)
+        //{
+        //    startHr = shr;
+        //    endHr = ehr;
+        //}
 
         public void SetBookingTimeRange(DateTime bookingStart, DateTime bookingEnd)
         {
@@ -39,7 +47,7 @@ namespace Gems.UIWPF.CustomCtrl
             BookEndIdx = PreprocessTime(BookingEHr, BookingEMin);
         }
 
-        public ObservableCollection<TimeSlot> TimeCollection 
+        public ObservableCollection<TimeSlot> TimeCollection
         { get { return _TimeCollection; } }
 
         public void SetSource(List<FacilityBookingConfirmed> temp)
@@ -64,9 +72,18 @@ namespace Gems.UIWPF.CustomCtrl
                 }
             }
             CheckCrash();
-            
-            ScrollToItem(BookStartIdx);
-            
+
+            ScrollToItem(BookEndIdx);
+            //ScrollToItem(BookStartIdx);
+
+        }
+
+        public bool CanApproved()
+        {
+            if (SlotCrash)
+                ScrollToItem(CrashIdx);
+            //if slotCrash = true, the slot is unavailable so cannot be approved
+            return (SlotCrash == false);
         }
 
         private void CheckCrash()
@@ -75,41 +92,45 @@ namespace Gems.UIWPF.CustomCtrl
             {
                 if (TimeCollection[i].Purpose.Trim().Length > 0)
                 {
+                    CrashIdx = i;
                     TimeCollection[i].Balance = -1;
+                    SlotCrash = true;
                 }
                 else
                     TimeCollection[i].Balance = 1;
             }
             RefreshTime();
+
         }
 
-		private int PreprocessTime(int hr, int min)
-		{
-			int tempidx=hr*2;
-            if (min>0)
+        private int PreprocessTime(int hr, int min)
+        {
+            int tempidx = hr * 2;
+            if (min > 0)
             {
                 tempidx += 1;
             }
 
             return tempidx;
-		}
-		
-		public void Reset()
-		{
+        }
+
+        public void Reset()
+        {
             SlotGeneration();
+            SlotCrash = false;
             ScrollToItem(0);
-		}
-		
+        }
+
         private void ScrollToItem(int posIdx)
         {
-            var listView = lv; 
+            var listView = lv; ;
             listView.SelectedItem = listView.Items.GetItemAt(posIdx);
             listView.ScrollIntoView(listView.Items[0]);
             listView.ScrollIntoView(listView.SelectedItem);
         }
 
         private List<string> ProcessTimeSlot()
-		{
+        {
             List<string> temp = new List<String>();
             for (int h = startHr; h <= endHr; h++)
             {
@@ -124,10 +145,11 @@ namespace Gems.UIWPF.CustomCtrl
             }
             temp.RemoveAt(temp.Count - 1);
             return temp;
-		}
+        }
 
         private void SlotGeneration()
         {
+            System.Random r = new System.Random();
             _TimeCollection = new ObservableCollection<TimeSlot>();
             List<string> temp = ProcessTimeSlot();
             for (int i = 0; i < temp.Count - 1; i++)
@@ -143,8 +165,8 @@ namespace Gems.UIWPF.CustomCtrl
             RefreshTime();
         }
 
-	}
-	
+    }
+
     public class TimeSlot
     {
         public string StartTime { get; set; }

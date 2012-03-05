@@ -55,67 +55,63 @@
             </GroupBox>
             <StackPanel Width="480" Margin="6,0,0,0">
                 <GroupBox Header="Requestor's Facility Bookings Details" FontSize="16" Margin="0,0,-150,0" Height="370" Width="480" HorizontalAlignment="Left" FontWeight="Bold">
-                    <StackPanel Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="482">
-                        <StackPanel Height="75">
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <StackPanel Width="240" Orientation="Horizontal" Height="25" VerticalAlignment="Top">
-                                    <Label Content="Event Name:" Height="30" FontSize="13.333"/>
-                                    <TextBox x:Name="txtEventName" TextWrapping="Wrap" Height="30" Width="150" FontSize="13.333" IsReadOnly="True"/>
-                                </StackPanel>
-                                <StackPanel Width="240" Orientation="Horizontal" Height="25" VerticalAlignment="Top">
-                                    <Label Content="Requestor:" Height="30" FontSize="13.333"/>
-                                    <TextBox x:Name="txtRequestor" TextWrapping="Wrap" Height="30" Width="150" FontSize="13.333" IsReadOnly="True"/>
-                                </StackPanel>
+                    <StackPanel Height="350" Margin="0,0,0,0" VerticalAlignment="Top" Width="482">
+                        <StackPanel Height="120" Width="485">
+                            <StackPanel Width="460" Orientation="Horizontal" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        		<Label Content="Event Name:" Height="30" FontSize="13.333" Width="100"/>
+                        		<TextBox x:Name="txtEventName" TextWrapping="Wrap" Height="30" Width="350" FontSize="13.333" IsReadOnly="True"/>
+                        	</StackPanel>
+                            <StackPanel Width="460" Orientation="Horizontal" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0">
+                            	<Label Content="Requestor:" Height="30" FontSize="13.333" Width="100"/>
+                            	<TextBox x:Name="txtRequestor" TextWrapping="Wrap" Height="30" Width="350" FontSize="13.333" IsReadOnly="True"/>
                             </StackPanel>
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <StackPanel Width="240" Orientation="Horizontal" Height="25" VerticalAlignment="Top">
-                                    <Label Content="Start Time:" FontSize="13.333"/>
-                                    <Label x:Name="lblStartTime" Content="" FontSize="13.333"/>
-                                </StackPanel>
-                                <StackPanel Width="240" Orientation="Horizontal" Height="25" VerticalAlignment="Top">
-                                    <Label Content="End Time:" FontSize="12"/>
-                                    <Label x:Name="lblEndTime" Content="" FontSize="12"/>
-                                </StackPanel>
+                            <StackPanel Width="460" Orientation="Horizontal" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0">
+                            	<Label Content="Start Time:" FontSize="13.333" Width="100"/>
+                            	<Label x:Name="lblStartTime" Content="" FontSize="13.333"/>
+                            </StackPanel>
+                            <StackPanel Width="460" Orientation="Horizontal" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0">
+                            	<Label Content="End Time:" FontSize="13.333" Width="100"/>
+                            	<Label x:Name="lblEndTime" Content="" FontSize="13.333"/>
                             </StackPanel>
                         </StackPanel>
-                        <DataGrid x:Name="dgLocation" FontSize="12" Height="218" Margin="0,-10,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False">
+                        <DataGrid x:Name="dgLocation" SelectionChanged="dgLocation_SelectionChanged" FontSize="12" Height="150" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Approve?" >
+                                <!--DataGridTemplateColumn Header="Approve?" >
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <RadioButton GroupName="grpApproved" Click="radApproved_Click" Content="Yes" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                </DataGridTemplateColumn-->
 
-                                <DataGridTemplateColumn Header="Priority" IsReadOnly="True">
+                                <DataGridTemplateColumn Header="Priority" Width="100" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Priority}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="Faculty"  IsReadOnly="True">
+                                <DataGridTemplateColumn Header="Faculty" Width="200"  IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Faculty}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="Venue"  IsReadOnly="True">
+                                <DataGridTemplateColumn Header="Venue" Width="150"  IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding FacilityID}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="TimeSlot" >
+                                <!--DataGridTemplateColumn Header="TimeSlot" >
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button x:Name="btnViewTimeslot" Click="btnViewTimeslot_Click" Content="View"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                </DataGridTemplateColumn-->
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Remarks:" Height="28" x:Name="label1" FontSize="12" />

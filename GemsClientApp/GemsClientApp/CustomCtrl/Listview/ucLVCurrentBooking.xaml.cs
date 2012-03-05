@@ -21,6 +21,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         public void setSource(FacilityBookingRequest fbr)
         {
+            _details = new ObservableCollection<BookingDetail>();
             List<FacilityBookingRequestDetails> temp = fbr.RequestDetails.ToList<FacilityBookingRequestDetails>(); ;
             int confirmedLocationIdx = 0;
             if (fbr.Status == BookingStatus.Approved)
@@ -39,7 +40,7 @@ namespace Gems.UIWPF.CustomCtrl
 
                 if ((fbr.Status == BookingStatus.Approved) && (temp[i].RequestDetailsID == confirmedLocationIdx))
                 {
-                    bd.balance = 1;
+                    bd.Balance = 1;
                 }
                 _details.Add(bd);
             }
@@ -64,6 +65,6 @@ namespace Gems.UIWPF.CustomCtrl
         public int Priority { get; set; }
         public Faculty Faculty { get; set; }
         public string FacilityID { get; set; }
-        public int balance { get; set; }
+        public int Balance { get; set; }
     }
 }

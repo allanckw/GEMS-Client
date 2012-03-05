@@ -7,38 +7,6 @@
 	mc:Ignorable="d"
 	x:Class="Gems.UIWPF.CustomCtrl.ucLVCurrentBooking"
   x:Name="listview">
-    <UserControl.Resources>
-        <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
-            <Style.Resources>
-                <LinearGradientBrush x:Key="ProfitBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0.1" Color="#AA00CC00" />
-                    <GradientStop Offset="0.8" Color="#55008800" />
-                </LinearGradientBrush>
-                <LinearGradientBrush x:Key="LossBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0.1" Color="#AACC0000" />
-                    <GradientStop Offset="0.8" Color="#55880000" />
-                </LinearGradientBrush>
-                <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
-                <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
-            </Style.Resources>
-
-            <!-- Stretch the content so that we can right-align values 
-           in the Balance column. -->
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-
-            <Style.Triggers>
-                <!-- Color them green. -->
-                <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="+1">
-                    <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
-                </DataTrigger>
-                <!-- Color them red. -->
-                <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="-1">
-                    <Setter Property="Background" Value="{StaticResource LossBrush}" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
-
     <ListView Name="lv" ItemContainerStyle="{StaticResource ItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.View>
             <GridView>
@@ -48,6 +16,8 @@
              DisplayMemberBinding="{Binding Faculty}"  />
                 <GridViewColumn Width="200" Header="Venue"  
              DisplayMemberBinding="{Binding FacilityID}" />
+                <GridViewColumn Width="0" Header="Venue"  
+             DisplayMemberBinding="{Binding Balance}" />
             </GridView>
         </ListView.View>
     </ListView>

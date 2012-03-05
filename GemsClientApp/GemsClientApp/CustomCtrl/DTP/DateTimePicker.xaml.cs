@@ -23,7 +23,7 @@ namespace Gems.UIWPF.CustomCtrl
         {
             InitializeComponent();
             CreateDTPData();
-            dtpDate.DisplayDateStart = DateTime.Now;
+            //dtpDate.DisplayDateStart = DateTime.Now;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
