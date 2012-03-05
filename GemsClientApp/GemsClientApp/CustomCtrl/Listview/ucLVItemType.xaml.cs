@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Collections.ObjectModel;
 using System.Windows;
+using evmsService.entities;
 
 namespace Gems.UIWPF.CustomCtrl
 {
@@ -12,8 +13,7 @@ namespace Gems.UIWPF.CustomCtrl
     /// </summary>
     public partial class ucLVItemType : UserControl
     {
-        //private List<clsItemType> _Collection;
-        ObservableCollection<clsItemType> _Collection;
+        ObservableCollection<ItemTypes> _Collection;
         public ucLVItemType()
         {
             InitializeComponent();
@@ -21,14 +21,16 @@ namespace Gems.UIWPF.CustomCtrl
         }
         public void preprocess()
         {
-//            _Collection = new List<clsItemType>();
-            _Collection = new ObservableCollection<clsItemType>();
+            _Collection = new ObservableCollection<ItemTypes>();
             lv.ItemsSource = ItemTypeCollection;
         }
 
         public void AddNewItemType(String ItemType, Boolean Important)
         {
-            ItemTypeCollection.Add(new clsItemType(ItemType, Important));
+            WCFHelperClient client = new WCFHelperClient();
+            ItemTypes type = client.addEventItemType();
+            client.Close();
+            ItemTypeCollection.Add(type);
         }
         
         public void DeleteItemType()
@@ -39,16 +41,15 @@ namespace Gems.UIWPF.CustomCtrl
             }
         }
 
-        //public List<clsItemType> Collection
-        //{ get { return _Collection; } }
 
-        public ObservableCollection<clsItemType> ItemTypeCollection
+
+        public ObservableCollection<ItemTypes> ItemTypeCollection
         { get { return _Collection; } }
 
         public List<String> GetItemTypeList()
         {
             List<String> temp = new List<String>();
-            foreach (clsItemType item in ItemTypeCollection)
+            foreach (ItemTypes item in ItemTypeCollection)
             {
                 temp.Add(item.ItemType);
             }
@@ -62,15 +63,5 @@ namespace Gems.UIWPF.CustomCtrl
         }
     }
 
-    public class clsItemType
-    {
-        public clsItemType(String _ItemType, Boolean _Important)
-        {
-            ItemType = _ItemType;
-            Important = _Important;
-        }
 
-        public string ItemType { get; set; }
-        public Boolean Important { get; set; }
-    }
 }

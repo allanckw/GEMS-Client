@@ -34,7 +34,8 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            cboHr.SelectedIndex = 0;
+            cboMin.SelectedIndex = 0;
         }
 
         // Provide CLR accessors for the event
