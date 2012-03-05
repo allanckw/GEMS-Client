@@ -45,7 +45,7 @@ namespace Gems.UIWPF.CustomCtrl
             remove { RemoveHandler(DateChangedEvent, value); }
         }
 
-        // This method raises the Tap event
+        // This method raises the DateChanged Event 
         void RaiseDateChangedEvent()
         {
             RoutedEventArgs newEventArgs = new RoutedEventArgs(DateTimePicker.DateChangedEvent);

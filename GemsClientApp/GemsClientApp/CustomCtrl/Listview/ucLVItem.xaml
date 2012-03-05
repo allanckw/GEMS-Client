@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              x:Name="listview">
-    <ListView x:Name="lv" FontSize="13.333" Width="425" HorizontalAlignment="Left">
+    <ListView x:Name="lv" FontSize="13" Width="425" HorizontalAlignment="Left">
         <ListView.View>
             <GridView>
                 <GridViewColumn Width="150">

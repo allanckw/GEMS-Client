@@ -32,46 +32,46 @@ Width="720" Height="650" AllowsTransparency="True" WindowStyle="None" Background
 				<StackPanel Orientation="Horizontal">
 					<StackPanel Width="200">
 						<RadioButton x:Name="radItemType" Content="Item Type" Height="25" FontSize="16" GroupName="ItemType"/>
-						<ComboBox x:Name="cboItemType" SelectionChanged="cboItemType_SelectionChanged"  Height="25" Margin="15,0,0,0" Width="180" HorizontalAlignment="Left" FontSize="13.333"/>
+						<ComboBox x:Name="cboItemType" SelectionChanged="cboItemType_SelectionChanged"  Height="25" Margin="15,0,0,0" Width="180" HorizontalAlignment="Left" FontSize="13"/>
 						<RadioButton x:Name="radOthers" Content="Others" Margin="0,0,88.86,0" d:LayoutOverrides="Width" Height="25" FontSize="16" GroupName="ItemType"/>
-						<TextBox x:Name="txtOthers" TextChanged="txtOthers_TextChanged"  TextWrapping="Wrap" HorizontalAlignment="Left" Width="180" Height="25" Margin="15,0,0,0" FontSize="13.333"/>
+						<TextBox x:Name="txtOthers" TextChanged="txtOthers_TextChanged"  TextWrapping="Wrap" HorizontalAlignment="Left" Width="180" Height="25" Margin="15,0,0,0" FontSize="13"/>
 						<CheckBox x:Name="chkNecessary" Content="Is Necessary?" FontSize="16"/>
 						<StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right">
-							<Button x:Name="btnAddItemType" Click="btnAddItemType_Click"  Content="Add" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13.333"/>
-							<Button x:Name="btnEditItemType" Click="btnEditItemType_Click"  Content="Edit" Width="50" HorizontalAlignment="Right" Margin="0,17.5,5,7.5" Height="25" FontSize="13.333"/>
+							<Button x:Name="btnAddItemType" Click="btnAddItemType_Click"  Content="Add" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13"/>
+							<Button x:Name="btnEditItemType" Click="btnEditItemType_Click"  Content="Edit" Width="50" HorizontalAlignment="Right" Margin="0,17.5,5,7.5" Height="25" FontSize="13"/>
 						</StackPanel>
 					</StackPanel>
 					<StackPanel Width="280" Margin="15,0,0,0">
-						<Label Content="Collection of Item Types" FontSize="13.333" Width="300" Height="25" HorizontalAlignment="Left"/>
+						<Label Content="Collection of Item Types" FontSize="13" Width="300" Height="25" HorizontalAlignment="Left"/>
                         <local:ucLVItemType x:Name="lvItemType" Height="130"></local:ucLVItemType>
-						<Button x:Name="btnDeleteItemType" Click="btnDeleteItemType_Click"  Content="Delete" HorizontalAlignment="Right" Width="55" Height="25" Margin="5,10,0,0" FontSize="13.333"/>
+						<Button x:Name="btnDeleteItemType" Click="btnDeleteItemType_Click"  Content="Delete" HorizontalAlignment="Right" Width="55" Height="25" Margin="5,10,0,0" FontSize="13"/>
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>
 			<GroupBox Header="Item List" Height="280" FontSize="16" FontWeight="Bold" Margin="0,10,0,0" HorizontalAlignment="Left" Width="675">
 				<StackPanel Orientation="Horizontal" Margin="0">
 					<StackPanel Width="200">
-						<Label Content="Item Name" FontSize="13.333"/>
-						<TextBox x:Name="txtItemName" TextWrapping="Wrap" FontSize="13.333" Width="180" Margin="15,0,0,0" Height="25"/>
-						<Label Content="Item Type" FontSize="13.333"/>
-						<ComboBox x:Name="cboItemTypeIL" SelectionChanged="cboItemType_SelectionChanged"  Height="25" Margin="15,0,0,0" Width="180" HorizontalAlignment="Left" FontSize="13.333"/>
-						<Label Content="Item Price" FontSize="13.333"/>
-						<TextBox x:Name="txtItemPrice" TextWrapping="Wrap" FontSize="13.333" Width="180" Margin="17.5,0,2.5,0" Height="25"/>
-						<Label Content="Satisfaction Value" FontSize="13.333"/>
-						<TextBox x:Name="txtItemSatisfaction" TextWrapping="Wrap" FontSize="13.333" Width="180" Margin="15,0,0,0" Height="25"/>
+						<Label Content="Item Name" FontSize="13"/>
+						<TextBox x:Name="txtItemName" TextWrapping="Wrap" FontSize="13" Width="180" Margin="15,0,0,0" Height="25"/>
+						<Label Content="Item Type" FontSize="13"/>
+						<ComboBox x:Name="cboItemTypeIL" SelectionChanged="cboItemType_SelectionChanged"  Height="25" Margin="15,0,0,0" Width="180" HorizontalAlignment="Left" FontSize="13"/>
+						<Label Content="Item Price" FontSize="13"/>
+						<TextBox x:Name="txtItemPrice" TextWrapping="Wrap" FontSize="13" Width="180" Margin="17.5,0,2.5,0" Height="25"/>
+						<Label Content="Satisfaction Value" FontSize="13"/>
+						<TextBox x:Name="txtItemSatisfaction" TextWrapping="Wrap" FontSize="13" Width="180" Margin="15,0,0,0" Height="25"/>
 						<StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
-							<Button x:Name="btnAddItem" Click="btnAddItem_Click"  Content="Add" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13.333"/>
-							<Button x:Name="btnEditItem" Click="btnEditItem_Click"  Content="Edit" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13.333"/>
+							<Button x:Name="btnAddItem" Click="btnAddItem_Click"  Content="Add" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13"/>
+							<Button x:Name="btnEditItem" Click="btnEditItem_Click"  Content="Edit" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13"/>
 						</StackPanel>
 					</StackPanel>
 					<StackPanel Width="440" Margin="15,0,0,0" HorizontalAlignment="Left">
-						<Label Content="Collection of Item" FontSize="13.333" Width="300" Height="25" HorizontalAlignment="Left"/>
+						<Label Content="Collection of Item" FontSize="13" Width="300" Height="25" HorizontalAlignment="Left"/>
 						<local:ucLVItem x:Name="lvItem" Height="180" HorizontalAlignment="Left" Width="430" />
-						<Button x:Name="btnDeleteItem" Click="btnDeleteItem_Click"  Content="Delete" HorizontalAlignment="Right" Width="55" Height="28" Margin="0,10,18,0" FontSize="13.333"/>
+						<Button x:Name="btnDeleteItem" Click="btnDeleteItem_Click"  Content="Delete" HorizontalAlignment="Right" Width="55" Height="28" Margin="0,10,18,0" FontSize="13"/>
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>
-			<Button x:Name="btnCalculateBudget" Width="110" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,0,0" Content="Caculate Budget" FontWeight="Bold" FontSize="13.333"/>
+			<Button x:Name="btnCalculateBudget" Width="110" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,0,0" Content="Caculate Budget" FontWeight="Bold" FontSize="13"/>
 		</StackPanel>
 	</Canvas>
 </Window>

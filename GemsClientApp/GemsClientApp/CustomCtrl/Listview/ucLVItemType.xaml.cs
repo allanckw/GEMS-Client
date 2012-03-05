@@ -28,23 +28,40 @@ namespace Gems.UIWPF.CustomCtrl
         public void AddNewItemType(User u,Event event_, String ItemType, Boolean Important)
         {
             WCFHelperClient client = new WCFHelperClient();
-            ItemTypes type = client.addEventItemType(u,event_.EventID,ItemType,Important);
+            try
+            {
+                ItemTypes type = client.addEventItemType(u, event_.EventID, ItemType, Important);
+                ItemTypeCollection.Add(type);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error have occured: " + ex.Message, "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             client.Close();
-            ItemTypeCollection.Add(type);
         }
 
         public void EditItemType(User u, Event event_, Boolean Important)
         {
+            WCFHelperClient client = new WCFHelperClient();
+
+            //Insert server code here
             ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
+            
+            client.Close();
         }
 
         public void DeleteItemType(User u, Event event_)
         {
+            WCFHelperClient client = new WCFHelperClient();
+
+            //Insert server code here
             if (lv.SelectedIndex != -1)
             {
                 ItemTypes type2delete = ItemTypeCollection[lv.SelectedIndex];
                 ItemTypeCollection.RemoveAt(lv.SelectedIndex);
             }
+            client.Close();
         }
 
         public ObservableCollection<ItemTypes> ItemTypeCollection
@@ -58,12 +75,6 @@ namespace Gems.UIWPF.CustomCtrl
                 temp.Add(item.ItemType);
             }
             return temp;
-        }
-
-        private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //clsItemType temp = (clsItemType)lv.SelectedItem;
-            //MessageBox.Show(temp.ItemType.ToString());
         }
     }
 

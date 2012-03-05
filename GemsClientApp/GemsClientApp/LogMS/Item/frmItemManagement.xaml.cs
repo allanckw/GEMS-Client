@@ -59,7 +59,6 @@ namespace Gems.UIWPF
             String itemType2Add = "";
             if (radItemType.IsChecked == true)
             {
-
                 itemType2Add = cboItemType.SelectedItem.ToString();
             }
             else
@@ -71,7 +70,7 @@ namespace Gems.UIWPF
                 client.Close();
                 refreshItemTypes();
             }
-            lvItemType.AddNewItemType(user,event_ ,itemType2Add, (bool)chkNecessary.IsChecked);
+            lvItemType.AddNewItemType(user,event_ ,itemType2Add, chkNecessary.IsChecked.Value);
             rebindcboItemType4Item();
             clear();
         }
@@ -121,7 +120,7 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                lvItem.AddNewItem(itemtype, txtItemName.Text, this.cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+                //lvItem.AddNewItem(user, itemtype, txtItemName.Text, cboItemTypeIL.SelectedValue, price, satisfactionValue);
             }
             else
             {
@@ -131,7 +130,7 @@ namespace Gems.UIWPF
 
         private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
         {
-            lvItem.DeleteItem(itemtype);
+            lvItem.DeleteItem(user, itemtype);
         }
 
         public bool validateInput()
@@ -167,7 +166,7 @@ namespace Gems.UIWPF
                 return;
             }
 
-            lvItem.EditItem(itemtype, price, satisfactionValue);
+            lvItem.EditItem(user, itemtype, price, satisfactionValue);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using evmsService.entities;
+using System.Windows;
 
 namespace Gems.UIWPF.CustomCtrl
 {
@@ -10,7 +12,7 @@ namespace Gems.UIWPF.CustomCtrl
     /// </summary>
     public partial class ucLVItem : UserControl
     {
-        private ObservableCollection<clsItem> _Collection;
+        private ObservableCollection<Items> _Collection;
 
         public ucLVItem()
         {
@@ -20,7 +22,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void preprocess()
         {
-            _Collection = new ObservableCollection<clsItem>();
+            _Collection = new ObservableCollection<Items>();
             refresh();
         }
 
@@ -29,46 +31,43 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemCollection;
         }
 
-        public void AddNewItem(ItemTypes itemtype, string n, string t, double p, int s)
-        {
-            ItemCollection.Add(new clsItem(n,t,p,s));
+        public void AddNewItem(User user, ItemTypes itemtype, string n, string t, double p, int s)
+        {//Need User
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                ItemCollection.Add(client.addItem(user, itemtype, n, s, p));
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error have occured: " + ex.Message, "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
-        public void EditItem(ItemTypes itemtype, double p, int s)
-        {
-            clsItem temp = ItemCollection[lv.SelectedIndex];
-            temp.ItemPrice = p;
-            temp.ItemSValue = s;
+        public void EditItem(User user, ItemTypes itemtype, double p, int s)
+        {//Need User
+            Items temp = ItemCollection[lv.SelectedIndex];
+            //temp.ItemPrice = p;
+            //temp.ItemSValue = s;
             ItemCollection[lv.SelectedIndex] = temp;
         }
 
-        public void DeleteItem(ItemTypes itemtype)
-        {
+        public void DeleteItem(User user, ItemTypes itemtype)
+        {//Need User
             if (lv.SelectedIndex != -1)
             {
-                clsItem Item2Delete = ItemCollection[lv.SelectedIndex];
+                Items Item2Delete = ItemCollection[lv.SelectedIndex];
                 ItemCollection.RemoveAt(lv.SelectedIndex);
                 refresh();
             }
         }
 
-        public ObservableCollection<clsItem> ItemCollection
+        public ObservableCollection<Items> ItemCollection
         { get { return _Collection; } }
 
     }
-    public class clsItem
-    {
-        public clsItem(string n, string t, double p, int s)
-        {
-            ItemName = n;
-            ItemType = t;
-            ItemPrice = p;
-            ItemSValue = s;
-        }
 
-        public string ItemName { get; set; }
-        public string ItemType { get; set; }
-        public double ItemPrice { get; set; }
-        public int ItemSValue { get; set; }
-    }
 }
