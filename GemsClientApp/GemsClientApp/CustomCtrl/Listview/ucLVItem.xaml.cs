@@ -31,12 +31,20 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemCollection;
         }
 
-        public void AddNewItem(User user, ItemTypes itemtype, string n, string t, double p, int s)
+        public void SetExistingSource(List<Items> lstItemType)
+        {
+            _Collection = new ObservableCollection<Items>();
+            lstItemType.ForEach(x => _Collection.Add(x));
+            refresh();
+        }
+
+        public void AddNewItem(User user, ItemTypes itemtype, string n, string t, decimal p, int s)
         {//Need User
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                ItemCollection.Add(client.addItem(user, itemtype, n, s, p));
+                Items Item2Add = client.addItem(user, itemtype, n, s, p);
+                ItemCollection.Add(Item2Add);
                 client.Close();
             }
             catch (Exception ex)
@@ -44,30 +52,61 @@ namespace Gems.UIWPF.CustomCtrl
                 MessageBox.Show("Error have occured: " + ex.Message, "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-           
+
         }
 
-        public void EditItem(User user, ItemTypes itemtype, double p, int s)
-        {//Need User
-            Items temp = ItemCollection[lv.SelectedIndex];
-            //temp.ItemPrice = p;
-            //temp.ItemSValue = s;
-            ItemCollection[lv.SelectedIndex] = temp;
+        public void EditItem(User user, ItemTypes itemtype, decimal p, int s)
+        {
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                Items Item2Edit = ItemCollection[lv.SelectedIndex];
+                Item2Edit.EstimatedPrice = p;
+                Item2Edit.Satisfaction = s;
+                ItemCollection[lv.SelectedIndex] = Item2Edit;
+                client.updateSatifactionAndEstPrice(user, Item2Edit, s, p);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error have occured: " + ex.Message, "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void DeleteItem(User user, ItemTypes itemtype)
         {//Need User
-            if (lv.SelectedIndex != -1)
+            try
             {
-                Items Item2Delete = ItemCollection[lv.SelectedIndex];
-                ItemCollection.RemoveAt(lv.SelectedIndex);
-                refresh();
+                if (lv.SelectedIndex != -1)
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    Items Item2Delete = ItemCollection[lv.SelectedIndex];
+                    client.deleteItem(user, Item2Delete);
+                    client.Close();
+
+                    ItemCollection.RemoveAt(lv.SelectedIndex);
+                    refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error have occured: " + ex.Message, "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public ObservableCollection<Items> ItemCollection
         { get { return _Collection; } }
 
+        public Items GetEditItem()
+        {
+            if (lv.SelectedIndex==-1)
+            {
+                return null;
+            }
+            return ItemCollection[lv.SelectedIndex];
+        }
     }
 
 }

@@ -27,6 +27,8 @@ namespace Gems.UIWPF.CustomCtrl
             dtpDate.SelectedDate =
                 d.AddHours(-d.Hour).AddMinutes(-d.Minute).AddSeconds(-d.Second);
             dtpDate.SelectedDate = DateTime.Now;
+            cboHr.SelectedIndex = 0;
+            cboMin.SelectedIndex = 0;
         }
 
         public static readonly RoutedEvent DateChangedEvent = EventManager.RegisterRoutedEvent(
@@ -34,8 +36,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cboHr.SelectedIndex = 0;
-            cboMin.SelectedIndex = 0;
+
         }
 
         // Provide CLR accessors for the event

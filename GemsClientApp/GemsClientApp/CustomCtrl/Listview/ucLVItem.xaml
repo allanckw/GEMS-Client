@@ -25,7 +25,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Grid HorizontalAlignment="Stretch">
-                                <TextBlock Text="{Binding ItemType}"/>
+                                <TextBlock Text="{Binding typeString}"/>
                             </Grid>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -38,7 +38,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Grid HorizontalAlignment="Stretch">
-                                <TextBlock Text="{Binding ItemPrice}"/>
+                                <TextBlock Text="{Binding EstimatedPrice}"/>
                             </Grid>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -51,7 +51,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <Grid HorizontalAlignment="Stretch">
-                                <TextBlock Text="{Binding ItemSValue}"/>
+                                <TextBlock Text="{Binding Satisfaction}"/>
                             </Grid>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>

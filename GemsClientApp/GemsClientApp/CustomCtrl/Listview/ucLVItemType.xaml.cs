@@ -25,6 +25,13 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemTypeCollection;
         }
 
+        public void SetExistingSource(List<ItemTypes> lstItemType)
+        {
+            _Collection = new ObservableCollection<ItemTypes>();
+            lstItemType.ForEach(x => _Collection.Add(x));
+            lv.ItemsSource = ItemTypeCollection;
+        }
+
         public void AddNewItemType(User u,Event event_, String ItemType, Boolean Important)
         {
             WCFHelperClient client = new WCFHelperClient();
@@ -41,13 +48,31 @@ namespace Gems.UIWPF.CustomCtrl
             client.Close();
         }
 
+        public void ToggleItemTypeImpt(User u, Event event_)
+        {
+            if (lv.SelectedIndex==-1)
+            {
+                MessageBox.Show("Please Select an Item Type to toggle!", "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            WCFHelperClient client = new WCFHelperClient();
+
+            //Insert server code here
+            ItemTypes Item2Edit = ItemTypeCollection[lv.SelectedIndex];
+            bool Important=!Item2Edit.IsImportantType;
+            ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
+            client.setItemTypeImportance(u, Item2Edit, Important);
+            client.Close();
+        }
+
         public void EditItemType(User u, Event event_, Boolean Important)
         {
             WCFHelperClient client = new WCFHelperClient();
 
             //Insert server code here
+            ItemTypes Item2Edit=ItemTypeCollection[lv.SelectedIndex];
             ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
-            
+            client.setItemTypeImportance(u, Item2Edit, Important);
             client.Close();
         }
 
@@ -59,6 +84,7 @@ namespace Gems.UIWPF.CustomCtrl
             if (lv.SelectedIndex != -1)
             {
                 ItemTypes type2delete = ItemTypeCollection[lv.SelectedIndex];
+                client.deleteEventItemType(u, type2delete);
                 ItemTypeCollection.RemoveAt(lv.SelectedIndex);
             }
             client.Close();
@@ -67,16 +93,14 @@ namespace Gems.UIWPF.CustomCtrl
         public ObservableCollection<ItemTypes> ItemTypeCollection
         { get { return _Collection; } }
 
-        public List<String> GetItemTypeList()
+        public List<ItemTypes> GetItemTypeList()
         {
-            List<String> temp = new List<String>();
-            foreach (ItemTypes item in ItemTypeCollection)
-            {
-                temp.Add(item.ItemType);
-            }
-            return temp;
+            //List<T> myList = new List<T>(myObservableCollection);
+            return (new List<ItemTypes>(ItemTypeCollection));
         }
     }
-
+    //List to observable
+    //(TObservable) =new ObservableCollection (TObservable)(); 
+    //Convert List items(OldListItems) to collection OldListItems.ForEach(x => TObservable.Add(X));
 
 }

@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using evmsService.entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gems.UIWPF
 {
@@ -14,8 +16,7 @@ namespace Gems.UIWPF
         private Window mainFrame;
         private User user;
         private Event event_;
-        private ItemTypes itemtype;
-        
+
         public frmItemManagement()
         {
             this.InitializeComponent();
@@ -33,6 +34,8 @@ namespace Gems.UIWPF
         {
             radItemType.IsChecked = true;
             refreshItemTypes();
+            ExistingLoad();
+
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -54,11 +57,42 @@ namespace Gems.UIWPF
             client.Close();
         }
 
+        private void ExistingLoad()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            List<ItemTypes> TypeList = client.getEventSpecificItemType(event_.EventID).ToList<ItemTypes>();
+            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            client.Close();
+
+            if (TypeList.Count > 0)
+                lvItemType.SetExistingSource(TypeList);
+            if (ItemList.Count > 0)
+                lvItem.SetExistingSource(ItemList);
+            rebindcboItemType4Item();
+        }
+
+        private void rebindcboItemType4Item()
+        {
+            cboItemTypeIL.ItemsSource = lvItemType.GetItemTypeList();
+            cboItemTypeIL.DisplayMemberPath = "typeString";
+            cboItemTypeIL.SelectedValuePath = "typeString";
+        }
+
+        private void clearItemTypeInput()
+        {
+            txtOthers.Text = "";
+            cboItemType.SelectedIndex = -1;
+        }
+
         private void btnAddItemType_Click(object sender, RoutedEventArgs e)
         {
             String itemType2Add = "";
             if (radItemType.IsChecked == true)
             {
+                if (cboItemType.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please Select an Item Type!");
+                }
                 itemType2Add = cboItemType.SelectedItem.ToString();
             }
             else
@@ -70,25 +104,22 @@ namespace Gems.UIWPF
                 client.Close();
                 refreshItemTypes();
             }
-            lvItemType.AddNewItemType(user,event_ ,itemType2Add, chkNecessary.IsChecked.Value);
+            lvItemType.AddNewItemType(user, event_, itemType2Add, chkNecessary.IsChecked.Value);
             rebindcboItemType4Item();
-            clear();
+            clearItemTypeInput();
         }
 
-        private void rebindcboItemType4Item()
+        private void btnToggleItemTypeImpt_Click(object sender, RoutedEventArgs e)
         {
-            cboItemTypeIL.ItemsSource = lvItemType.GetItemTypeList();
-        }
-
-        private void clear()
-        {
-            txtOthers.Text = "";
-            cboItemType.SelectedIndex = -1;
+            lvItemType.ToggleItemTypeImpt(user, event_);
+            ExistingLoad();
+            rebindcboItemType4Item();
         }
 
         private void btnDeleteItemType_Click(object sender, RoutedEventArgs e)
         {
-            lvItemType.DeleteItemType(user,event_);
+            lvItemType.DeleteItemType(user, event_);
+            rebindcboItemType4Item();
         }
 
         private void cboItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,9 +136,77 @@ namespace Gems.UIWPF
         {
             if (validateInput())
             {
-                double price;
-                bool isDouble = double.TryParse(txtItemPrice.Text, out price);
-                if (!isDouble)
+                decimal price;
+                bool isdecimal = decimal.TryParse(txtItemPrice.Text, out price);
+                if (!isdecimal)
+                {
+                    MessageBox.Show("Invalid Price");
+                    return;
+                }
+                int satisfactionValue;
+                bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
+                if (!isInt)
+                {
+                    MessageBox.Show("Invalid Satisfaction Value");
+                    return;
+                }
+                lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedValue, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+            }
+            else
+            {
+                MessageBox.Show("Invalid input!");
+            }
+        }
+
+        private void EnabledItemControl(bool enabled)
+        {
+            if (enabled)//After Edit
+            {
+                btnEditItem.Content = "Edit";
+                txtItemName.IsReadOnly = false;
+                cboItemTypeIL.IsEnabled = true;
+                btnAddItem.Visibility = Visibility.Visible;
+                btnCancelEditItem.Visibility = Visibility.Collapsed;
+            }
+            else //Edit Mode
+            {
+                btnEditItem.Content = "Save";
+                txtItemName.IsReadOnly = true;
+                cboItemTypeIL.IsEnabled = false;
+                btnAddItem.Visibility = Visibility.Collapsed;
+                btnCancelEditItem.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void mapItem(Items Item2Edit)
+        {
+            txtItemName.Text = Item2Edit.ItemName;
+
+            cboItemTypeIL.SelectedValue = Item2Edit.typeString;
+            txtItemPrice.Text = Item2Edit.EstimatedPrice.ToString();
+            txtItemSatisfaction.Text = Item2Edit.Satisfaction.ToString();
+        }
+
+        private void btnEditItem_Click(object sender, RoutedEventArgs e)
+        {
+            Items Item2Edit = lvItem.GetEditItem();
+            if (Item2Edit == null)
+            {
+                MessageBox.Show("Please Select An Item!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string FunctionName = btnEditItem.Content.ToString().Trim();
+            if (FunctionName.CompareTo("Edit") == 0)
+            {
+                mapItem(Item2Edit);
+                EnabledItemControl(false);
+            }
+            else
+            {
+                decimal price;
+                bool isdecimal = decimal.TryParse(txtItemPrice.Text, out price);
+                if (!isdecimal)
                 {
                     MessageBox.Show("Invalid Price");
                     return;
@@ -120,17 +219,14 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                //lvItem.AddNewItem(user, itemtype, txtItemName.Text, cboItemTypeIL.SelectedValue, price, satisfactionValue);
-            }
-            else
-            {
-                MessageBox.Show("Invalid input!");
+                lvItem.EditItem(user, (ItemTypes)cboItemTypeIL.SelectedValue, price, satisfactionValue);
+                EnabledItemControl(true);
             }
         }
 
         private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
         {
-            lvItem.DeleteItem(user, itemtype);
+            lvItem.DeleteItem(user, (ItemTypes)cboItemTypeIL.SelectedValue);
         }
 
         public bool validateInput()
@@ -144,29 +240,18 @@ namespace Gems.UIWPF
             return true;
         }
 
-        private void btnEditItemType_Click(object sender, RoutedEventArgs e)
+        private void btnCancelEditItem_Click(object sender, RoutedEventArgs e)
         {
-            lvItemType.EditItemType(user, event_, (bool)chkNecessary.IsChecked);
+            clearItemInput();
+            EnabledItemControl(true);
         }
 
-        private void btnEditItem_Click(object sender, RoutedEventArgs e)
+        private void clearItemInput()
         {
-            double price;
-            bool isDouble = double.TryParse(txtItemPrice.Text, out price);
-            if (!isDouble)
-            {
-                MessageBox.Show("Invalid Price");
-                return;
-            }
-            int satisfactionValue;
-            bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
-            if (!isInt)
-            {
-                MessageBox.Show("Invalid Satisfaction Value");
-                return;
-            }
-
-            lvItem.EditItem(user, itemtype, price, satisfactionValue);
+            txtItemName.Text = "";
+            txtItemPrice.Text = "";
+            txtItemSatisfaction.Text = "";
+            cboItemTypeIL.SelectedIndex = -1;
         }
     }
 }
