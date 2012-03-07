@@ -212,7 +212,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList <Tuple<Role, string>>();
+                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList();
                 client.Close();
             }
             catch (Exception ex)

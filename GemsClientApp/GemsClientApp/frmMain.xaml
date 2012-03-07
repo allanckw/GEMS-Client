@@ -62,7 +62,7 @@
         </Button>
         <GroupBox Header="My Event List" Height="486" FontFamily="Stencil" Canvas.Left="20" Canvas.Top="99" Width="199" Foreground="Black" FontSize="16">
             <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
-                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10" Orientation="Vertical">

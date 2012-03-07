@@ -30,7 +30,11 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO: Fill in the requestor details
+            loadRequests();
+        }
 
+        private void loadRequests()
+        {
             WCFHelperClient client = new WCFHelperClient();
             lstRequestor.ItemsSource = client.getFacBookingRequestList(user);
             client.Close();
@@ -137,6 +141,7 @@ namespace Gems.UIWPF
                     txtRemarks.Text.Trim(), txtEventName.Text.Trim());
                 MessageBox.Show("Request have been approved!", "Approved",
                     MessageBoxButton.OK, MessageBoxImage.Information);
+                loadRequests();
             }
             catch (Exception ex)
             {
@@ -162,6 +167,7 @@ namespace Gems.UIWPF
                 client.rejectFacilityBooking(user, fbr.RequestID, fbr.EventID, txtRemarks.Text.Trim());
                 MessageBox.Show("Request have been rejected!", "Rejected",
                     MessageBoxButton.OK, MessageBoxImage.Information);
+                loadRequests();
             }
             catch (Exception ex)
             {

@@ -94,6 +94,28 @@ namespace Gems.UIWPF
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;
+            loadEventItems();
+        }
+
+        private void loadEventItems(){
+            if (lstEventList.SelectedIndex != -1)
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                FacilityBookingConfirmed fbc =  ev.ConfirmedFacilityBooking;
+                if (fbc == null)
+                {
+                    lblLocationMsg.Content = "The venue to hold the event is not confirmed yet";
+                }
+                else
+                {
+                    lblLocationMsg.Content = "The venue to hold this event is in " +
+                          fbc.Faculty.ToString() + " " + " at " + fbc.Venue + " " + Environment.NewLine
+                          + Environment.NewLine +
+                          "It is booked from " + fbc.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
+                          + " to " + fbc.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
+                }
+
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -320,6 +342,11 @@ namespace Gems.UIWPF
             var frmViewBookings = new frmViewCurrentBooking(user, this);
             this.Visibility = Visibility.Collapsed;
             frmViewBookings.ShowDialog();
+        }
+
+        private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            loadEventItems();
         }
 
     }
