@@ -67,6 +67,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\WPFTaskbarNotifier.dll</HintPath>
     </Reference>
+    <Reference Include="dragonz.actb, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\dragonz.actb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,6 +130,9 @@
     </Compile>
     <Compile Include="LogMS\Item\frmItemManagement.xaml.cs">
       <DependentUpon>frmItemManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogMS\Manpower\frmRoleList.xaml.cs">
+      <DependentUpon>frmRoleList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\frmNotificationList.xaml.cs">
       <DependentUpon>frmNotificationList.xaml</DependentUpon>
@@ -245,6 +253,10 @@
     <Page Include="LogMS\Item\frmItemManagement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogMS\Manpower\frmRoleList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Notifications\frmNotificationList.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -309,10 +309,9 @@ namespace Gems.UIWPF
             else
             {
                 Event ev = (Event)lstEventList.SelectedItem;
-                //var frmRoleList = new frmRoleList(user, this, ev);
-                //this.Visibility = Visibility.Collapsed; 
-                //Disabled for now or else accidental clicking result in main form cannot come back lol
-                //frmRoleList.ShowDialog();
+                var frmRoleList = new frmRoleList(user, this, ev);
+                this.Visibility = Visibility.Collapsed; 
+                frmRoleList.ShowDialog();
             }
         }
 

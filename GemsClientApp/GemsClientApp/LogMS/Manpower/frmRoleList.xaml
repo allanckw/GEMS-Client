@@ -1,0 +1,87 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:actb.control="clr-namespace:dragonz.actb.control;assembly=dragonz.actb"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="Gems.UIWPF.frmRoleList"
+	x:Name="Window" Activated="Window_Activated"
+	Title="frmRoleList"
+Width="950" Height="698" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Canvas Opacity="1.0" Margin="0" Width="920">
+        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="520" Width="908">
+
+        </Path>
+        <Button x:Name="btnClose" Canvas.Left="864.5" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
+                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Roles" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="16" />
+        <StackPanel Height="444" Canvas.Left="21" Canvas.Top="60" Width="867.5" Orientation="Horizontal">
+            <GroupBox Header="Roles" Width="287" FontSize="21.333" HorizontalAlignment="Left" Margin="0,0,10,8">
+                <ListView x:Name="lstRole" Height="401" SelectionChanged="lstRole_SelectionChanged" FontSize="13.333" Width="271" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="120" Header="User Name" DisplayMemberBinding="{Binding Item2}" />
+                            <GridViewColumn Width="120" Header="Role" DisplayMemberBinding="{Binding Item1.Post}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+            <GroupBox Header="Role Details" FontSize="21.333" Width="565" Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal">
+            		<StackPanel Height="400.627">
+            			<StackPanel Height="70">
+            				<Label Content="Role Template:" Width="313.803" FontSize="13.333"/>
+                            <ComboBox x:Name="cbRoleTemplate" Width="306.001" FontSize="13.333"/>
+            			</StackPanel>
+            			<StackPanel Height="40" Orientation="Horizontal">
+            				<Label Content="User Name:" Width="76.803" FontSize="13.333"/>
+            				<actb.control:AutoCompleteComboBox x:Name="accbUsers" FontSize="13.333" Width="230" Height="23.73333333"/>
+            			</StackPanel>
+            			<StackPanel Height="40" Orientation="Horizontal">
+            				<Label Content="Role:" Width="76.803" FontSize="13.333"/>
+            				<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="230" FontSize="13.333" x:Name="txtPost" />
+            			</StackPanel>
+            			<StackPanel Height="218">
+            				<Label Content="Description:" FontSize="13.333"/>
+            				<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="103" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
+            			</StackPanel>
+            			<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
+            				<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
+            				<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+
+            				<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
+            			</DockPanel>
+            		</StackPanel>
+            		<TreeView Width="226" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0,0,0,8">
+            			<TreeView.Resources>
+            				<Style TargetType="{x:Type TreeViewItem}">
+            					<Setter Property="HeaderTemplate">
+            						<Setter.Value>
+            							<DataTemplate>
+            								<StackPanel Orientation="Horizontal">
+            									<CheckBox Margin="4" x:Name="chk" Checked="chkBoxToggled" Unchecked="chkBoxToggled" Click="chkBoxClicked"/>
+            									<TextBlock Text="{Binding}" FontSize="13.333" />
+            								</StackPanel>
+            							</DataTemplate>
+            						</Setter.Value>
+            					</Setter>
+            				</Style>
+            			</TreeView.Resources>
+            		</TreeView>
+            	</StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Canvas>
+</Window>
