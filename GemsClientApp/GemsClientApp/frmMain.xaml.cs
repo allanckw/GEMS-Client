@@ -79,7 +79,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            loadEvents();
+           loadEvents();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -122,8 +122,8 @@ namespace Gems.UIWPF
                 {
                     WCFHelperClient client = new WCFHelperClient();
                     //  List<Event> list = client.ViewEvent(user).ToList<Event>();
-                    List<Guest> g = client.ViewGuest(ev.EventID).ToList<Guest>();
-                    lblGuestMsg.Content = "There are " + g.Count+" number of guest";
+                    int g_count = client.CountGuest(ev.EventID);
+                    lblGuestMsg.Content = "There are a total of " + g_count.ToString()+" guest";
 
                     List<Program> p = client.ViewProgram(ev.EventID).ToList<Program>();
 
@@ -147,6 +147,35 @@ namespace Gems.UIWPF
                         lblProgramMsg.Content = "There are "+p.Count+" items in the programs from "+min.ToShortTimeString()+" to "+max.ToShortTimeString();
                     }
 
+                    List<Role> r = client.ViewRole(user, ev).ToList<Role>();
+
+                    List<string> str_r = new List<string>();
+                    for (int j = 0; j < r.Count; j++)
+                    {
+                        str_r.Add(r[j].Post);
+                    }
+
+                    str_r = str_r.Distinct<string>().ToList<string>();
+                    int[] r_count = new int[str_r.Count];
+
+
+                    for (int k = 0; k < str_r.Count; k++)
+                    {
+                        for (int l = 0; l < r.Count; l++)
+                        {
+                            if (str_r[k] == r[l].Post)
+                            {
+                                r_count[k]++;
+                            }
+                        }
+                    }
+                    
+                        lblManpowerMsg.Content ="";
+                    for(int i=0;i<str_r.Count;i++)
+                    {
+                        lblManpowerMsg.Content = r_count[i].ToString() + " "+str_r[i].ToString()+Environment.NewLine +lblManpowerMsg.Content;
+                    }
+                    
                 }
                 catch(Exception ex)
                 {

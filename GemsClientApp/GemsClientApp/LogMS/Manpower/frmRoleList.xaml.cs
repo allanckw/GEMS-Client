@@ -79,7 +79,7 @@ namespace Gems.UIWPF
                         parent = new TreeViewItem() { Header = function.Grouping, IsExpanded = true };
                         root.Items.Add(parent);
                     }
-                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.RightsEnum }); 
+                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.FunctionEnum }); 
                 }
             }
             catch (Exception ex)
@@ -249,7 +249,7 @@ namespace Gems.UIWPF
                     client.AddRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
-                    client.EditRights(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
+                    client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
