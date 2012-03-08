@@ -67,6 +67,7 @@ namespace Gems.UIWPF
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
+
             DateTime d = DateTime.Now;
 
             dtpFrom.SelectedDate = dtpTo.SelectedDate = 
@@ -75,6 +76,55 @@ namespace Gems.UIWPF
             getHourlyNotifications();
             notify();
             loadEvents();
+            
+        }
+
+        
+
+        private void DisableAllRight()
+        {
+            mnuEvent.Visibility = Visibility.Collapsed;
+                mnuItemManageEvent.Visibility = Visibility.Collapsed;
+            //
+            mnuLocation.Visibility = Visibility.Collapsed;
+                mnuSearchFac.Visibility = Visibility.Collapsed;
+                mnuViewBookings.Visibility = Visibility.Collapsed;
+            //
+            mnuPrograms.Visibility = Visibility.Collapsed;
+            //
+            mnuItems.Visibility = Visibility.Collapsed;
+                mnuManageItem.Visibility = Visibility.Collapsed;
+            //
+            mnuTasks.Visibility = Visibility.Collapsed;
+            //
+            mnuManpower.Visibility = Visibility.Collapsed;
+                mnuRoles.Visibility = Visibility.Collapsed;
+            //
+            mnuGuests.Visibility = Visibility.Collapsed;
+
+   
+        }
+
+        private void EnableAllRight()
+        {
+            mnuEvent.Visibility = Visibility.Visible;
+            mnuItemManageEvent.Visibility = Visibility.Visible;
+            //
+            mnuLocation.Visibility = Visibility.Visible;
+            mnuSearchFac.Visibility = Visibility.Visible;
+            mnuViewBookings.Visibility = Visibility.Visible;
+            //
+            mnuPrograms.Visibility = Visibility.Visible;
+            //
+            mnuItems.Visibility = Visibility.Visible;
+            mnuManageItem.Visibility = Visibility.Visible;
+            //
+            mnuTasks.Visibility = Visibility.Visible;
+            //
+            mnuManpower.Visibility = Visibility.Visible;
+            mnuRoles.Visibility = Visibility.Visible;
+            //
+            mnuGuests.Visibility = Visibility.Visible;
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -98,8 +148,10 @@ namespace Gems.UIWPF
         }
 
         private void loadEventItems(){
+
             if (lstEventList.SelectedIndex != -1)
             {
+                
                 Event ev = (Event)lstEventList.SelectedItem;
                 FacilityBookingConfirmed fbc =  ev.ConfirmedFacilityBooking;
                 if (fbc == null)
@@ -175,13 +227,59 @@ namespace Gems.UIWPF
                     {
                         lblManpowerMsg.Content = r_count[i].ToString() + " "+str_r[i].ToString()+Environment.NewLine +lblManpowerMsg.Content;
                     }
-                    
+                    if(user.userID == ev.Organizerid)
+                        EnableAllRight();
+                    else
+                        SetRight(client.GetRights(ev.EventID,user.userID).ToList<EnumFunctions>());
                 }
                 catch(Exception ex)
                 {
+                    DisableAllRight();
                     MessageBox.Show(ex.Message);
                 }
 
+            }
+        }
+
+        private void SetRight(List<EnumFunctions> ef)
+        {
+            DisableAllRight();
+
+            if (user.isEventOrganizer || ef.Contains(EnumFunctions.Delete_Event) || ef.Contains(EnumFunctions.Edit_Event))
+                mnuEvent.Visibility = Visibility.Visible;
+            // mnuItemManageEvent.Visibility = Visibility.Visible;
+            //
+            if (user.isEventOrganizer)
+            {
+                mnuLocation.Visibility = Visibility.Visible;
+                mnuSearchFac.Visibility = Visibility.Visible;
+                mnuViewBookings.Visibility = Visibility.Visible;
+            }
+            //
+            if (ef.Contains(EnumFunctions.Edit_Programs) || ef.Contains(EnumFunctions.Create_Programs) || ef.Contains(EnumFunctions.Delete_Programs))
+                mnuPrograms.Visibility = Visibility.Visible;
+            //
+            if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Add_ItemType)
+                || ef.Contains(EnumFunctions.Update_Item) || ef.Contains(EnumFunctions.Update_ItemType)
+                || ef.Contains(EnumFunctions.Delete_Item) || ef.Contains(EnumFunctions.Delete_ItemType)
+                )
+            {
+                mnuItems.Visibility = Visibility.Visible;
+                mnuManageItem.Visibility = Visibility.Visible;
+            }
+            //
+            //if (ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions))
+            mnuTasks.Visibility = Visibility.Visible;
+            //
+            if (ef.Contains(EnumFunctions.Add_Guest) || ef.Contains(EnumFunctions.Edit_Guest) || ef.Contains(EnumFunctions.Delete_Guest))
+            {
+                mnuManpower.Visibility = Visibility.Visible;
+                mnuRoles.Visibility = Visibility.Visible;
+            }
+            //
+            if (ef.Contains(EnumFunctions.Add_Role) || ef.Contains(EnumFunctions.Edit_Role) || ef.Contains(EnumFunctions.Delete_Role) || ef.Contains(EnumFunctions.View_Role))
+            {
+                mnuGuests.Visibility = Visibility.Visible;
             }
         }
 
