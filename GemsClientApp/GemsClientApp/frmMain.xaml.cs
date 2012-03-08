@@ -113,6 +113,44 @@ namespace Gems.UIWPF
                           + Environment.NewLine +
                           "It is booked from " + fbc.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
                           + " to " + fbc.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
+
+
+                }
+
+                //guest
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    //  List<Event> list = client.ViewEvent(user).ToList<Event>();
+                    List<Guest> g = client.ViewGuest(ev.EventID).ToList<Guest>();
+                    lblGuestMsg.Content = "There are " + g.Count+" number of guest";
+
+                    List<Program> p = client.ViewProgram(ev.EventID).ToList<Program>();
+
+                    if (p.Count == 0)
+                        lblProgramMsg.Content = "No Programs Added Yet.";
+                    else
+                    {
+                        DateTime max=DateTime.MinValue, min=DateTime.MaxValue;
+                        for (int i = 0; i < p.Count; i++)
+                        {
+                            if(max < p[i].EndDateTime)
+                            {
+                                max = p[i].EndDateTime;
+                            }
+                            if (min > p[i].StartDateTime)
+                            {
+                                min = p[i].StartDateTime;
+                            }
+                        }
+
+                        lblProgramMsg.Content = "There are "+p.Count+" items in the programs from "+min.ToShortTimeString()+" to "+max.ToShortTimeString();
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
 
             }

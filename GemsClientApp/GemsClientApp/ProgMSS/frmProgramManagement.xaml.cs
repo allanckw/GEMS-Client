@@ -32,11 +32,12 @@ namespace Gems.UIWPF
                 cboEndHr.Items.Add(string.Format("{0:00}", i));
             }
 
-            for (int i = 0; i <= 55; i += 10)
+            for (int i = 0; i <= 55; i += 30)
             {
                 cboStartMin.Items.Add(string.Format("{0:00}", i));
                 cboEndMin.Items.Add(string.Format("{0:00}", i));
             }
+            cboStartHr.SelectedIndex = cboEndHr.SelectedIndex = cboStartMin.SelectedIndex = cboEndMin.SelectedIndex = 0;
         }
 
         public frmProgramManagement(User u, frmMain f, Event e)
@@ -70,7 +71,10 @@ namespace Gems.UIWPF
         {
             try
             {
-                lstProgram.ItemsSource = event_.Programs
+                WCFHelperClient client = new WCFHelperClient();
+                List<Program> progList = client.ViewProgram(event_.EventID).ToList<Program>();
+                client.Close();
+                lstProgram.ItemsSource = progList
                                                 .OrderBy(x => x.StartDateTime)
                                                 .ThenBy(x => x.EndDateTime)
                                                 .ToList<Program>();
@@ -79,7 +83,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            clearAll();
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -110,9 +114,18 @@ namespace Gems.UIWPF
                 return;
             }
 
-            DateTime SegmentStartDateTime = event_.StartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-            DateTime SegmentEndDateTime = event_.EndDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
+            //DateTime SegmentStartDateTime = event_.StartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
+            //DateTime SegmentEndDateTime = event_.EndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
+            //SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
+            //SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+
+            DateTime SegmentStartDateTime = event_.StartDateTime.Date;
+
+            DateTime SegmentEndDateTime = event_.EndDateTime.Date;
+
+            SegmentStartDateTime = SegmentStartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
+            SegmentStartDateTime = SegmentStartDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
             SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
 
             if (SegmentStartDateTime < event_.StartDateTime)
@@ -125,19 +138,34 @@ namespace Gems.UIWPF
                 MessageBox.Show("Event ends at " + event_.EndDateTime + ", program segment must end before that.");
                 return;
             }
-            try
+            //chk for overlap
+            for (int i = 0; i < lstProgram.Items.Count; i++)
             {
-                WCFHelperClient client = new WCFHelperClient();
-                if (lstProgram.SelectedIndex == -1)
-                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
-                else
-                    client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                client.Close();
+                Program p= (Program)lstProgram.Items[i];
+                if (
+                    (SegmentStartDateTime >= p.StartDateTime && SegmentStartDateTime <= p.EndDateTime)
+                    && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
+                    )
+                {
+                    MessageBox.Show("Programs cannot overlapp!");
+
+                    return;
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    if (lstProgram.SelectedIndex == -1)
+                        client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                    else
+                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                    client.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             loadPrograms();
         }
 
@@ -145,6 +173,7 @@ namespace Gems.UIWPF
         {
             if (lstProgram.SelectedIndex == -1)
             {
+                clearAll();
                 btnAdd.Content = "Add";
                 return;
             }
@@ -169,18 +198,20 @@ namespace Gems.UIWPF
 
         private void clearAll()
         {
-            lstProgram.SelectedIndex = -1;
+            
             txtName.Text = "";
-            cboStartHr.SelectedIndex = -1;
-            cboStartMin.SelectedIndex = -1;
-            cboEndHr.SelectedIndex = -1;
-            cboEndMin.SelectedIndex = -1;
+            cboStartHr.SelectedIndex = 0;
+            cboStartMin.SelectedIndex = 0;
+            cboEndHr.SelectedIndex = 0;
+            cboEndMin.SelectedIndex = 0;
             txtDescription.Text = "";
             btnAdd.Content = "Add";
         }
 
         private void clearAll(object sender, RoutedEventArgs e)
         {
+            
+            lstProgram.SelectedIndex = -1;
             clearAll();
         }
 

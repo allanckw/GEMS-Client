@@ -150,7 +150,7 @@ namespace Gems.UIWPF
                     MessageBox.Show("Invalid Satisfaction Value");
                     return;
                 }
-                lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedValue, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+                lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
             }
             else
             {
@@ -219,14 +219,14 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                lvItem.EditItem(user, (ItemTypes)cboItemTypeIL.SelectedValue, price, satisfactionValue);
+                lvItem.EditItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, price, satisfactionValue);
                 EnabledItemControl(true);
             }
         }
 
         private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
         {
-            lvItem.DeleteItem(user, (ItemTypes)cboItemTypeIL.SelectedValue);
+            lvItem.DeleteItem(user, (ItemTypes)cboItemTypeIL.SelectedItem);
         }
 
         public bool validateInput()
