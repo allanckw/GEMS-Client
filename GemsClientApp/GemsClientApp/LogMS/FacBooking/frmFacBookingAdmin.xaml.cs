@@ -58,7 +58,7 @@ namespace Gems.UIWPF
 
         private void btnViewTimeslot_Click(object sender, RoutedEventArgs e)
         {
-            if (lstRequestor.SelectedIndex == -1)
+            if (lstRequestor.SelectedIndex != -1)
             {
                 MessageBox.Show("Please select a booking request", "No request selected",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -92,8 +92,8 @@ namespace Gems.UIWPF
         {
             if (lstRequestor.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a booking request", "No request selected",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //MessageBox.Show("Please select a booking request", "No request selected",
+                    //MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             try
@@ -117,7 +117,7 @@ namespace Gems.UIWPF
 
         private void btnApprove_Click(object sender, RoutedEventArgs e)
         {
-            if (lstRequestor.SelectedIndex == -1)
+            if (this.dgLocation.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a booking request", "No request selected",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -142,6 +142,8 @@ namespace Gems.UIWPF
                 MessageBox.Show("Request have been approved!", "Approved",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 loadRequests();
+                dgLocation.ItemsSource = null;
+                lvTimeslot.Reset();
             }
             catch (Exception ex)
             {

@@ -54,7 +54,7 @@ Width="750" Height="600" Background="{x:Null}">
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>
-			<Button x:Name="btnCalculateBudget" Width="125" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,0,0" Content="Calculate Budget" FontSize="13" Height="25"/>
+			<Button x:Name="btnCalculateBudget" Width="125" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,0,0" Content="Calculate Budget" FontSize="13" Height="25" Visibility="Hidden" />
 		</StackPanel>
 	</GroupBox>
 </Page>

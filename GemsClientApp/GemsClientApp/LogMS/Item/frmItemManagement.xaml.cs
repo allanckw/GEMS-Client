@@ -108,6 +108,9 @@ namespace Gems.UIWPF
         {
             lvItemType.DeleteItemType(user, event_);
             rebindcboItemType4Item();
+            WCFHelperClient client = new WCFHelperClient();
+            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            lvItem.SetExistingSource(ItemList);
         }
 
         private void cboItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -139,6 +142,7 @@ namespace Gems.UIWPF
                     return;
                 }
                 lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
+                clearItemInput();
             }
             else
             {
