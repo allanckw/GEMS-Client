@@ -30,8 +30,8 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     			<StackPanel Orientation="Horizontal">
     				<StackPanel Height="400.627">
     					<StackPanel Height="70">
-    						<Label Content="Role Template:" Width="313.803" FontSize="13.333"/>
-    						<ComboBox x:Name="cbRoleTemplate" Width="306.001" FontSize="13.333"/>
+    						<!--<Label Content="Role Template:" Width="313.803" FontSize="13.333"/>
+    						<ComboBox x:Name="cbRoleTemplate" Width="306.001" FontSize="13.333"/>-->
     					</StackPanel>
     					<StackPanel Height="40" Orientation="Horizontal">
     						<Label Content="User Name:" Width="76.803" FontSize="13.333"/>

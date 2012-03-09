@@ -288,7 +288,7 @@ namespace Gems.UIWPF
 
         private void clearAll()
         {
-            cbRoleTemplate.SelectedIndex = -1;
+            //cbRoleTemplate.SelectedIndex = -1;
             lstRole.SelectedIndex = -1;
             txtPost.Text = "";
             txtDescription.Text = "";
