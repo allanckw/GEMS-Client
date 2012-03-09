@@ -15,11 +15,11 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     					<DataTemplate>
     						<StackPanel Margin="10" Orientation="Vertical">
     							<WrapPanel Orientation="Horizontal"  >
-    								<TextBlock Text="{Binding Item2}" TextWrapping="Wrap"/>
+    								<TextBlock Text="{Binding m_Item2}" TextWrapping="Wrap"/>
     							</WrapPanel>
     							<WrapPanel Orientation="Horizontal" >
     								<TextBlock Text="Role: " />
-    								<TextBlock Text="{Binding Item1.Post}" TextWrapping="Wrap"/>
+    								<TextBlock Text="{Binding m_Item1.Post}" TextWrapping="Wrap"/>
     							</WrapPanel>
     						</StackPanel>
     					</DataTemplate>

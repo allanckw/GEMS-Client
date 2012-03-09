@@ -206,7 +206,8 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList();
+                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                 
                 client.Close();
             }
             catch (Exception ex)
@@ -266,11 +267,11 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
-                Role selectedRole = selectedItem.Item1;
+                TupleOfRolestringRsiwEt5l selectedItem = ((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem);
+                Role selectedRole = selectedItem.m_Item1;
                 txtPost.Text = selectedRole.Post;
                 txtDescription.Text = selectedRole.Description;
-                accbUsers.AutoCompleteManager.UpdateText(selectedItem.Item2 + " (" + selectedRole.UserID + ")", false);
+                accbUsers.AutoCompleteManager.UpdateText(selectedItem.m_Item2 + " (" + selectedRole.UserID + ")", false);
                 btnAdd.Content = "Save";
                 List<EnumFunctions> rights = client.GetRights(event_.EventID, selectedRole.UserID).ToList();
                 foreach (var pair in checkBoxes)

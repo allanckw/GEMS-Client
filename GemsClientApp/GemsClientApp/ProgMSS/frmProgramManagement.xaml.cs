@@ -150,6 +150,7 @@ namespace Gems.UIWPF
                     client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
                 client.Close();
                 MessageBox.Show("Operation succeded!");
+                clearAll();
             }
             catch (Exception ex)
             {
