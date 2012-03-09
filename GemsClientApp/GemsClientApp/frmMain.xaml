@@ -18,8 +18,8 @@
             		<ImageBrush/>
             	</Menu.Background>
                 <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
-                    <MenuItem Header="Assign System Roles" Background="{x:Null}" Width="250" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
-                    <MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>
+                    <MenuItem Header="View Users/Assign System Roles" Background="{x:Null}" Width="320" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
+                    <!--<MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>-->
                     
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >

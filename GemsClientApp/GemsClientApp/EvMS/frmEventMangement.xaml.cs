@@ -90,7 +90,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.EditEvent(user, SelectedEvent, user.userID, txtEventName.Text, startTime, endTime, txtDesc.Text, txtWebsite.Text);
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.CreateEvent(user, txtEventName.Text, startTime, endTime, txtEventName.Text, txtWebsite.Text);
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
@@ -138,7 +138,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteEvent(user, E);
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {

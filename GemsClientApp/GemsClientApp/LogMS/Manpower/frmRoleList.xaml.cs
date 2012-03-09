@@ -248,7 +248,7 @@ namespace Gems.UIWPF
                         (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
@@ -313,7 +313,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {

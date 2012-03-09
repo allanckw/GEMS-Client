@@ -89,7 +89,7 @@ namespace Gems.UIWPF
                 }
                 client.Close();
                 
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
                 return true;
                 
             }
@@ -156,7 +156,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteGuest(user, (int)lstGuestList.SelectedValue);
                 client.Close();
-                MessageBox.Show("Operation succeded!");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
