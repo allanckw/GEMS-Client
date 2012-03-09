@@ -12,7 +12,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmGuestList.xaml
     /// </summary>
-    public partial class frmGuestList : Window
+    public partial class frmGuestList : Page
     {
 
         User user;
@@ -39,17 +39,6 @@ namespace Gems.UIWPF
         {
             lstGuestList.SelectedValuePath = "GuestId";
             loadGuests();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            mainFrame.Visibility = Visibility.Visible;
         }
 
         private void loadGuests()
@@ -111,6 +100,7 @@ namespace Gems.UIWPF
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             saveChanges();
+            MessageBox.Show("Operation succeded!");
         }
 
         private void lstGuestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -169,6 +159,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadGuests();
         }
 

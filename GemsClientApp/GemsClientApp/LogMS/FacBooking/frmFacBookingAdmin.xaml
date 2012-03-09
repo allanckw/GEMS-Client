@@ -8,22 +8,20 @@
 	x:Name="Window"
 	Title="frmLocationAdminRequest"
     Width="1080" Height="475" AllowsTransparency="True" WindowStyle="None" 
-    Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
+    WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="475" Width="1080">
-
-        </Path>
-        <Button x:Name="btnClose" Canvas.Left="1048.5" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="1025" Canvas.Top="8" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>
@@ -31,7 +29,7 @@
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Booking Approval" 
                Height="38" x:Name="label3" Width="824" FontFamily="Stencil" FontSize="20" />
         <StackPanel Canvas.Left="21" Canvas.Top="60" Orientation="Horizontal" Height="400" Width="1080">
-            <GroupBox Header="Requestors list" FontSize="16" FontWeight="Bold" Width="180">
+            <GroupBox Header="Requestors list" FontSize="16" Width="180">
                 <ListBox x:Name="lstRequestor" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
                      FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstRequestor_SelectionChanged">
                     <ListBox.ItemTemplate>
@@ -54,7 +52,7 @@
                 </ListBox>
             </GroupBox>
             <StackPanel Width="480" Margin="6,0,0,0">
-                <GroupBox Header="Requestor's Facility Bookings Details" FontSize="16" Margin="0,0,-150,0" Height="370" Width="480" HorizontalAlignment="Left" FontWeight="Bold">
+                <GroupBox Header="Requestor's Facility Bookings Details" FontSize="16" Margin="0,0,-150,0" Height="370" Width="480" HorizontalAlignment="Left">
                     <StackPanel Height="350" Margin="0,0,0,0" VerticalAlignment="Top" Width="482">
                         <StackPanel Height="120" Width="485">
                             <StackPanel Width="460" Orientation="Horizontal" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left">

@@ -4,23 +4,20 @@
     Title="GEMS Client" Height="369" Width="541"  Loaded="Window_Loaded"
     AllowsTransparency="True"  WindowStyle="None" WindowState="Normal"
     MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" 
-    Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen"  >
+    Foreground="{x:Null}" WindowStartupLocation="CenterScreen"  >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Height="346" Width="532" Opacity="1.0">
-
-        <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Fill="{StaticResource BlueThemeBG}" Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="0.95" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="0">
-        </Path>
-        <Button Canvas.Left="489" Canvas.Top="35" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="489" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"></Line>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"></Line>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>

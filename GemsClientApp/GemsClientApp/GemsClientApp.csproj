@@ -15,6 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -143,6 +145,9 @@
     <Compile Include="Notifications\Notifier.xaml.cs">
       <DependentUpon>Notifier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="frmOverview.xaml.cs">
+      <DependentUpon>frmOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgMSS\frmProgramManagement.xaml.cs">
       <DependentUpon>frmProgramManagement.xaml</DependentUpon>
     </Compile>
@@ -270,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="frmOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProgMSS\frmProgramManagement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -338,6 +347,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Gems.png" />
+    <Resource Include="Close.png" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -345,7 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BASS\" />
-    <Folder Include="LogMS\Manpower\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\evmsService\" />

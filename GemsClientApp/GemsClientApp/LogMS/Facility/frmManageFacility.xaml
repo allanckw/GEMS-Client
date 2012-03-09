@@ -5,22 +5,20 @@
 	x:Class="Gems.UIWPF.frmManageFacility"
 	x:Name="Window" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Title="frmLocationManagement"
-Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
+Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+	<Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Opacity="1.0" Width="678">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="500" Width="650">
-
-        </Path>
-        <Button x:Name="btnClose" Canvas.Left="614.5" Canvas.Top="8" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="670" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>
@@ -28,9 +26,9 @@ Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" Background
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Management" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
         <StackPanel Height="425" Width="629" Orientation="Horizontal" Canvas.Left="21" Canvas.Top="56">
             <StackPanel Width="207" Height="430" Margin="0" VerticalAlignment="Top">
-                <Label Content="Faculty" FontSize="14" FontWeight="Bold"/>
+                <Label Content="Faculty" FontSize="14"/>
                 <ComboBox Canvas.Left="200" Canvas.Top="8" Height="33" Name="cboFaculty" Width="191" SelectionChanged="cboFaculty_SelectionChanged" FontSize="14" FontWeight="Medium"/>
-                <Label Content="Venues" FontSize="14" FontWeight="Bold"/>
+                <Label Content="Venues" FontSize="14"/>
                 <ListBox x:Name="lstVenue" Height="300" SelectionChanged="lstVenue_SelectionChanged" Width="192" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -47,7 +45,7 @@ Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" Background
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
-            <GroupBox Header="Location Details" Width="410" FontSize="16" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Top" Height="420">
+            <GroupBox Header="Location Details" Width="410" FontSize="16" Margin="10,0,0,0" VerticalAlignment="Top" Height="420">
                 <StackPanel Height="350" Margin="0" VerticalAlignment="Top">
                     <StackPanel Height="275" Margin="0">
                         <Canvas Height="45">

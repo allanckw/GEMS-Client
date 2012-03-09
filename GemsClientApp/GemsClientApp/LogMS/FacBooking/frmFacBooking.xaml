@@ -6,29 +6,27 @@
     x:Class="Gems.UIWPF.frmFacBooking"	x:Name="Window"
 	Title="GEMS Event Management System"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Width="755" Height="725" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+	Width="755" Height="725" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="650" Width="700">
- 
-        </Path>
-        <Button x:Name="btnClose" Canvas.Left="658.5" Canvas.Top="22" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="709" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>
         </Button>
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facility Booking" Height="38" x:Name="label3" Width="587" FontFamily="Stencil" FontSize="20" />
         <StackPanel Canvas.Left="0" Canvas.Top="50" Height="575" Width="700">
-            <GroupBox   Width="408" FontSize="16" FontWeight="Bold" Height="164" >
+            <GroupBox   Width="408" FontSize="16" Height="164" >
                 <GroupBox.Header>
                     <TextBlock Text="Facilities Criteria" Foreground="Black"  Width="{Binding Path=Width,  Mode=Default}"/>
                 </GroupBox.Header>
@@ -60,7 +58,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox  Height="325" FontSize="16" FontWeight="Bold" Width="667">
+            <GroupBox  Height="325" FontSize="16" Width="667">
                 <GroupBox.Header>
                     <TextBlock Text="Search Results" Foreground="Black" Width="{Binding Path=Width,  Mode=Default}"/>
                 </GroupBox.Header>
@@ -88,8 +86,8 @@
                 </ListBox>
             </GroupBox>
             <StackPanel Height="50" Orientation="Horizontal">
-                <Button x:Name="btnView" Content="View Details" Width="105" Height="35" Margin="455,0,0,0" FontWeight="Bold" FontSize="14" Click="btnView_Click" />
-                <Button x:Name="btnBook" Content="Book Selected" Width="105" Height="35" Margin="20,0,0,0" FontWeight="Bold" FontSize="14" Click="btnBook_Click" />
+                <Button x:Name="btnView" Content="View Details" Width="105" Height="35" Margin="455,0,0,0" FontSize="14" Click="btnView_Click" />
+                <Button x:Name="btnBook" Content="Book Selected" Width="105" Height="35" Margin="20,0,0,0" FontSize="14" Click="btnBook_Click" />
             </StackPanel>
         </StackPanel>
     </Canvas>

@@ -1,64 +1,45 @@
-﻿<Window
+﻿<Page
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmGuestList"
 	x:Name="Window"
 	Title="frmGuestList"
-Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-    <Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="520" Width="700">
-
-        </Path>
-        <Button x:Name="btnClose" Canvas.Left="658.5" Canvas.Top="22" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
-                            <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Guest List" Height="38" x:Name="Header" Width="503" FontFamily="Stencil" FontSize="16" />
-        <StackPanel Height="444" Canvas.Left="21" Canvas.Top="60" Width="637.5" Orientation="Horizontal">
-        	<GroupBox Header="Guest List" Width="287" FontSize="21.333" HorizontalAlignment="Left" Margin="0,0,10,8">
-                <ListView x:Name="lstGuestList" Height="401" SelectionChanged="lstGuestList_SelectionChanged" FontSize="13.333" Width="271" SelectionMode="Single">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="160" Header="Name" DisplayMemberBinding="{Binding Name}"  />
-                            <GridViewColumn Width="100" Header="Contact" DisplayMemberBinding="{Binding Contact}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-        	</GroupBox>
-        	<GroupBox Header="Guest Details" FontSize="21.333" Width="338" Margin="0,0,0,8">
-        		<StackPanel>
-        			<StackPanel Height="31.313" Orientation="Horizontal">
-        				<Label Content="Name:" Width="66.803" FontSize="13.333"/>
-        				<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="13.333" Name="txtName" TextChanged="onTextChanged" />
-        			</StackPanel>
-        			<StackPanel Height="31.314" Orientation="Horizontal">
-        				<Label Content="Contact:" Width="66.803" FontSize="13.333"/>
-                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="13.333" Name="txtContact" TextChanged="onTextChanged"/>
-        			</StackPanel>
-        			<StackPanel Height="304">
-        				<Label Content="Description:" FontSize="13.333"/>
-                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13.333" Margin="8,0" Name="txtDescription" TextChanged="onTextChanged"/>
-        			</StackPanel>
-        			<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-                        <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
-        				<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
+    <GroupBox Header="Guests Management" FontSize="21.333">
+		<StackPanel Orientation="Horizontal" Margin="0">
+    		<GroupBox Header="Guest List" Width="350" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,8">
+    			<ListView x:Name="lstGuestList" SelectionChanged="lstGuestList_SelectionChanged" FontSize="13.333" SelectionMode="Single">
+    				<ListView.View>
+    					<GridView>
+    						<GridViewColumn Width="190" Header="Name" DisplayMemberBinding="{Binding Name}"  />
+    						<GridViewColumn Width="130" Header="Contact" DisplayMemberBinding="{Binding Contact}" />
+    					</GridView>
+    				</ListView.View>
+    			</ListView>
+    		</GroupBox>
+    		<GroupBox Header="Guest Details" FontSize="18.667" Width="376" Margin="0,0,0,8">
+    			<StackPanel>
+    				<StackPanel Height="31.313" Orientation="Horizontal">
+    					<Label Content="Name:" Width="66.803" FontSize="13.333"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13.333" x:Name="txtName" TextChanged="onTextChanged" />
+    				</StackPanel>
+    				<StackPanel Height="31.314" Orientation="Horizontal">
+    					<Label Content="Contact:" Width="66.803" FontSize="13.333"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13.333" x:Name="txtContact" TextChanged="onTextChanged"/>
+    				</StackPanel>
+    				<StackPanel Height="304">
+    					<Label Content="Description:" FontSize="13.333"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13.333" Margin="8,0" x:Name="txtDescription" TextChanged="onTextChanged"/>
+    				</StackPanel>
+    				<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
+    					<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
+    					<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
                         
-        				<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
-        			</DockPanel>
-        		</StackPanel>
-        	</GroupBox>
+    					<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
+    				</DockPanel>
+    			</StackPanel>
+    		</GroupBox>
         </StackPanel>
-    </Canvas>
-</Window>
+	</GroupBox>
+</Page>

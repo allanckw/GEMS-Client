@@ -4,23 +4,20 @@
         Title="GEMS Client" Height="400" Width="600"    AllowsTransparency="True"  
         Loaded="Window_Loaded"
         WindowStyle="None" WindowState="Normal"    MouseLeftButtonDown="Window_MouseLeftButtonDown" 
-        ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Height="346" Width="532" Opacity="1.0">
-
-        <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path Fill="{StaticResource BlueThemeBG}" Stroke="DarkGray" StrokeThickness="2" Height="346" Width="532" Opacity="1.0" Data="M40,20 L490,20 A40,55,0,0,1,520,50 L520,300 A40,55,0,0,1,490,330 L40,330 A40,55,0,0,1,10,290 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="12" Canvas.Top="-14">
-        </Path>
-        <Button Canvas.Left="497" Canvas.Top="14" Height="0" Width="0" x:Name="btnExit" Click="btnExit_Click">
+        <Button x:Name="btnExit" Canvas.Left="518" Height="0" Width="0" Click="btnExit_Click" Canvas.Top="-11">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"></Line>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"></Line>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>

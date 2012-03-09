@@ -5,30 +5,28 @@
     xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
 	x:Name="Window" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Title="frmBookingFacilityPriority"
-    Width="732" Height="580" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" 
+    Width="732" Height="580" AllowsTransparency="True" WindowStyle="None"
     WindowStartupLocation="CenterScreen" >
-	<Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="570" Width="700">
-
-		</Path>
-		<Button x:Name="btnClose" Canvas.Left="658.5" Canvas.Top="22" Height="0" Width="0" Click="btnClose_Click">
-			<Button.Template>
-				<ControlTemplate>
-					<Canvas>
-						<Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
-							<Rectangle.Fill>
-								<SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
-							</Rectangle.Fill>
-						</Rectangle>
-						<Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-						<Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
-					</Canvas>
-				</ControlTemplate>
-			</Button.Template>
-		</Button>
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
+    <Canvas Opacity="1.0">
+        <Button x:Name="btnExit" Canvas.Left="682" Canvas.Top="18" Height="0" Width="0" Click="btnClose_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Rectangle Width="30" Height="30">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Location" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
 		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="60" Width="650">
-            <GroupBox Header="Facility Booking Time"  Width="649" FontSize="16" FontWeight="Bold" Height="69">
+            <GroupBox Header="Facility Booking Time"  Width="649" FontSize="16" Height="82" Margin="0.5,0">
 				<StackPanel Height="80" Orientation="Horizontal" Margin="0,0,-12,0">
 					<Canvas Height="51" Margin="0" Width="591" HorizontalAlignment="Left" VerticalAlignment="Top">
 						<Label Canvas.Left="-1" Canvas.Top="11" Content="From: " x:Name="label2" FontSize="14" />
@@ -39,7 +37,7 @@
 				</StackPanel>
 			</GroupBox>
 			<StackPanel Width="650" HorizontalAlignment="Left" Height="410">
-				<GroupBox Header="Please Arrange Your choice of Location" Height="350" FontSize="21.333" Margin="0" Width="650" HorizontalAlignment="Left">
+				<GroupBox Header="Please Arrange Your choice of Location" Height="350" FontSize="16" Margin="0" Width="650" HorizontalAlignment="Left">
 					<DataGrid x:Name="dgFacility" FontSize="16">
 						<DataGrid.Columns>
 							<DataGridComboBoxColumn x:Name="cboPriority" ItemsSource="{Binding Collection}" TextBinding="{Binding Collection}" Header="Priority" />
@@ -67,7 +65,7 @@
                         </DataGrid.Columns>
 					</DataGrid>
 				</GroupBox>
-				<Button x:Name="btnSubmit" Content="Submit" Width="75" FontWeight="DemiBold" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="34" Click="btnSubmit_Click" />
+				<Button x:Name="btnSubmit" Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="34" Click="btnSubmit_Click" />
 			</StackPanel>
 		</StackPanel>
 	</Canvas>

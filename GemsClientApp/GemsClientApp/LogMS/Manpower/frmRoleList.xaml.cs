@@ -39,7 +39,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmRoleList.xaml
     /// </summary>
-    public partial class frmRoleList : Window
+    public partial class frmRoleList : Page
     {
 
         User user;
@@ -116,18 +116,6 @@ namespace Gems.UIWPF
                 }
             }
         }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            mainFrame.Visibility = Visibility.Visible;
-        }
-
 
         private UIElement GetChildControl(DependencyObject parentObject, string childName)
         {
@@ -258,6 +246,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 
@@ -322,6 +311,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 

@@ -5,7 +5,10 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="GEMS Administrator" Height="600" Width="630"
     AllowsTransparency="True" WindowStyle="None" WindowState="Normal" Loaded="Window_Loaded"
-    MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="{x:Null}" Foreground="{x:Null}">
+    MouseLeftButtonDown="Window_MouseLeftButtonDown" Foreground="{x:Null}" xmlns:my="clr-namespace:Gems.UIWPF.CustomCtrl">
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Window.Resources>
         <ObjectDataProvider x:Key="roleData" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -15,20 +18,15 @@
 
     </Window.Resources>
     <Canvas Height="600" Width="588" Opacity="1.0">
-        <!--Non-Rectangular window edge, created with PathGeometry-->
-        <Path  Fill="{StaticResource BlueThemeBG}" Stroke="DarkGray" StrokeThickness="2" Height="640" Width="588" Opacity="1.0" Data="M40,20 L540,20 A40,55,0,0,1,580,50 L580,530 A40,55,0,0,1,550,570 L40,570 A40,55,0,0,1,10,540 L10,45 A40,55,0,0,1,40,20 z" Canvas.Left="0" Canvas.Top="3">
-        </Path>
-        <Button Canvas.Left="552" Canvas.Top="35" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="568" Canvas.Top="17" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"></Line>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"></Line>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>

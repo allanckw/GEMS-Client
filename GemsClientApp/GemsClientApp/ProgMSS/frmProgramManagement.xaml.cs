@@ -11,7 +11,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmProgramList.xaml
     /// </summary>
-    public partial class frmProgramManagement : Window
+    public partial class frmProgramManagement : Page
     {
 
         User user;
@@ -20,7 +20,7 @@ namespace Gems.UIWPF
 
         public frmProgramManagement()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             
         }
 
@@ -51,20 +51,9 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CreateDTPData();
-            txtDate.Text = event_.StartDateTime.ToString("dd MMM yyyy");
+            txtDate.Content = event_.StartDateTime.ToString("dd MMM yyyy");
             lstProgram.SelectedValuePath = "ProgramId";
             loadPrograms();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            mainFrame.Visibility = Visibility.Visible;
         }
 
         private void loadPrograms()
@@ -147,25 +136,26 @@ namespace Gems.UIWPF
                     && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
                     )
                 {
-                    MessageBox.Show("Programs cannot overlapp!");
+                    MessageBox.Show("Programs cannot overlap!");
 
                     return;
                 }
             }
-                try
-                {
-                    WCFHelperClient client = new WCFHelperClient();
-                    if (lstProgram.SelectedIndex == -1)
-                        client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
-                    else
-                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                    client.Close();
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                if (lstProgram.SelectedIndex == -1)
+                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                else
+                    client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                client.Close();
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MessageBox.Show("Operation succeded!");
             loadPrograms();
         }
 
@@ -229,6 +219,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadPrograms();
         }
 

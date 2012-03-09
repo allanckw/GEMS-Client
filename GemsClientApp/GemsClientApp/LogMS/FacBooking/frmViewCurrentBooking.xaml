@@ -6,28 +6,27 @@
 	x:Class="Gems.UIWPF.frmViewCurrentBooking"
 	x:Name="Window" Loaded="Window_Loaded" Activated="Window_Activated" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Title="frmViewCurrentBooking"
-Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"  WindowStartupLocation="CenterScreen" >
-	<Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="600" Width="900">
-		</Path>
-		<Button x:Name="btnClose" Canvas.Left="850" Canvas.Top="18" Height="0" Width="0" Click="btnClose_Click">
-			<Button.Template>
-				<ControlTemplate>
-					<Canvas>
-						<Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
-							<Rectangle.Fill>
-								<SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
-							</Rectangle.Fill>
-						</Rectangle>
-						<Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-						<Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
-					</Canvas>
-				</ControlTemplate>
-			</Button.Template>
-		</Button>
+Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
+    <Canvas Opacity="1.0">
+        <Button x:Name="btnExit" Canvas.Left="850" Canvas.Top="18" Height="0" Width="0" Click="btnClose_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Rectangle Width="30" Height="30">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Bookings" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="20" />
-		<StackPanel Height="555" Canvas.Left="21" Canvas.Top="56" Width="900" Orientation="Horizontal">
-			<GroupBox Header="Filter" FontSize="16" Width="240" FontWeight="Bold" Height="555" VerticalAlignment="Top">
+		<StackPanel Height="536" Canvas.Left="21" Canvas.Top="56" Width="879" Orientation="Horizontal">
+			<GroupBox Header="Filter" FontSize="16" Width="240" Height="523" VerticalAlignment="Top">
 				<StackPanel Margin="0" Width="220" Height="517" VerticalAlignment="Top">
 					<Label Content="Event List" FontSize="12"/>
 					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0"/>
@@ -37,7 +36,7 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" Background
 					<CheckBox x:Name="chkAllStatus" Content="View All Status" FontSize="12" Margin="5,5,0,0" IsChecked="True" />
                     <Button Height="25" Width="72" Margin="0,0,-145,0" Name="btnFilter" Content="Go" FontSize="12" Click="btnFilter_Click" />
                     <Label Content="Request List" FontSize="12" Margin="0,5,0,0" Height="25" />
-                    <ListBox x:Name="lstRequest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="12" Height="311" Margin="2,0,0,0" Width="210" HorizontalAlignment="Left" SelectionChanged="lstRequest_SelectionChanged">
+                    <ListBox x:Name="lstRequest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="12" Height="291" Margin="2,0,0,0" Width="210" HorizontalAlignment="Left" SelectionChanged="lstRequest_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5" Orientation="Vertical">
@@ -58,7 +57,7 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" Background
                     </ListBox>
                 </StackPanel>
 			</GroupBox>
-			<GroupBox Header="Current Facility Booking List" Width="600" FontSize="16" Margin="10,0,0,0" FontWeight="Bold" Height="500" VerticalAlignment="Top">
+			<GroupBox Header="Current Facility Booking List" Width="600" FontSize="16" Margin="10,0,0,0" FontWeight="Normal" Height="523" VerticalAlignment="Top">
 				<StackPanel Height="500" Width="592" HorizontalAlignment="Left" VerticalAlignment="Top">
 					<StackPanel Height="150" Margin="0" Width="600" HorizontalAlignment="Left">
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">

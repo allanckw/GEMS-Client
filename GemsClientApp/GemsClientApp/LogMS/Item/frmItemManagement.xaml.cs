@@ -11,7 +11,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmItemManagement.xaml
     /// </summary>
-    public partial class frmItemManagement : Window
+    public partial class frmItemManagement : Page
     {
         private Window mainFrame;
         private User user;
@@ -37,18 +37,6 @@ namespace Gems.UIWPF
             ExistingLoad();
 
         }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            mainFrame.Visibility = Visibility.Visible;
-        }
-
 
         private void refreshItemTypes()
         {

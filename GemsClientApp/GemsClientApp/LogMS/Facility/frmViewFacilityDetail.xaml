@@ -4,22 +4,21 @@
 	x:Class="Gems.UIWPF.frmViewFacilityDetail"
 	x:Name="Window" MouseLeftButtonDown="Window_MouseLeftButtonDown"  Loaded="Window_Loaded"
 	Title="frmViewFacilityDetail"
-    Width="528" Height="435" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" 
+    Width="528" Height="435" AllowsTransparency="True" WindowStyle="None"
     WindowStartupLocation="CenterScreen" >
+	<Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
     <Canvas Opacity="1.0">
-        <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="375" Width="500">
-        </Path>
-        <Button x:Name="btnClose" Canvas.Left="475" Canvas.Top="7" Height="0" Width="0"  Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="481" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
-                        <Rectangle Width="15" Height="15" Stroke="Black" RadiusX="3" RadiusY="3">
+                        <Rectangle Width="30" Height="30">
                             <Rectangle.Fill>
-                                <SolidColorBrush x:Name="myAnimatedBrush" Color="Red" />
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Line X1="3" Y1="3" X2="12" Y2="12" Stroke="White" StrokeThickness="2"/>
-                        <Line X1="12" Y1="3" X2="3" Y2="12" Stroke="White" StrokeThickness="2"/>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>

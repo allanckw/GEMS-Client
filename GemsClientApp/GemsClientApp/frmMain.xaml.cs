@@ -129,7 +129,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-           loadEvents();
+           //loadEvents();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -144,101 +144,7 @@ namespace Gems.UIWPF
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;
-            loadEventItems();
-        }
-
-        private void loadEventItems(){
-
-            if (lstEventList.SelectedIndex != -1)
-            {
-                
-                Event ev = (Event)lstEventList.SelectedItem;
-                FacilityBookingConfirmed fbc =  ev.ConfirmedFacilityBooking;
-                if (fbc == null)
-                {
-                    lblLocationMsg.Content = "The venue to hold the event is not confirmed yet";
-                }
-                else
-                {
-                    lblLocationMsg.Content = "The venue to hold this event is in " +
-                          fbc.Faculty.ToString() + " " + " at " + fbc.Venue + " " + Environment.NewLine
-                          + Environment.NewLine +
-                          "It is booked from " + fbc.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
-                          + " to " + fbc.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
-
-
-                }
-
-                //guest
-                try
-                {
-                    WCFHelperClient client = new WCFHelperClient();
-                    //  List<Event> list = client.ViewEvent(user).ToList<Event>();
-                    int g_count = client.CountGuest(ev.EventID);
-                    lblGuestMsg.Content = "There are a total of " + g_count.ToString()+" guest";
-
-                    List<Program> p = client.ViewProgram(ev.EventID).ToList<Program>();
-
-                    if (p.Count == 0)
-                        lblProgramMsg.Content = "No Programs Added Yet.";
-                    else
-                    {
-                        DateTime max=DateTime.MinValue, min=DateTime.MaxValue;
-                        for (int i = 0; i < p.Count; i++)
-                        {
-                            if(max < p[i].EndDateTime)
-                            {
-                                max = p[i].EndDateTime;
-                            }
-                            if (min > p[i].StartDateTime)
-                            {
-                                min = p[i].StartDateTime;
-                            }
-                        }
-
-                        lblProgramMsg.Content = "There are "+p.Count+" items in the programs from "+min.ToShortTimeString()+" to "+max.ToShortTimeString();
-                    }
-
-                    List<Role> r = client.ViewRole(user, ev).ToList<Role>();
-
-                    List<string> str_r = new List<string>();
-                    for (int j = 0; j < r.Count; j++)
-                    {
-                        str_r.Add(r[j].Post);
-                    }
-
-                    str_r = str_r.Distinct<string>().ToList<string>();
-                    int[] r_count = new int[str_r.Count];
-
-
-                    for (int k = 0; k < str_r.Count; k++)
-                    {
-                        for (int l = 0; l < r.Count; l++)
-                        {
-                            if (str_r[k] == r[l].Post)
-                            {
-                                r_count[k]++;
-                            }
-                        }
-                    }
-                    
-                        lblManpowerMsg.Content ="";
-                    for(int i=0;i<str_r.Count;i++)
-                    {
-                        lblManpowerMsg.Content = r_count[i].ToString() + " "+str_r[i].ToString()+Environment.NewLine +lblManpowerMsg.Content;
-                    }
-                    if(user.userID == ev.Organizerid)
-                        EnableAllRight();
-                    else
-                        SetRight(client.GetRights(ev.EventID,user.userID).ToList<EnumFunctions>());
-                }
-                catch(Exception ex)
-                {
-                    DisableAllRight();
-                    MessageBox.Show(ex.Message);
-                }
-
-            }
+            //loadEventItems();
         }
 
         private void SetRight(List<EnumFunctions> ef)
@@ -394,8 +300,7 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmGuestList = new frmGuestList(user, this, ev);
-                this.Visibility = Visibility.Collapsed;
-                frmGuestList.ShowDialog();
+                frame.Navigate(frmGuestList);
             }
         }
 
@@ -411,8 +316,8 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmProgramManagement = new frmProgramManagement(user, this, ev);
-                this.Visibility = Visibility.Collapsed;
-                frmProgramManagement.ShowDialog();
+                //this.Visibility = Visibility.Collapsed;
+                frame.Navigate(frmProgramManagement);
             }
         }
 
@@ -474,8 +379,7 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmManageItem = new frmItemManagement(user, ev, this);
-                this.Visibility = Visibility.Collapsed;
-                frmManageItem.ShowDialog();
+                frame.Navigate(frmManageItem);
             }
         }
 
@@ -497,8 +401,7 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmRoleList = new frmRoleList(user, this, ev);
-                this.Visibility = Visibility.Collapsed; 
-                frmRoleList.ShowDialog();
+                frame.Navigate(frmRoleList);
             }
         }
 
@@ -511,8 +414,28 @@ namespace Gems.UIWPF
 
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            loadEventItems();
+            if (lstEventList.SelectedIndex != -1)
+            {
+                try
+                {
+                    Event ev = (Event)lstEventList.SelectedItem;
+                    frame.Navigate(new frmOverview(user, ev));
+                    
+                    if (user.userID == ev.Organizerid)
+                        EnableAllRight();
+                    else
+                    {
+                        WCFHelperClient client = new WCFHelperClient();
+                        SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
+                        client.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DisableAllRight();
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
-
     }
 }
