@@ -49,7 +49,7 @@ namespace Gems.UIWPF
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            mainFrame.Visibility = Visibility.Visible;
+            //mainFrame.Visibility = Visibility.Visible;
         }
 
         private void radUnread_Checked(object sender, RoutedEventArgs e)

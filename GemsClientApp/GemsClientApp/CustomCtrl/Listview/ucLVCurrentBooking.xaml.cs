@@ -19,6 +19,12 @@ namespace Gems.UIWPF.CustomCtrl
             _details = new ObservableCollection<BookingDetail>();
         }
 
+        public void ClearSource()
+        {
+            _details.Clear();
+            lv.ItemsSource = _details;
+        }
+
         public void setSource(FacilityBookingRequest fbr)
         {
             _details.Clear();

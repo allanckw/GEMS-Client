@@ -129,7 +129,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-           //loadEvents();
+           loadEvents();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -230,7 +230,7 @@ namespace Gems.UIWPF
         private void mnuNotify_Click(object sender, RoutedEventArgs e)
         {
             var frmNotif = new frmNotificationList(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmNotif.ShowDialog();
         }
 

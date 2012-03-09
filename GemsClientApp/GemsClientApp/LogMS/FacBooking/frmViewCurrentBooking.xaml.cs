@@ -71,6 +71,7 @@ namespace Gems.UIWPF
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
+            ClearDetail();
             WCFHelperClient client = new WCFHelperClient();
 
             if (chkAllStatus.IsChecked.Value == false && cboStatus.SelectedIndex == -1)
@@ -95,12 +96,23 @@ namespace Gems.UIWPF
             client.Close();
         }
 
+        private void ClearDetail()
+        {
+            txtEventName.Text = "";
+            txtRemarks.Text = "";
+            txtRequestor.Text = "";
+            txtStatus.Text = "";
+            lblEndTime.Content = "";
+            lblStartTime.Content = "";
+            lvCurrentBooking.ClearSource();
+        }
+
         private void lstRequest_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (lstRequest.SelectedIndex == -1)
             {
-                MessageBox.Show("Please Select a request!", "Invalid input",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //MessageBox.Show("Please Select a request!", "Invalid input",
+                    //MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
