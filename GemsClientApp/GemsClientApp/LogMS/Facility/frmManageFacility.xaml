@@ -81,7 +81,8 @@ Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" WindowStar
                     <StackPanel Height="50" Orientation="Horizontal">
                         <Button x:Name="btnSave" Content="Save" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="25" Margin="5,5,0,0" Click="btnSave_Click" />
                         <Button x:Name="btnDelete" Content="Delete" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="25" Margin="8,5,0,0" Click="btnDelete_Click" />
-                        
+                        <Button x:Name="btnCancel" Content="Cancel" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="25" Margin="8,5,0,0" Click="btnCancel_Click" />
+
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

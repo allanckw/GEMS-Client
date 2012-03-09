@@ -79,30 +79,30 @@ namespace Gems.UIWPF
             
         }
 
-        
+
 
         private void DisableAllRight()
         {
             mnuEvent.Visibility = Visibility.Collapsed;
-                mnuItemManageEvent.Visibility = Visibility.Collapsed;
+            mnuItemManageEvent.Visibility = Visibility.Collapsed;
             //
             mnuLocation.Visibility = Visibility.Collapsed;
-                mnuSearchFac.Visibility = Visibility.Collapsed;
-                mnuViewBookings.Visibility = Visibility.Collapsed;
+            mnuSearchFac.Visibility = Visibility.Collapsed;
+            mnuViewBookings.Visibility = Visibility.Collapsed;
             //
             mnuPrograms.Visibility = Visibility.Collapsed;
             //
             mnuItems.Visibility = Visibility.Collapsed;
-                mnuManageItem.Visibility = Visibility.Collapsed;
+            mnuManageItem.Visibility = Visibility.Collapsed;
             //
             mnuTasks.Visibility = Visibility.Collapsed;
             //
             mnuManpower.Visibility = Visibility.Collapsed;
-                mnuRoles.Visibility = Visibility.Collapsed;
+            mnuRoles.Visibility = Visibility.Collapsed;
             //
             mnuGuests.Visibility = Visibility.Collapsed;
 
-   
+
         }
 
         private void EnableAllRight()
@@ -165,9 +165,9 @@ namespace Gems.UIWPF
             if (ef.Contains(EnumFunctions.Edit_Programs) || ef.Contains(EnumFunctions.Create_Programs) || ef.Contains(EnumFunctions.Delete_Programs))
                 mnuPrograms.Visibility = Visibility.Visible;
             //
-            if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Add_ItemType)
-                || ef.Contains(EnumFunctions.Update_Item) || ef.Contains(EnumFunctions.Update_ItemType)
-                || ef.Contains(EnumFunctions.Delete_Item) || ef.Contains(EnumFunctions.Delete_ItemType)
+            if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Manage_ItemType)
+                || ef.Contains(EnumFunctions.Update_Item)
+                || ef.Contains(EnumFunctions.Delete_Item)
                 )
             {
                 mnuItems.Visibility = Visibility.Visible;
@@ -426,7 +426,20 @@ namespace Gems.UIWPF
                     else
                     {
                         WCFHelperClient client = new WCFHelperClient();
-                        SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
+                        
+
+                        if (user.userID == ev.Organizerid || user.isSystemAdmin)
+                            EnableAllRight();
+                        else if (user.isFacilityAdmin)
+                        {
+                            DisableAllRight();
+                            mnuLocation.Visibility = Visibility.Visible;
+
+                            mnuViewBookings.Visibility = Visibility.Visible;
+                        }
+                        else
+                            SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
+
                         client.Close();
                     }
                 }

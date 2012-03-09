@@ -168,6 +168,12 @@ namespace Gems.UIWPF
             //}
         }
 
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            lstVenue.SelectedIndex = -1;
+            clearAllTextBoxes();
+        }
+
 
     }
 }
