@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using dragonz.actb.core;
 using dragonz.actb.provider;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Gems.UIWPF
 {
@@ -96,25 +97,30 @@ namespace Gems.UIWPF
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
         {
-            TreeViewItem root = (TreeViewItem)tvFunctions.Items[0];
-            CheckBox chkRoot = (CheckBox)GetChildControl(root, "chk");
-            chkRoot.IsThreeState = true;
-            chkRoot.Tag = root.Header.ToString();
-            checkBoxes.Add("", new List<CheckBox>() { chkRoot });
-            foreach (TreeViewItem parent in root.Items)
-            {
-                CheckBox chkParent = (CheckBox)GetChildControl(parent, "chk");
-                chkParent.IsThreeState = true;
-                chkParent.Tag = parent.Header.ToString();
-                List<CheckBox> list = new List<CheckBox>() { chkParent };
-                checkBoxes.Add(parent.Header.ToString(), list);
-                foreach (TreeViewItem child in parent.Items)
+            this.Dispatcher.BeginInvoke(
+                DispatcherPriority.Loaded,
+                new Action(() =>
                 {
-                    CheckBox chkChild = (CheckBox)GetChildControl(child, "chk");
-                    chkChild.Tag = Tuple.Create((EnumFunctions)child.Tag, parent.Header.ToString());
-                    list.Add(chkChild);
-                }
-            }
+                    TreeViewItem root = (TreeViewItem)tvFunctions.Items[0];
+                    CheckBox chkRoot = (CheckBox)GetChildControl(root, "chk");
+                    chkRoot.IsThreeState = true;
+                    chkRoot.Tag = root.Header.ToString();
+                    checkBoxes.Add("", new List<CheckBox>() { chkRoot });
+                    foreach (TreeViewItem parent in root.Items)
+                    {
+                        CheckBox chkParent = (CheckBox)GetChildControl(parent, "chk");
+                        chkParent.IsThreeState = true;
+                        chkParent.Tag = parent.Header.ToString();
+                        List<CheckBox> list = new List<CheckBox>() { chkParent };
+                        checkBoxes.Add(parent.Header.ToString(), list);
+                        foreach (TreeViewItem child in parent.Items)
+                        {
+                            CheckBox chkChild = (CheckBox)GetChildControl(child, "chk");
+                            chkChild.Tag = Tuple.Create((EnumFunctions)child.Tag, parent.Header.ToString());
+                            list.Add(chkChild);
+                        }
+                    }
+                }));
         }
 
         private UIElement GetChildControl(DependencyObject parentObject, string childName)
@@ -241,12 +247,12 @@ namespace Gems.UIWPF
                         (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 
@@ -306,12 +312,12 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
                 client.Close();
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 

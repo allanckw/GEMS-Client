@@ -149,13 +149,13 @@ namespace Gems.UIWPF
                 else
                     client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
                 client.Close();
-
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
+            
             loadPrograms();
         }
 
@@ -214,12 +214,12 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteProgram(user, ((Program)lstProgram.SelectedItem).ProgramID);
                 client.Close();
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
             loadPrograms();
         }
 

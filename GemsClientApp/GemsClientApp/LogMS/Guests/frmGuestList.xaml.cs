@@ -89,6 +89,7 @@ namespace Gems.UIWPF
                 }
                 client.Close();
                 return true;
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
@@ -100,7 +101,6 @@ namespace Gems.UIWPF
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             saveChanges();
-            MessageBox.Show("Operation succeded!");
         }
 
         private void lstGuestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,12 +154,12 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteGuest(user, (int)lstGuestList.SelectedValue);
                 client.Close();
+                MessageBox.Show("Operation succeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
             loadGuests();
         }
 
