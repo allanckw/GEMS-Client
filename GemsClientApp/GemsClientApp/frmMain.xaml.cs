@@ -129,7 +129,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-           loadEvents();
+           loadEventsAuto();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -144,6 +144,37 @@ namespace Gems.UIWPF
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;
+            //loadEventItems();
+        }
+
+        private void loadEventsAuto()
+        {
+
+            bool nthselected = (lstEventList.SelectedIndex == -1);
+            //SelectionChanged="lstEventList_SelectionChanged"
+
+            lstEventList.SelectionChanged -=lstEventList_SelectionChanged;
+            int Eid=0;
+            if(!nthselected)
+            Eid = ((Event)lstEventList.SelectedItem).EventID;
+            WCFHelperClient client = new WCFHelperClient();
+            List<Event> list = client.ViewEvent(user).ToList<Event>();
+            lstEventList.ItemsSource = list;
+            client.Close();
+            if (!nthselected)
+            {
+                for (int i = 0; i < lstEventList.Items.Count; i++)
+                {
+                    if (((Event)lstEventList.Items[i]).EventID == Eid)
+                    {
+                        lstEventList.SelectedIndex = i;
+                        lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+                        return;
+                    }
+                }
+            }
+            lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+            //lstEventList.SelectedIndex = 0;
             //loadEventItems();
         }
 

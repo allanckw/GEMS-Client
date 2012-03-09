@@ -88,6 +88,7 @@ namespace Gems.UIWPF
                     changed = false;
                 }
                 client.Close();
+                
                 MessageBox.Show("Operation succeded!");
                 return true;
                 
