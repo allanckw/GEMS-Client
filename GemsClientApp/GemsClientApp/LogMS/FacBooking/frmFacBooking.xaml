@@ -6,12 +6,12 @@
     x:Class="Gems.UIWPF.frmFacBooking"	x:Name="Window"
 	Title="GEMS Event Management System"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Width="755" Height="725" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+	Width="719" Height="637" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0">
-        <Button x:Name="btnClose" Canvas.Left="709" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+    <Canvas Opacity="1.0" Height="605" Width="770">
+        <Button x:Name="btnClose" Canvas.Left="648" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>

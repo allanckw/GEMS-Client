@@ -247,14 +247,14 @@ namespace Gems.UIWPF
         private void mnuItemAssSR_Click(object sender, RoutedEventArgs e)
         {
             var frmAssn = new frmSearchUsers(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmAssn.ShowDialog();
         }
 
         private void mnuItemViewUsers_Click(object sender, RoutedEventArgs e)
         {
             var viewUserForm = new frmViewUsers(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             viewUserForm.ShowDialog();
         }
 
@@ -316,7 +316,7 @@ namespace Gems.UIWPF
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
         {
             var frmFacManage = new frmManageFacility(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmFacManage.ShowDialog();
         }
 
@@ -394,7 +394,7 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmFacSearch = new frmFacBooking(user, ev, this);
-                this.Visibility = Visibility.Collapsed;
+                //this.Visibility = Visibility.Collapsed;
                 frmFacSearch.ShowDialog();
             }
         }
@@ -417,7 +417,7 @@ namespace Gems.UIWPF
         private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
         {
             var frmManageBookings = new frmFacBookingAdmin(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmManageBookings.ShowDialog();
         }
 
@@ -439,7 +439,7 @@ namespace Gems.UIWPF
         private void mnuViewBookings_Click(object sender, RoutedEventArgs e)
         {
             var frmViewBookings = new frmViewCurrentBooking(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmViewBookings.ShowDialog();
         }
 
