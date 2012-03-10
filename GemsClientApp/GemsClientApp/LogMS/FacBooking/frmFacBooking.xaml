@@ -65,7 +65,6 @@
                 <ListBox x:Name="lstFacility" FontSize="14">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-
                             <StackPanel Margin="5" Orientation="Vertical">
                                 <WrapPanel Margin="5" Orientation="Horizontal">
                                     <CheckBox x:Name="ChkList"></CheckBox>

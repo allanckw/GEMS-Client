@@ -53,6 +53,12 @@ namespace Gems.UIWPF
             txtSvAddr.Text = ConfigHelper.GetEndpointAddress();
         }
 
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            txtPassword.Clear();
+            txtUserID.Focus();
+        }
+
     }
 }
 

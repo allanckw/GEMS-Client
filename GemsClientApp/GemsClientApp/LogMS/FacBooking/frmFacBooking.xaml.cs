@@ -57,6 +57,7 @@ namespace Gems.UIWPF
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             lstFacility.ItemsSource = null;
+            lstFacility.Items.Clear();
             int minCap = 0, maxCap = int.MaxValue;
             switch (cboSeat.SelectedIndex)
             {
@@ -104,7 +105,6 @@ namespace Gems.UIWPF
 
             else if (cboFaculty.SelectedIndex != -1 && cboVenue.SelectedIndex != -1)
             {
-                lstFacility.Items.Clear();
                 Facility fac = (Facility)cboVenue.SelectedItem;
                 if (fac.Capacity >= minCap && fac.Capacity <= maxCap)
                     lstFacility.Items.Add(fac);
@@ -132,6 +132,7 @@ namespace Gems.UIWPF
 
         private void facultySearch(int minCap, int maxCap)
         {
+            
             WCFHelperClient client = new WCFHelperClient();
             lstFacility.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
             client.Close();

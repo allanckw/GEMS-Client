@@ -67,16 +67,10 @@ namespace Gems.UIWPF
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
-
-            DateTime d = DateTime.Now;
-
-            dtpFrom.SelectedDate = dtpTo.SelectedDate = 
-                d.AddHours(-d.Hour).AddMinutes(-d.Minute).AddSeconds(-d.Second);
-
             getHourlyNotifications();
             notify();
             loadEvents();
-            
+            lstEventList.SelectedIndex = 0;
         }
 
 
@@ -95,7 +89,7 @@ namespace Gems.UIWPF
             mnuItems.Visibility = Visibility.Collapsed;
             mnuManageItem.Visibility = Visibility.Collapsed;
             //
-            mnuTasks.Visibility = Visibility.Collapsed;
+            //mnuTasks.Visibility = Visibility.Collapsed;
             //
             mnuManpower.Visibility = Visibility.Collapsed;
             mnuRoles.Visibility = Visibility.Collapsed;
@@ -119,7 +113,7 @@ namespace Gems.UIWPF
             mnuItems.Visibility = Visibility.Visible;
             mnuManageItem.Visibility = Visibility.Visible;
             //
-            mnuTasks.Visibility = Visibility.Visible;
+            //mnuTasks.Visibility = Visibility.Visible;
             //
             mnuManpower.Visibility = Visibility.Visible;
             mnuRoles.Visibility = Visibility.Visible;
@@ -129,7 +123,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-           loadEventsAuto();
+            loadEventsAuto();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -139,12 +133,32 @@ namespace Gems.UIWPF
 
         private void loadEvents()
         {
-            WCFHelperClient client = new WCFHelperClient();
-            List<Event> list = client.ViewEvent(user).ToList<Event>();
-            lstEventList.ItemsSource = list;
-            client.Close();
-            lstEventList.SelectedIndex = 0;
-            //loadEventItems();
+            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
+                (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
+            {
+                MessageBox.Show("Invalid Date Range");
+            }
+            else
+            {
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    List<Event> list;
+                    if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                        list = client.ViewEvent(user).ToList<Event>();
+
+                    else
+                        list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                        dtpTo.SelectedDate.Value).ToList<Event>();
+
+                    lstEventList.ItemsSource = list;
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void loadEventsAuto()
@@ -153,12 +167,24 @@ namespace Gems.UIWPF
             bool nthselected = (lstEventList.SelectedIndex == -1);
             //SelectionChanged="lstEventList_SelectionChanged"
 
-            lstEventList.SelectionChanged -=lstEventList_SelectionChanged;
-            int Eid=0;
-            if(!nthselected)
-            Eid = ((Event)lstEventList.SelectedItem).EventID;
+            lstEventList.SelectionChanged -= lstEventList_SelectionChanged;
+            int Eid = 0;
+            if (!nthselected)
+            {
+                Eid = ((Event)lstEventList.SelectedItem).EventID;
+            }
             WCFHelperClient client = new WCFHelperClient();
-            List<Event> list = client.ViewEvent(user).ToList<Event>();
+            List<Event> list;
+
+            //if valid date range.
+            if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+            {
+                list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                dtpTo.SelectedDate.Value).ToList<Event>();
+            }
+            else
+                list = client.ViewEvent(user).ToList<Event>();
+
             lstEventList.ItemsSource = list;
             client.Close();
             if (!nthselected)
@@ -206,7 +232,7 @@ namespace Gems.UIWPF
             }
             //
             //if (ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions))
-            mnuTasks.Visibility = Visibility.Visible;
+            //mnuTasks.Visibility = Visibility.Visible;
             //
             if (ef.Contains(EnumFunctions.Add_Guest) || ef.Contains(EnumFunctions.Edit_Guest) || ef.Contains(EnumFunctions.Delete_Guest))
             {
@@ -354,32 +380,7 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
-            if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
-                (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
-            {
-                MessageBox.Show("Invalid Date Range");
-            }
-            else
-            {
-                try
-                {
-                    WCFHelperClient client = new WCFHelperClient();
-                    List<Event> list;
-                    if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                        list = client.ViewEvent(user).ToList<Event>();
-
-                    else
-                        list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                        dtpTo.SelectedDate.Value).ToList<Event>();
-
-                    lstEventList.ItemsSource = list;
-                    client.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            loadEvents();
         }
 
         private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
@@ -451,13 +452,13 @@ namespace Gems.UIWPF
                 {
                     Event ev = (Event)lstEventList.SelectedItem;
                     frame.Navigate(new frmOverview(user, ev));
-                    
+
                     if (user.userID == ev.Organizerid)
                         EnableAllRight();
                     else
                     {
                         WCFHelperClient client = new WCFHelperClient();
-                        
+
 
                         if (user.userID == ev.Organizerid || user.isSystemAdmin)
                             EnableAllRight();
