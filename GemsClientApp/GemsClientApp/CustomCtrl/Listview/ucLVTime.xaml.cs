@@ -44,7 +44,7 @@ namespace Gems.UIWPF.CustomCtrl
             int BookingEHr = bookingEnd.Hour;
             int BookingEMin = bookingEnd.Minute;
             BookStartIdx = PreprocessTime(BookingSHr, BookingSMin);
-            BookEndIdx = PreprocessTime(BookingEHr, BookingEMin);
+            BookEndIdx = PreprocessTime(BookingEHr, BookingEMin) - 1;
         }
 
         public ObservableCollection<TimeSlot> TimeCollection
@@ -73,7 +73,7 @@ namespace Gems.UIWPF.CustomCtrl
             }
             CheckCrash();
 
-            ScrollToItem(BookEndIdx);
+            ScrollToItem(BookEndIdx-1);
             //ScrollToItem(BookStartIdx);
 
         }
@@ -88,7 +88,13 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void CheckCrash()
         {
-            for (int i = BookStartIdx; i < BookEndIdx; i++)
+            //int Idx2Start=BookStartIdx;
+            //if (Idx2Start==0)
+            //{
+            //    TimeCollection[0].Balance = 1;
+            //    Idx2Start+=1;
+            //}
+            for (int i = BookStartIdx; i <= BookEndIdx; i++)
             {
                 if (TimeCollection[i].Purpose.Trim().Length > 0)
                 {
@@ -99,6 +105,14 @@ namespace Gems.UIWPF.CustomCtrl
                 else
                     TimeCollection[i].Balance = 1;
             }
+            //Code to populate first index to green if start time is 0000
+            if (BookStartIdx == 0)
+            {
+                TimeCollection.RemoveAt(0);
+                TimeSlot ts = TimeCollection[0];
+                TimeCollection.Insert(0, ts);
+            }
+
             RefreshTime();
 
         }
@@ -149,7 +163,6 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void SlotGeneration()
         {
-            System.Random r = new System.Random();
             _TimeCollection = new ObservableCollection<TimeSlot>();
             List<string> temp = ProcessTimeSlot();
             for (int i = 0; i < temp.Count - 1; i++)

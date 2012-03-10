@@ -104,6 +104,12 @@ namespace Gems.UIWPF
             txtStatus.Text = "";
             lblEndTime.Content = "";
             lblStartTime.Content = "";
+            WCFHelperClient client = new WCFHelperClient();
+            this.lstRequest.ItemsSource = client.viewFacilityBookingRequests(user,
+                int.Parse(cboEventList.SelectedValue.ToString()),
+                cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
+                chkAllEvent.IsChecked.Value);
+            client.Close();
             lvCurrentBooking.ClearSource();
         }
 
@@ -159,6 +165,7 @@ namespace Gems.UIWPF
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for dropping", "Remarks", "");
                         client.dropConfirmedRequest(user, fbr.RequestID, fbr.EventID, remarks);
+                        ClearDetail();
                     }
                 }
                 else if (fbr.Status == BookingStatus.Pending)
@@ -169,6 +176,7 @@ namespace Gems.UIWPF
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for cancelling", "Remarks", "");
                         client.cancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
+                        ClearDetail();
                     }
                 }
 

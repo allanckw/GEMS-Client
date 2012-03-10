@@ -54,6 +54,7 @@ namespace Gems.UIWPF.CustomCtrl
             {
                 MessageBox.Show("Please Select an Item Type to toggle!", "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             WCFHelperClient client = new WCFHelperClient();
 

@@ -132,6 +132,8 @@ namespace Gems.UIWPF
                 if (!isdecimal)
                 {
                     MessageBox.Show("Invalid Price");
+                    txtItemPrice.Text = "";
+                    txtItemPrice.Focus();
                     return;
                 }
                 int satisfactionValue;
@@ -139,6 +141,8 @@ namespace Gems.UIWPF
                 if (!isInt)
                 {
                     MessageBox.Show("Invalid Satisfaction Value");
+                    txtItemSatisfaction.Text = "";
+                    txtItemSatisfaction.Focus();
                     return;
                 }
                 lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
@@ -201,6 +205,8 @@ namespace Gems.UIWPF
                 if (!isdecimal)
                 {
                     MessageBox.Show("Invalid Price");
+                    txtItemPrice.Text = "";
+                    txtItemPrice.Focus();
                     return;
                 }
                 int satisfactionValue;
@@ -208,11 +214,14 @@ namespace Gems.UIWPF
                 if (!isInt)
                 {
                     MessageBox.Show("Invalid Satisfaction Value");
+                    txtItemSatisfaction.Text = "";
+                    txtItemSatisfaction.Focus();
                     return;
                 }
 
                 lvItem.EditItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, price, satisfactionValue);
                 EnabledItemControl(true);
+                clearItemInput();
             }
         }
 
@@ -224,11 +233,15 @@ namespace Gems.UIWPF
         public bool validateInput()
         {
             if (txtItemName.Text.Trim().Length == 0)
+            {
+                txtItemName.Focus();
                 return false;
-
+            }
             if (cboItemTypeIL.SelectedIndex == -1)
+            {
+                cboItemTypeIL.Focus();
                 return false;
-
+            }
             return true;
         }
 
@@ -244,6 +257,9 @@ namespace Gems.UIWPF
             txtItemPrice.Text = "";
             txtItemSatisfaction.Text = "";
             cboItemTypeIL.SelectedIndex = -1;
+            WCFHelperClient client = new WCFHelperClient();
+            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            lvItem.SetExistingSource(ItemList);
         }
     }
 }

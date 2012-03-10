@@ -98,6 +98,7 @@ namespace Gems.UIWPF
             }
             try
             {
+                
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
                 WCFHelperClient client = new WCFHelperClient();
                 txtEventName.Text = client.getEventName(fbr.EventID);
@@ -107,6 +108,7 @@ namespace Gems.UIWPF
 
                 dgLocation.ItemsSource = fbr.RequestDetails;
                 client.Close();
+                lvTimeslot.Reset();
             }
             catch (Exception ex)
             {
