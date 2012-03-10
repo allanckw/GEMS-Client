@@ -56,6 +56,12 @@ namespace Gems.UIWPF
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            if (cboFaculty.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select a faculty!", "Select Faculty", 
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             lstFacility.ItemsSource = null;
             lstFacility.Items.Clear();
             int minCap = 0, maxCap = int.MaxValue;
@@ -95,15 +101,7 @@ namespace Gems.UIWPF
                     break;
             }
 
-            //Both unknown
-            if (cboFaculty.SelectedIndex == -1 && cboVenue.SelectedIndex == -1)
-                venueSearch(minCap, maxCap);
-
-            //Unknown Fac with known venue
-            else if (cboFaculty.SelectedIndex == -1 && cboVenue.SelectedIndex != -1)
-                venueSearch((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
-
-            else if (cboFaculty.SelectedIndex != -1 && cboVenue.SelectedIndex != -1)
+            if (cboFaculty.SelectedIndex != -1 && cboVenue.SelectedIndex != -1)
             {
                 Facility fac = (Facility)cboVenue.SelectedItem;
                 if (fac.Capacity >= minCap && fac.Capacity <= maxCap)
@@ -121,12 +119,6 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             lstFacility.ItemsSource = client.getVenuesByCap(f,
                                         cboVenue.SelectedValue.ToString(), minCap, maxCap);
-            client.Close();
-        }
-        private void venueSearch(int minCap, int maxCap)
-        {
-            WCFHelperClient client = new WCFHelperClient();
-            lstFacility.ItemsSource = client.getVenues(minCap, maxCap);
             client.Close();
         }
 
