@@ -116,7 +116,7 @@ namespace Gems.UIWPF
                     return;
                 }
                 WCFHelperClient client = new WCFHelperClient();
-                client.CreateEvent(user, txtEventName.Text, startTime, endTime, txtEventName.Text, txtWebsite.Text);
+                client.CreateEvent(user, txtEventName.Text, startTime, endTime, txtDesc.Text, txtWebsite.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
