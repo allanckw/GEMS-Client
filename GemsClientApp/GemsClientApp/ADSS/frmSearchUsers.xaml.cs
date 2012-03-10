@@ -93,7 +93,7 @@ namespace Gems.UIWPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,MessageBoxImage.Exclamation);
                 }
                 client.Close();
             }

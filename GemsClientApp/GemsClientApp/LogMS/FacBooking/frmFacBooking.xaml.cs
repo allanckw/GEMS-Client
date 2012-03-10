@@ -36,8 +36,6 @@ namespace Gems.UIWPF
         {
             cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
             WCFHelperClient client = new WCFHelperClient();
-            List<Facility> list = client.getVenues(0, int.MaxValue).ToList<Facility>();
-            cboVenue.ItemsSource = list;
 
             cboVenue.DisplayMemberPath = "FacilityID";
             cboVenue.SelectedValuePath = "FacilityID";
@@ -58,7 +56,7 @@ namespace Gems.UIWPF
         {
             if (cboFaculty.SelectedIndex == -1)
             {
-                MessageBox.Show("You must select a faculty!", "Select Faculty", 
+                MessageBox.Show("You must select a faculty!", "Select Faculty",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
@@ -124,7 +122,7 @@ namespace Gems.UIWPF
 
         private void facultySearch(int minCap, int maxCap)
         {
-            
+
             WCFHelperClient client = new WCFHelperClient();
             lstFacility.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
             client.Close();
@@ -144,7 +142,7 @@ namespace Gems.UIWPF
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
             lstFacility.ItemsSource = null;
-            lstFacility.Items.Clear();
+            lstFacility.Items.Clear(); 
             cboFaculty.SelectedIndex = -1;
             cboVenue.SelectedIndex = -1;
             cboSeat.SelectedIndex = -1;
@@ -154,7 +152,7 @@ namespace Gems.UIWPF
         {
             if (cboFaculty.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a faculty", "Select Faculty", 
+                MessageBox.Show("Please select a faculty", "Select Faculty",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
@@ -163,7 +161,7 @@ namespace Gems.UIWPF
             getListOfSelectedFacilities();
             if (this.selectedFacs.Count == 0)
             {
-                MessageBox.Show("Please select at least 1 venue that you would like to book!", 
+                MessageBox.Show("Please select at least 1 venue that you would like to book!",
                     "Select Venue", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
@@ -178,7 +176,7 @@ namespace Gems.UIWPF
                 return;
             }
 
-            var bkFacPrior = new frmFacBookingDetails(user,event_,this.selectedFacs);
+            var bkFacPrior = new frmFacBookingDetails(user, event_, this.selectedFacs);
             bkFacPrior.ShowDialog();
         }
 
@@ -200,7 +198,7 @@ namespace Gems.UIWPF
                     // get a selected checkbox items.
                     if (Chk.IsChecked == true)
                     {
-                        selectedFacs.Add((Facility) lstFacility.Items[i]);
+                        selectedFacs.Add((Facility)lstFacility.Items[i]);
                     }
                 }
             }
