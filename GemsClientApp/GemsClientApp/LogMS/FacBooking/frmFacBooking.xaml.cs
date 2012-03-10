@@ -143,6 +143,8 @@ namespace Gems.UIWPF
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
+            lstFacility.ItemsSource = null;
+            lstFacility.Items.Clear();
             cboFaculty.SelectedIndex = -1;
             cboVenue.SelectedIndex = -1;
             cboSeat.SelectedIndex = -1;
