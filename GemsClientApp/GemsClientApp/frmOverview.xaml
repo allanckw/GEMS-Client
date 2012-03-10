@@ -9,25 +9,29 @@
 
     <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" FontFamily="Stencil" FontSize="20" Foreground="Black" Margin="0">
 
-		<StackPanel>
-    		<GroupBox Header="Item Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblItemMsg" Content="This is a sample text" FontSize="14" FontFamily="Tahoma" />
+        <StackPanel>
+            <GroupBox Header="Programmes" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <TextBlock  x:Name="txtProgramMsg"  FontSize="14" FontFamily="Tahoma"  FontWeight="SemiBold" TextWrapping="Wrap"  />
             </GroupBox>
-    		<GroupBox Header="Task Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblTaskMsg" Content="This is a sample text" FontSize="14" FontFamily="Tahoma" />
-    		</GroupBox>
-    		<GroupBox Header="Location" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblLocationMsg" Content="This is a sample text" FontSize="14" FontFamily="Tahoma" />
+            <GroupBox Header="Facility" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <ScrollViewer>
+                    <TextBlock  x:Name="txtLocationMsg" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma"  TextWrapping="Wrap"  />
+                </ScrollViewer>
             </GroupBox>
-    		<GroupBox Header="Program Flow" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblProgramMsg" Content="This is a sample text" FontSize="14" FontFamily="Tahoma" />
+            <GroupBox Header="Manpower" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <ScrollViewer>
+                    <TextBlock x:Name="txtManpowerMsg"  VerticalAlignment="Top" Margin="0" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma" TextWrapping="Wrap" />
+                </ScrollViewer>
             </GroupBox>
-    		<GroupBox Header="Manpower" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblManpowerMsg" Content="This is a sample text&#xa;&#xa;" VerticalAlignment="Top" Margin="0" FontSize="14" FontFamily="Tahoma" />
+            <GroupBox Header="Item Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <TextBlock x:Name="txtItemMsg"  FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap"  />
             </GroupBox>
-    		<GroupBox Header="Guest" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <Label x:Name="lblGuestMsg" Content="This is a sample text" Margin="0" FontSize="14" FontFamily="Tahoma" />
+            <GroupBox Header="Task Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <TextBlock x:Name="txtTaskMsg" Text="No Task has been assigned" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap"  />
             </GroupBox>
-    	</StackPanel>
-	</GroupBox>
+            <GroupBox Header="Guest" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+                <TextBlock  x:Name="txtGuestMsg"  Margin="0" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap" />
+            </GroupBox>
+        </StackPanel>
+    </GroupBox>
 </Page>

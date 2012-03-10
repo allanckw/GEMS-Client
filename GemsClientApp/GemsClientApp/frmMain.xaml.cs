@@ -309,7 +309,7 @@ namespace Gems.UIWPF
         private void mnuItemManageEvent_Click(object sender, RoutedEventArgs e)
         {
             var frmManageEvent = new frmEventMangement(user, this);
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
             frmManageEvent.ShowDialog();
         }
 
