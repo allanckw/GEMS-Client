@@ -245,7 +245,7 @@ namespace Gems.UIWPF
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
                     client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
+                        (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
@@ -311,7 +311,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
+                client.DeleteRole(user, (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
