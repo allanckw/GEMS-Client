@@ -44,6 +44,19 @@ namespace Gems.UIWPF
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
+ 
+            //Add Constraints here.. txtName or txtUserID must have some value
+            //Or it will retrieve the entire NUSNET DB D: D: D:
+            //TODO: Enhancement to search f(x) 
+            //Add Staff/Students constraint (differing domains)? Add Faculty Filter?
+            //TO be finalized later
+            
+            if ((txtName.Text.Length == 0) && (txtUserID.Text.Length == 0))
+            {
+                MessageBox.Show("Please enter name or user id!", "Enter Filters",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             try
             {
                 List<User> list;
