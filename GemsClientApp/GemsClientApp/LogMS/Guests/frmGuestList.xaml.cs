@@ -71,7 +71,7 @@ namespace Gems.UIWPF
                     g.Name = txtName.Text;
                     g.Description = txtDescription.Text;
                     g.Contact = txtContact.Text;
-                    client.AddGuest(user, event_.EventID, g.Name, g.Contact, g.Description);
+                    g.GuestId = client.AddGuest(user, event_.EventID, g.Name, g.Contact, g.Description);
                     guestList.Add(g);
                     CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
                     clearAll();
