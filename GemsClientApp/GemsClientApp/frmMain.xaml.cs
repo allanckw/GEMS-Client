@@ -61,6 +61,7 @@ namespace Gems.UIWPF
             if (!user.isSystemAdmin)
             {
                 this.mnuAdmin.Visibility = Visibility.Collapsed;
+                this.mnuGlobalRoleTemplates.Visibility = Visibility.Collapsed;
             }
             if (!user.isFacilityAdmin)
             {
@@ -93,6 +94,7 @@ namespace Gems.UIWPF
             //
             mnuManpower.Visibility = Visibility.Collapsed;
             mnuRoles.Visibility = Visibility.Collapsed;
+            mnuRoleTemplates.Visibility = Visibility.Collapsed;
             //
             mnuGuests.Visibility = Visibility.Collapsed;
 
@@ -117,6 +119,7 @@ namespace Gems.UIWPF
             //
             mnuManpower.Visibility = Visibility.Visible;
             mnuRoles.Visibility = Visibility.Visible;
+            mnuRoleTemplates.Visibility = Visibility.Visible;
             //
             mnuGuests.Visibility = Visibility.Visible;
         }
@@ -217,6 +220,7 @@ namespace Gems.UIWPF
                 mnuLocation.Visibility = Visibility.Visible;
                 mnuSearchFac.Visibility = Visibility.Visible;
                 mnuViewBookings.Visibility = Visibility.Visible;
+                mnuRoleTemplates.Visibility = Visibility.Visible;
             }
             //
             if (ef.Contains(EnumFunctions.Edit_Programs) || ef.Contains(EnumFunctions.Create_Programs) || ef.Contains(EnumFunctions.Delete_Programs))
@@ -236,13 +240,13 @@ namespace Gems.UIWPF
             //
             if (ef.Contains(EnumFunctions.Add_Guest) || ef.Contains(EnumFunctions.Edit_Guest) || ef.Contains(EnumFunctions.Delete_Guest))
             {
-                mnuManpower.Visibility = Visibility.Visible;
-                mnuRoles.Visibility = Visibility.Visible;
+                mnuGuests.Visibility = Visibility.Visible;
             }
             //
             if (ef.Contains(EnumFunctions.Add_Role) || ef.Contains(EnumFunctions.Edit_Role) || ef.Contains(EnumFunctions.Delete_Role) || ef.Contains(EnumFunctions.View_Role))
             {
-                mnuGuests.Visibility = Visibility.Visible;
+                mnuManpower.Visibility = Visibility.Visible;
+                mnuRoles.Visibility = Visibility.Visible;
             }
         }
 
@@ -435,6 +439,27 @@ namespace Gems.UIWPF
                 var frmRoleList = new frmRoleList(user, this, ev);
                 frame.Navigate(frmRoleList);
             }
+        }
+
+        private void mnuRoleTemplates_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to manage role templates!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                var frmRoleTemplates = new frmRoleTemplates(user, this, ev);
+                frame.Navigate(frmRoleTemplates);
+            }
+        }
+
+        private void mnuGlobalRoleTemplates_Click(object sender, RoutedEventArgs e)
+        {
+            var frmRoleTemplates = new frmRoleTemplates(user, this, null);
+            frame.Navigate(frmRoleTemplates);
         }
 
         private void mnuViewBookings_Click(object sender, RoutedEventArgs e)

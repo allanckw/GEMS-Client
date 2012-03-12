@@ -5,42 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Windows.Controls;
-using dragonz.actb.core;
-using dragonz.actb.provider;
 using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Gems.UIWPF
 {
-    public class UserDataProvider : IAutoCompleteDataProvider
-    {
-        public IEnumerable<string> GetItems(string textPattern)
-        {
-            textPattern = textPattern.Trim();
-            if (textPattern.Length < 2)
-            {
-                return null;
-            }
-            try
-            {
-                WCFHelperClient client = new WCFHelperClient();
-                List<User> users = client.searchUser(textPattern, "").ToList<User>();
-                client.Close();
-                List<String> results = new List<string>();
-                foreach (User user in users)
-                    results.Add(user.Name.ToString() + " (" + user.userID.ToString() + ")");
-                return results;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-    }
     /// <summary>
     /// Interaction logic for frmRoleList.xaml
     /// </summary>
-    public partial class frmRoleList : Page
+    public partial class frmRoleTemplates : Page
     {
 
         User user;
@@ -48,20 +21,18 @@ namespace Gems.UIWPF
         Event event_;
         Dictionary<string, List<CheckBox>> checkBoxes;
 
-        public frmRoleList()
+        public frmRoleTemplates()
         {
             this.InitializeComponent();
         }
 
-        public frmRoleList(User u, frmMain f, Event e)
+        public frmRoleTemplates(User u, frmMain f, Event e)
             : this()
         {
             this.user = u;
             this.mainFrame = f;
             this.event_ = e;
             this.checkBoxes = new Dictionary<string, List<CheckBox>>();
-            accbUsers.AutoCompleteManager.DataProvider = new UserDataProvider();
-            accbUsers.AutoCompleteManager.AutoAppend = true;
 
             try
             {
@@ -93,19 +64,6 @@ namespace Gems.UIWPF
         {
             lstRole.SelectedValuePath = "RoleId";
             loadRoles();
-            try
-            {
-                WCFHelperClient client = new WCFHelperClient();
-                List<RoleTemplate> roleTemplates = client.ViewTemplateRole(user, null).ToList();
-                roleTemplates.AddRange(client.ViewTemplateRole(user, event_));
-                cbRoleTemplate.ItemsSource = roleTemplates;
-                cbRoleTemplate.SelectedValuePath = "RoleTemplateID";
-                cbRoleTemplate.DisplayMemberPath = "Post";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
@@ -217,8 +175,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
-                 
+                lstRole.ItemsSource = client.ViewTemplateRole(user, event_).ToList();
                 client.Close();
             }
             catch (Exception ex)
@@ -235,11 +192,6 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please enter Post name.");
                 return;
             }
-            if (accbUsers.Text.Trim() == "")
-            {
-                MessageBox.Show("Please select user.");
-                return;
-            }
             List<EnumFunctions> selectedFunctions = new List<EnumFunctions>();
             foreach (var pair in checkBoxes)
             {
@@ -252,19 +204,17 @@ namespace Gems.UIWPF
             {
                 WCFHelperClient client = new WCFHelperClient();
                 if (lstRole.SelectedIndex == -1)
-                    client.AddRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
+                    client.AddRoleTemplate(user, event_, txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
-                    client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID, txtPost.Text.Trim(),
+                    client.EditRightsTemplate(user, ((RoleTemplate)lstRole.SelectedItem).RoleTemplateID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
-                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 
@@ -278,33 +228,11 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                TupleOfRolestringRsiwEt5l selectedItem = ((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem);
-                Role selectedRole = selectedItem.m_Item1;
-                txtPost.Text = selectedRole.Post;
-                txtDescription.Text = selectedRole.Description;
-                accbUsers.AutoCompleteManager.UpdateText(selectedItem.m_Item2 + " (" + selectedRole.UserID + ")", false);
+                RoleTemplate selectedRoleTemplate = (RoleTemplate)lstRole.SelectedItem;
+                txtPost.Text = selectedRoleTemplate.Post;
+                txtDescription.Text = selectedRoleTemplate.Description;
                 btnAdd.Content = "Save";
-                List<EnumFunctions> rights = client.GetRights(event_.EventID, selectedRole.UserID).ToList();
-                foreach (var pair in checkBoxes)
-                    foreach (CheckBox chkBox in pair.Value)
-                        if (chkBox.Tag is Tuple<EnumFunctions, string>)
-                            chkBox.IsChecked = rights.Contains(((Tuple<EnumFunctions, string>)chkBox.Tag).Item1);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void cbRoleTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbRoleTemplate.SelectedIndex == -1)
-                return;
-            try
-            {
-                WCFHelperClient client = new WCFHelperClient();
-                List<RightTemplate> rights = client.GetTemplateRight((int)cbRoleTemplate.SelectedValue).ToList();
+                List<RightTemplate> rights = client.GetTemplateRight(selectedRoleTemplate.RoleTemplateID).ToList();
                 List<EnumFunctions> functions = new List<EnumFunctions>();
                 foreach (RightTemplate right in rights)
                     functions.Add(right.FunctionEnum);
@@ -312,25 +240,20 @@ namespace Gems.UIWPF
                     foreach (CheckBox chkBox in pair.Value)
                         if (chkBox.Tag is Tuple<EnumFunctions, string>)
                             chkBox.IsChecked = functions.Contains(((Tuple<EnumFunctions, string>)chkBox.Tag).Item1);
-                txtPost.Text = ((RoleTemplate)cbRoleTemplate.SelectedItem).Post;
-                txtDescription.Text = ((RoleTemplate)cbRoleTemplate.SelectedItem).Description;
                 client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void clearAll()
         {
-            cbRoleTemplate.SelectedIndex = -1;
             lstRole.SelectedIndex = -1;
             txtPost.Text = "";
             txtDescription.Text = "";
             btnAdd.Content = "Add";
-            accbUsers.Text = "";
             foreach (var pair in checkBoxes)
                 foreach (CheckBox chkBox in pair.Value)
                     chkBox.IsChecked = false;
@@ -348,14 +271,14 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.DeleteRole(user, (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID);
+                client.DeleteRoleTemplate(user, ((Role)lstRole.SelectedItem).RoleID);
                 client.Close();
-                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Operation succeded!");
             loadRoles();
         }
 

@@ -136,6 +136,9 @@
     <Compile Include="LogMS\Manpower\frmRoleList.xaml.cs">
       <DependentUpon>frmRoleList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogMS\Manpower\frmRoleTemplates.xaml.cs">
+      <DependentUpon>frmRoleTemplates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Notifications\frmNotificationList.xaml.cs">
       <DependentUpon>frmNotificationList.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
     <Page Include="LogMS\Manpower\frmRoleList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogMS\Manpower\frmRoleTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Notifications\frmNotificationList.xaml">
       <Generator>MSBuild:Compile</Generator>

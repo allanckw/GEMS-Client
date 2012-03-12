@@ -3,47 +3,34 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:actb.control="clr-namespace:dragonz.actb.control;assembly=dragonz.actb"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-	x:Class="Gems.UIWPF.frmRoleList"
+	x:Class="Gems.UIWPF.frmRoleTemplates"
 	x:Name="Window"
-	Title="frmRoleList"
+	Title="frmRoleTemplates"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Manpower" FontSize="21.333" FontWeight="Normal">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
-    		<GroupBox Header="Roles" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
-    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13.333" SelectionMode="Single" Margin="0">
+    		<GroupBox Header="Role Templates" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
+    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13.333" SelectionMode="Single" Margin="0,0,7,2.627">
     				<ListBox.ItemTemplate>
     					<DataTemplate>
-    						<StackPanel Margin="10" Orientation="Vertical">
-    							<WrapPanel Orientation="Horizontal"  >
-    								<TextBlock Text="{Binding m_Item2}" TextWrapping="Wrap"/>
-    							</WrapPanel>
-    							<WrapPanel Orientation="Horizontal" >
-    								<TextBlock Text="Role: " />
-    								<TextBlock Text="{Binding m_Item1.Post}" TextWrapping="Wrap"/>
-    							</WrapPanel>
+    						<StackPanel Orientation="Vertical">
+    								<TextBlock Text="{Binding Post}" TextWrapping="Wrap" FontWeight="Bold" />
+    								<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
     						</StackPanel>
     					</DataTemplate>
     				</ListBox.ItemTemplate>
     			</ListBox>
     		</GroupBox>
-    		<GroupBox Header="Role Details" FontSize="18.667" Width="529" Margin="0,0,0,-24">
+    		<GroupBox Header="Role Template Details" FontSize="18.667" Width="529" Margin="0,0,0,-24">
     			<StackPanel Orientation="Horizontal">
-    				<StackPanel Height="Auto" Margin="0,8,0,0">
-    					<StackPanel Height="70">
-    						<Label Content="Role Template:" Width="313.803" FontSize="13.333"/>
-                            <ComboBox x:Name="cbRoleTemplate" SelectionChanged="cbRoleTemplate_SelectionChanged" Width="306.001" FontSize="13.333"/>
-                        </StackPanel>
-    					<StackPanel Height="40" Orientation="Horizontal">
-    						<Label Content="User Name:" Width="76.803" FontSize="13.333"/>
-    						<actb.control:AutoCompleteComboBox x:Name="accbUsers" FontSize="13.333" Width="217" Height="23.73333333" Margin="0,8.133,8,8.133"/>
+    				<StackPanel Width="301.803">
+    					<StackPanel Height="30" Orientation="Horizontal" Margin="0,10">
+    						<Label Content="Role:" Width="56.803" FontSize="13.333"/>
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" FontSize="13.333" x:Name="txtPost" Margin="0,0,8,0" />
     					</StackPanel>
-    					<StackPanel Height="40" Orientation="Horizontal">
-    						<Label Content="Role:" Width="76.803" FontSize="13.333"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" FontSize="13.333" x:Name="txtPost" Margin="0,0,8,0" />
-    					</StackPanel>
-    					<StackPanel Height="153">
+    					<StackPanel Height="218">
     						<Label Content="Description:" FontSize="13.333"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="103" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="171" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
     					</StackPanel>
     					<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
     						<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
@@ -52,7 +39,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     						<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
     					</DockPanel>
     				</StackPanel>
-    				<TreeView Width="214" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0">
+    				<TreeView Width="211" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0,0,0,8">
     					<TreeView.Resources>
     						<Style TargetType="{x:Type TreeViewItem}">
     							<Setter Property="HeaderTemplate">
