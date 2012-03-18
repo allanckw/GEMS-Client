@@ -5,11 +5,11 @@
 	x:Class="Gems.UIWPF.frmProgramManagement"
 	x:Name="Window"
 	Title="frmProgramManagement"
-Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
-    <GroupBox Header="Programme Management" FontSize="21.333" Margin="0" d:LayoutOverrides="Width, Height">
+Width="719" Height="520" Background="{x:Null}" Loaded="Window_Loaded">
+    <GroupBox Header="Programme Management" FontSize="21.333" Margin="0" d:LayoutOverrides="Width, Height" Height="509" Width="723">
 		<StackPanel Orientation="Horizontal">
 			<GroupBox Header="Programme Segments" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,8" Width="385">
-				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Single">
+				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Single" Height="465">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Width="70" Header="Start">
@@ -31,15 +31,15 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
 					</ListView.View>
 				</ListView>
 			</GroupBox>
-			<GroupBox Header="Segment Details" FontSize="18.667" Width="338" Margin="0,0,0,8">
-				<StackPanel>
+			<GroupBox Header="Segment Details" FontSize="18.667" Width="313" Margin="0,0,0,8" Height="462">
+				<StackPanel Height="423">
 					<StackPanel Height="31.313" Orientation="Horizontal">
 						<Label Content="Event Date:" Width="76.803" FontSize="13.333"/>
-						<Label Content=""  Width="240" FontSize="13.333" x:Name="txtDate" />
+						<Label Content=""  Width="215" FontSize="13.333" x:Name="txtDate" />
 					</StackPanel>
 					<StackPanel Height="31.313" Orientation="Horizontal">
 						<Label Content="Name:" Width="76.803" FontSize="13.333"/>
-						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" FontSize="12" x:Name="txtName" />
+						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" FontSize="12" x:Name="txtName" Height="31" />
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" Height="31.314">
 						<Label Content="Start Time:" Width="76.803" FontSize="13.333"/>

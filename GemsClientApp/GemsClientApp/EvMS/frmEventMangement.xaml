@@ -62,7 +62,7 @@
                 </Canvas>
                 <Canvas Height="115">
                     <Label Canvas.Top="5" Content="Description:" Height="23" x:Name="label6" Canvas.Left="51" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
-                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="294" FontSize="12" FontFamily="Tahoma" />
+                    <RichTextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="294" FontSize="12" FontFamily="Tahoma" />
                 </Canvas>
                 <Canvas Height="40">
                     <Label Canvas.Left="69" Canvas.Top="6" Content="Website:" Height="28" x:Name="label7" FontSize="12" FontFamily="Tahoma" />

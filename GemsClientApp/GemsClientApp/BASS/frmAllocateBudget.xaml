@@ -1,0 +1,12 @@
+﻿<Window x:Class="Gems.UIWPF.BASS.frmAllocateBudget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="frmAllocateBudget" Loaded="Window_Loaded"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
+	Width="719" Height="637" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
+    <Grid>
+        
+    </Grid>
+</Window>

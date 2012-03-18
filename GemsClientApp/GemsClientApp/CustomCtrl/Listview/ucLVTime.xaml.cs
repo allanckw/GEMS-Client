@@ -15,8 +15,8 @@ namespace Gems.UIWPF.CustomCtrl
         private int endHr = 24;
         private int BookStartIdx = 0;
         private int BookEndIdx = 0;
-        private bool SlotCrash = false;
-        private int CrashIdx = -1;
+        private bool slotclash = false;
+        private int clashIdx = -1;
 
         ObservableCollection<TimeSlot> _TimeCollection;
 
@@ -31,11 +31,6 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = TimeCollection;
         }
 
-        //public void SetTime(int shr, int ehr)
-        //{
-        //    startHr = shr;
-        //    endHr = ehr;
-        //}
 
         public void SetBookingTimeRange(DateTime bookingStart, DateTime bookingEnd)
         {
@@ -71,36 +66,28 @@ namespace Gems.UIWPF.CustomCtrl
                     TimeCollection[i].Purpose = EventName;
                 }
             }
-            CheckCrash();
+            checkClash();
 
             ScrollToItem(BookEndIdx-1);
-            //ScrollToItem(BookStartIdx);
-
         }
 
         public bool CanApproved()
         {
-            if (SlotCrash)
-                ScrollToItem(CrashIdx);
-            //if slotCrash = true, the slot is unavailable so cannot be approved
-            return (SlotCrash == false);
+            if (slotclash)
+                ScrollToItem(clashIdx);
+            //if slotClash = true, the slot is unavailable so cannot be approved
+            return (slotclash == false);
         }
 
-        private void CheckCrash()
+        private void checkClash()
         {
-            //int Idx2Start=BookStartIdx;
-            //if (Idx2Start==0)
-            //{
-            //    TimeCollection[0].Balance = 1;
-            //    Idx2Start+=1;
-            //}
             for (int i = BookStartIdx; i <= BookEndIdx; i++)
             {
                 if (TimeCollection[i].Purpose.Trim().Length > 0)
                 {
-                    CrashIdx = i;
+                    clashIdx = i;
                     TimeCollection[i].Balance = -1;
-                    SlotCrash = true;
+                    slotclash = true;
                 }
                 else
                     TimeCollection[i].Balance = 1;
@@ -131,7 +118,7 @@ namespace Gems.UIWPF.CustomCtrl
         public void Reset()
         {
             SlotGeneration();
-            SlotCrash = false;
+            slotclash = false;
             ScrollToItem(0);
         }
 

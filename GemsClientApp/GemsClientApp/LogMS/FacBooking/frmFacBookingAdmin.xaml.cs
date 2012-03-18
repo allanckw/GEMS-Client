@@ -128,7 +128,7 @@ namespace Gems.UIWPF
 
             if (!lvTimeslot.CanApproved())
             {
-                MessageBox.Show("There is a crash for this timeslot", "Timeslot Crash",
+                MessageBox.Show("There is a clash for this timeslot", "Timeslot Clash",
                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }

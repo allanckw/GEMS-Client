@@ -113,7 +113,6 @@ namespace Gems.UIWPF
 
         private void venueSearch(Faculty f, int minCap, int maxCap)
         {
-            //Error here
             WCFHelperClient client = new WCFHelperClient();
             lstFacility.ItemsSource = client.getVenuesByCap(f,
                                         cboVenue.SelectedValue.ToString(), minCap, maxCap);

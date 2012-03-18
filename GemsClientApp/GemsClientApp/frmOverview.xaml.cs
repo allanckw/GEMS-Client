@@ -125,7 +125,7 @@ namespace Gems.UIWPF
         {
             if (event_.ItemCount > 0)
             {
-                txtItemMsg.Text = "There are a total of " + event_.ItemCount + " added to the event";
+                txtItemMsg.Text = "A total of " + event_.ItemCount + " Item(s) have been added";
                 //Add Budget Allocation, after choice list is set
                 //Check how many bought, and how many not bought.
             }

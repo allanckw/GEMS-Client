@@ -12,7 +12,7 @@
 	</Window.Background>
 
     <Canvas Opacity="1.0" Margin="0">
-        <GroupBox Header="GEMS Events Management System" Height="74" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="21.333" Width="860" Canvas.Top="5" Canvas.Left="31">
+        <GroupBox Header="GEMS Events Management System" Height="83" VerticalAlignment="Top" Foreground="Black" FontFamily="Stencil" FontSize="21.333" Width="952" Canvas.Top="5" Canvas.Left="14">
             <Menu Margin="33.5,5,51.5,0" FontSize="13.333">
             	<Menu.Background>
             		<ImageBrush/>
@@ -24,6 +24,8 @@
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" x:Name="mnuEvent" >
                     <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
+                </MenuItem>
+                <MenuItem Header="Overview" FontSize="15" Margin="10,0,0,0" x:Name="mnuOverview" Click="mnuOverview_Click">
                 </MenuItem>
                 <MenuItem Header="Programmes" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click">
                 </MenuItem>
@@ -42,21 +44,21 @@
                 </MenuItem>
 
                 <!-- v0.2 Tasks Allocation Sub System -->
-                <!--<MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
-                </MenuItem>-->
+                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
+                </MenuItem>
                 <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>
                 <!-- v0.2 Participants Registrations Sub Systems (WEB EXT)-->
-                <!--<MenuItem Header="Publishing" FontSize="15" Margin="10,0,0,0" x:Name="mnuPublish" Click="mnuPublish_Click">
-                </MenuItem>-->
+                <MenuItem Header="Publishing" FontSize="15" Margin="10,0,0,0" x:Name="mnuPublish" Click="mnuPublish_Click">
+                </MenuItem>
                 <!-- v0.2 Contact List Management Sub System-->
-                <!--<MenuItem Header="Contact List" FontSize="15" Margin="10,0,0,0" x:Name="mnuContactList" Click="mnuContactList_Click">
-                </MenuItem>-->
+                <MenuItem Header="Contact List" FontSize="15" Margin="10,0,0,0" x:Name="mnuContactList" Click="mnuContactList_Click">
+                </MenuItem>
                 <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="15" x:Name="mnuNotify" Click="mnuNotify_Click">
                 </MenuItem>
             </Menu>
         </GroupBox>
-        <Button x:Name="btnClose" Canvas.Left="956" Canvas.Top="17" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="931" Canvas.Top="23" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
@@ -69,9 +71,9 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox Header="My Event List" Height="512" FontFamily="Stencil" Canvas.Left="19" Canvas.Top="171" Width="199" Foreground="Black" FontSize="18.667">
+        <GroupBox Header="My Event List" Height="455" FontFamily="Stencil" Canvas.Left="19" Canvas.Top="194" Width="199" Foreground="Black" FontSize="18.667">
             <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
-                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged">
+                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged" Height="436">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10" Orientation="Vertical">
@@ -86,7 +88,7 @@
                                 <TextBlock Text="From "/>
                                 <TextBlock Text="{Binding Path=StartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
                                 <TextBlock Text=" to "/>
-                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=HH:mm}" TextWrapping="Wrap"/>
                             </WrapPanel>
                         </StackPanel>
                     </DataTemplate>
@@ -94,12 +96,12 @@
             </ListBox>
         </GroupBox>
 
-        <DatePicker Canvas.Left="74" Canvas.Top="83" Height="25" Name="dtpFrom" Width="144" />
-        <DatePicker Canvas.Left="74" Canvas.Top="115" Height="25" Name="dtpTo" Width="144" />
-        <Label Canvas.Left="31" Canvas.Top="83" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
+        <DatePicker Canvas.Left="74" Canvas.Top="106" Height="25" Name="dtpFrom" Width="144" />
+        <DatePicker Canvas.Left="74" Canvas.Top="138" Height="25" Name="dtpTo" Width="144" />
+        <Label Canvas.Left="31" Canvas.Top="106" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
 
-        <Label Canvas.Left="44" Canvas.Top="115" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
-        <Button Canvas.Left="143" Canvas.Top="144" Content="Get Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
-        <Frame x:Name="frame" Canvas.Left="232" Canvas.Top="83" Width="750" Height="600" NavigationUIVisibility="Hidden" />
+        <Label Canvas.Left="44" Canvas.Top="138" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
+        <Button Canvas.Left="143" Canvas.Top="165" Content="Get Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
+        <Frame x:Name="frame" Canvas.Left="232" Canvas.Top="94" Width="763" Height="560" NavigationUIVisibility="Hidden" />
     </Canvas>
 </Window>

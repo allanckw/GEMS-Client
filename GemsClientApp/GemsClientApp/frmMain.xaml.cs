@@ -72,6 +72,8 @@ namespace Gems.UIWPF
             notify();
             loadEvents();
             lstEventList.SelectedIndex = 0;
+            Event ev = (Event)lstEventList.SelectedItem;
+            frame.Navigate(new frmOverview(user, ev));
         }
 
 
@@ -471,19 +473,26 @@ namespace Gems.UIWPF
 
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            // TODO:
+            //Check which frame it is current on
+            //Get the selected event and populate the new frame accordingly
+           
+            //Event ev = (Event)lstEventList.SelectedItem;
+            //var frmProgramManagement = new frmProgramManagement(user, this, ev);
+            //frame.Navigate(frmProgramManagement);
+
             if (lstEventList.SelectedIndex != -1)
             {
                 try
                 {
                     Event ev = (Event)lstEventList.SelectedItem;
-                    frame.Navigate(new frmOverview(user, ev));
+                    //frame.Navigate(new frmOverview(user, ev));
 
                     if (user.userID == ev.Organizerid)
                         EnableAllRight();
                     else
                     {
                         WCFHelperClient client = new WCFHelperClient();
-
 
                         if (user.userID == ev.Organizerid || user.isSystemAdmin)
                             EnableAllRight();
@@ -506,6 +515,22 @@ namespace Gems.UIWPF
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void mnuOverview_Click(object sender, RoutedEventArgs e)
+        {
+            Event ev = (Event)lstEventList.SelectedItem;
+            frame.Navigate(new frmOverview(user, ev));
+        }
+
+        private void mnuPublish_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mnuContactList_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
