@@ -52,7 +52,7 @@
                 <MenuItem Header="Publishing" FontSize="15" Margin="10,0,0,0" x:Name="mnuPublish" Click="mnuPublish_Click">
                 </MenuItem>
                 <!-- v0.2 Contact List Management Sub System-->
-                <MenuItem Header="Contact List" FontSize="15" Margin="10,0,0,0" x:Name="mnuContactList" Click="mnuContactList_Click">
+                <MenuItem Header="Service Contact List" FontSize="15" Margin="10,0,0,0" x:Name="mnuContactList" Click="mnuContactList_Click">
                 </MenuItem>
                 <MenuItem Header="Notifications" Margin="10,0,0,0" FontSize="15" x:Name="mnuNotify" Click="mnuNotify_Click">
                 </MenuItem>

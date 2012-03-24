@@ -4,6 +4,7 @@ using evmsService.entities;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Windows.Documents;
 
 namespace Gems.UIWPF
 {
@@ -55,7 +56,8 @@ namespace Gems.UIWPF
         private void Load_Event(Event E)
         {
             txtEventName.Text = E.Name;
-            txtDesc.Text = E.Description;
+            txtDesc.Document.Blocks.Clear();
+            txtDesc.AppendText(E.Description);
             txtWebsite.Text = E.Website;
             dtpStart.SelectedDateTime = E.StartDateTime;
             dtpEnd.SelectedDateTime = E.EndDateTime;
@@ -86,9 +88,9 @@ namespace Gems.UIWPF
                     return;
                 }
                 Event SelectedEvent = ((Event)lstEventList.SelectedItem);
-
+                var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.EditEvent(user, SelectedEvent, user.userID, txtEventName.Text, startTime, endTime, txtDesc.Text, txtWebsite.Text);
+                client.EditEvent(user, SelectedEvent, user.userID, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
@@ -116,7 +118,8 @@ namespace Gems.UIWPF
                     return;
                 }
                 WCFHelperClient client = new WCFHelperClient();
-                client.CreateEvent(user, txtEventName.Text, startTime, endTime, txtDesc.Text, txtWebsite.Text);
+                var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+                client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
