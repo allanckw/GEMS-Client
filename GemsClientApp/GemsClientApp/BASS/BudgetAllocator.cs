@@ -8,8 +8,6 @@ namespace Gems.UIWPF.BASS
 {
     class State : IComparable<State>
     {
-        //Change to decimals
-        //Item and ItemTypes exposed Properties can be found on the server
         public decimal priceTotal;
         public int satisfactionTotal;
         public Items item;
@@ -23,17 +21,43 @@ namespace Gems.UIWPF.BASS
 
     public class BudgetAllocator
     {
-        public decimal budget;
-        public List<List<Items>> itemsByType;
-        public List<Items> itemsOptimal;
-        public decimal priceOptimal;
-        public int satisfactionOptimal;
+        public decimal minBudget;
+        public decimal maxBudget;
+        public List<List<Items>> importantItemsByType;
+        public List<List<Items>> unimportantItemsByType;
+        List<State> DPtreeLeaves;
+
+        public BudgetAllocator(List<Items> items, List<ItemTypes> itemTypes, decimal maxBudget)
+        {
+            Dictionary<string, List<Items>> itemsByType = new Dictionary<string,List<Items>>();
+            foreach(Items item in items)
+            {
+                if(!itemsByType.ContainsKey(item.typeString))
+                    itemsByType[item.typeString] = new List<Items>();
+                itemsByType[item.typeString].Add(item);
+            }
+            foreach(ItemTypes itemType in itemTypes)
+            {
+                if (itemsByType.ContainsKey(itemType.typeString))
+                    if (itemType.IsImportantType)
+                        importantItemsByType.Add(itemsByType[itemType.typeString].OrderBy(i => i.EstimatedPrice).ToList());
+                    else
+                        unimportantItemsByType.Add(itemsByType[itemType.typeString]);
+            }
+            minBudget = 0;
+            foreach (List<Items> itemsList in importantItemsByType)
+                minBudget += itemsList[itemsList.Count - 1].EstimatedPrice;
+            if (minBudget > maxBudget)
+                throw new ArgumentOutOfRangeException("maxBudget", "Too small to obtain all required items");
+            this.maxBudget = maxBudget;
+            InitializeDPtree();
+        }
 
         private void addItemToStates(Items item, IEnumerable<State> inStates, ICollection<State> outStates)
         {
             foreach (State state in inStates)
             {
-                if (state.priceTotal + item.EstimatedPrice > budget)
+                if (state.priceTotal + item.EstimatedPrice > maxBudget)
                     return;
                 outStates.Add(new State()
                 {
@@ -45,22 +69,15 @@ namespace Gems.UIWPF.BASS
             }
         }
 
-        public void Allocate()
+        public void InitializeDPtree()
         {
             List<State> prevStates = new List<State>();
             prevStates.Add(new State());
-            for (int i = 1; i < itemsByType.Count; i++) //required items
+            foreach (List<Items> itemsList in importantItemsByType)
             {
                 List<State> currStates = new List<State>();
-                foreach (Items item in itemsByType[i])
+                foreach (Items item in itemsList)
                     addItemToStates(item, prevStates, currStates);
-
-                if (currStates.Count == 0)
-                {
-                    Console.WriteLine("Budget too small to obtain all required items");
-                    //change to messagebox or throw new exception..
-                    return;
-                }
                 currStates.Sort();
                 State prevState = new State();
                 List<State> prunedStates = new List<State>();
@@ -73,28 +90,23 @@ namespace Gems.UIWPF.BASS
                     }
                 }
                 prevStates = prunedStates;
-                Console.WriteLine(prunedStates.Count);
             }
-            foreach (Items item in itemsByType[0]) //optional items
+            foreach (List<Items> itemsList in unimportantItemsByType)
             {
                 List<State> currStates = new List<State>();
-                addItemToStates(item, prevStates, currStates);
-
-                //Changed to int.MaxValue instead of double.infinity
-                prevStates.Add(new State() { priceTotal = int.MaxValue }); 
-                currStates.Add(new State() { priceTotal = int.MaxValue });
+                foreach (Items item in itemsList)
+                    addItemToStates(item, prevStates, currStates);
+                currStates.Sort();
+                prevStates.Add(new State() { priceTotal = decimal.MaxValue });
+                currStates.Add(new State() { priceTotal = decimal.MaxValue });
                 List<State> prunedStates = new List<State>();
                 State prevState = new State() { satisfactionTotal = -1 };
                 for (int i = 0, j = 0; i < prevStates.Count || j < currStates.Count; )
                 {
-                    State currState = prevStates[i].priceTotal < 
+                    State currState = prevStates[i].priceTotal <
                         currStates[j].priceTotal ? prevStates[i++] : currStates[j++];
-
-                    double p = (Double)currState.priceTotal;
-                    
-                    if (p == int.MaxValue) //changed isInfinity to compare to int.MaxValue
+                    if (currState.priceTotal == decimal.MaxValue)
                         break;
-
                     if (currState.satisfactionTotal > prevState.satisfactionTotal)
                     {
                         prunedStates.Add(currState);
@@ -102,20 +114,34 @@ namespace Gems.UIWPF.BASS
                     }
                 }
                 prevStates = prunedStates;
-                Console.WriteLine(prevStates.Count);
             }
-            State stateOptimal = prevStates[prevStates.Count - 1];
-            priceOptimal = stateOptimal.priceTotal;
-            satisfactionOptimal = stateOptimal.satisfactionTotal;
-            itemsOptimal = new List<Items>();
-            while (stateOptimal.prevState != null)
+            DPtreeLeaves = prevStates;
+        }
+
+        public List<List<Items>> optimalItems(decimal budget, out decimal priceTotal, out int satisfactionTotal)
+        {
+            if (budget < minBudget || budget > maxBudget)
+                throw new ArgumentOutOfRangeException("budget");
+            List<List<Items>> result = new List<List<Items>>();
+            int i = DPtreeLeaves.Count - 1;
+            for (; i >= 0; i--)
+                if (DPtreeLeaves[i].priceTotal <= budget)
+                    break;
+            priceTotal = DPtreeLeaves[i].priceTotal;
+            satisfactionTotal = DPtreeLeaves[i].satisfactionTotal;
+            do
             {
-                itemsOptimal.Add(stateOptimal.item);
-                stateOptimal = stateOptimal.prevState;
-            }
+                State stateOptimal = DPtreeLeaves[i];
+                List<Items> itemsOptimal = new List<Items>();
+                while (stateOptimal.prevState != null)
+                {
+                    itemsOptimal.Add(stateOptimal.item);
+                    stateOptimal = stateOptimal.prevState;
+                }
+                result.Add(itemsOptimal);
+            } while (--i >= 0 && DPtreeLeaves[i].priceTotal == priceTotal &&
+                    DPtreeLeaves[i].satisfactionTotal == satisfactionTotal);
+            return result;
         }
     }
-
-
 }
-
