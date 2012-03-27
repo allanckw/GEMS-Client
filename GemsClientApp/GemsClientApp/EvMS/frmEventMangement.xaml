@@ -69,9 +69,10 @@
                     <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="297" FontSize="12" FontFamily="Tahoma" />
                 </Canvas>
                 <StackPanel Height="40" Orientation="Horizontal">
-                    <Button x:Name="btnEventCreate" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="190,0,20,0" Click="btnEventCreate_Click" />
+                    <Button x:Name="btnEventCreate" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="150,0,20,0" Click="btnEventCreate_Click" />
                     <Button x:Name="btnEventEdit" Content="Update" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventEdit_Click" />
                     <Button x:Name="btnEventDelete" Content="Delete" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventDelete_Click" />
+                    <Button x:Name="btnEventClear" Content="Clear" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventClear_Click" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>

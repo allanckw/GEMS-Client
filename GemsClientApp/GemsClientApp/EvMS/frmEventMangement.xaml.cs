@@ -184,5 +184,18 @@ namespace Gems.UIWPF
             dtpStart.Date = dtpEnd.Date;
         }
 
+        private void btnEventClear_Click(object sender, RoutedEventArgs e)
+        {
+            lstEventList.SelectedIndex = -1;
+            txtDesc.AppendText("");
+            txtEventName.Text = "";
+            txtWebsite.Text = "";
+            dtpStart.dtpDate.SelectedDate = DateTime.Now;
+            dtpStart.cboHr.SelectedIndex = 0;
+            dtpStart.cboMin.SelectedIndex = 0;
+            dtpEnd.cboHr.SelectedIndex = 0;
+            dtpEnd.cboMin.SelectedIndex = 0;
+        }
+
     }
 }
