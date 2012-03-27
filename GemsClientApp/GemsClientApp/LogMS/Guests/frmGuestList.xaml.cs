@@ -16,7 +16,6 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Window mainFrame;
         Event event_;
         List<Guest> guestList;
         int selectedIndex = -1;
@@ -27,11 +26,10 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmGuestList(User u, frmMain f, Event e)
+        public frmGuestList(User u, Event e)
             : this()
         {
             this.user = u;
-            this.mainFrame = f;
             this.event_ = e;
         }
 

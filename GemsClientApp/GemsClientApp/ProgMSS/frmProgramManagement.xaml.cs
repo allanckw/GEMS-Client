@@ -15,7 +15,6 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Window mainFrame;
         Event event_;
 
         public frmProgramManagement()
@@ -39,11 +38,10 @@ namespace Gems.UIWPF
             }
         }
 
-        public frmProgramManagement(User u, frmMain f, Event e)
+        public frmProgramManagement(User u, Event e)
             : this()
         {
             this.user = u;
-            this.mainFrame = f;
             this.event_ = e;
         }
 

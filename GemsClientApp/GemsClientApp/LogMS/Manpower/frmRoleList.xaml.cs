@@ -44,7 +44,6 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Window mainFrame;
         Event event_;
         Dictionary<string, List<CheckBox>> checkBoxes;
 
@@ -53,11 +52,10 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmRoleList(User u, frmMain f, Event e)
+        public frmRoleList(User u, Event e)
             : this()
         {
             this.user = u;
-            this.mainFrame = f;
             this.event_ = e;
             this.checkBoxes = new Dictionary<string, List<CheckBox>>();
             accbUsers.AutoCompleteManager.DataProvider = new UserDataProvider();

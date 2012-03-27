@@ -6,6 +6,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 using evmsService.entities;
+using System.Windows.Controls;
+using System.Reflection;
 
 namespace Gems.UIWPF
 {
@@ -18,6 +20,18 @@ namespace Gems.UIWPF
         frmLogin mainFrame;
         private DispatcherTimer timer, hourlyTimer;
         private Notifier taskbarNotifier;
+        private Type currPageType;
+
+        private static Dictionary<Type, string> pageFunctions = new Dictionary<Type, string>
+        {
+            { typeof(frmRoleTemplates), "manage role templates" },
+            { typeof(frmRoleList), "manage roles" },
+            { typeof(frmItemManagement), "add items" },
+            { typeof(frmFacBooking), "book facility" },
+            { typeof(frmProgramManagement), "edit programme" },
+            { typeof(frmGuestList), "edit guests" },
+            { typeof(frmOverview), "view overview" }
+        };
 
         public frmMain()
         {
@@ -38,6 +52,7 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.mainFrame = mainFrame;
+            currPageType = typeof(frmOverview);
 
             Loaded += new RoutedEventHandler(Window_Loaded);
             taskbarNotifier = new Notifier(user, this);
@@ -361,34 +376,13 @@ namespace Gems.UIWPF
 
         private void mnuGuests_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to edit guests!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                Event ev = (Event)lstEventList.SelectedItem;
-                var frmGuestList = new frmGuestList(user, this, ev);
-                frame.Navigate(frmGuestList);
-            }
+            navigate<frmGuestList>();
         }
 
 
         private void mnuProgram_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to edit program!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                Event ev = (Event)lstEventList.SelectedItem;
-                var frmProgramManagement = new frmProgramManagement(user, this, ev);
-                //this.Visibility = Visibility.Collapsed;
-                frame.Navigate(frmProgramManagement);
-            }
+            navigate<frmProgramManagement>();
         }
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
@@ -415,17 +409,7 @@ namespace Gems.UIWPF
 
         private void mnuManageItem_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to add items!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                Event ev = (Event)lstEventList.SelectedItem;
-                var frmManageItem = new frmItemManagement(user, ev, this);
-                frame.Navigate(frmManageItem);
-            }
+            navigate<frmItemManagement>();
         }
 
         private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
@@ -437,37 +421,18 @@ namespace Gems.UIWPF
 
         private void mnuRoles_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to manage roles!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                Event ev = (Event)lstEventList.SelectedItem;
-                var frmRoleList = new frmRoleList(user, this, ev);
-                frame.Navigate(frmRoleList);
-            }
+            navigate<frmRoleList>();
         }
 
         private void mnuRoleTemplates_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select an event to manage role templates!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                Event ev = (Event)lstEventList.SelectedItem;
-                var frmRoleTemplates = new frmRoleTemplates(user, this, ev);
-                frame.Navigate(frmRoleTemplates);
-            }
+            navigate<frmRoleTemplates>();
         }
 
         private void mnuGlobalRoleTemplates_Click(object sender, RoutedEventArgs e)
         {
-            var frmRoleTemplates = new frmRoleTemplates(user, this, null);
+            currPageType = typeof(frmRoleTemplates);
+            var frmRoleTemplates = new frmRoleTemplates(user, null);
             frame.Navigate(frmRoleTemplates);
         }
 
@@ -478,22 +443,31 @@ namespace Gems.UIWPF
             frmViewBookings.ShowDialog();
         }
 
+        private void navigate<T>()
+        {
+            currPageType = typeof(T);
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to " + pageFunctions[currPageType] + "!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                frame.Navigate(Activator.CreateInstance(currPageType, user, (Event)lstEventList.SelectedItem));
+            }
+        }
+
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            // TODO:
-            //Check which frame it is current on
-            //Get the selected event and populate the new frame accordingly
-           
-            //Event ev = (Event)lstEventList.SelectedItem;
-            //var frmProgramManagement = new frmProgramManagement(user, this, ev);
-            //frame.Navigate(frmProgramManagement);
-
             if (lstEventList.SelectedIndex != -1)
             {
                 try
                 {
                     Event ev = (Event)lstEventList.SelectedItem;
-                    //frame.Navigate(new frmOverview(user, ev));
+                    typeof(frmMain)
+                        .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
+                        .MakeGenericMethod(currPageType)
+                        .Invoke(this, null);
 
                     if (user.userID == ev.Organizerid)
                         EnableAllRight();
@@ -526,8 +500,7 @@ namespace Gems.UIWPF
 
         private void mnuOverview_Click(object sender, RoutedEventArgs e)
         {
-            Event ev = (Event)lstEventList.SelectedItem;
-            frame.Navigate(new frmOverview(user, ev));
+            navigate<frmOverview>();
         }
 
         private void mnuPublish_Click(object sender, RoutedEventArgs e)

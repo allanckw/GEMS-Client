@@ -13,7 +13,6 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmItemManagement : Page
     {
-        private Window mainFrame;
         private User user;
         private Event event_;
 
@@ -22,12 +21,11 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmItemManagement(User u, Event e, Window f)
+        public frmItemManagement(User u, Event e)
             : this()
         {
             this.user = u;
             this.event_ = e;
-            this.mainFrame = f;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
