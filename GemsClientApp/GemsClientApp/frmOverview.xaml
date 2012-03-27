@@ -7,9 +7,9 @@
       d:DesignHeight="600" d:DesignWidth="600"
 	Title="Overview" Width="750" Height="600">
 
-    <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" FontFamily="Stencil" FontSize="20" Foreground="Black" Margin="0">
+    <GroupBox x:Name="grpbxEventOverview" Header="Event Overview" FontFamily="Stencil" FontSize="20" Foreground="Black" Margin="0" Height="601">
 
-        <StackPanel>
+        <StackPanel Height="544">
             <GroupBox Header="Programmes" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
                 <TextBlock  x:Name="txtProgramMsg"  FontSize="14" FontFamily="Tahoma"  FontWeight="SemiBold" TextWrapping="Wrap"  />
             </GroupBox>

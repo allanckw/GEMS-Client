@@ -7,10 +7,10 @@
 	x:Name="Window"
 	Title="frmRoleTemplates"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
-    <GroupBox Header="Manpower" FontSize="21.333" FontWeight="Normal">
+    <GroupBox Header="Manpower" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
     		<GroupBox Header="Role Templates" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
-    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13.333" SelectionMode="Single" Margin="0,0,7,2.627">
+    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13" SelectionMode="Single" Margin="0,0,7,2.627">
     				<ListBox.ItemTemplate>
     					<DataTemplate>
     						<StackPanel Orientation="Vertical">
@@ -25,18 +25,18 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     			<StackPanel Orientation="Horizontal">
     				<StackPanel Width="301.803">
     					<StackPanel Height="30" Orientation="Horizontal" Margin="0,10">
-    						<Label Content="Role:" Width="56.803" FontSize="13.333"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" FontSize="13.333" x:Name="txtPost" Margin="0,0,8,0" />
+    						<Label Content="Role:" Width="56.803" FontSize="13"/>
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" FontSize="13" x:Name="txtPost" Margin="0,0,8,0" />
     					</StackPanel>
     					<StackPanel Height="218">
-    						<Label Content="Description:" FontSize="13.333"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="171" FontSize="13.333" Margin="8,0" x:Name="txtDescription" />
+    						<Label Content="Description:" FontSize="13"/>
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="171" FontSize="13" Margin="8,0" x:Name="txtDescription" />
     					</StackPanel>
     					<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-    						<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
-    						<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+    						<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnSave_Click" />
+    						<Button Content="Delete" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnDelete_Click"/>
 
-    						<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
+    						<Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
     					</DockPanel>
     				</StackPanel>
     				<TreeView Width="211" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0,0,0,8">
@@ -47,7 +47,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     									<DataTemplate>
     										<StackPanel Orientation="Horizontal">
     											<CheckBox Margin="4" x:Name="chk" Checked="chkBoxToggled" Unchecked="chkBoxToggled" Click="chkBoxClicked"/>
-    											<TextBlock Text="{Binding}" FontSize="13.333" />
+    											<TextBlock Text="{Binding}" FontSize="13" />
     										</StackPanel>
     									</DataTemplate>
     								</Setter.Value>

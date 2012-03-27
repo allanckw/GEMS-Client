@@ -5,10 +5,10 @@
 	x:Class="Gems.UIWPF.frmProgramManagement"
 	x:Name="Window"
 	Title="frmProgramManagement"
-Width="719" Height="520" Background="{x:Null}" Loaded="Window_Loaded">
-    <GroupBox Header="Programme Management" FontSize="21.333" Margin="0" d:LayoutOverrides="Width, Height" Height="509" Width="723">
+Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
+    <GroupBox Header="Programme Management" FontWeight="Medium" FontSize="21" Margin="0" d:LayoutOverrides="Width, Height" Height="590" Width="741">
 		<StackPanel Orientation="Horizontal">
-			<GroupBox Header="Programme Segments" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,8" Width="385">
+			<GroupBox Header="Programme Segments" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8" Width="385" Height="502">
 				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Single" Height="465">
 					<ListView.View>
 						<GridView>
@@ -31,28 +31,28 @@ Width="719" Height="520" Background="{x:Null}" Loaded="Window_Loaded">
 					</ListView.View>
 				</ListView>
 			</GroupBox>
-			<GroupBox Header="Segment Details" FontSize="18.667" Width="313" Margin="0,0,0,8" Height="462">
-				<StackPanel Height="423">
+			<GroupBox Header="Segment Details" FontSize="18" Width="313" Margin="0,0,0,8" Height="494">
+				<StackPanel Height="462">
 					<StackPanel Height="31.313" Orientation="Horizontal">
-						<Label Content="Event Date:" Width="76.803" FontSize="13.333"/>
-						<Label Content=""  Width="215" FontSize="13.333" x:Name="txtDate" />
+						<Label Content="Event Date:" Width="76.803" FontSize="13"/>
+						<Label Content=""  Width="215" FontSize="13" x:Name="txtDate" />
 					</StackPanel>
 					<StackPanel Height="31.313" Orientation="Horizontal">
-						<Label Content="Name:" Width="76.803" FontSize="13.333"/>
+						<Label Content="Name:" Width="76.803" FontSize="13"/>
 						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" FontSize="12" x:Name="txtName" Height="31" />
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" Height="31.314">
-						<Label Content="Start Time:" Width="76.803" FontSize="13.333"/>
+						<Label Content="Start Time:" Width="76.803" FontSize="13"/>
 						<ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="12"/>
 						<ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="12"/>
 					</StackPanel>
 					<StackPanel Height="31.314" Orientation="Horizontal">
-						<Label Content="End Time:" Width="76.803" FontSize="13.333"/>
+						<Label Content="End Time:" Width="76.803" FontSize="13"/>
 						<ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="12"/>
 						<ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="12"/>
 					</StackPanel>
 					<StackPanel Height="250">
-						<Label Content="Description:" FontSize="13.333"/>
+						<Label Content="Description:" FontSize="13"/>
 						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtDescription" />
 					</StackPanel>
 					<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">

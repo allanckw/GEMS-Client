@@ -225,7 +225,9 @@ namespace Gems.UIWPF
                 mnuRoleTemplates.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Edit_Programs) || ef.Contains(EnumFunctions.Create_Programs) || ef.Contains(EnumFunctions.Delete_Programs))
+            if (ef.Contains(EnumFunctions.Edit_Programs) || 
+                ef.Contains(EnumFunctions.Create_Programs) || 
+                ef.Contains(EnumFunctions.Delete_Programs))
                 mnuPrograms.Visibility = Visibility.Visible;
             //
             if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Manage_ItemType)
@@ -240,12 +242,17 @@ namespace Gems.UIWPF
             //if (ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions))
             //mnuTasks.Visibility = Visibility.Visible;
             //
-            if (ef.Contains(EnumFunctions.Add_Guest) || ef.Contains(EnumFunctions.Edit_Guest) || ef.Contains(EnumFunctions.Delete_Guest))
+            if (ef.Contains(EnumFunctions.Add_Guest) || 
+                ef.Contains(EnumFunctions.Edit_Guest) || 
+                ef.Contains(EnumFunctions.Delete_Guest))
             {
                 mnuGuests.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Add_Role) || ef.Contains(EnumFunctions.Edit_Role) || ef.Contains(EnumFunctions.Delete_Role) || ef.Contains(EnumFunctions.View_Role))
+            if (ef.Contains(EnumFunctions.Add_Role) || 
+                ef.Contains(EnumFunctions.Edit_Role) || 
+                ef.Contains(EnumFunctions.Delete_Role) || 
+                ef.Contains(EnumFunctions.View_Role))
             {
                 mnuManpower.Visibility = Visibility.Visible;
                 mnuRoles.Visibility = Visibility.Visible;

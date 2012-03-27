@@ -10,7 +10,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Height="600" Width="630" Opacity="1.0">
-        <Button x:Name="btnClose" Canvas.Left="591.667" Canvas.Top="18.667" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="591" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
@@ -26,7 +26,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         <Label Canvas.Left="30" Canvas.Top="12" Content="GEMS NOTIFICATIONS" FontFamily="Stencil" FontSize="20" Height="38" Name="label3" Width="215" />
 
         <Label Canvas.Left="59" Canvas.Top="351" Content="Reply:" Height="28" Name="label5" Width="66" />
-        <GroupBox Canvas.Left="59" Canvas.Top="46"  Height="109" Name="groupBox1" Width="500" 
+        <GroupBox FontWeight="Medium" Canvas.Left="59" Canvas.Top="46"  Height="109" Name="groupBox1" Width="500" 
                   Header="Sender Information"   Foreground="Black">
             <StackPanel  Orientation="Vertical" Height="88" >
                 <StackPanel  Orientation="Horizontal" Height="44">

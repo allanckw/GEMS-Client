@@ -6,7 +6,7 @@
 	x:Class="Gems.UIWPF.frmViewCurrentBooking"
 	x:Name="Window" Loaded="Window_Loaded" Activated="Window_Activated" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Title="frmViewCurrentBooking"
-Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+Width="900" Height="625" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
@@ -26,7 +26,7 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" WindowStar
         </Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Bookings" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="20" />
 		<StackPanel Height="536" Canvas.Left="21" Canvas.Top="56" Width="879" Orientation="Horizontal">
-			<GroupBox Header="Filter" FontSize="16" Width="240" Height="523" VerticalAlignment="Top">
+            <GroupBox Header="Filter" FontSize="16" FontWeight="Medium" Width="240" Height="523" VerticalAlignment="Top">
 				<StackPanel Margin="0" Width="220" Height="517" VerticalAlignment="Top">
 					<Label Content="Event List" FontSize="12"/>
 					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0"/>
@@ -57,7 +57,7 @@ Width="900" Height="600" AllowsTransparency="True" WindowStyle="None" WindowStar
                     </ListBox>
                 </StackPanel>
 			</GroupBox>
-			<GroupBox Header="Current Facility Booking List" Width="600" FontSize="16" Margin="10,0,0,0" FontWeight="Normal" Height="523" VerticalAlignment="Top">
+            <GroupBox Header="Current Facility Booking List"  Width="600" FontSize="16" Margin="10,0,0,0" FontWeight="Medium" Height="523" VerticalAlignment="Top">
 				<StackPanel Height="500" Width="592" HorizontalAlignment="Left" VerticalAlignment="Top">
 					<StackPanel Height="150" Margin="0" Width="600" HorizontalAlignment="Left">
 						<StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">

@@ -26,23 +26,23 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
 			</Button.Template>
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="16" />
-		<GroupBox Header="Service List" Canvas.Left="21" Canvas.Top="60" Height="560" Width="156.197" FontSize="21.333">
+		<GroupBox Header="Service List" Canvas.Left="21" Canvas.Top="60" Height="560" Width="156.197" FontSize="21">
 			<ListBox x:Name="lstServiceList"/>
 		</GroupBox>
-		<GroupBox Header="Service Detail" Canvas.Left="181.197" Canvas.Top="64" Height="560" Width="494.5" FontSize="21.333">
+		<GroupBox Header="Service Detail" Canvas.Left="181.197" Canvas.Top="64" Height="560" Width="494.5" FontSize="21">
 			<StackPanel Margin="0,8,0,0" Height="515" VerticalAlignment="Top">
 				<StackPanel Height="145">
 					<Canvas Height="40">
-						<Label Canvas.Left="15" Canvas.Top="3" Content="Company Name :" Height="35" x:Name="label1" FontSize="13.333" />
-						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtCompanyName" Width="300" IsReadOnly="True" FontSize="13.333" />
+						<Label Canvas.Left="15" Canvas.Top="3" Content="Company Name :" Height="35" x:Name="label1" FontSize="13" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtCompanyName" Width="300" IsReadOnly="True" FontSize="13" />
 					</Canvas>
 					<Canvas Height="40">
-						<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label7" FontSize="13.333" />
-						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="13.333" />
+						<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label7" FontSize="13" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="13" />
 					</Canvas>
 					<Canvas Height="115">
-						<Label Canvas.Top="8" Content="Notes :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="13.333" HorizontalAlignment="Left" />
-						<TextBox Canvas.Left="160" Canvas.Top="8" Height="50" x:Name="txtNote" Width="300" FontSize="13.333" />
+						<Label Canvas.Top="8" Content="Notes :" Height="35" x:Name="label6" Canvas.Left="15" FontSize="13" HorizontalAlignment="Left" />
+						<TextBox Canvas.Left="160" Canvas.Top="8" Height="50" x:Name="txtNote" Width="300" FontSize="13" />
 					</Canvas>
 				</StackPanel>
 				<Canvas Height="210">
@@ -54,29 +54,29 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
 							<GroupBox Header="Point of Contact" Width="322.627" Height="170" FontSize="14" HorizontalAlignment="Right" Margin="0,0,-366.5,0">
 								<StackPanel>
 									<Canvas Height="35">
-										<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
-										<TextBox x:Name="txtContactEmail" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+										<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+										<TextBox x:Name="txtContactEmail" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13"/>
 									</Canvas>
 									<Canvas Height="35">
-										<Label Content="Name :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
-										<TextBox x:Name="txtContactName" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+										<Label Content="Name :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+										<TextBox x:Name="txtContactName" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13"/>
 									</Canvas>
 									<Canvas Height="35">
-										<Label Content="Position :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
-										<TextBox x:Name="txtContactPosition" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+										<Label Content="Position :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+										<TextBox x:Name="txtContactPosition" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13"/>
 									</Canvas>
 									<Canvas Height="35">
-										<Label Content="Contact :" Canvas.Left="0" Canvas.Top="4" FontSize="13.333"/>
-										<TextBox x:Name="txtContactTel" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13.333"/>
+										<Label Content="Contact :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+										<TextBox x:Name="txtContactTel" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="230" FontSize="13"/>
 									</Canvas>
 								</StackPanel>
 							</GroupBox>
 						</StackPanel>
 						<StackPanel Height="50" Width="500" Orientation="Horizontal">
-							<Button x:Name="btnAddNewPOC" Content="Add New" FontSize="13.333" Margin="5,0,0,0" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13.333" VerticalAlignment="Top"/>
-							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13.333" Margin="0"/>
-							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13.333" VerticalAlignment="Top"/>
+							<Button x:Name="btnAddNewPOC" Content="Add New" FontSize="13" Margin="5,0,0,0" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="0"/>
+							<Button Content="Button" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top"/>
 						</StackPanel>
 					</StackPanel>
 				</Canvas>

@@ -6,10 +6,10 @@
 	x:Name="Window"
 	Title="frmGuestList"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
-    <GroupBox Header="Guests Management" FontSize="21.333">
+    <GroupBox Header="Guests Management" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0">
-    		<GroupBox Header="Guest List" Width="350" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,8">
-    			<ListView x:Name="lstGuestList" SelectionChanged="lstGuestList_SelectionChanged" FontSize="13.333" SelectionMode="Single">
+    		<GroupBox Header="Guest List" Width="350" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8">
+    			<ListView x:Name="lstGuestList" SelectionChanged="lstGuestList_SelectionChanged" FontSize="13" SelectionMode="Single">
     				<ListView.View>
     					<GridView>
     						<GridViewColumn Width="190" Header="Name" DisplayMemberBinding="{Binding Name}"  />
@@ -18,25 +18,25 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     				</ListView.View>
     			</ListView>
     		</GroupBox>
-    		<GroupBox Header="Guest Details" FontSize="18.667" Width="376" Margin="0,0,0,8">
+    		<GroupBox Header="Guest Details" FontSize="18" Width="376" Margin="0,0,0,8">
     			<StackPanel>
     				<StackPanel Height="31.313" Orientation="Horizontal">
-    					<Label Content="Name:" Width="66.803" FontSize="13.333"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13.333" x:Name="txtName" TextChanged="onTextChanged" />
+    					<Label Content="Name:" Width="66.803" FontSize="13"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtName" TextChanged="onTextChanged" />
     				</StackPanel>
     				<StackPanel Height="31.314" Orientation="Horizontal">
-    					<Label Content="Contact:" Width="66.803" FontSize="13.333"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13.333" x:Name="txtContact" TextChanged="onTextChanged"/>
+    					<Label Content="Contact:" Width="66.803" FontSize="13"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtContact" TextChanged="onTextChanged"/>
     				</StackPanel>
     				<StackPanel Height="304">
-    					<Label Content="Description:" FontSize="13.333"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13.333" Margin="8,0" x:Name="txtDescription" TextChanged="onTextChanged"/>
+    					<Label Content="Description:" FontSize="13"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13" Margin="8,0" x:Name="txtDescription" TextChanged="onTextChanged"/>
     				</StackPanel>
     				<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
-    					<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnSave_Click" />
-    					<Button Content="Delete" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="btnDelete_Click"/>
+    					<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnSave_Click" />
+    					<Button Content="Delete" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnDelete_Click"/>
                         
-    					<Button Content="Cancel" Width="75" FontSize="13.333" Margin="0,0,10,0" Click="clearAll"/>
+    					<Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
     				</DockPanel>
     			</StackPanel>
     		</GroupBox>

@@ -4,13 +4,13 @@
 	x:Class="Gems.UIWPF.frmViewFacilityDetail"
 	x:Name="Window" MouseLeftButtonDown="Window_MouseLeftButtonDown"  Loaded="Window_Loaded"
 	Title="frmViewFacilityDetail"
-    Width="528" Height="435" AllowsTransparency="True" WindowStyle="None"
+    Width="550" Height="435" AllowsTransparency="True" WindowStyle="None"
     WindowStartupLocation="CenterScreen" >
 	<Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Opacity="1.0">
-        <Button x:Name="btnClose" Canvas.Left="481" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="491" Canvas.Top="15" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
@@ -24,7 +24,8 @@
             </Button.Template>
         </Button>
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Details" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="17" />
-        <StackPanel Height="315" Canvas.Left="21" Canvas.Top="56" Width="460">
+        <GroupBox FontWeight="Medium" Header="Location Details" Width="518" FontSize="16" Margin="10,0,0,0" VerticalAlignment="Top" Height="336" Canvas.Top="48">
+            <StackPanel Height="315" Canvas.Left="21" Canvas.Top="56" Width="460">
             <Canvas Height="45">
                 <Label Content="Faculty :" Canvas.Left="8" Canvas.Top="8" FontSize="14"/>
                 <TextBox Canvas.Left="200" Canvas.Top="10" FontSize="12" Height="30" 
@@ -56,5 +57,6 @@
                          Height="30" FontSize="12" Margin="200,8,0,0" IsReadOnly="true"/>
             </Canvas>
         </StackPanel>
+        </GroupBox>
     </Canvas>
 </Window>

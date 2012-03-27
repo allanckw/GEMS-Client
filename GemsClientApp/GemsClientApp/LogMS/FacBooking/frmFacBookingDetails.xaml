@@ -24,9 +24,9 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Facility" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21.333" />
+		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Location" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21" />
 		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="60" Width="650">
-            <GroupBox Header="Facility Booking Time"  Width="649" FontSize="16" Height="82" Margin="0.5,0">
+            <GroupBox Header="Facility Booking Time"  Width="649" FontWeight="Medium" FontSize="16" Height="82" Margin="0.5,0">
 				<StackPanel Height="80" Orientation="Horizontal" Margin="0,0,-12,0">
 					<Canvas Height="51" Margin="0" Width="591" HorizontalAlignment="Left" VerticalAlignment="Top">
 						<Label Canvas.Left="-1" Canvas.Top="11" Content="From: " x:Name="label2" FontSize="14" />
@@ -36,8 +36,8 @@
                     </Canvas>
 				</StackPanel>
 			</GroupBox>
-			<StackPanel Width="650" HorizontalAlignment="Left" Height="410">
-                <GroupBox Header="Please Arrange Your choice of Facility" Height="350" FontSize="16" Margin="0" Width="650" HorizontalAlignment="Left">
+            <StackPanel Width="650" HorizontalAlignment="Left" Height="410">
+                <GroupBox Header="Please Arrange Your choice of Facility" FontWeight="Medium" Height="350" FontSize="16" Margin="0" Width="650" HorizontalAlignment="Left">
                     <DataGrid x:Name="dgFacility" FontSize="16">
                         <DataGrid.Columns>
                             <DataGridComboBoxColumn x:Name="cboPriority" Width="100" ItemsSource="{Binding Collection}" TextBinding="{Binding Collection}" Header="Priority" />
@@ -65,7 +65,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>
-				<Button x:Name="btnSubmit" Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="34" Click="btnSubmit_Click" />
+                <Button x:Name="btnSubmit" Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="34" Click="btnSubmit_Click" />
 			</StackPanel>
 		</StackPanel>
 	</Canvas>

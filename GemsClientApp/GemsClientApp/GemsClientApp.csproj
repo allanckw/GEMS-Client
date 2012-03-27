@@ -362,14 +362,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Gems.png" />
     <Resource Include="Close.png" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\evmsService\" />
   </ItemGroup>
@@ -390,6 +388,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gems_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gems.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
