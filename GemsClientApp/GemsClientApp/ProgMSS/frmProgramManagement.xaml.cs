@@ -37,7 +37,6 @@ namespace Gems.UIWPF
                 cboStartMin.Items.Add(string.Format("{0:00}", i));
                 cboEndMin.Items.Add(string.Format("{0:00}", i));
             }
-            cboStartHr.SelectedIndex = cboEndHr.SelectedIndex = cboStartMin.SelectedIndex = cboEndMin.SelectedIndex = 0;
         }
 
         public frmProgramManagement(User u, frmMain f, Event e)
@@ -79,27 +78,27 @@ namespace Gems.UIWPF
         {
             if (txtName.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter program segment name.");
+                MessageBox.Show("Please enter programme segment name.");
                 return;
             }
             if (cboStartHr.SelectedIndex == -1)
             {
-                MessageBox.Show("Please enter starting hour of program segment.");
+                MessageBox.Show("Please enter starting hour of programme segment.");
                 return;
             }
             if (cboStartMin.SelectedIndex == -1)
             {
-                MessageBox.Show("Please enter starting minute of program segment.");
+                MessageBox.Show("Please enter starting minute of programme segment.");
                 return;
             }
             if (cboEndHr.SelectedIndex == -1)
             {
-                MessageBox.Show("Please enter ending hour of program segment.");
+                MessageBox.Show("Please enter ending hour of programme segment.");
                 return;
             }
             if (cboEndMin.SelectedIndex == -1)
             {
-                MessageBox.Show("Please enter ending minute of program segment.");
+                MessageBox.Show("Please enter ending minute of programme segment.");
                 return;
             }
 
@@ -119,12 +118,17 @@ namespace Gems.UIWPF
 
             if (SegmentStartDateTime < event_.StartDateTime)
             {
-                MessageBox.Show("Event starts at " + event_.EndDateTime + ", program segment must start after that.");
+                MessageBox.Show("Event starts at " + event_.EndDateTime + ", programme segment must start after that.");
                 return;
             }
             if (SegmentEndDateTime > event_.EndDateTime)
             {
-                MessageBox.Show("Event ends at " + event_.EndDateTime + ", program segment must end before that.");
+                MessageBox.Show("Event ends at " + event_.EndDateTime + ", programme segment must end before that.");
+                return;
+            }
+            if (SegmentEndDateTime <= SegmentStartDateTime)
+            {
+                MessageBox.Show("Programme segment's end time must be after its start time.");
                 return;
             }
             //chk for overlap
@@ -136,7 +140,7 @@ namespace Gems.UIWPF
                     && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
                     )
                 {
-                    MessageBox.Show("Programs cannot overlap!");
+                    MessageBox.Show("Programmes cannot overlap!");
 
                     return;
                 }
@@ -174,9 +178,9 @@ namespace Gems.UIWPF
                 Program selectedProgram = (Program)lstProgram.SelectedItem;
                 txtName.Text = selectedProgram.Name;
                 cboStartHr.SelectedIndex = selectedProgram.StartDateTime.Hour;
-                cboStartMin.SelectedIndex = selectedProgram.StartDateTime.Minute / 10;
+                cboStartMin.SelectedIndex = selectedProgram.StartDateTime.Minute / 30;
                 cboEndHr.SelectedIndex = selectedProgram.EndDateTime.Hour;
-                cboEndMin.SelectedIndex = selectedProgram.EndDateTime.Minute / 10;
+                cboEndMin.SelectedIndex = selectedProgram.EndDateTime.Minute / 30;
                 txtDescription.Text = selectedProgram.Description;
                 btnAdd.Content = "Save";
                 client.Close();
