@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingControlSample", "RatingControlSample\RatingControlSample.csproj", "{16B3907E-2EA4-429A-A418-5B63E0C018BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{EA7842FA-4D40-44E6-B352-481214E8A708}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16B3907E-2EA4-429A-A418-5B63E0C018BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B3907E-2EA4-429A-A418-5B63E0C018BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B3907E-2EA4-429A-A418-5B63E0C018BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B3907E-2EA4-429A-A418-5B63E0C018BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7842FA-4D40-44E6-B352-481214E8A708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7842FA-4D40-44E6-B352-481214E8A708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7842FA-4D40-44E6-B352-481214E8A708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7842FA-4D40-44E6-B352-481214E8A708}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

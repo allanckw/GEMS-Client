@@ -1,0 +1,18 @@
+﻿<Window x:Class="Sandbox.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:r="clr-namespace:RatingControlSample;assembly=RatingControlSample"
+    Title="Window1" Height="300" Width="300">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FF505050" Offset="0"/>
+            <GradientStop Color="#FF202020" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,0,8,0">Please rate me:</TextBlock>
+            <r:RatingControl Width="87" Height="15"/>
+        </StackPanel>
+    </Grid>
+</Window>

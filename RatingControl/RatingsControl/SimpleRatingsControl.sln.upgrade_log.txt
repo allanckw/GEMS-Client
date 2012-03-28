@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------
+C:\Users\JiKai\Desktop\RatingsControl\StarRatingsControl\StarRatingsControl.csproj
+----------------------------------------------------------------------------------
+Updating <TargetFrameworkVersion> value from 'v3.5' to 'v4.0'
+Setting <ExpressionBlendVersion> value to '4.0.20525.0'
+Updating ToolsVersion from '3.5' to '4.0'
+Adding <Reference Include="System.Xaml">
+Setting <RequiredTargetFramework> of <Reference Include="System.Xaml"> to 'v4.0'
+Setting <Utf8Output> value to 'true'
+Saving file
+
+
+--------------------------------------------------------------
+C:\Users\JiKai\Desktop\RatingsControl\SimpleRatingsControl.sln
+--------------------------------------------------------------
+Setting solution format header to 'Microsoft Visual Studio Solution File, Format Version 11.00'
+Saving file
+
+
