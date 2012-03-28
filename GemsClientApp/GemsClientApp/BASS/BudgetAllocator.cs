@@ -123,8 +123,13 @@ namespace Gems.UIWPF
 
         public List<List<Items>> optimalItems(decimal budget, out decimal priceTotal, out int satisfactionTotal)
         {
-            if (budget < minBudget || budget > maxBudget)
-                throw new ArgumentOutOfRangeException("budget");
+            if (budget < minBudget)
+                throw new ArgumentOutOfRangeException("The amount of budget entered is insufficient");
+            else if (budget > maxBudget)
+            {
+                throw new ArgumentOutOfRangeException("Your entered budget is more than your maximum defined budget!");
+            }
+
             List<List<Items>> result = new List<List<Items>>();
             int i = DPtreeLeaves.Count - 1;
             for (; i >= 0; i--)

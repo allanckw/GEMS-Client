@@ -18,6 +18,8 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmAllocateBudget.xaml
     /// </summary>
+    // Slider Example
+    //http://codingsense.wordpress.com/2010/02/01/customize-a-slider-in-wpf-step-by-step-tutorial/
     public partial class frmAllocateBudget : Window
     {
         private User user;
@@ -26,6 +28,8 @@ namespace Gems.UIWPF
         private List<ItemTypes> typeList;
         decimal maxBudget;
         BudgetAllocator bAllocator;
+
+        private List<List<Items>> results;
 
         public frmAllocateBudget()
         {
@@ -45,6 +49,14 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+            txtMinBudget.Text = maxBudget.ToString("0.00");
+            generateListOfSuitableItems(maxBudget);
+        }
+
+        private void generateListOfSuitableItems(decimal minBudget)
+        {
+
             //Use threading to stop system to "Hang" as it may take a long time to compute
             //Due to Complexity
             System.Threading.Thread thread = new System.Threading.Thread(
@@ -56,27 +68,47 @@ namespace Gems.UIWPF
                     System.Windows.Threading.DispatcherPriority.Normal,
                     new Action(delegate()
                     {
-                        bAllocator = new BudgetAllocator(itemList, typeList, maxBudget);
+                        try
+                        {
+                            bAllocator = new BudgetAllocator(itemList, typeList, minBudget);
+                        }
+                        catch (ArgumentOutOfRangeException argEx)
+                        {
+                            MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Close();
+                        }
                     }
                 ));
 
                     dispatcherOp.Completed += new EventHandler(dispatcherOp_Completed);
                 }
-   ));
+            ));
 
             thread.Start();
-
         }
+
 
         void dispatcherOp_Completed(object sender, EventArgs e)
         {
+            if (bAllocator == null)
+                return;
+
             this.budgetSlider.Minimum = 0;
             int totalSatisfaction;
             decimal totalPrice;
-            this.budgetSlider.Maximum = bAllocator.optimalItems
-                (maxBudget, out totalPrice, out totalSatisfaction).Count-1;
-
-            MessageBox.Show("Computation Completed!");
+            try
+            {
+                results = bAllocator.optimalItems(maxBudget, out totalPrice, out totalSatisfaction);
+                this.budgetSlider.Maximum = results.Count - 1;
+                txtTotalPrice.Text = totalPrice.ToString("0.00");
+                txtTotalSat.Text = totalSatisfaction.ToString("0.00");
+                MessageBox.Show("Computation Completed!");
+                lstItemList.ItemsSource = results[0];
+            }
+            catch (ArgumentOutOfRangeException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -87,6 +119,62 @@ namespace Gems.UIWPF
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void lstItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnCompute_Click(object sender, RoutedEventArgs e)
+        {
+            decimal minBudget = 0;
+
+            if (Decimal.TryParse(txtMinBudget.Text.Trim(), out minBudget))
+            {
+                int totalSat = 0;
+                decimal totalPrice = 0;
+                try
+                {
+                    results = bAllocator.optimalItems(minBudget, out totalPrice, out totalSat);
+                    txtTotalPrice.Text = totalPrice.ToString("0.00");
+                    txtTotalSat.Text = totalSat.ToString();
+                    this.budgetSlider.Maximum = results.Count - 1;
+                }
+                catch (ArgumentOutOfRangeException argEx)
+                {
+                    MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Minimum budget must be numeric!", "Invalid input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void budgetSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int index = Convert.ToInt32(budgetSlider.Value);
+            lstItemList.ItemsSource = results[index];
+            int totalSat = 0;
+            decimal totalPrice = 0;
+
+            foreach (Items i in results[index])
+            {
+                totalSat += i.Satisfaction;
+                totalPrice += i.EstimatedPrice;
+
+            }
+
+            txtTotalPrice.Text = totalPrice.ToString("0.00");
+            txtTotalSat.Text = totalSat.ToString();
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Server Code to be implemented later..
         }
     }
 }

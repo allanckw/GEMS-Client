@@ -277,9 +277,12 @@ namespace Gems.UIWPF
             }
             else if (Decimal.TryParse(txtMaxBudget.Text.Trim(), out maxBudget))
             {
+
                 var budgetForm = new frmAllocateBudget(user, event_,
                     lvItemType.GetItemTypeList(), lvItem.getExistingSource(), maxBudget);
                 budgetForm.ShowDialog();
+
+
 
             }
             else
