@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using evmsService.entities;
 
-namespace Gems.UIWPF.BASS
+namespace Gems.UIWPF
 {
     class State : IComparable<State>
     {
@@ -29,6 +29,9 @@ namespace Gems.UIWPF.BASS
 
         public BudgetAllocator(List<Items> items, List<ItemTypes> itemTypes, decimal maxBudget)
         {
+            importantItemsByType = new List<List<Items>>();
+            unimportantItemsByType = new List<List<Items>>();
+
             Dictionary<string, List<Items>> itemsByType = new Dictionary<string,List<Items>>();
             foreach(Items item in items)
             {

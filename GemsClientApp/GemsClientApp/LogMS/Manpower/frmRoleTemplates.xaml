@@ -10,13 +10,15 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Manpower" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
     		<GroupBox Header="Role Templates" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
-    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13" SelectionMode="Single" Margin="0,0,7,2.627">
+    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         FontSize="13" SelectionMode="Single" Margin="0,0,5,5">
     				<ListBox.ItemTemplate>
     					<DataTemplate>
-    						<StackPanel Orientation="Vertical">
+    						<WrapPanel Orientation="Vertical">
     								<TextBlock Text="{Binding Post}" TextWrapping="Wrap" FontWeight="Bold" />
     								<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-    						</StackPanel>
+    						</WrapPanel>
     					</DataTemplate>
     				</ListBox.ItemTemplate>
     			</ListBox>

@@ -259,5 +259,35 @@ namespace Gems.UIWPF
             List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
         }
+
+        private void btnCalculateBudget_Click(object sender, RoutedEventArgs e)
+        {
+            decimal maxBudget;
+            if (lvItemType.GetItemTypeList().Count == 0)
+            {
+                MessageBox.Show("There are no added Item types!", "Add Item Type First",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else if (lvItem.getExistingSource().Count == 0)
+            {
+                MessageBox.Show("There are no added Items!", "Add Items First",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else if (Decimal.TryParse(txtMaxBudget.Text.Trim(), out maxBudget))
+            {
+                var budgetForm = new frmAllocateBudget(user, event_,
+                    lvItemType.GetItemTypeList(), lvItem.getExistingSource(), maxBudget);
+                budgetForm.ShowDialog();
+
+            }
+            else
+            {
+                MessageBox.Show("Maximum Budget must be numeric!", "Invalid input",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+        }
     }
 }

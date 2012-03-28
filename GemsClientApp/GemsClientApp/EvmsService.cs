@@ -470,6 +470,8 @@ namespace evmsService.entities
         
         private int EventIDField;
         
+        private evmsService.entities.Task[] EventTasksField;
+        
         private evmsService.entities.Guest[] GuestsField;
         
         private int ItemCountField;
@@ -549,6 +551,19 @@ namespace evmsService.entities
             set
             {
                 this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Task[] EventTasks
+        {
+            get
+            {
+                return this.EventTasksField;
+            }
+            set
+            {
+                this.EventTasksField = value;
             }
         }
         
@@ -852,6 +867,177 @@ namespace evmsService.entities
             set
             {
                 this.VenueField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int AssignedRoleIDField;
+        
+        private System.DateTime DueDateField;
+        
+        private int EventIDField;
+        
+        private bool IsCompletedField;
+        
+        private bool IsReadField;
+        
+        private string RemarksField;
+        
+        private System.DateTime SendDateTimeField;
+        
+        private string TaskDescField;
+        
+        private int TaskIDField;
+        
+        private string TaskNameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AssignedRoleID
+        {
+            get
+            {
+                return this.AssignedRoleIDField;
+            }
+            set
+            {
+                this.AssignedRoleIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DueDate
+        {
+            get
+            {
+                return this.DueDateField;
+            }
+            set
+            {
+                this.DueDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsCompleted
+        {
+            get
+            {
+                return this.IsCompletedField;
+            }
+            set
+            {
+                this.IsCompletedField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsRead
+        {
+            get
+            {
+                return this.IsReadField;
+            }
+            set
+            {
+                this.IsReadField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime SendDateTime
+        {
+            get
+            {
+                return this.SendDateTimeField;
+            }
+            set
+            {
+                this.SendDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TaskDesc
+        {
+            get
+            {
+                return this.TaskDescField;
+            }
+            set
+            {
+                this.TaskDescField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskID
+        {
+            get
+            {
+                return this.TaskIDField;
+            }
+            set
+            {
+                this.TaskIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TaskName
+        {
+            get
+            {
+                return this.TaskNameField;
+            }
+            set
+            {
+                this.TaskNameField = value;
             }
         }
     }
@@ -1481,6 +1667,18 @@ namespace evmsService.entities
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Manage_ItemType = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Add_Task = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Update_Task = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Delete_Task = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Assign_Task = 19,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2284,7 +2482,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CreateEvent", ReplyAction="http://tempuri.org/IEvmsService/CreateEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/CreateEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    int CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
+    void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEvent", ReplyAction="http://tempuri.org/IEvmsService/ViewEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -2689,9 +2887,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         base.Channel.sendNotification(sender, receiver, title, msg);
     }
     
-    public int CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
+    public void CreateEvent(evmsService.entities.User u, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
     {
-        return base.Channel.CreateEvent(u, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
+        base.Channel.CreateEvent(u, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
     }
     
     public evmsService.entities.Event[] ViewEvent(evmsService.entities.User u)

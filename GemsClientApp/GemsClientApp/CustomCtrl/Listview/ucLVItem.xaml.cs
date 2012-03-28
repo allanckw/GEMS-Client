@@ -38,6 +38,12 @@ namespace Gems.UIWPF.CustomCtrl
             refresh();
         }
 
+        public List<Items> getExistingSource()
+        {
+            IEnumerable<Items> obsCollection = (IEnumerable<Items>)_Collection;
+            return new List<Items>(obsCollection);
+        }
+
         public void AddNewItem(User user, ItemTypes itemtype, string n, string t, decimal p, int s)
         {//Need User
             try
