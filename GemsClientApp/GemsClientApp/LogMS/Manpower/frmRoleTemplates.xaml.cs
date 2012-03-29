@@ -269,7 +269,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.DeleteRoleTemplate(user, ((Role)lstRole.SelectedItem).RoleID);
+                client.DeleteRoleTemplate(user, ((RoleTemplate)lstRole.SelectedItem).RoleTemplateID);
                 client.Close();
             }
             catch (Exception ex)

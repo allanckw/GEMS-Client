@@ -54,10 +54,10 @@ namespace Gems.UIWPF
             generateListOfSuitableItems(maxBudget);
         }
 
-        private void generateListOfSuitableItems(decimal minBudget)
+        private void generateListOfSuitableItems(decimal maxBudget)
         {
 
-            //Use threading to stop system to "Hang" as it may take a long time to compute
+            //Use threading to stop system from "Hanging" as it may take a long time to compute
             //Due to Complexity
             System.Threading.Thread thread = new System.Threading.Thread(
                 new System.Threading.ThreadStart(
@@ -70,11 +70,12 @@ namespace Gems.UIWPF
                     {
                         try
                         {
-                            bAllocator = new BudgetAllocator(itemList, typeList, minBudget);
+                            bAllocator = new BudgetAllocator(itemList, typeList, maxBudget);
                         }
                         catch (ArgumentOutOfRangeException argEx)
                         {
-                            MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, 
+                                MessageBoxImage.Error);
                             this.Close();
                         }
                     }
@@ -174,7 +175,21 @@ namespace Gems.UIWPF
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Server Code to be implemented later..
+            
+            WCFHelperClient client = new WCFHelperClient();
+            try
+            {
+                client.saveBudgetList(user, event_.EventID, int.Parse(txtTotalSat.Text.Trim()),
+                    decimal.Parse(txtTotalPrice.Text.Trim()),
+                    ((List<Items>)lstItemList.ItemsSource).ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Expection has occured: " + ex.Message, "Exception while saving optimal item list",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            client.Close();
         }
     }
 }

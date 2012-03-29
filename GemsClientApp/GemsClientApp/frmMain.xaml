@@ -36,8 +36,8 @@
                     <MenuItem Header="View Current Bookings" Background="{x:Null}" Width="240" x:Name="mnuViewBookings" Click="mnuViewBookings_Click"/>
                 </MenuItem>
                 <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
-                    <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
                     <MenuItem Header="Role Templates" Background="{x:Null}" Width="240" x:Name="mnuRoleTemplates" Click="mnuRoleTemplates_Click"/>
+                    <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
                 </MenuItem>
                 <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>

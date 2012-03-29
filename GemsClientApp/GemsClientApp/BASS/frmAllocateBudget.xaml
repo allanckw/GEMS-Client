@@ -104,13 +104,13 @@
                             Height="25" Name="btnCompute" Width="75" Click="btnCompute_Click" />
                 </Canvas>
                 <Canvas Height="35">
-                    <Label Content="Use the Scroll Bar to view the possible choices of items within your budget" FontWeight="Bold" Canvas.Left="8" Canvas.Top="8" FontSize="15" FontFamily="Tahoma"/>
+                    <Label Content="Use the Scroll Bar to view possible choices of items within your budget" FontWeight="Bold" Canvas.Left="8" Canvas.Top="8" FontSize="15" FontFamily="Tahoma"/>
                 </Canvas>
                 <Slider Name="budgetSlider" Style="{StaticResource MyCustomStyleForSlider}" 
                 IsSnapToTickEnabled="True" TickFrequency="1" Minimum="0"
                 Maximum="10" Value="0" Height="25" VerticalAlignment="Top" Margin="10,10,10,10" ValueChanged="budgetSlider_ValueChanged" />
                 <Canvas Height="35">
-                    <Label Content="Item List :" Canvas.Left="8" Canvas.Top="8" FontSize="14" FontFamily="Tahoma"/>
+                    <Label Content="Items List:" Canvas.Left="8" Canvas.Top="8" FontSize="14" FontFamily="Tahoma"/>
                 </Canvas>
                 <ListBox x:Name="lstItemList" Margin="10,10,10,10" FontFamily="Tahoma" FontSize="12" 
                      FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstItemList_SelectionChanged" Height="300">

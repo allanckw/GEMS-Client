@@ -84,6 +84,9 @@
     <Compile Include="BASS\frmAllocateBudget.xaml.cs">
       <DependentUpon>frmAllocateBudget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BASS\SelectedItemList.xaml.cs">
+      <DependentUpon>SelectedItemList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomCtrl\DTP\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="BASS\frmAllocateBudget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BASS\SelectedItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

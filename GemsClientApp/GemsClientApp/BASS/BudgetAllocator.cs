@@ -6,12 +6,37 @@ using evmsService.entities;
 
 namespace Gems.UIWPF
 {
+    //Kok Wei & Beng Hee
     class State : IComparable<State>
     {
-        public decimal priceTotal;
-        public int satisfactionTotal;
-        public Items item;
-        public State prevState;
+        private decimal priceTotal;
+
+        public decimal TotalPrice
+        {
+            get { return priceTotal; }
+            set { priceTotal = value; }
+        }
+        private int satisfactionTotal;
+
+        public int TotalSatisfactionValue
+        {
+            get { return satisfactionTotal; }
+            set { satisfactionTotal = value; }
+        }
+        private Items item;
+
+        public Items Item
+        {
+            get { return item; }
+            set { item = value; }
+        }
+        private State prevState;
+
+        public State PrevState
+        {
+            get { return prevState; }
+            set { prevState = value; }
+        }
 
         public int CompareTo(State s)
         {
@@ -21,11 +46,36 @@ namespace Gems.UIWPF
 
     public class BudgetAllocator
     {
-        public decimal minBudget;
-        public decimal maxBudget;
-        public List<List<Items>> importantItemsByType;
-        public List<List<Items>> unimportantItemsByType;
-        List<State> DPtreeLeaves;
+        private decimal minBudget;
+
+        public decimal MinBudget
+        {
+            get { return minBudget; }
+            set { minBudget = value; }
+        }
+        private decimal maxBudget;
+
+        public decimal MaxBudget
+        {
+            get { return maxBudget; }
+            set { maxBudget = value; }
+        }
+        private List<List<Items>> importantItemsByType;
+
+        public List<List<Items>> ImportantItemsByType
+        {
+            get { return importantItemsByType; }
+            set { importantItemsByType = value; }
+        }
+        private List<List<Items>> unimportantItemsByType;
+
+        public List<List<Items>> UnimportantItemsByType
+        {
+            get { return unimportantItemsByType; }
+            set { unimportantItemsByType = value; }
+        }
+
+        private List<State> DPtreeLeaves;
 
         public BudgetAllocator(List<Items> items, List<ItemTypes> itemTypes, decimal maxBudget)
         {
@@ -58,14 +108,16 @@ namespace Gems.UIWPF
                             .OrderByDescending(i => i.EstimatedPrice).ToList());
                     }
             }
+
             minBudget = 0;
             
-
             foreach (List<Items> itemsList in importantItemsByType)
                 minBudget += itemsList[itemsList.Count - 1].EstimatedPrice;
             
             if (minBudget > maxBudget)
-                throw new ArgumentOutOfRangeException("The maximum amount of budget was too small to get all required items");
+                throw new ArgumentOutOfRangeException
+                    ("The maximum amount of budget was too small to obtain all required items");
+
             this.maxBudget = maxBudget;
             InitializeDPtree();
         }
@@ -74,14 +126,14 @@ namespace Gems.UIWPF
         {
             foreach (State state in inStates)
             {
-                if (state.priceTotal + item.EstimatedPrice > maxBudget)
-                    return;
+                if (state.TotalPrice + item.EstimatedPrice > maxBudget)
+                    return; //if it exceeds, dont bother 
                 outStates.Add(new State()
                 {
-                    priceTotal = state.priceTotal + item.EstimatedPrice,
-                    satisfactionTotal = state.satisfactionTotal + item.Satisfaction,
-                    prevState = state,
-                    item = item
+                    TotalPrice = state.TotalPrice + item.EstimatedPrice,
+                    TotalSatisfactionValue = state.TotalSatisfactionValue + item.Satisfaction,
+                    PrevState = state,
+                    Item = item
                 });
             }
         }
@@ -94,13 +146,15 @@ namespace Gems.UIWPF
             {
                 List<State> currStates = new List<State>();
                 foreach (Items item in itemsList)
+                {
                     addItemToStates(item, prevStates, currStates);
+                }
                 currStates.Sort();
                 State prevState = new State();
                 List<State> prunedStates = new List<State>();
                 foreach (State currState in currStates)
                 {
-                    if (currState.satisfactionTotal >= prevState.satisfactionTotal)
+                    if (currState.TotalSatisfactionValue >= prevState.TotalSatisfactionValue)
                     {
                         //shld be >= not > 
                         prunedStates.Add(currState);
@@ -115,18 +169,21 @@ namespace Gems.UIWPF
                 foreach (Items item in itemsList)
                     addItemToStates(item, prevStates, currStates);
                 currStates.Sort();
-                prevStates.Add(new State() { priceTotal = decimal.MaxValue });
-                currStates.Add(new State() { priceTotal = decimal.MaxValue });
+                prevStates.Add(new State() { TotalPrice = decimal.MaxValue });
+                currStates.Add(new State() { TotalPrice = decimal.MaxValue });
                 List<State> prunedStates = new List<State>();
-                State prevState = new State() { satisfactionTotal = -1 };
+                State prevState = new State() { TotalSatisfactionValue = -1 };
                 for (int i = 0, j = 0; i < prevStates.Count || j < currStates.Count; )
                 {
-                    State currState = prevStates[i].priceTotal <
-                        currStates[j].priceTotal ? prevStates[i++] : currStates[j++];
-                    if (currState.priceTotal == decimal.MaxValue)
+                    State currState = prevStates[i].TotalPrice <
+                        currStates[j].TotalPrice ? prevStates[i++] : currStates[j++];
+                    if (currState.TotalPrice == decimal.MaxValue)
+                    { //If price is INF, break loop
                         break;
-                    if (currState.satisfactionTotal >= prevState.satisfactionTotal)
+                    }
+                    if (currState.TotalSatisfactionValue >= prevState.TotalSatisfactionValue)
                     {
+                        //shld be >= not > 
                         prunedStates.Add(currState);
                         prevState = currState;
                     }
@@ -148,22 +205,24 @@ namespace Gems.UIWPF
             List<List<Items>> result = new List<List<Items>>();
             int i = DPtreeLeaves.Count - 1;
             for (; i >= 0; i--)
-                if (DPtreeLeaves[i].priceTotal <= budget)
+                if (DPtreeLeaves[i].TotalPrice <= budget)
                     break;
-            priceTotal = DPtreeLeaves[i].priceTotal;
-            satisfactionTotal = DPtreeLeaves[i].satisfactionTotal;
+            priceTotal = DPtreeLeaves[i].TotalPrice;
+            satisfactionTotal = DPtreeLeaves[i].TotalSatisfactionValue;
             do
             {
                 State stateOptimal = DPtreeLeaves[i];
                 List<Items> itemsOptimal = new List<Items>();
-                while (stateOptimal.prevState != null)
+                while (stateOptimal.PrevState != null)
                 {
-                    itemsOptimal.Add(stateOptimal.item);
-                    stateOptimal = stateOptimal.prevState;
+                    itemsOptimal.Add(stateOptimal.Item);
+                    stateOptimal = stateOptimal.PrevState;
                 }
                 result.Add(itemsOptimal);
-            } while (--i >= 0 && DPtreeLeaves[i].priceTotal == priceTotal &&
-                    DPtreeLeaves[i].satisfactionTotal == satisfactionTotal);
+            } while (--i >= 0 && 
+                DPtreeLeaves[i].TotalPrice == priceTotal &&
+                DPtreeLeaves[i].TotalSatisfactionValue == satisfactionTotal);
+
             return result;
         }
     }
