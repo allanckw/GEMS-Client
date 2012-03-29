@@ -240,9 +240,9 @@ namespace Gems.UIWPF
                 mnuRoleTemplates.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Edit_Programs) || 
-                ef.Contains(EnumFunctions.Create_Programs) || 
-                ef.Contains(EnumFunctions.Delete_Programs))
+            if (ef.Contains(EnumFunctions.Edit_Programmes) || 
+                ef.Contains(EnumFunctions.Create_Programmes) || 
+                ef.Contains(EnumFunctions.Delete_Programmes))
                 mnuPrograms.Visibility = Visibility.Visible;
             //
             if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Manage_ItemType)
