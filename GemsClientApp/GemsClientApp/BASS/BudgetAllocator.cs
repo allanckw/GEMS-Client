@@ -86,8 +86,9 @@ namespace Gems.UIWPF
                 List<State> prunedStates = new List<State>();
                 foreach (State currState in currStates)
                 {
-                    if (currState.satisfactionTotal > prevState.satisfactionTotal)
+                    if (currState.satisfactionTotal >= prevState.satisfactionTotal)
                     {
+                        //shld be >= not > 
                         prunedStates.Add(currState);
                         prevState = currState;
                     }
@@ -112,7 +113,6 @@ namespace Gems.UIWPF
                         break;
                     if (currState.satisfactionTotal >= prevState.satisfactionTotal)
                     {
-                        //Bug here should be >= not ==
                         prunedStates.Add(currState);
                         prevState = currState;
                     }

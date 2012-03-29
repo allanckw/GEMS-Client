@@ -20,7 +20,7 @@ namespace Gems.UIWPF
         public frmProgramManagement()
         {
             InitializeComponent();
-            
+
         }
 
         public void CreateDTPData()
@@ -69,7 +69,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -133,19 +133,18 @@ namespace Gems.UIWPF
             Program prog = (Program)lstProgram.SelectedItem;
             for (int i = 0; i < lstProgram.Items.Count; i++)
             {
-                Program p= (Program)lstProgram.Items[i];
-                if (p != prog) 
-                {
+                Program p = (Program)lstProgram.Items[i];
+                if (p != prog)
+                {//if they are not the same then check, no point to check if they are the same
                     if (
                    (SegmentStartDateTime >= p.StartDateTime && SegmentStartDateTime <= p.EndDateTime)
                    && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
                    )
                     {
                         MessageBox.Show("Programmes cannot overlap!");
-
                         return;
                     }
-                }  
+                }
             }
             try
             {
@@ -162,7 +161,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
             loadPrograms();
         }
 
@@ -195,7 +194,7 @@ namespace Gems.UIWPF
 
         private void clearAll()
         {
-            
+
             txtName.Text = "";
             cboStartHr.SelectedIndex = 0;
             cboStartMin.SelectedIndex = 0;
@@ -207,7 +206,7 @@ namespace Gems.UIWPF
 
         private void clearAll(object sender, RoutedEventArgs e)
         {
-            
+
             lstProgram.SelectedIndex = -1;
             clearAll();
         }
