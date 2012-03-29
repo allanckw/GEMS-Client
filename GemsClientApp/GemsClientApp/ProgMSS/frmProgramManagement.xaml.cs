@@ -134,40 +134,36 @@ namespace Gems.UIWPF
             for (int i = 0; i < lstProgram.Items.Count; i++)
             {
                 Program p= (Program)lstProgram.Items[i];
-                if (
-                    (SegmentStartDateTime >= p.StartDateTime && SegmentStartDateTime <= p.EndDateTime)
-                    && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
-                    )
+                if (p != prog) 
                 {
-                    if (p != prog) //if they are the same 
+                    if (
+                   (SegmentStartDateTime >= p.StartDateTime && SegmentStartDateTime <= p.EndDateTime)
+                   && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
+                   )
                     {
                         MessageBox.Show("Programmes cannot overlap!");
+
                         return;
                     }
-                    else
-                    {
-                        try
-                        {
-                            WCFHelperClient client = new WCFHelperClient();
-                            if (lstProgram.SelectedIndex == -1)
-                                client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
-                            else
-                                client.EditProgram(user, prog.ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                            client.Close();
-                            MessageBox.Show("Operation succeeded!");
-                            clearAll();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        loadPrograms();
-                    }
-                }
+                }  
             }
-
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                if (lstProgram.SelectedIndex == -1)
+                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                else
+                    client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                client.Close();
+                MessageBox.Show("Operation succeeded!");
+                clearAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
-            
+            loadPrograms();
         }
 
         private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
