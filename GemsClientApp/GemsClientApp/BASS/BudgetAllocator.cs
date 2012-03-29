@@ -110,8 +110,9 @@ namespace Gems.UIWPF
                         currStates[j].priceTotal ? prevStates[i++] : currStates[j++];
                     if (currState.priceTotal == decimal.MaxValue)
                         break;
-                    if (currState.satisfactionTotal > prevState.satisfactionTotal)
+                    if (currState.satisfactionTotal >= prevState.satisfactionTotal)
                     {
+                        //Bug here should be >= not ==
                         prunedStates.Add(currState);
                         prevState = currState;
                     }
