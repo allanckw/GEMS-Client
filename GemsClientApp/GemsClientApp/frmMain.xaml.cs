@@ -512,5 +512,20 @@ namespace Gems.UIWPF
         {
 
         }
+
+        private void mnuTasks_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select an event to add items!", "No Event Selected!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                var frmTaskAllocation = new frmTaskAllocation(user, ev, this);
+                frame.Navigate(frmTaskAllocation);
+            }
+        }
     }
 }

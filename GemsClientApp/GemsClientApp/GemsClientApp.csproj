@@ -107,6 +107,9 @@
     <Compile Include="CustomCtrl\Listview\ucLVItemType.xaml.cs">
       <DependentUpon>ucLVItemType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomCtrl\Listview\ucLVSelectedItem.xaml.cs">
+      <DependentUpon>ucLVSelectedItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomCtrl\Listview\ucLVTime.xaml.cs">
       <DependentUpon>ucLVTime.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomCtrl\Listview\ucLVItemType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomCtrl\Listview\ucLVSelectedItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

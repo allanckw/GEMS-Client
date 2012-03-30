@@ -44,7 +44,7 @@
                 </MenuItem>
 
                 <!-- v0.2 Tasks Allocation Sub System -->
-                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
+                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" Click="mnuTasks_Click">
                 </MenuItem>
                 <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>
