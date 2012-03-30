@@ -54,11 +54,12 @@ Width="750" Height="600" Background="{x:Null}">
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>
-            <Label Content="Enter Maximum Budget: " FontSize="13" Name="label1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,350,15" />
-            <TextBox x:Name="txtMaxBudget" TextWrapping="Wrap" FontSize="13" Width="180" Margin="0,-55,175,0" Height="25" HorizontalAlignment="Right"/>
-            <Button x:Name="btnCalculateBudget" Width="157" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-40,5,0" Content="Generate Optimal Budget" FontSize="13" Height="25" Click="btnCalculateBudget_Click">
-            </Button>
-
+            <StackPanel Width="663" Margin="45,0,0,0" HorizontalAlignment="Right" Name="budgetPanel">
+                <Label Content="Enter Maximum Budget: " FontSize="13" Name="label1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,350,15" />
+                <TextBox x:Name="txtMaxBudget" TextWrapping="Wrap" FontSize="13" Width="180" Margin="20,-55,175,0" Height="25" HorizontalAlignment="Right"/>
+                <Button x:Name="btnCalculateBudget" Width="157" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-40,5,0" Content="Generate Optimal Budget" 
+                        FontSize="13" Height="25" Click="btnCalculateBudget_Click" />
+            </StackPanel>
         </StackPanel>
 	</GroupBox>
 </Page>

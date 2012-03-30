@@ -5,47 +5,35 @@
              StartupUri="ADSS/frmLogin.xaml">
     <!-- Set Gradient Resources here...-->
     <Application.Resources>
-        <LinearGradientBrush   x:Key="GoldenThemeBG" StartPoint=".2,0" EndPoint="0.8,1">
-            <GradientStop Color="Lightgray"  Offset="0"/>
-            <GradientStop Color="PaleGoldenrod"  Offset="1.0"/>
-            <GradientStop Color="AliceBlue" Offset="0.4"/>
-            <GradientStop Color="LightGoldenrodYellow" Offset="0.5"/>
-        </LinearGradientBrush>
-        <LinearGradientBrush  x:Key="BlueThemeBG" StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="CornflowerBlue"  Offset="0.0" />
-            <GradientStop Color="AliceBlue" Offset="0.5" />
-            <GradientStop Color="CadetBlue" Offset="0.9" />
-        </LinearGradientBrush>
-
         <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
-                <Style.Resources>
-                    <LinearGradientBrush x:Key="ProfitBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Offset="0.1" Color="#AA00CC00" />
-                        <GradientStop Offset="0.8" Color="#55008800" />
-                    </LinearGradientBrush>
-                    <LinearGradientBrush x:Key="LossBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Offset="0.1" Color="#AACC0000" />
-                        <GradientStop Offset="0.8" Color="#55880000" />
-                    </LinearGradientBrush>
-                    <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
-                    <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
-                </Style.Resources>
+            <Style.Resources>
+                <LinearGradientBrush x:Key="ProfitBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.1" Color="#AA00CC00" />
+                    <GradientStop Offset="0.8" Color="#55008800" />
+                </LinearGradientBrush>
+                <LinearGradientBrush x:Key="LossBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.1" Color="#AACC0000" />
+                    <GradientStop Offset="0.8" Color="#55880000" />
+                </LinearGradientBrush>
+                <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
+                <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
+            </Style.Resources>
 
-                <!-- Stretch the content so that we can right-align values 
+            <!-- Stretch the content so that we can right-align values 
            in the Balance column. -->
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
-                <Style.Triggers>
-                    <!-- Color them green. -->
-                    <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="+1">
-                        <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
-                    </DataTrigger>
-                    <!-- Color them red. -->
-                    <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="-1">
-                        <Setter Property="Background" Value="{StaticResource LossBrush}" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
+            <Style.Triggers>
+                <!-- Color them green. -->
+                <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="+1">
+                    <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
+                </DataTrigger>
+                <!-- Color them red. -->
+                <DataTrigger Binding="{Binding Balance, Converter={StaticResource PolarValueConv}}" Value="-1">
+                    <Setter Property="Background" Value="{StaticResource LossBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
         <DataTemplate x:Key="DDlistBoxDataTemplate" DataType="{x:Type local:clsTaskAllocate}">
             <StackPanel Orientation="Vertical" Margin="5,10,5,10">
@@ -72,7 +60,7 @@
             </Style.Resources>
 
             <!-- Stretch the content so that we can right-align values 
-           in the Balance column. -->
+          in the Balance column. -->
 
             <Style.Triggers>
                 <!-- Color them green. -->

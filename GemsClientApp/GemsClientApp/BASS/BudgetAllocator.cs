@@ -109,6 +109,8 @@ namespace Gems.UIWPF
                     }
             }
 
+
+
             minBudget = 0;
             
             foreach (List<Items> itemsList in importantItemsByType)

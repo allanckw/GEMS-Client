@@ -84,8 +84,8 @@
     <Compile Include="BASS\frmAllocateBudget.xaml.cs">
       <DependentUpon>frmAllocateBudget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BASS\SelectedItemList.xaml.cs">
-      <DependentUpon>SelectedItemList.xaml</DependentUpon>
+    <Compile Include="BASS\frmBudgetItemList.xaml.cs">
+      <DependentUpon>frmBudgetItemList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomCtrl\DragAndDrop\BaseDecorator.cs" />
     <Compile Include="CustomCtrl\DragAndDrop\clsTaskAllocate.cs" />
@@ -107,8 +107,8 @@
     <Compile Include="CustomCtrl\Listview\ucLVItemType.xaml.cs">
       <DependentUpon>ucLVItemType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomCtrl\Listview\ucLVSelectedItem.xaml.cs">
-      <DependentUpon>ucLVSelectedItem.xaml</DependentUpon>
+    <Compile Include="CustomCtrl\Listview\ucLVBudgetItem.xaml.cs">
+      <DependentUpon>ucLVBudgetItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomCtrl\Listview\ucLVTime.xaml.cs">
       <DependentUpon>ucLVTime.xaml</DependentUpon>
@@ -221,7 +221,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BASS\SelectedItemList.xaml">
+    <Page Include="BASS\frmBudgetItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,7 +241,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomCtrl\Listview\ucLVSelectedItem.xaml">
+    <Page Include="CustomCtrl\Listview\ucLVBudgetItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -415,9 +415,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Gems_.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Gems.png" />

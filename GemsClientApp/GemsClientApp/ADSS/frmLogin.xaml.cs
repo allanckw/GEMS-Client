@@ -39,13 +39,13 @@ namespace Gems.UIWPF
                 this.txtUserID.Clear();
                 this.txtUserID.Focus();
                 admForm.Show();
-                client.Close();  // Always close the client.
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+            client.Close();  // Always close the client.
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -56,7 +56,15 @@ namespace Gems.UIWPF
         private void Window_Activated(object sender, EventArgs e)
         {
             txtPassword.Clear();
-            txtUserID.Focus();
+            if (txtUserID.Text.Length == 0)
+            {
+                txtUserID.Focus();
+            }
+            else
+            {
+                txtPassword.Focus();
+            }
+           
         }
 
     }

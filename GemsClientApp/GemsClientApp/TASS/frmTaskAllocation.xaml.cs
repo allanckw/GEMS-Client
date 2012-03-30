@@ -16,7 +16,6 @@ namespace Gems.UIWPF
 {
 	public partial class frmTaskAllocation
 	{
-		private Window mainFrame;
         private User user;
         private Event event_;
 		
@@ -60,12 +59,11 @@ namespace Gems.UIWPF
             lstAssignedTask.ItemsSource = clsTaskAllocate.GetTaskAssigned(IndividualTask);
         }
 
-		public frmTaskAllocation(User u, Event e, Window f)
+		public frmTaskAllocation(User u, Event e)
             : this()
         {
             this.user = u;
             this.event_ = e;
-            this.mainFrame = f;
         }
 
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)

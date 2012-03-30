@@ -7,7 +7,7 @@ using System.Windows.Input;
 using evmsService.entities;
 using System.Windows.Controls;
 using System.Data;
-using System.Windows.Media;
+
 
 namespace Gems.UIWPF
 {
@@ -56,53 +56,91 @@ namespace Gems.UIWPF
 
         private void saveRequest(DateTime start, DateTime end)
         {
-            List<int> priorityList = new List<int>();
+            //Use threading to stop system from "Hanging" as it may take a long time to save
+            //as a list of objects are sent over via SOAP
 
-            //To grab cbo selected value in datagrid
-            List<FacilityBookingRequestDetails> list = new List<FacilityBookingRequestDetails>();
-            for (int i = 0; i < dgFacility.Items.Count; i++)
-            {
-                Facility f = (Facility)dgFacility.Items[i];
-                DataGridRow row = dgFacility.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
-                ComboBox cbo = dgFacility.Columns[0].GetCellContent(row) as ComboBox;
-
-                if (cbo.SelectedIndex == -1)
+            System.Threading.Thread thread = new System.Threading.Thread(
+                new System.Threading.ThreadStart(
+                delegate()
                 {
-                    MessageBox.Show("Please select the priority in all your selected venues!",
-                        "Invalid Input!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    return;
+                    System.Windows.Threading.DispatcherOperation
+                    dispatcherOp = this.Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                    new Action(delegate()
+                    {
+                        try
+                        {
+                            Mouse.OverrideCursor = Cursors.Wait;
+                            MessageBox.Show("Please wait while we process your request...");
+                               
+                            List<int> priorityList = new List<int>();
+
+                            //To grab cbo selected value in datagrid
+                            List<FacilityBookingRequestDetails> list = new List<FacilityBookingRequestDetails>();
+                            for (int i = 0; i < dgFacility.Items.Count; i++)
+                            {
+                                Facility f = (Facility)dgFacility.Items[i];
+                                DataGridRow row = dgFacility.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
+                                ComboBox cbo = dgFacility.Columns[0].GetCellContent(row) as ComboBox;
+
+                                if (cbo.SelectedIndex == -1)
+                                {
+                                    MessageBox.Show("Please select the priority in all your selected venues!",
+                                        "Invalid Input!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                    return;
+                                }
+
+                                if (priorityList.Contains(cbo.SelectedIndex + 1))
+                                {
+                                    MessageBox.Show("You have facilities with the same priority!",
+                                        "1 priority per facility", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                    return;
+                                }
+
+                                FacilityBookingRequestDetails fbreqDetails = new FacilityBookingRequestDetails();
+                                fbreqDetails.EventID = event_.EventID;
+                                fbreqDetails.FacilityID = f.FacilityID;
+                                fbreqDetails.Faculty = f.Faculty;
+                                fbreqDetails.Priority = cbo.SelectedIndex + 1;
+                                priorityList.Add(cbo.SelectedIndex + 1);
+
+                                list.Add(fbreqDetails);
+                            }
+
+
+                            WCFHelperClient client = new WCFHelperClient();
+                            bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+                            client.Close();
+
+                            if (success)
+                            {
+                                MessageBox.Show("Your request for the facilities booking is submitted," 
+                                    + "please wait for an administrator to respond to your request",
+                                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
+                        catch (ArgumentOutOfRangeException argEx)
+                        {
+                            MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                            this.Close();
+                        }
+                    }
+                ));
+
+                    dispatcherOp.Completed += new EventHandler(dispatcherOp_Completed);
                 }
+            ));
 
-                if (priorityList.Contains(cbo.SelectedIndex + 1))
-                {
-                    MessageBox.Show("You have facilities with the same priority!",
-                        "1 priority per facility", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    return;
-                }
-
-                FacilityBookingRequestDetails fbreqDetails = new FacilityBookingRequestDetails();
-                fbreqDetails.EventID = event_.EventID;
-                fbreqDetails.FacilityID = f.FacilityID;
-                fbreqDetails.Faculty = f.Faculty;
-                fbreqDetails.Priority = cbo.SelectedIndex + 1;
-                priorityList.Add(cbo.SelectedIndex + 1);
-
-                list.Add(fbreqDetails);
-            }
-
-
-            WCFHelperClient client = new WCFHelperClient();
-            bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
-            client.Close();
-
-            if (success)
-            {
-                MessageBox.Show("Your request for the facilities booking is submitted, please wait for an administrator to respond to your request",
-                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
-            }
-
+            thread.Start();
         }
+
+        void dispatcherOp_Completed(object sender, EventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+            this.Close();
+        }
+
         public void cboAdd()
         {
             List<int> list = new List<int>();
@@ -147,14 +185,5 @@ namespace Gems.UIWPF
             }
         }
 
-        private void dtpStart_DateChanged(object sender, RoutedEventArgs e)
-        {
-            dtpEnd.Date = dtpStart.Date;
-        }
-
-        private void dtpEnd_DateChanged(object sender, RoutedEventArgs e)
-        {
-            dtpStart.Date = dtpEnd.Date;
-        }
     }
 }

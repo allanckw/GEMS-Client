@@ -81,7 +81,7 @@ namespace Gems.UIWPF
                     }
                 ));
 
-                    dispatcherOp.Completed += new EventHandler(dispatcherOp_Completed);
+                    dispatcherOp.Completed += new EventHandler(optimalListGeneration_Completed);
                 }
             ));
 
@@ -89,7 +89,7 @@ namespace Gems.UIWPF
         }
 
 
-        void dispatcherOp_Completed(object sender, EventArgs e)
+        void optimalListGeneration_Completed(object sender, EventArgs e)
         {
             if (bAllocator == null)
                 return;
@@ -102,7 +102,7 @@ namespace Gems.UIWPF
                 results = bAllocator.optimalItems(maxBudget, out totalPrice, out totalSatisfaction);
                 this.budgetSlider.Maximum = results.Count - 1;
                 txtTotalPrice.Text = totalPrice.ToString("0.00");
-                txtTotalSat.Text = totalSatisfaction.ToString("0.00");
+                txtTotalSat.Text = totalSatisfaction.ToString();
                 MessageBox.Show("Computation Completed!");
                 lstItemList.ItemsSource = results[0];
             }
@@ -141,6 +141,8 @@ namespace Gems.UIWPF
                     txtTotalPrice.Text = totalPrice.ToString("0.00");
                     txtTotalSat.Text = totalSat.ToString();
                     this.budgetSlider.Maximum = results.Count - 1;
+                    MessageBox.Show("Computation Completed!");
+                    lstItemList.ItemsSource = results[0];
                 }
                 catch (ArgumentOutOfRangeException argEx)
                 {
@@ -173,23 +175,65 @@ namespace Gems.UIWPF
 
         }
 
+        private void saveOptimalList()
+        {
+            //Use threading to stop system from "Hanging" as it may take a long time to save
+            //as a list of objects are sent over via SOAP
+            System.Threading.Thread thread = new System.Threading.Thread(
+                new System.Threading.ThreadStart(
+                delegate()
+                {
+                    System.Windows.Threading.DispatcherOperation
+                    dispatcherOp = this.Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                    new Action(delegate()
+                    {
+                        Mouse.OverrideCursor = Cursors.Wait;
+                        MessageBox.Show("Please wait while we save your desired optimal list...");
+
+                        WCFHelperClient client = new WCFHelperClient();
+                        try
+                        {
+                            int sat = int.Parse(txtTotalSat.Text.Trim());
+                            decimal price = decimal.Parse(txtTotalPrice.Text.Trim());
+                            client.saveBudgetList(user, event_.EventID, sat, price,
+                                ((List<Items>)lstItemList.ItemsSource).ToArray());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An Expection has occured: " + ex.Message, "Exception while saving optimal item list",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                        client.Close();
+                    }
+                ));
+
+                    dispatcherOp.Completed += new EventHandler(saveOptimalList_Completed);
+                }
+            ));
+
+            thread.Start();
+        }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            
-            WCFHelperClient client = new WCFHelperClient();
             try
             {
-                client.saveBudgetList(user, event_.EventID, int.Parse(txtTotalSat.Text.Trim()),
-                    decimal.Parse(txtTotalPrice.Text.Trim()),
-                    ((List<Items>)lstItemList.ItemsSource).ToArray());
+                saveOptimalList();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Expection has occured: " + ex.Message, "Exception while saving optimal item list",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
 
-            client.Close();
+        void saveOptimalList_Completed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Your Optimal List of Items have been saved", 
+                "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+            Mouse.OverrideCursor = Cursors.Arrow;
+            this.Close();
         }
     }
 }

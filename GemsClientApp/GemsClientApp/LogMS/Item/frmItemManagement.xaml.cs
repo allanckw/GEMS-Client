@@ -5,6 +5,7 @@ using System.Windows.Input;
 using evmsService.entities;
 using System.Collections.Generic;
 using System.Linq;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -33,7 +34,22 @@ namespace Gems.UIWPF
             radItemType.IsChecked = true;
             refreshItemTypes();
             ExistingLoad();
+            setBudgetVisibility();
+        }
 
+        private void setBudgetVisibility()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            List<EnumFunctions> functions = client.GetRights(event_.EventID, user.userID).ToList<EnumFunctions>();
+            if (functions.Contains(EnumFunctions.Manage_Budget) ||
+                user.isEventOrganizer || user.isSystemAdmin)
+            {
+                budgetPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                budgetPanel.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void refreshItemTypes()

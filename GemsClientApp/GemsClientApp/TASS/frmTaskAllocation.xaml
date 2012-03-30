@@ -54,7 +54,7 @@ Width="750" Height="600" Background="{x:Null}">
                         <StackPanel Width="350">
                             <TextBlock Text="Task(s) Not Assigned" Height="30" Margin="10,0,0,0" />
                             <Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator Width="350"
-                    ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="300" DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
+                            ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="485" DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
                                 <ListBox x:Name="lstAllTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" />
                             </Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator>
                         </StackPanel>
@@ -65,8 +65,9 @@ Width="750" Height="600" Background="{x:Null}">
                                 <ComboBox x:Name="cboRole" Height="30" Width="195" SelectionChanged="cboRole_SelectionChanged" />
                             </StackPanel>
                             
-                            <Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator Width="350"
-                    ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="300" DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
+                            <Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator Width="350" 
+                                ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="485" 
+                                DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
                                 <ListBox x:Name="lstAssignedTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" />
                             </Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator>
                             <Button x:Name="btnSaveTask" Click="btnSaveTask_Click" Width="100" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,0" />

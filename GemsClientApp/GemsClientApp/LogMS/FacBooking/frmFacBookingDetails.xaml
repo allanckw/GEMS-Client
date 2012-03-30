@@ -31,8 +31,8 @@
 					<Canvas Height="51" Margin="0" Width="591" HorizontalAlignment="Left" VerticalAlignment="Top">
 						<Label Canvas.Left="-1" Canvas.Top="11" Content="From: " x:Name="label2" FontSize="14" />
 						<Label Canvas.Left="327" Canvas.Top="14" Content="To" x:Name="label4" FontSize="14" HorizontalAlignment="Left" />
-                        <local:DateTimePicker Canvas.Left="44" Canvas.Top="12" x:Name="dtpStart"  FontSize="12" Width="298" DateChanged="dtpStart_DateChanged" isDateEnabled="false" />
-                        <local:DateTimePicker Canvas.Left="351" Canvas.Top="12" FontSize="12" x:Name="dtpEnd" Width="298" DateChanged="dtpEnd_DateChanged" isDateEnabled="false" />
+                        <local:DateTimePicker Canvas.Left="44" Canvas.Top="12" x:Name="dtpStart"  FontSize="12" Width="298" isDateEnabled="false" />
+                        <local:DateTimePicker Canvas.Left="351" Canvas.Top="12" FontSize="12" x:Name="dtpEnd" Width="298"  isDateEnabled="false" />
                     </Canvas>
 				</StackPanel>
 			</GroupBox>

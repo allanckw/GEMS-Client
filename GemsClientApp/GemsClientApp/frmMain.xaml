@@ -41,10 +41,11 @@
                 </MenuItem>
                 <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
+                    <MenuItem Header="Manage Budget Items" Background="{x:Null}" Width="240" x:Name="mnuManageBudgetItem" Click="mnuManageBudgetItem_Click"/>
                 </MenuItem>
 
                 <!-- v0.2 Tasks Allocation Sub System -->
-                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" Click="mnuTasks_Click">
+                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" Click="mnuTasks_Click" >
                 </MenuItem>
                 <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>

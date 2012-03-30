@@ -8,19 +8,6 @@
     <ListView x:Name="lv" FontSize="13" Width="450" HorizontalAlignment="Left">
         <ListView.View>
             <GridView>
-                <GridViewColumn Width="300">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid HorizontalAlignment="Stretch">
-                                <TextBlock Text="{Binding ItemName}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                    <GridViewColumnHeader 
-											Tag="ItemName" 
-											Content="ItemName" />
-                </GridViewColumn>
-
                 <GridViewColumn Width="150">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
@@ -29,10 +16,20 @@
                             </Grid>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                    <GridViewColumnHeader 
-											Tag="ItemType" 
-											Content="ItemType" />
+                    <GridViewColumnHeader Tag="ItemType" Content="ItemType" />
                 </GridViewColumn>
+                
+                <GridViewColumn Width="300">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding ItemName}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader Tag="ItemName" Content="ItemName" />
+                </GridViewColumn>
+  
             </GridView>
         </ListView.View>
     </ListView>
