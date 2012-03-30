@@ -87,6 +87,12 @@
     <Compile Include="BASS\SelectedItemList.xaml.cs">
       <DependentUpon>SelectedItemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomCtrl\DragAndDrop\BaseDecorator.cs" />
+    <Compile Include="CustomCtrl\DragAndDrop\clsTaskAllocate.cs" />
+    <Compile Include="CustomCtrl\DragAndDrop\DragAdorner.cs" />
+    <Compile Include="CustomCtrl\DragAndDrop\Helper.cs" />
+    <Compile Include="CustomCtrl\DragAndDrop\InsertAdorner.cs" />
+    <Compile Include="CustomCtrl\DragAndDrop\ItemsControlDragDropDecorator.cs" />
     <Compile Include="CustomCtrl\DTP\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
@@ -165,6 +171,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TASS\frmTaskAllocation.xaml.cs">
+      <DependentUpon>frmTaskAllocation.xaml</DependentUpon>
     </Compile>
     <Page Include="ADSS\frmAssign.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -302,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgMSS\frmProgramManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TASS\frmTaskAllocation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
