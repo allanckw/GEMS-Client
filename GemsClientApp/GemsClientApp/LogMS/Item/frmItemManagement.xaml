@@ -5,9 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmItemManagement" Loaded="Window_Loaded"
-	x:Name="Window"
-	Title="frmItemManagement"
-Width="750" Height="600" Background="{x:Null}">
+	x:Name="Window" 	Title="frmItemManagement" Width="750" Height="600" Background="{x:Null}">
 	<GroupBox Header="Item Management" FontSize="21">
 		<StackPanel Margin="0,0,33,4.04">
 			<GroupBox Header="Item Type List" FontSize="18" Width="665" HorizontalAlignment="Center" Height="230" Margin="40,0,0,0">

@@ -19,8 +19,8 @@
             	</Menu.Background>
                 <MenuItem Header="Administrative" FontSize="15" Margin="10,0,0,0" x:Name="mnuAdmin">
                     <MenuItem Header="View Users/Assign System Roles" Background="{x:Null}" Width="320" x:Name="mnuItemAssSR" Click="mnuItemAssSR_Click" />
-                    <!--<MenuItem Header="View Users" Background="{x:Null}" Width="250" x:Name="mnuItemViewUsers" Click="mnuItemViewUsers_Click"/>-->
                     <MenuItem Header="Global Role Templates" Background="{x:Null}" Width="320" x:Name="mnuGlobalRoleTemplates" Click="mnuGlobalRoleTemplates_Click"/>
+                    <MenuItem Header="Update GST" Background="{x:Null}" Width="320" x:Name="mnuGST" Click="mnuGST_Click"/>
                 </MenuItem>
                 <MenuItem Header="Event" FontSize="15" Margin="10,0,0,0" x:Name="mnuEvent" >
                     <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
@@ -39,12 +39,14 @@
                     <MenuItem Header="Role Templates" Background="{x:Null}" Width="240" x:Name="mnuRoleTemplates" Click="mnuRoleTemplates_Click"/>
                     <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
                 </MenuItem>
-                <MenuItem Header="Items" FontSize="15" Margin="10,0,0,0" x:Name="mnuItems" >
+                <MenuItem Header="Budget" FontSize="15" Margin="10,0,0,0" x:Name="mnuBudget" >
                     <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
+                    <MenuItem Header="Manage Budget Items" Background="{x:Null}" Width="240" x:Name="mnuManageBudgetItem" Click="mnuManageBudgetItem_Click"/>
+                    <MenuItem Header="Manage Income" Background="{x:Null}" Width="240" x:Name="mnuManageIncome" Click="mnuManageIncome_Click"/>
                 </MenuItem>
 
                 <!-- v0.2 Tasks Allocation Sub System -->
-                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" >
+                <MenuItem Header="Tasks" FontSize="15" Margin="10,0,0,0" x:Name="mnuTasks" Click="mnuTasks_Click" >
                 </MenuItem>
                 <MenuItem Header="Guests" FontSize="15" Margin="10,0,0,0" x:Name="mnuGuests" Click="mnuGuests_Click">
                 </MenuItem>

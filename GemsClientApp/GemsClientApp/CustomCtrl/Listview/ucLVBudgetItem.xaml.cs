@@ -9,12 +9,12 @@ using System.Windows;
 namespace Gems.UIWPF.CustomCtrl
 {
     /// <summary>
-    /// Interaction logic for ucLVSelectedItem.xaml
+    /// Interaction logic for ucLVBudgetItem.xaml
     /// </summary>
-    public partial class ucLVSelectedItem : UserControl
+    public partial class ucLVBudgetItem : UserControl
     {
-        private ObservableCollection<BudgetItems> _Collection;
-        public ucLVSelectedItem()
+        private ObservableCollection<OptimizedBudgetItemsDetails> _Collection;
+        public ucLVBudgetItem()
         {
             InitializeComponent();
             preprocess();
@@ -22,7 +22,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void preprocess()
         {
-            _Collection = new ObservableCollection<BudgetItems>();
+            _Collection = new ObservableCollection<OptimizedBudgetItemsDetails>();
             refresh();
         }
 
@@ -31,22 +31,23 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemCollection;
         }
 
-        public void SetExistingSource(List<BudgetItems> lstItemType)
+        public void SetExistingSource(List<OptimizedBudgetItemsDetails> lstItemType)
         {
-            _Collection = new ObservableCollection<BudgetItems>();
+            _Collection = new ObservableCollection<OptimizedBudgetItemsDetails>();
             lstItemType.ForEach(x => _Collection.Add(x));
             refresh();
         }
 
-        public ObservableCollection<BudgetItems> ItemCollection
+        public ObservableCollection<OptimizedBudgetItemsDetails> ItemCollection
         { get { return _Collection; } }
 
-        public BudgetItems GetEditItem()
+        public OptimizedBudgetItemsDetails GetEditItem()
         {
             if (lv.SelectedIndex == -1)
             {
                 return null;
             }
+            
             return ItemCollection[lv.SelectedIndex];
         }
     }

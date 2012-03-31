@@ -80,12 +80,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ADSS\frmGST.xaml.cs">
+      <DependentUpon>frmGST.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BASS\BudgetAllocator.cs" />
+    <Compile Include="BASS\frmBudgetIncome.xaml.cs">
+      <DependentUpon>frmBudgetIncome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BASS\frmAllocateBudget.xaml.cs">
       <DependentUpon>frmAllocateBudget.xaml</DependentUpon>
     </Compile>
     <Compile Include="BASS\frmBudgetItemList.xaml.cs">
       <DependentUpon>frmBudgetItemList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContactList\frmServiceContactList.xaml.cs">
+      <DependentUpon>frmServiceContactList.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomCtrl\DragAndDrop\BaseDecorator.cs" />
     <Compile Include="CustomCtrl\DragAndDrop\clsTaskAllocate.cs" />
@@ -122,9 +131,6 @@
     </Compile>
     <Compile Include="Helper\ConfigHelper.cs" />
     <Compile Include="Helper\WCFHelper.cs" />
-    <Compile Include="LogMS\ContactList\frmServiceContactList.xaml.cs">
-      <DependentUpon>frmServiceContactList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LogMS\FacBooking\frmFacBooking.xaml.cs">
       <DependentUpon>frmFacBooking.xaml</DependentUpon>
     </Compile>
@@ -178,6 +184,10 @@
     <Compile Include="TASS\frmTaskAllocation.xaml.cs">
       <DependentUpon>frmTaskAllocation.xaml</DependentUpon>
     </Compile>
+    <Page Include="ADSS\frmGST.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ADSS\frmAssign.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -217,6 +227,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="BASS\frmBudgetIncome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BASS\frmAllocateBudget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +238,10 @@
     <Page Include="BASS\frmBudgetItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContactList\frmServiceContactList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomCtrl\DTP\DateTimePicker.xaml">
       <SubType>Designer</SubType>
@@ -254,10 +272,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="frmMain.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="LogMS\ContactList\frmServiceContactList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

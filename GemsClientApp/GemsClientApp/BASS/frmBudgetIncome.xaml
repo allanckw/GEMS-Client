@@ -1,0 +1,80 @@
+﻿<Page x:Class="Gems.UIWPF.frmBudgetIncome"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="700"
+        Width="750" Height="600" 	Title="BudgetIncome" Loaded="Page_Loaded">
+    <GroupBox Header="Budget Income Management" FontSize="21" FontWeight="Medium">
+        <StackPanel Orientation="Horizontal" Margin="0">
+            <GroupBox Header="Budget Income List" Width="350" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8">
+                <ListBox x:Name="lstIncomeList"  FontFamily="Tahoma" FontSize="13" 
+                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstIncomeList_SelectionChanged"  Height="519">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <WrapPanel Orientation="Horizontal"  >
+                                    <TextBlock Text="Income: "  />
+                                    <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap"  />
+                                </WrapPanel>
+                                <WrapPanel Orientation="Horizontal" >
+                                    <TextBlock Text=" from "  />
+                                    <TextBlock Text="{Binding Path=Source}" TextWrapping="Wrap" />
+                                </WrapPanel>
+                                <WrapPanel Orientation="Horizontal" >
+                                    <TextBlock Text="Received on "/>
+                                    <TextBlock Text="{Binding Path=DateReceived, StringFormat=dd MMM yy }"  TextWrapping="Wrap" />
+                                </WrapPanel>
+                                <WrapPanel Orientation="Vertical" >
+                                    <TextBlock Text="Amount: "/>
+                                    <TextBlock Text="{Binding Path=IncomeBeforeGST}"  TextWrapping="Wrap" />
+                                </WrapPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+            <GroupBox Header="Income Details" FontSize="18" Width="376" Margin="0,0,0,8">
+                <StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Name:" Width="66.803" FontSize="13"/>
+                        <TextBox TextWrapping="Wrap" Text="" Width="200" FontSize="13" x:Name="txtName" TextChanged="onTextChanged" />
+                    </StackPanel>
+                    <StackPanel Height="175">
+                        <Label Content="Description:" FontSize="13"/>
+                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="137" FontSize="13" Margin="8,0" x:Name="txtDescription" TextChanged="onTextChanged"/>
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Source:" FontSize="13"/>
+                        <TextBox TextWrapping="Wrap" Text="" Margin="73,1,1,1"  Width="200" FontSize="13" Height="25" x:Name="txtSource" TextChanged="onTextChanged" />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Income Before GST:" FontSize="13" Height="25" />
+                        <TextBox TextWrapping="Wrap" Text="" Margin="0,1,1,1" Width="200" FontSize="13"
+                                 x:Name="txtIncb4Gst" TextChanged="onTextChanged" LostFocus="txtIncb4Gst_LostFocus" Height="25" />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <CheckBox Content="GST Liable?  Rate:" FontSize="13" IsChecked="True" x:Name="chkGSTLiable" Height="20" />
+                        <TextBox TextWrapping="Wrap" Text="" Margin="5,1,1,1"  Width="200" FontSize="13" x:Name="txtGstPercent" IsReadOnly="True" Height="25" />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="GST Amount:" FontSize="13"/>
+                        <TextBox TextWrapping="Wrap" Text="" Margin="39,1,1,1"  Width="200" FontSize="13" Height="25" x:Name="txtGst" TextChanged="onTextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Date Received:" FontSize="13" Height="25" />
+                        <DatePicker Margin="30,1,1,1"  Height="25" FontSize="13" Name="dtpFrom" Width="200"  />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                    </StackPanel>
+                    <DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
+                        <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnSave_Click" />
+                        <Button Content="Delete" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnDelete_Click"/>
+
+                        <Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </GroupBox>
+</Page>

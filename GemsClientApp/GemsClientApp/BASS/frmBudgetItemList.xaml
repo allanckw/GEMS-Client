@@ -25,7 +25,7 @@
             <StackPanel Orientation="Horizontal" Margin="0">
                 <StackPanel Width="460" Margin="5,0,0,0" HorizontalAlignment="Left">
                     <Label Content="Collection of Item" FontSize="13" Width="300" Height="25" HorizontalAlignment="Left"/>
-                    <Gems_UIWPF_CustomCtrl:ucLVSelectedItem x:Name="lvItem" Height="232" HorizontalAlignment="Left" Width="456" />
+                    <Gems_UIWPF_CustomCtrl:ucLVBudgetItem x:Name="lvBItem" Height="232" HorizontalAlignment="Left" Width="456" />
                 </StackPanel>
                 <StackPanel Width="250" >
                     <Label Content="Item Name" FontSize="13" Height="26"/>
@@ -39,8 +39,8 @@
                     <Label Content="Actual Price" FontSize="13" Height="26"/>
                     <TextBox x:Name="txtItemActualPrice" TextWrapping="Wrap" FontSize="13" Width="220" Margin="17.5,0,2.5,0" Height="25"/>
                     <StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button x:Name="btnUpdateItem"  Content="Update" Width="70" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13"/>
-                        <Button x:Name="btnCancelEditItem" Content="Cancel" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13"/>
+                        <Button x:Name="btnUpdateItem"  Content="Update" Width="70" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13" Click="btnUpdateItem_Click" />
+                        <Button x:Name="btnCancelEditItem" Content="Cancel" Width="50" HorizontalAlignment="Right" Margin="0,10,5,0" Height="25" FontSize="13" Click="btnCancelEditItem_Click" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

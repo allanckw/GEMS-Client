@@ -3,8 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
              StartupUri="ADSS/frmLogin.xaml">
-    <!-- Set Gradient Resources here...-->
     <Application.Resources>
+
+        <!--For Style apply on highlighting function using bool -->
+        <Style x:Key="BudgetItemContStyle" TargetType="{x:Type ListViewItem}">
+            <Style.Resources>
+                <LinearGradientBrush x:Key="ProfitBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.1" Color="LimeGreen" />
+                </LinearGradientBrush>
+                <local:BoolToPolarValueConverter x:Key="BoolPolarValueConv" />
+            </Style.Resources>
+
+            <!-- Stretch the content so that we can right-align values 
+           in the Balance column. -->
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+            <Style.Triggers>
+                <!-- Color them green. -->
+                <DataTrigger Binding="{Binding IsBought, Converter={StaticResource BoolPolarValueConv}}" Value="+1">
+                    <Setter Property="Background" Value="{StaticResource ProfitBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--For Style apply on highlighting function using balance -->
         <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
             <Style.Resources>
                 <LinearGradientBrush x:Key="ProfitBrush" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -15,7 +37,7 @@
                     <GradientStop Offset="0.1" Color="#AACC0000" />
                     <GradientStop Offset="0.8" Color="#55880000" />
                 </LinearGradientBrush>
-                <!-- Reduces a customer's Balance to either -1, 0, or +1 -->
+
                 <local:NumberToPolarValueConverter x:Key="PolarValueConv" />
             </Style.Resources>
 
@@ -35,6 +57,7 @@
             </Style.Triggers>
         </Style>
 
+        <!--For Style apply on drag and drop-->
         <DataTemplate x:Key="DDlistBoxDataTemplate" DataType="{x:Type local:clsTaskAllocate}">
             <StackPanel Orientation="Vertical" Margin="5,10,5,10">
                 <TextBlock Text="{Binding Path=Name, StringFormat=Task Name: \{0\}}" />
@@ -73,5 +96,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <!--End of drag drop Style-->
     </Application.Resources>
 </Application>

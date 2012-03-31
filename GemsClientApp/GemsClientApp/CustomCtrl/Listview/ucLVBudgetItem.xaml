@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="Gems.UIWPF.CustomCtrl.ucLVSelectedItem"
+﻿<UserControl x:Class="Gems.UIWPF.CustomCtrl.ucLVBudgetItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              x:Name="listview" d:DesignWidth="450">
-    <ListView x:Name="lv" FontSize="13" Width="450" HorizontalAlignment="Left">
+    <ListView x:Name="lv" FontSize="13" Width="450" ItemContainerStyle="{StaticResource BudgetItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
         <ListView.View>
             <GridView>
                 <GridViewColumn Width="150">
@@ -29,7 +29,19 @@
                     </GridViewColumn.CellTemplate>
                     <GridViewColumnHeader Tag="ItemName" Content="ItemName" />
                 </GridViewColumn>
-  
+
+                <GridViewColumn Width="0">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding IsBought}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                    <GridViewColumnHeader 
+											Tag="IsBought" 
+											Content="Is Bought?" />
+                </GridViewColumn>
             </GridView>
         </ListView.View>
     </ListView>

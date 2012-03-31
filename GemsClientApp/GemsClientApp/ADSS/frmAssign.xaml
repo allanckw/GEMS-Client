@@ -9,7 +9,7 @@
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Height="346" Width="532" Opacity="1.0">
-        <Button x:Name="btnExit" Canvas.Left="528.5" Canvas.Top="-17.5" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnExit" Canvas.Left="516" Canvas.Top="12" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>

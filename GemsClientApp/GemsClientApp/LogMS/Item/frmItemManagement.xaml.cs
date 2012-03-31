@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using evmsService.entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using evmsService.entities;
 
 namespace Gems.UIWPF
@@ -40,9 +38,9 @@ namespace Gems.UIWPF
         private void setBudgetVisibility()
         {
             WCFHelperClient client = new WCFHelperClient();
-            List<EnumFunctions> functions = client.GetRights(event_.EventID, user.userID).ToList<EnumFunctions>();
-            if (functions.Contains(EnumFunctions.Manage_Budget) ||
-                user.isEventOrganizer || user.isSystemAdmin)
+            if (user.isEventOrganizer || //Is event organizer or has rights to optimize items to buy
+                client.GetRights(event_.EventID, user.userID).ToList<EnumFunctions>()
+                .Contains(EnumFunctions.OptimizeItemList))
             {
                 budgetPanel.Visibility = Visibility.Visible;
             }

@@ -30,7 +30,7 @@ namespace Gems.UIWPF
 
             this.txtAssn.Text = x.ToString();
             this.txtUserID.Text = uid;
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
 
             this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid)).ToString();
             client.Close();
@@ -51,7 +51,7 @@ namespace Gems.UIWPF
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            EvmsServiceClient client = new EvmsServiceClient();
+            WCFHelperClient client = new WCFHelperClient();
 
             try
             {
