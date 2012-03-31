@@ -9,7 +9,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Programme Management" FontWeight="Medium" FontSize="21" Margin="0" d:LayoutOverrides="Width, Height" Height="590" Width="741">
 		<StackPanel Orientation="Horizontal">
 			<GroupBox Header="Programme Segments" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8" Width="385" Height="502">
-				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Single" Height="465">
+				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Extended" Height="465" DragOver="lstProgram_DragOver" Drop="lstProgram_Drop" PreviewMouseLeftButtonDown="lstProgram_PreviewMouseLeftButtonDown" AllowDrop="True">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Width="70" Header="Start">

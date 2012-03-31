@@ -30,9 +30,7 @@ namespace Gems.UIWPF
             { typeof(frmFacBooking), "book facility" },
             { typeof(frmProgramManagement), "edit programme" },
             { typeof(frmGuestList), "edit guests" },
-            { typeof(frmOverview), "view overview" },
-            { typeof(frmBudgetItemList), "budget item list"},
-            { typeof(frmTaskAllocation), "Task Allocation"}
+            { typeof(frmOverview), "view overview" }
         };
 
         public frmMain()
@@ -108,7 +106,6 @@ namespace Gems.UIWPF
             //
             mnuItems.Visibility = Visibility.Collapsed;
             mnuManageItem.Visibility = Visibility.Collapsed;
-            mnuManageBudgetItem.Visibility = Visibility.Collapsed;
             //
             //mnuTasks.Visibility = Visibility.Collapsed;
             //
@@ -134,8 +131,7 @@ namespace Gems.UIWPF
             //
             mnuItems.Visibility = Visibility.Visible;
             mnuManageItem.Visibility = Visibility.Visible;
-            mnuManageBudgetItem.Visibility = Visibility.Visible;
-
+            //
             //mnuTasks.Visibility = Visibility.Visible;
             //
             mnuManpower.Visibility = Visibility.Visible;
@@ -232,11 +228,10 @@ namespace Gems.UIWPF
         {
             DisableAllRight();
 
-            if (user.isEventOrganizer || ef.Contains(EnumFunctions.Delete_Event)
-                || ef.Contains(EnumFunctions.Edit_Event))
-            {
+            if (user.isEventOrganizer || ef.Contains(EnumFunctions.Delete_Event) || ef.Contains(EnumFunctions.Edit_Event))
                 mnuEvent.Visibility = Visibility.Visible;
-            }
+            // mnuItemManageEvent.Visibility = Visibility.Visible;
+            //
             if (user.isEventOrganizer)
             {
                 mnuLocation.Visibility = Visibility.Visible;
@@ -245,38 +240,33 @@ namespace Gems.UIWPF
                 mnuRoleTemplates.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Edit_Programmes) ||
-                ef.Contains(EnumFunctions.Create_Programmes) ||
+            if (ef.Contains(EnumFunctions.Edit_Programmes) || 
+                ef.Contains(EnumFunctions.Create_Programmes) || 
                 ef.Contains(EnumFunctions.Delete_Programmes))
-            {
                 mnuPrograms.Visibility = Visibility.Visible;
-            }
             //
             if (ef.Contains(EnumFunctions.Add_Item) || ef.Contains(EnumFunctions.Manage_ItemType)
                 || ef.Contains(EnumFunctions.Update_Item)
-                || ef.Contains(EnumFunctions.Delete_Item))
+                || ef.Contains(EnumFunctions.Delete_Item)
+                )
             {
                 mnuItems.Visibility = Visibility.Visible;
                 mnuManageItem.Visibility = Visibility.Visible;
-                mnuManageBudgetItem.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Add_Task) || 
-                ef.Contains(EnumFunctions.Update_Task) || 
-                ef.Contains(EnumFunctions.Delete_Task))
-            {
-                mnuTasks.Visibility = Visibility.Visible;
-            }
-            if (ef.Contains(EnumFunctions.Add_Guest) ||
-                ef.Contains(EnumFunctions.Edit_Guest) ||
+            //if (ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions) || ef.Contains(EnumFunctions))
+            //mnuTasks.Visibility = Visibility.Visible;
+            //
+            if (ef.Contains(EnumFunctions.Add_Guest) || 
+                ef.Contains(EnumFunctions.Edit_Guest) || 
                 ef.Contains(EnumFunctions.Delete_Guest))
             {
                 mnuGuests.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Add_Role) ||
-                ef.Contains(EnumFunctions.Edit_Role) ||
-                ef.Contains(EnumFunctions.Delete_Role) ||
+            if (ef.Contains(EnumFunctions.Add_Role) || 
+                ef.Contains(EnumFunctions.Edit_Role) || 
+                ef.Contains(EnumFunctions.Delete_Role) || 
                 ef.Contains(EnumFunctions.View_Role))
             {
                 mnuManpower.Visibility = Visibility.Visible;
@@ -486,9 +476,7 @@ namespace Gems.UIWPF
                         WCFHelperClient client = new WCFHelperClient();
 
                         if (user.userID == ev.Organizerid || user.isSystemAdmin)
-                        {
                             EnableAllRight();
-                        }
                         else if (user.isFacilityAdmin)
                         {
                             DisableAllRight();
@@ -497,9 +485,8 @@ namespace Gems.UIWPF
                             mnuViewBookings.Visibility = Visibility.Visible;
                         }
                         else
-                        {
                             SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
-                        }
+
                         client.Close();
                     }
                 }
@@ -523,17 +510,8 @@ namespace Gems.UIWPF
 
         private void mnuContactList_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void mnuManageBudgetItem_Click(object sender, RoutedEventArgs e)
-        {
-            navigate<frmBudgetItemList>();
-        }
-
-        private void mnuTasks_Click(object sender, RoutedEventArgs e)
-        {
-            navigate<frmTaskAllocation>();
+            frmServiceContactList a = new frmServiceContactList(this.user, (Event)lstEventList.SelectedItem);
+            a.ShowDialog();
         }
     }
 }

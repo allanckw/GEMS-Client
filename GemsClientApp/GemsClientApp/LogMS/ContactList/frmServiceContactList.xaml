@@ -5,7 +5,7 @@
 	x:Class="Gems.UIWPF.frmServiceContactList"
 	x:Name="Window"
 	Title="frmServiceContactList"
-Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" >
+Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
 	<Canvas Opacity="1.0">
         <Path Fill="{StaticResource BlueThemeBG}" Data="M21.499998,0.5 L446.5,0.5 446.5,0.5063256 446.55493,0.50702149 C457.98819,0.79668558 467.20331,10.011827 467.49298,21.445078 L467.49368,21.499998 467.5,21.499998 467.5,446.5 467.49368,446.5 467.49298,446.55493 C467.20331,457.98816 457.98816,467.20331 446.55493,467.49298 L446.5,467.49368 446.5,467.5 21.499998,467.5 21.499998,467.49368 21.445078,467.49298 C10.011827,467.20331 0.79668558,457.98816 0.50702149,446.55493 L0.5063256,446.5 0.5,446.5 0.5,21.499998 0.5063256,21.499998 0.50702149,21.445078 C0.79668558,10.011827 10.011827,0.79668558 21.445078,0.50702149 L21.499998,0.5063256 z" Stretch="Fill" Stroke="DarkGray" StrokeThickness="2" Margin="0" Height="650" Width="700">
 
@@ -27,8 +27,24 @@ Width="741" Height="698" AllowsTransparency="True" WindowStyle="None" Background
 		</Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="16" />
 		<GroupBox Header="Service List" Canvas.Left="21" Canvas.Top="60" Height="560" Width="156.197" FontSize="21">
-			<ListBox x:Name="lstServiceList"/>
-		</GroupBox>
+            <ListBox x:Name="lstServiceList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
+                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="520">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10" Orientation="Vertical">
+                            <WrapPanel Orientation="Horizontal"  >
+                                <TextBlock Text="Service: "  Foreground="DarkBlue"/>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue"/>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock Text="{Binding Notes}" TextWrapping="Wrap" Foreground="DarkBlue"/>
+                            </WrapPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
 		<GroupBox Header="Service Detail" Canvas.Left="181.197" Canvas.Top="64" Height="560" Width="494.5" FontSize="21">
 			<StackPanel Margin="0,8,0,0" Height="515" VerticalAlignment="Top">
 				<StackPanel Height="145">

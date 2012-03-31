@@ -5,12 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Text;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Gems.UIWPF
 {
     /// <summary>
     /// Interaction logic for frmProgramList.xaml
     /// </summary>
+
+    delegate Point GetPositionDelegate(IInputElement element);
+    /// 
+
     public partial class frmProgramManagement : Page
     {
 
@@ -21,6 +33,10 @@ namespace Gems.UIWPF
         {
             InitializeComponent();
 
+            lstProgram.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(lstProgram_PreviewMouseLeftButtonDown);
+            lstProgram.Drop += new DragEventHandler(lstProgram_Drop);
+
+            lstProgram.DragOver += new DragEventHandler(lstProgram_DragOver);
         }
 
         public void CreateDTPData()
@@ -59,11 +75,46 @@ namespace Gems.UIWPF
             {
                 WCFHelperClient client = new WCFHelperClient();
                 List<Program> progList = client.ViewProgram(event_.EventID).ToList<Program>();
+
+                
                 client.Close();
-                lstProgram.ItemsSource = progList
-                                                .OrderBy(x => x.StartDateTime)
-                                                .ThenBy(x => x.EndDateTime)
-                                                .ToList<Program>();
+                DateTime curr = event_.StartDateTime;
+                DateTime end = event_.EndDateTime;
+
+                List<Program> newprogList = new List<Program>();
+                while (curr.CompareTo(end) < 0)
+                {
+                    for (int i = 0; i < progList.Count; i++)
+                    {
+                        if (progList[i].StartDateTime.CompareTo(curr) == 0)
+                        {
+                            newprogList.Add(progList[i]);
+                            curr = progList[i].EndDateTime;
+                            goto next;
+                        }
+                    }
+
+                    Program p = new Program();
+                    p.Name = "";
+                    p.StartDateTime = curr;
+                    p.EndDateTime = curr.AddMinutes(30);
+                    newprogList.Add(p);
+                        curr = curr.AddMinutes(30);
+
+                next:
+                        continue;
+                
+                }
+
+                lstProgram.ItemsSource = newprogList
+                                                 .OrderBy(x => x.StartDateTime)
+                                                 .ThenBy(x => x.EndDateTime)
+                                                 .ToList<Program>();
+
+                //lstProgram.ItemsSource = progList
+                //                                .OrderBy(x => x.StartDateTime)
+                //                                .ThenBy(x => x.EndDateTime)
+                //                                .ToList<Program>();
             }
             catch (Exception ex)
             {
@@ -149,11 +200,11 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                if (lstProgram.SelectedIndex == -1)
-                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
-                else
+                if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
                     client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                client.Close();
+                else
+                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                    client.Close();
                 MessageBox.Show("Operation succeeded!");
                 clearAll();
             }
@@ -163,6 +214,94 @@ namespace Gems.UIWPF
             }
 
             loadPrograms();
+        }
+
+
+        private bool Check_OverWrite(List<Program> programList)
+        {
+            
+            for (int i = 0; i < programList.Count; i++)
+            {
+                if (programList[i].StartDateTime.CompareTo(event_.StartDateTime) < 0)
+                    return true;
+                if (programList[i].EndDateTime.CompareTo(event_.EndDateTime) > 0)
+                    return true;
+                for (int j = 0; j < programList.Count; j++)
+                {
+                    if (i == j)
+                        continue;
+                    //int aa = programList[i].StartDateTime.CompareTo(programList[j].StartDateTime);
+                    //int bb = programList[i].EndDateTime.CompareTo(programList[j].EndDateTime);
+                    if ((programList[i].StartDateTime.CompareTo(programList[j].StartDateTime) >= 0 
+                        && programList[i].StartDateTime.CompareTo(programList[j].EndDateTime) < 0) 
+                        ||
+                        (programList[i].EndDateTime.CompareTo(programList[j].StartDateTime) > 0 
+                        && programList[i].EndDateTime.CompareTo(programList[j].EndDateTime) <=0)
+                        )
+                        return true;
+                }
+            }
+            return false;
+        }
+        
+        private void Program_Swap(Program p1, Program p2)
+        {
+
+            
+            DateTime tempstart;
+            tempstart = p1.StartDateTime;
+            //tempend = p1.EndDateTime;
+
+            TimeSpan p1ts = p1.EndDateTime - p1.StartDateTime;
+            TimeSpan p2ts = p2.EndDateTime - p2.StartDateTime;
+
+            p1.StartDateTime = p2.StartDateTime;
+            p1.EndDateTime = p2.StartDateTime.AddMinutes(p1ts.TotalMinutes);
+       //     p1.EndDateTime = p1.EndDateTime.AddHours(p2ts.to);
+            //p1.EndDateTime = p2.EndDateTime;
+
+            p2.StartDateTime = tempstart;
+            p2.EndDateTime = tempstart.AddMinutes(p2ts.TotalMinutes);
+            //at this points both are swaped
+
+
+
+            //
+            List<Program> temp = new List<Program>();
+
+            if(p1.ProgramID != 0)
+                temp.Add(p1);
+            if (p2.ProgramID != 0)
+                temp.Add(p2);
+            for (int i = 0; i < lstProgram.Items.Count; i++)
+            {
+                if (((Program)lstProgram.Items[i]).ProgramID != 0 && 
+                    ((Program)lstProgram.Items[i]).ProgramID != p1.ProgramID &&
+                    ((Program)lstProgram.Items[i]).ProgramID != p2.ProgramID)
+                temp.Add((Program)lstProgram.Items[i]);
+            }
+
+            if (Check_OverWrite(temp))
+            {
+                MessageBox.Show("OverLap or is over the event time boundary");
+                return;
+            }
+            //
+
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+            if(p1.ProgramID != 0)
+                client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description);
+            if(p2.ProgramID != 0)
+                client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            loadPrograms(); 
         }
 
         private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -232,6 +371,121 @@ namespace Gems.UIWPF
         private void Window_Activated(object sender, EventArgs e)
         {
             loadPrograms();
+        }
+        int oldIndex = -1;
+
+        ListViewItem GetListViewItem(int index)
+        {
+            if (lstProgram.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+                return null;
+
+            return lstProgram.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
+        }
+        bool IsMouseOverTarget(Visual target, GetPositionDelegate getPosition)
+        {
+            if (target == null)
+                return false;
+            Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
+            Point mousePos = getPosition((IInputElement)target);
+            return bounds.Contains(mousePos);
+        }
+        int GetCurrentIndex(GetPositionDelegate getPosition)
+        {
+
+            int index = -1;
+            for (int i = 0; i < this.lstProgram.Items.Count; ++i)
+            {
+                ListViewItem item = GetListViewItem(i);
+                if (this.IsMouseOverTarget(item, getPosition))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        private void lstProgram_DragOver(object sender, DragEventArgs e)
+        {
+            try
+            {
+                double i = TranslatePoint(new Point(0, 0), lstProgram).Y;
+                i = Math.Abs(i);
+
+
+                if (e.GetPosition(this).Y <= i + 10)// && e.GetPosition(this).Y >= i)
+                {
+                    int aaa = this.GetCurrentIndex(e.GetPosition);
+                    if (this.GetCurrentIndex(e.GetPosition) != 0)
+                    {
+                        lstProgram.ScrollIntoView(lstProgram.Items[this.GetCurrentIndex(e.GetPosition) - 1]);
+
+                    }
+                }
+
+                else if (e.GetPosition(this).Y >= i - 10)// && e.GetPosition(this).Y <= i)
+                {
+                    double zz = e.GetPosition(this).Y;
+                    if (this.GetCurrentIndex(e.GetPosition) != lstProgram.Items.Count - 1)
+                    {
+                        lstProgram.ScrollIntoView(lstProgram.Items[this.GetCurrentIndex(e.GetPosition) + 1]);
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void lstProgram_Drop(object sender, DragEventArgs e)
+        {
+            if (oldIndex < 0)
+                return;
+
+            int index = this.GetCurrentIndex(e.GetPosition);
+
+            if (index < 0)
+                return;
+
+            if (index == oldIndex)
+                return;
+
+            ////Shapes myShapes = Resources["MyShapes"] as Shapes;
+
+            ////Shape movedShape = myShapes[oldIndex];
+            ////myShapes.RemoveAt(oldIndex);
+
+            ////myShapes.Insert(index, movedShape);
+
+            //////MessageBox.Show(TranslatePoint(new Point(0, 0), ListView1).Y.ToString());
+            ////double i = TranslatePoint(new Point(0, 0), ListView1).Y;
+            ////i = -i;
+
+            Program_Swap((Program)lstProgram.Items[oldIndex], (Program)lstProgram.Items[index]);
+
+            loadPrograms();
+        }
+
+        private void lstProgram_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            oldIndex = this.GetCurrentIndex(e.GetPosition);
+
+            if (oldIndex < 0)
+                return;
+
+            lstProgram.SelectedIndex = oldIndex;
+            Program selectedItem = this.lstProgram.Items[oldIndex] as Program;
+
+            if (selectedItem == null)
+                return;
+
+            // this will create the drag "rectangle"
+            DragDropEffects allowedEffects = DragDropEffects.Move;
+            if (DragDrop.DoDragDrop(this.lstProgram, selectedItem, allowedEffects) != DragDropEffects.None)
+            {
+                // The item was dropped into a new location,
+                // so make it the new selected item.
+                this.lstProgram.SelectedItem = selectedItem;
+            }
         }
     }
 }

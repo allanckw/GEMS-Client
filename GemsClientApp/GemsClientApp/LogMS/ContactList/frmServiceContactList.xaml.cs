@@ -1,14 +1,11 @@
-﻿using System;
+﻿using System.Windows;
+using System.Windows.Input;
+using evmsService.entities;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+using System.Linq;
+using System;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Gems.UIWPF
 {
@@ -17,10 +14,15 @@ namespace Gems.UIWPF
 	/// </summary>
 	public partial class frmServiceContactList : Window
 	{
-		public frmServiceContactList()
+        User user;
+        Event event_;
+
+		public frmServiceContactList(User u, Event e)
 		{
 			this.InitializeComponent();
-			
+
+            this.user = u;
+            this.event_ = e;
 			// Insert code required on object creation below this point.
 		}
 
@@ -32,6 +34,36 @@ namespace Gems.UIWPF
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadServices();
+        }
+
+        private void loadServices()
+        {
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                List<Service> serviceList = client.ViewService(user).ToList<Service>();
+
+
+                client.Close();
+
+
+
+                lstServiceList.ItemsSource = serviceList
+                                                 .OrderBy(x => x.Name)
+                                                 .ThenBy(x => x.Notes)
+                                                 .ToList<Service>();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 	}
