@@ -215,7 +215,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewRoleUser(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
                  
                 client.Close();
             }

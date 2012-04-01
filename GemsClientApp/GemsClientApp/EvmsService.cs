@@ -3149,9 +3149,9 @@ public interface IEvmsService
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Role[] ViewRole(evmsService.entities.User user, evmsService.entities.Event e);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewRoleUser", ReplyAction="http://tempuri.org/IEvmsService/ViewRoleUserResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewRoleUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    System.TupleOfRolestringRsiwEt5l[] ViewRoleUser(evmsService.entities.User user, evmsService.entities.Event e);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventRoles", ReplyAction="http://tempuri.org/IEvmsService/ViewEventRolesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventRolesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event e);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewFunction", ReplyAction="http://tempuri.org/IEvmsService/ViewFunctionResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewFunctionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3632,9 +3632,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.ViewRole(user, e);
     }
     
-    public System.TupleOfRolestringRsiwEt5l[] ViewRoleUser(evmsService.entities.User user, evmsService.entities.Event e)
+    public System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event e)
     {
-        return base.Channel.ViewRoleUser(user, e);
+        return base.Channel.ViewEventRoles(user, e);
     }
     
     public evmsService.entities.Function[] ViewFunction()

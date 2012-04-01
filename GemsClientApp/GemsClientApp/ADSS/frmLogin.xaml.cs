@@ -24,6 +24,20 @@ namespace Gems.UIWPF
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            if (txtUserID.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter your user id", "Invalid Input", MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation);
+                return;
+            }
+            
+            if (txtPassword.Password.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter your password!", "Invalid Input", MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation);
+                return;
+            }
+
             if (String.Compare(txtSvAddr.Text.Trim(), ConfigHelper.GetEndpointAddress(), true) != 0)
             {
                 ConfigHelper.SaveEndpointAddress(txtSvAddr.Text.Trim());

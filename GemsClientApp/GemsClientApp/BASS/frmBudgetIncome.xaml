@@ -35,7 +35,7 @@
                 <StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
                         <Label Content="Name:" Width="66.803" FontSize="13"/>
-                        <TextBox TextWrapping="Wrap" Text="" Width="200" FontSize="13" x:Name="txtName" TextChanged="onTextChanged" />
+                        <TextBox TextWrapping="Wrap" Text="" Width="289" FontSize="13" x:Name="txtName" TextChanged="onTextChanged" />
                     </StackPanel>
                     <StackPanel Height="175">
                         <Label Content="Description:" FontSize="13"/>
@@ -53,10 +53,12 @@
                     <StackPanel Height="30" Orientation="Horizontal">
                         <CheckBox Content="GST Liable?  Rate:" FontSize="13" IsChecked="True" x:Name="chkGSTLiable" Height="20" Click="chkGSTLiable_Checked"/>
                         <TextBox TextWrapping="Wrap" Text="" Margin="5,1,1,1"  Width="200" FontSize="13" x:Name="txtGstPercent" IsReadOnly="True" Height="25" />
+                        <Label Content="%" FontSize="13"/>
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
                         <Label Content="GST Amount:" FontSize="13"/>
                         <TextBox TextWrapping="Wrap" Text="" Margin="39,1,1,1"  Width="200" FontSize="13" Height="25" x:Name="txtGst" TextChanged="onTextChanged" IsReadOnly="True" />
+                        
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
                         <Label Content="Income After GST:" FontSize="13" Height="25" />

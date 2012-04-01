@@ -40,7 +40,7 @@
                     <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
                 </MenuItem>
                 <MenuItem Header="Budget" FontSize="15" Margin="10,0,0,0" x:Name="mnuBudget" >
-                    <MenuItem Header="Manage Items" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
+                    <MenuItem Header="Manage Item List" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
                     <MenuItem Header="Manage Budget Items" Background="{x:Null}" Width="240" x:Name="mnuManageBudgetItem" Click="mnuManageBudgetItem_Click"/>
                     <MenuItem Header="Manage Income" Background="{x:Null}" Width="240" x:Name="mnuManageIncome" Click="mnuManageIncome_Click"/>
                     <MenuItem Header="Budget Report" Background="{x:Null}" Width="240" x:Name="mnuBudgetReport" Click="mnuBudgetReport_Click"/>
@@ -84,8 +84,7 @@
                     <DataTemplate>
                         <StackPanel Margin="10" Orientation="Vertical">
                             <WrapPanel Orientation="Horizontal"  >
-                                <TextBlock Text="Event: "  Foreground="DarkBlue"/>
-                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue"/>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>

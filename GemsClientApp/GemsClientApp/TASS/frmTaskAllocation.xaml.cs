@@ -1,33 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Linq;
 using evmsService.entities;
 using Gems.UIWPF.CustomCtrl;
 
 namespace Gems.UIWPF
 {
-	public partial class frmTaskAllocation
-	{
+    public partial class frmTaskAllocation : Page
+    {
         private User user;
         private Event event_;
-		
-		public frmTaskAllocation()
-		{
-			this.InitializeComponent();
-            refreshTaskList();
-			// Insert code required on object creation below this point.
-		}
-		
 
-        public void refreshTaskList(){
+        public frmTaskAllocation()
+        {
+            this.InitializeComponent();
+        }
+
+        public frmTaskAllocation(User u, Event e)
+            : this()
+        {
+            this.user = u;
+            this.event_ = e;
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            refreshTaskList();
+            loadRoles();
+        }
+
+        private void loadRoles()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            try
+            {
+                cboRoleCreate.DisplayMemberPath = cboRole.DisplayMemberPath = "m_Item2";
+                cboRoleCreate.SelectedValuePath = cboRole.SelectedValuePath = "m_Item1.RoleID";
+                cboRoleCreate.ItemsSource = cboRole.ItemsSource = 
+                    client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            client.Close();
+        }
+
+        public void refreshTaskList()
+        {
 
             //Example of All Task created for the event
             //Throw in All Task Here
@@ -41,7 +65,7 @@ namespace Gems.UIWPF
 
             //Example of assigned Task to an individual
             //Get individual task list dependent on cboRole
-            
+
             List<clsTaskAllocate> IndividualTask = new List<clsTaskAllocate>(new clsTaskAllocate[] {
                     new clsTaskAllocate { Name="Task1", Description="Description 1 dasdsasdasdasdasdasdasdasdasd", Balance=0 },
                      new clsTaskAllocate { Name="Task4", Description="Description 4", Balance=0},
@@ -59,12 +83,7 @@ namespace Gems.UIWPF
             lstAssignedTask.ItemsSource = clsTaskAllocate.GetTaskAssigned(IndividualTask);
         }
 
-		public frmTaskAllocation(User u, Event e)
-            : this()
-        {
-            this.user = u;
-            this.event_ = e;
-        }
+
 
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -75,7 +94,9 @@ namespace Gems.UIWPF
 
         private void btnSaveTask_Click(object sender, RoutedEventArgs e)
         {
+            WCFHelperClient client = new WCFHelperClient();
 
         }
-	}
+
+    }
 }
