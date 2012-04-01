@@ -37,7 +37,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstMsg.ItemsSource = client.getUnreadMessages(user.userID);
+            lstMsg.ItemsSource = client.GetUnreadMessages(user.userID);
             client.Close();
         }
 
@@ -60,11 +60,11 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             if (radUnread.IsChecked == true)
             { 
-                lstMsg.ItemsSource = client.getUnreadMessages(user.userID);
+                lstMsg.ItemsSource = client.GetUnreadMessages(user.userID);
             }
             else
             {
-                lstMsg.ItemsSource = client.getAllMessages(user.userID);
+                lstMsg.ItemsSource = client.GetAllMessages(user.userID);
             }
             client.Close();
         }
@@ -75,7 +75,7 @@ namespace Gems.UIWPF
             if (!n.isRead)
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.setNotificationRead(n);
+                client.SetNotificationRead(n);
                 client.Close();
             }
             var viewNote = new frmViewNotification(n, user);
@@ -92,7 +92,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Notifications n = (Notifications)lstMsg.SelectedItem;
-                    client.deleteNotifications(n);
+                    client.DeleteNotifications(n);
                     radUnread_Checked(this, e);
                 }
                 
@@ -117,7 +117,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
 
-                    client.deleteAllNotificationsOfUser(user.userID);
+                    client.DeleteAllNotificationsOfUser(user.userID);
                     radUnread_Checked(this, e);
                 }
 

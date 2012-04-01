@@ -39,7 +39,7 @@ namespace Gems.UIWPF
             List<Event> elist;
             if (user.isFacilityAdmin || user.isSystemAdmin)
             {
-                elist =client.viewAllEvents(user).ToList<Event>();
+                elist =client.ViewAllEvents(user).ToList<Event>();
             }
             else
             {
@@ -88,7 +88,7 @@ namespace Gems.UIWPF
                 return;
             }
 
-            this.lstRequest.ItemsSource = client.viewFacilityBookingRequests(user, 
+            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user, 
                 int.Parse(cboEventList.SelectedValue.ToString()),
                 cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
                 chkAllEvent.IsChecked.Value);
@@ -105,7 +105,7 @@ namespace Gems.UIWPF
             lblEndTime.Content = "";
             lblStartTime.Content = "";
             WCFHelperClient client = new WCFHelperClient();
-            this.lstRequest.ItemsSource = client.viewFacilityBookingRequests(user,
+            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user,
                 int.Parse(cboEventList.SelectedValue.ToString()),
                 cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
                 chkAllEvent.IsChecked.Value);
@@ -125,9 +125,9 @@ namespace Gems.UIWPF
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequest.SelectedItem;
                 WCFHelperClient client = new WCFHelperClient();
 
-                txtEventName.Text = client.getEventName(fbr.EventID);
+                txtEventName.Text = client.GetEventName(fbr.EventID);
                 txtRemarks.Text = fbr.Remarks;
-                txtRequestor.Text = client.getUserName(fbr.RequestorID);
+                txtRequestor.Text = client.GetUserName(fbr.RequestorID);
                 txtStatus.Text = fbr.Status.ToString();
                 lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
                 lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
@@ -164,7 +164,7 @@ namespace Gems.UIWPF
                         == MessageBoxResult.Yes)
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for dropping", "Remarks", "");
-                        client.dropConfirmedRequest(user, fbr.RequestID, fbr.EventID, remarks);
+                        client.DropConfirmedRequest(user, fbr.RequestID, fbr.EventID, remarks);
                         ClearDetail();
                     }
                 }
@@ -175,7 +175,7 @@ namespace Gems.UIWPF
                         == MessageBoxResult.Yes)
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for cancelling", "Remarks", "");
-                        client.cancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
+                        client.CancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
                         ClearDetail();
                     }
                 }

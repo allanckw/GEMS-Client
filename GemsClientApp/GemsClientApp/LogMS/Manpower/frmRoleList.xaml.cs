@@ -24,7 +24,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                List<User> users = client.searchUser(textPattern, "").ToList<User>();
+                List<User> users = client.SearchUser(textPattern, "").ToList<User>();
                 client.Close();
                 List<String> results = new List<string>();
                 foreach (User user in users)

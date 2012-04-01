@@ -62,11 +62,11 @@ namespace Gems.UIWPF
                 List<User> list;
                 if (cboRole.SelectedIndex == 0)
                 {
-                    list = client.searchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
+                    list = client.SearchUser(txtName.Text.Trim(), txtUserID.Text.Trim()).ToList<User>();
                 }
                 else
                 {
-                    list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
+                    list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
                       (EnumRoles)cboRole.SelectedIndex - 1).ToList<User>();
                 }
                 lstUsers.SelectedValuePath = "userID";
@@ -101,7 +101,7 @@ namespace Gems.UIWPF
                         "Confirm Role Removal",
                         MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        client.unAssignRole(user, uid);
+                        client.UnAssignRole(user, uid);
                     }
                 }
                 catch (Exception ex)

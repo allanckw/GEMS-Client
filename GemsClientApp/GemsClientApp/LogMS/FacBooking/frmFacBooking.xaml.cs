@@ -114,7 +114,7 @@ namespace Gems.UIWPF
         private void venueSearch(Faculty f, int minCap, int maxCap)
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstFacility.ItemsSource = client.getVenuesByCap(f,
+            lstFacility.ItemsSource = client.GetVenuesByCap(f,
                                         cboVenue.SelectedValue.ToString(), minCap, maxCap);
             client.Close();
         }
@@ -123,7 +123,7 @@ namespace Gems.UIWPF
         {
 
             WCFHelperClient client = new WCFHelperClient();
-            lstFacility.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
+            lstFacility.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
             client.Close();
         }
         private void cboFaculty_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -134,7 +134,7 @@ namespace Gems.UIWPF
             cboSeat.SelectedIndex = -1;
 
             WCFHelperClient client = new WCFHelperClient();
-            cboVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+            cboVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
             client.Close();
         }
 
@@ -165,7 +165,7 @@ namespace Gems.UIWPF
                 return;
             }
             WCFHelperClient client = new WCFHelperClient();
-            bool exist = client.checkRequestExist(event_.EventID);
+            bool exist = client.CheckRequestExist(event_.EventID);
             client.Close();
 
             if (exist)

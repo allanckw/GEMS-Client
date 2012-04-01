@@ -32,7 +32,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                User u = client.login(txtUserID.Text.Trim(), txtPassword.Password);
+                User u = client.Authenticate(txtUserID.Text.Trim(), txtPassword.Password);
                 var admForm = new frmMain(u, this);
                 this.Visibility = Visibility.Collapsed;
                 this.txtPassword.Clear();

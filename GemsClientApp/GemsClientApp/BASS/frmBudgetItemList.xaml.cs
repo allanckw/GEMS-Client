@@ -59,7 +59,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                Items item2Edit = client.getItemDetail(budgetItem);
+                Items item2Edit = client.GetItemDetail(budgetItem);
                 if (item2Edit != null)
                 {
                     mapItem(item2Edit);
@@ -99,13 +99,13 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                OptimizedBudgetItems budget = client.getBudgetItem(event_.EventID);
+                OptimizedBudgetItems budget = client.GetBudgetItem(event_.EventID);
                 txtTotalPrice.Text = budget.TotalEstimatedPrice.ToString("0.00");
                 txtTotalSat.Text = budget.TotalSatisfaction.ToString();
                 txtGenDate.Text = budget.GeneratedDate.ToString("dd MMM yyyy");
                 btnCancelEditItem.IsEnabled = btnUpdateItem.IsEnabled = true;
                 //loadList
-                lvBItem.SetExistingSource(budget.budgetItemsList.ToList<OptimizedBudgetItemsDetails>());
+                lvBItem.SetExistingSource(budget.BudgetItemsList.ToList<OptimizedBudgetItemsDetails>());
 
             }
             catch (NullReferenceException)
@@ -145,8 +145,8 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                Items item2Edit = client.getItemDetail(budgetItem);
-                client.updateActualPrice(user, item2Edit, price);
+                Items item2Edit = client.GetItemDetail(budgetItem);
+                client.UpdateActualPrice(user, item2Edit, price);
                 clearBudgetItemForm();
             }
             catch (Exception ex)

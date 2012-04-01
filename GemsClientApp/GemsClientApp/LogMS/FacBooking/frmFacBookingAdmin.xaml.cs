@@ -36,7 +36,7 @@ namespace Gems.UIWPF
         private void loadRequests()
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstRequestor.ItemsSource = client.getFacBookingRequestList(user);
+            lstRequestor.ItemsSource = client.GetFacBookingRequestList(user);
             client.Close();
         }
 
@@ -74,7 +74,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                fbcList = client.getActivitiesForDay(user, day,
+                fbcList = client.GetActivitiesForDay(user, day,
                      fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
                 lvTimeslot.SetBookingTimeRange(fbr.RequestStartDateTime, fbr.RequestEndDateTime);
                 lvTimeslot.SetSource(fbcList);
@@ -101,8 +101,8 @@ namespace Gems.UIWPF
                 
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
                 WCFHelperClient client = new WCFHelperClient();
-                txtEventName.Text = client.getEventName(fbr.EventID);
-                txtRequestor.Text = client.getUserName(fbr.RequestorID);
+                txtEventName.Text = client.GetEventName(fbr.EventID);
+                txtRequestor.Text = client.GetUserName(fbr.RequestorID);
                 lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
                 lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
 
@@ -139,7 +139,7 @@ namespace Gems.UIWPF
             try
             {
                 FacilityBookingRequestDetails fbrd = (FacilityBookingRequestDetails)dgLocation.SelectedItem;
-                client.approveFacilityBooking(user, fbr.RequestID, fbr.EventID, fbrd.RequestDetailsID,
+                client.ApproveFacilityBooking(user, fbr.RequestID, fbr.EventID, fbrd.RequestDetailsID,
                     txtRemarks.Text.Trim(), txtEventName.Text.Trim());
                 MessageBox.Show("Request have been approved!", "Approved",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -168,7 +168,7 @@ namespace Gems.UIWPF
 
             try
             {
-                client.rejectFacilityBooking(user, fbr.RequestID, fbr.EventID, txtRemarks.Text.Trim());
+                client.RejectFacilityBooking(user, fbr.RequestID, fbr.EventID, txtRemarks.Text.Trim());
                 MessageBox.Show("Request have been rejected!", "Rejected",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 loadRequests();
@@ -197,7 +197,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                fbcList = client.getActivitiesForDay(user, day,
+                fbcList = client.GetActivitiesForDay(user, day,
                      fbrDetails.Faculty, fbrDetails.FacilityID).ToList<FacilityBookingConfirmed>();
                 lvTimeslot.SetBookingTimeRange(fbr.RequestStartDateTime, fbr.RequestEndDateTime);
                 lvTimeslot.SetSource(fbcList);

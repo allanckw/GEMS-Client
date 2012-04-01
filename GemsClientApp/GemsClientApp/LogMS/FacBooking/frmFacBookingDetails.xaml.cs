@@ -109,7 +109,7 @@ namespace Gems.UIWPF
 
 
                             WCFHelperClient client = new WCFHelperClient();
-                            bool success = client.addFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+                            bool success = client.AddFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
                             client.Close();
 
                             if (success)

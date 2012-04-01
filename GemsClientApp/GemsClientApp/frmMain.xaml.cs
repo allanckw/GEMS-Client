@@ -111,8 +111,9 @@ namespace Gems.UIWPF
             mnuBudget.Visibility = Visibility.Collapsed;
             mnuManageItem.Visibility = Visibility.Collapsed;
             mnuManageBudgetItem.Visibility = Visibility.Collapsed;
-            //
-            //mnuTasks.Visibility = Visibility.Collapsed;
+            mnuBudgetReport.Visibility = Visibility.Collapsed;
+            //Tasks and View Tasks Are Global
+            mnuManageTasks.Visibility = Visibility.Collapsed;
             //
             mnuManpower.Visibility = Visibility.Collapsed;
             mnuRoles.Visibility = Visibility.Collapsed;
@@ -137,8 +138,9 @@ namespace Gems.UIWPF
             mnuBudget.Visibility = Visibility.Visible;
             mnuManageItem.Visibility = Visibility.Visible;
             mnuManageBudgetItem.Visibility = Visibility.Visible;
-
-            //mnuTasks.Visibility = Visibility.Visible;
+            mnuBudgetReport.Visibility = Visibility.Visible;
+            //Tasks and View Tasks Are Global
+            mnuManageTasks.Visibility = Visibility.Visible;
             //
             mnuManpower.Visibility = Visibility.Visible;
             mnuRoles.Visibility = Visibility.Visible;
@@ -174,7 +176,7 @@ namespace Gems.UIWPF
                         list = client.ViewEvent(user).ToList<Event>();
 
                     else
-                        list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                        list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
                                         dtpTo.SelectedDate.Value).ToList<Event>();
 
                     lstEventList.ItemsSource = list;
@@ -205,7 +207,7 @@ namespace Gems.UIWPF
             //if valid date range.
             if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
             {
-                list = client.viewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
                                 dtpTo.SelectedDate.Value).ToList<Event>();
             }
             else
@@ -266,12 +268,17 @@ namespace Gems.UIWPF
             {
                 mnuManageBudgetItem.Visibility = Visibility.Visible;
             }
+            if (ef.Contains(EnumFunctions.View_Budget_Report))
+            {
+                mnuBudgetReport.Visibility = Visibility.Visible;
+            }
             //
             if (ef.Contains(EnumFunctions.Add_Task) || 
                 ef.Contains(EnumFunctions.Update_Task) || 
-                ef.Contains(EnumFunctions.Delete_Task))
-            {
-                mnuTasks.Visibility = Visibility.Visible;
+                ef.Contains(EnumFunctions.Delete_Task) ||
+                ef.Contains(EnumFunctions.Assign_Task))
+            { //Tasks and View Tasks Are Global
+                mnuManageTasks.Visibility = Visibility.Visible;
             }
             if (ef.Contains(EnumFunctions.Add_Guest) ||
                 ef.Contains(EnumFunctions.Edit_Guest) ||
@@ -339,7 +346,7 @@ namespace Gems.UIWPF
         {
             WCFHelperClient client = new WCFHelperClient();
             taskbarNotifier.NotifyContent.Clear();
-            string sender = client.getNewMessage(user.userID);
+            string sender = client.GetNewMessage(user.userID);
 
             if (sender.Length > 0)
             {
@@ -354,7 +361,7 @@ namespace Gems.UIWPF
         {
             WCFHelperClient client = new WCFHelperClient();
             taskbarNotifier.NotifyContent.Clear();
-            int noOfUnreadMsg = client.getUnreadMessageCount(user.userID);
+            int noOfUnreadMsg = client.GetUnreadMessageCount(user.userID);
 
             if (noOfUnreadMsg > 0)
             {
@@ -551,6 +558,16 @@ namespace Gems.UIWPF
         private void mnuManageIncome_Click(object sender, RoutedEventArgs e)
         {
             navigate<frmBudgetIncome>();
+        }
+
+        private void mnuViewTasks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mnuBudgetReport_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

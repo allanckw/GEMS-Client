@@ -33,7 +33,7 @@ namespace Gems.UIWPF.CustomCtrl
             if (fbr.Status == BookingStatus.Approved)
             {
                 WCFHelperClient client = new WCFHelperClient();
-                confirmedLocationIdx = client.getConfirmedBooking(fbr.RequestID).RequestDetailID;
+                confirmedLocationIdx = client.GetConfirmedBooking(fbr.RequestID).RequestDetailID;
                 client.Close();
             }
 

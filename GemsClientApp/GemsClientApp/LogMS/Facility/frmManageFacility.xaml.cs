@@ -31,7 +31,7 @@ namespace Gems.UIWPF
         {
             WCFHelperClient client = new WCFHelperClient();
             cboEditFac.ItemsSource = cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
-            cboFacAdmin.ItemsSource = client.getFacilityAdmins();
+            cboFacAdmin.ItemsSource = client.GetFacilityAdmins();
 
 
             if (user.isSystemAdmin)
@@ -41,7 +41,7 @@ namespace Gems.UIWPF
             }
             else if (user.isFacilityAdmin)
             {
-                Faculty f = client.getFacilityAdmin(user.userID);
+                Faculty f = client.GetFacilityAdmin(user.userID);
                 cboEditFac.SelectedIndex = cboFaculty.SelectedIndex = (int)f;
                 cboFacAdmin.IsEnabled = cboEditFac.IsEnabled = cboFaculty.IsEnabled = false;
                 cboFacAdmin.SelectedValue = user.userID;
@@ -80,7 +80,7 @@ namespace Gems.UIWPF
         private void cboFaculty_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+            lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
             client.Close();
 
             cboEditFac.SelectedIndex = cboFaculty.SelectedIndex;
@@ -108,12 +108,12 @@ namespace Gems.UIWPF
             {
                 try
                 {
-                    client.updateFacility(user, txtVenue.Text.Trim(), (Faculty)cboEditFac.SelectedIndex,
+                    client.UpdateFacility(user, txtVenue.Text.Trim(), (Faculty)cboEditFac.SelectedIndex,
                     txtLocation.Text.Trim(), cboFacAdmin.SelectedValue.ToString(),
                     txtTechContact.Text.Trim(), cap);
                     MessageBox.Show("Facility successfully updated", "Update Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                    lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
                     clearAllTextBoxes();
                 }
                 catch (Exception ex)
@@ -134,10 +134,10 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                client.removeFacility(user, txtVenue.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
+                client.RemoveFacility(user, txtVenue.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                 MessageBox.Show("Facility successfully deleted", "Delete Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                lstVenue.ItemsSource = client.getVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
                 clearAllTextBoxes();
             }
             catch (Exception ex)

@@ -53,15 +53,15 @@ namespace Gems.UIWPF
         private void refreshItemTypes()
         {
             WCFHelperClient client = new WCFHelperClient();
-            cboItemType.ItemsSource = client.getItemsTypes();
+            cboItemType.ItemsSource = client.GetItemsTypes();
             client.Close();
         }
 
         private void ExistingLoad()
         {
             WCFHelperClient client = new WCFHelperClient();
-            List<ItemTypes> TypeList = client.getEventSpecificItemType(event_.EventID).ToList<ItemTypes>();
-            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            List<ItemTypes> TypeList = client.GetEventSpecificItemType(event_.EventID).ToList<ItemTypes>();
+            List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             client.Close();
 
             if (TypeList.Count > 0)
@@ -100,7 +100,7 @@ namespace Gems.UIWPF
                 //Save to item type repository here
                 itemType2Add = txtOthers.Text.ToString().Trim();
                 WCFHelperClient client = new WCFHelperClient();
-                client.addItemsTypes(itemType2Add);
+                client.AddItemsTypes(itemType2Add);
                 client.Close();
                 refreshItemTypes();
             }
@@ -121,7 +121,7 @@ namespace Gems.UIWPF
             lvItemType.DeleteItemType(user, event_);
             rebindcboItemType4Item();
             WCFHelperClient client = new WCFHelperClient();
-            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
         }
 
@@ -270,7 +270,7 @@ namespace Gems.UIWPF
             txtItemSatisfaction.Text = "";
             cboItemTypeIL.SelectedIndex = -1;
             WCFHelperClient client = new WCFHelperClient();
-            List<Items> ItemList = client.getItemsByEvent(event_.EventID).ToList<Items>();
+            List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
         }
 

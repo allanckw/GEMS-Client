@@ -42,7 +42,7 @@ namespace Gems.UIWPF
                 if (int.TryParse(txtGST.Text.Trim(), out gst))
                 {
                     WCFHelperClient client = new WCFHelperClient();
-                    client.updateGST(user, gst);
+                    client.UpdateGST(user, gst);
                     client.Close();
 
                     MessageBox.Show("GST have been added/updated", "Updated GST",
@@ -65,7 +65,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            this.txtGST.Text = client.getGST().ToString();
+            this.txtGST.Text = client.GetGST().ToString();
             client.Close();
         }
     }

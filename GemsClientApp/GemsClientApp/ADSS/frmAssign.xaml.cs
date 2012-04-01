@@ -32,7 +32,7 @@ namespace Gems.UIWPF
             this.txtUserID.Text = uid;
             WCFHelperClient client = new WCFHelperClient();
 
-            this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid)).ToString();
+            this.txtCurrRole.Text = ((EnumRoles)client.ViewUserRole(uid)).ToString();
             client.Close();
 
 
@@ -59,11 +59,11 @@ namespace Gems.UIWPF
                 {
                     if (action == EnumRoles.Event_Organizer)
                     {
-                        client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                        client.AssignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                     }
                     else if (action == EnumRoles.System_Admin)
                     {
-                        client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                        client.AssignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                     }
                 }
                 else
@@ -74,11 +74,11 @@ namespace Gems.UIWPF
                     {
                         if (action == EnumRoles.Event_Organizer)
                         {
-                            client.assignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                            client.AssignEventOrganizer(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                         }
                         else if (action == EnumRoles.System_Admin)
                         {
-                            client.assignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
+                            client.AssignSystemAdmin(user, txtUserID.Text.Trim(), txtDesc.Text.Trim());
                         }
                     }
                 }

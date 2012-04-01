@@ -37,7 +37,7 @@ namespace Gems.UIWPF.CustomCtrl
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                ItemTypes type = client.addEventItemType(u, event_.EventID, ItemType, Important);
+                ItemTypes type = client.AddEventItemType(u, event_.EventID, ItemType, Important);
                 ItemTypeCollection.Add(type);
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace Gems.UIWPF.CustomCtrl
             ItemTypes Item2Edit = ItemTypeCollection[lv.SelectedIndex];
             bool Important=!Item2Edit.IsImportantType;
             ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
-            client.setItemTypeImportance(u, Item2Edit, Important);
+            client.SetItemTypeImportance(u, Item2Edit, Important);
             client.Close();
         }
 
@@ -73,7 +73,7 @@ namespace Gems.UIWPF.CustomCtrl
             //Insert server code here
             ItemTypes Item2Edit=ItemTypeCollection[lv.SelectedIndex];
             ItemTypeCollection[lv.SelectedIndex].IsImportantType = Important;
-            client.setItemTypeImportance(u, Item2Edit, Important);
+            client.SetItemTypeImportance(u, Item2Edit, Important);
             client.Close();
         }
 
@@ -85,7 +85,7 @@ namespace Gems.UIWPF.CustomCtrl
             if (lv.SelectedIndex != -1)
             {
                 ItemTypes type2delete = ItemTypeCollection[lv.SelectedIndex];
-                client.deleteEventItemType(u, type2delete);
+                client.DeleteEventItemType(u, type2delete);
                 ItemTypeCollection.RemoveAt(lv.SelectedIndex);
             }
             client.Close();

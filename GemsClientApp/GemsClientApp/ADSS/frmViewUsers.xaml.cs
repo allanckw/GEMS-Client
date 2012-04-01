@@ -58,7 +58,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                List<User> list = client.searchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 
+                List<User> list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 
                     (EnumRoles)cboRole.SelectedIndex).ToList<User>();
                 lstUsers.SelectedValuePath = "userID";
                 lstUsers.ItemsSource = list;

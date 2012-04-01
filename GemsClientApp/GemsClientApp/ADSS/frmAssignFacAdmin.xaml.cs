@@ -28,7 +28,7 @@ namespace Gems.UIWPF
             this.txtUserID.Text = uid;
             WCFHelperClient client = new WCFHelperClient();
 
-            this.txtCurrRole.Text = ((EnumRoles)client.viewUserRole(uid)).ToString();
+            this.txtCurrRole.Text = ((EnumRoles)client.ViewUserRole(uid)).ToString();
             client.Close();
 
             cboFaculty.ItemsSource = Enum.GetValues(typeof(Faculty));
@@ -65,7 +65,7 @@ namespace Gems.UIWPF
             {
                 if (txtCurrRole.Text.CompareTo(EnumRoles.Nil.ToString()) == 0)
                 {
-                    client.assignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
+                    client.AssignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace Gems.UIWPF
                         "Confirm Role Change", MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        client.assignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
+                        client.AssignLocationAdmin(this.user, txtUserID.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                     }
                 }
 

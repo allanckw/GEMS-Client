@@ -196,7 +196,7 @@ namespace Gems.UIWPF
                         {
                             int sat = int.Parse(txtTotalSat.Text.Trim());
                             decimal price = decimal.Parse(txtTotalPrice.Text.Trim());
-                            client.saveBudgetList(user, event_.EventID, sat, price,
+                            client.SaveBudgetList(user, event_.EventID, sat, price,
                                 ((List<Items>)lstItemList.ItemsSource).ToArray());
                         }
                         catch (Exception ex)

@@ -14,20 +14,17 @@
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Vertical">
                                 <WrapPanel Orientation="Horizontal"  >
-                                    <TextBlock Text="Income: "  />
-                                    <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap"  />
-                                </WrapPanel>
-                                <WrapPanel Orientation="Horizontal" >
-                                    <TextBlock Text=" from "  />
-                                    <TextBlock Text="{Binding Path=Source}" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap" FontWeight="SemiBold" />
+                                    <TextBlock Text=" from " FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Path=Source}" TextWrapping="Wrap" FontWeight="SemiBold" />
                                 </WrapPanel>
                                 <WrapPanel Orientation="Horizontal" >
                                     <TextBlock Text="Received on "/>
                                     <TextBlock Text="{Binding Path=DateReceived, StringFormat=dd MMM yy }"  TextWrapping="Wrap" />
                                 </WrapPanel>
-                                <WrapPanel Orientation="Vertical" >
+                                <WrapPanel Orientation="Horizontal" >
                                     <TextBlock Text="Amount: "/>
-                                    <TextBlock Text="{Binding Path=IncomeBeforeGST}"  TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Path=IncomeAfterGST}"  TextWrapping="Wrap" />
                                 </WrapPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -54,7 +51,7 @@
                                  x:Name="txtIncb4Gst" TextChanged="onTextChanged" LostFocus="txtIncb4Gst_LostFocus" Height="25" />
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
-                        <CheckBox Content="GST Liable?  Rate:" FontSize="13" IsChecked="True" x:Name="chkGSTLiable" Height="20" />
+                        <CheckBox Content="GST Liable?  Rate:" FontSize="13" IsChecked="True" x:Name="chkGSTLiable" Height="20" Click="chkGSTLiable_Checked"/>
                         <TextBox TextWrapping="Wrap" Text="" Margin="5,1,1,1"  Width="200" FontSize="13" x:Name="txtGstPercent" IsReadOnly="True" Height="25" />
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
@@ -62,8 +59,13 @@
                         <TextBox TextWrapping="Wrap" Text="" Margin="39,1,1,1"  Width="200" FontSize="13" Height="25" x:Name="txtGst" TextChanged="onTextChanged" IsReadOnly="True" />
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Income After GST:" FontSize="13" Height="25" />
+                        <TextBox TextWrapping="Wrap" Text="" Margin="10,1,1,1" Width="200" FontSize="13" IsReadOnly="True"
+                                 x:Name="txtIncAftGst" TextChanged="onTextChanged" LostFocus="txtIncb4Gst_LostFocus" Height="25" />
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
                         <Label Content="Date Received:" FontSize="13" Height="25" />
-                        <DatePicker Margin="30,1,1,1"  Height="25" FontSize="13" Name="dtpFrom" Width="200"  />
+                        <DatePicker Margin="30,1,1,1"  Height="25" FontSize="13" Name="dtpReceivedDate" Width="200"  />
                     </StackPanel>
                     <StackPanel Height="30" Orientation="Horizontal">
                     </StackPanel>
@@ -73,6 +75,13 @@
 
                         <Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
                     </DockPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                    </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal">
+                        <Label Content="Nett Income:" FontSize="13" Height="25" />
+                        <TextBox TextWrapping="Wrap" Text="" Margin="40,1,1,1" Width="200" FontSize="13"
+                                 x:Name="txtNettIncome"  Height="25" />
+                    </StackPanel>
                 </StackPanel>
             </GroupBox>
         </StackPanel>

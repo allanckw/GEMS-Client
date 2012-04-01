@@ -32,7 +32,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            txtSenderName.Text = client.searchUser("", note.Sender).FirstOrDefault<User>().Name;
+            txtSenderName.Text = client.SearchUser("", note.Sender).FirstOrDefault<User>().Name;
             txtSenderID.Text = note.Sender;
             txtMessage.AppendText(note.Message);
             txtSubject.Text = note.Title;
@@ -70,7 +70,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                client.sendNotification(user.userID, txtSenderID.Text, title, message);
+                client.SendNotification(user.userID, txtSenderID.Text, title, message);
                 client.Close();
                 MessageBox.Show("Replied Sent", "Sent", MessageBoxButton.OK, MessageBoxImage.Information);
                 btnExit_Click(sender, e);
