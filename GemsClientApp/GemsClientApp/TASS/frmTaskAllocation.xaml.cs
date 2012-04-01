@@ -30,10 +30,20 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             refreshTaskList();
-            loadRoles();
+            lstAllTask.ItemsSource = lstManageTasks.ItemsSource = event_.Tasks;
+            LoadRoles();
+            
         }
 
-        private void loadRoles()
+        private void LoadTasks()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            lstAllTask.ItemsSource = lstManageTasks.ItemsSource = client.GetTasksByEvent(event_.EventID);
+            client.Close();
+            ClearAll();
+        }
+
+        private void LoadRoles()
         {
             WCFHelperClient client = new WCFHelperClient();
             try
@@ -78,23 +88,143 @@ namespace Gems.UIWPF
             //List does not work with drag and drop
             //Need to think how we are going to save the changes or detect the changes
             //if not sure dunno how to do, just pass in that two list i will do it
-            lstAllTask.ItemsSource = clsTaskAllocate.GetTaskNotAssigned(AllTask, IndividualTask);
+            lstManageTasks.ItemsSource = clsTaskAllocate.GetTaskNotAssigned(AllTask, IndividualTask);
 
             lstAssignedTask.ItemsSource = clsTaskAllocate.GetTaskAssigned(IndividualTask);
         }
 
-
-
+        //The 2 listbox should display the same things as what lstManageTask, i cant set ItemTemplate cos
+        //There is already 1 in the usercontrol..
+        //All Tasks = client.GetTasksByEvent(event_.EventID); Already done in load task
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            WCFHelperClient client = new WCFHelperClient();
             if (cboRole.SelectedIndex != -1)
             {
+                lstAssignedTask.ItemsSource = client.GetTaskByRole(event_.EventID, int.Parse(cboRole.SelectedValue.ToString()));
+                
             }
         }
 
-        private void btnSaveTask_Click(object sender, RoutedEventArgs e)
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
         {
+            if (txtTaskName.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the task Name", "Invalid input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (dtpDueDate.SelectedDateTime == null)
+            {
+                MessageBox.Show("Please select task's due date", "Invalid input",
+                 MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             WCFHelperClient client = new WCFHelperClient();
+            var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+            try
+            {
+                if (cboRoleCreate.SelectedIndex == -1)
+                    client.CreateTaskWithoutRole(user, event_.EventID, txtTaskName.Text.Trim(),
+                        textRange.Text.Trim(), dtpDueDate.SelectedDateTime);
+                else
+                    client.CreateTask(user, event_.EventID, int.Parse(cboRoleCreate.SelectedValue.ToString()),
+                        txtTaskName.Text.Trim(), textRange.Text, dtpDueDate.SelectedDateTime);
+
+                MessageBox.Show("Operation Succeeded");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            client.Close();
+            LoadTasks();
+        }
+
+        private void btnUpdateTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstManageTasks.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a task to update!", "Invalid Input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            Task t = (Task)lstManageTasks.SelectedItem;
+            WCFHelperClient client = new WCFHelperClient();
+            var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+            try
+            {
+                int roleID = cboRoleCreate.SelectedIndex;
+                client.UpdateTask(user, event_.EventID, t.TaskID, txtTaskName.Text.Trim(), textRange.Text.Trim(),
+                    dtpDueDate.SelectedDateTime,roleID);
+                MessageBox.Show("Operation Succeeded");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                   MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            client.Close();
+            LoadTasks();
+        }
+
+        private void btnDeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstManageTasks.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a task to delete!", "Invalid Input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            Task t = (Task)lstManageTasks.SelectedItem;
+            WCFHelperClient client = new WCFHelperClient();
+            try
+            {
+                client.DeleteTask(user, event_.EventID, t.TaskID);
+                MessageBox.Show("Operation Succeeded");
+            }
+            catch(Exception ex)
+            {
+                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            client.Close();
+            LoadTasks();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ClearAll();
+        }
+
+        private void ClearAll()
+        {
+            txtDesc.Document.Blocks.Clear();
+            txtTaskName.Text = "";
+            cboRoleCreate.SelectedIndex = -1;
+            lstManageTasks.SelectedIndex = -1;
+            dtpDueDate.clear();
+        }
+
+        private void lstManageTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstManageTasks.SelectedIndex == -1)
+            {
+                return;
+            }
+            txtDesc.Document.Blocks.Clear();
+            Task task = (Task)lstManageTasks.SelectedItem;
+            txtTaskName.Text = task.TaskName;
+            txtDesc.AppendText(task.TaskDesc);
+            
+            if (task.AssignedRoleID > 0)
+            {
+                cboRoleCreate.SelectedValue = task.AssignedRoleID;
+            }
+
+            dtpDueDate.SelectedDateTime = task.DueDate;
 
         }
 

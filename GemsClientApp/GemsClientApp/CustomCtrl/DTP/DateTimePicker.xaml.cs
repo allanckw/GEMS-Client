@@ -140,5 +140,12 @@ namespace Gems.UIWPF.CustomCtrl
         {
             RaiseDateChangedEvent();
         }
+
+        public void clear()
+        {
+            dtpDate.SelectedDate = null;
+            cboHr.SelectedIndex = 0;
+            cboMin.SelectedIndex = 0;
+        }
     }
 }

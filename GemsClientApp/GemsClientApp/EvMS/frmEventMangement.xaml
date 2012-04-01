@@ -30,8 +30,7 @@
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Vertical">
                                 <WrapPanel Orientation="Horizontal"  >
-                                    <TextBlock Text="Event: "  Foreground="DarkBlue"/>
-                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue"/>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontWeight="Bold"  Foreground="DarkBlue"/>
                                 </WrapPanel>
                                 <WrapPanel Orientation="Horizontal" >
                                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>

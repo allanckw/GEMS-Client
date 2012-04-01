@@ -38,19 +38,35 @@ Width="750" Height="600" Background="{x:Null}">
                             </StackPanel>
                             <StackPanel Height="35" Orientation="Horizontal">
 								<Label Content="Due Date" FontSize="14" Margin="0,4.16,0,0" VerticalAlignment="Top" Width="100"/>
-								<Gems_UIWPF_CustomCtrl:DateTimePicker FontSize="11.5" VerticalAlignment="Top" FontWeight="bold"/>
+								<Gems_UIWPF_CustomCtrl:DateTimePicker FontSize="11.5" VerticalAlignment="Top" FontWeight="bold" x:Name="dtpDueDate" />
 							</StackPanel>
 							<StackPanel Height="40" Orientation="Horizontal">
-								<Button Content="Add" x:Name="btnAddTask" Height="30" Width="80" FontSize="13.333" HorizontalAlignment="Left" Margin="70,0,0,0" />
-								<Button Content="Update" Height="30" Width="80" Margin="5,0,0,0" FontSize="13.333" HorizontalAlignment="Left"/>
-								<Button Content="Remove" Height="30" Margin="5,0,0,0" Width="80" FontSize="13.333" HorizontalAlignment="Left"/>
-								<Button Content="Cancel" Height="30" Margin="5,0,0,0" Width="80" FontSize="13.333" HorizontalAlignment="Left"/>
+								<Button Content="Add" x:Name="btnAddTask" Height="30" Width="80" FontSize="13" HorizontalAlignment="Left" Margin="70,0,0,0" Click="btnAddTask_Click" />
+                                <Button Content="Update" x:Name="btnUpdateTask" Height="30" Width="80" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Left" Click="btnUpdateTask_Click" />
+                                <Button Content="Delete" x:Name="btnDeleteTask" Height="30" Margin="5,0,0,0" Width="80" FontSize="13" HorizontalAlignment="Left" Click="btnDeleteTask_Click" />
+                                <Button Content="Cancel" x:Name="btnCancel" Height="30" Margin="5,0,0,0" Width="80" FontSize="13" HorizontalAlignment="Left" Click="btnCancel_Click" />
 							</StackPanel>
 						</StackPanel>
 					</GroupBox>
 					<GroupBox Header="List of Tasks" Margin="24.5,22.22,1.5,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment, Width" Height="320">
-						<ListBox Width="200" Margin="1,1,1,1"/>
-					</GroupBox>
+                        <ListBox Width="200" Margin="1,1,1,1" Name="lstManageTasks" FontSize="14" SelectionChanged="lstManageTasks_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="10" Orientation="Vertical">
+                                        <WrapPanel Orientation="Horizontal"  >
+                                            <TextBlock Text="{Binding TaskName}" TextWrapping="Wrap" FontWeight="Bold"  />
+                                        </WrapPanel>
+                                       
+                                        <WrapPanel Orientation="Horizontal" >
+                                            <TextBlock Text="Due on "/>
+                                            <TextBlock Text="{Binding Path=DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+                                            
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </GroupBox>
 				</Grid>
 			</TabItem>
             
@@ -63,7 +79,12 @@ Width="750" Height="600" Background="{x:Null}">
                             </StackPanel>
                                 <Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator Width="350"
                             ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="405" DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
-                                <ListBox x:Name="lstAllTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" FontSize="13.333" />
+                                <ListBox x:Name="lstAllTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" FontSize="13" >
+                                
+                                </ListBox>
+                                    
+                                    
+                                    
                             </Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator>
                         </StackPanel>
                         <StackPanel Width="25"></StackPanel>
@@ -77,9 +98,9 @@ Width="750" Height="600" Background="{x:Null}">
                             <Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator Width="350" 
                                 ItemType="{x:Type Gems_UIWPF_CustomCtrl:clsTaskAllocate}" Height="400" 
                                 DataTemplate="{StaticResource DDlistBoxDataTemplate}" >
-                                <ListBox x:Name="lstAssignedTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" FontSize="13.333" />
+                                <ListBox x:Name="lstAssignedTask" Margin="10" ItemContainerStyle="{StaticResource DDItemContStyle}" ItemTemplate="{StaticResource DDlistBoxDataTemplate}" FontSize="13" />
                             </Gems_UIWPF_CustomCtrl:ItemsControlDragDropDecorator>
-                            <Button x:Name="btnSaveTask" Click="btnSaveTask_Click" Width="100" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,0" />
+                            <Button x:Name="btnSaveTask" Width="100" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,0" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
