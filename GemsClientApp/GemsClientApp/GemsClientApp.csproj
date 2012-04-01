@@ -184,6 +184,9 @@
     <Compile Include="TASS\frmTaskAllocation.xaml.cs">
       <DependentUpon>frmTaskAllocation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TASS\frmViewTask.xaml.cs">
+      <DependentUpon>frmViewTask.xaml</DependentUpon>
+    </Compile>
     <Page Include="ADSS\frmGST.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +339,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TASS\frmTaskAllocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TASS\frmViewTask.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

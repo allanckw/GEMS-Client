@@ -562,7 +562,7 @@ namespace Gems.UIWPF
 
         private void mnuViewTasks_Click(object sender, RoutedEventArgs e)
         {
-
+            navigate<frmViewTask>();
         }
 
         private void mnuBudgetReport_Click(object sender, RoutedEventArgs e)
