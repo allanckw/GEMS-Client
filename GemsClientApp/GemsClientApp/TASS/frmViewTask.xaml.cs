@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Linq;
 using evmsService.entities;
-
 namespace Gems.UIWPF
 {
     /// <summary>
@@ -33,7 +25,166 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
-
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadUserRoles();
+        }
+
+        private void loadUserRoles()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            cboRole.SelectedValuePath = "RoleID";
+            cboRole.DisplayMemberPath = "Post";
+            cboRole.ItemsSource = client.ViewUserEventRoles(user.userID, event_.EventID);
+            client.Close();
+
+            if (cboRole.Items.Count == 0)
+            {
+                //MessageBox.Show("You are currently not assigned any role in the system", "No Roles Assigned",
+                //    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                cboRole.SelectedIndex = 0;
+            }
+
+            ClearAll();
+        }
+
+        private void loadTasks()
+        {
+            WCFHelperClient client = new WCFHelperClient();
+            
+            lstTask.ItemsSource = client.GetTaskByRole(event_.EventID, 
+                int.Parse(cboRole.SelectedValue.ToString()));
+            
+            client.Close();
+            ClearAll();
+        }
+
+        private void lstTask_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstTask.SelectedIndex == -1)
+            {
+                return;
+            }
+            txtDesc.Document.Blocks.Clear();
+            txtRemark.Document.Blocks.Clear();
+
+            Task task = (Task)lstTask.SelectedItem;
+
+            txtTaskName.Text = task.TaskName;
+            txtDesc.AppendText(task.TaskDesc);
+            dtpDueDate.SelectedDateTime = task.DueDate;
+
+            WCFHelperClient client = new WCFHelperClient();
+            
+            TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
+                int.Parse(cboRole.SelectedValue.ToString()));
+            
+            txtRemark.AppendText(assn.Remarks);
+            chkIsCompleted.IsChecked = assn.IsCompleted;
+
+            if (!assn.IsRead)
+            {
+                client.SetTaskRead(task, int.Parse(cboRole.SelectedValue.ToString()));
+            }
+            client.Close();
+        }
+
+        private void ClearAll()
+        {
+            txtDesc.Document.Blocks.Clear();
+            txtTaskName.Text = "";
+            dtpDueDate.clear();
+            txtRemark.Document.Blocks.Clear();
+            chkIsCompleted.IsChecked = false;
+            lstTask.SelectedIndex = -1;
+        }
+
+        private void chkIsCompleted_Checked(object sender, RoutedEventArgs e)
+        {
+            if (lstTask.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a task to update!", "Invalid Input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure that this task is completed?, You cannot undo this operation!",
+                "Confirm task completion...",
+                MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+
+                WCFHelperClient client = new WCFHelperClient();
+                try
+                {
+                    var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+                    
+                    Task task = (Task)lstTask.SelectedItem;
+                    
+                    TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
+                        int.Parse(cboRole.SelectedValue.ToString()));
+
+                    client.SetTaskCompleted(task, assn.AssignedRoleID, textRange.Text.Trim());
+                    MessageBox.Show("Operation Succeeded");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                client.Close();
+            }
+        }
+
+        private void chkIsCompleted_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkIsCompleted.IsChecked == true)
+            {
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("Are you sure this task is not completed?",
+                "Confirm task completion...",
+                MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+
+                    WCFHelperClient client = new WCFHelperClient();
+                    try
+                    {
+                        var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+                        Task task = (Task)lstTask.SelectedItem;
+
+                        TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
+                            int.Parse(cboRole.SelectedValue.ToString()));
+
+                        client.SetTaskIncomplete(user, task, assn.AssignedRoleID, textRange.Text.Trim());
+                        MessageBox.Show("Operation Succeeded");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    client.Close();
+                }
+            }
+        }
+
+        private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboRole.SelectedIndex == -1)
+                MessageBox.Show("Please select a role to view your tasks", "Invalid input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                loadTasks();
+        }
+
+
+
     }
 }

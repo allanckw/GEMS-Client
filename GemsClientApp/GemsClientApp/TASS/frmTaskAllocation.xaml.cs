@@ -32,7 +32,7 @@ namespace Gems.UIWPF
             refreshTaskList();
             lstAllTask.ItemsSource = lstManageTasks.ItemsSource = event_.Tasks;
             LoadRoles();
-            
+
         }
 
         private void LoadTasks()
@@ -48,9 +48,9 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                cboRoleCreate.DisplayMemberPath = cboRole.DisplayMemberPath = "m_Item2";
-                cboRoleCreate.SelectedValuePath = cboRole.SelectedValuePath = "m_Item1.RoleID";
-                cboRoleCreate.ItemsSource = cboRole.ItemsSource = 
+                 cboRole.DisplayMemberPath = "m_Item2";
+               cboRole.SelectedValuePath = "m_Item1.RoleID";
+                cboRole.ItemsSource =
                     client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
             }
             catch (Exception ex)
@@ -102,7 +102,6 @@ namespace Gems.UIWPF
             if (cboRole.SelectedIndex != -1)
             {
                 lstAssignedTask.ItemsSource = client.GetTaskByRole(event_.EventID, int.Parse(cboRole.SelectedValue.ToString()));
-                
             }
         }
 
@@ -124,12 +123,12 @@ namespace Gems.UIWPF
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
-                if (cboRoleCreate.SelectedIndex == -1)
-                    client.CreateTaskWithoutRole(user, event_.EventID, txtTaskName.Text.Trim(),
+                //if (cboRoleCreate.SelectedIndex == -1)
+                    client.CreateTask(user, event_.EventID, txtTaskName.Text.Trim(),
                         textRange.Text.Trim(), dtpDueDate.SelectedDateTime);
-                else
-                    client.CreateTask(user, event_.EventID, int.Parse(cboRoleCreate.SelectedValue.ToString()),
-                        txtTaskName.Text.Trim(), textRange.Text, dtpDueDate.SelectedDateTime);
+                //else
+                //    client.CreateTask(user, event_.EventID, int.Parse(cboRoleCreate.SelectedValue.ToString()),
+                //        txtTaskName.Text.Trim(), textRange.Text, dtpDueDate.SelectedDateTime);
 
                 MessageBox.Show("Operation Succeeded");
             }
@@ -156,9 +155,8 @@ namespace Gems.UIWPF
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
-                int roleID = cboRoleCreate.SelectedIndex;
                 client.UpdateTask(user, event_.EventID, t.TaskID, txtTaskName.Text.Trim(), textRange.Text.Trim(),
-                    dtpDueDate.SelectedDateTime,roleID);
+                    dtpDueDate.SelectedDateTime);
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -185,10 +183,10 @@ namespace Gems.UIWPF
                 client.DeleteTask(user, event_.EventID, t.TaskID);
                 MessageBox.Show("Operation Succeeded");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                   MessageBoxButton.OK, MessageBoxImage.Error);
             }
             client.Close();
             LoadTasks();
@@ -201,10 +199,9 @@ namespace Gems.UIWPF
 
         private void ClearAll()
         {
+            lstManageTasks.SelectedIndex = -1;
             txtDesc.Document.Blocks.Clear();
             txtTaskName.Text = "";
-            cboRoleCreate.SelectedIndex = -1;
-            lstManageTasks.SelectedIndex = -1;
             dtpDueDate.clear();
         }
 
@@ -218,12 +215,6 @@ namespace Gems.UIWPF
             Task task = (Task)lstManageTasks.SelectedItem;
             txtTaskName.Text = task.TaskName;
             txtDesc.AppendText(task.TaskDesc);
-            
-            if (task.AssignedRoleID > 0)
-            {
-                cboRoleCreate.SelectedValue = task.AssignedRoleID;
-            }
-
             dtpDueDate.SelectedDateTime = task.DueDate;
 
         }
