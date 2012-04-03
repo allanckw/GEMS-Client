@@ -567,7 +567,7 @@ namespace Gems.UIWPF
 
         private void mnuBudgetReport_Click(object sender, RoutedEventArgs e)
         {
-
+            navigate<frmBudgetReport>();
         }
     }
 }

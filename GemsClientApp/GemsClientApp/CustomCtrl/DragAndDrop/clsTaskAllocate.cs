@@ -36,12 +36,33 @@ namespace Gems.UIWPF.CustomCtrl
             return _Collection;
         }
 
-        public static ObservableCollection<Task> GetTaskAssigned(List<Task> individualTask)
+        //public static ObservableCollection<Task> GetTaskAssigned(List<Task> individualTask)
+        //{
+        //    ObservableCollection<Task> _Collection = new ObservableCollection<Task>();
+
+        //    individualTask.ForEach(x => _Collection.Add(x));
+
+        //    return _Collection;
+        //}
+
+        public static ObservableCollection<Task> GetTaskAssigned(List<Task> individualTask, int roleID)
         {
             ObservableCollection<Task> _Collection = new ObservableCollection<Task>();
 
-            individualTask.ForEach(x => _Collection.Add(x));
+            foreach (Task t in individualTask)
+            {
+                List<TaskAssignment> taskAssns = t.TasksAssignments.ToList<TaskAssignment>();
+                int completedCount = (from tAssn in taskAssns 
+                                  where tAssn.IsCompleted==true 
+                                  && tAssn.AssignedRoleID == roleID
+                                  select tAssn).ToList<TaskAssignment>().Count;
+                if (completedCount == 0)
+                {
+                    _Collection.Add(t);
+                }
+            }
 
+            //individualTask.ForEach(x => _Collection.Add(x));
             return _Collection;
         }
     }

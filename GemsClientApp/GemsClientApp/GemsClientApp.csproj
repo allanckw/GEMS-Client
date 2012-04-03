@@ -84,6 +84,7 @@
       <DependentUpon>frmGST.xaml</DependentUpon>
     </Compile>
     <Compile Include="BASS\BudgetAllocator.cs" />
+    <Compile Include="BASS\BudgetItemState.cs" />
     <Compile Include="BASS\frmBudgetIncome.xaml.cs">
       <DependentUpon>frmBudgetIncome.xaml</DependentUpon>
     </Compile>
@@ -92,6 +93,9 @@
     </Compile>
     <Compile Include="BASS\frmBudgetItemList.xaml.cs">
       <DependentUpon>frmBudgetItemList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BASS\frmBudgetReport.xaml.cs">
+      <DependentUpon>frmBudgetReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContactList\frmAddEditReview.xaml.cs">
       <DependentUpon>frmAddEditReview.xaml</DependentUpon>
@@ -193,6 +197,7 @@
     <Compile Include="TASS\frmViewTask.xaml.cs">
       <DependentUpon>frmViewTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TASS\TaskAssignmentState.cs" />
     <Page Include="ADSS\frmGST.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -247,6 +252,10 @@
     <Page Include="BASS\frmBudgetItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BASS\frmBudgetReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ContactList\frmAddEditReview.xaml">
       <Generator>MSBuild:Compile</Generator>
