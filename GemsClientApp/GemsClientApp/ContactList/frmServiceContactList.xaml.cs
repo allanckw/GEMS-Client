@@ -599,6 +599,29 @@ namespace Gems.UIWPF
 
         private void btnDeleteReview_Click(object sender, RoutedEventArgs e)
         {
+            Service service = ((Service)lstServiceList.SelectedItem);
+            Review r = (Review)lstReviewList.SelectedItem;
+            try
+            {
+                if(r != null)
+                {
+                WCFHelperClient client = new WCFHelperClient();
+                client.DeleteReview(user,r.UserID,r.ServiceID);
+                
+                client.Close();
+
+                loadReview(service.ServiceID);
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
