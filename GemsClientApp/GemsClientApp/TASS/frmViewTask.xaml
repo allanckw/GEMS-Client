@@ -55,7 +55,7 @@
         			</StackPanel>
         			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="1.5,0">
         				<Label Content="Is Completed?" Width="150" FontSize="14"/>
-        				<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click" Checked="chkIsCompleted_Checked" />
+        				<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click"  />
         			</StackPanel>
         			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="0"></StackPanel>
         		</StackPanel>

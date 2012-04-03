@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
+             xmlns:evmService="clr-namespace:evmsService.entities"
              StartupUri="ADSS/frmLogin.xaml">
     <Application.Resources>
 
@@ -58,12 +59,11 @@
         </Style>
 
         <!--For Style apply on drag and drop-->
-        <DataTemplate x:Key="DDlistBoxDataTemplate" DataType="{x:Type local:clsTaskAllocate}">
-            <StackPanel Orientation="Vertical" Margin="5,10,5,10">
-                <TextBlock Text="{Binding Path=Name, StringFormat=Task Name: \{0\}}" />
-                <TextBlock Text="Description:" />
+        <DataTemplate x:Key="DDlistBoxDataTemplate" DataType="{x:Type evmService:Task}">
+            <StackPanel Orientation="Vertical" Margin="5,5,5,5">
+                <TextBlock Text="{Binding Path=TaskName}" FontWeight="Bold"/>
                 <WrapPanel>
-                    <TextBlock Width="250" TextWrapping="Wrap" Text="{Binding Path=Description, StringFormat=\{0\}}" />
+                    <TextBlock Width="250" TextWrapping="Wrap" Text="{Binding Path=TaskDesc, StringFormat=\{0\}}" />
                 </WrapPanel>
             </StackPanel>
         </DataTemplate>

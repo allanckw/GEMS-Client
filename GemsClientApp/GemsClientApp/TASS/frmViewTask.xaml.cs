@@ -56,10 +56,10 @@ namespace Gems.UIWPF
         private void loadTasks()
         {
             WCFHelperClient client = new WCFHelperClient();
-            
-            lstTask.ItemsSource = client.GetTaskByRole(event_.EventID, 
+
+            lstTask.ItemsSource = client.GetTaskByRole(event_.EventID,
                 int.Parse(cboRole.SelectedValue.ToString()));
-            
+
             client.Close();
             ClearAll();
         }
@@ -80,12 +80,14 @@ namespace Gems.UIWPF
             dtpDueDate.SelectedDateTime = task.DueDate;
 
             WCFHelperClient client = new WCFHelperClient();
-            
+
             TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
                 int.Parse(cboRole.SelectedValue.ToString()));
-            
+
             txtRemark.AppendText(assn.Remarks);
-            chkIsCompleted.IsChecked = assn.IsCompleted;
+             chkIsCompleted.IsChecked = this.txtRemark.IsReadOnly = assn.IsCompleted;
+
+            chkIsCompleted.IsEnabled = !assn.IsCompleted;
 
             if (!assn.IsRead)
             {
@@ -104,51 +106,13 @@ namespace Gems.UIWPF
             lstTask.SelectedIndex = -1;
         }
 
-        private void chkIsCompleted_Checked(object sender, RoutedEventArgs e)
-        {
-            if (lstTask.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a task to update!", "Invalid Input",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-
-            if (MessageBox.Show("Are you sure that this task is completed?, You cannot undo this operation!",
-                "Confirm task completion...",
-                MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-
-                WCFHelperClient client = new WCFHelperClient();
-                try
-                {
-                    var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
-                    
-                    Task task = (Task)lstTask.SelectedItem;
-                    
-                    TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
-                        int.Parse(cboRole.SelectedValue.ToString()));
-
-                    client.SetTaskCompleted(task, assn.AssignedRoleID, textRange.Text.Trim());
-                    MessageBox.Show("Operation Succeeded");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An Error have occured: " + ex.Message, "Error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                client.Close();
-            }
-        }
 
         private void chkIsCompleted_Click(object sender, RoutedEventArgs e)
         {
+
             if (chkIsCompleted.IsChecked == true)
             {
-                return;
-            }
-            else
-            {
-                if (MessageBox.Show("Are you sure this task is not completed?",
+                if (MessageBox.Show("Are you sure this task is completed? It cannot be undone! ",
                 "Confirm task completion...",
                 MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -162,8 +126,11 @@ namespace Gems.UIWPF
                         TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
                             int.Parse(cboRole.SelectedValue.ToString()));
 
-                        client.SetTaskIncomplete(user, task, assn.AssignedRoleID, textRange.Text.Trim());
+                        client.SetTaskCompleted(task, assn.AssignedRoleID, textRange.Text.Trim());
+
                         MessageBox.Show("Operation Succeeded");
+                        chkIsCompleted.IsEnabled = false;
+                        txtRemark.IsReadOnly = true;
                     }
                     catch (Exception ex)
                     {
@@ -171,6 +138,10 @@ namespace Gems.UIWPF
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     client.Close();
+                }
+                else
+                {
+                    chkIsCompleted.IsChecked = false;
                 }
             }
         }
