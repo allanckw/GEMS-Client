@@ -1,0 +1,75 @@
+﻿
+
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="Gems.UIWPF.frmAddEditReview"
+	x:Name="Window" WindowStyle="None"
+    xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
+	Title="Review Details" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
+	Width="720" Height="490" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded" >
+    <Window.Background>
+        <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
+    </Window.Background>
+    <Canvas Opacity="1.0" Width="709" Height="491">
+        <Button x:Name="btnClose" Canvas.Left="667" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Rectangle Width="30" Height="30">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Review" Height="38" x:Name="label3" Width="613.5" FontFamily="Stencil" FontSize="20" />
+        <GroupBox Header="Review Details" Canvas.Left="12" Canvas.Top="54" Width="689" FontSize="16" FontFamily="Stencil">
+            <StackPanel Height="400" VerticalAlignment="Top">
+        		<StackPanel Height="32" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Margin="5,10,0,0">
+        			<StackPanel.RenderTransform>
+        				<TransformGroup>
+        					<ScaleTransform ScaleY="1" ScaleX="1"/>
+        					<SkewTransform AngleY="0" AngleX="0"/>
+        					<RotateTransform Angle="0"/>
+        					<TranslateTransform/>
+        				</TransformGroup>
+        			</StackPanel.RenderTransform>
+        			<TextBlock TextWrapping="Wrap" Height="20" Width="125"><Run Text="Service Name: "/></TextBlock>
+                    <TextBlock x:Name="txtServiceName" TextWrapping="Wrap" Height="20" Width="250"/>
+        		</StackPanel>
+        		<StackPanel Height="60" Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Top">
+        			<TextBlock TextWrapping="Wrap" Height="20" Margin="0,6,0,4" Text="Rating: " VerticalAlignment="Top"/>
+        			<local:RatingControl x:Name="rating" Height="30" VerticalAlignment="Top"/>
+        			<StackPanel Width="388" HorizontalAlignment="Right" Height="60">
+        				<StackPanel Height="30" HorizontalAlignment="Right" Orientation="Horizontal">
+        					<TextBlock TextWrapping="Wrap" Height="30" Text="Review Date: " Width="120" HorizontalAlignment="Left" FontSize="13.333"/>
+        					<TextBlock x:Name="txtReviewDate" TextWrapping="Wrap" Height="30" HorizontalAlignment="Left" FontSize="13.333" VerticalAlignment="Bottom" d:LayoutOverrides="Height" Margin="0,0,5,0"/>
+        				</StackPanel>
+        				<StackPanel Height="30" HorizontalAlignment="Right" Orientation="Horizontal">
+        					<TextBlock TextWrapping="Wrap" Height="30" Text="Reviewer: " Width="120" HorizontalAlignment="Left" FontSize="13.333"/>
+        					<TextBlock x:Name="txtReviewer" TextWrapping="Wrap" Height="30" HorizontalAlignment="Left" FontSize="13.333" Margin="0,0,5,0"/>
+        				</StackPanel>
+        			</StackPanel>
+        		</StackPanel>
+        		<RichTextBox Height="265" Margin="0,5,0,0" Name="txtReviewDescription" FontSize="12" FontFamily="Segoe UI">
+        			<FlowDocument>
+        				<Paragraph><Run Text=""/></Paragraph>
+        			</FlowDocument>
+        		</RichTextBox>
+        		<StackPanel x:Name="stackbtn" Height="35" Margin="0,5,0,0" Orientation="Horizontal">
+        			<StackPanel Width="100">
+        				<Button x:Name="btnSave" Content="Save" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0,0,0" Click="btnSave_Click" d:LayoutOverrides="HorizontalMargin" />
+        			</StackPanel>
+        			<StackPanel Width="600" HorizontalAlignment="Right">
+        				<Label x:Name="lblReport" Margin="0" Width="100" Height="30" FontSize="14" FontFamily="Segoe Marker" Background="{x:Null}" HorizontalAlignment="Right" d:LayoutOverrides="Height">
+
+        					<Hyperlink Click="Report_Click"><Run Text="Report Abuse"/></Hyperlink>
+
+        				</Label>
+        			</StackPanel>
+                </StackPanel>
+        	</StackPanel>
+        </GroupBox>
+    </Canvas>
+</Window>

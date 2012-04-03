@@ -219,6 +219,102 @@ namespace evmsService.entities
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Service", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Service : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string AddressField;
+        
+        private string NameField;
+        
+        private string NotesField;
+        
+        private int ServiceIDField;
+        
+        private string UrlField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.AddressField;
+            }
+            set
+            {
+                this.AddressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Notes
+        {
+            get
+            {
+                return this.NotesField;
+            }
+            set
+            {
+                this.NotesField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ServiceID
+        {
+            get
+            {
+                return this.ServiceIDField;
+            }
+            set
+            {
+                this.ServiceIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url
+        {
+            get
+            {
+                return this.UrlField;
+            }
+            set
+            {
+                this.UrlField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PointOfContact", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
     public partial class PointOfContact : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -671,6 +767,8 @@ namespace evmsService.entities
         
         private int AssignedRoleIDField;
         
+        private System.DateTime CompletedDateTimeField;
+        
         private int EventIDField;
         
         private bool IsCompletedField;
@@ -678,8 +776,6 @@ namespace evmsService.entities
         private bool IsReadField;
         
         private string RemarksField;
-        
-        private System.DateTime SendDateTimeField;
         
         private int TaskAssignmentIDField;
         
@@ -707,6 +803,19 @@ namespace evmsService.entities
             set
             {
                 this.AssignedRoleIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CompletedDateTime
+        {
+            get
+            {
+                return this.CompletedDateTimeField;
+            }
+            set
+            {
+                this.CompletedDateTimeField = value;
             }
         }
         
@@ -759,19 +868,6 @@ namespace evmsService.entities
             set
             {
                 this.RemarksField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime SendDateTime
-        {
-            get
-            {
-                return this.SendDateTimeField;
-            }
-            set
-            {
-                this.SendDateTimeField = value;
             }
         }
         
@@ -1206,102 +1302,6 @@ namespace evmsService.entities
             set
             {
                 this.SourceField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Service", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Service : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string AddressField;
-        
-        private string NameField;
-        
-        private string NotesField;
-        
-        private int ServiceIDField;
-        
-        private string UrlField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address
-        {
-            get
-            {
-                return this.AddressField;
-            }
-            set
-            {
-                this.AddressField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Notes
-        {
-            get
-            {
-                return this.NotesField;
-            }
-            set
-            {
-                this.NotesField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ServiceID
-        {
-            get
-            {
-                return this.ServiceIDField;
-            }
-            set
-            {
-                this.ServiceIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Url
-        {
-            get
-            {
-                return this.UrlField;
-            }
-            set
-            {
-                this.UrlField = value;
             }
         }
     }
@@ -3021,6 +3021,10 @@ namespace evmsService.Controllers
 public interface IEvmsService
 {
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewService", ReplyAction="http://tempuri.org/IEvmsService/ViewServiceResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewServiceSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Service[] ViewService(evmsService.entities.User u, int EventID, string SearchString);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddPointOfContact", ReplyAction="http://tempuri.org/IEvmsService/AddPointOfContactResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AddPointOfContactSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void AddPointOfContact(evmsService.entities.User user, int EventID, int serviceID, string name, string position, string phone, string email);
@@ -3093,6 +3097,10 @@ public interface IEvmsService
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetTaskAssignmentSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.TaskAssignment GetTaskAssignment(int taskID, int eventID, int roleID);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AssignTask", ReplyAction="http://tempuri.org/IEvmsService/AssignTaskResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AssignTaskSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void AssignTask(evmsService.entities.User user, int eventID, int roleID, evmsService.entities.Task[] taskList);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/SaveBudgetList", ReplyAction="http://tempuri.org/IEvmsService/SaveBudgetListResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/SaveBudgetListSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void SaveBudgetList(evmsService.entities.User sender, int eventID, int totalSat, decimal totalPrice, evmsService.entities.Items[] itemList);
@@ -3144,10 +3152,6 @@ public interface IEvmsService
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteService", ReplyAction="http://tempuri.org/IEvmsService/DeleteServiceResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteServiceSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void DeleteService(evmsService.entities.User user, int serviceID);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewService", ReplyAction="http://tempuri.org/IEvmsService/ViewServiceResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewServiceSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Service[] ViewService(evmsService.entities.User u);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetFacilityAdmins", ReplyAction="http://tempuri.org/IEvmsService/GetFacilityAdminsResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3484,6 +3488,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     {
     }
     
+    public evmsService.entities.Service[] ViewService(evmsService.entities.User u, int EventID, string SearchString)
+    {
+        return base.Channel.ViewService(u, EventID, SearchString);
+    }
+    
     public void AddPointOfContact(evmsService.entities.User user, int EventID, int serviceID, string name, string position, string phone, string email)
     {
         base.Channel.AddPointOfContact(user, EventID, serviceID, name, position, phone, email);
@@ -3574,6 +3583,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.GetTaskAssignment(taskID, eventID, roleID);
     }
     
+    public void AssignTask(evmsService.entities.User user, int eventID, int roleID, evmsService.entities.Task[] taskList)
+    {
+        base.Channel.AssignTask(user, eventID, roleID, taskList);
+    }
+    
     public void SaveBudgetList(evmsService.entities.User sender, int eventID, int totalSat, decimal totalPrice, evmsService.entities.Items[] itemList)
     {
         base.Channel.SaveBudgetList(sender, eventID, totalSat, totalPrice, itemList);
@@ -3637,11 +3651,6 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public void DeleteService(evmsService.entities.User user, int serviceID)
     {
         base.Channel.DeleteService(user, serviceID);
-    }
-    
-    public evmsService.entities.Service[] ViewService(evmsService.entities.User u)
-    {
-        return base.Channel.ViewService(u);
     }
     
     public evmsService.entities.User[] GetFacilityAdmins()

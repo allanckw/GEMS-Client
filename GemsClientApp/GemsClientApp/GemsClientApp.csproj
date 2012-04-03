@@ -93,6 +93,9 @@
     <Compile Include="BASS\frmBudgetItemList.xaml.cs">
       <DependentUpon>frmBudgetItemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContactList\frmAddEditReview.xaml.cs">
+      <DependentUpon>frmAddEditReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContactList\frmServiceContactList.xaml.cs">
       <DependentUpon>frmServiceContactList.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,9 @@
     </Compile>
     <Compile Include="CustomCtrl\Listview\ucLVTime.xaml.cs">
       <DependentUpon>ucLVTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCtrl\Ratings\RatingControl.xaml.cs">
+      <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="EvmsService.cs" />
     <Compile Include="EvMS\frmEventMangement.xaml.cs">
@@ -242,6 +248,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ContactList\frmAddEditReview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ContactList\frmServiceContactList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -267,6 +277,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomCtrl\Listview\ucLVTime.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomCtrl\Ratings\RatingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
