@@ -155,7 +155,5 @@ namespace Gems.UIWPF
                 loadTasks();
         }
 
-
-
     }
 }

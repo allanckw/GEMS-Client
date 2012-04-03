@@ -18,7 +18,7 @@
                 <TextBlock Text="{Binding Path=ParentTask.DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
            
             <GroupBox Header="Task List" Width="230" FontSize="16" Height="380" VerticalAlignment="Top">
-        		<ListBox x:Name="lstTask" Height="360" Width="210" FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0" SelectionChanged="lstTask_SelectionChanged">
+                    <ListBox x:Name="lstTask" Height="360" Width="210" FontSize="13" VerticalAlignment="Top" ItemContainerStyle="{StaticResource TaskItemContStyle}" HorizontalAlignment="Left" Margin="5,0,0,0" SelectionChanged="lstTask_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Vertical">
@@ -55,7 +55,7 @@
         			</StackPanel>
         			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="1.5,0">
         				<Label Content="Is Completed?" Width="150" FontSize="14"/>
-        				<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click"  />
+        				<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click" />
         			</StackPanel>
         			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="0"></StackPanel>
         		</StackPanel>

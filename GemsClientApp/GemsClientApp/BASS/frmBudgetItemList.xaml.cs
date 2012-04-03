@@ -84,14 +84,18 @@ namespace Gems.UIWPF
 
         private void mapItem(Items Item2Edit)
         {
+            OptimizedBudgetItemsDetails budgetItem = lvBItem.GetEditItem();
+            bool isbought = budgetItem.IsBought;
             txtItemName.Text = Item2Edit.ItemName;
             txtItemType.Text = Item2Edit.typeString;
             txtItemPrice.Text = Item2Edit.EstimatedPrice.ToString("0.00");
             txtItemSatisfaction.Text = Item2Edit.Satisfaction.ToString();
-            if (Item2Edit.ActualPrice != 0)
+            if (isbought)
             {
                 txtItemActualPrice.Text = Item2Edit.ActualPrice.ToString("0.00");
             }
+            else
+                txtItemActualPrice.Text = "N.A";
         }
 
         private void loadBudgetItems()
@@ -132,6 +136,10 @@ namespace Gems.UIWPF
         private void btnUpdateItem_Click(object sender, RoutedEventArgs e)
         {
             decimal price;
+            if (txtItemActualPrice.Text.Trim().CompareTo("N.A") == 0)
+            {
+                txtItemActualPrice.Text = "-1.00";
+            }
             bool isdecimal = decimal.TryParse(txtItemActualPrice.Text, out price);
             if (!isdecimal)
             {

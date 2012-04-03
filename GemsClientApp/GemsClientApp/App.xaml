@@ -27,6 +27,28 @@
             </Style.Triggers>
         </Style>
 
+        <!--For Style apply on highlighting function using Date -->
+        <Style x:Key="TaskItemContStyle" TargetType="{x:Type ListBoxItem}">
+            <Style.Resources>
+                <LinearGradientBrush x:Key="NewBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF77575" Offset="1"/>
+                    <GradientStop Color="#FFB86D6D"/>
+                </LinearGradientBrush>
+                <local:DateToPolarValueConverter x:Key="DatePolarValueConv" />
+            </Style.Resources>
+
+            <!-- Stretch the content so that we can right-align values 
+           in the Balance column. -->
+            <!--Setter Property="HorizontalContentAlignment" Value="Stretch" /-->
+
+            <Style.Triggers>
+                <!-- Color them red. -->
+                <DataTrigger Binding="{Binding DueDate, Converter={StaticResource DatePolarValueConv}}" Value="-1">
+                    <Setter Property="Background" Value="{StaticResource NewBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <!--For Style apply on highlighting function using balance -->
         <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
             <Style.Resources>

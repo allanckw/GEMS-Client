@@ -55,4 +55,28 @@ namespace Gems.UIWPF.CustomCtrl
             throw new NotSupportedException("ConvertBack not supported");
         }
     }
+
+    [ValueConversion(typeof(DateTime), typeof(int))]
+    public class DateToPolarValueConverter : IValueConverter
+    {
+        public object Convert(
+            object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            DateTime DueDate = (DateTime)System.Convert.ChangeType(value, typeof(DateTime));
+            System.Diagnostics.Trace.WriteLine("Debug : DueDate = " + DueDate.ToString("dd MMM yyyy HH:mm") + "\n");
+            System.Diagnostics.Trace.WriteLine("Debug : " + DueDate.CompareTo(DateTime.Now) + "\n");
+            if (DueDate.CompareTo(DateTime.Now) < 0)
+                return -1;//red meaning overdue date
+
+            return 0;//normal
+        }
+
+        public object ConvertBack(
+            object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException("ConvertBack not supported");
+        }
+    }
 }

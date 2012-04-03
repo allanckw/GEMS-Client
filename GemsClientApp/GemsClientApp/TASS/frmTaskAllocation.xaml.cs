@@ -15,6 +15,7 @@ namespace Gems.UIWPF
     {
         private User user;
         private Event event_;
+        List<TupleOfRolestringRsiwEt5l> roleByEvent;
 
         public frmTaskAllocation()
         {
@@ -32,7 +33,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             refreshTaskList();
-            lstAllTask.ItemsSource = lstManageTasks.ItemsSource = event_.Tasks;
+            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = event_.Tasks;
             LoadRoles();
 
         }
@@ -40,7 +41,7 @@ namespace Gems.UIWPF
         private void LoadTasks()
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstAllTask.ItemsSource = lstManageTasks.ItemsSource = client.GetTasksByEvent(event_.EventID);
+            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = client.GetTasksByEvent(event_.EventID);
             client.Close();
             ClearAll();
         }
@@ -52,8 +53,8 @@ namespace Gems.UIWPF
             {
                 cboRole.DisplayMemberPath = "m_Item2";
                 cboRole.SelectedValuePath = "m_Item1.RoleID";
-                cboRole.ItemsSource =
-                    client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                roleByEvent = client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                cboRole.ItemsSource = roleByEvent;
             }
             catch (Exception ex)
             {
@@ -64,35 +65,37 @@ namespace Gems.UIWPF
 
         public void refreshTaskList()
         {
-
+            if (cboRole.SelectedIndex == -1)
+            {
+                lstAllTask.IsEnabled = false;
+                return;
+            }
             //Example of All Task created for the event
             //Throw in All Task Here
             List<Task> IndividualTask = new List<Task>();
             WCFHelperClient client = new WCFHelperClient();
             List<Task> AllTask = client.GetTasksByEvent(event_.EventID).ToList<Task>();
-            if (cboRole.SelectedIndex != -1)
-            {
-                lstAllTask.IsEnabled = true;
-                IndividualTask = client.GetTaskByRole(event_.EventID, int.Parse(cboRole.SelectedValue.ToString())).ToList<Task>();
-            }
-            else
-            {
-                lstAllTask.IsEnabled = false;
-            }
+
+            lstAllTask.IsEnabled = true;
+            IndividualTask = client.GetTaskByRole(event_.EventID, int.Parse(cboRole.SelectedValue.ToString())).ToList<Task>();
+
             client.Close();
 
             lstAllTask.ItemsSource = clsTaskAllocate.GetTaskNotAssigned(AllTask, IndividualTask);
 
-            lstAssignedTask.ItemsSource = clsTaskAllocate.GetTaskAssigned(IndividualTask);
+            lstAssignedTask.ItemsSource = clsTaskAllocate.GetTaskAssigned(IndividualTask, int.Parse(cboRole.SelectedValue.ToString()));
         }
 
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
-            if (cboRole.SelectedIndex != -1)
+            //WCFHelperClient client = new WCFHelperClient();
+            if (cboRole.SelectedIndex == -1)
             {
-                refreshTaskList();
+                lstAllTask.ItemsSource = null;
+                lstAssignedTask.ItemsSource = null;
             }
+
+            refreshTaskList();
         }
 
         private void btnAddTask_Click(object sender, RoutedEventArgs e)
@@ -236,7 +239,7 @@ namespace Gems.UIWPF
                                     MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             client.Close();
-                                                       
+
                         }
                         catch (Exception ex)
                         {
@@ -262,11 +265,122 @@ namespace Gems.UIWPF
             refreshTaskList();
         }
 
-        
+
         private void btnSaveTask_Click(object sender, RoutedEventArgs e)
         {
             saveAssignment();
         }
 
+        private void lstOverviewAllTask_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            stkTaskAssignment.Visibility = Visibility.Collapsed;
+            if (lstOverviewAllTask.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            txtOverviewDesc.Document.Blocks.Clear();
+            Task task = (Task)lstOverviewAllTask.SelectedItem;
+            txtOverviewTaskName.Text = task.TaskName;
+            txtOverviewDesc.AppendText(task.TaskDesc);
+            dtpOverviewDueDate.SelectedDateTime = task.DueDate;
+            //TaskAssignment taskassignment = task.TasksAssignments[0];
+
+            List<TaskAssignmentState> TAS = GetTaskAssignmentState(task.TasksAssignments);
+            lvOverViewRoleView.ItemsSource = TAS;
+        }
+
+        private List<TaskAssignmentState> GetTaskAssignmentState(TaskAssignment[] tAssns)
+        {
+            List<TaskAssignmentState> lstTAS = new List<TaskAssignmentState>();
+            foreach (TaskAssignment taskAssignment in tAssns)
+            {
+                foreach (TupleOfRolestringRsiwEt5l item in roleByEvent)
+                {
+                    if (item.m_Item1.RoleID == taskAssignment.AssignedRoleID)
+                    {
+                        //String name=
+                        TaskAssignmentState newTAS = new TaskAssignmentState(taskAssignment, item.m_Item2);
+                        lstTAS.Add(newTAS);
+                    }
+                }
+            }
+            return lstTAS;
+        }
+
+        private void chkIsCompleted_Checked(object sender, RoutedEventArgs e)
+        {
+            stkCompletedDate.Visibility = Visibility.Visible;
+        }
+
+        private void chkIsCompleted_Unchecked(object sender, RoutedEventArgs e)
+        {
+            stkCompletedDate.Visibility = Visibility.Collapsed;
+        }
+
+        private void lvOverViewRoleView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvOverViewRoleView.SelectedIndex == -1)
+                return;
+            stkTaskAssignment.Visibility = Visibility.Visible;
+            TaskAssignmentState tas = (TaskAssignmentState)lvOverViewRoleView.SelectedItem;
+            chkIsCompleted.IsChecked = tas.TaskAssignment.IsCompleted;
+            txtCompletedDate.Text = tas.TaskAssignment.CompletedDateTime.ToString("dd MMM yyyy HH:mm");
+            txtOverviewRemark.Document.Blocks.Clear();
+            txtOverviewRemark.AppendText(tas.TaskAssignment.Remarks);
+        }
+
+        private void chkIsCompleted_Click(object sender, RoutedEventArgs e)
+        {
+            Task task = (Task)lstOverviewAllTask.SelectedItem;
+            TaskAssignmentState tas = (TaskAssignmentState)lvOverViewRoleView.SelectedItem;
+            WCFHelperClient client = new WCFHelperClient();
+
+            try
+            {
+                if (MessageBox.Show("Are you sure you want to change the status of completion? ",
+               "Confirm Operation...",
+               MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    chkIsCompleted.IsChecked = tas.TaskAssignment.IsCompleted;
+                    return;
+                }
+                var textRange = new TextRange(txtOverviewRemark.Document.ContentStart, txtOverviewRemark.Document.ContentEnd);
+
+                if (chkIsCompleted.IsChecked == true)
+                {
+                    client.SetTaskCompleted(task, tas.TaskAssignment.AssignedRoleID, textRange.Text.Trim());
+                }
+                else
+                {
+                    client.SetTaskIncomplete(user, task, tas.TaskAssignment.AssignedRoleID, textRange.Text.Trim());
+                }
+
+                LoadTasks();
+                ClearOverview();
+                MessageBox.Show("Operation Succeeded");
+                
+                //lvOverViewRoleView.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            client.Close();
+        }
+
+        private void ClearOverview()
+        {
+            txtOverviewTaskName.Text = "";
+            txtOverviewRemark.Document.Blocks.Clear();
+            txtOverviewDesc.Document.Blocks.Clear();
+            lvOverViewRoleView.ItemsSource = null;
+            dtpOverviewDueDate.clear();
+            cboRole.SelectedIndex = -1;
+        }
     }
 }
+
+
