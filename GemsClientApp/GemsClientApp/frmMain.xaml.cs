@@ -24,17 +24,19 @@ namespace Gems.UIWPF
 
         private static Dictionary<Type, string> pageFunctions = new Dictionary<Type, string>
         {
+            { typeof(frmOverview), "Overview"},
             { typeof(frmRoleTemplates), "manage role templates" },
             { typeof(frmRoleList), "manage roles" },
-            { typeof(frmItemManagement), "add items" },
-            { typeof(frmFacBooking), "book facility" },
             { typeof(frmProgramManagement), "edit programme" },
-            { typeof(frmGuestList), "edit guests" },
-            { typeof(frmOverview), "view overview" },
+            { typeof(frmItemManagement), "add items" },            
             { typeof(frmBudgetItemList), "budget item list" },
-            { typeof(frmTaskAllocation), "Task Allocation" },
             { typeof(frmBudgetIncome), "Budget Income Management" },
+            { typeof(frmBudgetReport),"Buget Report"},
+            { typeof(frmTaskAllocation), "Task Allocation" },
+            { typeof(frmViewTask),"Task Viewing"},
+            { typeof(frmGuestList), "edit guests" },
             { typeof(frmServiceContactList), "Service Contact List" }
+            
         };
 
         public frmMain()
@@ -256,13 +258,13 @@ namespace Gems.UIWPF
                 mnuPrograms.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Manage_ItemTypes) || 
+            if (ef.Contains(EnumFunctions.Manage_ItemTypes) ||
                 ef.Contains(EnumFunctions.Manage_Items) ||
                 ef.Contains(EnumFunctions.OptimizeItemList))
             {
                 mnuBudget.Visibility = Visibility.Visible;
                 mnuManageItem.Visibility = Visibility.Visible;
-                
+
             }
             if (ef.Contains(EnumFunctions.Manage_Items))
             {
@@ -273,8 +275,8 @@ namespace Gems.UIWPF
                 mnuBudgetReport.Visibility = Visibility.Visible;
             }
             //
-            if (ef.Contains(EnumFunctions.Add_Task) || 
-                ef.Contains(EnumFunctions.Update_Task) || 
+            if (ef.Contains(EnumFunctions.Add_Task) ||
+                ef.Contains(EnumFunctions.Update_Task) ||
                 ef.Contains(EnumFunctions.Delete_Task) ||
                 ef.Contains(EnumFunctions.Assign_Task))
             { //Tasks and View Tasks Are Global
