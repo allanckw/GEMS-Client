@@ -35,10 +35,8 @@
 					</StackPanel>
 					<StackPanel Width="650" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30">
 						<Label Content="Booking Duration:"/>
-						<ComboBox Width="60" Height="25"/>
-						<Label Content="Hr"/>
-						<ComboBox Width="60" Height="25"/>
-						<Label Content="Min"/>
+						<ComboBox Width="120" Height="25" Name="cboBookDuration" />
+                        <Button x:Name="btnTest" Click="btnTest_Click" Content="test" Margin="20,0,0,0" Visibility="Collapsed" />
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>

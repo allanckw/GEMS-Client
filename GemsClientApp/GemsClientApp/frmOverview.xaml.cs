@@ -35,6 +35,7 @@ namespace Gems.UIWPF
             {
                 loadFacilityBooking();
                 loadGuests();
+                loadTasks();
                 loadPrograms();
                 loadRoles();
                 loadItems();
@@ -48,7 +49,12 @@ namespace Gems.UIWPF
         private void loadGuests()
         {
 
-            txtGuestMsg.Text = "There are a total of " + event_.Guests.Count() + " guests ";
+            txtGuestMsg.Text = "There are a total of " + event_.Guests.Count() + " guest(s) ";
+        }
+
+        private void loadTasks()
+        {
+            txtTaskMsg.Text = "There are a total of " + event_.Tasks.Count() + " task(s)";
         }
 
         private void loadPrograms()

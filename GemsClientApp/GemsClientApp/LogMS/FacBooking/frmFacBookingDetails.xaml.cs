@@ -19,6 +19,8 @@ namespace Gems.UIWPF
         List<Facility> models;
         Event event_;
         User user;
+        int MaxBookingIdx = 0;
+
         public frmFacBookingDetails()
         {
             this.InitializeComponent();
@@ -53,7 +55,40 @@ namespace Gems.UIWPF
 
         private void OnChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            cboBookDuration.Items.Clear();
+            int hr;
+            int.TryParse(dtpStart.cboHr.SelectedValue.ToString(), out hr);
+            int min;
+            int.TryParse(dtpStart.cboMin.SelectedValue.ToString(), out min);
+            int maxIdx = (24 - hr)*2;
+            if (min > 0)
+            {
+                maxIdx -= 1;
+            }
+
+            if (maxIdx < 1)
+            {
+                cboBookDuration.IsEnabled = false;
+                btnSubmit.IsEnabled = false;
+                return;
+            }
+
+            //TimeSpan duration = new TimeSpan(0,0,0);
+
+            for (int i = 0; i <= maxIdx; i++)
+            {
+                TimeSpan duration = new TimeSpan(0, i*30, 0);
+                if(i==48)
+                    cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
+                else
+                    cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
+
+                //duration.Add(new TimeSpan(0, 30, 0));
+            }
+            cboBookDuration.Items.RemoveAt(0);
+            cboBookDuration.SelectedIndex = 0;
+            btnSubmit.IsEnabled = true;
+            cboBookDuration.IsEnabled = true;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -176,7 +211,7 @@ namespace Gems.UIWPF
 
             DateTime start = dtpStart.SelectedDateTime;
 
-            DateTime end = dtpStart.SelectedDateTime;
+            DateTime end = getEndDateTime();
 
             if (end < start)
             {
@@ -194,11 +229,26 @@ namespace Gems.UIWPF
             }
         }
 
-        private void dtpStart_TimeChanged(object sender, SelectionChangedEventArgs e)
+        private DateTime getEndDateTime()
         {
-            MessageBox.Show("asd");
+            int i = cboBookDuration.SelectedIndex + 1;
+            TimeSpan duration = new TimeSpan(0, i * 30, 0);
+            DateTime bookingEndDateTime = dtpStart.SelectedDateTime.Add(duration);
+            return bookingEndDateTime;
         }
 
+        //Testing of end date..to enable this go xaml and turn visibility to visible
+        private void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime start = dtpStart.SelectedDateTime;
 
+            DateTime end = getEndDateTime();
+            if (end == start)
+            {
+                MessageBox.Show("End datetime must be later than start datetime");
+                return;
+            }
+            MessageBox.Show(end.ToString("dd MMM yyyy HH:mm"));
+        }
     }
 }
