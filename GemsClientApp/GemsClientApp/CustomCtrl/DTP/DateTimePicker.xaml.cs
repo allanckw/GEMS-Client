@@ -34,6 +34,7 @@ namespace Gems.UIWPF.CustomCtrl
         public static readonly RoutedEvent DateChangedEvent = EventManager.RegisterRoutedEvent(
         "DateChangedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(DateTimePicker));
 
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -56,7 +57,7 @@ namespace Gems.UIWPF.CustomCtrl
         //DTP preprocessing
         public void CreateDTPData()
         {
-            for (int i = 0; i <= 23; i++)
+            for (int i = 0; i <= 24; i++)
             {
                 cboHr.Items.Add(string.Format("{0:00}", i));
             }
@@ -141,11 +142,14 @@ namespace Gems.UIWPF.CustomCtrl
             RaiseDateChangedEvent();
         }
 
+
+
         public void clear()
         {
             dtpDate.SelectedDate = null;
             cboHr.SelectedIndex = 0;
             cboMin.SelectedIndex = 0;
         }
+
     }
 }

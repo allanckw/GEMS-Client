@@ -41,10 +41,19 @@ namespace Gems.UIWPF
             dgFacility.CanUserAddRows = false;
             cboAdd();
 
+             dtpStart.cboHr.SelectionChanged+=OnChanged;
+             dtpStart.cboMin.SelectionChanged += OnChanged;
 
+            //EventManager.RegisterClassHandler(typeof(DatePicker), ComboBox.SelectionChangedEvent, 
+            //    new RoutedEventHandler(OnChanged));
             dtpStart.SelectedDateTime = event_.StartDateTime;
-            dtpEnd.SelectedDateTime = event_.EndDateTime;
+           
 
+        }
+
+        private void OnChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -158,7 +167,7 @@ namespace Gems.UIWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if ((dtpEnd.SelectedDateTime == null) || (dtpStart.SelectedDateTime == null))
+            if  (dtpStart.SelectedDateTime == null)
             {
                 MessageBox.Show("Please select the Dates", "Validation Error",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -167,7 +176,7 @@ namespace Gems.UIWPF
 
             DateTime start = dtpStart.SelectedDateTime;
 
-            DateTime end = dtpEnd.SelectedDateTime;
+            DateTime end = dtpStart.SelectedDateTime;
 
             if (end < start)
             {
@@ -184,6 +193,12 @@ namespace Gems.UIWPF
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void dtpStart_TimeChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("asd");
+        }
+
 
     }
 }

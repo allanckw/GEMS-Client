@@ -95,14 +95,21 @@ namespace Gems.UIWPF
                 return;
 
             this.budgetSlider.Minimum = 0;
-            int totalSatisfaction;
-            decimal totalPrice;
+            int totalSatisfaction =0;
+            decimal totalPrice =0;
             try
             {
-                results = bAllocator.optimalItems(maxBudget, out totalPrice, out totalSatisfaction);
+                results = bAllocator.optimalItems(maxBudget);
                 this.budgetSlider.Maximum = results.Count - 1;
+                foreach (Items i in results[0])
+                {
+                    totalSatisfaction += i.Satisfaction;
+                    totalPrice += i.EstimatedPrice;
+                }
+
                 txtTotalPrice.Text = totalPrice.ToString("0.00");
                 txtTotalSat.Text = totalSatisfaction.ToString();
+
                 MessageBox.Show("Computation Completed!");
                 lstItemList.ItemsSource = results[0];
             }
@@ -137,7 +144,12 @@ namespace Gems.UIWPF
                 decimal totalPrice = 0;
                 try
                 {
-                    results = bAllocator.optimalItems(minBudget, out totalPrice, out totalSat);
+                    results = bAllocator.optimalItems(minBudget);
+                    foreach (Items i in results[0])
+                    {
+                        totalSat += i.Satisfaction;
+                        totalPrice += i.EstimatedPrice;
+                    }
                     txtTotalPrice.Text = totalPrice.ToString("0.00");
                     txtTotalSat.Text = totalSat.ToString();
                     this.budgetSlider.Maximum = results.Count - 1;
@@ -146,6 +158,10 @@ namespace Gems.UIWPF
                 }
                 catch (ArgumentOutOfRangeException argEx)
                 {
+                    this.budgetSlider.Maximum = 0;
+                    txtTotalPrice.Text = "";
+                    txtTotalSat.Text = "";
+                    lstItemList.ItemsSource = null;
                     MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -167,7 +183,6 @@ namespace Gems.UIWPF
             {
                 totalSat += i.Satisfaction;
                 totalPrice += i.EstimatedPrice;
-
             }
 
             txtTotalPrice.Text = totalPrice.ToString("0.00");

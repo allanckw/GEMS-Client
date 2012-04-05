@@ -34,7 +34,11 @@
                     <GradientStop Color="#FFF77575" Offset="1"/>
                     <GradientStop Color="#FFB86D6D"/>
                 </LinearGradientBrush>
-                <local:DateToPolarValueConverter x:Key="DatePolarValueConv" />
+                <LinearGradientBrush x:Key="GreenBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#AA00CC00" Offset="1"/>
+                    <GradientStop Color="#55008800"/>
+                </LinearGradientBrush>
+                <local:TaskToPolarValueConverter x:Key="TaskPolarValueConv" />
             </Style.Resources>
 
             <!-- Stretch the content so that we can right-align values 
@@ -42,8 +46,11 @@
             <!--Setter Property="HorizontalContentAlignment" Value="Stretch" /-->
 
             <Style.Triggers>
-                <!-- Color them red. -->
-                <DataTrigger Binding="{Binding DueDate, Converter={StaticResource DatePolarValueConv}}" Value="-1">
+                <DataTrigger Binding="{Binding TaskID, Converter={StaticResource TaskPolarValueConv}}" Value="1">
+                    <Setter Property="Background" Value="{StaticResource GreenBrush}" />
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding TaskID, Converter={StaticResource TaskPolarValueConv}}" Value="-1">
                     <Setter Property="Background" Value="{StaticResource NewBrush}" />
                 </DataTrigger>
             </Style.Triggers>

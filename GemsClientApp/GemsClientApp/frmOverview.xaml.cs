@@ -25,7 +25,8 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
-            loadEventItems();
+            if (e != null)
+                loadEventItems();
         }
 
         private void loadEventItems()

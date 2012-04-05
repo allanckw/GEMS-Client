@@ -39,6 +39,11 @@ namespace Gems.UIWPF.CustomCtrl
             int BookingEHr = bookingEnd.Hour;
             int BookingEMin = bookingEnd.Minute;
             BookStartIdx = PreprocessTime(BookingSHr, BookingSMin);
+            if (bookingStart.CompareTo(bookingEnd) != 0)
+            {
+                BookingEHr = 24;
+                BookingEMin = 0;
+            }
             BookEndIdx = PreprocessTime(BookingEHr, BookingEMin) - 1;
         }
 
@@ -60,6 +65,12 @@ namespace Gems.UIWPF.CustomCtrl
 
                 string EventName = item.Purpose;
                 int sIdx = PreprocessTime(shr, smin);
+                if (end.CompareTo(start) != 0)
+                {
+                    ehr = 24;
+                    emin = 0;
+                }
+
                 int eIdx = PreprocessTime(ehr, emin);
                 for (int i = sIdx; i < eIdx; i++)
                 {

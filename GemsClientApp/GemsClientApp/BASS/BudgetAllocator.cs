@@ -82,10 +82,10 @@ namespace Gems.UIWPF
             importantItemsByType = new List<List<Items>>();
             unimportantItemsByType = new List<List<Items>>();
 
-            Dictionary<string, List<Items>> itemsByType = new Dictionary<string,List<Items>>();
-            foreach(Items item in items)
+            Dictionary<string, List<Items>> itemsByType = new Dictionary<string, List<Items>>();
+            foreach (Items item in items)
             {
-                if(!itemsByType.ContainsKey(item.typeString))
+                if (!itemsByType.ContainsKey(item.typeString))
                     itemsByType[item.typeString] = new List<Items>();
                 itemsByType[item.typeString].Add(item);
             }
@@ -98,24 +98,29 @@ namespace Gems.UIWPF
                         //Test case for Impt Item Item1: $5, Item 2: $3
                         //max budget $3, .OrderBy threw exception insufficient budget
                         //for required item, .OrderByDescending did not throw
-                        importantItemsByType.Add(itemsByType[itemType.typeString]
-                            .OrderByDescending(i => i.EstimatedPrice).ToList());
+                        importantItemsByType.Add(itemsByType[itemType.typeString]);
                     }
                     else
                     {
                         //Should be order by descending not ascending
-                        unimportantItemsByType.Add(itemsByType[itemType.typeString]
-                            .OrderByDescending(i => i.EstimatedPrice).ToList());
+                        unimportantItemsByType.Add(itemsByType[itemType.typeString]);
                     }
             }
 
+            foreach (List<Items> itemList in importantItemsByType)
+            {
+                itemList.OrderByDescending(i => i.EstimatedPrice).ToList<Items>();
+            }
 
-
+            foreach (List<Items> itemList in unimportantItemsByType)
+            {
+                itemList.OrderByDescending(i => i.EstimatedPrice).ToList<Items>();
+            }
             minBudget = 0;
-            
+
             foreach (List<Items> itemsList in importantItemsByType)
                 minBudget += itemsList[itemsList.Count - 1].EstimatedPrice;
-            
+
             if (minBudget > maxBudget)
                 throw new ArgumentOutOfRangeException
                     ("The maximum amount of budget was too small to obtain all required items");
@@ -195,14 +200,16 @@ namespace Gems.UIWPF
             DPtreeLeaves = prevStates;
         }
 
-        public List<List<Items>> optimalItems(decimal budget, out decimal priceTotal, out int satisfactionTotal)
+        public List<List<Items>> optimalItems(decimal budget)
         {
+            decimal priceTotal;
+            int satisfactionTotal;
+
             if (budget < minBudget)
                 throw new ArgumentOutOfRangeException("The amount of budget entered is insufficient");
             else if (budget > maxBudget)
-            {
                 throw new ArgumentOutOfRangeException("Your entered budget is more than your maximum defined budget!");
-            }
+
 
             List<List<Items>> result = new List<List<Items>>();
             int i = DPtreeLeaves.Count - 1;
@@ -211,6 +218,7 @@ namespace Gems.UIWPF
                     break;
             priceTotal = DPtreeLeaves[i].TotalPrice;
             satisfactionTotal = DPtreeLeaves[i].TotalSatisfactionValue;
+            i = 0;
             do
             {
                 State stateOptimal = DPtreeLeaves[i];
@@ -221,8 +229,8 @@ namespace Gems.UIWPF
                     stateOptimal = stateOptimal.PrevState;
                 }
                 result.Add(itemsOptimal);
-            } while (--i >= 0 && 
-                DPtreeLeaves[i].TotalPrice == priceTotal &&
+            } while (++i < DPtreeLeaves.Count &&
+                DPtreeLeaves[i].TotalPrice <= priceTotal &&
                 DPtreeLeaves[i].TotalSatisfactionValue == satisfactionTotal);
 
             return result;

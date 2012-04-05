@@ -35,7 +35,7 @@ namespace Gems.UIWPF
             refreshTaskList();
             lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = event_.Tasks;
             LoadRoles();
-
+            
         }
 
         private void LoadTasks()
@@ -188,6 +188,8 @@ namespace Gems.UIWPF
         private void ClearAll()
         {
             lstManageTasks.SelectedIndex = -1;
+            lstOverviewAllTask.SelectedIndex = -1;
+            ClearOverview();
             txtDesc.Document.Blocks.Clear();
             txtTaskName.Text = "";
             dtpDueDate.clear();
@@ -263,6 +265,7 @@ namespace Gems.UIWPF
             MessageBox.Show("Your task assignment have been updated!",
                 "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             refreshTaskList();
+            LoadTasks();
         }
 
 
@@ -284,10 +287,16 @@ namespace Gems.UIWPF
             txtOverviewTaskName.Text = task.TaskName;
             txtOverviewDesc.AppendText(task.TaskDesc);
             dtpOverviewDueDate.SelectedDateTime = task.DueDate;
-            //TaskAssignment taskassignment = task.TasksAssignments[0];
-
+            pBarTaskProgress.Value = task.PercentageCompletion;
+            SetGlowVisibility(pBarTaskProgress, Visibility.Collapsed);
             List<TaskAssignmentState> TAS = GetTaskAssignmentState(task.TasksAssignments);
             lvOverViewRoleView.ItemsSource = TAS;
+        }
+
+        void SetGlowVisibility(ProgressBar progressBar, Visibility visibility)
+        {
+            var glow = progressBar.Template.FindName("PART_GlowRect", progressBar) as FrameworkElement;
+            if (glow != null) glow.Visibility = visibility;
         }
 
         private List<TaskAssignmentState> GetTaskAssignmentState(TaskAssignment[] tAssns)
@@ -332,6 +341,7 @@ namespace Gems.UIWPF
 
         private void chkIsCompleted_Click(object sender, RoutedEventArgs e)
         {
+            int selectedTaskIdx = lstOverviewAllTask.SelectedIndex;
             Task task = (Task)lstOverviewAllTask.SelectedItem;
             TaskAssignmentState tas = (TaskAssignmentState)lvOverViewRoleView.SelectedItem;
             WCFHelperClient client = new WCFHelperClient();
@@ -358,6 +368,8 @@ namespace Gems.UIWPF
 
                 LoadTasks();
                 ClearOverview();
+                cboRole.SelectedIndex = -1;
+                lstOverviewAllTask.SelectedIndex = selectedTaskIdx;
                 MessageBox.Show("Operation Succeeded");
                 
                 //lvOverViewRoleView.SelectedIndex = -1;
@@ -378,7 +390,7 @@ namespace Gems.UIWPF
             txtOverviewDesc.Document.Blocks.Clear();
             lvOverViewRoleView.ItemsSource = null;
             dtpOverviewDueDate.clear();
-            cboRole.SelectedIndex = -1;
+            pBarTaskProgress.Value = 0;
         }
     }
 }
