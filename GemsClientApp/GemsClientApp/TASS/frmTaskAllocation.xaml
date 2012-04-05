@@ -1,4 +1,4 @@
-﻿<Page
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:Gems_UIWPF_CustomCtrl="clr-namespace:Gems.UIWPF.CustomCtrl" 
@@ -211,4 +211,4 @@ Width="750" Height="600" Background="{x:Null}">
             </TabItem>
         </TabControl>
     </Grid>
-</Page>
+</src:GEMSPage>

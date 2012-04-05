@@ -10,7 +10,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmItemManagement.xaml
     /// </summary>
-    public partial class frmItemManagement : Page
+    public partial class frmItemManagement : GEMSPage
     {
         private User user;
         private Event event_;

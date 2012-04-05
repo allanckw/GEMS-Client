@@ -18,7 +18,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for SelectedItemList.xaml
     /// </summary>
-    public partial class frmBudgetItemList : Page
+    public partial class frmBudgetItemList : GEMSPage
     {
         //TODO:
         //@KAI Please fix

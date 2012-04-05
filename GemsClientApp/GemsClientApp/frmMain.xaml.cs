@@ -21,22 +21,68 @@ namespace Gems.UIWPF
         private DispatcherTimer timer, hourlyTimer;
         private Notifier taskbarNotifier;
         private Type currPageType;
+        private GEMSPage currPage;
+        private int selectedIndex = -1;
 
-        private static Dictionary<Type, string> pageFunctions = new Dictionary<Type, string>
+        private static Dictionary<Type, Tuple<string, EnumFunctions[]>> pageFunctions = new Dictionary<Type, Tuple<string, EnumFunctions[]>>
         {
-            { typeof(frmOverview), "Overview"},
-            { typeof(frmRoleTemplates), "manage role templates" },
-            { typeof(frmRoleList), "manage roles" },
-            { typeof(frmProgramManagement), "edit programme" },
-            { typeof(frmItemManagement), "add items" },            
-            { typeof(frmBudgetItemList), "budget item list" },
-            { typeof(frmBudgetIncome), "Budget Income Management" },
-            { typeof(frmBudgetReport),"Buget Report"},
-            { typeof(frmTaskAllocation), "Task Allocation" },
-            { typeof(frmViewTask),"Task Viewing"},
-            { typeof(frmGuestList), "edit guests" },
-            { typeof(frmServiceContactList), "Service Contact List" }
-            
+            { typeof(frmOverview), Tuple.Create("Overview", new EnumFunctions[] {})},
+            { typeof(frmRoleTemplates), Tuple.Create("manage role templates", new EnumFunctions[] {
+                EnumFunctions.Add_Role,
+                EnumFunctions.Edit_Role,
+                EnumFunctions.Delete_Role,
+                EnumFunctions.View_Role
+            })},
+            { typeof(frmRoleList), Tuple.Create("manage roles", new EnumFunctions[] {
+                EnumFunctions.Add_Role,
+                EnumFunctions.Edit_Role,
+                EnumFunctions.Delete_Role,
+                EnumFunctions.View_Role
+            })},
+            { typeof(frmProgramManagement), Tuple.Create("edit programme", new EnumFunctions[] {
+                EnumFunctions.Edit_Programmes,
+                EnumFunctions.Create_Programmes,
+                EnumFunctions.Delete_Programmes
+            })},
+            { typeof(frmItemManagement), Tuple.Create("add items", new EnumFunctions[] {
+                EnumFunctions.Manage_ItemTypes,
+                EnumFunctions.Manage_Items,
+                EnumFunctions.OptimizeItemList,
+            })},
+            { typeof(frmBudgetItemList), Tuple.Create("budget item list", new EnumFunctions[] {
+                EnumFunctions.Manage_Items
+            })},
+            { typeof(frmBudgetIncome), Tuple.Create("Budget Income Management", new EnumFunctions[] {
+                EnumFunctions.Manage_Income
+            })},
+            { typeof(frmBudgetReport), Tuple.Create("Budget Report", new EnumFunctions[] {
+                EnumFunctions.View_Budget_Report
+            })},
+            { typeof(frmTaskAllocation), Tuple.Create("Task Allocation", new EnumFunctions[] {
+                EnumFunctions.Add_Task,
+                EnumFunctions.Update_Task,
+                EnumFunctions.Delete_Task,
+                EnumFunctions.Assign_Task
+            })},
+            { typeof(frmViewTask), Tuple.Create("Task Viewing", new EnumFunctions[] {})},
+            { typeof(frmGuestList), Tuple.Create("edit guests", new EnumFunctions[] {
+                EnumFunctions.Add_Guest,
+                EnumFunctions.Edit_Guest,
+                EnumFunctions.Delete_Guest
+            })},
+            { typeof(frmServiceContactList), Tuple.Create("Service Contact List", new EnumFunctions[] {})},
+            { typeof(frmFields), Tuple.Create("edit registration form", new EnumFunctions[] {
+                EnumFunctions.Manage_Participant
+            })},
+            { typeof(frmStaticFields), Tuple.Create("view static fields", new EnumFunctions[] {
+                EnumFunctions.Manage_Participant
+            })},
+            { typeof(frmPublishWebsite), Tuple.Create("publish website", new EnumFunctions[] {
+                EnumFunctions.Manage_Participant
+            })}/*,
+            { typeof(frmParticipants), Tuple.Create("view participant registration data", new EnumFunctions[] {
+                EnumFunctions.Manage_Participant
+            })}*/
         };
 
         public frmMain()
@@ -122,8 +168,8 @@ namespace Gems.UIWPF
             mnuRoleTemplates.Visibility = Visibility.Collapsed;
             //
             mnuGuests.Visibility = Visibility.Collapsed;
-
-
+            //
+            mnuPublish.Visibility = Visibility.Collapsed;
         }
 
         private void EnableAllRight()
@@ -149,6 +195,8 @@ namespace Gems.UIWPF
             mnuRoleTemplates.Visibility = Visibility.Visible;
             //
             mnuGuests.Visibility = Visibility.Visible;
+            //
+            mnuPublish.Visibility = Visibility.Visible;
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -297,6 +345,11 @@ namespace Gems.UIWPF
                 mnuManpower.Visibility = Visibility.Visible;
                 mnuRoles.Visibility = Visibility.Visible;
             }
+            //
+            if (ef.Contains(EnumFunctions.Manage_Participant))
+            {
+                mnuPublish.Visibility = Visibility.Visible;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -326,21 +379,18 @@ namespace Gems.UIWPF
         private void mnuItemAssSR_Click(object sender, RoutedEventArgs e)
         {
             var frmAssn = new frmSearchUsers(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmAssn.ShowDialog();
         }
 
         private void mnuItemViewUsers_Click(object sender, RoutedEventArgs e)
         {
             var viewUserForm = new frmViewUsers(user, this);
-            //this.Visibility = Visibility.Collapsed;
             viewUserForm.ShowDialog();
         }
 
         private void mnuNotify_Click(object sender, RoutedEventArgs e)
         {
             var frmNotif = new frmNotificationList(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmNotif.ShowDialog();
         }
 
@@ -388,14 +438,12 @@ namespace Gems.UIWPF
         private void mnuItemManageEvent_Click(object sender, RoutedEventArgs e)
         {
             var frmManageEvent = new frmEventMangement(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmManageEvent.ShowDialog();
         }
 
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
         {
             var frmFacManage = new frmManageFacility(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmFacManage.ShowDialog();
         }
 
@@ -403,7 +451,6 @@ namespace Gems.UIWPF
         {
             navigate<frmGuestList>();
         }
-
 
         private void mnuProgram_Click(object sender, RoutedEventArgs e)
         {
@@ -427,7 +474,6 @@ namespace Gems.UIWPF
             {
                 Event ev = (Event)lstEventList.SelectedItem;
                 var frmFacSearch = new frmFacBooking(user, ev, this);
-                //this.Visibility = Visibility.Collapsed;
                 frmFacSearch.ShowDialog();
             }
         }
@@ -440,7 +486,6 @@ namespace Gems.UIWPF
         private void mnuManageFacBookings_Click(object sender, RoutedEventArgs e)
         {
             var frmManageBookings = new frmFacBookingAdmin(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmManageBookings.ShowDialog();
         }
 
@@ -457,72 +502,107 @@ namespace Gems.UIWPF
         private void mnuGlobalRoleTemplates_Click(object sender, RoutedEventArgs e)
         {
             currPageType = typeof(frmRoleTemplates);
-            var frmRoleTemplates = new frmRoleTemplates(user, null);
-            frame.Navigate(frmRoleTemplates);
+            currPage = new frmRoleTemplates(user, null);
+            frame.Navigate(currPage);
         }
 
         private void mnuViewBookings_Click(object sender, RoutedEventArgs e)
         {
             var frmViewBookings = new frmViewCurrentBooking(user, this);
-            //this.Visibility = Visibility.Collapsed;
             frmViewBookings.ShowDialog();
         }
 
-        private void navigate<T>()
+        private bool navigate<T>()
         {
-            currPageType = typeof(T);
             if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select an event to " + pageFunctions[currPageType] + "!", "No Event Selected!",
+                MessageBox.Show("Please select an event to " + pageFunctions[currPageType].Item1 + "!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
             }
-            else
+            if (currPage != null && currPage.isChanged())
             {
-                frame.Navigate(Activator.CreateInstance(currPageType, user, (Event)lstEventList.SelectedItem));
+                MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
+                    return false;
             }
+            currPageType = typeof(T);
+            Event ev = (Event)lstEventList.SelectedItem;
+            if (pageFunctions[currPageType].Item2.Length > 0 && user.userID != ev.Organizerid && !user.isSystemAdmin)
+            {
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.userID).ToArray<EnumFunctions>())
+                        foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
+                            if (ef1 == ef2)
+                            {
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Event)lstEventList.SelectedItem));
+                                return true;
+                            }
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                currPageType = typeof(frmOverview);
+            }
+            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            frame.Navigate(currPage);
+            return true;
         }
 
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (lstEventList.SelectedIndex != -1)
+            if (lstEventList.SelectedIndex == -1)
             {
-                try
+                selectedIndex = -1;
+                return;
+            }
+            if (selectedIndex == lstEventList.SelectedIndex)
+                return;
+            try
+            {
+                Event ev = (Event)lstEventList.SelectedItem;
+                if (!(bool)typeof(frmMain)
+                    .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .MakeGenericMethod(currPageType)
+                    .Invoke(this, null))
                 {
-                    Event ev = (Event)lstEventList.SelectedItem;
-                    typeof(frmMain)
-                        .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
-                        .MakeGenericMethod(currPageType)
-                        .Invoke(this, null);
+                    lstEventList.SelectedIndex = selectedIndex;
+                    return;
+                }
 
-                    if (user.userID == ev.Organizerid)
+                if (user.userID == ev.Organizerid)
+                    EnableAllRight();
+                else
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+
+                    if (user.userID == ev.Organizerid || user.isSystemAdmin)
+                    {
                         EnableAllRight();
+                    }
+                    else if (user.isFacilityAdmin)
+                    {
+                        DisableAllRight();
+                        mnuLocation.Visibility = Visibility.Visible;
+
+                        mnuViewBookings.Visibility = Visibility.Visible;
+                    }
                     else
                     {
-                        WCFHelperClient client = new WCFHelperClient();
-
-                        if (user.userID == ev.Organizerid || user.isSystemAdmin)
-                        {
-                            EnableAllRight();
-                        }
-                        else if (user.isFacilityAdmin)
-                        {
-                            DisableAllRight();
-                            mnuLocation.Visibility = Visibility.Visible;
-
-                            mnuViewBookings.Visibility = Visibility.Visible;
-                        }
-                        else
-                        {
-                            SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
-                        }
-                        client.Close();
+                        SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
                     }
+                    client.Close();
+                    selectedIndex = lstEventList.SelectedIndex;
                 }
-                catch (Exception ex)
-                {
-                    DisableAllRight();
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                DisableAllRight();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -531,9 +611,24 @@ namespace Gems.UIWPF
             navigate<frmOverview>();
         }
 
-        private void mnuPublish_Click(object sender, RoutedEventArgs e)
+        private void mnuPublishWebsite_Click(object sender, RoutedEventArgs e)
         {
+            navigate<frmPublishWebsite>();
+        }
 
+        private void mnuEditRegForm_Click(object sender, RoutedEventArgs e)
+        {
+            navigate<frmFields>();
+        }
+
+        private void mnuStaticFields_Click(object sender, RoutedEventArgs e)
+        {
+            navigate<frmStaticFields>();
+        }
+
+        private void mnuParticipants_Click(object sender, RoutedEventArgs e)
+        {
+            //navigate<frmParticipants>();
         }
 
         private void mnuContactList_Click(object sender, RoutedEventArgs e)

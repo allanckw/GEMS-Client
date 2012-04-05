@@ -1,0 +1,17 @@
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="Gems.UIWPF.frmStaticFields"
+    x:Name="Window"
+	Title="frmStaticFields"
+    Width="750" Height="600" Background="{x:Null}">
+    <GroupBox Header="Edit Static Fields" FontSize="21" FontWeight="Medium">
+        <DataGrid x:Name="dgStaticFields" SelectionMode="Single" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True">
+    		<DataGrid.Columns>
+    			<DataGridTextColumn Header="Field Name" Binding="{Binding FieldName}"/>
+                <DataGridTextColumn Header="Field Label" Binding="{Binding FieldLabel}"/>
+    		</DataGrid.Columns>
+    	</DataGrid>
+    </GroupBox>
+</src:GEMSPage>

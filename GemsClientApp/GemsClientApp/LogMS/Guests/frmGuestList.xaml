@@ -1,4 +1,4 @@
-﻿<Page
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
@@ -22,15 +22,15 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     			<StackPanel>
     				<StackPanel Height="31.313" Orientation="Horizontal">
     					<Label Content="Name:" Width="66.803" FontSize="13"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtName" TextChanged="onTextChanged" />
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtName" TextChanged="onChanged" />
     				</StackPanel>
     				<StackPanel Height="31.314" Orientation="Horizontal">
     					<Label Content="Contact:" Width="66.803" FontSize="13"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtContact" TextChanged="onTextChanged"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="287" FontSize="13" x:Name="txtContact" TextChanged="onChanged"/>
     				</StackPanel>
     				<StackPanel Height="304">
     					<Label Content="Description:" FontSize="13"/>
-    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13" Margin="8,0" x:Name="txtDescription" TextChanged="onTextChanged"/>
+    					<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="268.267" FontSize="13" Margin="8,0" x:Name="txtDescription" TextChanged="onChanged"/>
     				</StackPanel>
     				<DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
     					<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="13" Margin="0,0,10,0" Click="btnSave_Click" />
@@ -42,4 +42,4 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     		</GroupBox>
         </StackPanel>
 	</GroupBox>
-</Page>
+</src:GEMSPage>

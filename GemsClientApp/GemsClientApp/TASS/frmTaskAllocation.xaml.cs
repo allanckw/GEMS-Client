@@ -11,7 +11,7 @@ using Gems.UIWPF.CustomCtrl;
 
 namespace Gems.UIWPF
 {
-    public partial class frmTaskAllocation : Page
+    public partial class frmTaskAllocation : GEMSPage
     {
         private User user;
         private Event event_;

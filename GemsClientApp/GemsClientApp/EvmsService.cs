@@ -912,903 +912,6 @@ namespace evmsService.entities
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Items", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Items : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private decimal ActualPriceField;
-        
-        private decimal EstimatedPriceField;
-        
-        private int EventIDField;
-        
-        private string ItemNameField;
-        
-        private int SatisfactionField;
-        
-        private string typeStringField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal ActualPrice
-        {
-            get
-            {
-                return this.ActualPriceField;
-            }
-            set
-            {
-                this.ActualPriceField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal EstimatedPrice
-        {
-            get
-            {
-                return this.EstimatedPriceField;
-            }
-            set
-            {
-                this.EstimatedPriceField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ItemName
-        {
-            get
-            {
-                return this.ItemNameField;
-            }
-            set
-            {
-                this.ItemNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Satisfaction
-        {
-            get
-            {
-                return this.SatisfactionField;
-            }
-            set
-            {
-                this.SatisfactionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string typeString
-        {
-            get
-            {
-                return this.typeStringField;
-            }
-            set
-            {
-                this.typeStringField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private System.DateTime DueDateField;
-        
-        private int EventIDField;
-        
-        private double PercentageCompletionField;
-        
-        private string TaskDescField;
-        
-        private int TaskIDField;
-        
-        private string TaskNameField;
-        
-        private evmsService.entities.TaskAssignment[] TasksAssignmentsField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DueDate
-        {
-            get
-            {
-                return this.DueDateField;
-            }
-            set
-            {
-                this.DueDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double PercentageCompletion
-        {
-            get
-            {
-                return this.PercentageCompletionField;
-            }
-            set
-            {
-                this.PercentageCompletionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TaskDesc
-        {
-            get
-            {
-                return this.TaskDescField;
-            }
-            set
-            {
-                this.TaskDescField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskID
-        {
-            get
-            {
-                return this.TaskIDField;
-            }
-            set
-            {
-                this.TaskIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TaskName
-        {
-            get
-            {
-                return this.TaskNameField;
-            }
-            set
-            {
-                this.TaskNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.TaskAssignment[] TasksAssignments
-        {
-            get
-            {
-                return this.TasksAssignmentsField;
-            }
-            set
-            {
-                this.TasksAssignmentsField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAssignment", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class TaskAssignment : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int AssignedRoleIDField;
-        
-        private System.DateTime CompletedDateTimeField;
-        
-        private int EventIDField;
-        
-        private bool IsCompletedField;
-        
-        private bool IsReadField;
-        
-        private string RemarksField;
-        
-        private int TaskAssignmentIDField;
-        
-        private int TaskIDField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AssignedRoleID
-        {
-            get
-            {
-                return this.AssignedRoleIDField;
-            }
-            set
-            {
-                this.AssignedRoleIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CompletedDateTime
-        {
-            get
-            {
-                return this.CompletedDateTimeField;
-            }
-            set
-            {
-                this.CompletedDateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsCompleted
-        {
-            get
-            {
-                return this.IsCompletedField;
-            }
-            set
-            {
-                this.IsCompletedField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsRead
-        {
-            get
-            {
-                return this.IsReadField;
-            }
-            set
-            {
-                this.IsReadField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks
-        {
-            get
-            {
-                return this.RemarksField;
-            }
-            set
-            {
-                this.RemarksField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskAssignmentID
-        {
-            get
-            {
-                return this.TaskAssignmentIDField;
-            }
-            set
-            {
-                this.TaskAssignmentIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskID
-        {
-            get
-            {
-                return this.TaskIDField;
-            }
-            set
-            {
-                this.TaskIDField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OptimizedBudgetItems", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class OptimizedBudgetItems : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int BudgetIDField;
-        
-        private evmsService.entities.OptimizedBudgetItemsDetails[] BudgetItemsListField;
-        
-        private int EventIDField;
-        
-        private System.DateTime GeneratedDateField;
-        
-        private string GeneratorField;
-        
-        private decimal TotalEstimatedPriceField;
-        
-        private int TotalSatisfactionField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BudgetID
-        {
-            get
-            {
-                return this.BudgetIDField;
-            }
-            set
-            {
-                this.BudgetIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.OptimizedBudgetItemsDetails[] BudgetItemsList
-        {
-            get
-            {
-                return this.BudgetItemsListField;
-            }
-            set
-            {
-                this.BudgetItemsListField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime GeneratedDate
-        {
-            get
-            {
-                return this.GeneratedDateField;
-            }
-            set
-            {
-                this.GeneratedDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Generator
-        {
-            get
-            {
-                return this.GeneratorField;
-            }
-            set
-            {
-                this.GeneratorField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal TotalEstimatedPrice
-        {
-            get
-            {
-                return this.TotalEstimatedPriceField;
-            }
-            set
-            {
-                this.TotalEstimatedPriceField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TotalSatisfaction
-        {
-            get
-            {
-                return this.TotalSatisfactionField;
-            }
-            set
-            {
-                this.TotalSatisfactionField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OptimizedBudgetItemsDetails", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class OptimizedBudgetItemsDetails : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int BudgetDetailIDField;
-        
-        private int BudgetIDField;
-        
-        private int EventIDField;
-        
-        private bool IsBoughtField;
-        
-        private string ItemNameField;
-        
-        private string typeStringField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BudgetDetailID
-        {
-            get
-            {
-                return this.BudgetDetailIDField;
-            }
-            set
-            {
-                this.BudgetDetailIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BudgetID
-        {
-            get
-            {
-                return this.BudgetIDField;
-            }
-            set
-            {
-                this.BudgetIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsBought
-        {
-            get
-            {
-                return this.IsBoughtField;
-            }
-            set
-            {
-                this.IsBoughtField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ItemName
-        {
-            get
-            {
-                return this.ItemNameField;
-            }
-            set
-            {
-                this.ItemNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string typeString
-        {
-            get
-            {
-                return this.typeStringField;
-            }
-            set
-            {
-                this.typeStringField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BudgetIncome", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class BudgetIncome : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private System.DateTime DateReceivedField;
-        
-        private string DescriptionField;
-        
-        private int EventIDField;
-        
-        private decimal GstValueField;
-        
-        private decimal IncomeAfterGSTField;
-        
-        private decimal IncomeBeforeGSTField;
-        
-        private int IncomeIDField;
-        
-        private bool IsGstLiableField;
-        
-        private string NameField;
-        
-        private string SourceField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateReceived
-        {
-            get
-            {
-                return this.DateReceivedField;
-            }
-            set
-            {
-                this.DateReceivedField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this.DescriptionField;
-            }
-            set
-            {
-                this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal GstValue
-        {
-            get
-            {
-                return this.GstValueField;
-            }
-            set
-            {
-                this.GstValueField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal IncomeAfterGST
-        {
-            get
-            {
-                return this.IncomeAfterGSTField;
-            }
-            set
-            {
-                this.IncomeAfterGSTField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal IncomeBeforeGST
-        {
-            get
-            {
-                return this.IncomeBeforeGSTField;
-            }
-            set
-            {
-                this.IncomeBeforeGSTField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IncomeID
-        {
-            get
-            {
-                return this.IncomeIDField;
-            }
-            set
-            {
-                this.IncomeIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsGstLiable
-        {
-            get
-            {
-                return this.IsGstLiableField;
-            }
-            set
-            {
-                this.IsGstLiableField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Source
-        {
-            get
-            {
-                return this.SourceField;
-            }
-            set
-            {
-                this.SourceField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Facility", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Facility : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string BookingContactField;
-        
-        private int CapacityField;
-        
-        private string FacilityIDField;
-        
-        private evmsService.entities.Faculty FacultyField;
-        
-        private string LocationField;
-        
-        private string TechContactField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BookingContact
-        {
-            get
-            {
-                return this.BookingContactField;
-            }
-            set
-            {
-                this.BookingContactField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Capacity
-        {
-            get
-            {
-                return this.CapacityField;
-            }
-            set
-            {
-                this.CapacityField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FacilityID
-        {
-            get
-            {
-                return this.FacilityIDField;
-            }
-            set
-            {
-                this.FacilityIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.Faculty Faculty
-        {
-            get
-            {
-                return this.FacultyField;
-            }
-            set
-            {
-                this.FacultyField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Location
-        {
-            get
-            {
-                return this.LocationField;
-            }
-            set
-            {
-                this.LocationField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TechContact
-        {
-            get
-            {
-                return this.TechContactField;
-            }
-            set
-            {
-                this.TechContactField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Event", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
     public partial class Event : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -2427,6 +1530,903 @@ namespace evmsService.entities
             set
             {
                 this.StartDateTimeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.DateTime DueDateField;
+        
+        private int EventIDField;
+        
+        private double PercentageCompletionField;
+        
+        private string TaskDescField;
+        
+        private int TaskIDField;
+        
+        private string TaskNameField;
+        
+        private evmsService.entities.TaskAssignment[] TasksAssignmentsField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DueDate
+        {
+            get
+            {
+                return this.DueDateField;
+            }
+            set
+            {
+                this.DueDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PercentageCompletion
+        {
+            get
+            {
+                return this.PercentageCompletionField;
+            }
+            set
+            {
+                this.PercentageCompletionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TaskDesc
+        {
+            get
+            {
+                return this.TaskDescField;
+            }
+            set
+            {
+                this.TaskDescField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskID
+        {
+            get
+            {
+                return this.TaskIDField;
+            }
+            set
+            {
+                this.TaskIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TaskName
+        {
+            get
+            {
+                return this.TaskNameField;
+            }
+            set
+            {
+                this.TaskNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.TaskAssignment[] TasksAssignments
+        {
+            get
+            {
+                return this.TasksAssignmentsField;
+            }
+            set
+            {
+                this.TasksAssignmentsField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAssignment", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class TaskAssignment : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int AssignedRoleIDField;
+        
+        private System.DateTime CompletedDateTimeField;
+        
+        private int EventIDField;
+        
+        private bool IsCompletedField;
+        
+        private bool IsReadField;
+        
+        private string RemarksField;
+        
+        private int TaskAssignmentIDField;
+        
+        private int TaskIDField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AssignedRoleID
+        {
+            get
+            {
+                return this.AssignedRoleIDField;
+            }
+            set
+            {
+                this.AssignedRoleIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CompletedDateTime
+        {
+            get
+            {
+                return this.CompletedDateTimeField;
+            }
+            set
+            {
+                this.CompletedDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsCompleted
+        {
+            get
+            {
+                return this.IsCompletedField;
+            }
+            set
+            {
+                this.IsCompletedField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsRead
+        {
+            get
+            {
+                return this.IsReadField;
+            }
+            set
+            {
+                this.IsReadField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskAssignmentID
+        {
+            get
+            {
+                return this.TaskAssignmentIDField;
+            }
+            set
+            {
+                this.TaskAssignmentIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskID
+        {
+            get
+            {
+                return this.TaskIDField;
+            }
+            set
+            {
+                this.TaskIDField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Items", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Items : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private decimal ActualPriceField;
+        
+        private decimal EstimatedPriceField;
+        
+        private int EventIDField;
+        
+        private string ItemNameField;
+        
+        private int SatisfactionField;
+        
+        private string typeStringField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal ActualPrice
+        {
+            get
+            {
+                return this.ActualPriceField;
+            }
+            set
+            {
+                this.ActualPriceField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal EstimatedPrice
+        {
+            get
+            {
+                return this.EstimatedPriceField;
+            }
+            set
+            {
+                this.EstimatedPriceField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ItemName
+        {
+            get
+            {
+                return this.ItemNameField;
+            }
+            set
+            {
+                this.ItemNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Satisfaction
+        {
+            get
+            {
+                return this.SatisfactionField;
+            }
+            set
+            {
+                this.SatisfactionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string typeString
+        {
+            get
+            {
+                return this.typeStringField;
+            }
+            set
+            {
+                this.typeStringField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OptimizedBudgetItems", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class OptimizedBudgetItems : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int BudgetIDField;
+        
+        private evmsService.entities.OptimizedBudgetItemsDetails[] BudgetItemsListField;
+        
+        private int EventIDField;
+        
+        private System.DateTime GeneratedDateField;
+        
+        private string GeneratorField;
+        
+        private decimal TotalEstimatedPriceField;
+        
+        private int TotalSatisfactionField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BudgetID
+        {
+            get
+            {
+                return this.BudgetIDField;
+            }
+            set
+            {
+                this.BudgetIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.OptimizedBudgetItemsDetails[] BudgetItemsList
+        {
+            get
+            {
+                return this.BudgetItemsListField;
+            }
+            set
+            {
+                this.BudgetItemsListField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime GeneratedDate
+        {
+            get
+            {
+                return this.GeneratedDateField;
+            }
+            set
+            {
+                this.GeneratedDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Generator
+        {
+            get
+            {
+                return this.GeneratorField;
+            }
+            set
+            {
+                this.GeneratorField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalEstimatedPrice
+        {
+            get
+            {
+                return this.TotalEstimatedPriceField;
+            }
+            set
+            {
+                this.TotalEstimatedPriceField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TotalSatisfaction
+        {
+            get
+            {
+                return this.TotalSatisfactionField;
+            }
+            set
+            {
+                this.TotalSatisfactionField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OptimizedBudgetItemsDetails", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class OptimizedBudgetItemsDetails : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int BudgetDetailIDField;
+        
+        private int BudgetIDField;
+        
+        private int EventIDField;
+        
+        private bool IsBoughtField;
+        
+        private string ItemNameField;
+        
+        private string typeStringField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BudgetDetailID
+        {
+            get
+            {
+                return this.BudgetDetailIDField;
+            }
+            set
+            {
+                this.BudgetDetailIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BudgetID
+        {
+            get
+            {
+                return this.BudgetIDField;
+            }
+            set
+            {
+                this.BudgetIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsBought
+        {
+            get
+            {
+                return this.IsBoughtField;
+            }
+            set
+            {
+                this.IsBoughtField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ItemName
+        {
+            get
+            {
+                return this.ItemNameField;
+            }
+            set
+            {
+                this.ItemNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string typeString
+        {
+            get
+            {
+                return this.typeStringField;
+            }
+            set
+            {
+                this.typeStringField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BudgetIncome", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class BudgetIncome : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.DateTime DateReceivedField;
+        
+        private string DescriptionField;
+        
+        private int EventIDField;
+        
+        private decimal GstValueField;
+        
+        private decimal IncomeAfterGSTField;
+        
+        private decimal IncomeBeforeGSTField;
+        
+        private int IncomeIDField;
+        
+        private bool IsGstLiableField;
+        
+        private string NameField;
+        
+        private string SourceField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateReceived
+        {
+            get
+            {
+                return this.DateReceivedField;
+            }
+            set
+            {
+                this.DateReceivedField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal GstValue
+        {
+            get
+            {
+                return this.GstValueField;
+            }
+            set
+            {
+                this.GstValueField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal IncomeAfterGST
+        {
+            get
+            {
+                return this.IncomeAfterGSTField;
+            }
+            set
+            {
+                this.IncomeAfterGSTField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal IncomeBeforeGST
+        {
+            get
+            {
+                return this.IncomeBeforeGSTField;
+            }
+            set
+            {
+                this.IncomeBeforeGSTField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IncomeID
+        {
+            get
+            {
+                return this.IncomeIDField;
+            }
+            set
+            {
+                this.IncomeIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsGstLiable
+        {
+            get
+            {
+                return this.IsGstLiableField;
+            }
+            set
+            {
+                this.IsGstLiableField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Source
+        {
+            get
+            {
+                return this.SourceField;
+            }
+            set
+            {
+                this.SourceField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Facility", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Facility : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string BookingContactField;
+        
+        private int CapacityField;
+        
+        private string FacilityIDField;
+        
+        private evmsService.entities.Faculty FacultyField;
+        
+        private string LocationField;
+        
+        private string TechContactField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BookingContact
+        {
+            get
+            {
+                return this.BookingContactField;
+            }
+            set
+            {
+                this.BookingContactField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Capacity
+        {
+            get
+            {
+                return this.CapacityField;
+            }
+            set
+            {
+                this.CapacityField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FacilityID
+        {
+            get
+            {
+                return this.FacilityIDField;
+            }
+            set
+            {
+                this.FacilityIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Faculty Faculty
+        {
+            get
+            {
+                return this.FacultyField;
+            }
+            set
+            {
+                this.FacultyField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location
+        {
+            get
+            {
+                return this.LocationField;
+            }
+            set
+            {
+                this.LocationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TechContact
+        {
+            get
+            {
+                return this.TechContactField;
+            }
+            set
+            {
+                this.TechContactField = value;
             }
         }
     }
@@ -3540,7 +3540,15 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewPublish", ReplyAction="http://tempuri.org/IEvmsService/ViewPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Publish[] ViewPublish(int EventID);
+    evmsService.entities.Publish ViewPublish(int EventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventForPublish", ReplyAction="http://tempuri.org/IEvmsService/ViewEventForPublishResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventForPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Event[] ViewEventForPublish(System.DateTime start, System.DateTime end);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetEvent", ReplyAction="http://tempuri.org/IEvmsService/GetEventResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Event GetEvent(int EventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/UpdateSatifactionAndEstPrice", ReplyAction="http://tempuri.org/IEvmsService/UpdateSatifactionAndEstPriceResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/UpdateSatifactionAndEstPriceSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4072,9 +4080,19 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         base.Channel.EditPublish(user, eventID, startDateTime, endDateTime, remarks);
     }
     
-    public evmsService.entities.Publish[] ViewPublish(int EventID)
+    public evmsService.entities.Publish ViewPublish(int EventID)
     {
         return base.Channel.ViewPublish(EventID);
+    }
+    
+    public evmsService.entities.Event[] ViewEventForPublish(System.DateTime start, System.DateTime end)
+    {
+        return base.Channel.ViewEventForPublish(start, end);
+    }
+    
+    public evmsService.entities.Event GetEvent(int EventID)
+    {
+        return base.Channel.GetEvent(EventID);
     }
     
     public void UpdateSatifactionAndEstPrice(evmsService.entities.User user, evmsService.entities.Items iten, int s, decimal est)

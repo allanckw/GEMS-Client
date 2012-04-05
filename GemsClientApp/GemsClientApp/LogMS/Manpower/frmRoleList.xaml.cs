@@ -40,7 +40,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmRoleList.xaml
     /// </summary>
-    public partial class frmRoleList : Page
+    public partial class frmRoleList : GEMSPage
     {
 
         User user;

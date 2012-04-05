@@ -23,7 +23,7 @@ namespace Gems.UIWPF
     delegate Point GetPositionDelegate(IInputElement element);
     /// 
 
-    public partial class frmProgramManagement : Page
+    public partial class frmProgramManagement : GEMSPage
     {
 
         User user;
@@ -167,7 +167,7 @@ namespace Gems.UIWPF
 
             if (SegmentStartDateTime < event_.StartDateTime)
             {
-                MessageBox.Show("Event starts at " + event_.EndDateTime + ", programme segment must start after that.");
+                MessageBox.Show("Event starts at " + event_.StartDateTime + ", programme segment must start after that.");
                 return;
             }
             if (SegmentEndDateTime > event_.EndDateTime)

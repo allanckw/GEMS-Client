@@ -1,4 +1,4 @@
-﻿<Page x:Class="Gems.UIWPF.frmBudgetIncome"
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF" x:Class="Gems.UIWPF.frmBudgetIncome"
      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -88,4 +88,4 @@
             </GroupBox>
         </StackPanel>
     </GroupBox>
-</Page>
+</src:GEMSPage>

@@ -1,4 +1,4 @@
-﻿<Page
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -62,4 +62,4 @@
         	</GroupBox>
         </StackPanel>
     </Grid>
-</Page>
+</src:GEMSPage>

@@ -11,7 +11,7 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for Overview.xaml
     /// </summary>
-    public partial class frmOverview : Page
+    public partial class frmOverview : GEMSPage
     {
         User user;
         Event event_;

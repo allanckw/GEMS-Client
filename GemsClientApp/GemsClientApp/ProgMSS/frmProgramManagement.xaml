@@ -1,9 +1,9 @@
-﻿<Page
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmProgramManagement"
-	x:Name="Window"
+    x:Name="Window"
 	Title="frmProgramManagement"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Programme Management" FontWeight="Medium" FontSize="21" Margin="0" d:LayoutOverrides="Width, Height" Height="590" Width="741">
@@ -65,4 +65,4 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
 			</GroupBox>
 		</StackPanel>
 	</GroupBox>
-</Page>
+</src:GEMSPage>

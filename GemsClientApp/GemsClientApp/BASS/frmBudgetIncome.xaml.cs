@@ -12,12 +12,11 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for BudgetIncome.xaml
     /// </summary>
-    public partial class frmBudgetIncome : Page
+    public partial class frmBudgetIncome : GEMSPage
     {
 
         User user;
         Event event_;
-        bool changed = false;
         int selectedIndex = -1;
         List<BudgetIncome> incomeList;
 
@@ -66,7 +65,7 @@ namespace Gems.UIWPF
         }
 
         //TODO: Save Changes and Test Method!
-        private bool saveChanges()
+        public override bool saveChanges()
         {
             if (txtName.Text.Trim().Length == 0)
             {

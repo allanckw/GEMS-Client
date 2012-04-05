@@ -13,14 +13,13 @@ namespace Gems.UIWPF
     /// <summary>
     /// Interaction logic for frmGuestList.xaml
     /// </summary>
-    public partial class frmGuestList : Page
+    public partial class frmGuestList : GEMSPage
     {
 
         User user;
         Event event_;
         List<Guest> guestList;
         int selectedIndex = -1;
-        bool changed = false;
 
         public frmGuestList()
         {
@@ -54,7 +53,7 @@ namespace Gems.UIWPF
             clearAll();
         }
 
-        private bool saveChanges()
+        public override bool saveChanges()
         {
             if (txtName.Text.Trim() == "")
             {
@@ -162,11 +161,6 @@ namespace Gems.UIWPF
                 MessageBox.Show(ex.Message);
             }
             loadGuests();
-        }
-
-        private void onTextChanged(object sender, TextChangedEventArgs e)
-        {
-            changed = true;
         }
     }
 }

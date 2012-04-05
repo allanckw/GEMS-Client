@@ -1,4 +1,4 @@
-﻿<Page
+﻿<src:GEMSPage xmlns:src="clr-namespace:Gems.UIWPF"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:actb.control="clr-namespace:dragonz.actb.control;assembly=dragonz.actb"
@@ -61,4 +61,4 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     		</GroupBox>
     	</StackPanel>
 	</GroupBox>
-</Page>
+</src:GEMSPage>

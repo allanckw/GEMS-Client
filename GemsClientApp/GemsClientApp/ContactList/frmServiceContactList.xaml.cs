@@ -1,39 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using evmsService.entities;
 using System.Linq;
 using System.Windows.Media;
-//using System.Windows.Forms;
-
-using System.Windows;
-using System.Windows.Input;
-using evmsService.entities;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Text;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 
 namespace Gems.UIWPF
 {
     /// <summary>
     /// Interaction logic for frmServiceContactList.xaml
     /// </summary>
-    public partial class frmServiceContactList : Page
+    public partial class frmServiceContactList : GEMSPage
     {
         User user;
         Event event_;
