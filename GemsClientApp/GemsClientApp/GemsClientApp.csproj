@@ -190,6 +190,9 @@
     <Compile Include="Registration\frmFields.xaml.cs">
       <DependentUpon>frmFields.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Registration\frmParticipants.xaml.cs">
+      <DependentUpon>frmParticipants.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registration\frmPublishWebsite.xaml.cs">
       <DependentUpon>frmPublishWebsite.xaml</DependentUpon>
     </Compile>
@@ -374,6 +377,10 @@
     <Page Include="Registration\frmFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Registration\frmParticipants.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Registration\frmPublishWebsite.xaml">
       <SubType>Designer</SubType>

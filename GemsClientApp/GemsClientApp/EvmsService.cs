@@ -3365,6 +3365,57 @@ namespace System
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TupleOfParticipantstringRsiwEt5l", Namespace="http://schemas.datacontract.org/2004/07/System")]
+    public partial class TupleOfParticipantstringRsiwEt5l : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private evmsService.entities.Participant m_Item1Field;
+        
+        private string m_Item2Field;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public evmsService.entities.Participant m_Item1
+        {
+            get
+            {
+                return this.m_Item1Field;
+            }
+            set
+            {
+                this.m_Item1Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string m_Item2
+        {
+            get
+            {
+                return this.m_Item2Field;
+            }
+            set
+            {
+                this.m_Item2Field = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TupleOfRolestringRsiwEt5l", Namespace="http://schemas.datacontract.org/2004/07/System")]
     public partial class TupleOfRolestringRsiwEt5l : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -3509,6 +3560,10 @@ public interface IEvmsService
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventParticipant", ReplyAction="http://tempuri.org/IEvmsService/ViewEventParticipantResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Participant[] ViewEventParticipant(evmsService.entities.User user, int EventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithName", ReplyAction="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetParticipantFieldAnswer", ReplyAction="http://tempuri.org/IEvmsService/GetParticipantFieldAnswerResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetParticipantFieldAnswerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4043,6 +4098,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public evmsService.entities.Participant[] ViewEventParticipant(evmsService.entities.User user, int EventID)
     {
         return base.Channel.ViewEventParticipant(user, EventID);
+    }
+    
+    public System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID)
+    {
+        return base.Channel.ViewEventParticipantWithName(user, EventID);
     }
     
     public evmsService.entities.FieldAnswer[] GetParticipantFieldAnswer(evmsService.entities.User user, int EventID, int ParticipantID)

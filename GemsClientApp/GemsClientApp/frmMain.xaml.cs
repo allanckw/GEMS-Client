@@ -79,10 +79,10 @@ namespace Gems.UIWPF
             })},
             { typeof(frmPublishWebsite), Tuple.Create("publish website", new EnumFunctions[] {
                 EnumFunctions.Manage_Participant
-            })}/*,
+            })},
             { typeof(frmParticipants), Tuple.Create("view participant registration data", new EnumFunctions[] {
                 EnumFunctions.Manage_Participant
-            })}*/
+            })}
         };
 
         public frmMain()
@@ -628,7 +628,7 @@ namespace Gems.UIWPF
 
         private void mnuParticipants_Click(object sender, RoutedEventArgs e)
         {
-            //navigate<frmParticipants>();
+            navigate<frmParticipants>();
         }
 
         private void mnuContactList_Click(object sender, RoutedEventArgs e)
