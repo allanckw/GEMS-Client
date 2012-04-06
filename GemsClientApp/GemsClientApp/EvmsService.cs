@@ -3561,10 +3561,6 @@ public interface IEvmsService
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Participant[] ViewEventParticipant(evmsService.entities.User user, int EventID);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithName", ReplyAction="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID);
-    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetParticipantFieldAnswer", ReplyAction="http://tempuri.org/IEvmsService/GetParticipantFieldAnswerResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetParticipantFieldAnswerSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.FieldAnswer[] GetParticipantFieldAnswer(evmsService.entities.User user, int EventID, int ParticipantID);
@@ -3580,6 +3576,10 @@ public interface IEvmsService
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewStaticField", ReplyAction="http://tempuri.org/IEvmsService/ViewStaticFieldResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewStaticFieldSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.StaticField[] ViewStaticField();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithName", ReplyAction="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventParticipantWithNameSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddPublish", ReplyAction="http://tempuri.org/IEvmsService/AddPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AddPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3727,7 +3727,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CheckRequestExist", ReplyAction="http://tempuri.org/IEvmsService/CheckRequestExistResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/CheckRequestExistSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool CheckRequestExist(int eventid);
+    bool CheckRequestExist(int eventid, System.DateTime start, System.DateTime end);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetFacBookingRequestList", ReplyAction="http://tempuri.org/IEvmsService/GetFacBookingRequestListResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetFacBookingRequestListSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4100,11 +4100,6 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.ViewEventParticipant(user, EventID);
     }
     
-    public System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID)
-    {
-        return base.Channel.ViewEventParticipantWithName(user, EventID);
-    }
-    
     public evmsService.entities.FieldAnswer[] GetParticipantFieldAnswer(evmsService.entities.User user, int EventID, int ParticipantID)
     {
         return base.Channel.GetParticipantFieldAnswer(user, EventID, ParticipantID);
@@ -4123,6 +4118,11 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
     public evmsService.entities.StaticField[] ViewStaticField()
     {
         return base.Channel.ViewStaticField();
+    }
+    
+    public System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int EventID)
+    {
+        return base.Channel.ViewEventParticipantWithName(user, EventID);
     }
     
     public void AddPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks)
@@ -4305,9 +4305,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.AddFacilityBookingRequest(user, e, faculty, reqstart, reqEnd, reqDetails);
     }
     
-    public bool CheckRequestExist(int eventid)
+    public bool CheckRequestExist(int eventid, System.DateTime start, System.DateTime end)
     {
-        return base.Channel.CheckRequestExist(eventid);
+        return base.Channel.CheckRequestExist(eventid, start, end);
     }
     
     public evmsService.entities.FacilityBookingRequest[] GetFacBookingRequestList(evmsService.entities.User FacAdmin)

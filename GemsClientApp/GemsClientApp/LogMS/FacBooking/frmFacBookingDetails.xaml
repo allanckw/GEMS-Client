@@ -26,8 +26,8 @@
             </Button.Template>
         </Button>
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Choices of Location" Height="38" x:Name="label3" Width="610" FontFamily="Stencil" FontSize="21" />
-		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="60" Width="650">
-            <GroupBox Header="Facility Booking Time"  Width="650" FontWeight="Medium" FontSize="16" Height="100" Margin="0.5,0">
+		<StackPanel Height="500" Canvas.Left="21" Canvas.Top="50" Width="650">
+            <GroupBox Header="Facility Booking Time"  Width="650" FontWeight="Medium" FontSize="16" Height="120" Margin="0.5,0">
 				<StackPanel Height="100" Margin="0" HorizontalAlignment="Left" Width="650" VerticalAlignment="Top">
 					<StackPanel Height="30" Orientation="Horizontal" Width="650">
 						<Label Content="From: " x:Name="label2" FontSize="14" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" Width="60" />
@@ -35,12 +35,16 @@
 					</StackPanel>
 					<StackPanel Width="650" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30">
 						<Label Content="Booking Duration:"/>
-						<ComboBox Width="120" Height="25" Name="cboBookDuration" />
-                        <Button x:Name="btnTest" Click="btnTest_Click" Content="test" Margin="20,0,0,0" Visibility="Collapsed" />
+						<ComboBox Width="120" Height="25" Name="cboBookDuration" SelectionChanged="cboBookDuration_SelectionChanged" />
+                        
 					</StackPanel>
-				</StackPanel>
+                    <StackPanel Width="650" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30">
+                        <Label Content="End Time: "/>
+                        <TextBlock Name="txtEndTime" Width="400" Margin="0,5,0,0" Height="22" />
+                    </StackPanel>
+                </StackPanel>
 			</GroupBox>
-            <StackPanel Width="650" HorizontalAlignment="Left" Height="410">
+            <StackPanel Width="650" HorizontalAlignment="Left" Height="380">
                 <GroupBox Header="Please Arrange Your choice of Facility" FontWeight="Medium" Height="350" FontSize="16" Margin="0" Width="650" HorizontalAlignment="Left">
                     <DataGrid x:Name="dgFacility" FontSize="16">
                         <DataGrid.Columns>
@@ -69,7 +73,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>
-                <Button x:Name="btnSubmit" Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="34" Click="btnSubmit_Click" />
+                <Button x:Name="btnSubmit" Content="Submit" Width="75" HorizontalAlignment="Left" FontSize="16" Margin="570,3,0,0" Height="30" Click="btnSubmit_Click" />
 			</StackPanel>
 		</StackPanel>
 	</Canvas>

@@ -164,19 +164,11 @@ namespace Gems.UIWPF
                     "Select Venue", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            WCFHelperClient client = new WCFHelperClient();
-            bool exist = client.CheckRequestExist(event_.EventID);
-            client.Close();
 
-            if (exist)
-            {
-                MessageBox.Show("The event already have a pending or confirmed request!",
-                    "Request already Exist", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
 
             var bkFacPrior = new frmFacBookingDetails(user, event_, this.selectedFacs);
             bkFacPrior.ShowDialog();
+
         }
 
         private void getListOfSelectedFacilities()

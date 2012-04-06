@@ -19,12 +19,11 @@ namespace Gems.UIWPF
         List<Facility> models;
         Event event_;
         User user;
-        int MaxBookingIdx = 0;
 
         public frmFacBookingDetails()
         {
             this.InitializeComponent();
-            
+
         }
 
         public frmFacBookingDetails(User u, Event e, List<Facility> m)
@@ -43,13 +42,11 @@ namespace Gems.UIWPF
             dgFacility.CanUserAddRows = false;
             cboAdd();
 
-             dtpStart.cboHr.SelectionChanged+=OnChanged;
-             dtpStart.cboMin.SelectionChanged += OnChanged;
+            dtpStart.cboHr.SelectionChanged += OnChanged;
+            dtpStart.cboMin.SelectionChanged += OnChanged;
 
-            //EventManager.RegisterClassHandler(typeof(DatePicker), ComboBox.SelectionChangedEvent, 
-            //    new RoutedEventHandler(OnChanged));
             dtpStart.SelectedDateTime = event_.StartDateTime;
-           
+
 
         }
 
@@ -60,7 +57,7 @@ namespace Gems.UIWPF
             int.TryParse(dtpStart.cboHr.SelectedValue.ToString(), out hr);
             int min;
             int.TryParse(dtpStart.cboMin.SelectedValue.ToString(), out min);
-            int maxIdx = (24 - hr)*2;
+            int maxIdx = (24 - hr) * 2;
             if (min > 0)
             {
                 maxIdx -= 1;
@@ -77,8 +74,8 @@ namespace Gems.UIWPF
 
             for (int i = 0; i <= maxIdx; i++)
             {
-                TimeSpan duration = new TimeSpan(0, i*30, 0);
-                if(i==48)
+                TimeSpan duration = new TimeSpan(0, i * 30, 0);
+                if (i == 48)
                     cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
                 else
                     cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
@@ -96,7 +93,7 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
- 
+
 
         private void saveRequest(DateTime start, DateTime end)
         {
@@ -116,7 +113,7 @@ namespace Gems.UIWPF
                         {
                             Mouse.OverrideCursor = Cursors.Wait;
                             MessageBox.Show("Please wait while we process your request...");
-                               
+
                             List<int> priorityList = new List<int>();
 
                             //To grab cbo selected value in datagrid
@@ -158,7 +155,7 @@ namespace Gems.UIWPF
 
                             if (success)
                             {
-                                MessageBox.Show("Your request for the facilities booking is submitted," 
+                                MessageBox.Show("Your request for the facilities booking is submitted,"
                                     + "please wait for an administrator to respond to your request",
                                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
@@ -202,7 +199,7 @@ namespace Gems.UIWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if  (dtpStart.SelectedDateTime == null)
+            if (dtpStart.SelectedDateTime == null)
             {
                 MessageBox.Show("Please select the Dates", "Validation Error",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -213,12 +210,17 @@ namespace Gems.UIWPF
 
             DateTime end = getEndDateTime();
 
-            if (end < start)
+            WCFHelperClient client = new WCFHelperClient();
+            bool exist = client.CheckRequestExist(event_.EventID, start ,end);
+            client.Close();
+
+            if (exist)
             {
-                MessageBox.Show("Start date cannot be later than end date", "Validation Error",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("The event already have a pending or confirmed request at the selected time frame!",
+                    "Request already Exist", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+
             try
             {
                 saveRequest(start, end);
@@ -237,18 +239,17 @@ namespace Gems.UIWPF
             return bookingEndDateTime;
         }
 
-        //Testing of end date..to enable this go xaml and turn visibility to visible
-        private void btnTest_Click(object sender, RoutedEventArgs e)
+           private void cboBookDuration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime start = dtpStart.SelectedDateTime;
 
             DateTime end = getEndDateTime();
-            if (end == start)
-            {
-                MessageBox.Show("End datetime must be later than start datetime");
-                return;
-            }
-            MessageBox.Show(end.ToString("dd MMM yyyy HH:mm"));
+            //if (end == start)
+            //{
+            //    MessageBox.Show("End datetime must be later than start datetime");
+            //    return;
+            //}
+            this.txtEndTime.Text = end.ToString("dd MMM yyyy HH:mm");
         }
     }
 }
