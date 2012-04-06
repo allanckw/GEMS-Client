@@ -17,27 +17,33 @@ namespace Gems.UIWPF
         User user;
         Event event_;
 
-        public frmServiceContactList(User u, Event e)
+        public frmServiceContactList()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        public frmServiceContactList(User u, Event e)
+            : this()
+        {
             txtsearch.TextChanged += txtsearch_TextChanged;
             this.user = u;
-            this.event_ = e;
+            if (e != null)
+            {
+                this.event_ = e;
+            }
+            // Insert code required on object creation below this point.
+        }
+
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
 
             loadServices();
             if (lstServiceList.Items.Count == 0)
                 Service_SaveMode();
             else
                 lstServiceList.SelectedIndex = 0;
-            // Insert code required on object creation below this point.
-        }
-
-      
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-
         }
 
         private void loadServices()
@@ -49,17 +55,14 @@ namespace Gems.UIWPF
 
                 if (txtsearch.Foreground != Brushes.Black)
                 {
-                    serviceList = client.ViewService(user, event_.EventID, null).ToList<Service>();
+                    serviceList = client.ViewService(null).ToList<Service>();
                 }
                 else
                 {
-                    serviceList = client.ViewService(user, event_.EventID, txtsearch.Text.Trim()).ToList<Service>();
+                    serviceList = client.ViewService(txtsearch.Text.Trim()).ToList<Service>();
                 }
 
                 client.Close();
-
-
-
                 lstServiceList.ItemsSource = serviceList
                                                  .OrderBy(x => x.Name)
                                                  .ThenBy(x => x.Notes)
@@ -78,7 +81,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                List<PointOfContact> POCList = client.ViewPointOfContact(user, ServiceID).ToList<PointOfContact>();
+                List<PointOfContact> POCList = client.ViewPointOfContact(ServiceID).ToList<PointOfContact>();
 
 
                 client.Close();
@@ -101,7 +104,7 @@ namespace Gems.UIWPF
 
         private void loadReview(int ServiceID)
         {
-            
+
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
@@ -117,20 +120,20 @@ namespace Gems.UIWPF
                                                  .ToList<Review>();
                 lstReviewList_SelectionChanged(null, null);
 
-              
-                    Service service = ((Service)lstServiceList.SelectedItem);
-                    for (int i = 0; i < lstReviewList.Items.Count; i++)
+
+                Service service = ((Service)lstServiceList.SelectedItem);
+                for (int i = 0; i < lstReviewList.Items.Count; i++)
+                {
+                    Review r = ((Review)lstReviewList.Items[i]);
+                    if (r.ServiceID == service.ServiceID && user.userID == r.UserID)
                     {
-                        Review r = ((Review)lstReviewList.Items[i]);
-                        if (r.ServiceID == service.ServiceID && user.userID == r.UserID)
-                        {
-                            btnAddReview.Content = "Edit Own Review";
-                            return;
-                        }
+                        btnAddReview.Content = "Edit Own Review";
+                        return;
                     }
+                }
 
 
-                    btnAddReview.Content = "Add New Review";
+                btnAddReview.Content = "Add New Review";
 
             }
             catch (Exception ex)
@@ -146,9 +149,9 @@ namespace Gems.UIWPF
 
             if (service != null)
             {
-                
+
                 btnAddNewPOC.IsEnabled = true;
-                
+
                 txtWebsite.Text = service.Url;
                 txtNote.Document.Blocks.Clear();
                 txtNote.AppendText(service.Notes);
@@ -161,7 +164,7 @@ namespace Gems.UIWPF
                 lstContactList_SelectionChanged(null, null);
                 Service_BrowseMode();
                 Enable_PointOfContactField();
-                
+
                 btnDelete.IsEnabled = true;
             }
             else
@@ -244,18 +247,18 @@ namespace Gems.UIWPF
             lstReviewList.ItemsSource = null;
             btnAddReview.IsEnabled = false;
             btnDeleteReview.IsEnabled = false;
-           // btnViewReview.IsEnabled = false;
+            // btnViewReview.IsEnabled = false;
             lstReviewList.IsEnabled = false;
-     
+
         }
         private void Enable_ReviewContactField()
         {
             btnAddReview.IsEnabled = true;
             btnDeleteReview.IsEnabled = true;
-          //  btnViewReview.IsEnabled = true;
+            //  btnViewReview.IsEnabled = true;
 
             lstReviewList.IsEnabled = true;
-          
+
         }
 
         private void lstContactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -266,7 +269,7 @@ namespace Gems.UIWPF
             if (poc != null)
             {
                 btnAddNewPOC.Content = "Save";
-                
+
                 txtContactEmail.Text = poc.Email;
                 txtContactName.Text = poc.Name;
                 txtContactPosition.Text = poc.Position;
@@ -276,7 +279,7 @@ namespace Gems.UIWPF
             else
             {
                 btnAddNewPOC.Content = "Add New";
-                
+
                 txtContactEmail.Text = "";
                 txtContactName.Text = "";
                 txtContactPosition.Text = "";
@@ -337,8 +340,16 @@ namespace Gems.UIWPF
                 try
                 {
                     WCFHelperClient client = new WCFHelperClient();
-                    client.AddPointOfContact(user, event_.EventID, ((Service)lstServiceList.SelectedItem).ServiceID,
-                        txtContactName.Text.Trim(), txtContactPosition.Text.Trim(), txtContactTel.Text.Trim(), txtContactEmail.Text.Trim());
+                    if (event_ != null)
+                    {
+                        client.AddPointOfContact(user, event_.EventID, ((Service)lstServiceList.SelectedItem).ServiceID,
+                            txtContactName.Text.Trim(), txtContactPosition.Text.Trim(), txtContactTel.Text.Trim(), txtContactEmail.Text.Trim());
+                    }
+                    else
+                    {
+                        client.AddPointOfContact(user, -1, ((Service)lstServiceList.SelectedItem).ServiceID,
+                            txtContactName.Text.Trim(), txtContactPosition.Text.Trim(), txtContactTel.Text.Trim(), txtContactEmail.Text.Trim());
+                    }
                     client.Close();
 
                     loadPointOfContact(((Service)lstServiceList.SelectedItem).ServiceID);
@@ -366,14 +377,12 @@ namespace Gems.UIWPF
             {
                 var textRange = new TextRange(txtNote.Document.ContentStart, txtNote.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.AddService(user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
-
+                if (event_ != null)
+                    client.AddService(user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
+                else
+                    client.AddService(user, -1, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
 
                 client.Close();
-
-
-               
-
             }
             catch (Exception ex)
             {
@@ -387,14 +396,15 @@ namespace Gems.UIWPF
             {
                 var textRange = new TextRange(txtNote.Document.ContentStart, txtNote.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.EditService(service.ServiceID, user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
-
-
+                if (event_ == null)
+                {
+                    client.EditService(service.ServiceID, user, -1, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
+                }
+                else
+                {
+                    client.EditService(service.ServiceID, user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
+                }
                 client.Close();
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -407,14 +417,16 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.EditPointOfContact(user, event_.EventID, poc.PointOfContactID,txtContactName.Text, txtContactPosition.Text, txtContactTel.Text, txtContactEmail.Text);
 
-
+                if (event_ != null)
+                {
+                    client.EditPointOfContact(user, event_.EventID, poc.PointOfContactID, txtContactName.Text, txtContactPosition.Text, txtContactTel.Text, txtContactEmail.Text);
+                }
+                else
+                {
+                    client.EditPointOfContact(user, -1, poc.PointOfContactID, txtContactName.Text, txtContactPosition.Text, txtContactTel.Text, txtContactEmail.Text);
+                }
                 client.Close();
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -427,14 +439,8 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.DeleteService(user,service.ServiceID);
-
-
+                client.DeleteService(user, service.ServiceID);
                 client.Close();
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -448,12 +454,7 @@ namespace Gems.UIWPF
             {
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeletePointOfContact(user, poc.PointOfContactID);
-
-
                 client.Close();
-
-
-
 
             }
             catch (Exception ex)
@@ -474,7 +475,6 @@ namespace Gems.UIWPF
                 return;
             }
 
-
             if (service != null)
             {
                 UpdateService(service);
@@ -482,11 +482,11 @@ namespace Gems.UIWPF
             }
             else
             {
-                
+
                 //checking
                 SaveService();
                 //save
-                
+
             }
 
             loadServices();
@@ -498,7 +498,7 @@ namespace Gems.UIWPF
                     break;
                 }
             }
-            
+
         }
 
         private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -515,14 +515,14 @@ namespace Gems.UIWPF
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Service service = ((Service)lstServiceList.SelectedItem);
 
             DeleteService(service);
 
             loadServices();
         }
-        
+
         private void btnDeletePOC_Click(object sender, RoutedEventArgs e)
         {
 
@@ -539,7 +539,7 @@ namespace Gems.UIWPF
         {
             Service service = ((Service)lstServiceList.SelectedItem);
             frmAddEditReview frm;
-            Review sr=null;
+            Review sr = null;
             for (int i = 0; i < lstReviewList.Items.Count; i++)
             {
                 Review r = ((Review)lstReviewList.Items[i]);
@@ -548,31 +548,8 @@ namespace Gems.UIWPF
                     sr = r;
                     frm = new frmAddEditReview(user, this, r, service, event_);
                     frm.ShowDialog();
-                    
-                    goto End;
+                    lstReviewList.SelectedIndex = -1;
                 }
-            }
-
-            
-            
-           
-            
-            frm = new frmAddEditReview(user, this, null, service,event_);
-            frm.ShowDialog();
-            //loadReview(service.ServiceID);
-            //frm.created
-
-            End:
-            loadReview(service.ServiceID);
-            for (int i = 0; i < lstReviewList.Items.Count; i++)
-            {
-                Review r = ((Review)lstReviewList.Items[i]);
-               
-                if (r.ServiceID == service.ServiceID && r.UserID == user.userID)
-                {
-                    lstReviewList.SelectedIndex = i;
-                }
-                //}
             }
         }
 
@@ -582,19 +559,15 @@ namespace Gems.UIWPF
             Review r = (Review)lstReviewList.SelectedItem;
             try
             {
-                if(r != null)
+                if (r != null)
                 {
-                WCFHelperClient client = new WCFHelperClient();
-                client.DeleteReview(user,r.UserID,r.ServiceID);
-                
-                client.Close();
+                    WCFHelperClient client = new WCFHelperClient();
+                    client.DeleteReview(user, r.UserID, r.ServiceID);
 
-                loadReview(service.ServiceID);
+                    client.Close();
+
+                    loadReview(service.ServiceID);
                 }
-
-
-
-
 
             }
             catch (Exception ex)
@@ -611,10 +584,10 @@ namespace Gems.UIWPF
 
         private void btnViewReview_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Service service = ((Service)lstServiceList.SelectedItem);
             Review r = (Review)lstReviewList.SelectedItem;
-            frmAddEditReview frm = new frmAddEditReview(user, this, r, service,event_);
+            frmAddEditReview frm = new frmAddEditReview(user, this, r, service, event_);
             frm.ShowDialog();
             loadReview(service.ServiceID);
 
@@ -656,7 +629,7 @@ namespace Gems.UIWPF
                 txtsearch.TextChanged -= txtsearch_TextChanged;
                 txtsearch.Text = "Search";
                 txtsearch.SelectAll();
-                
+
                 txtsearch.Foreground = (Brush)bc.ConvertFrom("#69000000");
                 loadServices();
                 txtsearch.TextChanged += txtsearch_TextChanged;
@@ -677,7 +650,7 @@ namespace Gems.UIWPF
                 txtsearch.Text = "";
                 txtsearch.TextChanged += txtsearch_TextChanged;
             }
-            
+
 
         }
 
@@ -692,7 +665,7 @@ namespace Gems.UIWPF
             //MessageBox.Show(((Hyperlink)sender).Parent.GetType().ToString());
             //Label l = (Label)((Hyperlink)sender).Parent;
             //MessageBox.Show(l.Parent.GetType().ToString());
-            
+
             String temp = ((Hyperlink)sender).Tag.ToString();
             for (int i = 0; i < lstReviewList.Items.Count; i++)
             {
@@ -719,8 +692,8 @@ namespace Gems.UIWPF
             //        break;
             //    }
             //}
-            
-           
+
+
             Service service = ((Service)lstServiceList.SelectedItem);
             Review r = (Review)lstReviewList.SelectedItem;
             frmAddEditReview frm = new frmAddEditReview(user, this, r, service, event_);
@@ -738,6 +711,11 @@ namespace Gems.UIWPF
                     }
                 }
             }
+        }
+
+        private void lstReviewList_LostFocus(object sender, RoutedEventArgs e)
+        {
+            lstReviewList.SelectedIndex = -1;
         }
 
         //int GetCurrentIndex(GetPositionDelegate getPosition)
@@ -772,6 +750,6 @@ namespace Gems.UIWPF
         //    return lstReviewList.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
         //}
 
-      
+
     }
 }

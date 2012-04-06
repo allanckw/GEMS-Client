@@ -49,22 +49,22 @@ namespace Gems.UIWPF
                 EnumFunctions.Manage_Items,
                 EnumFunctions.OptimizeItemList,
             })},
-            { typeof(frmBudgetItemList), Tuple.Create("budget item list", new EnumFunctions[] {
+            { typeof(frmBudgetItemList), Tuple.Create("manage budget item list", new EnumFunctions[] {
                 EnumFunctions.Manage_Items
             })},
-            { typeof(frmBudgetIncome), Tuple.Create("Budget Income Management", new EnumFunctions[] {
+            { typeof(frmBudgetIncome), Tuple.Create("manage budget income", new EnumFunctions[] {
                 EnumFunctions.Manage_Income
             })},
-            { typeof(frmBudgetReport), Tuple.Create("Budget Report", new EnumFunctions[] {
+            { typeof(frmBudgetReport), Tuple.Create("view budget report", new EnumFunctions[] {
                 EnumFunctions.View_Budget_Report
             })},
-            { typeof(frmTaskAllocation), Tuple.Create("Task Allocation", new EnumFunctions[] {
+            { typeof(frmTaskAllocation), Tuple.Create("manage tasks", new EnumFunctions[] {
                 EnumFunctions.Add_Task,
                 EnumFunctions.Update_Task,
                 EnumFunctions.Delete_Task,
                 EnumFunctions.Assign_Task
             })},
-            { typeof(frmViewTask), Tuple.Create("Task Viewing", new EnumFunctions[] {})},
+            { typeof(frmViewTask), Tuple.Create("view task", new EnumFunctions[] {})},
             { typeof(frmGuestList), Tuple.Create("edit guests", new EnumFunctions[] {
                 EnumFunctions.Add_Guest,
                 EnumFunctions.Edit_Guest,
@@ -514,17 +514,25 @@ namespace Gems.UIWPF
 
         private bool navigate<T>()
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            Type newPageType = typeof(T);
+            if (newPageType == typeof(frmServiceContactList))
             {
-                MessageBox.Show("Please select an event to " + pageFunctions[currPageType].Item1 + "!", "No Event Selected!",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                //Do nothing
             }
-            if (currPage != null && currPage.isChanged())
+            else
             {
-                MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
+                if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select an event to " + pageFunctions[newPageType].Item1 + "!", "No Event Selected!",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return false;
+                }
+                if (currPage != null && currPage.isChanged())
+                {
+                    MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
+                        return false;
+                }
             }
             currPageType = typeof(T);
             Event ev = (Event)lstEventList.SelectedItem;
@@ -596,7 +604,7 @@ namespace Gems.UIWPF
                         SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
                     }
                     client.Close();
-                    
+
                 }
                 selectedIndex = lstEventList.SelectedIndex;
             }

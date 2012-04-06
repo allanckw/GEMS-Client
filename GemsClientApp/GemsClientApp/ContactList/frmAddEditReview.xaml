@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Opacity="1.0" Width="709" Height="491">
-        <Button x:Name="btnClose" Canvas.Left="667" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
+        <Button x:Name="btnClose" Canvas.Left="656" Canvas.Top="12" Height="0" Width="0" Click="btnExit_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
@@ -24,7 +24,7 @@
             </Button.Template>
         </Button>
         <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Review" Height="38" x:Name="label3" Width="613.5" FontFamily="Stencil" FontSize="20" />
-        <GroupBox Header="Review Details" Canvas.Left="12" Canvas.Top="54" Width="689" FontSize="16" FontFamily="Stencil">
+        <GroupBox Header="Review Details" Canvas.Left="6" Canvas.Top="36" Width="689" FontSize="16" FontFamily="Stencil">
             <StackPanel Height="400" VerticalAlignment="Top">
         		<StackPanel Height="32" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Margin="5,10,0,0">
         			<StackPanel.RenderTransform>
@@ -52,14 +52,14 @@
         				</StackPanel>
         			</StackPanel>
         		</StackPanel>
-        		<RichTextBox Height="260" Margin="0,5,0,0" Name="txtReviewDescription" FontSize="12" FontFamily="Segoe UI">
+        		<RichTextBox Height="246" Margin="0,5,0,0" Name="txtReviewDescription" FontSize="12" FontFamily="Segoe UI">
         			<FlowDocument>
         				<Paragraph><Run Text=""/></Paragraph>
         			</FlowDocument>
         		</RichTextBox>
         		<StackPanel x:Name="stackbtn" Height="35" Margin="0,5,0,0" Orientation="Horizontal">
         			<StackPanel Width="100">
-        				<Button x:Name="btnSave" Content="Save" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0,0,0" Click="btnSave_Click" d:LayoutOverrides="HorizontalMargin" />
+        				<Button x:Name="btnSave" Content="Save" Width="75" Height="25" FontSize="13" Margin="5,0,0,0" Click="btnSave_Click" d:LayoutOverrides="HorizontalMargin" />
         			</StackPanel>
         			<StackPanel Width="600" HorizontalAlignment="Right">
         				<Label x:Name="lblReport" Margin="0" Width="100" Height="30" FontSize="14" FontFamily="Segoe Marker" Background="{x:Null}" HorizontalAlignment="Right" d:LayoutOverrides="Height">

@@ -91,8 +91,8 @@ namespace Gems.UIWPF
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+        
             this.Close();
-           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -109,15 +109,21 @@ namespace Gems.UIWPF
         {
             try
             {
-
                 var textRange = new TextRange(txtReviewDescription.Document.ContentStart, txtReviewDescription.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.Review(user, event_.EventID, service.ServiceID, rating.getRatingValue(), DateTime.Now, textRange.Text); 
-
+                if (event_ != null)
+                {
+                    client.Review(user, event_.EventID, service.ServiceID, rating.getRatingValue(), DateTime.Now, textRange.Text);
+                }
+                else
+                {
+                    client.Review(user, -1, service.ServiceID, rating.getRatingValue(), DateTime.Now, textRange.Text);
+                }
                 
                 client.Close();
 
                 MessageBox.Show("Operation Success");
+                servicefrm.lstReviewList.SelectedIndex = -1;
                 this.Close();
 
 
@@ -132,17 +138,12 @@ namespace Gems.UIWPF
         {
             try
             {
-
-                
                 WCFHelperClient client = new WCFHelperClient();
                 client.SendNotification(user.userID, "citadmin", "Report Review Abuse", "Reviewer: " + review.UserID + ", by: " + review.UserName + " , on Service ID: " + review.ServiceID.ToString() + " was reported for abuse");
-
-
                 client.Close();
 
                 MessageBox.Show("Operation Success");
                // this.Close();
-
 
             }
             catch (Exception ex)
