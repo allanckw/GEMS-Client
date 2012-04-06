@@ -30,7 +30,10 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
@@ -53,7 +56,7 @@ namespace Gems.UIWPF
 
 
                 }
-                fields.CollectionChanged += (sender, ev) =>
+                fields.CollectionChanged += (s, ev) =>
                 {
                     changed = true;
                 };
@@ -133,7 +136,7 @@ namespace Gems.UIWPF
             txtFieldName.Text = "";
             txtRemarks.Text = "";
             chkRequired.IsChecked = false;
-            
+            changed = true;
         }
 
         T GetParent<T>(DependencyObject obj)

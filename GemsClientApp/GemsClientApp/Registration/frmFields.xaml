@@ -5,7 +5,7 @@
 	x:Class="Gems.UIWPF.frmFields"
     x:Name="Window"
 	Title="frmFields"
-    Width="750" Height="600" Background="{x:Null}">
+    Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Edit Registration Form" FontSize="21" FontWeight="Medium">
 		<StackPanel>
     		<ListBox x:Name="lstFields" ItemTemplate="{DynamicResource DataTemplate}" Background="#00000000" BorderThickness="0" FontSize="12" Height="525.11">
@@ -14,18 +14,18 @@
     					<StackPanel Width="710">
     						<StackPanel Height="Auto" Width="Auto" Orientation="Horizontal" Margin="0">
     							<Label Content="Field Name" HorizontalAlignment="Right" Margin="0,10,0,0" Width="80" Height="24"/>
-    							<TextBox x:Name="txtFieldName" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FieldName}" HorizontalAlignment="Stretch" Height="24" Width="629"/>
+    							<TextBox x:Name="txtFieldName" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FieldName}" HorizontalAlignment="Stretch" Height="24" Width="629" TextChanged="onChanged"/>
     						</StackPanel>
     						<StackPanel Height="Auto" Width="Auto" Orientation="Horizontal" Margin="0">
     							<Label Content="Field Label" HorizontalAlignment="Stretch" Margin="0,10,0,0" Width="80" Height="24" VerticalAlignment="Top"/>
-    							<TextBox x:Name="txtFieldLabel" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FieldLabel}" Height="24" Width="629" VerticalAlignment="Top"/>
+                                <TextBox x:Name="txtFieldLabel" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FieldLabel}" Height="24" Width="629" VerticalAlignment="Top" TextChanged="onChanged"/>
     						</StackPanel>
     						<StackPanel Height="Auto" Width="Auto" Orientation="Horizontal" Margin="0">
     							<Label x:Name="lblRemarks" Content="Help Text" HorizontalAlignment="Right" Margin="0,10,0,0" Width="80" Height="53.153"/>
-    							<TextBox x:Name="txtRemarks" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Remarks}" Height="Auto" Width="629"/>
+                                <TextBox x:Name="txtRemarks" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Remarks}" Height="Auto" Width="629" TextChanged="onChanged"/>
     						</StackPanel>
     						<DockPanel Height="Auto" LastChildFill="False" Margin="0">
-    							<CheckBox x:Name="chkRequired" IsChecked="{Binding IsRequired}" Content="Required" HorizontalAlignment="Stretch" Margin="80,10,0,0" RenderTransformOrigin="-4.391,0.815" VerticalAlignment="Top"/>
+    							<CheckBox x:Name="chkRequired" IsChecked="{Binding IsRequired}" Content="Required" HorizontalAlignment="Stretch" Margin="80,10,0,0" RenderTransformOrigin="-4.391,0.815" VerticalAlignment="Top" Click="onChanged"/>
     							<Button x:Name="btnDelete" Content="Delete" Width="75" FontSize="12" Margin="0,10,0,0" Click="btnDelete_Click" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" DockPanel.Dock="Right"/>
     							<Button x:Name="btnClear" Content="Clear" Width="75" FontSize="12" Margin="0,10,10,0" Click="btnClear_Click" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" RenderTransformOrigin="-4.453,1.75" d:LayoutOverrides="VerticalAlignment" DockPanel.Dock="Right"/>
     						</DockPanel>

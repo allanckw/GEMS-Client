@@ -52,7 +52,7 @@
         				</StackPanel>
         			</StackPanel>
         		</StackPanel>
-        		<RichTextBox Height="265" Margin="0,5,0,0" Name="txtReviewDescription" FontSize="12" FontFamily="Segoe UI">
+        		<RichTextBox Height="260" Margin="0,5,0,0" Name="txtReviewDescription" FontSize="12" FontFamily="Segoe UI">
         			<FlowDocument>
         				<Paragraph><Run Text=""/></Paragraph>
         			</FlowDocument>

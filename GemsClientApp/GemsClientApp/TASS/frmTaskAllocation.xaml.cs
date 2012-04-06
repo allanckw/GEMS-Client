@@ -106,7 +106,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (dtpDueDate.SelectedDateTime == null)
+            if (dtpDueDate.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Please select task's due date", "Invalid input",
                  MessageBoxButton.OK, MessageBoxImage.Exclamation);

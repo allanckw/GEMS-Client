@@ -72,6 +72,8 @@ namespace Gems.UIWPF.CustomCtrl
         public DateTime SelectedDateTime
         {
             get {
+                if (dtpDate.SelectedDate == null)
+                    return default(DateTime);
                 DateTime d = dtpDate.SelectedDate.Value;
                 return new DateTime(d.Year, d.Month, d.Day, 
                     int.Parse(cboHr.SelectedItem.ToString()), int.Parse(cboMin.SelectedItem.ToString()), 0);

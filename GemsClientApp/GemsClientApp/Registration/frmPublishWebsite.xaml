@@ -6,7 +6,7 @@
 	x:Class="Gems.UIWPF.frmPublishWebsite"    
     x:Name="Window"
 	Title="frmPublishWebsite"
-    Width="750" Height="600" Background="{x:Null}">
+    Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Publish Website" FontSize="21" FontWeight="Medium">
 	    <StackPanel>
 			<StackPanel Orientation="Horizontal" Height="31.314">
@@ -19,7 +19,7 @@
 			</StackPanel>
 			<StackPanel Height="250">
 				<Label Content="Remarks (Can be displayed on website):" FontSize="13"/>
-                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtRemarks" TextChanged="onChanged"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtRemarks" TextChanged="onChanged"/>
 			</StackPanel>
 			<DockPanel LastChildFill="False" Margin="8,0,0,0">
                 <StackPanel>

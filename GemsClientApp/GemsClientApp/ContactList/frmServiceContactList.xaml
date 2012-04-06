@@ -6,151 +6,149 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="700"
 	Title="Overview" Width="750" Height="600">
-    <Canvas Opacity="1.0">
+    <GroupBox Header="Service Contact List" FontSize="21" FontWeight="Medium">
+		<StackPanel Orientation="Horizontal" Margin="0,10,0,15.07">
+    		<GroupBox Header="Service List" FontSize="18" Margin="2,0,0,0" Height="530" VerticalAlignment="Top" Width="190" d:LayoutOverrides="Width">
+    			<StackPanel Height="494" Margin="0,10,-12,0" VerticalAlignment="Top">
+    				<TextBox TextWrapping="Wrap" Text="Search" Margin="1,0,1,5" Width="175" HorizontalAlignment="Left" FontSize="14" Foreground="#69000000" x:Name="txtsearch" GotFocus="txtsearch_GotFocus" LostFocus="txtsearch_LostFocus" />
+    				<ListBox x:Name="lstServiceList" Margin="1,1,0,1" FontFamily="Tahoma" FontSize="12" 
+    					FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="440" SelectionChanged="lstServiceList_SelectionChanged" VerticalAlignment="Top" Width="175" HorizontalAlignment="Left">
+    					<ListBox.ItemTemplate>
+    						<DataTemplate>
+    							<StackPanel Margin="10" Orientation="Vertical">
+    								<WrapPanel Orientation="Horizontal"  >
+    									<TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
+    								</WrapPanel>
+    								<WrapPanel Orientation="Horizontal" >
+    									<TextBlock Height="30" Text="{Binding Notes}" TextWrapping="Wrap" Foreground="DarkBlue"/>
+    								</WrapPanel>
 
-        <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Service Contact" Height="38" x:Name="label3" Width="503" FontFamily="Stencil" FontSize="16" />
-        <StackPanel Height="550" Width="750" Canvas.Left="8" Canvas.Top="60" Orientation="Horizontal">
-            <GroupBox Header="Service List" FontSize="21" Margin="0" Height="530" VerticalAlignment="Top" Width="190" d:LayoutOverrides="Width">
-            	<StackPanel Height="494" Margin="0,10,-12,0" VerticalAlignment="Top">
-            		<TextBox TextWrapping="Wrap" Text="Search" Margin="1,0,1,5" Width="175" HorizontalAlignment="Left" FontSize="14" Foreground="#69000000" Name="txtsearch" GotFocus="txtsearch_GotFocus" LostFocus="txtsearch_LostFocus" />
-            		<ListBox x:Name="lstServiceList" Margin="1,1,0,1" FontFamily="Tahoma" FontSize="12" 
-            			FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="440" SelectionChanged="lstServiceList_SelectionChanged" VerticalAlignment="Top" Width="175" HorizontalAlignment="Left">
-            			<ListBox.ItemTemplate>
-            				<DataTemplate>
-            					<StackPanel Margin="10" Orientation="Vertical">
-            						<WrapPanel Orientation="Horizontal"  >
-            							<TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
-            						</WrapPanel>
-            						<WrapPanel Orientation="Horizontal" >
-            							<TextBlock Height="30" Text="{Binding Notes}" TextWrapping="Wrap" Foreground="DarkBlue"/>
-            						</WrapPanel>
-
-            					</StackPanel>
-            				</DataTemplate>
-            			</ListBox.ItemTemplate>
-            		</ListBox>
-            	</StackPanel>
-            </GroupBox>
-            <StackPanel Width="540" Height="550" Margin="10,0,0,0">
-                <GroupBox Header="Service Details" FontSize="14"  HorizontalAlignment="Left" Height="526.5" Width="540" Margin="0,5,0,0">
-                    <Canvas>
-                        <StackPanel Height="501.5">
-                            <Canvas Height="40" Width="580">
-                                <Label Canvas.Left="15" Canvas.Top="3" Content="Name :" Height="35" x:Name="label1" FontSize="13" />
-                                <TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtName" Width="300" FontSize="13" />
-                            </Canvas>
-                            <TabControl HorizontalAlignment="Left" FontWeight="Medium"  Width="520" Background="{x:Null}" Margin="0,5,0,0" Height="454">
-                                <TabItem Header="Service Details" Background="{x:Null}" FontSize="16">
-                            		<Grid>
-                            			<StackPanel Margin="0,0,-40,-31.28" d:LayoutOverrides="Width">
-                            				<Canvas Height="40" Width="580">
-                            					<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label4" FontSize="13" />
-                            					<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="13" />
-                            				</Canvas>
-                            				<Canvas Height="65" Width="580">
-                            					<Label Canvas.Top="8" Content="Notes :" Height="35" x:Name="label5" Canvas.Left="15" FontSize="13" HorizontalAlignment="Left" />
-                            					<RichTextBox Canvas.Left="160" Canvas.Top="10" Height="50" x:Name="txtNote" Width="300" FontSize="13" />
-                            				</Canvas>
-                            				<Canvas Height="65" Width="580">
-                            					<Label Canvas.Top="8" Content="Address :" Height="35" Canvas.Left="15" FontSize="13" HorizontalAlignment="Left" />
-                            					<TextBox Canvas.Left="160" Canvas.Top="8" Height="50" x:Name="txtAddress" Width="300" FontSize="13" />
-                            				</Canvas>
-                            				<Canvas Height="30" Width="580" Margin="0,5,0,0">
-                            					<StackPanel Height="30" Width="500" Orientation="Horizontal" Margin="10,0,0,0">
-                            						<Button x:Name="btnAddNewService" Content="Add New" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Click="btnAddNewService_Click" Margin="5,0" />
-                            						<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0" x:Name="btnDelete" Click="btnDelete_Click" />
-                            						<Button Content="Cancel" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0,0,0" x:Name="btnCancel" Click="btnCancel_Click" />
-                            					</StackPanel>
-                            				</Canvas>
+    							</StackPanel>
+    						</DataTemplate>
+    					</ListBox.ItemTemplate>
+    				</ListBox>
+    			</StackPanel>
+    		</GroupBox>
+    		<StackPanel Width="540" Height="550" Margin="10,0,0,0">
+    			<GroupBox Header="Service Details" FontSize="18"  HorizontalAlignment="Left" Height="530" Width="535" Margin="0">
+    				<Canvas>
+    					<StackPanel Height="501.5">
+    						<Canvas Height="40" Width="580">
+    							<Label Canvas.Left="15" Canvas.Top="3" Content="Name :" Height="35" x:Name="label1" FontSize="13" />
+    							<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtName" Width="300" FontSize="13" />
+    						</Canvas>
+    						<TabControl HorizontalAlignment="Left" FontWeight="Medium"  Width="520" Background="{x:Null}" Margin="0,5,0,0" Height="454">
+    							<TabItem Header="Service Details" Background="{x:Null}" FontSize="16">
+    								<Grid>
+    									<StackPanel Margin="0,0,-40,-31.28" d:LayoutOverrides="Width">
+    										<Canvas Height="40" Width="580">
+    											<Label Canvas.Left="15" Canvas.Top="8" Content="Website :" Height="28" x:Name="label4" FontSize="13" />
+    											<TextBox Canvas.Left="160" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="13" />
+    										</Canvas>
+    										<Canvas Height="65" Width="580">
+    											<Label Canvas.Top="8" Content="Notes :" Height="35" x:Name="label5" Canvas.Left="15" FontSize="13" HorizontalAlignment="Left" />
+    											<RichTextBox Canvas.Left="160" Canvas.Top="10" Height="50" x:Name="txtNote" Width="300" FontSize="13" />
+    										</Canvas>
+    										<Canvas Height="65" Width="580">
+    											<Label Canvas.Top="8" Content="Address :" Height="35" Canvas.Left="15" FontSize="13" HorizontalAlignment="Left" />
+    											<TextBox Canvas.Left="160" Canvas.Top="8" Height="50" x:Name="txtAddress" Width="300" FontSize="13" />
+    										</Canvas>
+    										<Canvas Height="30" Width="580" Margin="0,5,0,0">
+    											<StackPanel Height="30" Width="500" Orientation="Horizontal" Margin="10,0,0,0">
+    												<Button x:Name="btnAddNewService" Content="Add New" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Click="btnAddNewService_Click" Margin="5,0" />
+    												<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0" x:Name="btnDelete" Click="btnDelete_Click" />
+    												<Button Content="Cancel" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0,0,0" x:Name="btnCancel" Click="btnCancel_Click" />
+    											</StackPanel>
+    										</Canvas>
 
 
-                            			</StackPanel>
-                            		</Grid>
-                            	</TabItem>
-                            	<TabItem Header="Point of Contact" FontSize="16" Background="{x:Null}">
+    									</StackPanel>
+    								</Grid>
+    							</TabItem>
+    							<TabItem Header="Point of Contact" FontSize="16" Background="{x:Null}">
                     
-                            		<StackPanel Margin="0,8,0,0" Height="300" VerticalAlignment="Top">
+    								<StackPanel Margin="0,8,0,0" Height="300" VerticalAlignment="Top">
                             
-                            			<Canvas Height="210">
-                            				<StackPanel Height="200" Width="540">
-                            					<StackPanel Height="175" Orientation="Horizontal" Margin="0" Width="540">
-                            						<GroupBox Header="Contact List" FontSize="14" Height="170" Margin="0" Width="200">
-                            							<ListBox  x:Name="lstContactList" FontSize="12" SelectionMode="Extended" SelectionChanged="lstContactList_SelectionChanged">
-                            								<ListBox.ItemTemplate>
-                            									<DataTemplate>
-                            										<StackPanel Margin="10" Orientation="Vertical">
-                            											<WrapPanel Orientation="Horizontal"  >
-                            												<TextBlock Text="Name: " TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
-                            												<TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
-                            											</WrapPanel>
-                            											<WrapPanel Orientation="Horizontal" >
-                            												<TextBlock Text="{Binding Position}" TextWrapping="Wrap" Foreground="DarkBlue"/>
-                            											</WrapPanel>
+    									<Canvas Height="210">
+    										<StackPanel Height="200" Width="540">
+    											<StackPanel Height="175" Orientation="Horizontal" Margin="0" Width="540">
+    												<GroupBox Header="Contact List" FontSize="14" Height="170" Margin="0" Width="200">
+    													<ListBox  x:Name="lstContactList" FontSize="12" SelectionMode="Extended" SelectionChanged="lstContactList_SelectionChanged">
+    														<ListBox.ItemTemplate>
+    															<DataTemplate>
+    																<StackPanel Margin="10" Orientation="Vertical">
+    																	<WrapPanel Orientation="Horizontal"  >
+    																		<TextBlock Text="Name: " TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
+    																		<TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
+    																	</WrapPanel>
+    																	<WrapPanel Orientation="Horizontal" >
+    																		<TextBlock Text="{Binding Position}" TextWrapping="Wrap" Foreground="DarkBlue"/>
+    																	</WrapPanel>
 
-                            										</StackPanel>
-                            									</DataTemplate>
-                            								</ListBox.ItemTemplate>
-                            							</ListBox>
-                            						</GroupBox>
-                            						<GroupBox Header="Point of Contact" Width="320" Height="170" FontSize="14" Margin="0">
-                            							<StackPanel>
-                            								<Canvas Height="35">
-                            									<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
-                            									<TextBox x:Name="txtContactEmail" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
-                            								</Canvas>
-                            								<Canvas Height="35">
-                            									<Label Content="Name :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
-                            									<TextBox x:Name="txtContactName" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
-                            								</Canvas>
-                            								<Canvas Height="35">
-                            									<Label Content="Position :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
-                            									<TextBox x:Name="txtContactPosition" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
-                            								</Canvas>
-                            								<Canvas Height="35">
-                            									<Label Content="Contact :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
-                            									<TextBox x:Name="txtContactTel" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
-                            								</Canvas>
-                            							</StackPanel>
-                            						</GroupBox>
-                            					</StackPanel>
-                            					<StackPanel Height="30" Width="500" Orientation="Horizontal" Margin="10,0,0,0" d:LayoutOverrides="Width" HorizontalAlignment="Left">
-                            						<Button x:Name="btnAddNewPOC" Content="Add New" FontSize="13" Margin="5,0" Width="75" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddNewPOC_Click" />
-                            						<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0" x:Name="btnDeletePOC" Click="btnDeletePOC_Click" />
-                            						<Button Content="Cancel" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0" x:Name="btnCancelPOC" Click="btnCancelPOC_Click" />
-                            					</StackPanel>
-                            				</StackPanel>
-                            			</Canvas>
+    																</StackPanel>
+    															</DataTemplate>
+    														</ListBox.ItemTemplate>
+    													</ListBox>
+    												</GroupBox>
+    												<GroupBox Header="Point of Contact" Width="320" Height="170" FontSize="14" Margin="0">
+    													<StackPanel>
+    														<Canvas Height="35">
+    															<Label Content="Email :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+    															<TextBox x:Name="txtContactEmail" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
+    														</Canvas>
+    														<Canvas Height="35">
+    															<Label Content="Name :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+    															<TextBox x:Name="txtContactName" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
+    														</Canvas>
+    														<Canvas Height="35">
+    															<Label Content="Position :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+    															<TextBox x:Name="txtContactPosition" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
+    														</Canvas>
+    														<Canvas Height="35">
+    															<Label Content="Contact :" Canvas.Left="0" Canvas.Top="4" FontSize="13"/>
+    															<TextBox x:Name="txtContactTel" Canvas.Left="80" TextWrapping="Wrap" Canvas.Top="6" Width="220" FontSize="13"/>
+    														</Canvas>
+    													</StackPanel>
+    												</GroupBox>
+    											</StackPanel>
+    											<StackPanel Height="30" Width="500" Orientation="Horizontal" Margin="10,0,0,0" d:LayoutOverrides="Width" HorizontalAlignment="Left">
+    												<Button x:Name="btnAddNewPOC" Content="Add New" FontSize="13" Margin="5,0" Width="75" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddNewPOC_Click" />
+    												<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0" x:Name="btnDeletePOC" Click="btnDeletePOC_Click" />
+    												<Button Content="Cancel" Width="75" Height="25" HorizontalAlignment="Left" FontSize="13" VerticalAlignment="Top" Margin="5,0" x:Name="btnCancelPOC" Click="btnCancelPOC_Click" />
+    											</StackPanel>
+    										</StackPanel>
+    									</Canvas>
                             
-                            		</StackPanel>
+    								</StackPanel>
                    
-                            	</TabItem>
+    							</TabItem>
 
-                            	<TabItem Header=" Review " FontSize="16" Background="{x:Null}" Margin="-1,0,-3,-3">
+    							<TabItem Header=" Review " FontSize="16" Background="{x:Null}" Margin="-1,0,-3,-3">
 
-                            		<StackPanel VerticalAlignment="Top" Height="403.5" Margin="0,8,0,0">
-                            			<Canvas Height="210" Width="540">
-                            				<StackPanel Height="405" Width="540">
-                            					<GroupBox Header="Review" Height="368.5" Width="510" FontSize="21" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                                    <ListBox x:Name="lstReviewList" Margin="0,0,0,10.07" Width="496" HorizontalAlignment="Left" SelectionChanged="lstReviewList_SelectionChanged" Background="#FF1A0303">
-                                                        <ListBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Margin="3" Orientation="Vertical">
+    								<StackPanel VerticalAlignment="Top" Height="403.5" Margin="0,8,0,0">
+    									<Canvas Height="210" Width="540">
+    										<StackPanel Height="405" Width="540">
+    											<GroupBox Header="Review" Height="368.5" Width="510" FontSize="21" HorizontalAlignment="Left" VerticalAlignment="Top">
+    												<ListBox x:Name="lstReviewList" Margin="0,0,0,10.07" Width="496" HorizontalAlignment="Left" SelectionChanged="lstReviewList_SelectionChanged" Background="#FF1A0303">
+    													<ListBox.ItemTemplate>
+    														<DataTemplate>
+    															<StackPanel Margin="3" Orientation="Vertical">
                                                                     
-                                                                    <StackPanel  Orientation="Horizontal">
-                                                                        <WrapPanel Orientation="Horizontal" Width="374"  >
-                                                                            <TextBlock FontSize="15" Text="Reviewer: " TextWrapping="Wrap" Foreground="White"/>
-                                                                            <TextBlock FontSize="15" Text="{Binding UserName}" TextWrapping="Wrap"  Foreground="White"/>
-                                                                        </WrapPanel>
-                                                                        <local:RatingControl x:Name="rating" Width="100" VerticalAlignment="Top" IsEnabled="False" RatingValue="{Binding Rating}"/>
-                                                                        <!--<WrapPanel Orientation="Horizontal" Width="100"  >
+    																<StackPanel  Orientation="Horizontal">
+    																	<WrapPanel Orientation="Horizontal" Width="374"  >
+    																		<TextBlock FontSize="15" Text="Reviewer: " TextWrapping="Wrap" Foreground="White"/>
+    																		<TextBlock FontSize="15" Text="{Binding UserName}" TextWrapping="Wrap"  Foreground="White"/>
+    																	</WrapPanel>
+    																	<local:RatingControl x:Name="rating" Width="100" VerticalAlignment="Top" IsEnabled="False" RatingValue="{Binding Rating}"/>
+    																	<!--<WrapPanel Orientation="Horizontal" Width="100"  >
                                                                             <TextBlock Text="{Binding UserName}" TextWrapping="Wrap"  Foreground="DarkBlue"/>
                                                                         </WrapPanel>-->
-                                                                    </StackPanel>
-                                                                    <StackPanel  Orientation="Vertical" Margin="5 , 5 , 0 , 0">
-                                                                        <WrapPanel Orientation="Horizontal" Width="465"   MaxHeight="80" >
-                                                                            <TextBlock FontSize="12" Text="{Binding ReviewDescription}" TextWrapping="Wrap" Foreground="White"/>
-                                                                        </WrapPanel>
-                                                                        <!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" Margin="1, 5 , 0,0">
+    																</StackPanel>
+    																<StackPanel  Orientation="Vertical" Margin="5 , 5 , 0 , 0">
+    																	<WrapPanel Orientation="Horizontal" Width="465"   MaxHeight="80" >
+    																		<TextBlock FontSize="12" Text="{Binding ReviewDescription}" TextWrapping="Wrap" Foreground="White"/>
+    																	</WrapPanel>
+    																	<!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" Margin="1, 5 , 0,0">
                                                                             <StackPanel  Orientation="Horizontal" Width="232" VerticalAlignment="Bottom" >
                                                                                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom"  Orientation="Horizontal">
                                                                                     <TextBlock FontSize="14" Text="Review Date: " TextWrapping="Wrap" Foreground="DarkBlue"/>
@@ -159,42 +157,39 @@
                                                                             </StackPanel>
                                                                             
                                                                         </StackPanel>-->
-                                                                    </StackPanel>
-                                                                    <StackPanel  Orientation="Horizontal" Width="484">
-                                                                        <StackPanel  Orientation="Horizontal" Width="310" HorizontalAlignment="Left">
-                                                                            <Label x:Name="lblReport" Margin="0" Width="100" Height="30" FontSize="14" FontFamily="Segoe Marker" Background="{x:Null}" HorizontalAlignment="Right" d:LayoutOverrides="Height">
-                                                                                <Hyperlink Tag="{Binding UserID}" Click="clickViewReview_Click" Foreground="AntiqueWhite">
-                                                                                    <Run Text="View Report"/>
-                                                                                    
-                                                                                </Hyperlink>
-                                                                            </Label>
-                                                                        </StackPanel>
-                                                                        <StackPanel  Orientation="Horizontal"  Width="174" HorizontalAlignment="Right">
-                                                                            <TextBlock FontSize="14" Text="Review Date: " TextWrapping="Wrap" Foreground="White"/>
-                                                                            <TextBlock FontSize="14" Text="{Binding ReviewDate,StringFormat=d}" TextWrapping="Wrap" Foreground="White"/>
-                                                                        </StackPanel>
-                                                                    </StackPanel>
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                    </ListBox>
-                                                </GroupBox>
-                            					<StackPanel Height="30" Margin="10,5,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="510">
-                            						<!--<Button x:Name="btnViewReview" Content="View Review" FontSize="13" Margin="5,0" Width="90" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnViewReview_Click" />-->
-                            						<Button x:Name="btnAddReview" Content="Add New Review" FontSize="13" Margin="5,0" Width="120" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddReview_Click" />
-                            						<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0" x:Name="btnDeleteReview" Click="btnDeleteReview_Click" />
-                                                </StackPanel>
-                            				</StackPanel>
-                            			</Canvas>
-                            		</StackPanel>
-                            	</TabItem>
-                            </TabControl>
+    																</StackPanel>
+    																<StackPanel  Orientation="Horizontal" Width="484">
+    																	<StackPanel  Orientation="Horizontal" Width="310" HorizontalAlignment="Left">
+    																		<Label x:Name="lblReport" Margin="0" Width="100" Height="30" FontSize="14" FontFamily="Segoe Marker" Background="{x:Null}" HorizontalAlignment="Right" d:LayoutOverrides="Height">
+    																			<Hyperlink Tag="{Binding UserID}" Click="clickViewReview_Click" Foreground="AntiqueWhite"><Run Text="View Report"/></Hyperlink>
+    																		</Label>
+    																	</StackPanel>
+    																	<StackPanel  Orientation="Horizontal"  Width="174" HorizontalAlignment="Right">
+    																		<TextBlock FontSize="14" Text="Review Date: " TextWrapping="Wrap" Foreground="White"/>
+    																		<TextBlock FontSize="14" Text="{Binding ReviewDate, StringFormat=d}" TextWrapping="Wrap" Foreground="White"/>
+    																	</StackPanel>
+    																</StackPanel>
+    															</StackPanel>
+    														</DataTemplate>
+    													</ListBox.ItemTemplate>
+    												</ListBox>
+    											</GroupBox>
+    											<StackPanel Height="30" Margin="10,5,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="510">
+    												<!--<Button x:Name="btnViewReview" Content="View Review" FontSize="13" Margin="5,0" Width="90" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnViewReview_Click" />-->
+    												<Button x:Name="btnAddReview" Content="Add New Review" FontSize="13" Margin="5,0" Width="120" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddReview_Click" />
+    												<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0" x:Name="btnDeleteReview" Click="btnDeleteReview_Click" />
+    											</StackPanel>
+    										</StackPanel>
+    									</Canvas>
+    								</StackPanel>
+    							</TabItem>
+    						</TabControl>
 
 
-                        </StackPanel>
-                    </Canvas>
-            	</GroupBox>
-            </StackPanel>
-        </StackPanel>
-    </Canvas>
+    					</StackPanel>
+    				</Canvas>
+    			</GroupBox>
+    		</StackPanel>
+    	</StackPanel>
+	</GroupBox>
 </src:GEMSPage>

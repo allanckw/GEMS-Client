@@ -30,10 +30,10 @@
                 <MenuItem Header="Programmes" FontSize="15" Margin="10,0,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click">
                 </MenuItem>
                 <MenuItem Header="Facilities" FontSize="15" Margin="10,0,0,0" x:Name="mnuLocation">
-                    <MenuItem Header="Manage Facility" Background="{x:Null}" Width="250" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
-                    <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="250" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />
-                    <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="240" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
-                    <MenuItem Header="View Current Bookings" Background="{x:Null}" Width="240" x:Name="mnuViewBookings" Click="mnuViewBookings_Click"/>
+                    <MenuItem Header="Manage Facility" Background="{x:Null}" Width="260" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
+                    <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="260" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />
+                    <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="260" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
+                    <MenuItem Header="View Current Bookings" Background="{x:Null}" Width="260" x:Name="mnuViewBookings" Click="mnuViewBookings_Click"/>
                 </MenuItem>
                 <MenuItem Header="Manpower" FontSize="15" Margin="10,0,0,0" x:Name="mnuManpower">
                     <MenuItem Header="Role Templates" Background="{x:Null}" Width="240" x:Name="mnuRoleTemplates" Click="mnuRoleTemplates_Click"/>

@@ -199,7 +199,7 @@ namespace Gems.UIWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (dtpStart.SelectedDateTime == null)
+            if (dtpStart.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Please select the Dates", "Validation Error",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);

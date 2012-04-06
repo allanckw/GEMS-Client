@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using evmsService.entities;
+using System.Windows.Threading;
 
 namespace Gems.UIWPF
 {
@@ -33,7 +34,10 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             try
             {
                 WCFHelperClient client = new WCFHelperClient();

@@ -5,9 +5,9 @@
 	x:Class="Gems.UIWPF.frmStaticFields"
     x:Name="Window"
 	Title="frmStaticFields"
-    Width="750" Height="600" Background="{x:Null}">
+    Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Edit Static Fields" FontSize="21" FontWeight="Medium">
-        <DataGrid x:Name="dgStaticFields" SelectionMode="Single" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True">
+        <DataGrid x:Name="dgStaticFields" SelectionMode="Single" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True" Background="#00F0F0F0" BorderThickness="0">
     		<DataGrid.Columns>
     			<DataGridTextColumn Header="Field Name" Binding="{Binding FieldName}"/>
                 <DataGridTextColumn Header="Field Label" Binding="{Binding FieldLabel}"/>

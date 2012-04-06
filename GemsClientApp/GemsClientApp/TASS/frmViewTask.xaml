@@ -7,59 +7,57 @@
       mc:Ignorable="d" Loaded="Page_Loaded"
       Width="750" Height="600" Background="{x:Null}"	Title="frmViewTask">
 
-    <Grid>
-        <TextBlock Text="GEMS - Role Based Task Allocation - View Task" Height="30"  VerticalAlignment="Top" FontSize="20" FontFamily="Stencil" />
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="550" VerticalAlignment="Top">
-            <StackPanel Orientation="Vertical" Margin="0,25,0,0" Height="518" VerticalAlignment="Top">
-                <TextBlock Text="Select Role: " FontSize="14" Margin="10,10,0,0"/>
-                <ComboBox x:Name="cboRole" Height="30"  VerticalAlignment="Top" FontSize="14" Margin="10,0,10,0" SelectionChanged="cboRole_SelectionChanged">
-                </ComboBox>
+    <GroupBox Header="View Tasks" FontSize="21" FontWeight="Medium">
 
-                <TextBlock Text="{Binding Path=ParentTask.DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
-           
-            <GroupBox Header="Task List" Width="230" FontSize="16" Height="380" VerticalAlignment="Top">
-                    <ListBox x:Name="lstTask" Height="360" Width="210" FontSize="13" VerticalAlignment="Top" ItemContainerStyle="{StaticResource TaskItemContStyle}" HorizontalAlignment="Left" Margin="5,0,0,0" SelectionChanged="lstTask_SelectionChanged">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="10" Orientation="Vertical">
-                                <WrapPanel Orientation="Horizontal"  >
-                                    <TextBlock Text="{Binding TaskName}" TextWrapping="Wrap" FontWeight="Bold"  />
-                                </WrapPanel>
-                                <WrapPanel Orientation="Horizontal" >
-                                    <TextBlock Text="Due on "/>
-                                    <TextBlock Text="{Binding Path=DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
-                                </WrapPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </GroupBox>
-            </StackPanel>
-            <GroupBox Header="Task Information" Width="500" Margin="10,35,0,0" FontSize="16" Height="440" VerticalAlignment="Top">
-        		<StackPanel Height="420" VerticalAlignment="Top">
-        			<StackPanel Height="40" Width="525" Orientation="Horizontal">
-        				<Label Content="Task Name" Width="150" FontSize="14"/>
-        				<TextBox x:Name="txtTaskName" TextWrapping="Wrap" Width="300" VerticalAlignment="Top" IsEnabled="False"/>
-        			</StackPanel>
-        			<StackPanel Height="120" Width="525" Orientation="Horizontal" Margin="1.5,5,1.5,0">
-        				<Label Content="Task Description" Width="150" FontSize="14"/>
-        				<RichTextBox Height="100" x:Name="txtDesc" FontSize="12" FontFamily="Tahoma" Margin="0,5" Width="300" VerticalAlignment="Top" IsEnabled="False" />
-        			</StackPanel>
-        			<StackPanel Height="40" Orientation="Horizontal" Margin="0" Width="525">
-        				<Label Content="Due Date" FontSize="14" Margin="0,4.16,0,0" VerticalAlignment="Top" Width="150"/>
-        				<Gems_UIWPF_CustomCtrl:DateTimePicker x:Name="dtpDueDate" FontSize="11.5" VerticalAlignment="Top" FontWeight="bold" Width="300" HorizontalAlignment="Left" IsEnabled="False"/>
-        			</StackPanel>
-        			<StackPanel Height="120" Width="525" Orientation="Horizontal" Margin="1.5,5,1.5,0">
-        				<Label Content="Remarks" Width="150" FontSize="14"/>
-        				<RichTextBox Height="100" x:Name="txtRemark" FontSize="12" FontFamily="Tahoma" Margin="0,5" Width="300" VerticalAlignment="Top"  />
-        			</StackPanel>
-        			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="1.5,0">
-        				<Label Content="Is Completed?" Width="150" FontSize="14"/>
-        				<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click" />
-        			</StackPanel>
-        			<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="0"></StackPanel>
-        		</StackPanel>
-        	</GroupBox>
-        </StackPanel>
-    </Grid>
+		<StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+    		<StackPanel Orientation="Vertical" Margin="8,25,0,0" VerticalAlignment="Top">
+				<TextBlock Text="Select Role: " FontSize="14" Margin="10,10,0,0"/>
+				<ComboBox x:Name="cboRole" Height="30"  VerticalAlignment="Top" FontSize="14" Margin="10,0,10,0" SelectionChanged="cboRole_SelectionChanged"/>
+
+				<TextBlock Text="{Binding ParentTask.DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+				<GroupBox Header="Task List" Width="230" FontSize="16" Height="442" VerticalAlignment="Top">
+					<ListBox x:Name="lstTask" FontSize="13" ItemContainerStyle="{StaticResource TaskItemContStyle}" Margin="2" SelectionChanged="lstTask_SelectionChanged">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Margin="10" Orientation="Vertical">
+									<WrapPanel Orientation="Horizontal"  >
+										<TextBlock Text="{Binding TaskName}" TextWrapping="Wrap" FontWeight="Bold"  />
+									</WrapPanel>
+									<WrapPanel Orientation="Horizontal" >
+										<TextBlock Text="Due on "/>
+										<TextBlock Text="{Binding DueDate, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+									</WrapPanel>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</GroupBox>
+			</StackPanel>
+			<GroupBox Header="Task Information" Width="479" Margin="10,35,0,0" FontSize="16" Height="518" VerticalAlignment="Top">
+				<StackPanel Height="420" VerticalAlignment="Top">
+					<StackPanel Height="40" Width="525" Orientation="Horizontal">
+						<Label Content="Task Name" Width="150" FontSize="14"/>
+						<TextBox x:Name="txtTaskName" TextWrapping="Wrap" Width="300" VerticalAlignment="Top" IsEnabled="False"/>
+					</StackPanel>
+					<StackPanel Height="120" Width="525" Orientation="Horizontal" Margin="1.5,5,1.5,0">
+						<Label Content="Task Description" Width="150" FontSize="14"/>
+						<RichTextBox Height="100" x:Name="txtDesc" FontSize="12" FontFamily="Tahoma" Margin="0,5" Width="300" VerticalAlignment="Top" IsEnabled="False" />
+					</StackPanel>
+					<StackPanel Height="40" Orientation="Horizontal" Margin="0" Width="525">
+						<Label Content="Due Date" FontSize="14" Margin="0,4.16,0,0" VerticalAlignment="Top" Width="150"/>
+						<Gems_UIWPF_CustomCtrl:DateTimePicker x:Name="dtpDueDate" FontSize="11.5" VerticalAlignment="Top" FontWeight="bold" Width="312" HorizontalAlignment="Left" IsEnabled="False"/>
+					</StackPanel>
+					<StackPanel Height="120" Width="525" Orientation="Horizontal" Margin="1.5,5,1.5,0">
+						<Label Content="Remarks" Width="150" FontSize="14"/>
+						<RichTextBox Height="100" x:Name="txtRemark" FontSize="12" FontFamily="Tahoma" Margin="0,5" Width="300" VerticalAlignment="Top"  />
+					</StackPanel>
+					<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="1.5,0">
+						<Label Content="Is Completed?" Width="150" FontSize="14"/>
+						<CheckBox x:Name="chkIsCompleted" Content="" Margin="0,6,0,0"  Click="chkIsCompleted_Click" />
+					</StackPanel>
+					<StackPanel Height="40" Width="525" Orientation="Horizontal" Margin="0"/>
+				</StackPanel>
+			</GroupBox>
+    	</StackPanel>
+	</GroupBox>
 </src:GEMSPage>

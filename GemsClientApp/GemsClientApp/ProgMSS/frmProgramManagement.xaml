@@ -6,10 +6,10 @@
     x:Name="Window"
 	Title="frmProgramManagement"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
-    <GroupBox Header="Programme Management" FontWeight="Medium" FontSize="21" Margin="0" d:LayoutOverrides="Width, Height" Height="590" Width="741">
+    <GroupBox Header="Programme Management" FontWeight="Medium" FontSize="21" Margin="0">
 		<StackPanel Orientation="Horizontal">
-			<GroupBox Header="Programme Segments" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8" Width="385" Height="502">
-				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Extended" Height="465" DragOver="lstProgram_DragOver" Drop="lstProgram_Drop" PreviewMouseLeftButtonDown="lstProgram_PreviewMouseLeftButtonDown" AllowDrop="True">
+			<GroupBox Header="Programme Segments" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8">
+				<ListView x:Name="lstProgram" SelectionChanged="lstProgram_SelectionChanged" FontSize="12" SelectionMode="Extended" DragOver="lstProgram_DragOver" Drop="lstProgram_Drop" PreviewMouseLeftButtonDown="lstProgram_PreviewMouseLeftButtonDown" AllowDrop="True" Width="383">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Width="70" Header="Start">
@@ -31,15 +31,15 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
 					</ListView.View>
 				</ListView>
 			</GroupBox>
-			<GroupBox Header="Segment Details" FontSize="18" Width="313" Margin="0,0,0,8" Height="494">
-				<StackPanel Height="462">
+			<GroupBox Header="Segment Details" FontSize="18" Margin="0,0,0,8" Width="327.803">
+				<StackPanel Margin="0,8,0,32.065">
 					<StackPanel Height="31.313" Orientation="Horizontal">
 						<Label Content="Event Date:" Width="76.803" FontSize="13"/>
 						<Label Content=""  Width="215" FontSize="13" x:Name="txtDate" />
 					</StackPanel>
 					<StackPanel Height="31.313" Orientation="Horizontal">
 						<Label Content="Name:" Width="76.803" FontSize="13"/>
-						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" FontSize="12" x:Name="txtName" Height="31" />
+						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="12" x:Name="txtName" Height="24" Margin="0,0,8,0" Width="232" />
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" Height="31.314">
 						<Label Content="Start Time:" Width="76.803" FontSize="13"/>
@@ -59,7 +59,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
 						<Button x:Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnSave_Click" />
 						<Button Content="Delete" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnDelete_Click"/>
 
-						<Button Content="Cancel" Width="75" FontSize="12" Margin="0,0,10,0" Click="clearAll"/>
+						<Button Content="Cancel" Width="75" FontSize="12" Margin="0,0,8,0" Click="clearAll"/>
 					</DockPanel>
 				</StackPanel>
 			</GroupBox>

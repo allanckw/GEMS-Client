@@ -158,13 +158,13 @@ namespace Gems.UIWPF
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            else if (dtpStart.SelectedDateTime == null)
+            else if (dtpStart.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid Event Start Date",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            else if (dtpEnd.SelectedDateTime == null)
+            else if (dtpEnd.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid Event End Date",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);

@@ -27,10 +27,20 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
+        }
 
-            WCFHelperClient client = new WCFHelperClient();
-            publish = client.ViewPublish(event_.EventID);
-            client.Close();
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                publish = client.ViewPublish(event_.EventID);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             if (publish != null)
             {
@@ -58,6 +68,7 @@ namespace Gems.UIWPF
 
             changed = false;
         }
+
         private void starthourChanged(object sender, RoutedEventArgs e)
         {
             if (dtpStart.cboHr.SelectedValue.ToString().Equals("24"))
@@ -100,13 +111,13 @@ namespace Gems.UIWPF
         }
         public override bool saveChanges()
         {
-            if (dtpStart.SelectedDateTime == null)
+            if (dtpStart.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid publish start date.",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            else if (dtpEnd.SelectedDateTime == null)
+            if (dtpEnd.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid publish end date.",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -172,6 +183,7 @@ namespace Gems.UIWPF
             txtRemarks.Text = "";
             dtpStart.clear();
             dtpEnd.clear();
+            changed = true;
         }
     }
 }
