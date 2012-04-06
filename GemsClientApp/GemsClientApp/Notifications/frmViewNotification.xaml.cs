@@ -53,7 +53,7 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
 
@@ -73,7 +73,7 @@ namespace Gems.UIWPF
                 client.SendNotification(user.userID, txtSenderID.Text, title, message);
                 client.Close();
                 MessageBox.Show("Replied Sent", "Sent", MessageBoxButton.OK, MessageBoxImage.Information);
-                btnExit_Click(sender, e);
+                btnClose_Click(sender, e);
             }
             catch (Exception ex)
             {

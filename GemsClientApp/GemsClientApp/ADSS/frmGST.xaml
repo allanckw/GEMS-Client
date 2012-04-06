@@ -8,23 +8,11 @@
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Height="200" Width="320" Opacity="1.0">
-        <Button x:Name="btnExit" Canvas.Left="289" Canvas.Top="4" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Canvas.Left="5" Canvas.Top="76" Height="28" Name="label1" Width="113" Content="GST Value in %:"></Label>
-        <TextBox Canvas.Left="100" Canvas.Top="78" Height="23" Name="txtGST" Width="200" />
-        <Button Canvas.Left="225" Canvas.Top="117" Content="Save" Height="23" Name="btnConfirm" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnConfirm_Click" IsDefault="True" />
-        <Label Canvas.Left="65" Canvas.Top="20" Content="GEMS GST Settings" FontFamily="Stencil" FontSize="20" Height="29" Name="label4" Width="208" />
+    <Canvas Opacity="1.0">
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
+        <Label Canvas.Left="25" Canvas.Top="120" Height="28" Name="label1" Width="113" Content="GST Value in %:"></Label>
+        <TextBox Canvas.Left="120" Canvas.Top="122" Height="23" Name="txtGST" Width="200" />
+        <Button Canvas.Left="245" Canvas.Top="161" Content="Save" Height="23" Name="btnConfirm" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnConfirm_Click" IsDefault="True" />
+        <Label Canvas.Left="85" Canvas.Top="64" Content="GEMS GST Settings" FontFamily="Stencil" FontSize="20" Height="29" Name="label4" Width="208" />
     </Canvas>
 </Window>

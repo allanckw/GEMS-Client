@@ -9,22 +9,10 @@
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0" Width="709" Height="491">
-        <Button x:Name="btnClose" Canvas.Left="656" Canvas.Top="12" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+    <Canvas Opacity="1.0">
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Review" Height="38" x:Name="label3" Width="613.5" FontFamily="Stencil" FontSize="20" />
-        <GroupBox Header="Review Details" Canvas.Left="6" Canvas.Top="36" Width="689" FontSize="16" FontFamily="Stencil">
+        <GroupBox Header="Review Details" Canvas.Left="14" Canvas.Top="44" Width="689" FontSize="16" FontFamily="Stencil">
             <StackPanel Height="400" VerticalAlignment="Top">
         		<StackPanel Height="32" RenderTransformOrigin="0.5,0.5" Orientation="Horizontal" Margin="5,10,0,0">
         			<StackPanel.RenderTransform>

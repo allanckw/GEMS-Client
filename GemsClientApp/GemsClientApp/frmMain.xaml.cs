@@ -116,7 +116,7 @@ namespace Gems.UIWPF
             getNewNotifications();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             mainFrame.Visibility = Visibility.Visible;

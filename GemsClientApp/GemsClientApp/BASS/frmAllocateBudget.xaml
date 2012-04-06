@@ -80,19 +80,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Button Height="0" Margin="660,5,5,610" Name="btnClose" Width="0" Click="btnClose_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Height="30" Width="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png" />
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+    	<Button Template="{StaticResource Close}" Margin="670,10,5,645"/>
         <GroupBox Header="Budget Expenditure optimiser" FontFamily="Stencil" Canvas.Left="10" Canvas.Top="50" Foreground="Black"
                  FontSize="18" Margin="0,40,10,10" Width="720">
             <StackPanel Height="555" Canvas.Left="21" Canvas.Top="56" Width="700">

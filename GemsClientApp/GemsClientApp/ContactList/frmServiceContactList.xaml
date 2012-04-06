@@ -72,7 +72,7 @@
     									<Canvas Height="210">
     										<StackPanel Height="200" Width="540">
     											<StackPanel Height="175" Orientation="Horizontal" Margin="0" Width="540">
-    												<GroupBox Header="Contact List" FontSize="14" Height="170" Margin="0" Width="200">
+    												<GroupBox Header="Contact List" FontSize="14" Height="170" Margin="0,0,5,0" Width="190">
     													<ListBox  x:Name="lstContactList" FontSize="12" SelectionMode="Extended" SelectionChanged="lstContactList_SelectionChanged">
     														<ListBox.ItemTemplate>
     															<DataTemplate>

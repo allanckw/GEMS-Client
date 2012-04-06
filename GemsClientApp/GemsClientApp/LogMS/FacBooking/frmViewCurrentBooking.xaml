@@ -5,25 +5,13 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmViewCurrentBooking"
 	x:Name="Window" Loaded="Window_Loaded" Activated="Window_Activated" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Title="frmViewCurrentBooking"
+	Title="View Current Bookings"
 Width="900" Height="625" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Opacity="1.0">
-        <Button x:Name="btnExit" Canvas.Left="850" Canvas.Top="18" Height="0" Width="0" Click="btnClose_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
 		<Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - View Current Bookings" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="20" />
 		<StackPanel Height="536" Canvas.Left="21" Canvas.Top="56" Width="879" Orientation="Horizontal">
             <GroupBox Header="Filter" FontSize="16" FontWeight="Medium" Width="240" Height="523" VerticalAlignment="Top">

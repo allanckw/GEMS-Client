@@ -3,26 +3,14 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     x:Class="Gems.UIWPF.frmFacBooking"	x:Name="Window"
-	Title="GEMS Event Management System"  
+	Title="Facility Booking"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Width="719" Height="637" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+	Width="705" Height="630" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0" Height="605" Width="770">
-        <Button x:Name="btnClose" Canvas.Left="648" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+    <Canvas Opacity="1.0" Margin="0,0,8,0">
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facility Booking" Height="38" x:Name="label3" Width="587" FontFamily="Stencil" FontSize="20" />
         <StackPanel Canvas.Left="0" Canvas.Top="50" Height="575" Width="700">
             <GroupBox   Width="408" FontSize="16" Height="164" FontWeight="Medium" >

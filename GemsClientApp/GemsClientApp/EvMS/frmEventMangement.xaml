@@ -7,25 +7,13 @@
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0" Width="709" Height="491">
-        <Button x:Name="btnClose" Canvas.Left="667" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+    <Canvas Opacity="1.0">
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Manage Events" Height="38" x:Name="label3" Width="613.5" FontFamily="Stencil" FontSize="20" />
-        <GroupBox Header="Event List" Canvas.Left="12" Canvas.Top="47" Height="393" Width="185" FontSize="16" FontFamily="Stencil">
+        <GroupBox Header="Event List" Canvas.Left="12" Canvas.Top="47" Height="420" Width="185" FontSize="16" FontFamily="Stencil">
             <StackPanel Height="350">
 
-                <ListBox x:Name="lstEventList" Height="340" FontSize="12" Margin="1,1,1,1" FontFamily="Tahoma"  FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged">
+                <ListBox x:Name="lstEventList" Height="360" FontSize="12" Margin="1,1,1,1" FontFamily="Tahoma"  FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Vertical">
@@ -47,7 +35,7 @@
                 </ListBox>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Event Detail" Canvas.Left="203" Canvas.Top="47" Height="397" Width="473" FontFamily="Stencil" FontSize="16">
+        <GroupBox Header="Event Detail" Canvas.Left="210" Canvas.Top="47" Height="420" Width="480" FontFamily="Stencil" FontSize="16">
             <StackPanel Margin="0,8,0,0" Height="330" VerticalAlignment="Top" >
                 <Canvas Height="40">
                     <Label Canvas.Left="41" Canvas.Top="6" Content="Event Name:" Height="28" x:Name="label1" FontSize="12" FontFamily="Tahoma" />

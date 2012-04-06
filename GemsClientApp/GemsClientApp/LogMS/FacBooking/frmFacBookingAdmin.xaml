@@ -6,26 +6,14 @@
 	x:Class="Gems.UIWPF.frmFacBookingAdmin"
 	Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	x:Name="Window"
-	Title="frmLocationAdminRequest"
+	Title="Facilities Booking Approval"
     Width="1080" Height="525" AllowsTransparency="True" WindowStyle="None" 
     WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
     <Canvas Opacity="1.0">
-        <Button x:Name="btnClose" Canvas.Left="1025" Canvas.Top="8" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Booking Approval" 
                Height="38" x:Name="label3" Width="824" FontFamily="Stencil" FontSize="20" />
         <StackPanel Canvas.Left="21" Canvas.Top="60" Orientation="Horizontal" Height="400" Width="1080">

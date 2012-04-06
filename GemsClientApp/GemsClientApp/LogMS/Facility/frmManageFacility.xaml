@@ -4,25 +4,13 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmManageFacility"
 	x:Name="Window" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Title="frmLocationManagement"
-Width="752" Height="547" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+	Title="Facilities Management"
+Width="680" Height="520" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" >
 	<Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0" Width="678">
-        <Button x:Name="btnClose" Canvas.Left="670" Canvas.Top="18" Height="0" Width="0" Click="btnExit_Click">
-            <Button.Template>
-                <ControlTemplate>
-                    <Canvas>
-                        <Rectangle Width="30" Height="30">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="/GemsClientApp;component/Close.png"/>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </Canvas>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+    <Canvas Opacity="1.0">
+		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Management" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
         <StackPanel Height="425" Width="629" Orientation="Horizontal" Canvas.Left="21"  Canvas.Top="56">
             <StackPanel Width="207" Height="430" Margin="0" VerticalAlignment="Top">

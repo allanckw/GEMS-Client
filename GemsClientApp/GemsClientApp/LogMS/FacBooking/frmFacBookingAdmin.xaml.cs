@@ -45,7 +45,7 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             mainFrame.Visibility = Visibility.Visible;

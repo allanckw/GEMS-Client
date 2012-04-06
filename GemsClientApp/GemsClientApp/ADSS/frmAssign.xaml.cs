@@ -43,7 +43,7 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             admFrame.Visibility = Visibility.Visible;
@@ -100,7 +100,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("User " + txtUserID.Text + " has already been assigned as " + txtCurrRole.Text,
                     "Already Assigned", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                btnExit_Click(this.btnExit, new RoutedEventArgs());
+                btnClose_Click(this.btnClose, new RoutedEventArgs());
             }
         }
     }
