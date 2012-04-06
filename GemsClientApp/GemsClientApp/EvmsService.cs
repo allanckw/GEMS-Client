@@ -918,7 +918,7 @@ namespace evmsService.entities
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private evmsService.entities.FacilityBookingConfirmed ConfirmedFacilityBookingField;
+        private evmsService.entities.FacilityBookingConfirmed[] ConfirmedFacilityBookingField;
         
         private string DescriptionField;
         
@@ -959,7 +959,7 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.FacilityBookingConfirmed ConfirmedFacilityBooking
+        public evmsService.entities.FacilityBookingConfirmed[] ConfirmedFacilityBooking
         {
             get
             {

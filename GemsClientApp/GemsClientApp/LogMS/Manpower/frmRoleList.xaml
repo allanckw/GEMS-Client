@@ -4,13 +4,13 @@
     xmlns:actb.control="clr-namespace:dragonz.actb.control;assembly=dragonz.actb"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmRoleList"
-	x:Name="Window"
-	Title="frmRoleList"
+	x:Name="Window"	Title="Manage Roles"
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Manpower" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
     		<GroupBox Header="Roles" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
-    			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13" SelectionMode="Single" Margin="0">
+                <ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         SelectionMode="Single" Margin="0">
     				<ListBox.ItemTemplate>
     					<DataTemplate>
     						<StackPanel Margin="10" Orientation="Vertical">

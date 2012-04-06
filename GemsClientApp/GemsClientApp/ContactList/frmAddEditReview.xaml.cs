@@ -25,7 +25,7 @@ namespace Gems.UIWPF
         Service service;
         Event event_;
         public Boolean created;
-
+        
         public frmAddEditReview()
         {
             this.InitializeComponent();
@@ -40,7 +40,7 @@ namespace Gems.UIWPF
             this.review = r;
             this.service = s;
             this.event_ = e;
-
+            
             this.txtServiceName.Text = service.Name;
             if (review == null)
             {

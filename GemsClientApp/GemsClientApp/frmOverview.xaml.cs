@@ -136,20 +136,24 @@ namespace Gems.UIWPF
         }
         private void loadFacilityBooking()
         {
-            FacilityBookingConfirmed fbc = event_.ConfirmedFacilityBooking;
-            if (fbc == null)
+            List<FacilityBookingConfirmed> fbc = event_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
+            if (fbc.Count == 0)
             {
                 txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";
             }
             else
             {
-                txtLocationMsg.Text = "The venue to hold this event is in " +
-                        fbc.Faculty.ToString() + " " + " at " + fbc.Venue + " " + Environment.NewLine
-                        + Environment.NewLine +
-                        "It is booked from " + fbc.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
-                        + " to " + fbc.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
+                txtLocationMsg.Text = "The venue to hold this event are (is) " + Environment.NewLine ;
+                foreach (FacilityBookingConfirmed confirmedReq in fbc)
+                {
+                    txtLocationMsg.Text += confirmedReq.Faculty.ToString() + " " + " at " + confirmedReq.Venue
+                        + " " + Environment.NewLine + 
+                        "It is booked from " + confirmedReq.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
+                        + " to " + confirmedReq.RequestEndDateTime.ToString("dd MMM yyyy HH:mm") + Environment.NewLine
+                        ;
 
 
+                }
             }
         }
 
