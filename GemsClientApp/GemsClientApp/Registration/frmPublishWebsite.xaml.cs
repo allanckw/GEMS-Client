@@ -31,6 +31,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             publish = client.ViewPublish(event_.EventID);
             client.Close();
+
             if (publish != null)
             {
                 txtRemarks.Text = publish.Remarks;
@@ -41,8 +42,62 @@ namespace Gems.UIWPF
             {
                 btnDelete.IsEnabled = false;
             }
+
+            dtpStart.dtpDate.SelectedDateChanged += dateChanged;
+            dtpEnd.dtpDate.SelectedDateChanged += dateChanged;
+
+            dtpStart.cboHr.SelectionChanged += dateChanged;
+            dtpStart.cboMin.SelectionChanged += dateChanged;
+
+            dtpEnd.cboHr.SelectionChanged += dateChanged;
+            dtpEnd.cboMin.SelectionChanged += dateChanged;
+
+            dtpStart.cboHr.SelectionChanged += starthourChanged;
+
+            dtpEnd.cboHr.SelectionChanged += endhourChanged;
+
+            changed = false;
+        }
+        private void starthourChanged(object sender, RoutedEventArgs e)
+        {
+            if (dtpStart.cboHr.SelectedValue.ToString().Equals("24"))
+            {
+                dtpStart.cboMin.SelectedIndex = 0;
+                dtpStart.cboMin.IsEnabled = false;
+            }
+            else
+                dtpStart.cboMin.IsEnabled = true;
         }
 
+        private void endhourChanged(object sender, RoutedEventArgs e)
+        {
+            if (dtpEnd.cboHr.SelectedValue.ToString().Equals("24"))
+            {
+                dtpEnd.cboMin.SelectedIndex = 0;
+                dtpEnd.cboMin.IsEnabled = false;
+            }
+            else
+                dtpEnd.cboMin.IsEnabled = true;
+        }
+
+        private void dateChanged(object sender, RoutedEventArgs e)
+        {
+            if (publish != null)
+            {
+                DateTime start = dtpStart.dtpDate.SelectedDate.Value.AddHours(Double.Parse(dtpStart.cboHr.SelectedValue.ToString())).AddMinutes(Double.Parse(dtpStart.cboMin.SelectedValue.ToString()));
+                DateTime end = dtpEnd.dtpDate.SelectedDate.Value.AddHours(Double.Parse(dtpEnd.cboHr.SelectedValue.ToString())).AddMinutes(Double.Parse(dtpEnd.cboMin.SelectedValue.ToString()));
+
+
+                if (txtRemarks.Text.Equals(publish.Remarks) &&
+                    start.Equals(publish.StartDateTime) &&
+                    end.Equals(publish.EndDateTime))
+                    changed = false;
+                else
+                    changed = true;
+            }
+            else
+                changed = true;
+        }
         public override bool saveChanges()
         {
             if (dtpStart.SelectedDateTime == null)

@@ -596,8 +596,9 @@ namespace Gems.UIWPF
                         SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
                     }
                     client.Close();
-                    selectedIndex = lstEventList.SelectedIndex;
+                    
                 }
+                selectedIndex = lstEventList.SelectedIndex;
             }
             catch (Exception ex)
             {

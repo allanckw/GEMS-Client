@@ -39,6 +39,7 @@ namespace Gems.UIWPF
                 };
                 staticFields.AddRange(client.ViewStaticField().ToList());
                 cbStaticFields.ItemsSource = staticFields;
+                Publish publish = client.ViewPublish(event_.EventID);
                 fields = new ObservableCollection<Field>(client.ViewField(event_.EventID));
                 client.Close();
                 if (fields.Count == 0)
@@ -49,6 +50,8 @@ namespace Gems.UIWPF
                     lastName.FieldName = lastName.FieldLabel = "Last Name";
                     firstName.IsRequired = lastName.IsRequired = true;
                     fields = new ObservableCollection<Field>() { firstName, lastName };
+
+
                 }
                 fields.CollectionChanged += (sender, ev) =>
                 {
@@ -57,6 +60,16 @@ namespace Gems.UIWPF
                 lstFields.ItemsSource = fields;
                 DisableListItemChildren(0);
                 DisableListItemChildren(1);
+
+                if (publish != null)
+                {
+                    for (int i = 0; i < lstFields.Items.Count; i++)
+                    {
+                        DisableListItemChildren(i);
+                    }
+                    btnAdd.IsEnabled = false;
+                    btnSave.IsEnabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -120,6 +133,7 @@ namespace Gems.UIWPF
             txtFieldName.Text = "";
             txtRemarks.Text = "";
             chkRequired.IsChecked = false;
+            
         }
 
         T GetParent<T>(DependencyObject obj)
@@ -150,7 +164,8 @@ namespace Gems.UIWPF
                     fields.Add(new Field());
                     break;
                 default:
-                    fields.Add(new Field() {
+                    fields.Add(new Field()
+                    {
                         FieldName = (string)cbStaticFields.SelectedValue,
                         FieldLabel = ((StaticField)cbStaticFields.SelectedItem).FieldLabel
                     });
@@ -164,7 +179,7 @@ namespace Gems.UIWPF
         {
             foreach (Field field in fields)
             {
-                if (field.FieldName== null || field.FieldLabel == null || field.FieldName.Trim() == "" || field.FieldLabel.Trim() == "")
+                if (field.FieldName == null || field.FieldLabel == null || field.FieldName.Trim() == "" || field.FieldLabel.Trim() == "")
                 {
                     MessageBox.Show("Field name and field label must not be empty.");
                     return false;
