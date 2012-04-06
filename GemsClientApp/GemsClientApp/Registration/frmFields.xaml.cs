@@ -118,6 +118,7 @@ namespace Gems.UIWPF
             CheckBox chkRequired = (CheckBox)parent.FindName("chkRequired");
             txtFieldLabel.Text = "";
             txtFieldName.Text = "";
+            txtRemarks.Text = "";
             chkRequired.IsChecked = false;
         }
 
@@ -163,7 +164,7 @@ namespace Gems.UIWPF
         {
             foreach (Field field in fields)
             {
-                if (field.FieldName.Trim() == "" || field.FieldLabel.Trim() == "")
+                if (field.FieldName== null || field.FieldLabel == null || field.FieldName.Trim() == "" || field.FieldLabel.Trim() == "")
                 {
                     MessageBox.Show("Field name and field label must not be empty.");
                     return false;

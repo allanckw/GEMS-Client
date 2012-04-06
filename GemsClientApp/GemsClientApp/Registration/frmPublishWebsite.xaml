@@ -10,11 +10,11 @@
     <GroupBox Header="Publish Website" FontSize="21" FontWeight="Medium">
 	    <StackPanel>
 			<StackPanel Orientation="Horizontal" Height="31.314">
-				<Label Content="Start Date:" Width="76.803" FontSize="13"/>
+				<Label Content="Registration Start Date:" Width="156.803" FontSize="13"/>
 				<local:DateTimePicker x:Name="dtpStart" FontFamily="Tahoma" FontSize="12"/>
 			</StackPanel>
 			<StackPanel Height="31.314" Orientation="Horizontal">
-				<Label Content="End Date:" Width="76.803" FontSize="13"/>
+				<Label Content="Registration End Date:" Width="156.803" FontSize="13"/>
                 <local:DateTimePicker x:Name="dtpEnd" FontFamily="Tahoma" FontSize="12"/>
 			</StackPanel>
 			<StackPanel Height="250">
@@ -22,10 +22,14 @@
                     <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtRemarks" TextChanged="onChanged"/>
 			</StackPanel>
 			<DockPanel LastChildFill="False" Margin="8,0,0,0">
-				<Label Content="Note: Registration will start as soon as website is published." FontSize="12"/>
-				<Button x:Name="btnDelete"  Content="Delete" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnDelete_Click" DockPanel.Dock="Right"/>
-				<Button Content="Save" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnSave_Click" DockPanel.Dock="Right"/>
-				<Button Content="Clear" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnClear_Click" DockPanel.Dock="Right"/>
+                <StackPanel>
+				    <Label Content="Note: Event will be viewable on website when published. " FontSize="12"/>
+                    <Label Content="However, participant will only be able to Register " FontSize="12"/>
+                    <Label Content="during the registration period defined above." FontSize="12"/>
+                </StackPanel>
+                <Button x:Name="btnDelete" Content="Delete" Width="75" Height="25"  FontSize="12" Margin="0,0,10,0" Click="btnDelete_Click" DockPanel.Dock="Right"/>
+                <Button Content="Save" Width="75" Height="25" FontSize="12" Margin="0,0,10,0" Click="btnSave_Click" DockPanel.Dock="Right"/>
+                <Button Content="Clear" Width="75" Height="25"  FontSize="12" Margin="0,0,10,0" Click="btnClear_Click" DockPanel.Dock="Right"/>
 			</DockPanel>
 		</StackPanel>
     </GroupBox>
