@@ -3567,7 +3567,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddField", ReplyAction="http://tempuri.org/IEvmsService/AddFieldResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AddFieldSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void AddField(evmsService.entities.User u, int EventID, evmsService.entities.Field[] ListField);
+    void AddField(evmsService.entities.User user, int EventID, evmsService.entities.Field[] ListField);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewField", ReplyAction="http://tempuri.org/IEvmsService/ViewFieldResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewFieldSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3723,7 +3723,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddFacilityBookingRequest", ReplyAction="http://tempuri.org/IEvmsService/AddFacilityBookingRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AddFacilityBookingRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Event e, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails);
+    bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Event evnt, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/CheckRequestExist", ReplyAction="http://tempuri.org/IEvmsService/CheckRequestExistResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/CheckRequestExistSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3835,11 +3835,11 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewRole", ReplyAction="http://tempuri.org/IEvmsService/ViewRoleResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Role[] ViewRole(evmsService.entities.User user, evmsService.entities.Event e);
+    evmsService.entities.Role[] ViewRole(evmsService.entities.User user, evmsService.entities.Event evnt);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventRoles", ReplyAction="http://tempuri.org/IEvmsService/ViewEventRolesResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventRolesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event e);
+    System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event evnt);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewFunction", ReplyAction="http://tempuri.org/IEvmsService/ViewFunctionResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewFunctionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3851,7 +3851,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/AddRoleTemplate", ReplyAction="http://tempuri.org/IEvmsService/AddRoleTemplateResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/AddRoleTemplateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    int AddRoleTemplate(evmsService.entities.User user, evmsService.entities.Event E, string RolePost, string RoleDescription, evmsService.entities.EnumFunctions[] functionID);
+    int AddRoleTemplate(evmsService.entities.User user, evmsService.entities.Event evnt, string RolePost, string RoleDescription, evmsService.entities.EnumFunctions[] functionID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteRoleTemplate", ReplyAction="http://tempuri.org/IEvmsService/DeleteRoleTemplateResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteRoleTemplateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3863,7 +3863,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewTemplateRole", ReplyAction="http://tempuri.org/IEvmsService/ViewTemplateRoleResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewTemplateRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.RoleTemplate[] ViewTemplateRole(evmsService.entities.User user, evmsService.entities.Event e);
+    evmsService.entities.RoleTemplate[] ViewTemplateRole(evmsService.entities.User user, evmsService.entities.Event evnt);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetTemplateRight", ReplyAction="http://tempuri.org/IEvmsService/GetTemplateRightResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetTemplateRightSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -3983,11 +3983,11 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditEvent", ReplyAction="http://tempuri.org/IEvmsService/EditEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void EditEvent(evmsService.entities.User user, evmsService.entities.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
+    void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteEvent", ReplyAction="http://tempuri.org/IEvmsService/DeleteEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void DeleteEvent(evmsService.entities.User user, evmsService.entities.Event e);
+    void DeleteEvent(evmsService.entities.User user, evmsService.entities.Event evnt);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/ViewEventsbyDate", ReplyAction="http://tempuri.org/IEvmsService/ViewEventsbyDateResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/ViewEventsbyDateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4105,9 +4105,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.GetParticipantFieldAnswer(user, EventID, ParticipantID);
     }
     
-    public void AddField(evmsService.entities.User u, int EventID, evmsService.entities.Field[] ListField)
+    public void AddField(evmsService.entities.User user, int EventID, evmsService.entities.Field[] ListField)
     {
-        base.Channel.AddField(u, EventID, ListField);
+        base.Channel.AddField(user, EventID, ListField);
     }
     
     public evmsService.entities.Field[] ViewField(int EventID)
@@ -4300,9 +4300,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.GetVenuesByCap(fac, faciID, minCap, maxCap);
     }
     
-    public bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Event e, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails)
+    public bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Event evnt, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails)
     {
-        return base.Channel.AddFacilityBookingRequest(user, e, faculty, reqstart, reqEnd, reqDetails);
+        return base.Channel.AddFacilityBookingRequest(user, evnt, faculty, reqstart, reqEnd, reqDetails);
     }
     
     public bool CheckRequestExist(int eventid, System.DateTime start, System.DateTime end)
@@ -4440,14 +4440,14 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.GetRights(EventID, UserID);
     }
     
-    public evmsService.entities.Role[] ViewRole(evmsService.entities.User user, evmsService.entities.Event e)
+    public evmsService.entities.Role[] ViewRole(evmsService.entities.User user, evmsService.entities.Event evnt)
     {
-        return base.Channel.ViewRole(user, e);
+        return base.Channel.ViewRole(user, evnt);
     }
     
-    public System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event e)
+    public System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Event evnt)
     {
-        return base.Channel.ViewEventRoles(user, e);
+        return base.Channel.ViewEventRoles(user, evnt);
     }
     
     public evmsService.entities.Function[] ViewFunction()
@@ -4460,9 +4460,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.ViewUserEventRoles(userID, eventID);
     }
     
-    public int AddRoleTemplate(evmsService.entities.User user, evmsService.entities.Event E, string RolePost, string RoleDescription, evmsService.entities.EnumFunctions[] functionID)
+    public int AddRoleTemplate(evmsService.entities.User user, evmsService.entities.Event evnt, string RolePost, string RoleDescription, evmsService.entities.EnumFunctions[] functionID)
     {
-        return base.Channel.AddRoleTemplate(user, E, RolePost, RoleDescription, functionID);
+        return base.Channel.AddRoleTemplate(user, evnt, RolePost, RoleDescription, functionID);
     }
     
     public void DeleteRoleTemplate(evmsService.entities.User user, int RoleID)
@@ -4475,9 +4475,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         base.Channel.EditRightsTemplate(user, RoleID, RolePost, RoleDescription, functionID);
     }
     
-    public evmsService.entities.RoleTemplate[] ViewTemplateRole(evmsService.entities.User user, evmsService.entities.Event e)
+    public evmsService.entities.RoleTemplate[] ViewTemplateRole(evmsService.entities.User user, evmsService.entities.Event evnt)
     {
-        return base.Channel.ViewTemplateRole(user, e);
+        return base.Channel.ViewTemplateRole(user, evnt);
     }
     
     public evmsService.entities.RightTemplate[] GetTemplateRight(int RoleTemplateID)
@@ -4625,14 +4625,14 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.ViewEvent(user);
     }
     
-    public void EditEvent(evmsService.entities.User user, evmsService.entities.Event e, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
+    public void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
     {
-        base.Channel.EditEvent(user, e, EventOrganizerID, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
+        base.Channel.EditEvent(user, evnt, EventOrganizerID, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
     }
     
-    public void DeleteEvent(evmsService.entities.User user, evmsService.entities.Event e)
+    public void DeleteEvent(evmsService.entities.User user, evmsService.entities.Event evnt)
     {
-        base.Channel.DeleteEvent(user, e);
+        base.Channel.DeleteEvent(user, evnt);
     }
     
     public evmsService.entities.Event[] ViewEventsbyDate(evmsService.entities.User user, System.DateTime start, System.DateTime end)
