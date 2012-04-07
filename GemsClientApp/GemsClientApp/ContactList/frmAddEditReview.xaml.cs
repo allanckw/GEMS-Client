@@ -60,6 +60,7 @@ namespace Gems.UIWPF
             if (review == null)
             {
                 //add new
+                btnDelete.IsEnabled = false;
                 lblReport.Visibility = Visibility.Collapsed;
             }
             else
@@ -67,15 +68,28 @@ namespace Gems.UIWPF
                 if (review.UserID == user.userID)
                 {
                     //edit
+                    btnDelete.IsEnabled = true;
                     lblReport.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     //browse
+                    if (!user.isSystemAdmin)
+                    {
+                        
+                        btnDelete.Visibility = Visibility.Visible;
+                        btnSave.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        btnDelete.Visibility = Visibility.Collapsed;
+                        btnSave.Visibility = Visibility.Collapsed;
+                        
+                    }
                     rating.IsEnabled = false;
                     txtReviewDescription.IsReadOnly = true;
-                    btnSave.IsEnabled = false;
-                    btnSave.Visibility = Visibility.Collapsed;
+                    
+                    
                     lblReport.Visibility = Visibility.Visible;
                 }
                 load_data(review);
@@ -145,6 +159,24 @@ namespace Gems.UIWPF
                 MessageBox.Show("Operation Success");
                // this.Close();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                WCFHelperClient client = new WCFHelperClient();
+                client.DeleteReview(user, review.UserID, service.ServiceID);
+                client.Close();
+
+                MessageBox.Show("Operation Success");
+                // this.Close();
+                this.Close();
             }
             catch (Exception ex)
             {

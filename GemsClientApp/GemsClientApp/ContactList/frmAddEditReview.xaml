@@ -46,8 +46,9 @@
         			</FlowDocument>
         		</RichTextBox>
         		<StackPanel x:Name="stackbtn" Height="35" Margin="0,5,0,0" Orientation="Horizontal">
-        			<StackPanel Width="100">
+        			<StackPanel Orientation="Horizontal" Width="200">
         				<Button x:Name="btnSave" Content="Save" Width="75" Height="25" FontSize="13" Margin="5,0,0,0" Click="btnSave_Click" d:LayoutOverrides="HorizontalMargin" />
+                        <Button x:Name="btnDelete" Content="Delete" Width="75" Height="25" FontSize="13" Margin="5,0,0,0" d:LayoutOverrides="HorizontalMargin" Click="btnDelete_Click" />
         			</StackPanel>
         			<StackPanel Width="600" HorizontalAlignment="Right">
         				<Label x:Name="lblReport" Margin="0" Width="100" Height="30" FontSize="14" FontFamily="Segoe Marker" Background="{x:Null}" HorizontalAlignment="Right" d:LayoutOverrides="Height">

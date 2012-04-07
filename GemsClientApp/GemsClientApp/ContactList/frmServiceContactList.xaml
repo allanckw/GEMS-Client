@@ -178,8 +178,7 @@
     											<StackPanel Height="30" Margin="10,5,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="510">
     												<!--<Button x:Name="btnViewReview" Content="View Review" FontSize="13" Margin="5,0" Width="90" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnViewReview_Click" />-->
     												<Button x:Name="btnAddReview" Content="Add New Review" FontSize="13" Margin="5,0" Width="120" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddReview_Click" />
-    												<Button Content="Delete" Width="75" Height="25" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13" Margin="5,0" x:Name="btnDeleteReview" Click="btnDeleteReview_Click" />
-    											</StackPanel>
+                                                </StackPanel>
     										</StackPanel>
     									</Canvas>
     								</StackPanel>

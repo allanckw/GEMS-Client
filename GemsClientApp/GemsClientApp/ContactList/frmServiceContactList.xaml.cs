@@ -128,6 +128,9 @@ namespace Gems.UIWPF
                     if (r.ServiceID == service.ServiceID && user.userID == r.UserID)
                     {
                         btnAddReview.Content = "Edit Own Review";
+                        //lstReviewList.SelectedIndex = i;
+     
+                        
                         return;
                     }
                 }
@@ -141,6 +144,8 @@ namespace Gems.UIWPF
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
 
         private void lstServiceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -246,7 +251,7 @@ namespace Gems.UIWPF
 
             lstReviewList.ItemsSource = null;
             btnAddReview.IsEnabled = false;
-            btnDeleteReview.IsEnabled = false;
+            //btnDeleteReview.IsEnabled = false;
             // btnViewReview.IsEnabled = false;
             lstReviewList.IsEnabled = false;
 
@@ -254,7 +259,7 @@ namespace Gems.UIWPF
         private void Enable_ReviewContactField()
         {
             btnAddReview.IsEnabled = true;
-            btnDeleteReview.IsEnabled = true;
+            //btnDeleteReview.IsEnabled = true;
             //  btnViewReview.IsEnabled = true;
 
             lstReviewList.IsEnabled = true;
@@ -350,6 +355,7 @@ namespace Gems.UIWPF
                         client.AddPointOfContact(user, -1, ((Service)lstServiceList.SelectedItem).ServiceID,
                             txtContactName.Text.Trim(), txtContactPosition.Text.Trim(), txtContactTel.Text.Trim(), txtContactEmail.Text.Trim());
                     }
+                    MessageBox.Show("Operation Success");
                     client.Close();
 
                     loadPointOfContact(((Service)lstServiceList.SelectedItem).ServiceID);
@@ -383,6 +389,7 @@ namespace Gems.UIWPF
                     client.AddService(user, -1, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
 
                 client.Close();
+                MessageBox.Show("Operation Success");
             }
             catch (Exception ex)
             {
@@ -405,6 +412,7 @@ namespace Gems.UIWPF
                     client.EditService(service.ServiceID, user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
                 }
                 client.Close();
+                MessageBox.Show("Operation Success");
             }
             catch (Exception ex)
             {
@@ -427,6 +435,7 @@ namespace Gems.UIWPF
                     client.EditPointOfContact(user, -1, poc.PointOfContactID, txtContactName.Text, txtContactPosition.Text, txtContactTel.Text, txtContactEmail.Text);
                 }
                 client.Close();
+                MessageBox.Show("Operation Success");
             }
             catch (Exception ex)
             {
@@ -441,6 +450,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeleteService(user, service.ServiceID);
                 client.Close();
+                MessageBox.Show("Operation Success");
             }
             catch (Exception ex)
             {
@@ -455,6 +465,7 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 client.DeletePointOfContact(user, poc.PointOfContactID);
                 client.Close();
+                MessageBox.Show("Operation Success");
 
             }
             catch (Exception ex)
@@ -538,6 +549,11 @@ namespace Gems.UIWPF
         private void btnAddReview_Click(object sender, RoutedEventArgs e)
         {
             Service service = ((Service)lstServiceList.SelectedItem);
+            if (service == null)
+            {
+                MessageBox.Show("No Service Selected");
+                return;
+            }
             frmAddEditReview frm;
             Review sr = null;
             for (int i = 0; i < lstReviewList.Items.Count; i++)
@@ -548,7 +564,26 @@ namespace Gems.UIWPF
                     sr = r;
                     frm = new frmAddEditReview(user, this, r, service, event_);
                     frm.ShowDialog();
-                    lstReviewList.SelectedIndex = -1;
+                    loadReview(service.ServiceID);
+                    goto continueon;
+                }
+            }
+            frm = new frmAddEditReview(user, this, null, service, event_);
+            frm.ShowDialog();
+            loadReview(service.ServiceID);
+            
+
+            continueon:
+            for (int i = 0; i < lstReviewList.Items.Count; i++)
+            {
+                Review r = ((Review)lstReviewList.Items[i]);
+                if (r.ServiceID == service.ServiceID && r.UserID == user.userID)
+                {
+                    
+                    lstReviewList.SelectedIndex = i;
+
+                    lstReviewList.Focus();
+                    return;
                 }
             }
         }
@@ -610,12 +645,12 @@ namespace Gems.UIWPF
             if (r != null)//something is selected
             {
                 //btnViewReview.IsEnabled = true;
-                btnDeleteReview.IsEnabled = true;
+                //btnDeleteReview.IsEnabled = true;
             }
             else//nothing selected
             {
                 //btnViewReview.IsEnabled = false;
-                btnDeleteReview.IsEnabled = false;
+               // btnDeleteReview.IsEnabled = false;
             }
         }
 
@@ -711,6 +746,7 @@ namespace Gems.UIWPF
                     }
                 }
             }
+           
         }
 
         private void lstReviewList_LostFocus(object sender, RoutedEventArgs e)
