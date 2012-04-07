@@ -37,7 +37,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstMsg.ItemsSource = client.GetUnreadMessages(user.userID);
+            lstMsg.ItemsSource = client.GetUnreadMessages(user,user.UserID);
             client.Close();
         }
 
@@ -60,11 +60,11 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             if (radUnread.IsChecked == true)
             { 
-                lstMsg.ItemsSource = client.GetUnreadMessages(user.userID);
+                lstMsg.ItemsSource = client.GetUnreadMessages(user, user.UserID);
             }
             else
             {
-                lstMsg.ItemsSource = client.GetAllMessages(user.userID);
+                lstMsg.ItemsSource = client.GetAllMessages(user, user.UserID);
             }
             client.Close();
         }
@@ -75,7 +75,7 @@ namespace Gems.UIWPF
             if (!n.isRead)
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.SetNotificationRead(n);
+                client.SetNotificationRead(user, n);
                 client.Close();
             }
             var viewNote = new frmViewNotification(n, user);
@@ -92,7 +92,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Notifications n = (Notifications)lstMsg.SelectedItem;
-                    client.DeleteNotifications(n);
+                    client.DeleteNotifications(user,n);
                     radUnread_Checked(this, e);
                 }
                 
@@ -117,7 +117,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
 
-                    client.DeleteAllNotificationsOfUser(user.userID);
+                    client.DeleteAllNotificationsOfUser(user, user.UserID);
                     radUnread_Checked(this, e);
                 }
 

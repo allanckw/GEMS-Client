@@ -27,6 +27,8 @@ namespace evmsService.entities
         
         private evmsService.entities.Faculty UserFacultyField;
         
+        private string UserIDField;
+        
         private bool isEventOrganizerField;
         
         private bool isFacilityAdminField;
@@ -34,8 +36,6 @@ namespace evmsService.entities
         private bool isNormalUserField;
         
         private bool isSystemAdminField;
-        
-        private string userIDField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -89,6 +89,19 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserID
+        {
+            get
+            {
+                return this.UserIDField;
+            }
+            set
+            {
+                this.UserIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool isEventOrganizer
         {
             get
@@ -137,19 +150,6 @@ namespace evmsService.entities
             set
             {
                 this.isSystemAdminField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string userID
-        {
-            get
-            {
-                return this.userIDField;
-            }
-            set
-            {
-                this.userIDField = value;
             }
         }
     }
@@ -3943,31 +3943,31 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetNewMessage", ReplyAction="http://tempuri.org/IEvmsService/GetNewMessageResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetNewMessageSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    string GetNewMessage(string rid);
+    string GetNewMessage(evmsService.entities.User user, string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetUnreadMessageCount", ReplyAction="http://tempuri.org/IEvmsService/GetUnreadMessageCountResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetUnreadMessageCountSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    int GetUnreadMessageCount(string rid);
+    int GetUnreadMessageCount(evmsService.entities.User user, string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetUnreadMessages", ReplyAction="http://tempuri.org/IEvmsService/GetUnreadMessagesResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetUnreadMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Notifications[] GetUnreadMessages(string rid);
+    evmsService.entities.Notifications[] GetUnreadMessages(evmsService.entities.User user, string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/GetAllMessages", ReplyAction="http://tempuri.org/IEvmsService/GetAllMessagesResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/GetAllMessagesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Notifications[] GetAllMessages(string rid);
+    evmsService.entities.Notifications[] GetAllMessages(evmsService.entities.User user, string rid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteNotifications", ReplyAction="http://tempuri.org/IEvmsService/DeleteNotificationsResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteNotificationsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void DeleteNotifications(evmsService.entities.Notifications n);
+    void DeleteNotifications(evmsService.entities.User user, evmsService.entities.Notifications msg);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteAllNotificationsOfUser", ReplyAction="http://tempuri.org/IEvmsService/DeleteAllNotificationsOfUserResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteAllNotificationsOfUserSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void DeleteAllNotificationsOfUser(string uid);
+    void DeleteAllNotificationsOfUser(evmsService.entities.User user, string uid);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/SetNotificationRead", ReplyAction="http://tempuri.org/IEvmsService/SetNotificationReadResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/SetNotificationReadSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void SetNotificationRead(evmsService.entities.Notifications n);
+    void SetNotificationRead(evmsService.entities.User user, evmsService.entities.Notifications msg);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/SendNotification", ReplyAction="http://tempuri.org/IEvmsService/SendNotificationResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/SendNotificationSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4575,39 +4575,39 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.GetUserName(userid);
     }
     
-    public string GetNewMessage(string rid)
+    public string GetNewMessage(evmsService.entities.User user, string rid)
     {
-        return base.Channel.GetNewMessage(rid);
+        return base.Channel.GetNewMessage(user, rid);
     }
     
-    public int GetUnreadMessageCount(string rid)
+    public int GetUnreadMessageCount(evmsService.entities.User user, string rid)
     {
-        return base.Channel.GetUnreadMessageCount(rid);
+        return base.Channel.GetUnreadMessageCount(user, rid);
     }
     
-    public evmsService.entities.Notifications[] GetUnreadMessages(string rid)
+    public evmsService.entities.Notifications[] GetUnreadMessages(evmsService.entities.User user, string rid)
     {
-        return base.Channel.GetUnreadMessages(rid);
+        return base.Channel.GetUnreadMessages(user, rid);
     }
     
-    public evmsService.entities.Notifications[] GetAllMessages(string rid)
+    public evmsService.entities.Notifications[] GetAllMessages(evmsService.entities.User user, string rid)
     {
-        return base.Channel.GetAllMessages(rid);
+        return base.Channel.GetAllMessages(user, rid);
     }
     
-    public void DeleteNotifications(evmsService.entities.Notifications n)
+    public void DeleteNotifications(evmsService.entities.User user, evmsService.entities.Notifications msg)
     {
-        base.Channel.DeleteNotifications(n);
+        base.Channel.DeleteNotifications(user, msg);
     }
     
-    public void DeleteAllNotificationsOfUser(string uid)
+    public void DeleteAllNotificationsOfUser(evmsService.entities.User user, string uid)
     {
-        base.Channel.DeleteAllNotificationsOfUser(uid);
+        base.Channel.DeleteAllNotificationsOfUser(user, uid);
     }
     
-    public void SetNotificationRead(evmsService.entities.Notifications n)
+    public void SetNotificationRead(evmsService.entities.User user, evmsService.entities.Notifications msg)
     {
-        base.Channel.SetNotificationRead(n);
+        base.Channel.SetNotificationRead(user, msg);
     }
     
     public void SendNotification(string sender, string receiver, string title, string msg)

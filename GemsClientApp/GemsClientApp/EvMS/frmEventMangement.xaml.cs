@@ -90,7 +90,7 @@ namespace Gems.UIWPF
                 Event SelectedEvent = ((Event)lstEventList.SelectedItem);
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.EditEvent(user, SelectedEvent, user.userID, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
+                client.EditEvent(user, SelectedEvent, user.UserID, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }

@@ -70,7 +70,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             try
             {
-                client.SendNotification(user.userID, txtSenderID.Text, title, message);
+                client.SendNotification(user.UserID, txtSenderID.Text, title, message);
                 client.Close();
                 MessageBox.Show("Replied Sent", "Sent", MessageBoxButton.OK, MessageBoxImage.Information);
                 btnClose_Click(sender, e);

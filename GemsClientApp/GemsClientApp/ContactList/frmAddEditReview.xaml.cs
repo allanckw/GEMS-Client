@@ -65,7 +65,7 @@ namespace Gems.UIWPF
             }
             else
             {
-                if (review.UserID == user.userID)
+                if (review.UserID == user.UserID)
                 {
                     //edit
                     btnDelete.IsEnabled = true;
@@ -153,7 +153,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.SendNotification(user.userID, "citadmin", "Report Review Abuse", "Reviewer: " + review.UserID + ", by: " + review.UserName + " , on Service ID: " + review.ServiceID.ToString() + " was reported for abuse");
+                client.SendNotification(user.UserID, "citadmin", "Report Review Abuse", "Reviewer: " + review.UserID + ", by: " + review.UserName + " , on Service ID: " + review.ServiceID.ToString() + " was reported for abuse");
                 client.Close();
 
                 MessageBox.Show("Operation Success");

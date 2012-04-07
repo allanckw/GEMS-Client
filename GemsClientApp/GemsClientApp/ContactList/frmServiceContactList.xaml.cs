@@ -125,7 +125,7 @@ namespace Gems.UIWPF
                 for (int i = 0; i < lstReviewList.Items.Count; i++)
                 {
                     Review r = ((Review)lstReviewList.Items[i]);
-                    if (r.ServiceID == service.ServiceID && user.userID == r.UserID)
+                    if (r.ServiceID == service.ServiceID && user.UserID == r.UserID)
                     {
                         btnAddReview.Content = "Edit Own Review";
                         //lstReviewList.SelectedIndex = i;
@@ -559,7 +559,7 @@ namespace Gems.UIWPF
             for (int i = 0; i < lstReviewList.Items.Count; i++)
             {
                 Review r = ((Review)lstReviewList.Items[i]);
-                if (r.UserID.Equals(user.userID))
+                if (r.UserID.Equals(user.UserID))
                 {
                     sr = r;
                     frm = new frmAddEditReview(user, this, r, service, event_);
@@ -577,7 +577,7 @@ namespace Gems.UIWPF
             for (int i = 0; i < lstReviewList.Items.Count; i++)
             {
                 Review r = ((Review)lstReviewList.Items[i]);
-                if (r.ServiceID == service.ServiceID && r.UserID == user.userID)
+                if (r.ServiceID == service.ServiceID && r.UserID == user.UserID)
                 {
                     
                     lstReviewList.SelectedIndex = i;

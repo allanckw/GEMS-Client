@@ -41,10 +41,10 @@ namespace Gems.UIWPF
             }
             else if (user.isFacilityAdmin)
             {
-                Faculty f = client.GetFacilityAdmin(user.userID);
+                Faculty f = client.GetFacilityAdmin(user.UserID);
                 cboEditFac.SelectedIndex = cboFaculty.SelectedIndex = (int)f;
                 cboFacAdmin.IsEnabled = cboEditFac.IsEnabled = cboFaculty.IsEnabled = false;
-                cboFacAdmin.SelectedValue = user.userID;
+                cboFacAdmin.SelectedValue = user.UserID;
 
             }
 

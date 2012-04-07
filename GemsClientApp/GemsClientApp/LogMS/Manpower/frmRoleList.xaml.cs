@@ -28,7 +28,7 @@ namespace Gems.UIWPF
                 client.Close();
                 List<String> results = new List<string>();
                 foreach (User user in users)
-                    results.Add(user.Name.ToString() + " (" + user.userID.ToString() + ")");
+                    results.Add(user.Name.ToString() + " (" + user.UserID.ToString() + ")");
                 return results;
             }
             catch

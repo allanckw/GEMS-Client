@@ -37,7 +37,7 @@ namespace Gems.UIWPF
             WCFHelperClient client = new WCFHelperClient();
             cboRole.SelectedValuePath = "RoleID";
             cboRole.DisplayMemberPath = "Post";
-            cboRole.ItemsSource = client.ViewUserEventRoles(user.userID, event_.EventID);
+            cboRole.ItemsSource = client.ViewUserEventRoles(user.UserID, event_.EventID);
             client.Close();
 
             if (cboRole.Items.Count == 0)

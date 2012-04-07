@@ -18,8 +18,12 @@
         <PasswordBox PasswordChar="*" Canvas.Left="186" Canvas.Top="153" Height="23" Name="txtPassword" Width="200" />
 
         <Button Canvas.Left="232" Canvas.Top="225" Content="Login" Height="23" Name="btnLogin" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnLogin_Click" IsDefault="True" />
-        <Label Canvas.Left="63" Canvas.Top="46" Content="GEMS Events Management System" Height="38" Name="label3" Width="426" FontFamily="Stencil" FontSize="24" />
         <Label Canvas.Left="35" Canvas.Top="176" Content="Server Address:" Height="28" Name="label4" Width="92" />
         <TextBox Canvas.Left="35" Canvas.Top="196" Height="23" Name="txtSvAddr" Width="465" />
+        <Label Canvas.Left="16" Canvas.Top="44" Content="GEMS Events Management System" FontSize="29.333" FontWeight="Bold">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="1" />
+            </Label.Effect>
+        </Label>
     </Canvas>
 </Window>

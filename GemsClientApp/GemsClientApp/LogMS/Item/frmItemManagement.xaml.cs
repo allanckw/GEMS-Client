@@ -39,7 +39,7 @@ namespace Gems.UIWPF
         {
             WCFHelperClient client = new WCFHelperClient();
             if (user.isEventOrganizer || //Is event organizer or has rights to optimize items to buy
-                client.GetRights(event_.EventID, user.userID).ToList<EnumFunctions>()
+                client.GetRights(event_.EventID, user.UserID).ToList<EnumFunctions>()
                 .Contains(EnumFunctions.OptimizeItemList))
             {
                 budgetPanel.Visibility = Visibility.Visible;

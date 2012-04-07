@@ -160,11 +160,11 @@ namespace Gems.UIWPF
                                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                         }
-                        catch (ArgumentOutOfRangeException argEx)
+                        catch (Exception ex)
                         {
-                            MessageBox.Show(argEx.Message, "Error", MessageBoxButton.OK,
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
                                 MessageBoxImage.Error);
-                            this.Close();
+                            
                         }
                     }
                 ));

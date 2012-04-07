@@ -24,6 +24,7 @@ namespace Gems.UIWPF
         private GEMSPage currPage;
         private int selectedIndex = -1;
 
+        #region menuBarDictionary
         private static Dictionary<Type, Tuple<string, EnumFunctions[]>> pageFunctions = new Dictionary<Type, Tuple<string, EnumFunctions[]>>
         {
             { typeof(frmOverview), Tuple.Create("Overview", new EnumFunctions[] {})},
@@ -84,6 +85,7 @@ namespace Gems.UIWPF
                 EnumFunctions.Manage_Participant
             })}
         };
+        #endregion
 
         public frmMain()
         {
@@ -112,8 +114,6 @@ namespace Gems.UIWPF
             taskbarNotifier.StayOpenMilliseconds = 4000;
             taskbarNotifier.HidingMilliseconds = 2000;
             this.taskbarNotifier.Show();
-
-            getNewNotifications();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -121,7 +121,6 @@ namespace Gems.UIWPF
             this.Close();
             mainFrame.Visibility = Visibility.Visible;
         }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -135,15 +134,10 @@ namespace Gems.UIWPF
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
-            getHourlyNotifications();
-            notify();
             loadEvents();
-            lstEventList.SelectedIndex = 0;
-            Event ev = (Event)lstEventList.SelectedItem;
-            frame.Navigate(new frmOverview(user, ev));
+
+            getHourlyNotifications();
         }
-
-
 
         private void DisableAllRight()
         {
@@ -209,6 +203,118 @@ namespace Gems.UIWPF
             this.DragMove();
         }
 
+        private void loadEventsInThread()
+        {
+            
+            System.Threading.Thread thread = new System.Threading.Thread(
+                    new System.Threading.ThreadStart(
+                    delegate()
+                    {
+                        System.Windows.Threading.DispatcherOperation
+                        dispatcherOp = this.Dispatcher.BeginInvoke(
+                        System.Windows.Threading.DispatcherPriority.Loaded,
+                        new Action(delegate()
+                        {
+                            try
+                            {
+                                Mouse.OverrideCursor = Cursors.Wait;
+                                WCFHelperClient client = new WCFHelperClient();
+                                List<Event> list;
+                                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                                    list = client.ViewEvent(user).ToList<Event>();
+
+                                else
+                                    list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                                    dtpTo.SelectedDate.Value).ToList<Event>();
+
+                                lstEventList.ItemsSource = list;
+                                client.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                    ));
+                        dispatcherOp.Completed += new EventHandler(loadEventCompleted);
+                    }
+                ));
+
+            thread.Start();
+        }
+
+        private void loadEventCompleted(object sender, EventArgs e)
+        {
+            lstEventList.SelectedIndex = 0;
+
+            Event ev = (Event)lstEventList.SelectedItem;
+            frame.Navigate(new frmOverview(user, ev));
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void loadEventsAutoInThread()
+        {
+            System.Threading.Thread thread = new System.Threading.Thread(
+                    new System.Threading.ThreadStart(
+                    delegate()
+                    {
+                        System.Windows.Threading.DispatcherOperation
+                        dispatcherOp = this.Dispatcher.BeginInvoke(
+                        System.Windows.Threading.DispatcherPriority.Loaded,
+                        new Action(delegate()
+                        {
+                            try
+                            {
+                                bool nthselected = (lstEventList.SelectedIndex == -1);
+                                //SelectionChanged="lstEventList_SelectionChanged"
+
+                                lstEventList.SelectionChanged -= lstEventList_SelectionChanged;
+                                int Eid = 0;
+                                if (!nthselected)
+                                {
+                                    Eid = ((Event)lstEventList.SelectedItem).EventID;
+                                }
+                                WCFHelperClient client = new WCFHelperClient();
+                                List<Event> list;
+
+                                //if valid date range.
+                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+                                {
+                                    list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
+                                                    dtpTo.SelectedDate.Value).ToList<Event>();
+                                }
+                                else
+                                    list = client.ViewEvent(user).ToList<Event>();
+
+                                lstEventList.ItemsSource = list;
+                                client.Close();
+                                if (!nthselected)
+                                {
+                                    for (int i = 0; i < lstEventList.Items.Count; i++)
+                                    {
+                                        if (((Event)lstEventList.Items[i]).EventID == Eid)
+                                        {
+                                            lstEventList.SelectedIndex = i;
+                                            lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+                                            return;
+                                        }
+                                    }
+                                }
+                                lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                    ));
+
+                    }
+                ));
+
+            thread.Start();
+        }
+
         private void loadEvents()
         {
             if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
@@ -218,68 +324,14 @@ namespace Gems.UIWPF
             }
             else
             {
-                try
-                {
-                    WCFHelperClient client = new WCFHelperClient();
-                    List<Event> list;
-                    if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                        list = client.ViewEvent(user).ToList<Event>();
-
-                    else
-                        list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                        dtpTo.SelectedDate.Value).ToList<Event>();
-
-                    lstEventList.ItemsSource = list;
-                    client.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                loadEventsInThread();
             }
         }
 
         private void loadEventsAuto()
         {
+            this.loadEventsAutoInThread();
 
-            bool nthselected = (lstEventList.SelectedIndex == -1);
-            //SelectionChanged="lstEventList_SelectionChanged"
-
-            lstEventList.SelectionChanged -= lstEventList_SelectionChanged;
-            int Eid = 0;
-            if (!nthselected)
-            {
-                Eid = ((Event)lstEventList.SelectedItem).EventID;
-            }
-            WCFHelperClient client = new WCFHelperClient();
-            List<Event> list;
-
-            //if valid date range.
-            if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
-            {
-                list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                dtpTo.SelectedDate.Value).ToList<Event>();
-            }
-            else
-                list = client.ViewEvent(user).ToList<Event>();
-
-            lstEventList.ItemsSource = list;
-            client.Close();
-            if (!nthselected)
-            {
-                for (int i = 0; i < lstEventList.Items.Count; i++)
-                {
-                    if (((Event)lstEventList.Items[i]).EventID == Eid)
-                    {
-                        lstEventList.SelectedIndex = i;
-                        lstEventList.SelectionChanged += lstEventList_SelectionChanged;
-                        return;
-                    }
-                }
-            }
-            lstEventList.SelectionChanged += lstEventList_SelectionChanged;
-            //lstEventList.SelectedIndex = 0;
-            //loadEventItems();
         }
 
         private void SetRight(List<EnumFunctions> ef)
@@ -357,7 +409,7 @@ namespace Gems.UIWPF
             if (this.taskbarNotifier != null)
             {
                 this.getNewNotifications();
-                notify();
+
             }
         }
 
@@ -394,36 +446,73 @@ namespace Gems.UIWPF
             frmNotif.ShowDialog();
         }
 
+        private void GetMessages(bool newMessages)
+        {
+            System.Threading.Thread thread = new System.Threading.Thread(
+                new System.Threading.ThreadStart(
+                delegate()
+                {
+                    System.Windows.Threading.DispatcherOperation
+                    dispatcherOp = this.Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                    new Action(delegate()
+                    {
+                        try
+                        {
+                            WCFHelperClient client = new WCFHelperClient();
+                            taskbarNotifier.NotifyContent.Clear();
+                            if (newMessages)
+                            {
+                                string sender = client.GetNewMessage(user, user.UserID);
+                                if (sender.Length > 0)
+                                {
+                                    NotifyObject n = new NotifyObject();
+                                    n.Message = "You have 1 new message from " + sender;
+                                    taskbarNotifier.NotifyContent.Add(n);
+                                }
+                            }
+                            else
+                            {
+                                int noOfUnreadMsg = client.GetUnreadMessageCount(user, user.UserID);
+
+                                if (noOfUnreadMsg > 0)
+                                {
+                                    NotifyObject n = new NotifyObject();
+                                    n.Message = "You have " + noOfUnreadMsg + " unread messages";
+                                    taskbarNotifier.NotifyContent.Add(n);
+                                }
+                            }
+
+                            client.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                ));
+
+                    dispatcherOp.Completed += new EventHandler(GetMessages_Completed);
+                }
+            ));
+
+            thread.Start();
+        }
+
+        void GetMessages_Completed(object sender, EventArgs e)
+        {
+            notify();
+        }
+
         private void getNewNotifications()
         {
-            WCFHelperClient client = new WCFHelperClient();
-            taskbarNotifier.NotifyContent.Clear();
-            string sender = client.GetNewMessage(user.userID);
-
-            if (sender.Length > 0)
-            {
-                NotifyObject n = new NotifyObject();
-                n.Message = "You have 1 new message from " + sender;
-                taskbarNotifier.NotifyContent.Add(n);
-            }
-            client.Close();
+            GetMessages(true);
         }
 
         private void getHourlyNotifications()
         {
-            WCFHelperClient client = new WCFHelperClient();
-            taskbarNotifier.NotifyContent.Clear();
-            int noOfUnreadMsg = client.GetUnreadMessageCount(user.userID);
-
-            if (noOfUnreadMsg > 0)
-            {
-                NotifyObject n = new NotifyObject();
-                n.Message = "You have " + noOfUnreadMsg + " unread messages";
-                taskbarNotifier.NotifyContent.Add(n);
-            }
-            client.Close();
+            GetMessages(false);
         }
-
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -536,12 +625,12 @@ namespace Gems.UIWPF
             }
             currPageType = typeof(T);
             Event ev = (Event)lstEventList.SelectedItem;
-            if (pageFunctions[currPageType].Item2.Length > 0 && user.userID != ev.Organizerid && !user.isSystemAdmin)
+            if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
                 {
                     WCFHelperClient client = new WCFHelperClient();
-                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.userID).ToArray<EnumFunctions>())
+                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
                             {
@@ -582,13 +671,13 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                if (user.userID == ev.Organizerid)
+                if (user.UserID == ev.Organizerid)
                     EnableAllRight();
                 else
                 {
                     WCFHelperClient client = new WCFHelperClient();
 
-                    if (user.userID == ev.Organizerid || user.isSystemAdmin)
+                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
                     {
                         EnableAllRight();
                     }
@@ -601,7 +690,7 @@ namespace Gems.UIWPF
                     }
                     else
                     {
-                        SetRight(client.GetRights(ev.EventID, user.userID).ToList<EnumFunctions>());
+                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
                     }
                     client.Close();
 
