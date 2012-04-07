@@ -99,20 +99,22 @@ namespace Gems.UIWPF
                         //max budget $3, .OrderBy threw exception insufficient budget
                         //for required item, .OrderByDescending did not throw
                         importantItemsByType.Add(itemsByType[itemType.typeString]
-                           .OrderByDescending(i => i.EstimatedPrice).ToList());
+                           .OrderBy(i => i.EstimatedPrice).ToList());
                     }
                     else
                     {
                         //Should be order by descending not ascending
                         unimportantItemsByType.Add(itemsByType[itemType.typeString]
-                           .OrderByDescending(i => i.EstimatedPrice).ToList());
+                           .OrderBy(i => i.EstimatedPrice).ToList());
                     }
             }
 
             minBudget = 0;
 
             foreach (List<Items> itemsList in importantItemsByType)
-                minBudget += itemsList[itemsList.Count - 1].EstimatedPrice;
+            {
+                minBudget += itemsList[0].EstimatedPrice;
+            }
 
             if (minBudget > maxBudget)
                 throw new ArgumentOutOfRangeException
@@ -215,25 +217,26 @@ namespace Gems.UIWPF
             //set the max price and satisfaction to the last state that can be used
             maxPrice = DPtreeLeaves[i].TotalPrice;
             maxSatisfaction = DPtreeLeaves[i].TotalSatisfactionValue;
-            i = 0; //reset i to 0
+
             do
             {
-                if (DPtreeLeaves[i].TotalSatisfactionValue == maxSatisfaction)
-                { //if the total satisfaction = max satisfaction it is a valid result
-                    State stateOptimal = DPtreeLeaves[i];
-                    List<Items> itemsOptimal = new List<Items>();
-                    while (stateOptimal.PrevState != null)
-                    {
-                        itemsOptimal.Add(stateOptimal.Item);
-                        stateOptimal = stateOptimal.PrevState;
-                    }
-                    result.Add(itemsOptimal);
+                //if the total satisfaction = max satisfaction it is a valid result
+                State stateOptimal = DPtreeLeaves[i];
+                List<Items> itemsOptimal = new List<Items>();
+                while (stateOptimal.PrevState != null)
+                {
+                    itemsOptimal.Add(stateOptimal.Item);
+                    stateOptimal = stateOptimal.PrevState;
                 }
-                i++;
-            } while (i < DPtreeLeaves.Count &&
+                result.Add(itemsOptimal);
+
+                i--;
+            } while (i < DPtreeLeaves.Count && 
+                (DPtreeLeaves[i].TotalSatisfactionValue == maxSatisfaction) &&
                 DPtreeLeaves[i].TotalPrice <= maxPrice);
 
-            return result;
+            //More items the better...
+            return result.OrderByDescending(x => x.Count).ToList();
         }
     }
 }

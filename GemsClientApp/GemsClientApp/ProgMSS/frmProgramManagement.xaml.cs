@@ -105,9 +105,8 @@ namespace Gems.UIWPF
 
                 }
 
-                lstProgram.ItemsSource = newprogList
-                                                 .OrderBy(x => x.StartDateTime)
-                                                 .ThenBy(x => x.EndDateTime);
+                lstProgram.ItemsSource = newprogList.OrderBy(x => x.StartDateTime)
+                                                 .ThenBy(x => x.EndDateTime).ToList<Program>();
             }
             catch (Exception ex)
             {
@@ -178,15 +177,15 @@ namespace Gems.UIWPF
                     {
                         if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
                             client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                        
+
                         else
                             client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
                     }
 
                     client.Close();
-                    
+
                     MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+
                     clearAll();
                 }
                 catch (Exception ex)
