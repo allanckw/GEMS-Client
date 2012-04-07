@@ -76,7 +76,6 @@ namespace Gems.UIWPF
                 WCFHelperClient client = new WCFHelperClient();
                 List<Program> progList = client.ViewProgram(event_.EventID).ToList<Program>();
 
-                
                 client.Close();
                 DateTime curr = event_.StartDateTime;
                 DateTime end = event_.EndDateTime;
@@ -99,22 +98,16 @@ namespace Gems.UIWPF
                     p.StartDateTime = curr;
                     p.EndDateTime = curr.AddMinutes(30);
                     newprogList.Add(p);
-                        curr = curr.AddMinutes(30);
+                    curr = curr.AddMinutes(30);
 
                 next:
-                        continue;
-                
+                    continue;
+
                 }
 
                 lstProgram.ItemsSource = newprogList
                                                  .OrderBy(x => x.StartDateTime)
-                                                 .ThenBy(x => x.EndDateTime)
-                                                 .ToList<Program>();
-
-                //lstProgram.ItemsSource = progList
-                //                                .OrderBy(x => x.StartDateTime)
-                //                                .ThenBy(x => x.EndDateTime)
-                //                                .ToList<Program>();
+                                                 .ThenBy(x => x.EndDateTime);
             }
             catch (Exception ex)
             {
@@ -123,103 +116,92 @@ namespace Gems.UIWPF
 
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private bool validateInputs()
         {
             if (txtName.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter programme segment name.");
-                return;
+                return false;
             }
             if (cboStartHr.SelectedIndex == -1)
             {
                 MessageBox.Show("Please enter starting hour of programme segment.");
-                return;
+                return false;
             }
             if (cboStartMin.SelectedIndex == -1)
             {
                 MessageBox.Show("Please enter starting minute of programme segment.");
-                return;
+                return false;
             }
             if (cboEndHr.SelectedIndex == -1)
             {
                 MessageBox.Show("Please enter ending hour of programme segment.");
-                return;
+                return false;
             }
             if (cboEndMin.SelectedIndex == -1)
             {
                 MessageBox.Show("Please enter ending minute of programme segment.");
-                return;
+                return false;
             }
 
-            //DateTime SegmentStartDateTime = event_.StartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-            //DateTime SegmentEndDateTime = event_.EndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
-            //SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
-            //SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+            return true;
+        }
 
-            DateTime SegmentStartDateTime = event_.StartDateTime.Date;
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
 
-            DateTime SegmentEndDateTime = event_.EndDateTime.Date;
+            if (validateInputs())
+            {
+                DateTime SegmentStartDateTime = event_.StartDateTime.Date;
+                DateTime SegmentEndDateTime = event_.StartDateTime.Date;
 
-            SegmentStartDateTime = SegmentStartDateTime.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()));
-            SegmentEndDateTime = SegmentEndDateTime.AddHours(int.Parse(cboEndHr.SelectedValue.ToString()));
-            SegmentStartDateTime = SegmentStartDateTime.AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
-            SegmentEndDateTime = SegmentEndDateTime.AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+                SegmentStartDateTime = SegmentStartDateTime
+                    .AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
+                    .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
 
-            if (SegmentStartDateTime < event_.StartDateTime)
-            {
-                MessageBox.Show("Event starts at " + event_.StartDateTime + ", programme segment must start after that.");
-                return;
-            }
-            if (SegmentEndDateTime > event_.EndDateTime)
-            {
-                MessageBox.Show("Event ends at " + event_.EndDateTime + ", programme segment must end before that.");
-                return;
-            }
-            if (SegmentEndDateTime <= SegmentStartDateTime)
-            {
-                MessageBox.Show("Programme segment's end time must be after its start time.");
-                return;
-            }
-            //chk for overlap
-            Program prog = (Program)lstProgram.SelectedItem;
-            for (int i = 0; i < lstProgram.Items.Count; i++)
-            {
-                Program p = (Program)lstProgram.Items[i];
-                if (p != prog)
-                {//if they are not the same then check, no point to check if they are the same
-                    if (
-                   (SegmentStartDateTime >= p.StartDateTime && SegmentStartDateTime <= p.EndDateTime)
-                   && (SegmentEndDateTime >= p.StartDateTime && SegmentEndDateTime <= p.EndDateTime)
-                   )
+                SegmentEndDateTime = SegmentEndDateTime
+                    .AddHours(int.Parse(cboEndHr.SelectedValue.ToString()))
+                    .AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+
+                try
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    bool clashed = client.ValidateProgramTime(event_.EventID, SegmentStartDateTime, SegmentEndDateTime);
+
+                    if (clashed)
                     {
-                        MessageBox.Show("Programmes cannot overlap!");
+                        MessageBox.Show("Program cannot be overlapped!",
+                        "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return;
                     }
-                }
-            }
-            try
-            {
-                WCFHelperClient client = new WCFHelperClient();
-                if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
-                    client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
-                else
-                    client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
-                    client.Close();
-                MessageBox.Show("Operation succeeded!");
-                clearAll();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                    else
+                    {
+                        if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
+                            client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                        
+                        else
+                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                    }
 
-            loadPrograms();
+                    client.Close();
+                    
+                    MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    clearAll();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                loadPrograms();
+            }
         }
 
 
         private bool Check_OverWrite(List<Program> programList)
         {
-            
+
             for (int i = 0; i < programList.Count; i++)
             {
                 if (programList[i].StartDateTime.CompareTo(event_.StartDateTime) < 0)
@@ -230,55 +212,48 @@ namespace Gems.UIWPF
                 {
                     if (i == j)
                         continue;
-                    //int aa = programList[i].StartDateTime.CompareTo(programList[j].StartDateTime);
-                    //int bb = programList[i].EndDateTime.CompareTo(programList[j].EndDateTime);
-                    if ((programList[i].StartDateTime.CompareTo(programList[j].StartDateTime) >= 0 
-                        && programList[i].StartDateTime.CompareTo(programList[j].EndDateTime) < 0) 
+
+                    if ((programList[i].StartDateTime.CompareTo(programList[j].StartDateTime) >= 0
+                        && programList[i].StartDateTime.CompareTo(programList[j].EndDateTime) < 0)
                         ||
-                        (programList[i].EndDateTime.CompareTo(programList[j].StartDateTime) > 0 
-                        && programList[i].EndDateTime.CompareTo(programList[j].EndDateTime) <=0)
+                        (programList[i].EndDateTime.CompareTo(programList[j].StartDateTime) > 0
+                        && programList[i].EndDateTime.CompareTo(programList[j].EndDateTime) <= 0)
                         )
                         return true;
                 }
             }
             return false;
         }
-        
+
         private void Program_Swap(Program p1, Program p2)
         {
 
-            
             DateTime tempstart;
             tempstart = p1.StartDateTime;
-            //tempend = p1.EndDateTime;
 
             TimeSpan p1ts = p1.EndDateTime - p1.StartDateTime;
             TimeSpan p2ts = p2.EndDateTime - p2.StartDateTime;
 
             p1.StartDateTime = p2.StartDateTime;
             p1.EndDateTime = p2.StartDateTime.AddMinutes(p1ts.TotalMinutes);
-       //     p1.EndDateTime = p1.EndDateTime.AddHours(p2ts.to);
-            //p1.EndDateTime = p2.EndDateTime;
 
             p2.StartDateTime = tempstart;
             p2.EndDateTime = tempstart.AddMinutes(p2ts.TotalMinutes);
-            //at this points both are swaped
 
-
-
-            //
             List<Program> temp = new List<Program>();
 
-            if(p1.ProgramID != 0)
+            if (p1.ProgramID != 0)
                 temp.Add(p1);
+
             if (p2.ProgramID != 0)
                 temp.Add(p2);
+
             for (int i = 0; i < lstProgram.Items.Count; i++)
             {
-                if (((Program)lstProgram.Items[i]).ProgramID != 0 && 
+                if (((Program)lstProgram.Items[i]).ProgramID != 0 &&
                     ((Program)lstProgram.Items[i]).ProgramID != p1.ProgramID &&
                     ((Program)lstProgram.Items[i]).ProgramID != p2.ProgramID)
-                temp.Add((Program)lstProgram.Items[i]);
+                    temp.Add((Program)lstProgram.Items[i]);
             }
 
             if (Check_OverWrite(temp))
@@ -286,22 +261,22 @@ namespace Gems.UIWPF
                 MessageBox.Show("OverLap or is over the event time boundary");
                 return;
             }
-            //
 
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-            if(p1.ProgramID != 0)
-                client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description);
-            if(p2.ProgramID != 0)
-                client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description);
+                if (p1.ProgramID != 0)
+                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description);
+
+                if (p2.ProgramID != 0)
+                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            loadPrograms(); 
+            loadPrograms();
         }
 
         private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -448,17 +423,6 @@ namespace Gems.UIWPF
 
             if (index == oldIndex)
                 return;
-
-            ////Shapes myShapes = Resources["MyShapes"] as Shapes;
-
-            ////Shape movedShape = myShapes[oldIndex];
-            ////myShapes.RemoveAt(oldIndex);
-
-            ////myShapes.Insert(index, movedShape);
-
-            //////MessageBox.Show(TranslatePoint(new Point(0, 0), ListView1).Y.ToString());
-            ////double i = TranslatePoint(new Point(0, 0), ListView1).Y;
-            ////i = -i;
 
             Program_Swap((Program)lstProgram.Items[oldIndex], (Program)lstProgram.Items[index]);
 
