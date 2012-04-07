@@ -80,21 +80,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ADSS\frmGST.xaml.cs">
+    <Compile Include="admin\frmAssign.xaml.cs">
+      <DependentUpon>frmAssign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmAssignFacAdmin.xaml.cs">
+      <DependentUpon>frmAssignFacAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmGST.xaml.cs">
       <DependentUpon>frmGST.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BASS\BudgetAllocator.cs" />
-    <Compile Include="BASS\BudgetItemState.cs" />
-    <Compile Include="BASS\frmBudgetIncome.xaml.cs">
-      <DependentUpon>frmBudgetIncome.xaml</DependentUpon>
+    <Compile Include="admin\frmLogin.xaml.cs">
+      <DependentUpon>frmLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BASS\frmAllocateBudget.xaml.cs">
+    <Compile Include="admin\frmSearchUsers.xaml.cs">
+      <DependentUpon>frmSearchUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmViewUsers.xaml.cs">
+      <DependentUpon>frmViewUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="budget\BudgetAllocator.cs" />
+    <Compile Include="budget\BudgetItemState.cs" />
+    <Compile Include="budget\frmAllocateBudget.xaml.cs">
       <DependentUpon>frmAllocateBudget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BASS\frmBudgetItemList.xaml.cs">
+    <Compile Include="budget\frmBudgetIncome.xaml.cs">
+      <DependentUpon>frmBudgetIncome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="budget\frmBudgetItemList.xaml.cs">
       <DependentUpon>frmBudgetItemList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BASS\frmBudgetReport.xaml.cs">
+    <Compile Include="budget\frmBudgetReport.xaml.cs">
       <DependentUpon>frmBudgetReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="GEMSPage.cs" />
@@ -113,7 +128,6 @@
     <Compile Include="CustomCtrl\DTP\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomCtrl\Listview\BoolToVisibilityConverter.cs" />
     <Compile Include="CustomCtrl\Listview\NumberToPolarValueConverter.cs" />
     <Compile Include="CustomCtrl\Listview\ucLVCurrentBooking.xaml.cs">
       <DependentUpon>ucLVCurrentBooking.xaml</DependentUpon>
@@ -204,69 +218,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TASS\frmTaskAllocation.xaml.cs">
+    <Compile Include="tasks\frmTaskAllocation.xaml.cs">
       <DependentUpon>frmTaskAllocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TASS\frmViewTask.xaml.cs">
+    <Compile Include="tasks\frmViewTask.xaml.cs">
       <DependentUpon>frmViewTask.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TASS\TaskAssignmentState.cs" />
-    <Page Include="ADSS\frmGST.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ADSS\frmAssign.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ADSS\frmAssignFacAdmin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ADSS\frmLogin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ADSS\frmSearchUsers.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ADSS\frmViewUsers.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="ADSS\frmAssign.xaml.cs">
-      <DependentUpon>frmAssign.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ADSS\frmAssignFacAdmin.xaml.cs">
-      <DependentUpon>frmAssignFacAdmin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ADSS\frmLogin.xaml.cs">
-      <DependentUpon>frmLogin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ADSS\frmSearchUsers.xaml.cs">
-      <DependentUpon>frmSearchUsers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ADSS\frmViewUsers.xaml.cs">
-      <DependentUpon>frmViewUsers.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="tasks\TaskAssignmentState.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="BASS\frmBudgetIncome.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="admin\frmAssign.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BASS\frmAllocateBudget.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BASS\frmBudgetItemList.xaml">
+    <Page Include="admin\frmAssignFacAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BASS\frmBudgetReport.xaml">
+    <Page Include="admin\frmGST.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admin\frmLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admin\frmSearchUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admin\frmViewUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="budget\frmAllocateBudget.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="budget\frmBudgetIncome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="budget\frmBudgetItemList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="budget\frmBudgetReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -390,11 +389,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TASS\frmTaskAllocation.xaml">
+    <Page Include="tasks\frmTaskAllocation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TASS\frmViewTask.xaml">
+    <Page Include="tasks\frmViewTask.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

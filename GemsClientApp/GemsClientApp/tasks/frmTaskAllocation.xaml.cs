@@ -118,6 +118,9 @@ namespace Gems.UIWPF
             {
                 client.CreateTask(user, event_.EventID, txtTaskName.Text.Trim(),
                     textRange.Text.Trim(), dtpDueDate.SelectedDateTime);
+                int currIdx = cboRole.SelectedIndex;
+                cboRole.SelectedIndex = -1;
+                cboRole.SelectedIndex = currIdx;
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -145,6 +148,9 @@ namespace Gems.UIWPF
             {
                 client.UpdateTask(user, event_.EventID, t.TaskID, txtTaskName.Text.Trim(), textRange.Text.Trim(),
                     dtpDueDate.SelectedDateTime);
+                int currIdx = cboRole.SelectedIndex;
+                cboRole.SelectedIndex = -1;
+                cboRole.SelectedIndex = currIdx;
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -169,6 +175,9 @@ namespace Gems.UIWPF
             try
             {
                 client.DeleteTask(user, event_.EventID, t.TaskID);
+                int currIdx = cboRole.SelectedIndex;
+                cboRole.SelectedIndex = -1;
+                cboRole.SelectedIndex = currIdx;
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)

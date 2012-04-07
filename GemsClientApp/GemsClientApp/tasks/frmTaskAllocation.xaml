@@ -11,7 +11,7 @@
 
 
 		<TabControl HorizontalAlignment="Left" FontWeight="Medium" Background="{x:Null}" Margin="0,7.535">
-    		<TabItem Header="Task Management" FontSize="16" Background="{x:Null}" Height="28">
+    		<TabItem Header="Manage Task" FontSize="16" Background="{x:Null}" Height="28">
     			<Grid>
     				<Grid.ColumnDefinitions>
     					<ColumnDefinition Width="0.322*"/>
@@ -66,7 +66,7 @@
     			</Grid>
     		</TabItem>
 
-    		<TabItem Header="Task Allocation" FontSize="16" Background="{x:Null}" Height="28">
+    		<TabItem Header="Allocate Task" FontSize="16" Background="{x:Null}" Height="28">
     			<Grid>
     				<StackPanel Orientation="Horizontal">
     					<StackPanel Width="350">
