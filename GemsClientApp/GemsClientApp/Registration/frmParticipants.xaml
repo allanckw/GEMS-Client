@@ -14,30 +14,25 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
             </GroupBox>
     		<GroupBox Header="Registration Data" FontSize="18" Width="540" Margin="0,0,0,8">
                 <StackPanel>
-                    <ListBox x:Name="lstFields" ItemTemplate="{DynamicResource DataTemplate}" Background="#00000000" BorderThickness="0" FontSize="12" Height="501.11">
-                        <ListBox.Resources>
-                            <DataTemplate x:Key="DataTemplate">
-                                <StackPanel Width="500" Margin="0,0,0,30">
-                                    <TextBlock x:Name="txtFieldName" Margin="0" TextWrapping="Wrap" Text="{Binding Item1.FieldName}" Width="Auto"/>
-                                	<TextBlock x:Name="txtFieldAnswer" Margin="0" TextWrapping="Wrap" Text="{Binding Item2.Answer}" Width="Auto"/>
-                                </StackPanel>
-                            </DataTemplate>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Style.Resources>
-                                    <!-- SelectedItem with focus -->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-    							Color="Transparent" />
-                                    <!-- SelectedItem without focus -->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
-    							Color="Transparent" />
-                                    <!-- SelectedItem text foreground -->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
-    							Color="Black" />
-                                </Style.Resources>
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                            </Style>
-                        </ListBox.Resources>
-                    </ListBox>
+                    <DataGrid AutoGenerateColumns="False"  x:Name="dgParticipant" FontSize="16" Height="500">
+                        <DataGrid.Columns>
+                            
+                            <DataGridTemplateColumn Header="Field Name" Width="170"  IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Item1.FieldName}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Answer" Width="350"  IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Item2.Answer}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <DockPanel LastChildFill="False" Margin="0">
                         <Button x:Name="btnDelete" Click="btnDelete_Click" Content="Delete Participant" FontSize="12" FontWeight="Normal" RenderTransformOrigin="0.45,1.228" Width="128" Height="24" d:LayoutOverrides="Height" VerticalAlignment="Top" DockPanel.Dock="Right" Margin="0,0,25,0" IsEnabled="False"/>
                     </DockPanel>

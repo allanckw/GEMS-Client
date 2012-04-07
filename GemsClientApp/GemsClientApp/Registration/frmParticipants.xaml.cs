@@ -57,6 +57,7 @@ namespace Gems.UIWPF
             if (lstParticipants.SelectedIndex == -1)
             {
                 btnDelete.IsEnabled = false;
+                dgParticipant.ItemsSource = null;
                 return;
             }
             try
@@ -80,7 +81,11 @@ namespace Gems.UIWPF
                         answers.Add(Tuple.Create(field, fieldAnswer));
                     }
                 }
-                lstFields.ItemsSource = answers;
+
+                
+                dgParticipant.ItemsSource = answers;
+                
+               
                 btnDelete.IsEnabled = true;
             }
             catch (Exception ex)
@@ -100,6 +105,7 @@ namespace Gems.UIWPF
                 client.Close();
                 loadParticipants();
                 MessageBox.Show("Operation succeeded!");
+                lstParticipants_SelectionChanged(null, null);
             }
             catch (Exception ex)
             {
