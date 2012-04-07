@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using evmsService.entities;
-using System.Collections;
 
 namespace Gems.UIWPF
 {
@@ -233,16 +225,44 @@ namespace Gems.UIWPF
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            WCFHelperClient client = new WCFHelperClient();
+            OptimizedBudgetItems budget = client.GetBudgetItem(event_.EventID);
+            client.Close();
+
+            if (budget != null)
+            {
+                if (MessageBox.Show("You already have an optimized item list, all previous changes will be overwritten" +
+                Environment.NewLine + Environment.NewLine +
+                "Do you want to overwrite? (It cannot be undone)", "Confirm Overwrite",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    save();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                save();
+            }
+
+            
+        }
+
+        private void save()
+        {
             try
             {
                 saveOptimalList();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         void saveOptimalList_Completed(object sender, EventArgs e)
         {
             MessageBox.Show("Your Optimal List of Items have been saved", 

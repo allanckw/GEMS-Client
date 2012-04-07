@@ -89,35 +89,30 @@ namespace Gems.UIWPF
                     itemsByType[item.typeString] = new List<Items>();
                 itemsByType[item.typeString].Add(item);
             }
-            foreach (ItemTypes type in itemTypes)
+            foreach (ItemTypes itemType in itemTypes)
             {
-                if (itemsByType.ContainsKey(type.typeString))
-                    if (type.IsImportantType)
+                if (itemsByType.ContainsKey(itemType.typeString))
+                    if (itemType.IsImportantType)
                     {
-                        importantItemsByType.Add(itemsByType[type.typeString]);
+                        //Should be order by descending not ascending
+                        //Test case for Impt Item Item1: $5, Item 2: $3
+                        //max budget $3, .OrderBy threw exception insufficient budget
+                        //for required item, .OrderByDescending did not throw
+                        importantItemsByType.Add(itemsByType[itemType.typeString]
+                           .OrderByDescending(i => i.EstimatedPrice).ToList());
                     }
                     else
                     {
-                        unimportantItemsByType.Add(itemsByType[type.typeString]);
+                        //Should be order by descending not ascending
+                        unimportantItemsByType.Add(itemsByType[itemType.typeString]
+                           .OrderByDescending(i => i.EstimatedPrice).ToList());
                     }
             }
-            //Should be order by descending not ascending
-            //Test case for Impt Item Item1: $5, Item 2: $3
-            //max budget $3, .OrderBy threw exception insufficient budget
-            //for required item, .OrderByDescending did not throw
-            foreach (List<Items> itemList in importantItemsByType)
-            {
-                itemList.OrderByDescending(i => i.EstimatedPrice).ToList<Items>();
-            }
 
-            foreach (List<Items> itemList in unimportantItemsByType)
-            {
-                itemList.OrderByDescending(i => i.EstimatedPrice).ToList<Items>();
-            }
             minBudget = 0;
 
             foreach (List<Items> itemsList in importantItemsByType)
-                minBudget += itemsList[0].EstimatedPrice;
+                minBudget += itemsList[itemsList.Count - 1].EstimatedPrice;
 
             if (minBudget > maxBudget)
                 throw new ArgumentOutOfRangeException
@@ -215,7 +210,7 @@ namespace Gems.UIWPF
             {
                 if (DPtreeLeaves[i].TotalPrice <= budget)
                     break; //from the last state, if totalprice is less than or equal to budget
-                    //break loop
+                //break loop
             }
             //set the max price and satisfaction to the last state that can be used
             maxPrice = DPtreeLeaves[i].TotalPrice;

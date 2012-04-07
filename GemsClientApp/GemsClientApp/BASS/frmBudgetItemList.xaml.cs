@@ -20,16 +20,6 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmBudgetItemList : GEMSPage
     {
-        //TODO:
-        //@KAI Please fix
-        //SelectedIndex Change and Coloring of bought items
-        //I will go and figure out what you want with tasks allocation form 
-        //Selected Index Change, 
-        //call client.getItemDetail(BudgetItems bItem); to get item details
-        //Saving of new price: 
-        //call client.updateActualPrice(User user, Items iten, decimal price);
-        //The above 2 server methods not tested, 
-        //notify me if got problems, or maybe u can try fixing it urself lol
 
         User user;
         Event event_;

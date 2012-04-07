@@ -80,7 +80,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-    	<Button Template="{StaticResource Close}" Margin="670,10,5,645"/>
+    	<Button Template="{StaticResource Close}" Margin="670,10,5,645" Click="btnClose_Click"/>
         <GroupBox Header="Budget Expenditure optimiser" FontFamily="Stencil" Canvas.Left="10" Canvas.Top="50" Foreground="Black"
                  FontSize="18" Margin="0,40,10,10" Width="720">
             <StackPanel Height="555" Canvas.Left="21" Canvas.Top="56" Width="700">

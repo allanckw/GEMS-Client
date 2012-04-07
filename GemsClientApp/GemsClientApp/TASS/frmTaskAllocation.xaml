@@ -6,10 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	x:Class="Gems.UIWPF.frmTaskAllocation"
 	x:Name="Window" Loaded="Window_Loaded"
-	Title="frmItemManagement"
-Width="750" Height="600" Background="{x:Null}">
-
-
+	Title="Manage Tasks" Width="750" Height="600" Background="{x:Null}">
     <GroupBox Header="Task Management" FontSize="21" FontWeight="Medium">
 
 
@@ -131,11 +128,11 @@ Width="750" Height="600" Background="{x:Null}">
     							<StackPanel>
     								<StackPanel Height="30" Orientation="Horizontal">
     									<Label Content="Name:" Width="100" FontSize="14"/>
-    									<TextBox x:Name="txtOverviewTaskName" TextWrapping="Wrap" Height="25" Width="300" IsEnabled="False"/>
+    									<TextBox x:Name="txtOverviewTaskName" TextWrapping="Wrap" Height="25" Width="321" IsEnabled="False"/>
     								</StackPanel>
     								<StackPanel Height="80" Orientation="Horizontal">
     									<Label Content="Description:" Width="100" FontSize="14"/>
-    									<RichTextBox x:Name="txtOverviewDesc" Width="300" IsEnabled="False">
+    									<RichTextBox x:Name="txtOverviewDesc" Width="320" IsEnabled="False">
     										<FlowDocument>
     											<Paragraph><Run Text=""/></Paragraph>
     										</FlowDocument>
@@ -146,8 +143,8 @@ Width="750" Height="600" Background="{x:Null}">
     									<Gems_UIWPF_CustomCtrl:DateTimePicker FontSize="11.5" VerticalAlignment="Top" FontWeight="bold" x:Name="dtpOverviewDueDate" IsEnabled="False" />
     								</StackPanel>
     								<StackPanel Height="30" Orientation="Horizontal">
-    									<Label Content="Due Date:" Width="100" FontSize="14"/>
-    									<ProgressBar x:Name="pBarTaskProgress"  Minimum="0" Maximum="100" Width="296" />
+    									<Label Content="Progress:" Width="100" FontSize="14"/>
+    									<ProgressBar x:Name="pBarTaskProgress"  Minimum="0" Maximum="100" Width="320" />
     								</StackPanel>
     							</StackPanel>
     						</GroupBox>

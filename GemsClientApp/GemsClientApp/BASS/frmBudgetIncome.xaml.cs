@@ -86,7 +86,7 @@ namespace Gems.UIWPF
                 txtIncb4Gst.Focus();
                 return false;
             }
-            else if (dtpReceivedDate.SelectedDate.Value == null)
+            else if (dtpReceivedDate.SelectedDate==null)
             {
                 MessageBox.Show("Please Select your received date!", "Invalid Date",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -249,6 +249,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("Income must be numeric! Please try again", "Invalid Input",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                txtIncb4Gst.Text = "";
                 txtIncb4Gst.Focus();
             }
 

@@ -82,7 +82,7 @@
                     <StackPanel Height="30" Orientation="Horizontal">
                         <Label Content="Nett Income:" FontSize="13" Height="25" />
                         <TextBox TextWrapping="Wrap" Text="" Margin="40,1,1,1" Width="200" FontSize="13"
-                                 x:Name="txtNettIncome"  Height="25" />
+                                 x:Name="txtNettIncome"  Height="25" IsReadOnly="True" />
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

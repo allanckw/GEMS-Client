@@ -47,52 +47,18 @@ namespace Gems.UIWPF
 
             dtpStart.SelectedDateTime = event_.StartDateTime;
 
-
+            loadDuration();
         }
 
         private void OnChanged(object sender, SelectionChangedEventArgs e)
         {
-            cboBookDuration.Items.Clear();
-            int hr;
-            int.TryParse(dtpStart.cboHr.SelectedValue.ToString(), out hr);
-            int min;
-            int.TryParse(dtpStart.cboMin.SelectedValue.ToString(), out min);
-            int maxIdx = (24 - hr) * 2;
-            if (min > 0)
-            {
-                maxIdx -= 1;
-            }
-
-            if (maxIdx < 1)
-            {
-                cboBookDuration.IsEnabled = false;
-                btnSubmit.IsEnabled = false;
-                return;
-            }
-
-            //TimeSpan duration = new TimeSpan(0,0,0);
-
-            for (int i = 0; i <= maxIdx; i++)
-            {
-                TimeSpan duration = new TimeSpan(0, i * 30, 0);
-                if (i == 48)
-                    cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
-                else
-                    cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
-
-                //duration.Add(new TimeSpan(0, 30, 0));
-            }
-            cboBookDuration.Items.RemoveAt(0);
-            cboBookDuration.SelectedIndex = 0;
-            btnSubmit.IsEnabled = true;
-            cboBookDuration.IsEnabled = true;
+            loadDuration();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
-
 
 
         private void saveRequest(DateTime start, DateTime end)
@@ -174,6 +140,44 @@ namespace Gems.UIWPF
             ));
 
             thread.Start();
+        }
+
+        private void loadDuration()
+        {
+            cboBookDuration.Items.Clear();
+            int hr;
+            int.TryParse(dtpStart.cboHr.SelectedValue.ToString(), out hr);
+            int min;
+            int.TryParse(dtpStart.cboMin.SelectedValue.ToString(), out min);
+            int maxIdx = (24 - hr) * 2;
+            if (min > 0)
+            {
+                maxIdx -= 1;
+            }
+
+            if (maxIdx < 1)
+            {
+                cboBookDuration.IsEnabled = false;
+                btnSubmit.IsEnabled = false;
+                return;
+            }
+
+            //TimeSpan duration = new TimeSpan(0,0,0);
+
+            for (int i = 0; i <= maxIdx; i++)
+            {
+                TimeSpan duration = new TimeSpan(0, i * 30, 0);
+                if (i == 48)
+                    cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
+                else
+                    cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
+
+                //duration.Add(new TimeSpan(0, 30, 0));
+            }
+            cboBookDuration.Items.RemoveAt(0);
+            cboBookDuration.SelectedIndex = 0;
+            btnSubmit.IsEnabled = true;
+            cboBookDuration.IsEnabled = true;
         }
 
         void dispatcherOp_Completed(object sender, EventArgs e)
