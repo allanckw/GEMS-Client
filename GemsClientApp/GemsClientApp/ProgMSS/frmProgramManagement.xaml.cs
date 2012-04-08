@@ -36,7 +36,7 @@ namespace Gems.UIWPF
 
         public void CreateDTPData()
         {
-            for (int i = 0; i <= 23; i++)
+            for (int i = 0; i <= 24; i++)
             {
                 cboStartHr.Items.Add(string.Format("{0:00}", i));
                 cboEndHr.Items.Add(string.Format("{0:00}", i));
@@ -449,6 +449,28 @@ namespace Gems.UIWPF
                 // so make it the new selected item.
                 this.lstProgram.SelectedItem = selectedItem;
             }
+        }
+
+        private void cboStartHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboStartHr.SelectedValue.ToString() == "24")
+            {
+                cboStartMin.SelectedIndex = 0;
+                cboStartMin.IsEnabled = false;
+            }
+            else
+                cboStartMin.IsEnabled = true;
+        }
+
+        private void cboEndHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboEndHr.SelectedValue.ToString() == "24")
+            {
+                cboEndMin.SelectedIndex = 0;
+                cboEndMin.IsEnabled = false;
+            }
+            else
+                cboEndMin.IsEnabled = true;
         }
     }
 }
