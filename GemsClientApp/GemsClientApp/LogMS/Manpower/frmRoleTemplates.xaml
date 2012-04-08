@@ -9,7 +9,7 @@
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Manpower" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
-    		<GroupBox Header="Role Templates" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
+    		<GroupBox Header="Role Templates" Width="155" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
     			<ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          FontSize="13" SelectionMode="Single" Margin="0,0,5,5">
@@ -23,12 +23,12 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     				</ListBox.ItemTemplate>
     			</ListBox>
     		</GroupBox>
-    		<GroupBox Header="Role Template Details" FontSize="18.667" Width="529" Margin="0,0,0,-24">
+    		<GroupBox Header="Role Template Details" FontSize="18.667" Width="569" Margin="0,0,0,-24">
     			<StackPanel Orientation="Horizontal">
-    				<StackPanel Width="301.803">
+    				<StackPanel Width="291.803">
     					<StackPanel Height="30" Orientation="Horizontal" Margin="0,10">
     						<Label Content="Role:" Width="56.803" FontSize="13"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" FontSize="13" x:Name="txtPost" Margin="0,0,8,0" />
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="228" FontSize="13" x:Name="txtPost" Margin="0,0,8,0" />
     					</StackPanel>
     					<StackPanel Height="218">
     						<Label Content="Description:" FontSize="13"/>
@@ -41,7 +41,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     						<Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
     					</DockPanel>
     				</StackPanel>
-    				<TreeView Width="211" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0,0,0,8">
+    				<TreeView Width="255" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0,0,0,8">
     					<TreeView.Resources>
     						<Style TargetType="{x:Type TreeViewItem}">
     							<Setter Property="HeaderTemplate">

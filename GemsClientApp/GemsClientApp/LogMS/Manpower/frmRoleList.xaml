@@ -8,7 +8,7 @@
 Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Manpower" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0,0,-17.5,33.04">
-    		<GroupBox Header="Roles" Width="195" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
+    		<GroupBox Header="Roles" Width="155" FontSize="18.667" HorizontalAlignment="Left" Margin="0,0,10,-24">
                 <ListBox x:Name="lstRole" SelectionChanged="lstRole_SelectionChanged" FontSize="13"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          SelectionMode="Single" Margin="0">
     				<ListBox.ItemTemplate>
@@ -23,20 +23,20 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     				</ListBox.ItemTemplate>
     			</ListBox>
     		</GroupBox>
-    		<GroupBox Header="Role Details" FontSize="18.667" Width="529" Margin="0,0,0,-24">
+    		<GroupBox Header="Role Details" FontSize="18.667" Width="569" Margin="0,0,0,-24">
     			<StackPanel Orientation="Horizontal">
     				<StackPanel Height="Auto" Margin="0,8,0,0">
     					<StackPanel Height="70">
-    						<Label Content="Role Template:" Width="313.803" FontSize="13"/>
-                            <ComboBox x:Name="cbRoleTemplate" SelectionChanged="cbRoleTemplate_SelectionChanged" Width="306.001" FontSize="13"/>
+    						<Label Content="Role Template:" Width="303.803" FontSize="13"/>
+                            <ComboBox x:Name="cbRoleTemplate" SelectionChanged="cbRoleTemplate_SelectionChanged" Width="296.001" FontSize="13"/>
                         </StackPanel>
     					<StackPanel Height="40" Orientation="Horizontal">
     						<Label Content="User Name:" Width="76.803" FontSize="13"/>
-    						<actb.control:AutoCompleteComboBox x:Name="accbUsers" FontSize="13" Width="217" Height="24" Margin="0,8.133,8,8.133"/>
+    						<actb.control:AutoCompleteComboBox x:Name="accbUsers" FontSize="13" Width="207" Height="24" Margin="0,8.133,8,8.133"/>
     					</StackPanel>
     					<StackPanel Height="40" Orientation="Horizontal">
     						<Label Content="Role:" Width="76.803" FontSize="13"/>
-    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" FontSize="13" x:Name="txtPost" Margin="0,0,8,0" />
+    						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="206" FontSize="13" x:Name="txtPost" Margin="0,0,8,0" />
     					</StackPanel>
     					<StackPanel Height="153">
     						<Label Content="Description:" FontSize="13"/>
@@ -49,7 +49,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     						<Button Content="Cancel" Width="75" FontSize="13" Margin="0,0,10,0" Click="clearAll"/>
     					</DockPanel>
     				</StackPanel>
-    				<TreeView Width="214" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0">
+    				<TreeView Width="255" x:Name="tvFunctions" Loaded="TreeView_Loaded" Margin="0">
     					<TreeView.Resources>
     						<Style TargetType="{x:Type TreeViewItem}">
     							<Setter Property="HeaderTemplate">
