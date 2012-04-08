@@ -12,7 +12,7 @@
         <StackPanel Margin="0" Orientation="Horizontal" Width="320">
         	<DatePicker Height="25" HorizontalAlignment="Left" x:Name="dtpDate" VerticalAlignment="Top" Width="115" SelectedDateChanged="dtpDate_SelectedDateChanged" />
         	<Label Content="Time:" Height="28" x:Name="label1" VerticalAlignment="Top" />
-        	<ComboBox Height="23" HorizontalAlignment="Left" Margin="0,2,0,0" x:Name="cboHr" VerticalAlignment="Top" Width="51"  />
+        	<ComboBox Height="23" HorizontalAlignment="Left" Margin="0,2,0,0" x:Name="cboHr" VerticalAlignment="Top" Width="51" SelectionChanged="cboHr_SelectionChanged" />
         	<Label Content="H" Height="28" HorizontalAlignment="Left" Margin="0,2,0,0" x:Name="label2" VerticalAlignment="Top" />
         	<ComboBox Height="23" HorizontalAlignment="Left" Margin="0,2,0,0" x:Name="cboMin" VerticalAlignment="Top" Width="51"  />
         	<Label Content="Min" Height="28" Margin="0,1,0,0" x:Name="label3" VerticalAlignment="Top" Width="39.165" d:LayoutOverrides="HorizontalAlignment" />

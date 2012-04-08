@@ -161,5 +161,19 @@ namespace Gems.UIWPF.CustomCtrl
             cboMin.SelectedIndex = 0;
         }
 
+        private void cboHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboHr.SelectedItem.ToString() == "24")
+            {
+                cboMin.IsEnabled = false;
+                cboMin.SelectedIndex = 0;
+            }
+            else
+            {
+                cboMin.IsEnabled = true;
+            }
+
+        }
+
     }
 }
