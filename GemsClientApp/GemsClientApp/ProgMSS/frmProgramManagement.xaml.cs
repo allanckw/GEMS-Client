@@ -1,18 +1,13 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using evmsService.entities;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Text;
-using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
@@ -165,25 +160,30 @@ namespace Gems.UIWPF
                 try
                 {
                     WCFHelperClient client = new WCFHelperClient();
-                    bool clashed = client.ValidateProgramTime(event_.EventID, SegmentStartDateTime, SegmentEndDateTime);
 
-                    if (clashed)
+
+                    if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
                     {
-                        MessageBox.Show("Program cannot be overlapped!",
-                        "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        return;
+                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+
                     }
                     else
                     {
-                        if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
-                            client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                        bool clashed = client.ValidateProgramTime(event_.EventID, SegmentStartDateTime, SegmentEndDateTime);
 
+                        if (clashed)
+                        {
+                            MessageBox.Show("Program cannot be overlapped!",
+                        "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            return;
+                        }
                         else
+                        {
                             client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                        }
                     }
 
                     client.Close();
-
                     MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     clearAll();

@@ -94,16 +94,11 @@ namespace Gems.UIWPF
                 if (itemsByType.ContainsKey(itemType.typeString))
                     if (itemType.IsImportantType)
                     {
-                        //Should be order by descending not ascending
-                        //Test case for Impt Item Item1: $5, Item 2: $3
-                        //max budget $3, .OrderBy threw exception insufficient budget
-                        //for required item, .OrderByDescending did not throw
-                        importantItemsByType.Add(itemsByType[itemType.typeString]
+                         importantItemsByType.Add(itemsByType[itemType.typeString]
                            .OrderBy(i => i.EstimatedPrice).ToList());
                     }
                     else
                     {
-                        //Should be order by descending not ascending
                         unimportantItemsByType.Add(itemsByType[itemType.typeString]
                            .OrderBy(i => i.EstimatedPrice).ToList());
                     }
@@ -129,7 +124,9 @@ namespace Gems.UIWPF
             foreach (State state in inStates)
             {
                 if (state.TotalPrice + item.EstimatedPrice > maxBudget)
+                {
                     return; //if it exceeds, dont bother 
+                }
                 outStates.Add(new State()
                 {
                     TotalPrice = state.TotalPrice + item.EstimatedPrice,
@@ -169,10 +166,13 @@ namespace Gems.UIWPF
             {
                 List<State> currStates = new List<State>();
                 foreach (Items item in itemsList)
+                {
                     addItemToStates(item, prevStates, currStates);
+                }
                 currStates.Sort();
                 prevStates.Add(new State() { TotalPrice = decimal.MaxValue });
                 currStates.Add(new State() { TotalPrice = decimal.MaxValue });
+                
                 List<State> prunedStates = new List<State>();
                 State prevState = new State() { TotalSatisfactionValue = -1 };
                 for (int i = 0, j = 0; i < prevStates.Count || j < currStates.Count; )
