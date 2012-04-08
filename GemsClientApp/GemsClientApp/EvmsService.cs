@@ -3987,7 +3987,7 @@ public interface IEvmsService
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/EditEvent", ReplyAction="http://tempuri.org/IEvmsService/EditEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
+    void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvmsService/DeleteEvent", ReplyAction="http://tempuri.org/IEvmsService/DeleteEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvmsService/DeleteEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4634,9 +4634,9 @@ public partial class EvmsServiceClient : System.ServiceModel.ClientBase<IEvmsSer
         return base.Channel.ViewEvent(user);
     }
     
-    public void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventOrganizerID, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
+    public void EditEvent(evmsService.entities.User user, evmsService.entities.Event evnt, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite)
     {
-        base.Channel.EditEvent(user, evnt, EventOrganizerID, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
+        base.Channel.EditEvent(user, evnt, EventName, EventStartDateTime, EventEndDatetime, EventDescription, EventWebsite);
     }
     
     public void DeleteEvent(evmsService.entities.User user, evmsService.entities.Event evnt)

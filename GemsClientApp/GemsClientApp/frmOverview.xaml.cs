@@ -147,9 +147,8 @@ namespace Gems.UIWPF
                 foreach (FacilityBookingConfirmed confirmedReq in fbc)
                 {
                     txtLocationMsg.Text += confirmedReq.Faculty.ToString() + " " + " at " + confirmedReq.Venue
-                        + " " + Environment.NewLine + 
-                        "It is booked from " + confirmedReq.RequestStartDateTime.ToString("dd MMM yyyy HH:mm")
-                        + " to " + confirmedReq.RequestEndDateTime.ToString("dd MMM yyyy HH:mm") + Environment.NewLine
+                        + "  booked from " + confirmedReq.RequestStartDateTime.ToString("HH:mm")
+                        + " to " + confirmedReq.RequestEndDateTime.ToString("HH:mm") + Environment.NewLine
                         ;
 
 

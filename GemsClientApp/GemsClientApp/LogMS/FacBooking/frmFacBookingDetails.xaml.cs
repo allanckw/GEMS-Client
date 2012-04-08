@@ -61,11 +61,11 @@ namespace Gems.UIWPF
         }
 
 
-        private void saveRequest(DateTime start, DateTime end)
+        private bool saveRequest(DateTime start, DateTime end)
         {
             //Use threading to stop system from "Hanging" as it may take a long time to save
             //as a list of objects are sent over via SOAP
-
+            bool success = false;
             System.Threading.Thread thread = new System.Threading.Thread(
                 new System.Threading.ThreadStart(
                 delegate()
@@ -116,7 +116,7 @@ namespace Gems.UIWPF
 
 
                             WCFHelperClient client = new WCFHelperClient();
-                            bool success = client.AddFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+                            success = client.AddFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
                             client.Close();
 
                             if (success)
@@ -140,6 +140,7 @@ namespace Gems.UIWPF
             ));
 
             thread.Start();
+            return success;
         }
 
         private void loadDuration()
@@ -183,7 +184,7 @@ namespace Gems.UIWPF
         void dispatcherOp_Completed(object sender, EventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Arrow;
-            this.Close();
+           
         }
 
         public void cboAdd()
@@ -211,8 +212,8 @@ namespace Gems.UIWPF
             }
 
             DateTime start = dtpStart.SelectedDateTime;
-
             DateTime end = getEndDateTime();
+
 
             WCFHelperClient client = new WCFHelperClient();
             bool exist = client.CheckRequestExist(event_.EventID, start ,end);
@@ -227,7 +228,9 @@ namespace Gems.UIWPF
 
             try
             {
-                saveRequest(start, end);
+                bool success = saveRequest(start, end);
+                if (success)
+                    this.Close();
             }
             catch (Exception ex)
             {
