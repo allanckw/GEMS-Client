@@ -34,7 +34,7 @@
                                 <TextBlock Text="From "/>
                                 <TextBlock Text="{Binding Path=StartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
                                 <TextBlock Text=" to "/>
-                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=HH:mm}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
                             </WrapPanel>
                         </StackPanel>
                     </DataTemplate>

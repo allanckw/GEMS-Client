@@ -122,8 +122,6 @@ namespace Gems.UIWPF
                     bIncome.IncomeBeforeGST = decimal.Parse(txtIncb4Gst.Text.Trim());
                     bIncome.IsGstLiable = chkGSTLiable.IsChecked.Value;
                     bIncome.Source = txtSource.Text;
-                    bIncome.IncomeID = client.AddIncome(user, event_.EventID, bIncome);
-
                     client.EditBudgetIncome(user, event_.EventID, bIncome.IncomeID, bIncome);
                     incomeList[selectedIndex] = bIncome;
                     CollectionViewSource.GetDefaultView(lstIncomeList.ItemsSource).Refresh();
