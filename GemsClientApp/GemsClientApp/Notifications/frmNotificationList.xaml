@@ -21,7 +21,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock Text="Sender: " /><TextBlock Text="{Binding Sender}" />
                                 <TextBlock Text=" @ " />
-                                <TextBlock Text="{Binding SendDateTime, StringFormat=dd MMM yyyy hh:mm:ss}"  />         
+                                <TextBlock Text="{Binding SendDateTime, StringFormat=dd MMM yyyy HH:mm:ss}"  />         
                             </StackPanel>
                             <WrapPanel >
                                 <TextBlock Text="Subject: " />

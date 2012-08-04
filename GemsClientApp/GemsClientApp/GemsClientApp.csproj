@@ -97,6 +97,9 @@
     <Compile Include="budget\frmBudgetReport.xaml.cs">
       <DependentUpon>frmBudgetReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EvMS\frmEventMangement.xaml.cs">
+      <DependentUpon>frmEventMangement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GEMSPage.cs" />
     <Compile Include="ContactList\frmAddEditReview.xaml.cs">
       <DependentUpon>frmAddEditReview.xaml</DependentUpon>
@@ -133,9 +136,6 @@
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="EvmsService.cs" />
-    <Compile Include="EvMS\frmEventMangement.xaml.cs">
-      <DependentUpon>frmEventMangement.xaml</DependentUpon>
-    </Compile>
     <Compile Include="frmMain.xaml.cs">
       <DependentUpon>frmMain.xaml</DependentUpon>
     </Compile>

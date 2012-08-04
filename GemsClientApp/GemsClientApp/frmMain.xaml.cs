@@ -113,6 +113,7 @@ namespace Gems.UIWPF
             taskbarNotifier.OpeningMilliseconds = 2000;
             taskbarNotifier.StayOpenMilliseconds = 4000;
             taskbarNotifier.HidingMilliseconds = 2000;
+            
             this.taskbarNotifier.Show();
         }
 

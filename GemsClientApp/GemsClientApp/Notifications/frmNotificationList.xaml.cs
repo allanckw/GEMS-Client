@@ -37,7 +37,7 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WCFHelperClient client = new WCFHelperClient();
-            lstMsg.ItemsSource = client.GetUnreadMessages(user,user.UserID);
+            lstMsg.ItemsSource = client.GetUnreadMessages(user, user.UserID);
             client.Close();
         }
 
@@ -59,7 +59,7 @@ namespace Gems.UIWPF
 
             WCFHelperClient client = new WCFHelperClient();
             if (radUnread.IsChecked == true)
-            { 
+            {
                 lstMsg.ItemsSource = client.GetUnreadMessages(user, user.UserID);
             }
             else
@@ -71,40 +71,53 @@ namespace Gems.UIWPF
 
         private void btnVIew_Click(object sender, RoutedEventArgs e)
         {
-            Notifications n = (Notifications)lstMsg.SelectedItem;
-            if (!n.isRead)
+            if (lstMsg.SelectedIndex != -1)
             {
-                WCFHelperClient client = new WCFHelperClient();
-                client.SetNotificationRead(user, n);
-                client.Close();
+                Notifications n = (Notifications)lstMsg.SelectedItem;
+                if (!n.isRead)
+                {
+                    WCFHelperClient client = new WCFHelperClient();
+                    client.SetNotificationRead(user, n);
+                    client.Close();
+                }
+                var viewNote = new frmViewNotification(n, user);
+                viewNote.ShowDialog();
             }
-            var viewNote = new frmViewNotification(n, user);
-            viewNote.ShowDialog();
+            else
+            {
+                MessageBox.Show("You need to select a message");
+            }
         }
-
 
         private void btnDeleteSel_Click(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
-            try
+            if (lstMsg.SelectedIndex != -1)
             {
-                if (MessageBox.Show("Are you sure you want to delete this message?", "Confirm deletion",
-                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                WCFHelperClient client = new WCFHelperClient();
+                try
                 {
-                    Notifications n = (Notifications)lstMsg.SelectedItem;
-                    client.DeleteNotifications(user,n);
-                    radUnread_Checked(this, e);
+                    if (MessageBox.Show("Are you sure you want to delete this message?", "Confirm deletion",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        Notifications n = (Notifications)lstMsg.SelectedItem;
+                        client.DeleteNotifications(user, n);
+                        radUnread_Checked(this, e);
+                    }
+
                 }
-                
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error has occured with the message: " + ex.Message,
+                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    client.Close();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("An error has occured with the message: " +  ex.Message, 
-                    "Error",MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                client.Close();
+                MessageBox.Show("You need to select a message");
             }
         }
 
