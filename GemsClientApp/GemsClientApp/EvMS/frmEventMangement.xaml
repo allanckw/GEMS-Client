@@ -36,7 +36,7 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Event Detail" Canvas.Left="210" Canvas.Top="47" Height="420" Width="480" FontFamily="Stencil" FontSize="16">
-            <StackPanel Margin="0,8,0,0" Height="330" VerticalAlignment="Top" >
+            <StackPanel Margin="0,8,0,0" Height="370" VerticalAlignment="Top" >
                 <Canvas Height="40">
                     <Label Canvas.Left="41" Canvas.Top="6" Content="Event Name:" Height="28" x:Name="label1" FontSize="12" FontFamily="Tahoma" />
                     <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtEventName" Width="294" FontSize="12" FontFamily="Tahoma" />
@@ -51,6 +51,12 @@
                     <Label Canvas.Top="5" Content="Description:" Height="23" x:Name="label6" Canvas.Left="51" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
                     <RichTextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="294" FontSize="12" FontFamily="Tahoma" />
                 </Canvas>
+                <Canvas Height="45">
+                    <Label Canvas.Top="5" Content="Tag:" Height="30
+                           " x:Name="lbltype" Canvas.Left="80" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
+                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtTag" Width="294" FontSize="12" FontFamily="Tahoma" />
+                </Canvas>
+
                 <Canvas Height="40">
                     <Label Canvas.Left="69" Canvas.Top="6" Content="Website:" Height="28" x:Name="label7" FontSize="12" FontFamily="Tahoma" />
                     <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="297" FontSize="12" FontFamily="Tahoma" />

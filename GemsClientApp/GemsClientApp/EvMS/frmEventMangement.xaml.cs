@@ -61,6 +61,7 @@ namespace Gems.UIWPF
             txtWebsite.Text = E.Website;
             dtpStart.SelectedDateTime = E.StartDateTime;
             dtpEnd.SelectedDateTime = E.EndDateTime;
+            txtTag.Text = E.Tag;
         }
 
         private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -90,7 +91,7 @@ namespace Gems.UIWPF
                 Event SelectedEvent = ((Event)lstEventList.SelectedItem);
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
                 WCFHelperClient client = new WCFHelperClient();
-                client.EditEvent(user, SelectedEvent,  txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
+                client.EditEvent(user, SelectedEvent,  txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text, txtTag.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
@@ -119,7 +120,7 @@ namespace Gems.UIWPF
                 }
                 WCFHelperClient client = new WCFHelperClient();
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
-                client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text);
+                client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text,txtTag.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }

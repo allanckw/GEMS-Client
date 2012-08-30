@@ -221,12 +221,14 @@ namespace Gems.UIWPF
                                 Mouse.OverrideCursor = Cursors.Wait;
                                 WCFHelperClient client = new WCFHelperClient();
                                 List<Event> list;
-                                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
                                     list = client.ViewEvent(user).ToList<Event>();
-
+                                else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                                    list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Event>();
                                 else
-                                    list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value).ToList<Event>();
+
+                                    list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
+                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Event>();
 
                                 lstEventList.ItemsSource = list;
                                 client.Close();
@@ -279,10 +281,14 @@ namespace Gems.UIWPF
                                 List<Event> list;
 
                                 //if valid date range.
-                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null && txtTag.Text.Trim() == "")
                                 {
                                     list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
                                                     dtpTo.SelectedDate.Value).ToList<Event>();
+                                }
+                                else if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+                                {
+                                    list = client.ViewEventsByTag(user,txtTag.Text.Trim()).ToList<Event>();
                                 }
                                 else
                                     list = client.ViewEvent(user).ToList<Event>();
