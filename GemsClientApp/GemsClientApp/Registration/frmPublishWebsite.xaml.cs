@@ -180,9 +180,14 @@ namespace Gems.UIWPF
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
+            publish = null;
             txtRemarks.Text = "";
-            dtpStart.clear();
-            dtpEnd.clear();
+            //dtpStart.clear();
+            dtpStart.dtpDate.SelectedDate = DateTime.Now;
+            //dtpEnd.clear();
+            dtpEnd.dtpDate.SelectedDate = DateTime.Now;
+            
+
             changed = true;
         }
     }

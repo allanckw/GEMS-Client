@@ -52,7 +52,11 @@ namespace Gems.UIWPF
                     Field lastName = new Field();
                     lastName.FieldName = lastName.FieldLabel = "Last Name";
                     firstName.IsRequired = lastName.IsRequired = true;
-                    fields = new ObservableCollection<Field>() { firstName, lastName };
+                    Field email = new Field();
+                    email.FieldName = email.FieldLabel = "Email";
+                    email.IsRequired = email.IsRequired = true;
+
+                    fields = new ObservableCollection<Field>() { firstName, lastName, email };
 
 
                 }
@@ -63,6 +67,7 @@ namespace Gems.UIWPF
                 lstFields.ItemsSource = fields;
                 DisableListItemChildren(0);
                 DisableListItemChildren(1);
+                DisableListItemChildren(2);
 
                 if (publish != null)
                 {
