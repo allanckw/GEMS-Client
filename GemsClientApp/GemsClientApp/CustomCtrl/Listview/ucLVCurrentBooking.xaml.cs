@@ -58,6 +58,10 @@ namespace Gems.UIWPF.CustomCtrl
         
         public void ScrollToItem(int posIdx)
         {
+            if (posIdx == -1)
+            {
+                posIdx = 0;
+            }
             var listView = lv;
             listView.SelectedItem = listView.Items.GetItemAt(posIdx);
             listView.ScrollIntoView(listView.Items[0]);

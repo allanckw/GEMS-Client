@@ -106,8 +106,8 @@ namespace Gems.UIWPF.CustomCtrl
             //Code to populate first index to green if start time is 0000
             if (BookStartIdx == 0)
             {
-                TimeCollection.RemoveAt(0);
                 TimeSlot ts = TimeCollection[0];
+                TimeCollection.RemoveAt(0);                
                 TimeCollection.Insert(0, ts);
             }
 
@@ -135,6 +135,10 @@ namespace Gems.UIWPF.CustomCtrl
 
         private void ScrollToItem(int posIdx)
         {
+            if (posIdx == -1)
+            {
+                posIdx = 0;
+            }
             var listView = lv; 
             listView.SelectedItem = listView.Items.GetItemAt(posIdx);
             listView.ScrollIntoView(listView.Items[0]);
