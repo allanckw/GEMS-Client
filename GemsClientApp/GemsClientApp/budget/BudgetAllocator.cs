@@ -94,8 +94,8 @@ namespace Gems.UIWPF
                 if (itemsByType.ContainsKey(itemType.typeString))
                     if (itemType.IsImportantType)
                     {
-                         importantItemsByType.Add(itemsByType[itemType.typeString]
-                           .OrderBy(i => i.EstimatedPrice).ToList());
+                        importantItemsByType.Add(itemsByType[itemType.typeString]
+                          .OrderBy(i => i.EstimatedPrice).ToList());
                     }
                     else
                     {
@@ -172,7 +172,7 @@ namespace Gems.UIWPF
                 currStates.Sort();
                 prevStates.Add(new State() { TotalPrice = decimal.MaxValue });
                 currStates.Add(new State() { TotalPrice = decimal.MaxValue });
-                
+
                 List<State> prunedStates = new List<State>();
                 State prevState = new State() { TotalSatisfactionValue = -1 };
                 for (int i = 0, j = 0; i < prevStates.Count || j < currStates.Count; )
@@ -231,8 +231,8 @@ namespace Gems.UIWPF
                 result.Add(itemsOptimal);
 
                 i--;
-            } while (i < DPtreeLeaves.Count && 
-                (DPtreeLeaves[i].TotalSatisfactionValue == maxSatisfaction) &&
+            } while (i >= 0 && i < DPtreeLeaves.Count &&
+                DPtreeLeaves[i].TotalSatisfactionValue == maxSatisfaction &&
                 DPtreeLeaves[i].TotalPrice <= maxPrice);
 
             //More items the better...
