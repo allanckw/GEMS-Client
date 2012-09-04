@@ -16,7 +16,7 @@ namespace Gems.UIWPF
     {
         User user;
         Event event_;
-        ObservableCollection<TupleOfParticipantstringRsiwEt5l> participants;
+        ObservableCollection<Tuple<Participant, string>> participants;
 
         public frmParticipants()
         {
@@ -40,7 +40,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                participants = new ObservableCollection<TupleOfParticipantstringRsiwEt5l>(
+                participants = new ObservableCollection<Tuple<Participant, string>>(
                     client.ViewEventParticipantWithName(user, event_.EventID));
                 lstParticipants.ItemsSource = participants;
                 if (participants.Count > 0)

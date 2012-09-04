@@ -140,7 +140,9 @@ namespace Gems.UIWPF
                 }
                 WCFHelperClient client = new WCFHelperClient();
                 if (publish == null)
-                    client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
+                {// need to change here
+                    // client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
+                }
                 else
                     client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
                 client.Close();

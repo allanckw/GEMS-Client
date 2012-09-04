@@ -15,7 +15,7 @@ namespace Gems.UIWPF
     {
         private User user;
         private Event event_;
-        List<TupleOfRolestringRsiwEt5l> roleByEvent;
+        List<Tuple<Role, string>> roleByEvent;
 
         public frmTaskAllocation()
         {
@@ -53,7 +53,7 @@ namespace Gems.UIWPF
             {
                 cboRole.DisplayMemberPath = "m_Item2";
                 cboRole.SelectedValuePath = "m_Item1.RoleID";
-                roleByEvent = client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                roleByEvent = client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
                 cboRole.ItemsSource = roleByEvent;
             }
             catch (Exception ex)
@@ -313,12 +313,12 @@ namespace Gems.UIWPF
             List<TaskAssignmentState> lstTAS = new List<TaskAssignmentState>();
             foreach (TaskAssignment taskAssignment in tAssns)
             {
-                foreach (TupleOfRolestringRsiwEt5l item in roleByEvent)
+                foreach (Tuple<Role, string> item in roleByEvent)
                 {
-                    if (item.m_Item1.RoleID == taskAssignment.AssignedRoleID)
+                    if (item.Item1.RoleID == taskAssignment.AssignedRoleID)
                     {
                         //String name=
-                        TaskAssignmentState newTAS = new TaskAssignmentState(taskAssignment, item.m_Item2);
+                        TaskAssignmentState newTAS = new TaskAssignmentState(taskAssignment, item.Item2);
                         lstTAS.Add(newTAS);
                     }
                 }

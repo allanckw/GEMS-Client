@@ -215,7 +215,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<TupleOfRolestringRsiwEt5l>();
+                lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<Tuple<Role,string>>();
                  
                 client.Close();
             }
@@ -254,7 +254,7 @@ namespace Gems.UIWPF
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
                     client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID, txtPost.Text.Trim(),
+                        (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
@@ -276,11 +276,11 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                TupleOfRolestringRsiwEt5l selectedItem = ((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem);
-                Role selectedRole = selectedItem.m_Item1;
+                Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
+                Role selectedRole = selectedItem.Item1;
                 txtPost.Text = selectedRole.Post;
                 txtDescription.Text = selectedRole.Description;
-                accbUsers.AutoCompleteManager.UpdateText(selectedItem.m_Item2 + " (" + selectedRole.UserID + ")", false);
+                accbUsers.AutoCompleteManager.UpdateText(selectedItem.Item2 + " (" + selectedRole.UserID + ")", false);
                 btnAdd.Content = "Save";
                 List<EnumFunctions> rights = client.GetRights(event_.EventID, selectedRole.UserID).ToList();
                 foreach (var pair in checkBoxes)
@@ -346,7 +346,7 @@ namespace Gems.UIWPF
             try
             {
                 WCFHelperClient client = new WCFHelperClient();
-                client.DeleteRole(user, (((TupleOfRolestringRsiwEt5l)lstRole.SelectedItem)).m_Item1.RoleID);
+                client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
