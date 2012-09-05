@@ -23,7 +23,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                AdminHelper client = new AdminHelper();
                 List<User> users = client.SearchUser(textPattern, "").ToList<User>();
                 client.Close();
                 List<String> results = new List<string>();

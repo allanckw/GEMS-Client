@@ -466,7 +466,7 @@ namespace Gems.UIWPF
                     {
                         try
                         {
-                            WCFHelperClient client = new WCFHelperClient();
+                            NotifHelper client = new NotifHelper();
                             taskbarNotifier.NotifyContent.Clear();
                             if (newMessages)
                             {

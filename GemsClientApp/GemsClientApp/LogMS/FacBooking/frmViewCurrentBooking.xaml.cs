@@ -124,10 +124,11 @@ namespace Gems.UIWPF
             {
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequest.SelectedItem;
                 WCFHelperClient client = new WCFHelperClient();
+                AdminHelper admClient = new AdminHelper();
 
                 txtEventName.Text = client.GetEventName(fbr.EventID);
                 txtRemarks.Text = fbr.Remarks;
-                txtRequestor.Text = client.GetUserName(fbr.RequestorID);
+                txtRequestor.Text = admClient.GetUserName(fbr.RequestorID);
                 txtStatus.Text = fbr.Status.ToString();
                 lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
                 lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");

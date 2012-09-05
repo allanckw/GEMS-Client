@@ -101,8 +101,9 @@ namespace Gems.UIWPF
                 
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
                 WCFHelperClient client = new WCFHelperClient();
+                AdminHelper admClient = new AdminHelper();
                 txtEventName.Text = client.GetEventName(fbr.EventID);
-                txtRequestor.Text = client.GetUserName(fbr.RequestorID);
+                txtRequestor.Text = admClient.GetUserName(fbr.RequestorID);
                 lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
                 lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
 

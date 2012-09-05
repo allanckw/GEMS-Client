@@ -55,7 +55,7 @@ namespace Gems.UIWPF
                 return;
             }
 
-            WCFHelperClient client = new WCFHelperClient();
+            AdminHelper client = new AdminHelper();
             try
             {
                 List<User> list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 

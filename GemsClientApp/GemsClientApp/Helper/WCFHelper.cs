@@ -28,4 +28,28 @@ namespace Gems.UIWPF
             this.Endpoint.Address = newEndpointAddress.ToEndpointAddress();
         }
     }
+
+    class AdminHelper : AdministrationClient
+    {
+        public AdminHelper()
+        {
+            var endpointAddress = Endpoint.Address;
+
+            EndpointAddressBuilder newEndpointAddress = new EndpointAddressBuilder(endpointAddress);
+            newEndpointAddress.Uri = new Uri(ConfigHelper.GetEndpointAddress());
+            this.Endpoint.Address = newEndpointAddress.ToEndpointAddress();
+        }
+    }
+
+    class NotifHelper : NotificationsClient
+    {
+        public NotifHelper()
+        {
+            var endpointAddress = Endpoint.Address;
+
+            EndpointAddressBuilder newEndpointAddress = new EndpointAddressBuilder(endpointAddress);
+            newEndpointAddress.Uri = new Uri(ConfigHelper.GetEndpointAddress());
+            this.Endpoint.Address = newEndpointAddress.ToEndpointAddress();
+        }
+    }
 }

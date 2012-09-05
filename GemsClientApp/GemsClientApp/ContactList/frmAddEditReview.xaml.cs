@@ -152,7 +152,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                NotifHelper client = new NotifHelper();
                 client.SendNotification(user.UserID, "citadmin", "Report Review Abuse", "Reviewer: " + review.UserID + ", by: " + review.UserName + " , on Service ID: " + review.ServiceID.ToString() + " was reported for abuse");
                 client.Close();
 

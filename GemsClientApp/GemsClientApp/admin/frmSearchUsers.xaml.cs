@@ -43,7 +43,7 @@ namespace Gems.UIWPF
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            AdminHelper client = new AdminHelper();
  
             //Add Constraints here.. txtName or txtUserID must have some value
             //Or it will retrieve the entire NUSNET DB D: D: D:
@@ -94,7 +94,7 @@ namespace Gems.UIWPF
             string uid = lstUsers.SelectedValue.ToString();
             if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Nil)
             {
-                WCFHelperClient client = new WCFHelperClient();
+                AdminHelper client = new AdminHelper();
                 try
                 {
                     if (MessageBox.Show("Are you sure you want to remove the role of " + uid + "? ",

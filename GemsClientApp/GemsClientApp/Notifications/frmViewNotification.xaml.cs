@@ -31,7 +31,7 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            AdminHelper client = new AdminHelper();
             txtSenderName.Text = client.SearchUser("", note.Sender).FirstOrDefault<User>().Name;
             txtSenderID.Text = note.Sender;
             txtMessage.AppendText(note.Message);
@@ -67,7 +67,7 @@ namespace Gems.UIWPF
             {
                 title = "RE: " + title;
             }
-            WCFHelperClient client = new WCFHelperClient();
+            NotifHelper client = new NotifHelper();
             try
             {
                 client.SendNotification(user.UserID, txtSenderID.Text, title, message);

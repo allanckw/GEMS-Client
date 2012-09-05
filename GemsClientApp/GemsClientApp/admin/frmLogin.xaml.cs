@@ -43,7 +43,7 @@ namespace Gems.UIWPF
                 ConfigHelper.SaveEndpointAddress(txtSvAddr.Text.Trim());
             }
 
-            WCFHelperClient client = new WCFHelperClient();
+            AdminHelper client = new AdminHelper();
             try
             {
                 User u = client.Authenticate(txtUserID.Text.Trim(), txtPassword.Password);
