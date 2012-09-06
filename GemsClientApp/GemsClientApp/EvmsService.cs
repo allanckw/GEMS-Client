@@ -4816,7 +4816,7 @@ public interface IRegistration
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/RegisterParticipant", ReplyAction="http://tempuri.org/IRegistration/RegisterParticipantResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/RegisterParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void RegisterParticipant(int eventID, bool ParticipantPaid, System.TupleOfintstring[] answers);
+    void RegisterParticipant(int eventID, System.TupleOfintstring[] answers);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/DeleteParticipant", ReplyAction="http://tempuri.org/IRegistration/DeleteParticipantResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/DeleteParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4905,9 +4905,9 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
     {
     }
     
-    public void RegisterParticipant(int eventID, bool ParticipantPaid, System.TupleOfintstring[] answers)
+    public void RegisterParticipant(int eventID, System.TupleOfintstring[] answers)
     {
-        base.Channel.RegisterParticipant(eventID, ParticipantPaid, answers);
+        base.Channel.RegisterParticipant(eventID, answers);
     }
     
     public void DeleteParticipant(evmsService.entities.User user, int eventID, int participantID)
