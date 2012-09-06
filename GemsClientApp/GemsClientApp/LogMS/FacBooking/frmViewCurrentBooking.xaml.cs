@@ -35,7 +35,7 @@ namespace Gems.UIWPF
 
         private void loadEvents()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventHelper client = new EventHelper();
             List<Event> elist;
             if (user.isFacilityAdmin || user.isSystemAdmin)
             {
@@ -72,7 +72,7 @@ namespace Gems.UIWPF
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             ClearDetail();
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
 
             if (chkAllStatus.IsChecked.Value == false && cboStatus.SelectedIndex == -1)
             {
@@ -104,7 +104,7 @@ namespace Gems.UIWPF
             txtStatus.Text = "";
             lblEndTime.Content = "";
             lblStartTime.Content = "";
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user,
                 int.Parse(cboEventList.SelectedValue.ToString()),
                 cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
@@ -123,7 +123,7 @@ namespace Gems.UIWPF
             else
             {
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequest.SelectedItem;
-                WCFHelperClient client = new WCFHelperClient();
+                EventHelper client = new EventHelper();
                 AdminHelper admClient = new AdminHelper();
 
                 txtEventName.Text = client.GetEventName(fbr.EventID);
@@ -157,7 +157,7 @@ namespace Gems.UIWPF
             else
             {
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequest.SelectedItem;
-                WCFHelperClient client = new WCFHelperClient();
+                FacilityBookingsHelper client = new FacilityBookingsHelper();
                 if (fbr.Status == BookingStatus.Approved)
                 {
                     if (MessageBox.Show("Are you sure you want to drop this confirmed booking?, It Cannot be undone!",

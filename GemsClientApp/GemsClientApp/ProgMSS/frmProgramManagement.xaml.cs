@@ -68,7 +68,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ProgrammeHelper client = new ProgrammeHelper();
                 List<Program> progList = client.ViewProgram(event_.EventID).ToList<Program>();
 
                 client.Close();
@@ -159,7 +159,7 @@ namespace Gems.UIWPF
 
                 try
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    ProgrammeHelper client = new ProgrammeHelper();
 
 
                     if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
@@ -263,7 +263,7 @@ namespace Gems.UIWPF
 
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ProgrammeHelper client = new ProgrammeHelper();
                 if (p1.ProgramID != 0)
                     client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description);
 
@@ -288,7 +288,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ProgrammeHelper client = new ProgrammeHelper();
                 Program selectedProgram = (Program)lstProgram.SelectedItem;
                 txtName.Text = selectedProgram.Name;
                 cboStartHr.SelectedIndex = selectedProgram.StartDateTime.Hour;
@@ -330,7 +330,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ProgrammeHelper client = new ProgrammeHelper();
                 client.DeleteProgram(user, ((Program)lstProgram.SelectedItem).ProgramID);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");

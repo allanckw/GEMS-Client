@@ -50,7 +50,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 List<Service> serviceList;
 
                 if (txtsearch.Foreground != Brushes.Black)
@@ -80,7 +80,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 List<PointOfContact> POCList = client.ViewPointOfContact(ServiceID).ToList<PointOfContact>();
 
 
@@ -107,7 +107,7 @@ namespace Gems.UIWPF
 
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 List<Review> reviewList = client.ViewReview(ServiceID).ToList<Review>();
 
 
@@ -344,7 +344,7 @@ namespace Gems.UIWPF
 
                 try
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    ServiceContactHelper client = new ServiceContactHelper();
                     if (event_ != null)
                     {
                         client.AddPointOfContact(user, event_.EventID, ((Service)lstServiceList.SelectedItem).ServiceID,
@@ -382,7 +382,7 @@ namespace Gems.UIWPF
             try
             {
                 var textRange = new TextRange(txtNote.Document.ContentStart, txtNote.Document.ContentEnd);
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 if (event_ != null)
                     client.AddService(user, event_.EventID, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
                 else
@@ -402,7 +402,7 @@ namespace Gems.UIWPF
             try
             {
                 var textRange = new TextRange(txtNote.Document.ContentStart, txtNote.Document.ContentEnd);
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 if (event_ == null)
                 {
                     client.EditService(service.ServiceID, user, -1, txtAddress.Text.Trim(), txtName.Text.Trim(), txtWebsite.Text.Trim(), textRange.Text.Trim());
@@ -424,7 +424,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
 
                 if (event_ != null)
                 {
@@ -447,7 +447,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 client.DeleteService(user, service.ServiceID);
                 client.Close();
                 MessageBox.Show("Operation Success");
@@ -462,7 +462,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 client.DeletePointOfContact(user, poc.PointOfContactID);
                 client.Close();
                 MessageBox.Show("Operation Success");
@@ -596,7 +596,7 @@ namespace Gems.UIWPF
             {
                 if (r != null)
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    ServiceContactHelper client = new ServiceContactHelper();
                     client.DeleteReview(user, r.UserID, r.ServiceID);
 
                     client.Close();

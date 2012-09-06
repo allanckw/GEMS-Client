@@ -83,7 +83,7 @@ namespace Gems.UIWPF
 
         private void loadRoles()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            RoleHelper client = new RoleHelper();
             List<Role> r = client.ViewRole(user, event_).ToList<Role>();
             client.Close();
             List<string> str_r = new List<string>();

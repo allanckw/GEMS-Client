@@ -34,7 +34,7 @@ namespace Gems.UIWPF
 
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 List<Function> functions = client.ViewFunction().ToList();
                 client.Close();
                 TreeViewItem root = new TreeViewItem() { Header = "All Rights", IsExpanded = true };
@@ -172,7 +172,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 lstRole.ItemsSource = client.ViewTemplateRole(user, event_).ToList();
                 client.Close();
             }
@@ -200,7 +200,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 if (lstRole.SelectedIndex == -1)
                     client.AddRoleTemplate(user, event_, txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
@@ -225,7 +225,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 RoleTemplate selectedRoleTemplate = (RoleTemplate)lstRole.SelectedItem;
                 txtPost.Text = selectedRoleTemplate.Post;
                 txtDescription.Text = selectedRoleTemplate.Description;
@@ -268,7 +268,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 client.DeleteRoleTemplate(user, ((RoleTemplate)lstRole.SelectedItem).RoleTemplateID);
                 client.Close();
             }

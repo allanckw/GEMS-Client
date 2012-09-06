@@ -29,7 +29,7 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
             cboEditFac.ItemsSource = cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
             cboFacAdmin.ItemsSource = client.GetFacilityAdmins();
 
@@ -79,7 +79,7 @@ namespace Gems.UIWPF
 
         private void cboFaculty_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
             lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
             client.Close();
 
@@ -102,7 +102,7 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please select the facility admin!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
 
             if (parseSuccess)
             {
@@ -130,8 +130,8 @@ namespace Gems.UIWPF
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            
-            WCFHelperClient client = new WCFHelperClient();
+
+            FacilityHelper client = new FacilityHelper();
             try
             {
                 client.RemoveFacility(user, txtVenue.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);

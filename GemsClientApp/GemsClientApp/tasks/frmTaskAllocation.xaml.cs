@@ -40,7 +40,7 @@ namespace Gems.UIWPF
 
         private void LoadTasks()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = client.GetTasksByEvent(event_.EventID);
             client.Close();
             ClearAll();
@@ -48,12 +48,12 @@ namespace Gems.UIWPF
 
         private void LoadRoles()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            RoleHelper client = new RoleHelper();
             try
             {
                 cboRole.DisplayMemberPath = "m_Item2";
                 cboRole.SelectedValuePath = "m_Item1.RoleID";
-                roleByEvent = client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
+                //roleByEvent = client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
                 cboRole.ItemsSource = roleByEvent;
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace Gems.UIWPF
             //Example of All Task created for the event
             //Throw in All Task Here
             List<Task> IndividualTask = new List<Task>();
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             List<Task> AllTask = client.GetTasksByEvent(event_.EventID).ToList<Task>();
 
             lstAllTask.IsEnabled = true;
@@ -112,7 +112,7 @@ namespace Gems.UIWPF
                  MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
@@ -142,7 +142,7 @@ namespace Gems.UIWPF
                 return;
             }
             Task t = (Task)lstManageTasks.SelectedItem;
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
@@ -171,7 +171,7 @@ namespace Gems.UIWPF
                 return;
             }
             Task t = (Task)lstManageTasks.SelectedItem;
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             try
             {
                 client.DeleteTask(user, event_.EventID, t.TaskID);
@@ -237,7 +237,7 @@ namespace Gems.UIWPF
                             Mouse.OverrideCursor = Cursors.Wait;
                             MessageBox.Show("Please wait while we process your request...");
 
-                            WCFHelperClient client = new WCFHelperClient();
+                            TasksHelper client = new TasksHelper();
                             try
                             {
                                 Task[] taskList = this.lstAssignedTask.ItemsSource.Cast<Task>().ToArray();
@@ -353,7 +353,7 @@ namespace Gems.UIWPF
             int selectedTaskIdx = lstOverviewAllTask.SelectedIndex;
             Task task = (Task)lstOverviewAllTask.SelectedItem;
             TaskAssignmentState tas = (TaskAssignmentState)lvOverViewRoleView.SelectedItem;
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
 
             try
             {

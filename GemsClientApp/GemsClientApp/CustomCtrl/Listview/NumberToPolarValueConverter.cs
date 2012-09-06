@@ -65,7 +65,7 @@ namespace Gems.UIWPF.CustomCtrl
             object parameter, CultureInfo culture)
         {
             int taskID = (int)System.Convert.ChangeType(value, typeof(int));
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
             Task task = client.GetTask(taskID);
             //System.Diagnostics.Trace.WriteLine("Debug : " + taskID + "\n");
             client.Close();

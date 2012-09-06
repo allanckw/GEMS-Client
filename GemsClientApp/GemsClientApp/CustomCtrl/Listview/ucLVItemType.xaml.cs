@@ -34,7 +34,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         public void AddNewItemType(User u,Event event_, String ItemType, Boolean Important)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
             try
             {
                 ItemTypes type = client.AddEventItemType(u, event_.EventID, ItemType, Important);
@@ -56,7 +56,7 @@ namespace Gems.UIWPF.CustomCtrl
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
 
             //Insert server code here
             ItemTypes Item2Edit = ItemTypeCollection[lv.SelectedIndex];
@@ -68,7 +68,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         public void EditItemType(User u, Event event_, Boolean Important)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
 
             //Insert server code here
             ItemTypes Item2Edit=ItemTypeCollection[lv.SelectedIndex];
@@ -79,7 +79,7 @@ namespace Gems.UIWPF.CustomCtrl
 
         public void DeleteItemType(User u, Event event_)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
 
             //Insert server code here
             if (lv.SelectedIndex != -1)

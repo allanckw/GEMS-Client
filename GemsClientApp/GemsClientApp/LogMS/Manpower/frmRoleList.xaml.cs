@@ -63,7 +63,7 @@ namespace Gems.UIWPF
 
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 List<Function> functions = client.ViewFunction().ToList();
                 client.Close();
                 TreeViewItem root = new TreeViewItem() { Header = "All Rights", IsExpanded = true };
@@ -93,7 +93,7 @@ namespace Gems.UIWPF
             loadRoles();
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 List<RoleTemplate> roleTemplates = client.ViewTemplateRole(user, null).ToList();
                 roleTemplates.AddRange(client.ViewTemplateRole(user, event_));
                 cbRoleTemplate.ItemsSource = roleTemplates;
@@ -214,10 +214,10 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
-                lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<Tuple<Role,string>>();
+                //WCFHelperClient client = new WCFHelperClient();
+                //lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<Tuple<Role,string>>();
                  
-                client.Close();
+                //client.Close();
             }
             catch (Exception ex)
             {
@@ -248,7 +248,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 if (lstRole.SelectedIndex == -1)
                     client.AddRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
@@ -275,7 +275,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
                 Role selectedRole = selectedItem.Item1;
                 txtPost.Text = selectedRole.Post;
@@ -301,7 +301,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 List<RightTemplate> rights = client.GetTemplateRight((int)cbRoleTemplate.SelectedValue).ToList();
                 List<EnumFunctions> functions = new List<EnumFunctions>();
                 foreach (RightTemplate right in rights)
@@ -345,7 +345,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RoleHelper client = new RoleHelper();
                 client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");

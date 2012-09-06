@@ -40,7 +40,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 List<StaticField> staticFields = client.ViewStaticField().ToList();
                 client.Close();
                 dgStaticFields.ItemsSource = staticFields;

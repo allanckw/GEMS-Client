@@ -198,7 +198,7 @@ namespace Gems.UIWPF
                         Mouse.OverrideCursor = Cursors.Wait;
                         MessageBox.Show("Please wait while we save your desired optimal list...");
 
-                        WCFHelperClient client = new WCFHelperClient();
+                        BudgetHelper client = new BudgetHelper();
                         try
                         {
                             int sat = int.Parse(txtTotalSat.Text.Trim());
@@ -225,7 +225,7 @@ namespace Gems.UIWPF
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             OptimizedBudgetItems budget = client.GetBudgetItem(event_.EventID);
             client.Close();
 

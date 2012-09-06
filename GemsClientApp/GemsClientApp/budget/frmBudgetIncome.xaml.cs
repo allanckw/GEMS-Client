@@ -42,7 +42,7 @@ namespace Gems.UIWPF
 
         private void loadIncome()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 txtGstPercent.Text = client.GetGST().ToString();
@@ -94,7 +94,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                BudgetHelper client = new BudgetHelper();
                 if (selectedIndex == -1)
                 {
                     BudgetIncome bIncome = new BudgetIncome();
@@ -188,7 +188,7 @@ namespace Gems.UIWPF
             try
             {
                 BudgetIncome bIncome = (BudgetIncome)lstIncomeList.SelectedItem;
-                WCFHelperClient client = new WCFHelperClient();
+                BudgetHelper client = new BudgetHelper();
                 client.DeleteBudgetIncome(user, bIncome.IncomeID, event_.EventID);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");

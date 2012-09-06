@@ -34,7 +34,7 @@ namespace Gems.UIWPF
 
         private void loadUserRoles()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            RoleHelper client = new RoleHelper();
             cboRole.SelectedValuePath = "RoleID";
             cboRole.DisplayMemberPath = "Post";
             cboRole.ItemsSource = client.ViewUserEventRoles(user.UserID, event_.EventID);
@@ -55,7 +55,7 @@ namespace Gems.UIWPF
 
         private void loadTasks()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
 
             lstTask.ItemsSource = client.GetTaskByRole(event_.EventID,
                 int.Parse(cboRole.SelectedValue.ToString()));
@@ -79,7 +79,7 @@ namespace Gems.UIWPF
             txtDesc.AppendText(task.TaskDesc);
             dtpDueDate.SelectedDateTime = task.DueDate;
 
-            WCFHelperClient client = new WCFHelperClient();
+            TasksHelper client = new TasksHelper();
 
             TaskAssignment assn = client.GetTaskAssignment(task.TaskID, event_.EventID,
                 int.Parse(cboRole.SelectedValue.ToString()));
@@ -117,7 +117,7 @@ namespace Gems.UIWPF
                 MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
 
-                    WCFHelperClient client = new WCFHelperClient();
+                    TasksHelper client = new TasksHelper();
                     try
                     {
                         var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);

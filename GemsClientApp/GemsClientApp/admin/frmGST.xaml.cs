@@ -41,7 +41,7 @@ namespace Gems.UIWPF
                 int gst;
                 if (int.TryParse(txtGST.Text.Trim(), out gst))
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    BudgetHelper client = new BudgetHelper();
                     client.UpdateGST(user, gst);
                     client.Close();
 
@@ -64,7 +64,7 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             this.txtGST.Text = client.GetGST().ToString();
             client.Close();
         }

@@ -46,7 +46,7 @@ namespace Gems.UIWPF
 
         private void Load_Event()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventHelper client = new EventHelper();
             List<Event> list = client.ViewEvent(user).ToList<Event>();
             lstEventList.ItemsSource = list;
             client.Close();
@@ -90,7 +90,7 @@ namespace Gems.UIWPF
                 }
                 Event SelectedEvent = ((Event)lstEventList.SelectedItem);
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
-                WCFHelperClient client = new WCFHelperClient();
+                EventHelper client = new EventHelper();
                 client.EditEvent(user, SelectedEvent,  txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text, txtTag.Text);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");
@@ -118,7 +118,7 @@ namespace Gems.UIWPF
                     MessageBox.Show("Invalid Date Entry, End Date Must be at a Later Date Then Start Date");
                     return;
                 }
-                WCFHelperClient client = new WCFHelperClient();
+                EventHelper client = new EventHelper();
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
                 client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text,txtTag.Text);
                 client.Close();
@@ -139,7 +139,7 @@ namespace Gems.UIWPF
             Event E = ((Event)lstEventList.SelectedItem);
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                EventHelper client = new EventHelper();
                 client.DeleteEvent(user, E);
                 client.Close();
                 MessageBox.Show("Operation succeeded!");

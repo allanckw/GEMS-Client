@@ -39,9 +39,9 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
-                participants = new ObservableCollection<Tuple<Participant, string>>(
-                    client.ViewEventParticipantWithName(user, event_.EventID));
+               RegistrationHelper client = new RegistrationHelper();
+                //participants = new ObservableCollection<Tuple<Participant, string>>(
+                //    client.ViewEventParticipantWithName(user, event_.EventID));
                 lstParticipants.ItemsSource = participants;
                 if (participants.Count > 0)
                     lstParticipants.SelectedIndex = 0;
@@ -62,7 +62,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 List<FieldAnswer> fieldAnswers = client.GetParticipantFieldAnswer(user, event_.EventID, (int)lstParticipants.SelectedValue).ToList();
                 List<Field> fields = client.ViewField(event_.EventID).ToList();
                 client.Close();
@@ -100,7 +100,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 client.DeleteParticipant(user, event_.EventID, (int)lstParticipants.SelectedValue);
                 client.Close();
                 loadParticipants();

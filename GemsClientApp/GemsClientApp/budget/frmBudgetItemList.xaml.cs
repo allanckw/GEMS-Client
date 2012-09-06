@@ -46,7 +46,7 @@ namespace Gems.UIWPF
             }
 
             OptimizedBudgetItemsDetails budgetItem = lvBItem.GetEditItem();
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 Items item2Edit = client.GetItemDetail(budgetItem);
@@ -90,7 +90,7 @@ namespace Gems.UIWPF
 
         private void loadBudgetItems()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 OptimizedBudgetItems budget = client.GetBudgetItem(event_.EventID);
@@ -140,7 +140,7 @@ namespace Gems.UIWPF
             }
 
             OptimizedBudgetItemsDetails budgetItem = lvBItem.GetEditItem();
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 Items item2Edit = client.GetItemDetail(budgetItem);

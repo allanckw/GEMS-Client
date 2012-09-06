@@ -115,7 +115,7 @@ namespace Gems.UIWPF
                             }
 
 
-                            WCFHelperClient client = new WCFHelperClient();
+                            FacilityBookingsHelper client = new FacilityBookingsHelper();
                             success = client.AddFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
                             client.Close();
 
@@ -215,7 +215,7 @@ namespace Gems.UIWPF
             DateTime end = getEndDateTime();
 
 
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             bool exist = client.CheckRequestExist(event_.EventID, start ,end);
             client.Close();
 

@@ -45,7 +45,7 @@ namespace Gems.UIWPF
 
         private void loadIncome()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 decimal totalAmount = 0;
@@ -69,7 +69,7 @@ namespace Gems.UIWPF
         private void loadBudgetItems()
         {
             budgetItemList = new List<BudgetItemState>();
-            WCFHelperClient client = new WCFHelperClient();
+            BudgetHelper client = new BudgetHelper();
             try
             {
                 decimal totalAmount = 0;

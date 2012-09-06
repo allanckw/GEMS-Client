@@ -33,7 +33,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 publish = client.ViewPublish(event_.EventID);
                 client.Close();
             }
@@ -138,7 +138,7 @@ namespace Gems.UIWPF
                     MessageBox.Show("Publish end date must be after its start date.");
                     return false;
                 }
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 if (publish == null)
                 {// need to change here
                     // client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
@@ -167,7 +167,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 client.DeletePublish(user, event_.EventID);
                 client.Close();
                 btnClear_Click(null, null);

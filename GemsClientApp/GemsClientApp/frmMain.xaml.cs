@@ -219,7 +219,7 @@ namespace Gems.UIWPF
                             try
                             {
                                 Mouse.OverrideCursor = Cursors.Wait;
-                                WCFHelperClient client = new WCFHelperClient();
+                                EventHelper client = new EventHelper();
                                 List<Event> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
                                     list = client.ViewEvent(user).ToList<Event>();
@@ -277,7 +277,7 @@ namespace Gems.UIWPF
                                 {
                                     Eid = ((Event)lstEventList.SelectedItem).EventID;
                                 }
-                                WCFHelperClient client = new WCFHelperClient();
+                                EventHelper client = new EventHelper();
                                 List<Event> list;
 
                                 //if valid date range.
@@ -636,7 +636,7 @@ namespace Gems.UIWPF
             {
                 try
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    RoleHelper client = new RoleHelper();
                     foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
@@ -682,7 +682,7 @@ namespace Gems.UIWPF
                     EnableAllRight();
                 else
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    RoleHelper client = new RoleHelper();
 
                     if (user.UserID == ev.Organizerid || user.isSystemAdmin)
                     {

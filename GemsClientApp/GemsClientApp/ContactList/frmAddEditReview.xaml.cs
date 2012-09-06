@@ -124,7 +124,7 @@ namespace Gems.UIWPF
             try
             {
                 var textRange = new TextRange(txtReviewDescription.Document.ContentStart, txtReviewDescription.Document.ContentEnd);
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 if (event_ != null)
                 {
                     client.Review(user, event_.EventID, service.ServiceID, rating.getRatingValue(), DateTime.Now, textRange.Text);
@@ -170,7 +170,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                ServiceContactHelper client = new ServiceContactHelper();
                 client.DeleteReview(user, review.UserID, service.ServiceID);
                 client.Close();
 

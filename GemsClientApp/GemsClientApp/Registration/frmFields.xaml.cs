@@ -36,7 +36,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 List<StaticField> staticFields = new List<StaticField>() {
                     new StaticField() { FieldName = "Custom", FieldLabel = "Custom" }
                 };
@@ -195,7 +195,7 @@ namespace Gems.UIWPF
             }
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                RegistrationHelper client = new RegistrationHelper();
                 client.AddField(user, event_.EventID, fields.ToArray());
                 client.Close();
                 changed = false;

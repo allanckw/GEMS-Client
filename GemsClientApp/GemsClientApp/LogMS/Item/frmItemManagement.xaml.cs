@@ -37,7 +37,7 @@ namespace Gems.UIWPF
 
         private void setBudgetVisibility()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            RoleHelper client = new RoleHelper();
             if (user.isEventOrganizer || //Is event organizer or has rights to optimize items to buy
                 client.GetRights(event_.EventID, user.UserID).ToList<EnumFunctions>()
                 .Contains(EnumFunctions.OptimizeItemList))
@@ -52,14 +52,14 @@ namespace Gems.UIWPF
 
         private void refreshItemTypes()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
             cboItemType.ItemsSource = client.GetItemsTypes();
             client.Close();
         }
 
         private void ExistingLoad()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
             List<ItemTypes> TypeList = client.GetEventSpecificItemType(event_.EventID).ToList<ItemTypes>();
             List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             client.Close();
@@ -99,7 +99,7 @@ namespace Gems.UIWPF
             {
                 //Save to item type repository here
                 itemType2Add = txtOthers.Text.ToString().Trim();
-                WCFHelperClient client = new WCFHelperClient();
+                EventItemsHelper client = new EventItemsHelper();
                 client.AddItemsTypes(itemType2Add);
                 client.Close();
                 refreshItemTypes();
@@ -120,7 +120,7 @@ namespace Gems.UIWPF
         {
             lvItemType.DeleteItemType(user, event_);
             rebindcboItemType4Item();
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
             List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
         }
@@ -269,7 +269,7 @@ namespace Gems.UIWPF
             txtItemPrice.Text = "";
             txtItemSatisfaction.Text = "";
             cboItemTypeIL.SelectedIndex = -1;
-            WCFHelperClient client = new WCFHelperClient();
+            EventItemsHelper client = new EventItemsHelper();
             List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
         }

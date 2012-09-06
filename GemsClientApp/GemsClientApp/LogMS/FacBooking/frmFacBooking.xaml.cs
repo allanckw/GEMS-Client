@@ -35,11 +35,9 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
-            WCFHelperClient client = new WCFHelperClient();
 
             cboVenue.DisplayMemberPath = "FacilityID";
             cboVenue.SelectedValuePath = "FacilityID";
-            client.Close();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -113,7 +111,7 @@ namespace Gems.UIWPF
 
         private void venueSearch(Faculty f, int minCap, int maxCap)
         {
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
             lstFacility.ItemsSource = client.GetVenuesByCap(f,
                                         cboVenue.SelectedValue.ToString(), minCap, maxCap);
             client.Close();
@@ -122,7 +120,7 @@ namespace Gems.UIWPF
         private void facultySearch(int minCap, int maxCap)
         {
 
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
             lstFacility.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, minCap, maxCap);
             client.Close();
         }
@@ -133,7 +131,7 @@ namespace Gems.UIWPF
             cboVenue.SelectedIndex = -1;
             cboSeat.SelectedIndex = -1;
 
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityHelper client = new FacilityHelper();
             cboVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
             client.Close();
         }

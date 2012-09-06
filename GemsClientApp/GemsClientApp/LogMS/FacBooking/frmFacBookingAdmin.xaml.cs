@@ -35,7 +35,7 @@ namespace Gems.UIWPF
 
         private void loadRequests()
         {
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             lstRequestor.ItemsSource = client.GetFacBookingRequestList(user);
             client.Close();
         }
@@ -71,7 +71,7 @@ namespace Gems.UIWPF
             day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
 
             List<FacilityBookingConfirmed> fbcList;
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             try
             {
                 fbcList = client.GetActivitiesForDay(user, day,
@@ -100,7 +100,7 @@ namespace Gems.UIWPF
             {
                 
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
-                WCFHelperClient client = new WCFHelperClient();
+                EventHelper client = new EventHelper();
                 AdminHelper admClient = new AdminHelper();
                 txtEventName.Text = client.GetEventName(fbr.EventID);
                 txtRequestor.Text = admClient.GetUserName(fbr.RequestorID);
@@ -134,7 +134,7 @@ namespace Gems.UIWPF
                 return;
             }
 
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
 
             try
@@ -164,7 +164,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
 
             try
@@ -195,7 +195,7 @@ namespace Gems.UIWPF
             day = day.AddHours(-day.Hour).AddMinutes(-day.Minute);
 
             List<FacilityBookingConfirmed> fbcList;
-            WCFHelperClient client = new WCFHelperClient();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
             try
             {
                 fbcList = client.GetActivitiesForDay(user, day,

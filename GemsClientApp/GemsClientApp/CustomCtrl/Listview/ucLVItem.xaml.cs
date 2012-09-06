@@ -48,7 +48,7 @@ namespace Gems.UIWPF.CustomCtrl
         {//Need User
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                EventItemsHelper client = new EventItemsHelper();
                 Items Item2Add = client.AddEventItem(user, itemtype, n, s, p);
                 ItemCollection.Add(Item2Add);
                 client.Close();
@@ -65,7 +65,7 @@ namespace Gems.UIWPF.CustomCtrl
         {
             try
             {
-                WCFHelperClient client = new WCFHelperClient();
+                EventItemsHelper client = new EventItemsHelper();
                 Items Item2Edit = ItemCollection[lv.SelectedIndex];
                 Item2Edit.EstimatedPrice = p;
                 Item2Edit.Satisfaction = s;
@@ -86,7 +86,7 @@ namespace Gems.UIWPF.CustomCtrl
             {
                 if (lv.SelectedIndex != -1)
                 {
-                    WCFHelperClient client = new WCFHelperClient();
+                    EventItemsHelper client = new EventItemsHelper();
                     Items Item2Delete = ItemCollection[lv.SelectedIndex];
                     client.DeleteEventItem(user, Item2Delete);
                     client.Close();
