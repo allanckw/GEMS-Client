@@ -13,7 +13,7 @@
 
     <Canvas Opacity="1.0" Margin="0">
         <Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
-        <Label Content="GEMS Events Management System" FontSize="29.333" FontWeight="Bold" Canvas.Left="8" Canvas.Top="4.983">
+        <Label Content="GEMS Events Management System" FontSize="28" FontWeight="Bold" Canvas.Left="462" Canvas.Top="20" Height="50">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
             </Label.Effect>
@@ -50,7 +50,7 @@
         <Label Canvas.Left="29" Canvas.Top="167" Content="Tag:" Height="28" Name="lbltag" FontFamily="Verdana" />
         <Button Canvas.Left="134" Canvas.Top="197" Content="Get Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
         <Frame x:Name="frame" Canvas.Left="227" Canvas.Top="106" Width="756" Height="605" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
-        <Menu FontSize="13" Canvas.Left="11" Canvas.Top="58" Width="975" BorderThickness="0,1" BorderBrush="Black" Height="32">
+        <Menu FontSize="13" Canvas.Left="11" Canvas.Top="30" Width="360" BorderThickness="0,1" BorderBrush="Black" Height="32">
             <Menu.Background>
                 <ImageBrush/>
             </Menu.Background>
@@ -59,45 +59,54 @@
                 <MenuItem Header="Global Role Templates" Background="{x:Null}" Width="320" x:Name="mnuGlobalRoleTemplates" Click="mnuGlobalRoleTemplates_Click"/>
                 <MenuItem Header="Update GST" Background="{x:Null}" Width="320" x:Name="mnuGST" Click="mnuGST_Click"/>
             </MenuItem>
-            <MenuItem Header="Event" FontSize="14" Margin="0,2,0,0" x:Name="mnuEvent" Height="26" >
+
+            <MenuItem Header="Service Contact List" FontSize="14" Margin="0,2,0,0" x:Name="mnuContactList" Click="mnuContactList_Click" Height="26"/>
+            <MenuItem Header="Notifications" Margin="0,2,0,0" FontSize="14" x:Name="mnuNotify" Click="mnuNotify_Click" Height="26"/>
+        </Menu>
+        <Menu FontSize="13" Canvas.Left="11" Canvas.Top="70" Width="950" BorderThickness="0,1" BorderBrush="Black" Height="32">
+            <Menu.Background>
+                <ImageBrush/>
+            </Menu.Background>
+<MenuItem Header="Quick Start Wizard" FontSize="14" Margin="0,2,0,0" x:Name="mnuWiz" Click="mnuWiz_Click"  Height="26"/>
+            <MenuItem Header="Event Overview" FontSize="14" Margin="0,2,0,0" x:Name="mnuOverview" Click="mnuOverview_Click" Height="26"/>
+            <MenuItem Header="1. Event" FontSize="14" Margin="0,2,0,0" x:Name="mnuEvent" Height="26" >
                 <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
             </MenuItem>
-            <MenuItem Header="Overview" FontSize="14" Margin="0,2,0,0" x:Name="mnuOverview" Click="mnuOverview_Click" Height="26"/>
-            <MenuItem Header="Programmes" FontSize="14" Margin="0,2,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click" Height="26"/>
-            <MenuItem Header="Facilities" FontSize="14" Margin="0,2,0,0" x:Name="mnuLocation" Height="26">
+            <MenuItem Header="2. Programmes" FontSize="14" Margin="0,2,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click" Height="26"/>
+            <MenuItem Header="3. Facilities" FontSize="14" Margin="0,2,0,0" x:Name="mnuLocation" Height="26">
                 <MenuItem Header="Manage Facility" Background="{x:Null}" Width="260" x:Name="mnuManageFac" Click="mnuManageFac_Click"/>
                 <MenuItem Header="Manage Facility Bookings" Background="{x:Null}" Width="260" x:Name="mnuManageFacBookings" Click="mnuManageFacBookings_Click" />
                 <MenuItem Header="Search &amp; Book" Background="{x:Null}" Width="260" x:Name="mnuSearchFac" Click="mnuSearchFac_Click"/>
                 <MenuItem Header="View Current Bookings" Background="{x:Null}" Width="260" x:Name="mnuViewBookings" Click="mnuViewBookings_Click"/>
             </MenuItem>
-            <MenuItem Header="Manpower" FontSize="14" Margin="0,2,0,0" x:Name="mnuManpower" Height="26">
+            <MenuItem Header="4. Manpower" FontSize="14" Margin="0,2,0,0" x:Name="mnuManpower" Height="26">
                 <MenuItem Header="Role Templates" Background="{x:Null}" Width="240" x:Name="mnuRoleTemplates" Click="mnuRoleTemplates_Click"/>
                 <MenuItem Header="Roles" Background="{x:Null}" Width="240" x:Name="mnuRoles" Click="mnuRoles_Click"/>
             </MenuItem>
 
             <!-- v0.2 Tasks Allocation Sub System -->
-            <MenuItem Header="Tasks" FontSize="14" Margin="0,2,0,0" x:Name="mnuTasks" Height="26"  >
+            <MenuItem Header="5. Tasks" FontSize="14" Margin="0,2,0,0" x:Name="mnuTasks" Height="26"  >
                 <MenuItem Header="View My Tasks" Background="{x:Null}" Width="240" x:Name="mnuViewTasks" Click="mnuViewTasks_Click"/>
                 <MenuItem Header="Manage Tasks" Background="{x:Null}" Width="240" x:Name="mnuManageTasks" Click="mnuTasks_Click"/>
             </MenuItem>
-            <MenuItem Header="Budget" FontSize="14" Margin="0,2,0,0" x:Name="mnuBudget" Height="26" >
+            <MenuItem Header="6. Budget" FontSize="14" Margin="0,2,0,0" x:Name="mnuBudget" Height="26" >
                 <MenuItem Header="Manage Item List" Background="{x:Null}" Width="240" x:Name="mnuManageItem" Click="mnuManageItem_Click"/>
                 <MenuItem Header="Manage Budget Items" Background="{x:Null}" Width="240" x:Name="mnuManageBudgetItem" Click="mnuManageBudgetItem_Click"/>
                 <MenuItem Header="Manage Income" Background="{x:Null}" Width="240" x:Name="mnuManageIncome" Click="mnuManageIncome_Click"/>
                 <MenuItem Header="Budget Report" Background="{x:Null}" Width="240" x:Name="mnuBudgetReport" Click="mnuBudgetReport_Click"/>
             </MenuItem>
-            <MenuItem Header="Guests" FontSize="14" Margin="0,2,0,0" x:Name="mnuGuests" Click="mnuGuests_Click" Height="26"/>
+            <MenuItem Header="7. Guests" FontSize="14" Margin="0,2,0,0" x:Name="mnuGuests" Click="mnuGuests_Click" Height="26"/>
             <!-- v0.2 Participants Registrations Sub Systems (WEB EXT)-->
-            <MenuItem Header="Publishing" FontSize="14" Margin="0,2,0,0" x:Name="mnuPublish" Height="26">
+            <MenuItem Header="8. Publishing" FontSize="14" Margin="0,2,0,0" x:Name="mnuPublish" Height="26">
                 <MenuItem Header="View Static Fields" Background="{x:Null}" Width="280" x:Name="mnuStaticFields" Click="mnuStaticFields_Click"/>
                 <MenuItem Header="Edit Registration Form" Background="{x:Null}" Width="280" x:Name="mnuEditRegForm" Click="mnuEditRegForm_Click"/>
                 <MenuItem Header="Publish On Web" Background="{x:Null}" Width="280" x:Name="mnuPublishWebsite" Click="mnuPublishWebsite_Click"/>
                 <MenuItem Header="View Participants Data" Background="{x:Null}" Width="280" x:Name="mnuParticipants" Click="mnuParticipants_Click"/>
             </MenuItem>
-            <!-- v0.2 Contact List Management Sub System-->
-            <MenuItem Header="Service Contact List" FontSize="14" Margin="0,2,0,0" x:Name="mnuContactList" Click="mnuContactList_Click" Height="26"/>
+
+            <!--<MenuItem Header="Service Contact List" FontSize="14" Margin="0,2,0,0" x:Name="mnuContactList" Click="mnuContactList_Click" Height="26"/>
             
-            <MenuItem Header="Notifications" Margin="0,2,0,0" FontSize="14" x:Name="mnuNotify" Click="mnuNotify_Click" Height="26"/>
+            <MenuItem Header="Notifications" Margin="0,2,0,0" FontSize="14" x:Name="mnuNotify" Click="mnuNotify_Click" Height="26"/>-->
         </Menu>
     </Canvas>
 </Window>

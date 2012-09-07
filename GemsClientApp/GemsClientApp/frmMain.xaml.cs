@@ -771,5 +771,10 @@ namespace Gems.UIWPF
         {
             navigate<frmBudgetReport>();
         }
+
+        private void mnuWiz_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
