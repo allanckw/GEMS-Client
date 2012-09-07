@@ -15,7 +15,7 @@ namespace Gems.UIWPF
     public partial class frmParticipants : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
         ObservableCollection<Tuple<Participant, string>> participants;
 
         public frmParticipants()
@@ -23,7 +23,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmParticipants(User u, Event e)
+        public frmParticipants(User u, Events e)
             : this()
         {
             this.user = u;

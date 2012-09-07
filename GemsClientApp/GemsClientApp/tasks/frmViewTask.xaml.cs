@@ -13,14 +13,14 @@ namespace Gems.UIWPF
     public partial class frmViewTask : GEMSPage
     {
         private User user;
-        private Event event_;
+        private Events event_;
 
         public frmViewTask()
         {
             this.InitializeComponent();
         }
 
-        public frmViewTask(User u, Event e)
+        public frmViewTask(User u, Events e)
             : this()
         {
             this.user = u;

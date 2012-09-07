@@ -17,7 +17,7 @@ namespace Gems.UIWPF
     public partial class frmFacBookingDetails : Window
     {
         List<Facility> models;
-        Event event_;
+        Events event_;
         User user;
 
         public frmFacBookingDetails()
@@ -26,7 +26,7 @@ namespace Gems.UIWPF
 
         }
 
-        public frmFacBookingDetails(User u, Event e, List<Facility> m)
+        public frmFacBookingDetails(User u, Events e, List<Facility> m)
             : this()
         {
             this.user = u;

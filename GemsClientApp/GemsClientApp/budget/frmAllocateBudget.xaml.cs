@@ -15,7 +15,7 @@ namespace Gems.UIWPF
     public partial class frmAllocateBudget : Window
     {
         private User user;
-        private Event event_;
+        private Events event_;
         private List<Items> itemList;
         private List<ItemTypes> typeList;
         decimal maxBudget;
@@ -28,7 +28,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmAllocateBudget(User u, Event e,
+        public frmAllocateBudget(User u, Events e,
             List<ItemTypes> typeList, List<Items> itemList, decimal maxBudget)
             : this()
         {

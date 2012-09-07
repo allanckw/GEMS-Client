@@ -220,15 +220,15 @@ namespace Gems.UIWPF
                             {
                                 Mouse.OverrideCursor = Cursors.Wait;
                                 EventHelper client = new EventHelper();
-                                List<Event> list;
+                                List<Events> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
-                                    list = client.ViewEvent(user).ToList<Event>();
+                                    list = client.ViewEvent(user).ToList<Events>();
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                                    list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Event>();
+                                    list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
                                 else
 
                                     list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Event>();
+                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
 
                                 lstEventList.ItemsSource = list;
                                 client.Close();
@@ -250,7 +250,7 @@ namespace Gems.UIWPF
         {
             lstEventList.SelectedIndex = 0;
 
-            Event ev = (Event)lstEventList.SelectedItem;
+            Events ev = (Events)lstEventList.SelectedItem;
             frame.Navigate(new frmOverview(user, ev));
             Mouse.OverrideCursor = Cursors.Arrow;
         }
@@ -275,23 +275,23 @@ namespace Gems.UIWPF
                                 int Eid = 0;
                                 if (!nthselected)
                                 {
-                                    Eid = ((Event)lstEventList.SelectedItem).EventID;
+                                    Eid = ((Events)lstEventList.SelectedItem).EventID;
                                 }
                                 EventHelper client = new EventHelper();
-                                List<Event> list;
+                                List<Events> list;
 
                                 //if valid date range.
                                 if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null && txtTag.Text.Trim() == "")
                                 {
                                     list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value).ToList<Event>();
+                                                    dtpTo.SelectedDate.Value).ToList<Events>();
                                 }
                                 else if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
                                 {
-                                    list = client.ViewEventsByTag(user,txtTag.Text.Trim()).ToList<Event>();
+                                    list = client.ViewEventsByTag(user,txtTag.Text.Trim()).ToList<Events>();
                                 }
                                 else
-                                    list = client.ViewEvent(user).ToList<Event>();
+                                    list = client.ViewEvent(user).ToList<Events>();
 
                                 lstEventList.ItemsSource = list;
                                 client.Close();
@@ -299,7 +299,7 @@ namespace Gems.UIWPF
                                 {
                                     for (int i = 0; i < lstEventList.Items.Count; i++)
                                     {
-                                        if (((Event)lstEventList.Items[i]).EventID == Eid)
+                                        if (((Events)lstEventList.Items[i]).EventID == Eid)
                                         {
                                             lstEventList.SelectedIndex = i;
                                             lstEventList.SelectionChanged += lstEventList_SelectionChanged;
@@ -568,7 +568,7 @@ namespace Gems.UIWPF
             }
             else
             {
-                Event ev = (Event)lstEventList.SelectedItem;
+                Events ev = (Events)lstEventList.SelectedItem;
                 var frmFacSearch = new frmFacBooking(user, ev, this);
                 frmFacSearch.ShowDialog();
             }
@@ -631,7 +631,7 @@ namespace Gems.UIWPF
                 }
             }
             currPageType = typeof(T);
-            Event ev = (Event)lstEventList.SelectedItem;
+            Events ev = (Events)lstEventList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
@@ -641,7 +641,7 @@ namespace Gems.UIWPF
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
                             {
-                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Event)lstEventList.SelectedItem));
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)lstEventList.SelectedItem));
                                 return true;
                             }
                     client.Close();
@@ -668,7 +668,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                Event ev = (Event)lstEventList.SelectedItem;
+                Events ev = (Events)lstEventList.SelectedItem;
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
                     .MakeGenericMethod(currPageType)

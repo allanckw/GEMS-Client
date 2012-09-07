@@ -12,7 +12,7 @@ namespace Gems.UIWPF
 	public partial class frmBudgetReport
 	{
         User user;
-        Event event_;
+        Events event_;
         List<BudgetIncome> incomeList;
         List<BudgetItemState> budgetItemList;
         Decimal income;
@@ -23,7 +23,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmBudgetReport(User user, Event e)
+        public frmBudgetReport(User user, Events e)
             : this()
         {
             this.user = user;

@@ -17,7 +17,7 @@ namespace Gems.UIWPF
     public partial class frmFields : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
         ObservableCollection<Field> fields;
 
         public frmFields()
@@ -25,7 +25,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmFields(User u, Event e)
+        public frmFields(User u, Events e)
             : this()
         {
             this.user = u;

@@ -14,7 +14,7 @@ namespace Gems.UIWPF
     public partial class frmTaskAllocation : GEMSPage
     {
         private User user;
-        private Event event_;
+        private Events event_;
         List<Tuple<Role, string>> roleByEvent;
 
         public frmTaskAllocation()
@@ -22,7 +22,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmTaskAllocation(User u, Event e)
+        public frmTaskAllocation(User u, Events e)
             : this()
         {
             this.user = u;

@@ -16,14 +16,14 @@ namespace Gems.UIWPF
     {
         private Window mainFrame;
         private User user;
-        private Event event_;
+        private Events event_;
         private List<Facility> selectedFacs;
 
         public frmFacBooking()
         {
             InitializeComponent();
         }
-        public frmFacBooking(User u, Event e, frmMain f)
+        public frmFacBooking(User u, Events e, frmMain f)
             : this()
         {
             user = u;

@@ -22,7 +22,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Event event_;
+        Events event_;
 
         public frmProgramManagement()
         {
@@ -49,7 +49,7 @@ namespace Gems.UIWPF
             }
         }
 
-        public frmProgramManagement(User u, Event e)
+        public frmProgramManagement(User u, Events e)
             : this()
         {
             this.user = u;

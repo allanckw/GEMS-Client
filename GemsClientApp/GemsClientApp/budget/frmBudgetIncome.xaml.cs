@@ -16,7 +16,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Event event_;
+        Events event_;
         int selectedIndex = -1;
         List<BudgetIncome> incomeList;
 
@@ -27,7 +27,7 @@ namespace Gems.UIWPF
 
 
 
-        public frmBudgetIncome(User user, Event e)
+        public frmBudgetIncome(User user, Events e)
             : this()
         {
             this.user = user;

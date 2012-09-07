@@ -23,7 +23,7 @@ namespace Gems.UIWPF
         User user;
         Review review;
         Service service;
-        Event event_;
+        Events event_;
         public Boolean created;
         
         public frmAddEditReview()
@@ -31,7 +31,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
         
-        public frmAddEditReview(User u, frmServiceContactList f, Review r, Service s, Event e)
+        public frmAddEditReview(User u, frmServiceContactList f, Review r, Service s, Events e)
             : this()
         {
             created = false;

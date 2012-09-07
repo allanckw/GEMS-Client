@@ -14,13 +14,13 @@ namespace Gems.UIWPF
     public partial class frmOverview : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
         public frmOverview()
         {
             InitializeComponent();
         }
 
-        public frmOverview(User u, Event e)
+        public frmOverview(User u, Events e)
             : this()
         {
             this.user = u;

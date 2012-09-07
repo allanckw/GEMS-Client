@@ -22,13 +22,13 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Event event_;
+        Events event_;
         public frmBudgetItemList()
         {
             InitializeComponent();
         }
 
-        public frmBudgetItemList(User u, Event e)
+        public frmBudgetItemList(User u, Events e)
             : this()
         {
             this.user = u;

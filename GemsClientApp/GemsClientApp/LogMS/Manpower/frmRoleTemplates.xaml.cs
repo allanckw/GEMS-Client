@@ -17,7 +17,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Event event_;
+        Events event_;
         Dictionary<string, List<CheckBox>> checkBoxes;
 
         public frmRoleTemplates()
@@ -25,7 +25,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmRoleTemplates(User u, Event e)
+        public frmRoleTemplates(User u, Events e)
             : this()
         {
             this.user = u;

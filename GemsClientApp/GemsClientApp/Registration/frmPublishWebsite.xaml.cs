@@ -14,7 +14,7 @@ namespace Gems.UIWPF
     public partial class frmPublishWebsite : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
         Publish publish;
 
         public frmPublishWebsite()
@@ -22,7 +22,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmPublishWebsite(User u, Event e)
+        public frmPublishWebsite(User u, Events e)
             : this()
         {
             this.user = u;

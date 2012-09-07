@@ -15,14 +15,14 @@ namespace Gems.UIWPF
     public partial class frmServiceContactList : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
 
         public frmServiceContactList()
         {
             InitializeComponent();
         }
 
-        public frmServiceContactList(User u, Event e)
+        public frmServiceContactList(User u, Events e)
             : this()
         {
             txtsearch.TextChanged += txtsearch_TextChanged;

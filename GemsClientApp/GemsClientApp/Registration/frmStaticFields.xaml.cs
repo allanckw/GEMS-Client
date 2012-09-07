@@ -22,14 +22,14 @@ namespace Gems.UIWPF
     public partial class frmStaticFields : GEMSPage
     {
         User user;
-        Event event_;
+        Events event_;
 
         public frmStaticFields()
         {
             InitializeComponent();
         }
 
-        public frmStaticFields(User u, Event e)
+        public frmStaticFields(User u, Events e)
             : this()
         {
             this.user = u;

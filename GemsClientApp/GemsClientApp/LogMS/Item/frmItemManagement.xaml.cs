@@ -13,14 +13,14 @@ namespace Gems.UIWPF
     public partial class frmItemManagement : GEMSPage
     {
         private User user;
-        private Event event_;
+        private Events event_;
 
         public frmItemManagement()
         {
             this.InitializeComponent();
         }
 
-        public frmItemManagement(User u, Event e)
+        public frmItemManagement(User u, Events e)
             : this()
         {
             this.user = u;

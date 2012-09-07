@@ -47,13 +47,13 @@ namespace Gems.UIWPF
         private void Load_Event()
         {
             EventHelper client = new EventHelper();
-            List<Event> list = client.ViewEvent(user).ToList<Event>();
+            List<Events> list = client.ViewEvent(user).ToList<Events>();
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;
         }
 
-        private void Load_Event(Event E)
+        private void Load_Event(Events E)
         {
             txtEventName.Text = E.Name;
             txtDesc.Document.Blocks.Clear();
@@ -69,7 +69,7 @@ namespace Gems.UIWPF
             if (lstEventList.SelectedIndex == -1)
                 return;
 
-            Event E = ((Event)lstEventList.SelectedItem);
+            Events E = ((Events)lstEventList.SelectedItem);
             Load_Event(E);
         }
 
@@ -88,7 +88,7 @@ namespace Gems.UIWPF
                     MessageBox.Show("Invalid Date Entry, End Date Must be at a Later Date Then Start Date");
                     return;
                 }
-                Event SelectedEvent = ((Event)lstEventList.SelectedItem);
+                Events SelectedEvent = ((Events)lstEventList.SelectedItem);
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
                 EventHelper client = new EventHelper();
                 client.EditEvent(user, SelectedEvent,  txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text, txtTag.Text);
@@ -136,7 +136,7 @@ namespace Gems.UIWPF
             if (lstEventList.SelectedIndex == -1)
                 return;
 
-            Event E = ((Event)lstEventList.SelectedItem);
+            Events E = ((Events)lstEventList.SelectedItem);
             try
             {
                 EventHelper client = new EventHelper();

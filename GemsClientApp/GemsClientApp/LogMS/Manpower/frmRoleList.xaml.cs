@@ -44,7 +44,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Event event_;
+        Events event_;
         Dictionary<string, List<CheckBox>> checkBoxes;
 
         public frmRoleList()
@@ -52,7 +52,7 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmRoleList(User u, Event e)
+        public frmRoleList(User u, Events e)
             : this()
         {
             this.user = u;

@@ -36,14 +36,14 @@ namespace Gems.UIWPF
         private void loadEvents()
         {
             EventHelper client = new EventHelper();
-            List<Event> elist;
+            List<Events> elist;
             if (user.isFacilityAdmin || user.isSystemAdmin)
             {
-                elist =client.ViewAllEvents(user).ToList<Event>();
+                elist =client.ViewAllEvents(user).ToList<Events>();
             }
             else
             {
-               elist = client.ViewEvent(user).ToList<Event>();
+               elist = client.ViewEvent(user).ToList<Events>();
             }
              
             this.cboEventList.ItemsSource = elist;

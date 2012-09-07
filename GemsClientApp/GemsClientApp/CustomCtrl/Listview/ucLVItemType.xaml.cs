@@ -32,7 +32,7 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemTypeCollection;
         }
 
-        public void AddNewItemType(User u,Event event_, String ItemType, Boolean Important)
+        public void AddNewItemType(User u,Events event_, String ItemType, Boolean Important)
         {
             EventItemsHelper client = new EventItemsHelper();
             try
@@ -48,7 +48,7 @@ namespace Gems.UIWPF.CustomCtrl
             client.Close();
         }
 
-        public void ToggleItemTypeImpt(User u, Event event_)
+        public void ToggleItemTypeImpt(User u, Events event_)
         {
             if (lv.SelectedIndex==-1)
             {
@@ -66,7 +66,7 @@ namespace Gems.UIWPF.CustomCtrl
             client.Close();
         }
 
-        public void EditItemType(User u, Event event_, Boolean Important)
+        public void EditItemType(User u, Events event_, Boolean Important)
         {
             EventItemsHelper client = new EventItemsHelper();
 
@@ -77,7 +77,7 @@ namespace Gems.UIWPF.CustomCtrl
             client.Close();
         }
 
-        public void DeleteItemType(User u, Event event_)
+        public void DeleteItemType(User u, Events event_)
         {
             EventItemsHelper client = new EventItemsHelper();
 
