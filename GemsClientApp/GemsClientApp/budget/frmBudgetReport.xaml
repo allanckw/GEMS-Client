@@ -47,7 +47,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Grid HorizontalAlignment="Stretch">
-                                                <TextBlock Text="{Binding DateReceived}"/>
+                                               
+                                                <TextBlock Text="{Binding DateReceived, StringFormat=dd MMM yyyy}"/>
                                             </Grid>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

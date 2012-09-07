@@ -48,7 +48,7 @@
         <TextBox Canvas.Left="65" Canvas.Top="167" Height="25" Width="144" Name="txtTag"/>
         <Label Canvas.Left="35" Canvas.Top="137" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
         <Label Canvas.Left="29" Canvas.Top="167" Content="Tag:" Height="28" Name="lbltag" FontFamily="Verdana" />
-        <Button Canvas.Left="134" Canvas.Top="197" Content="Get Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
+        <Button Canvas.Left="134" Canvas.Top="197" Content="Find Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
         <Frame x:Name="frame" Canvas.Left="227" Canvas.Top="106" Width="756" Height="605" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
         <Menu FontSize="13" Canvas.Left="11" Canvas.Top="30" Width="360" BorderThickness="0,1" BorderBrush="Black" Height="32">
             <Menu.Background>
