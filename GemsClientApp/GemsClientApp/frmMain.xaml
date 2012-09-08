@@ -18,39 +18,72 @@
                 <DropShadowEffect ShadowDepth="1"/>
             </Label.Effect>
         </Label>
-        <GroupBox Header="List of Events" Height="480" FontFamily="Stencil" Canvas.Left="15" Canvas.Top="218" Width="199" Foreground="Black" FontSize="18">
-            <ListBox x:Name="lstEventList" Margin="1,1,1,1" FontFamily="Tahoma" FontSize="12" 
-                     FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventList_SelectionChanged" Height="441">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5" Orientation="Vertical">
-                            <WrapPanel Orientation="Horizontal"  >
-                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Horizontal" >
-                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Horizontal" >
-                                <TextBlock Text="From "/>
-                                <TextBlock Text="{Binding Path=StartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
-                                <TextBlock Text=" to "/>
-                                <TextBlock Text="{Binding Path=EndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
-                            </WrapPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </GroupBox>
 
-        <DatePicker Canvas.Left="65" Canvas.Top="105" Height="25" Name="dtpFrom" Width="144" />
-        <DatePicker Canvas.Left="65" Canvas.Top="137" Height="25" Name="dtpTo" Width="144" />
-        <Label Canvas.Left="22" Canvas.Top="105" Content="From:" Height="28" Name="label1" FontFamily="Verdana" />
-        <TextBox Canvas.Left="65" Canvas.Top="167" Height="25" Width="144" Name="txtTag"/>
-        <Label Canvas.Left="35" Canvas.Top="137" Content="To:" Height="28" Name="label2" FontFamily="Verdana" />
-        <Label Canvas.Left="29" Canvas.Top="167" Content="Tag:" Height="28" Name="lbltag" FontFamily="Verdana" />
-        <Button Canvas.Left="134" Canvas.Top="197" Content="Find Events" Height="23" Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" />
-        <Frame x:Name="frame" Canvas.Left="227" Canvas.Top="106" Width="756" Height="605" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
-        <Menu FontSize="13" Canvas.Left="11" Canvas.Top="30" Width="360" BorderThickness="0,1" BorderBrush="Black" Height="32">
+        <StackPanel Height="605" Canvas.Left="15" Canvas.Top="106" Width="968" Orientation="Horizontal">
+        	<StackPanel Height="605" Width="210" VerticalAlignment="Top" HorizontalAlignment="Left">
+        		<StackPanel Height="25" Orientation="Horizontal">
+        			<Label Content="From:" Height="28" x:Name="label1" FontFamily="Verdana" VerticalAlignment="Top" Width="50" />
+        			<DatePicker Height="25" x:Name="dtpFrom" Width="150" VerticalAlignment="Top" />
+        		</StackPanel>
+        		<StackPanel Height="25" Orientation="Horizontal" Margin="0,3,0,0">
+        			<Label Content="To:" Height="28" x:Name="label2" FontFamily="Verdana" HorizontalAlignment="Left" Width="50" />
+        			<DatePicker Height="25" x:Name="dtpTo" Margin="0" Width="150" />
+        		</StackPanel>
+        		<StackPanel Height="25" Orientation="Horizontal" Margin="0,3,0,0">
+        			<Label Content="Tag:" Height="28" x:Name="lbltag" FontFamily="Verdana" HorizontalAlignment="Left" Width="50" />
+        			<TextBox Height="25" x:Name="txtTag" Margin="0,0,66,0" Width="150"/>
+        		</StackPanel>
+        		<Button Content="Get Events" Height="23" x:Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" HorizontalAlignment="Right" BorderThickness="1" Margin="0,3,10,0" />
+        		<GroupBox Header="List of Events" Height="115" FontFamily="Stencil" Foreground="Black" FontSize="13.333" Margin="0" Width="200" HorizontalAlignment="Left">
+                    <ComboBox x:Name="cboEventList" Margin="0" VerticalAlignment="Top" Width="180" HorizontalAlignment="Left" Height="90" FontFamily="Tahoma" FontSize="12" SelectionChanged="cboEventList_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5" Orientation="Vertical">
+                                    <WrapPanel Orientation="Horizontal"  >
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" >
+                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" >
+                                        <TextBlock Text="From "/>
+                                        <TextBlock Text="{Binding StartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+                                        <TextBlock Text=" to "/>
+                                        <TextBlock Text="{Binding EndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </GroupBox>
+        		<GroupBox Header="List of Days" HorizontalAlignment="Left" Width="200" Height="380" Foreground="Black" FontSize="13.333" FontFamily="Stencil">
+        			<ListBox x:Name="lstEventDayList" Margin="1,1,0,0" FontFamily="Tahoma" FontSize="12" 
+        				FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventDayList_SelectionChanged"  Height="350" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top">
+        				<ListBox.ItemTemplate>
+        					<DataTemplate>
+        						<StackPanel Margin="5" Orientation="Vertical">
+        							<WrapPanel Orientation="Horizontal"  >
+                                        <TextBlock Text="Day " Foreground="DarkBlue" FontWeight="Bold"/>
+        								<TextBlock Text="{Binding DayNumber}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
+        							</WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" >
+                                        <TextBlock Text="From "/>
+                                        <TextBlock Text="{Binding DayStartDateTime, StringFormat=dd MMM yy HH:mm}"  TextWrapping="Wrap" />
+                                        <TextBlock Text=" to "/>
+                                        <TextBlock Text="{Binding DayEndDateTime, StringFormat=dd MMM yy HH:mm}" TextWrapping="Wrap"/>
+                                    </WrapPanel>
+        						</StackPanel>
+        					</DataTemplate>
+        				</ListBox.ItemTemplate>
+        			</ListBox>
+        		</GroupBox>
+        	</StackPanel>
+        	<StackPanel Width="764">
+        		<Frame x:Name="frame" Width="756" Height="605" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
+        	</StackPanel>
+        </StackPanel>
+		
+		<Menu FontSize="13" Canvas.Left="11" Canvas.Top="30" Width="360" BorderThickness="0,1" BorderBrush="Black" Height="32">
             <Menu.Background>
                 <ImageBrush/>
             </Menu.Background>

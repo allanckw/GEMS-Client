@@ -230,7 +230,7 @@ namespace Gems.UIWPF
                                     list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
                                                     dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
 
-                                lstEventList.ItemsSource = list;
+                                cboEventList.ItemsSource = list;
                                 client.Close();
                             }
                             catch (Exception ex)
@@ -248,9 +248,9 @@ namespace Gems.UIWPF
 
         private void loadEventCompleted(object sender, EventArgs e)
         {
-            lstEventList.SelectedIndex = 0;
+            cboEventList.SelectedIndex = 0;
 
-            Events ev = (Events)lstEventList.SelectedItem;
+            Events ev = (Events)cboEventList.SelectedItem;
             frame.Navigate(new frmOverview(user, ev));
             Mouse.OverrideCursor = Cursors.Arrow;
         }
@@ -268,14 +268,14 @@ namespace Gems.UIWPF
                         {
                             try
                             {
-                                bool nthselected = (lstEventList.SelectedIndex == -1);
+                                bool nthselected = (cboEventList.SelectedIndex == -1);
                                 //SelectionChanged="lstEventList_SelectionChanged"
 
-                                lstEventList.SelectionChanged -= lstEventList_SelectionChanged;
+                                cboEventList.SelectionChanged -= cboEventList_SelectionChanged;
                                 int Eid = 0;
                                 if (!nthselected)
                                 {
-                                    Eid = ((Events)lstEventList.SelectedItem).EventID;
+                                    Eid = ((Events)cboEventList.SelectedItem).EventID;
                                 }
                                 EventHelper client = new EventHelper();
                                 List<Events> list;
@@ -293,21 +293,21 @@ namespace Gems.UIWPF
                                 else
                                     list = client.ViewEvent(user).ToList<Events>();
 
-                                lstEventList.ItemsSource = list;
+                                cboEventList.ItemsSource = list;
                                 client.Close();
                                 if (!nthselected)
                                 {
-                                    for (int i = 0; i < lstEventList.Items.Count; i++)
+                                    for (int i = 0; i < cboEventList.Items.Count; i++)
                                     {
-                                        if (((Events)lstEventList.Items[i]).EventID == Eid)
+                                        if (((Events)cboEventList.Items[i]).EventID == Eid)
                                         {
-                                            lstEventList.SelectedIndex = i;
-                                            lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+                                            cboEventList.SelectedIndex = i;
+                                            cboEventList.SelectionChanged += cboEventList_SelectionChanged;
                                             return;
                                         }
                                     }
                                 }
-                                lstEventList.SelectionChanged += lstEventList_SelectionChanged;
+                                cboEventList.SelectionChanged += cboEventList_SelectionChanged;
                             }
                             catch (Exception ex)
                             {
@@ -545,12 +545,14 @@ namespace Gems.UIWPF
 
         private void mnuGuests_Click(object sender, RoutedEventArgs e)
         {
-            navigate<frmGuestList>();
+            //navigate<frmGuestList>();
+            navigateByEventDay<frmGuestList>();
         }
 
         private void mnuProgram_Click(object sender, RoutedEventArgs e)
         {
-            navigate<frmProgramManagement>();
+            //navigate<frmProgramManagement>();
+            navigateByEventDay<frmProgramManagement>();
         }
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
@@ -560,7 +562,7 @@ namespace Gems.UIWPF
 
         private void mnuSearchFac_Click(object sender, RoutedEventArgs e)
         {
-            if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+            if (cboEventList.Items.Count < 0 || cboEventList.SelectedIndex < 0)
             {
                 MessageBox.Show("Please select an event to book facility!", "No Event Selected!",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -568,9 +570,17 @@ namespace Gems.UIWPF
             }
             else
             {
-                Events ev = (Events)lstEventList.SelectedItem;
-                var frmFacSearch = new frmFacBooking(user, ev, this);
-                frmFacSearch.ShowDialog();
+                if (lstEventDayList.Items.Count < 0 || lstEventDayList.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select an event to book facility!", "No Day Selected!",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    Events ev = (Events)cboEventList.SelectedItem;
+                    var frmFacSearch = new frmFacBooking(user, ev, this);
+                    frmFacSearch.ShowDialog();
+                }
             }
         }
 
@@ -617,7 +627,7 @@ namespace Gems.UIWPF
             }
             else
             {
-                if (lstEventList.Items.Count < 0 || lstEventList.SelectedIndex < 0)
+                if (cboEventList.Items.Count < 0 || cboEventList.SelectedIndex < 0)
                 {
                     MessageBox.Show("Please select an event to " + pageFunctions[newPageType].Item1 + "!", "No Event Selected!",
                         MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -631,7 +641,7 @@ namespace Gems.UIWPF
                 }
             }
             currPageType = typeof(T);
-            Events ev = (Events)lstEventList.SelectedItem;
+            Events ev = (Events)cboEventList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
@@ -641,7 +651,7 @@ namespace Gems.UIWPF
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
                             {
-                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)lstEventList.SelectedItem));
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
                                 return true;
                             }
                     client.Close();
@@ -657,58 +667,59 @@ namespace Gems.UIWPF
             return true;
         }
 
-        private void lstEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private bool navigateByEventDay<T>()
         {
-            if (lstEventList.SelectedIndex == -1)
+            Type newPageType = typeof(T);
+            if (newPageType == typeof(frmServiceContactList))
             {
-                selectedIndex = -1;
-                return;
+                //Do nothing
             }
-            if (selectedIndex == lstEventList.SelectedIndex)
-                return;
-            try
+            else
             {
-                Events ev = (Events)lstEventList.SelectedItem;
-                if (!(bool)typeof(frmMain)
-                    .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
-                    .MakeGenericMethod(currPageType)
-                    .Invoke(this, null))
+                if (cboEventList.Items.Count < 0 || cboEventList.SelectedIndex < 0)
                 {
-                    lstEventList.SelectedIndex = selectedIndex;
-                    return;
+                    MessageBox.Show("Please select an event to " + pageFunctions[newPageType].Item1 + "!", "No Event Selected!",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return false;
                 }
-
-                if (user.UserID == ev.Organizerid)
-                    EnableAllRight();
-                else
+                if (lstEventDayList.Items.Count < 0 || lstEventDayList.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select a day to " + pageFunctions[newPageType].Item1 + "!", "No Day Selected!",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return false;
+                }
+                if (currPage != null && currPage.isChanged())
+                {
+                    MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
+                        return false;
+                }
+            }
+            currPageType = typeof(T);
+            Events ev = (Events)cboEventList.SelectedItem;
+            if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
+            {
+                try
                 {
                     RoleHelper client = new RoleHelper();
-
-                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
-                    {
-                        EnableAllRight();
-                    }
-                    else if (user.isFacilityAdmin)
-                    {
-                        DisableAllRight();
-                        mnuLocation.Visibility = Visibility.Visible;
-
-                        mnuViewBookings.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
-                    }
+                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
+                        foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
+                            if (ef1 == ef2)
+                            {
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
+                                return true;
+                            }
                     client.Close();
-
                 }
-                selectedIndex = lstEventList.SelectedIndex;
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                currPageType = typeof(frmOverview);
             }
-            catch (Exception ex)
-            {
-                DisableAllRight();
-                MessageBox.Show(ex.Message);
-            }
+            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            frame.Navigate(currPage);
+            return true;
         }
 
         private void mnuOverview_Click(object sender, RoutedEventArgs e)
@@ -776,5 +787,69 @@ namespace Gems.UIWPF
         {
 
         }
+
+        private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboEventList.SelectedIndex == -1)
+            {
+                selectedIndex = -1;
+                return;
+            }
+            if (selectedIndex == cboEventList.SelectedIndex)
+                return;
+            try
+            {
+                Events ev = (Events)cboEventList.SelectedItem;
+                EventHelper clientEvent = new EventHelper();
+                lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
+                
+                
+                if (!(bool)typeof(frmMain)
+                    .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .MakeGenericMethod(currPageType)
+                    .Invoke(this, null))
+                {
+                    cboEventList.SelectedIndex = selectedIndex;
+                    return;
+                }
+
+                if (user.UserID == ev.Organizerid)
+                    EnableAllRight();
+                else
+                {
+                    RoleHelper client = new RoleHelper();
+
+                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
+                    {
+                        EnableAllRight();
+                    }
+                    else if (user.isFacilityAdmin)
+                    {
+                        DisableAllRight();
+                        mnuLocation.Visibility = Visibility.Visible;
+
+                        mnuViewBookings.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+                    }
+                    client.Close();
+
+                }
+                selectedIndex = cboEventList.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                DisableAllRight();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lstEventDayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }
