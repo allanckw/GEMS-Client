@@ -225,15 +225,13 @@ namespace evmsService.entities
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private evmsService.entities.FacilityBookingConfirmed[] ConfirmedFacilityBookingField;
+        private int[] DaysIDField;
         
         private string DescriptionField;
         
         private System.DateTime EndDateTimeField;
         
         private int EventIDField;
-        
-        private evmsService.entities.Guest[] GuestsField;
         
         private int ItemCountField;
         
@@ -244,8 +242,6 @@ namespace evmsService.entities
         private evmsService.entities.User OrganizerField;
         
         private string OrganizeridField;
-        
-        private evmsService.entities.Program[] ProgramsField;
         
         private System.DateTime StartDateTimeField;
         
@@ -268,15 +264,15 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.FacilityBookingConfirmed[] ConfirmedFacilityBooking
+        public int[] DaysID
         {
             get
             {
-                return this.ConfirmedFacilityBookingField;
+                return this.DaysIDField;
             }
             set
             {
-                this.ConfirmedFacilityBookingField = value;
+                this.DaysIDField = value;
             }
         }
         
@@ -316,19 +312,6 @@ namespace evmsService.entities
             set
             {
                 this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.Guest[] Guests
-        {
-            get
-            {
-                return this.GuestsField;
-            }
-            set
-            {
-                this.GuestsField = value;
             }
         }
         
@@ -398,19 +381,6 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.Program[] Programs
-        {
-            get
-            {
-                return this.ProgramsField;
-            }
-            set
-            {
-                this.ProgramsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime StartDateTime
         {
             get
@@ -459,429 +429,6 @@ namespace evmsService.entities
             set
             {
                 this.WebsiteField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FacilityBookingConfirmed", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class FacilityBookingConfirmed : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int ConfirmedIDField;
-        
-        private int EventIDField;
-        
-        private evmsService.entities.Faculty FacultyField;
-        
-        private string PurposeField;
-        
-        private string RemarksField;
-        
-        private int RequestDetailIDField;
-        
-        private System.DateTime RequestEndDateTimeField;
-        
-        private int RequestIDField;
-        
-        private System.DateTime RequestStartDateTimeField;
-        
-        private string RequestorIDField;
-        
-        private string VenueField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ConfirmedID
-        {
-            get
-            {
-                return this.ConfirmedIDField;
-            }
-            set
-            {
-                this.ConfirmedIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.Faculty Faculty
-        {
-            get
-            {
-                return this.FacultyField;
-            }
-            set
-            {
-                this.FacultyField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Purpose
-        {
-            get
-            {
-                return this.PurposeField;
-            }
-            set
-            {
-                this.PurposeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks
-        {
-            get
-            {
-                return this.RemarksField;
-            }
-            set
-            {
-                this.RemarksField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RequestDetailID
-        {
-            get
-            {
-                return this.RequestDetailIDField;
-            }
-            set
-            {
-                this.RequestDetailIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime RequestEndDateTime
-        {
-            get
-            {
-                return this.RequestEndDateTimeField;
-            }
-            set
-            {
-                this.RequestEndDateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RequestID
-        {
-            get
-            {
-                return this.RequestIDField;
-            }
-            set
-            {
-                this.RequestIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime RequestStartDateTime
-        {
-            get
-            {
-                return this.RequestStartDateTimeField;
-            }
-            set
-            {
-                this.RequestStartDateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string RequestorID
-        {
-            get
-            {
-                return this.RequestorIDField;
-            }
-            set
-            {
-                this.RequestorIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Venue
-        {
-            get
-            {
-                return this.VenueField;
-            }
-            set
-            {
-                this.VenueField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Guest", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Guest : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string ContactField;
-        
-        private int DayIDField;
-        
-        private string DescriptionField;
-        
-        private int EventIDField;
-        
-        private int GuestIdField;
-        
-        private string NameField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Contact
-        {
-            get
-            {
-                return this.ContactField;
-            }
-            set
-            {
-                this.ContactField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DayID
-        {
-            get
-            {
-                return this.DayIDField;
-            }
-            set
-            {
-                this.DayIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this.DescriptionField;
-            }
-            set
-            {
-                this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GuestId
-        {
-            get
-            {
-                return this.GuestIdField;
-            }
-            set
-            {
-                this.GuestIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Program", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
-    public partial class Program : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int DayIDField;
-        
-        private string DescriptionField;
-        
-        private System.DateTime EndDateTimeField;
-        
-        private int EventIDField;
-        
-        private string NameField;
-        
-        private int ProgramIDField;
-        
-        private System.DateTime StartDateTimeField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DayID
-        {
-            get
-            {
-                return this.DayIDField;
-            }
-            set
-            {
-                this.DayIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this.DescriptionField;
-            }
-            set
-            {
-                this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime EndDateTime
-        {
-            get
-            {
-                return this.EndDateTimeField;
-            }
-            set
-            {
-                this.EndDateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EventID
-        {
-            get
-            {
-                return this.EventIDField;
-            }
-            set
-            {
-                this.EventIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProgramID
-        {
-            get
-            {
-                return this.ProgramIDField;
-            }
-            set
-            {
-                this.ProgramIDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime StartDateTime
-        {
-            get
-            {
-                return this.StartDateTimeField;
-            }
-            set
-            {
-                this.StartDateTimeField = value;
             }
         }
     }
@@ -1149,6 +696,243 @@ namespace evmsService.entities
             set
             {
                 this.TaskIDField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Program", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Program : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int DayIDField;
+        
+        private string DescriptionField;
+        
+        private System.DateTime EndDateTimeField;
+        
+        private int EventIDField;
+        
+        private string NameField;
+        
+        private int ProgramIDField;
+        
+        private System.DateTime StartDateTimeField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DayID
+        {
+            get
+            {
+                return this.DayIDField;
+            }
+            set
+            {
+                this.DayIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EndDateTime
+        {
+            get
+            {
+                return this.EndDateTimeField;
+            }
+            set
+            {
+                this.EndDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProgramID
+        {
+            get
+            {
+                return this.ProgramIDField;
+            }
+            set
+            {
+                this.ProgramIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime StartDateTime
+        {
+            get
+            {
+                return this.StartDateTimeField;
+            }
+            set
+            {
+                this.StartDateTimeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Guest", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Guest : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string ContactField;
+        
+        private int DayIDField;
+        
+        private string DescriptionField;
+        
+        private int EventIDField;
+        
+        private int GuestIdField;
+        
+        private string NameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Contact
+        {
+            get
+            {
+                return this.ContactField;
+            }
+            set
+            {
+                this.ContactField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DayID
+        {
+            get
+            {
+                return this.DayIDField;
+            }
+            set
+            {
+                this.DayIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GuestId
+        {
+            get
+            {
+                return this.GuestIdField;
+            }
+            set
+            {
+                this.GuestIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
             }
         }
     }
@@ -2057,6 +1841,192 @@ namespace evmsService.entities
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Cancelled = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FacilityBookingConfirmed", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class FacilityBookingConfirmed : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int ConfirmedIDField;
+        
+        private int EventIDField;
+        
+        private evmsService.entities.Faculty FacultyField;
+        
+        private string PurposeField;
+        
+        private string RemarksField;
+        
+        private int RequestDetailIDField;
+        
+        private System.DateTime RequestEndDateTimeField;
+        
+        private int RequestIDField;
+        
+        private System.DateTime RequestStartDateTimeField;
+        
+        private string RequestorIDField;
+        
+        private string VenueField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ConfirmedID
+        {
+            get
+            {
+                return this.ConfirmedIDField;
+            }
+            set
+            {
+                this.ConfirmedIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Faculty Faculty
+        {
+            get
+            {
+                return this.FacultyField;
+            }
+            set
+            {
+                this.FacultyField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Purpose
+        {
+            get
+            {
+                return this.PurposeField;
+            }
+            set
+            {
+                this.PurposeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestDetailID
+        {
+            get
+            {
+                return this.RequestDetailIDField;
+            }
+            set
+            {
+                this.RequestDetailIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RequestEndDateTime
+        {
+            get
+            {
+                return this.RequestEndDateTimeField;
+            }
+            set
+            {
+                this.RequestEndDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestID
+        {
+            get
+            {
+                return this.RequestIDField;
+            }
+            set
+            {
+                this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RequestStartDateTime
+        {
+            get
+            {
+                return this.RequestStartDateTimeField;
+            }
+            set
+            {
+                this.RequestStartDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RequestorID
+        {
+            get
+            {
+                return this.RequestorIDField;
+            }
+            set
+            {
+                this.RequestorIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Venue
+        {
+            get
+            {
+                return this.VenueField;
+            }
+            set
+            {
+                this.VenueField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3452,6 +3422,69 @@ namespace evmsService.Controllers
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleWithUser", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    public partial class RoleWithUser : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QuestionIDWithAnswer", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    public partial class QuestionIDWithAnswer : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ParticipantWithName", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    public partial class ParticipantWithName : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
 }
 
 
@@ -4180,7 +4213,7 @@ public interface IRole
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRole/ViewEventRoles", ReplyAction="http://tempuri.org/IRole/ViewEventRolesResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRole/ViewEventRolesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Events evnt);
+    evmsService.Controllers.RoleWithUser[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Events evnt);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRole/ViewFunction", ReplyAction="http://tempuri.org/IRole/ViewFunctionResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRole/ViewFunctionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4275,7 +4308,7 @@ public partial class RoleClient : System.ServiceModel.ClientBase<IRole>, IRole
         return base.Channel.ViewRole(user, evnt);
     }
     
-    public System.TupleOfRolestringRsiwEt5l[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Events evnt)
+    public evmsService.Controllers.RoleWithUser[] ViewEventRoles(evmsService.entities.User user, evmsService.entities.Events evnt)
     {
         return base.Channel.ViewEventRoles(user, evnt);
     }
@@ -4840,7 +4873,7 @@ public interface IRegistration
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/RegisterParticipant", ReplyAction="http://tempuri.org/IRegistration/RegisterParticipantResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/RegisterParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void RegisterParticipant(int eventID, System.TupleOfintstring[] answers);
+    void RegisterParticipant(int eventID, evmsService.Controllers.QuestionIDWithAnswer[] answers);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/DeleteParticipant", ReplyAction="http://tempuri.org/IRegistration/DeleteParticipantResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/DeleteParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4868,7 +4901,7 @@ public interface IRegistration
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ViewEventParticipantWithName", ReplyAction="http://tempuri.org/IRegistration/ViewEventParticipantWithNameResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewEventParticipantWithNameSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID);
+    evmsService.Controllers.ParticipantWithName[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/AddPublish", ReplyAction="http://tempuri.org/IRegistration/AddPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/AddPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4925,7 +4958,7 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
     {
     }
     
-    public void RegisterParticipant(int eventID, System.TupleOfintstring[] answers)
+    public void RegisterParticipant(int eventID, evmsService.Controllers.QuestionIDWithAnswer[] answers)
     {
         base.Channel.RegisterParticipant(eventID, answers);
     }
@@ -4960,7 +4993,7 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
         return base.Channel.ViewStaticField();
     }
     
-    public System.TupleOfParticipantstringRsiwEt5l[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID)
+    public evmsService.Controllers.ParticipantWithName[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID)
     {
         return base.Channel.ViewEventParticipantWithName(user, eventID);
     }
@@ -5119,163 +5152,5 @@ public partial class BudgetClient : System.ServiceModel.ClientBase<IBudget>, IBu
     public evmsService.entities.BudgetIncome[] ViewBudgetIncome(evmsService.entities.User user, int eventID)
     {
         return base.Channel.ViewBudgetIncome(user, eventID);
-    }
-}
-namespace System
-{
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TupleOfRolestringRsiwEt5l", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial class TupleOfRolestringRsiwEt5l : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private evmsService.entities.Role m_Item1Field;
-        
-        private string m_Item2Field;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public evmsService.entities.Role m_Item1
-        {
-            get
-            {
-                return this.m_Item1Field;
-            }
-            set
-            {
-                this.m_Item1Field = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string m_Item2
-        {
-            get
-            {
-                return this.m_Item2Field;
-            }
-            set
-            {
-                this.m_Item2Field = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TupleOfintstring", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial class TupleOfintstring : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int m_Item1Field;
-        
-        private string m_Item2Field;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public int m_Item1
-        {
-            get
-            {
-                return this.m_Item1Field;
-            }
-            set
-            {
-                this.m_Item1Field = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string m_Item2
-        {
-            get
-            {
-                return this.m_Item2Field;
-            }
-            set
-            {
-                this.m_Item2Field = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TupleOfParticipantstringRsiwEt5l", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial class TupleOfParticipantstringRsiwEt5l : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private evmsService.entities.Participant m_Item1Field;
-        
-        private string m_Item2Field;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public evmsService.entities.Participant m_Item1
-        {
-            get
-            {
-                return this.m_Item1Field;
-            }
-            set
-            {
-                this.m_Item1Field = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string m_Item2
-        {
-            get
-            {
-                return this.m_Item2Field;
-            }
-            set
-            {
-                this.m_Item2Field = value;
-            }
-        }
     }
 }

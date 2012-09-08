@@ -33,10 +33,10 @@ namespace Gems.UIWPF
         {
             try
             {
-                loadFacilityBooking();
-                loadGuests();
+                loadFacilityBooking();//Need To Remap
+                loadGuests();//Need To Remap
                 loadTasks();
-                loadPrograms();
+                //loadPrograms();//Need To Remap
                 loadRoles();
                 loadItems();
             }
@@ -48,8 +48,8 @@ namespace Gems.UIWPF
 
         private void loadGuests()
         {
-
-            txtGuestMsg.Text = "There are a total of " + event_.Guests.Count() + " guest(s) ";
+            //Need To Remap
+            //txtGuestMsg.Text = "There are a total of " + event_.Guests.Count() + " guest(s) ";
         }
 
         private void loadTasks()
@@ -57,29 +57,30 @@ namespace Gems.UIWPF
             txtTaskMsg.Text = "There are a total of " + event_.Tasks.Count() + " task(s)";
         }
 
-        private void loadPrograms()
-        {
-            if (event_.Programs.Count() == 0)
-                txtProgramMsg.Text = "No Programmes Added Yet.";
-            else
-            {
-                DateTime max = DateTime.MinValue, min = DateTime.MaxValue;
-                for (int i = 0; i < event_.Programs.Count(); i++)
-                {
-                    if (max < event_.Programs[i].EndDateTime)
-                    {
-                        max = event_.Programs[i].EndDateTime;
-                    }
-                    if (min > event_.Programs[i].StartDateTime)
-                    {
-                        min = event_.Programs[i].StartDateTime;
-                    }
-                }
+        //Need To Remap
+        //private void loadPrograms()
+        //{
+        //    if (event_.Programs.Count() == 0)
+        //        txtProgramMsg.Text = "No Programmes Added Yet.";
+        //    else
+        //    {
+        //        DateTime max = DateTime.MinValue, min = DateTime.MaxValue;
+        //        for (int i = 0; i < event_.Programs.Count(); i++)
+        //        {
+        //            if (max < event_.Programs[i].EndDateTime)
+        //            {
+        //                max = event_.Programs[i].EndDateTime;
+        //            }
+        //            if (min > event_.Programs[i].StartDateTime)
+        //            {
+        //                min = event_.Programs[i].StartDateTime;
+        //            }
+        //        }
 
-                txtProgramMsg.Text = "There are " + event_.Programs.Count() + " planned programmes from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
+        //        txtProgramMsg.Text = "There are " + event_.Programs.Count() + " planned programmes from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
 
-            }
-        }
+        //    }
+        //}
 
         private void loadRoles()
         {
@@ -135,25 +136,25 @@ namespace Gems.UIWPF
             }
         }
         private void loadFacilityBooking()
-        {
-            List<FacilityBookingConfirmed> fbc = event_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
-            if (fbc.Count == 0)
-            {
-                txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";
-            }
-            else
-            {
-                txtLocationMsg.Text = "The venue to hold this event are (is) " + Environment.NewLine ;
-                foreach (FacilityBookingConfirmed confirmedReq in fbc)
-                {
-                    txtLocationMsg.Text += confirmedReq.Faculty.ToString() + " " + " at " + confirmedReq.Venue
-                        + "  booked from " + confirmedReq.RequestStartDateTime.ToString("HH:mm")
-                        + " to " + confirmedReq.RequestEndDateTime.ToString("HH:mm") + Environment.NewLine
-                        ;
+        {//Need To Remap
+            //List<FacilityBookingConfirmed> fbc = event_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
+            //if (fbc.Count == 0)
+            //{
+            //    txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";
+            //}
+            //else
+            //{
+            //    txtLocationMsg.Text = "The venue to hold this event are (is) " + Environment.NewLine ;
+            //    foreach (FacilityBookingConfirmed confirmedReq in fbc)
+            //    {
+            //        txtLocationMsg.Text += confirmedReq.Faculty.ToString() + " " + " at " + confirmedReq.Venue
+            //            + "  booked from " + confirmedReq.RequestStartDateTime.ToString("HH:mm")
+            //            + " to " + confirmedReq.RequestEndDateTime.ToString("HH:mm") + Environment.NewLine
+            //            ;
 
 
-                }
-            }
+            //    }
+            //}
         }
 
     }
