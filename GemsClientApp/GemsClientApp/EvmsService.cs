@@ -710,19 +710,19 @@ namespace evmsService.entities
         
         private evmsService.entities.FacilityBookingConfirmed[] ConfirmedFacilityBookingField;
         
-        private System.DateTime DayEndDateTimeField;
-        
         private int DayIDField;
         
         private int DayNumberField;
         
-        private System.DateTime DayStartDateTimeField;
+        private System.DateTime EndDateTimeField;
         
         private int EventIDField;
         
         private evmsService.entities.Guest[] GuestsField;
         
         private evmsService.entities.Program[] ProgramsField;
+        
+        private System.DateTime StartDateTimeField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -746,19 +746,6 @@ namespace evmsService.entities
             set
             {
                 this.ConfirmedFacilityBookingField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DayEndDateTime
-        {
-            get
-            {
-                return this.DayEndDateTimeField;
-            }
-            set
-            {
-                this.DayEndDateTimeField = value;
             }
         }
         
@@ -789,15 +776,15 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DayStartDateTime
+        public System.DateTime EndDateTime
         {
             get
             {
-                return this.DayStartDateTimeField;
+                return this.EndDateTimeField;
             }
             set
             {
-                this.DayStartDateTimeField = value;
+                this.EndDateTimeField = value;
             }
         }
         
@@ -837,6 +824,19 @@ namespace evmsService.entities
             set
             {
                 this.ProgramsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime StartDateTime
+        {
+            get
+            {
+                return this.StartDateTimeField;
+            }
+            set
+            {
+                this.StartDateTimeField = value;
             }
         }
     }
@@ -1774,6 +1774,36 @@ namespace evmsService.entities
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoomTypes", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum RoomTypes : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CC = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CR = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ER = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LT = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SR = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TR = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Lab = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Outdoors = 7,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Facility", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
@@ -1790,7 +1820,21 @@ namespace evmsService.entities
         
         private evmsService.entities.Faculty FacultyField;
         
+        private bool HasMicrophoneField;
+        
+        private bool HasProjectorField;
+        
+        private bool HasVideoConferencingField;
+        
+        private bool HasVisualizerField;
+        
+        private bool HasWebCastField;
+        
+        private bool HasflexibleSeatingField;
+        
         private string LocationField;
+        
+        private evmsService.entities.RoomTypes RoomTypeField;
         
         private string TechContactField;
         
@@ -1859,6 +1903,84 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasMicrophone
+        {
+            get
+            {
+                return this.HasMicrophoneField;
+            }
+            set
+            {
+                this.HasMicrophoneField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasProjector
+        {
+            get
+            {
+                return this.HasProjectorField;
+            }
+            set
+            {
+                this.HasProjectorField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasVideoConferencing
+        {
+            get
+            {
+                return this.HasVideoConferencingField;
+            }
+            set
+            {
+                this.HasVideoConferencingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasVisualizer
+        {
+            get
+            {
+                return this.HasVisualizerField;
+            }
+            set
+            {
+                this.HasVisualizerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasWebCast
+        {
+            get
+            {
+                return this.HasWebCastField;
+            }
+            set
+            {
+                this.HasWebCastField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasflexibleSeating
+        {
+            get
+            {
+                return this.HasflexibleSeatingField;
+            }
+            set
+            {
+                this.HasflexibleSeatingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Location
         {
             get
@@ -1868,6 +1990,19 @@ namespace evmsService.entities
             set
             {
                 this.LocationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.RoomTypes RoomType
+        {
+            get
+            {
+                return this.RoomTypeField;
+            }
+            set
+            {
+                this.RoomTypeField = value;
             }
         }
         
@@ -4494,7 +4629,7 @@ public interface IFacility
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/UpdateFacility", ReplyAction="http://tempuri.org/IFacility/UpdateFacilityResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/UpdateFacilitySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void UpdateFacility(evmsService.entities.User user, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap);
+    void UpdateFacility(evmsService.entities.User user, string venue, evmsService.entities.Faculty faculty, string loc, string bookingCon, string techCon, int cap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/GetFacilityAdmin", ReplyAction="http://tempuri.org/IFacility/GetFacilityAdminResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/GetFacilityAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4508,17 +4643,13 @@ public interface IFacility
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/GetFacilityAdminsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User[] GetFacilityAdmins();
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/GetVenuesByFaculty", ReplyAction="http://tempuri.org/IFacility/GetVenuesByFacultyResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/GetVenuesByFacultySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Facility[] GetVenuesByFaculty(evmsService.entities.Faculty f, int minCap, int maxCap);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/SearchFacilities", ReplyAction="http://tempuri.org/IFacility/SearchFacilitiesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/SearchFacilitiesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Facility[] SearchFacilities(evmsService.entities.Faculty fac, int minCap, int maxCap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/GetVenues", ReplyAction="http://tempuri.org/IFacility/GetVenuesResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/GetVenuesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Facility[] GetVenues(int minCap, int maxCap);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/GetVenuesByCap", ReplyAction="http://tempuri.org/IFacility/GetVenuesByCapResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/GetVenuesByCapSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Facility[] GetVenuesByCap(evmsService.entities.Faculty fac, string faciID, int minCap, int maxCap);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacility/SearchFacilitiesFac", ReplyAction="http://tempuri.org/IFacility/SearchFacilitiesFacResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacility/SearchFacilitiesFacSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Faculty[] SearchFacilitiesFac(int minCap, int maxCap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -4560,9 +4691,9 @@ public partial class FacilityClient : System.ServiceModel.ClientBase<IFacility>,
         base.Channel.RemoveFacility(user, venue, fac);
     }
     
-    public void UpdateFacility(evmsService.entities.User user, string venue, evmsService.entities.Faculty fac, string loc, string bookingCon, string techCon, int cap)
+    public void UpdateFacility(evmsService.entities.User user, string venue, evmsService.entities.Faculty faculty, string loc, string bookingCon, string techCon, int cap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer)
     {
-        base.Channel.UpdateFacility(user, venue, fac, loc, bookingCon, techCon, cap);
+        base.Channel.UpdateFacility(user, venue, faculty, loc, bookingCon, techCon, cap, rtype, hasWebcast, hasFlexiSeat, hasVidConf, hasMIC, hasProjector, hasVisualizer);
     }
     
     public evmsService.entities.Faculty GetFacilityAdmin(string userid)
@@ -4580,19 +4711,14 @@ public partial class FacilityClient : System.ServiceModel.ClientBase<IFacility>,
         return base.Channel.GetFacilityAdmins();
     }
     
-    public evmsService.entities.Facility[] GetVenuesByFaculty(evmsService.entities.Faculty f, int minCap, int maxCap)
+    public evmsService.entities.Facility[] SearchFacilities(evmsService.entities.Faculty fac, int minCap, int maxCap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer)
     {
-        return base.Channel.GetVenuesByFaculty(f, minCap, maxCap);
+        return base.Channel.SearchFacilities(fac, minCap, maxCap, rtype, hasWebcast, hasFlexiSeat, hasVidConf, hasMIC, hasProjector, hasVisualizer);
     }
     
-    public evmsService.entities.Facility[] GetVenues(int minCap, int maxCap)
+    public evmsService.entities.Faculty[] SearchFacilitiesFac(int minCap, int maxCap, evmsService.entities.RoomTypes rtype, bool hasWebcast, bool hasFlexiSeat, bool hasVidConf, bool hasMIC, bool hasProjector, bool hasVisualizer)
     {
-        return base.Channel.GetVenues(minCap, maxCap);
-    }
-    
-    public evmsService.entities.Facility[] GetVenuesByCap(evmsService.entities.Faculty fac, string faciID, int minCap, int maxCap)
-    {
-        return base.Channel.GetVenuesByCap(fac, faciID, minCap, maxCap);
+        return base.Channel.SearchFacilitiesFac(minCap, maxCap, rtype, hasWebcast, hasFlexiSeat, hasVidConf, hasMIC, hasProjector, hasVisualizer);
     }
 }
 
@@ -4603,7 +4729,7 @@ public interface IFacilityBookings
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/AddFacilityBookingRequest", ReplyAction="http://tempuri.org/IFacilityBookings/AddFacilityBookingRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/AddFacilityBookingRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Events evnt, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails);
+    bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.EventDay evntDay, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/CheckRequestExist", ReplyAction="http://tempuri.org/IFacilityBookings/CheckRequestExistResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/CheckRequestExistSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4629,9 +4755,16 @@ public interface IFacilityBookings
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/CancelFacilityBookingSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void CancelFacilityBooking(evmsService.entities.User userser, int reqID, int evID, string remarks);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequests", ReplyAction="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequests(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEvent", ReplyAction="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEventResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEventSException" +
+        "Fault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequestsByEvent(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEventDay", ReplyAction="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEventDayRespons" +
+        "e")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/ViewFacilityBookingRequestsByEventDaySExcept" +
+        "ionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequestsByEventDay(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents, System.DateTime day);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFacilityBookings/GetActivitiesForDay", ReplyAction="http://tempuri.org/IFacilityBookings/GetActivitiesForDayResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IFacilityBookings/GetActivitiesForDaySExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4676,9 +4809,9 @@ public partial class FacilityBookingsClient : System.ServiceModel.ClientBase<IFa
     {
     }
     
-    public bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.Events evnt, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails)
+    public bool AddFacilityBookingRequest(evmsService.entities.User user, evmsService.entities.EventDay evntDay, evmsService.entities.Faculty faculty, System.DateTime reqstart, System.DateTime reqEnd, evmsService.entities.FacilityBookingRequestDetails[] reqDetails)
     {
-        return base.Channel.AddFacilityBookingRequest(user, evnt, faculty, reqstart, reqEnd, reqDetails);
+        return base.Channel.AddFacilityBookingRequest(user, evntDay, faculty, reqstart, reqEnd, reqDetails);
     }
     
     public bool CheckRequestExist(int eventid, System.DateTime start, System.DateTime end)
@@ -4711,9 +4844,14 @@ public partial class FacilityBookingsClient : System.ServiceModel.ClientBase<IFa
         base.Channel.CancelFacilityBooking(userser, reqID, evID, remarks);
     }
     
-    public evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequests(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents)
+    public evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequestsByEvent(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents)
     {
-        return base.Channel.ViewFacilityBookingRequests(userser, evID, status, ViewAllStatus, ViewAllEvents);
+        return base.Channel.ViewFacilityBookingRequestsByEvent(userser, evID, status, ViewAllStatus, ViewAllEvents);
+    }
+    
+    public evmsService.entities.FacilityBookingRequest[] ViewFacilityBookingRequestsByEventDay(evmsService.entities.User userser, int evID, int status, bool ViewAllStatus, bool ViewAllEvents, System.DateTime day)
+    {
+        return base.Channel.ViewFacilityBookingRequestsByEventDay(userser, evID, status, ViewAllStatus, ViewAllEvents, day);
     }
     
     public evmsService.entities.FacilityBookingConfirmed[] GetActivitiesForDay(evmsService.entities.User user, System.DateTime day, evmsService.entities.Faculty faculty, string venue)
