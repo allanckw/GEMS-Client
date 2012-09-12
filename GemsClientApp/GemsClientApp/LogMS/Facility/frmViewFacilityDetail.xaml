@@ -12,12 +12,17 @@
     <Canvas Opacity="1.0">
 		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facilities Details" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="17" />
-        <GroupBox FontWeight="Medium" Header="Location Details" Width="518" FontSize="16" VerticalAlignment="Top" Height="379" Canvas.Top="48" Canvas.Left="10">
+        <GroupBox FontWeight="Medium" Header="Location Details" Width="518" FontSize="16" VerticalAlignment="Top" Height="410" Canvas.Top="48" Canvas.Left="10">
             <StackPanel Height="400" Canvas.Left="21" Canvas.Top="56" Width="500" VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Height="40" Orientation="Horizontal">
             	<Label Content="Faculty :" FontSize="14" HorizontalAlignment="Left" Width="125" Height="30"/>
             	<TextBox FontSize="12" Height="30" 
             		x:Name="txtFaculty" TextWrapping="Wrap" IsReadOnly="true" Margin="0" Width="300"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal">
+            	<Label Content="Type :" FontSize="14" HorizontalAlignment="Left" Width="125" Height="30"/>
+            	<TextBox FontSize="12" Height="30" 
+            		x:Name="txtType" TextWrapping="Wrap" IsReadOnly="true" Margin="0" Width="300"/>
             </StackPanel>
             <StackPanel Height="70" Orientation="Horizontal">
             	<Label Content="Venue :" FontSize="14" HorizontalAlignment="Left" Width="125" Height="30" VerticalAlignment="Top" Margin="0,5,0,0"/>
@@ -55,7 +60,8 @@
             		<StackPanel Width="400" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
             			<CheckBox x:Name="chkFlexibleSeating" Content="Flexible Seating" Margin="0" FontSize="13.333" Width="115"/>
             			<CheckBox x:Name="chkProjector" Content="Projector" Margin="5,0,0,0" FontSize="13.333"/>
-            		</StackPanel>
+                            <CheckBox x:Name="chkVisualizer" Content="Visualizer" Margin="5,0,0,0" FontSize="13.333"/>
+                        </StackPanel>
             	</StackPanel>
             </StackPanel>
         </StackPanel>

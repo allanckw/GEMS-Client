@@ -578,7 +578,8 @@ namespace Gems.UIWPF
                 else
                 {
                     Events ev = (Events)cboEventList.SelectedItem;
-                    var frmFacSearch = new frmFacBooking(user, ev, this);
+                    EventDay evD = (EventDay)lstEventDayList.SelectedItem;
+                    var frmFacSearch = new frmFacBooking(user, ev, evD, this);
                     frmFacSearch.ShowDialog();
                 }
             }
@@ -802,7 +803,7 @@ namespace Gems.UIWPF
                 Events ev = (Events)cboEventList.SelectedItem;
                 EventHelper clientEvent = new EventHelper();
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
-                
+                clientEvent.Close();
                 
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)

@@ -42,6 +42,31 @@ namespace Gems.UIWPF
             txtSeatCapacity1.Text = fac.Capacity.ToString();
             txtTechContact.Text = fac.TechContact;
             txtVenue.Text = fac.FacilityID;
+            txtType.Text = fac.RoomType.ToString().Replace("_", " ");
+            if (fac.HasflexibleSeating)
+            {
+                chkFlexibleSeating.IsChecked = true;
+            }
+            if (fac.HasMicrophone)
+            {
+                chkMicrophone.IsChecked = true;
+            }
+            if (fac.HasProjector)
+            {
+                chkProjector.IsChecked = true;
+            }
+            if (fac.HasVideoConferencing)
+            {
+                chkVideoConference.IsChecked = true;
+            }
+            if (fac.HasVisualizer)
+            {
+                chkVisualizer.IsChecked = true;
+            }
+            if (fac.HasWebCast)
+            {
+                chkRecordFacility.IsChecked = true;
+            }
        }
 
 

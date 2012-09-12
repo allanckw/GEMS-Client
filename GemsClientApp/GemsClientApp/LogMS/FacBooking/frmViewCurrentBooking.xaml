@@ -16,15 +16,24 @@ Width="900" Height="625" AllowsTransparency="True" WindowStyle="None" WindowStar
 		<StackPanel Height="536" Canvas.Left="21" Canvas.Top="56" Width="879" Orientation="Horizontal">
             <GroupBox Header="Filter" FontSize="16" FontWeight="Medium" Width="240" Height="523" VerticalAlignment="Top">
 				<StackPanel Margin="0" Width="220" Height="517" VerticalAlignment="Top">
-					<Label Content="Event List" FontSize="12"/>
-					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0"/>
-					<Label Content="Status List" FontSize="12"/>
+					<Label Content="Event List" FontSize="13.333"/>
+					<ComboBox x:Name="cboEventList" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0" SelectionChanged="cboEventList_SelectionChanged" />
+					<CheckBox x:Name="chkAllStatus" Content="View All Status/Selected Status" FontSize="13.333" Margin="5,5,0,0" IsChecked="False" Checked="chkAllStatus_Checked" Unchecked="chkAllStatus_Unchecked" />
 					<ComboBox x:Name="cboStatus" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0"/>
-					<CheckBox x:Name="chkAllEvent" Content="View All Events" FontSize="12" Margin="5,5,0,0" IsChecked="True" />
-					<CheckBox x:Name="chkAllStatus" Content="View All Status" FontSize="12" Margin="5,5,0,0" IsChecked="True" />
-                    <Button Height="25" Width="72" Margin="0,0,-145,0" Name="btnFilter" Content="Go" FontSize="12" Click="btnFilter_Click" />
+					<CheckBox x:Name="chkAllEventDay" Content="View All Days/Selected Day" FontSize="12" Margin="5,5,0,0" IsChecked="False" Checked="chkAllEventDay_Checked" Unchecked="chkAllEventDay_Unchecked"/>
+                    <ComboBox x:Name="cboEventDay" Width="200" HorizontalAlignment="Left" Height="25" FontSize="12" Margin="5,0,0,0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Day "/>
+                                        <TextBlock Text="{Binding DayNumber}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Height="25" Width="72" Margin="0,5,15,0" Name="btnFilter" Content="Go" FontSize="12" Click="btnFilter_Click" HorizontalAlignment="Right" />
                     <Label Content="Request List" FontSize="12" Margin="0,5,0,0" Height="25" />
-                    <ListBox x:Name="lstRequest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="12" Height="291" Margin="2,0,0,0" Width="210" HorizontalAlignment="Left" SelectionChanged="lstRequest_SelectionChanged">
+                    <ListBox x:Name="lstRequest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="12" Height="250" Margin="2,0,0,0" Width="210" HorizontalAlignment="Left" SelectionChanged="lstRequest_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5" Orientation="Vertical">

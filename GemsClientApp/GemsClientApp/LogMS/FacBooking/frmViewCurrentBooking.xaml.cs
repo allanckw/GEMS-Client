@@ -31,6 +31,7 @@ namespace Gems.UIWPF
         {
             loadEvents();
             cboStatus.ItemsSource = Enum.GetValues(typeof(BookingStatus));
+            cboStatus.SelectedIndex = 0;
         }
 
         private void loadEvents()
@@ -74,6 +75,13 @@ namespace Gems.UIWPF
             ClearDetail();
             FacilityBookingsHelper client = new FacilityBookingsHelper();
 
+            if (cboEventList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a event!", "Invalid input",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
             if (chkAllStatus.IsChecked.Value == false && cboStatus.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a status!", "Invalid input",
@@ -81,19 +89,30 @@ namespace Gems.UIWPF
                 return;
             }
 
-            if (chkAllEvent.IsChecked.Value == false && cboEventList.SelectedIndex == -1)
+            if (chkAllEventDay.IsChecked.Value == false && cboEventDay.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a event!", "Invalid input",
+                MessageBox.Show("Please select a day!", "Invalid input",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
-            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user, 
-                int.Parse(cboEventList.SelectedValue.ToString()),
-                cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
-                chkAllEvent.IsChecked.Value);
-            
+            EventDay evDay = (EventDay)cboEventDay.SelectedItem;
+            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex, 
+                chkAllStatus.IsChecked.Value,chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
+            //if ((bool)chkAllEventDay.IsChecked == true)
+            //{
+            //    this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEvent(user,
+            //    int.Parse(cboEventList.SelectedValue.ToString()),
+            //    cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,false);
+            //}
+            //else
+            //{
+            //    this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user,
+            //        int.Parse(cboEventList.SelectedValue.ToString()),
+            //        cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value, false, evDay.StartDateTime);
+            //}
             client.Close();
+            
         }
 
         private void ClearDetail()
@@ -105,10 +124,10 @@ namespace Gems.UIWPF
             lblEndTime.Content = "";
             lblStartTime.Content = "";
             FacilityBookingsHelper client = new FacilityBookingsHelper();
-            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user,
-                int.Parse(cboEventList.SelectedValue.ToString()),
-                cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
-                chkAllEvent.IsChecked.Value);
+            //this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user,
+            //    int.Parse(cboEventList.SelectedValue.ToString()),
+            //    cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
+            //    chkAllEvent.IsChecked.Value);
             client.Close();
             lvCurrentBooking.ClearSource();
         }
@@ -182,6 +201,64 @@ namespace Gems.UIWPF
                 }
 
             }
+        }
+
+        private void cboEventList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cboEventList.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Events ev = (Events)cboEventList.SelectedItem;
+            EventHelper clientEvent = new EventHelper();
+            cboEventDay.ItemsSource = clientEvent.GetDays(ev.EventID);
+            cboEventDay.SelectedIndex = 0;
+            clientEvent.Close();
+        }
+
+        private void chkAllStatus_Checked(object sender, RoutedEventArgs e)
+        {
+            cboStatus.Visibility = Visibility.Collapsed;
+            //if (cboStatus==null)
+            //{
+            //    return;
+            //}
+
+            //if ((bool)chkAllStatus.IsChecked == true)
+            //{
+                
+            //}
+            //else
+            //    cboStatus.Visibility = Visibility.Visible;
+
+        }
+
+        private void chkAllEventDay_Checked(object sender, RoutedEventArgs e)
+        {
+            cboEventDay.Visibility = Visibility.Collapsed;
+            //if (cboEventDay == null)
+            //{
+            //    return;
+            //}
+
+            //if ((bool)chkAllEventDay.IsChecked == true)
+            //{
+            //    cboEventDay.Visibility = Visibility.Collapsed;
+                
+            //}
+            //else
+            //    cboEventDay.Visibility = Visibility.Visible;
+        }
+
+        private void chkAllStatus_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cboStatus.Visibility = Visibility.Visible;
+        }
+
+        private void chkAllEventDay_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cboEventDay.Visibility = Visibility.Visible;
         }
 	}
 }

@@ -3,6 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
     x:Class="Gems.UIWPF.frmFacBooking"	x:Name="Window"
+    xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
 	Title="Facility Booking"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
 	Width="705" Height="630" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
@@ -13,63 +14,84 @@
 		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="21" Canvas.Top="18" Content="GEMS Event Management System - Facility Booking" Height="38" x:Name="label3" Width="587" FontFamily="Stencil" FontSize="20" />
         <StackPanel Canvas.Left="0" Canvas.Top="50" Height="575" Width="700">
-            <GroupBox   Width="408" FontSize="16" Height="164" FontWeight="Medium" >
-                <GroupBox.Header >
-                    <TextBlock Text="Facilities Criteria" Foreground="Black"  Width="{Binding Path=Width,  Mode=Default}"/>
-                </GroupBox.Header>
-                <StackPanel Height="140"  HorizontalAlignment="Left" Width="400">
-                    <Canvas Height="35">
-                        <Label Width="200" HorizontalAlignment="Right" FontSize="14" Height="30" Content="Faculty :" Margin="0"/>
-                        <ComboBox x:Name="cboFaculty" Width="323" Height="25" Margin="70,4,0,0" FontSize="14" SelectionChanged="cboFaculty_SelectionChanged" />
-                    </Canvas>
-                    <Canvas Height="35">
-                        <Label Width="200" HorizontalAlignment="Right" FontSize="14" Height="30" Content="Venue :" Margin="0"/>
-                        <ComboBox x:Name="cboVenue" Width="323" Height="25" Margin="70,4,0,0" FontSize="14" />
-                    </Canvas>
-                    <Canvas Height="35">
-                        <Label Width="200" HorizontalAlignment="Right" FontSize="14" Height="30" Content="Capacity :" Margin="0"/>
-                        <ComboBox x:Name="cboSeat" Width="323" Height="25" Margin="70,4,0,0" FontSize="14" >
-                            <ComboBoxItem Content="&lt; 10"></ComboBoxItem>
-                            <ComboBoxItem Content="&lt; 50"></ComboBoxItem>
-                            <ComboBoxItem Content="51 - 100"></ComboBoxItem>
-                            <ComboBoxItem Content="101 - 150"></ComboBoxItem>
-                            <ComboBoxItem Content="151 - 200"></ComboBoxItem>
-                            <ComboBoxItem Content="201 - 250"></ComboBoxItem>
-                            <ComboBoxItem Content="250 - 300"></ComboBoxItem>
-                            <ComboBoxItem Content="&gt; 301"></ComboBoxItem>
+            <GroupBox   Width="410" FontSize="16" FontWeight="Medium" Margin="0" Height="170" HorizontalAlignment="Center" >
+            	<GroupBox.Header >
+            		<TextBlock Text="Facilities Criteria" Foreground="Black"  Width="{Binding Width, Mode=Default}"/>
+            	</GroupBox.Header>
+            	<StackPanel Height="180"  HorizontalAlignment="Left" Width="600">
+            		<StackPanel Height="30" Orientation="Horizontal" Margin="0" Visibility="Collapsed">
+            			<Label Width="80" HorizontalAlignment="Right" FontSize="14" Content="Venue :" Margin="0"/>
+            			<ComboBox x:Name="cboVenue" Width="300" Margin="0,4,0,1" FontSize="14" />
+            		</StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal" Margin="0">
+                        <Label Width="80" HorizontalAlignment="Right" FontSize="14" Content="Type :" Margin="0"/>
+                        <ComboBox x:Name="cboType" Width="300" Margin="0,4,0,1" FontSize="14">
                         </ComboBox>
-                    </Canvas>
-                    <StackPanel Height="35" Orientation="Horizontal">
-                        <Button x:Name="btnSearch" Content="Search" Width="75" Margin="230,0,0,6" FontSize="14" Height="28" Click="btnSearch_Click" />
-                        <Button x:Name="btnReset" Content="Reset" Width="75" Margin="10,0.5,0,6.5" FontSize="14" Height="28" Click="btnReset_Click" />
                     </StackPanel>
-                </StackPanel>
+                    <StackPanel Height="30" Orientation="Horizontal" Margin="0,2,0,0">
+            			<Label Width="80" HorizontalAlignment="Right" FontSize="14" Content="Capacity :" Margin="0"/>
+            			<ComboBox x:Name="cboSeat" Width="300" Margin="0,4,0,1" FontSize="14" >
+            				<ComboBoxItem Content="&lt; 10"/>
+            				<ComboBoxItem Content="&lt; 50"/>
+            				<ComboBoxItem Content="51 - 100"/>
+            				<ComboBoxItem Content="101 - 150"/>
+            				<ComboBoxItem Content="151 - 200"/>
+            				<ComboBoxItem Content="201 - 250"/>
+            				<ComboBoxItem Content="250 - 300"/>
+            				<ComboBoxItem Content="&gt; 301"/>
+            			</ComboBox>
+            		</StackPanel>
+            		<StackPanel Height="40" Margin="0,2,0,0">
+            			<StackPanel Width="400" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+            				<CheckBox x:Name="chkRecordFacility" Content="Record Facility" Margin="0" FontSize="13.333" Width="115"/>
+            				<CheckBox x:Name="chkVideoConference" Content="Video Conferencing" Margin="5,0,0,0" FontSize="13.333"/>
+            				<CheckBox x:Name="chkMicrophone" Content="Microphone" Margin="5,0,0,0" FontSize="13.333"/>
+            			</StackPanel>
+            			<StackPanel Width="400" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
+            				<CheckBox x:Name="chkFlexibleSeating" Content="Flexible Seating" Margin="0" FontSize="13.333" Width="115"/>
+            				<CheckBox x:Name="chkProjector" Content="Projector" Margin="5,0,0,0" FontSize="13.333"/>
+            				<CheckBox x:Name="chkVisualizer" Content="Visualizer" Margin="5,0,0,0" FontSize="13.333"/>
+            			</StackPanel>
+            		</StackPanel>
+            		<StackPanel Height="35" Orientation="Horizontal" Margin="0,2,0,0">
+            			<Button x:Name="btnSearch" Content="Search" Width="75" Margin="230,0,0,6" FontSize="14" Height="28" Click="btnSearch_Click" />
+            			<Button x:Name="btnReset" Content="Reset" Width="75" Margin="10,0.5,0,6.5" FontSize="14" Height="28" Click="btnReset_Click" />
+            		</StackPanel>
+            	</StackPanel>
             </GroupBox>
-            <GroupBox  Height="325" FontSize="16" Width="667" FontWeight="Medium">
+            <GroupBox x:Name="gbListOfFaculties" Header="List Of Faculty Available" Width="410" Height="60" Foreground="Black" FontSize="16">
+            	<StackPanel Height="30" Orientation="Horizontal" Margin="0" HorizontalAlignment="Left">
+            		<Label Width="80" HorizontalAlignment="Right" FontSize="14" Height="30" Content="Faculty :" Margin="0"/>
+            		<ComboBox x:Name="cboFaculty" Height="25" Margin="0" FontSize="14" SelectionChanged="cboFaculty_SelectionChanged" Width="300" />
+            	</StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="gbSearchResult"  Height="290" FontSize="16" Width="667" FontWeight="Medium">
                 <GroupBox.Header>
-                    <TextBlock Text="Search Results" Foreground="Black" Width="{Binding Path=Width,  Mode=Default}"/>
+                    <TextBlock Text="Search Results" Foreground="Black" Width="{Binding Width, Mode=Default}"/>
                 </GroupBox.Header>
-                <ListBox x:Name="lstFacility" FontSize="14">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="5" Orientation="Vertical">
-                                <WrapPanel Margin="5" Orientation="Horizontal">
-                                    <CheckBox x:Name="ChkList"></CheckBox>
-                                    <TextBlock Text=" Faculty: " TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding Faculty}" TextWrapping="Wrap" />
-                                    <TextBlock Text=" Venue: " TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding FacilityID}" TextWrapping="Wrap"/>
-                                </WrapPanel>
-                                <WrapPanel Margin="5" Orientation="Horizontal">
-                                    <TextBlock Text=" Location: " TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding Location}"  TextWrapping="Wrap" />
-                                    <TextBlock Text=" Seating Capacity: " TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding Capacity}" TextWrapping="Wrap" />
-                                </WrapPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            	<StackPanel Height="330" Margin="0,0,-45,0" VerticalAlignment="Top">
+            		<ListBox x:Name="lstFacility" FontSize="14" Height="250" Margin="0,0,45,0" Width="650" HorizontalAlignment="Left">
+            			<ListBox.ItemTemplate>
+            				<DataTemplate>
+            					<StackPanel Margin="5" Orientation="Vertical">
+            						<WrapPanel Margin="5" Orientation="Horizontal">
+            							<CheckBox x:Name="ChkList"/>
+            							<!--<TextBlock Text=" Faculty: " TextWrapping="Wrap" />
+            							<TextBlock Text="{Binding Faculty}" TextWrapping="Wrap" />-->
+            							<TextBlock Text=" Venue: " TextWrapping="Wrap" />
+            							<TextBlock Text="{Binding FacilityID}" TextWrapping="Wrap"/>
+            						</WrapPanel>
+            						<WrapPanel Margin="5" Orientation="Horizontal">
+            							<TextBlock Text=" Location: " TextWrapping="Wrap" />
+            							<TextBlock Text="{Binding Location}"  TextWrapping="Wrap" />
+            							<TextBlock Text=" Seating Capacity: " TextWrapping="Wrap" />
+            							<TextBlock Text="{Binding Capacity}" TextWrapping="Wrap" />
+            						</WrapPanel>
+            					</StackPanel>
+            				</DataTemplate>
+            			</ListBox.ItemTemplate>
+            		</ListBox>
+            	</StackPanel>
             </GroupBox>
             <StackPanel Height="50" Orientation="Horizontal">
                 <Button x:Name="btnView" Content="View Details" Width="105" Height="35" Margin="455,0,0,0" FontSize="14" Click="btnView_Click" />

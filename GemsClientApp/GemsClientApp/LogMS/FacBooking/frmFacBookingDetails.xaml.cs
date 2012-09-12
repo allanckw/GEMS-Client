@@ -18,6 +18,7 @@ namespace Gems.UIWPF
     {
         List<Facility> models;
         Events event_;
+        EventDay eventDay_;
         User user;
 
         public frmFacBookingDetails()
@@ -26,12 +27,13 @@ namespace Gems.UIWPF
 
         }
 
-        public frmFacBookingDetails(User u, Events e, List<Facility> m)
+        public frmFacBookingDetails(User u, Events e, EventDay d,List<Facility> m)
             : this()
         {
             this.user = u;
             this.models = m;
             this.event_ = e;
+            this.eventDay_ = d;
         }
 
 
@@ -45,7 +47,7 @@ namespace Gems.UIWPF
             dtpStart.cboHr.SelectionChanged += OnChanged;
             dtpStart.cboMin.SelectionChanged += OnChanged;
 
-            dtpStart.SelectedDateTime = event_.StartDateTime;
+            dtpStart.SelectedDateTime = eventDay_.StartDateTime;
 
             loadDuration();
         }
@@ -116,7 +118,7 @@ namespace Gems.UIWPF
 
 
                             FacilityBookingsHelper client = new FacilityBookingsHelper();
-                            success = client.AddFacilityBookingRequest(user, event_, list[0].Faculty, start, end, list.ToArray());
+                            success = client.AddFacilityBookingRequest(user, eventDay_, list[0].Faculty, start, end, list.ToArray());
                             client.Close();
 
                             if (success)

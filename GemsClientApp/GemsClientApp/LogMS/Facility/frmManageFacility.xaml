@@ -55,7 +55,7 @@ Width="680" Height="520" AllowsTransparency="True" WindowStyle="None" WindowStar
                         <StackPanel Height="40" Orientation="Horizontal">
                         	<Label Content="Booking Contact:" FontSize="14" HorizontalAlignment="Left" Width="120" Height="30" Margin="0,5"/>
                         	<ComboBox Height="33" x:Name="cboFacAdmin" FontSize="14" FontWeight="Medium"
-                        		DisplayMemberPath="Name" SelectedValuePath="userID" Margin="0,0,92,0" Width="270"/>
+                        		DisplayMemberPath="Name" SelectedValuePath="UserID" Margin="0,0,92,0" Width="270"/>
                         </StackPanel>
                         <StackPanel Height="40" Orientation="Horizontal">
                         	<Label Content="Tech Contact:" FontSize="14" HorizontalAlignment="Left" Width="120" Height="30" Margin="0,5"/>
@@ -77,6 +77,7 @@ Width="680" Height="520" AllowsTransparency="True" WindowStyle="None" WindowStar
                     		<StackPanel Width="400" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
                     			<CheckBox x:Name="chkFlexibleSeating" Content="Flexible Seating" Margin="0" FontSize="13.333" Width="115"/>
                     			<CheckBox x:Name="chkProjector" Content="Projector" Margin="5,0,0,0" FontSize="13.333"/>
+                                <CheckBox x:Name="chkVisualizer" Content="Visualizer" Margin="5,0,0,0" FontSize="13.333"/>
                     		</StackPanel>
                     	</StackPanel>
                     </StackPanel>

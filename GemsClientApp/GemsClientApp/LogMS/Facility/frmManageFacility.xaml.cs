@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections;
+using System.Collections.Generic;
 using evmsService.entities;
 
 namespace Gems.UIWPF
@@ -33,6 +36,13 @@ namespace Gems.UIWPF
             cboEditFac.ItemsSource = cboFaculty.ItemsSource = System.Enum.GetValues(typeof(Faculty));
             cboFacAdmin.ItemsSource = client.GetFacilityAdmins();
 
+            List<RoomTypes> rmTypes = System.Enum.GetValues(typeof(RoomTypes)).Cast<RoomTypes>().ToList();
+            cboEditFacType.Items.Clear();
+            foreach (RoomTypes rmType in rmTypes)
+            {
+                string type2display = rmType.ToString().Replace("_", " ");
+                cboEditFacType.Items.Add(type2display);
+            }
 
             if (user.isSystemAdmin)
             {
@@ -73,6 +83,31 @@ namespace Gems.UIWPF
                 txtSeatCapacity1.Text = f.Capacity.ToString();
                 cboFacAdmin.SelectedValue = f.BookingContact;
                 txtLocation.Text = f.Location;
+                cboEditFacType.SelectedIndex = (int)f.RoomType;
+                if (f.HasflexibleSeating)
+                {
+                    chkFlexibleSeating.IsChecked = true;
+                }
+                if (f.HasMicrophone)
+                {
+                    chkMicrophone.IsChecked = true;
+                }
+                if (f.HasProjector)
+                {
+                    chkProjector.IsChecked = true;
+                }
+                if (f.HasVideoConferencing)
+                {
+                    chkVideoConference.IsChecked = true;
+                }
+                if (f.HasVisualizer)
+                {
+                    chkVisualizer.IsChecked = true;
+                }
+                if (f.HasWebCast)
+                {
+                    chkRecordFacility.IsChecked = true;
+                }
             }
 
         }
@@ -80,7 +115,7 @@ namespace Gems.UIWPF
         private void cboFaculty_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             FacilityHelper client = new FacilityHelper();
-            lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+            lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex);
             client.Close();
 
             cboEditFac.SelectedIndex = cboFaculty.SelectedIndex;
@@ -110,10 +145,11 @@ namespace Gems.UIWPF
                 {
                     client.UpdateFacility(user, txtVenue.Text.Trim(), (Faculty)cboEditFac.SelectedIndex,
                     txtLocation.Text.Trim(), cboFacAdmin.SelectedValue.ToString(),
-                    txtTechContact.Text.Trim(), cap);
+                    txtTechContact.Text.Trim(), cap,(RoomTypes)cboEditFacType.SelectedIndex,(bool)chkRecordFacility.IsChecked,(bool)chkFlexibleSeating.IsChecked,
+                    (bool)chkVideoConference.IsChecked,(bool)chkMicrophone.IsChecked,(bool)chkProjector.IsChecked,(bool)chkVisualizer.IsChecked);
                     MessageBox.Show("Facility successfully updated", "Update Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                    lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex);
                     clearAllTextBoxes();
                 }
                 catch (Exception ex)
@@ -137,7 +173,7 @@ namespace Gems.UIWPF
                 client.RemoveFacility(user, txtVenue.Text.Trim(), (Faculty)cboFaculty.SelectedIndex);
                 MessageBox.Show("Facility successfully deleted", "Delete Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex, 0, int.MaxValue);
+                lstVenue.ItemsSource = client.GetVenuesByFaculty((Faculty)cboFaculty.SelectedIndex);
                 clearAllTextBoxes();
             }
             catch (Exception ex)
@@ -150,22 +186,15 @@ namespace Gems.UIWPF
         private void clearAllTextBoxes()
         {
            txtLocation.Text = txtSeatCapacity1.Text = txtTechContact.Text = txtVenue.Text = "";
+           chkFlexibleSeating.IsChecked = chkMicrophone.IsChecked =
+               chkProjector.IsChecked = chkRecordFacility.IsChecked = chkVideoConference.IsChecked =
+               chkVisualizer.IsChecked = false;
 
         }
 
         private void cboEditFac_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             cboFaculty.SelectedIndex = cboEditFac.SelectedIndex;
-            //try
-            //{
-            //    WCFHelperClient client = new WCFHelperClient();
-            //    string u = client.getFacilityAdminFaculty((Faculty) cboEditFac.SelectedIndex);
-            //    cboFacAdmin.SelectedValue = u;
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
