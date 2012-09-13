@@ -297,17 +297,27 @@ namespace Gems.UIWPF
                                 client.Close();
                                 if (!nthselected)
                                 {
+
                                     for (int i = 0; i < cboEventList.Items.Count; i++)
                                     {
                                         if (((Events)cboEventList.Items[i]).EventID == Eid)
                                         {
-                                            cboEventList.SelectedIndex = i;
                                             cboEventList.SelectionChanged += cboEventList_SelectionChanged;
+                                            cboEventList.SelectedIndex = i;
+                                            
                                             return;
                                         }
                                     }
                                 }
+
+
+                                
+                                
                                 cboEventList.SelectionChanged += cboEventList_SelectionChanged;
+
+                                selectedIndex = cboEventList.SelectedIndex;
+                                if (selectedIndex == -1)
+                                    lstEventDayList.ItemsSource = null;
                             }
                             catch (Exception ex)
                             {
@@ -698,6 +708,7 @@ namespace Gems.UIWPF
             }
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
+            EventDay day = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
@@ -718,7 +729,7 @@ namespace Gems.UIWPF
                 }
                 currPageType = typeof(frmOverview);
             }
-            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, day);
             frame.Navigate(currPage);
             return true;
         }
@@ -793,6 +804,7 @@ namespace Gems.UIWPF
         {
             if (cboEventList.SelectedIndex == -1)
             {
+                //lstEventDayList.Items.Clear();
                 selectedIndex = -1;
                 return;
             }

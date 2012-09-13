@@ -17,7 +17,7 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Events event_;
+        EventDay eventDay_;
         List<Guest> guestList;
         int selectedIndex = -1;
 
@@ -26,11 +26,11 @@ namespace Gems.UIWPF
             this.InitializeComponent();
         }
 
-        public frmGuestList(User u, Events e)
+        public frmGuestList(User u, EventDay day)
             : this()
         {
             this.user = u;
-            this.event_ = e;
+            this.eventDay_ = day;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace Gems.UIWPF
             try
             {
                 GuestHelper client = new GuestHelper();
-                guestList = client.ViewGuest(event_.EventID).ToList<Guest>();
+                guestList = client.ViewGuest(eventDay_.DayID).ToList<Guest>();
                 lstGuestList.ItemsSource = guestList;
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace Gems.UIWPF
                     g.Name = txtName.Text;
                     g.Description = txtDescription.Text;
                     g.Contact = txtContact.Text;
-                    g.GuestId = client.AddGuest(user, event_.EventID, g.Name, g.Contact, g.Description);
+                    g.GuestId = client.AddGuest(user, eventDay_.DayID, g.Name, g.Contact, g.Description);
                     guestList.Add(g);
                     CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
                     clearAll();

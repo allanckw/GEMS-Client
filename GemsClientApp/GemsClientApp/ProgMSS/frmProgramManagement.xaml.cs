@@ -22,7 +22,8 @@ namespace Gems.UIWPF
     {
 
         User user;
-        Events event_;
+       // Events event_;
+        EventDay eventDay_;
 
         public frmProgramManagement()
         {
@@ -48,18 +49,25 @@ namespace Gems.UIWPF
                 cboEndMin.Items.Add(string.Format("{0:00}", i));
             }
         }
-
-        public frmProgramManagement(User u, Events e)
+        public frmProgramManagement(User u, EventDay day)
             : this()
         {
             this.user = u;
-            this.event_ = e;
+            this.eventDay_ = day;
         }
+
+
+        //public frmProgramManagement(User u, Events e)
+        //    : this()
+        //{
+        //    this.user = u;
+        //    this.event_ = e;
+        //}
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CreateDTPData();
-            txtDate.Content = event_.StartDateTime.ToString("dd MMM yyyy");
+            txtDate.Content = eventDay_.StartDateTime.ToString("dd MMM yyyy");
             lstProgram.SelectedValuePath = "ProgramId";
             loadPrograms();
         }
@@ -69,11 +77,11 @@ namespace Gems.UIWPF
             try
             {
                 ProgrammeHelper client = new ProgrammeHelper();
-                List<Program> progList = client.ViewProgram(event_.EventID).ToList<Program>();
+                List<Program> progList = client.ViewProgram(eventDay_.DayID).ToList<Program>();
 
                 client.Close();
-                DateTime curr = event_.StartDateTime;
-                DateTime end = event_.EndDateTime;
+                DateTime curr = eventDay_.StartDateTime;
+                DateTime end = eventDay_.EndDateTime;
 
                 List<Program> newprogList = new List<Program>();
                 while (curr.CompareTo(end) < 0)
@@ -146,8 +154,8 @@ namespace Gems.UIWPF
 
             if (validateInputs())
             {
-                DateTime SegmentStartDateTime = event_.StartDateTime.Date;
-                DateTime SegmentEndDateTime = event_.StartDateTime.Date;
+                DateTime SegmentStartDateTime = eventDay_.StartDateTime.Date;
+                DateTime SegmentEndDateTime = eventDay_.StartDateTime.Date;
 
                 SegmentStartDateTime = SegmentStartDateTime
                     .AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
@@ -169,7 +177,7 @@ namespace Gems.UIWPF
                     }
                     else
                     {
-                        bool clashed = client.ValidateProgramTime(event_.EventID, SegmentStartDateTime, SegmentEndDateTime);
+                        bool clashed = client.ValidateProgramTime(eventDay_.DayID, SegmentStartDateTime, SegmentEndDateTime);
 
                         if (clashed)
                         {
@@ -179,7 +187,7 @@ namespace Gems.UIWPF
                         }
                         else
                         {
-                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, event_.EventID);
+                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID);
                         }
                     }
 
@@ -203,9 +211,9 @@ namespace Gems.UIWPF
 
             for (int i = 0; i < programList.Count; i++)
             {
-                if (programList[i].StartDateTime.CompareTo(event_.StartDateTime) < 0)
+                if (programList[i].StartDateTime.CompareTo(eventDay_.StartDateTime) < 0)
                     return true;
-                if (programList[i].EndDateTime.CompareTo(event_.EndDateTime) > 0)
+                if (programList[i].EndDateTime.CompareTo(eventDay_.EndDateTime) > 0)
                     return true;
                 for (int j = 0; j < programList.Count; j++)
                 {
