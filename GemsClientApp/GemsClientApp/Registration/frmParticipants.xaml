@@ -34,6 +34,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
                         </DataGrid.Columns>
                     </DataGrid>
                     <DockPanel LastChildFill="False" Margin="0">
+                        <CheckBox Margin="9,0,0,0">Paid</CheckBox>
                         <Button x:Name="btnDelete" Click="btnDelete_Click" Content="Delete Participant" FontSize="12" FontWeight="Normal" RenderTransformOrigin="0.45,1.228" Width="128" Height="24" d:LayoutOverrides="Height" VerticalAlignment="Top" DockPanel.Dock="Right" Margin="0,0,25,0" IsEnabled="False"/>
                     </DockPanel>
                 </StackPanel>

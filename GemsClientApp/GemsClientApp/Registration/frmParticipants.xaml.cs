@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using evmsService.entities;
+using evmsService.Controllers;
 
 namespace Gems.UIWPF
 {
@@ -16,7 +17,7 @@ namespace Gems.UIWPF
     {
         User user;
         Events event_;
-        ObservableCollection<Tuple<Participant, string>> participants;
+        ParticipantWithName[] participants;
 
         public frmParticipants()
         {
@@ -40,11 +41,14 @@ namespace Gems.UIWPF
             try
             {
                RegistrationHelper client = new RegistrationHelper();
-                //participants = new ObservableCollection<Tuple<Participant, string>>(
-                //    client.ViewEventParticipantWithName(user, event_.EventID));
+              
+                participants = client.ViewEventParticipantWithName(user, event_.EventID);
                 lstParticipants.ItemsSource = participants;
-                if (participants.Count > 0)
+                if (participants != null && participants.Count<ParticipantWithName>() > 0)
                     lstParticipants.SelectedIndex = 0;
+
+                //ParticipantWithName a;
+                
             }
             catch (Exception ex)
             {
@@ -82,7 +86,9 @@ namespace Gems.UIWPF
                     }
                 }
 
-                
+                Participant p = (Participant)lstParticipants.SelectedItem;
+
+
                 dgParticipant.ItemsSource = answers;
                 
                

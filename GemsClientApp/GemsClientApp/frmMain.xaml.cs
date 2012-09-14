@@ -315,9 +315,11 @@ namespace Gems.UIWPF
                                 
                                 cboEventList.SelectionChanged += cboEventList_SelectionChanged;
 
-                                selectedIndex = cboEventList.SelectedIndex;
-                                if (selectedIndex == -1)
-                                    lstEventDayList.ItemsSource = null;
+                                //selectedIndex = cboEventList.SelectedIndex;
+                                //if (selectedIndex == -1)
+                                //    lstEventDayList.ItemsSource = null;
+                                //else
+                                    cboEventList_SelectionChanged(null, null);
                             }
                             catch (Exception ex)
                             {
@@ -805,6 +807,7 @@ namespace Gems.UIWPF
             if (cboEventList.SelectedIndex == -1)
             {
                 //lstEventDayList.Items.Clear();
+                lstEventDayList.ItemsSource = null;
                 selectedIndex = -1;
                 return;
             }

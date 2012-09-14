@@ -10,14 +10,26 @@
     <GroupBox Header="Publish Website" FontSize="21" FontWeight="Medium">
 	    <StackPanel>
 			<StackPanel Orientation="Horizontal" Height="31.314">
-				<Label Content="Registration Start Date:" Width="156.803" FontSize="13"/>
+				<Label HorizontalContentAlignment="Right" Content="Registration Start Date:" Width="156.803" FontSize="13"/>
 				<local:DateTimePicker x:Name="dtpStart" FontFamily="Tahoma" FontSize="12"/>
 			</StackPanel>
 			<StackPanel Height="31.314" Orientation="Horizontal">
-				<Label Content="Registration End Date:" Width="156.803" FontSize="13"/>
+				<Label HorizontalContentAlignment="Right" Content="Registration End Date:" Width="156.803" FontSize="13"/>
                 <local:DateTimePicker x:Name="dtpEnd" FontFamily="Tahoma" FontSize="12"/>
 			</StackPanel>
-			<StackPanel Height="250">
+            <StackPanel Height="31.314" Orientation="Horizontal">
+                <Label Content="Is Payable:" HorizontalContentAlignment="Right" Width="156.803" FontSize="13"/>
+                
+                 <CheckBox Margin="0,1,0,0" VerticalAlignment="Center" Name="cboIsPayable" Checked="cboIsPayable_Checked" Unchecked="cboIsPayable_Unchecked" />
+
+                <Label Margin="0,0,0,0" HorizontalContentAlignment="Right" Content="Amount:" Width="141" FontSize="13" Height="28" />
+                       
+                
+                <TextBox Height="25" Width="125" x:Name="txtamount" TextChanged="txtamount_TextChanged" LostFocus="txtamount_LostFocus" IsEnabled="False" Text="" FontSize="14" />
+
+
+            </StackPanel>
+            <StackPanel Height="250">
 				<Label Content="Remarks (Can be displayed on website):" FontSize="13"/>
                     <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtRemarks" TextChanged="onChanged"/>
 			</StackPanel>

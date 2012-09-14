@@ -5212,7 +5212,7 @@ public interface IRegistration
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/EditPublish", ReplyAction="http://tempuri.org/IRegistration/EditPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/EditPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void EditPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks);
+    void EditPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks, bool isPayable, decimal amount);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ViewPublish", ReplyAction="http://tempuri.org/IRegistration/ViewPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -5307,9 +5307,9 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
         base.Channel.DeletePublish(user, eventID);
     }
     
-    public void EditPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks)
+    public void EditPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks, bool isPayable, decimal amount)
     {
-        base.Channel.EditPublish(user, eventID, startDateTime, endDateTime, remarks);
+        base.Channel.EditPublish(user, eventID, startDateTime, endDateTime, remarks, isPayable, amount);
     }
     
     public evmsService.entities.Publish ViewPublish(int eventID)

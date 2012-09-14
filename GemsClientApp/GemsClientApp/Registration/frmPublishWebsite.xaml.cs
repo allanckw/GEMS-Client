@@ -47,6 +47,8 @@ namespace Gems.UIWPF
                 txtRemarks.Text = publish.Remarks;
                 dtpStart.SelectedDateTime = publish.StartDateTime;
                 dtpEnd.SelectedDateTime = publish.EndDateTime;
+                cboIsPayable.IsChecked = publish.IsPayable;
+                txtamount.Text = publish.PaymentAMount.ToString();
             }
             else
             {
@@ -139,12 +141,21 @@ namespace Gems.UIWPF
                     return false;
                 }
                 RegistrationHelper client = new RegistrationHelper();
+
+                decimal result;
+                if (!decimal.TryParse(txtamount.Text, out result))
+                {
+                    MessageBox.Show("invalid amount");
+                    return false;
+                }
                 if (publish == null)
                 {// need to change here
-                    // client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
+
+                    
+                    client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text,cboIsPayable.IsChecked.Value,result);
                 }
                 else
-                    client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text);
+                    client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
                 client.Close();
                 btnDelete.IsEnabled = true;
                 changed = false;
@@ -188,9 +199,37 @@ namespace Gems.UIWPF
             dtpStart.dtpDate.SelectedDate = DateTime.Now;
             //dtpEnd.clear();
             dtpEnd.dtpDate.SelectedDate = DateTime.Now;
-            
+            cboIsPayable.IsChecked = false;
+
 
             changed = true;
+        }
+
+        private void cboIsPayable_Checked(object sender, RoutedEventArgs e)
+        {
+            txtamount.IsEnabled = true;
+
+        }
+
+        private void cboIsPayable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtamount.Text = "0";
+            txtamount.IsEnabled = false;
+        }
+
+        private void txtamount_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtamount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //double result;
+            //if (!double.TryParse(txtamount.Text, out result))
+            //{
+            //    MessageBox.Show("Please input a numeric number for amount");
+            //    txtamount.Focus();
+            //}
         }
     }
 }
