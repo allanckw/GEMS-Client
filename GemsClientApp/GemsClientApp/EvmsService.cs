@@ -3761,6 +3761,10 @@ namespace evmsService.Controllers
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private evmsService.entities.Role roleField;
+        
+        private string userField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -3770,6 +3774,32 @@ namespace evmsService.Controllers
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Role role
+        {
+            get
+            {
+                return this.roleField;
+            }
+            set
+            {
+                this.roleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string user
+        {
+            get
+            {
+                return this.userField;
+            }
+            set
+            {
+                this.userField = value;
             }
         }
     }
@@ -3782,6 +3812,10 @@ namespace evmsService.Controllers
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private string AnswerField;
+        
+        private int QuestionIDField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -3791,6 +3825,32 @@ namespace evmsService.Controllers
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Answer
+        {
+            get
+            {
+                return this.AnswerField;
+            }
+            set
+            {
+                this.AnswerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int QuestionID
+        {
+            get
+            {
+                return this.QuestionIDField;
+            }
+            set
+            {
+                this.QuestionIDField = value;
             }
         }
     }
@@ -3803,6 +3863,10 @@ namespace evmsService.Controllers
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private string nameField;
+        
+        private evmsService.entities.Participant participantField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -3812,6 +3876,32 @@ namespace evmsService.Controllers
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Participant participant
+        {
+            get
+            {
+                return this.participantField;
+            }
+            set
+            {
+                this.participantField = value;
             }
         }
     }
@@ -5262,6 +5352,10 @@ public interface IRegistration
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewEventParticipantWithNameSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.Controllers.ParticipantWithName[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/EditParticipant", ReplyAction="http://tempuri.org/IRegistration/EditParticipantResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/EditParticipantSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Participant EditParticipant(int ParticipantID, bool paid);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/AddPublish", ReplyAction="http://tempuri.org/IRegistration/AddPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/AddPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void AddPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks, bool isPayable, decimal paymentAmount);
@@ -5355,6 +5449,11 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
     public evmsService.Controllers.ParticipantWithName[] ViewEventParticipantWithName(evmsService.entities.User user, int eventID)
     {
         return base.Channel.ViewEventParticipantWithName(user, eventID);
+    }
+    
+    public evmsService.entities.Participant EditParticipant(int ParticipantID, bool paid)
+    {
+        return base.Channel.EditParticipant(ParticipantID, paid);
     }
     
     public void AddPublish(evmsService.entities.User user, int eventID, System.DateTime startDateTime, System.DateTime endDateTime, string remarks, bool isPayable, decimal paymentAmount)

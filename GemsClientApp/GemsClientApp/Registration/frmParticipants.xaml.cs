@@ -86,9 +86,14 @@ namespace Gems.UIWPF
                     }
                 }
 
-                Participant p = (Participant)lstParticipants.SelectedItem;
+                cboPaid.Checked -= cboPaid_Checked;
+                cboPaid.Unchecked -= cboPaid_Unchecked;
+                ParticipantWithName p = (ParticipantWithName)lstParticipants.SelectedItem;
+                cboPaid.IsChecked = p.participant.Paid;
 
 
+                cboPaid.Checked += cboPaid_Checked;
+                cboPaid.Unchecked += cboPaid_Unchecked;
                 dgParticipant.ItemsSource = answers;
                 
                
@@ -117,6 +122,48 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void cboPaid_Checked(object sender, RoutedEventArgs e)
+        {
+            edit_participant_paid(true);
+        }
+
+        private void edit_participant_paid(bool paid)
+        {
+            try
+            {
+                RegistrationHelper client = new RegistrationHelper();
+                ParticipantWithName p = (ParticipantWithName)lstParticipants.SelectedItem;
+                client.EditParticipant(p.participant.ParticipantID, paid);
+                client.Close();
+                loadParticipants();
+                MessageBox.Show("Operation succeeded!");
+                lstParticipants_SelectionChanged(null, null);
+
+                for (int i = 0; i < lstParticipants.Items.Count; i++)
+                {
+                    ParticipantWithName part = (ParticipantWithName)lstParticipants.Items[i];
+
+                    if (part.participant.ParticipantID == p.participant.ParticipantID)
+                    {
+                        lstParticipants.SelectedIndex = i;
+                        return;
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cboPaid_Unchecked(object sender, RoutedEventArgs e)
+        {
+            edit_participant_paid(false);
         }
     }
 }

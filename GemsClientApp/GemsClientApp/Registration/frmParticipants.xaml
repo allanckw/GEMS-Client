@@ -10,7 +10,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     <GroupBox Header="Participants Registration Data" FontSize="21" FontWeight="Medium">
 		<StackPanel Orientation="Horizontal" Margin="0">
     		<GroupBox Header="Participants" Width="180" FontSize="18" HorizontalAlignment="Left" Margin="0,0,10,8">
-                <ListBox x:Name="lstParticipants" SelectionChanged="lstParticipants_SelectionChanged" FontSize="13" SelectionMode="Single" SelectedValuePath="m_Item1.ParticipantID" DisplayMemberPath="m_Item2" />
+                <ListBox x:Name="lstParticipants" SelectionChanged="lstParticipants_SelectionChanged" FontSize="13" SelectionMode="Single" SelectedValuePath="participant.ParticipantID" DisplayMemberPath="name" />
             </GroupBox>
     		<GroupBox Header="Registration Data" FontSize="18" Width="540" Margin="0,0,0,8">
                 <StackPanel>
@@ -34,7 +34,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
                         </DataGrid.Columns>
                     </DataGrid>
                     <DockPanel LastChildFill="False" Margin="0">
-                        <CheckBox Margin="9,0,0,0">Paid</CheckBox>
+                        <CheckBox x:Name="cboPaid" Margin="9,0,0,0">Paid</CheckBox>
                         <Button x:Name="btnDelete" Click="btnDelete_Click" Content="Delete Participant" FontSize="12" FontWeight="Normal" RenderTransformOrigin="0.45,1.228" Width="128" Height="24" d:LayoutOverrides="Height" VerticalAlignment="Top" DockPanel.Dock="Right" Margin="0,0,25,0" IsEnabled="False"/>
                     </DockPanel>
                 </StackPanel>
