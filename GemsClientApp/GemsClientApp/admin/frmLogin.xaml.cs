@@ -46,7 +46,12 @@ namespace Gems.UIWPF
             AdminHelper client = new AdminHelper();
             try
             {
-                User u = client.Authenticate(txtUserID.Text.Trim(), txtPassword.Password);
+                //User u = client.Authenticate(txtUserID.Text.Trim(), txtPassword.Password);
+                Credentials c = new Credentials();
+                c.UserID = txtUserID.Text.Trim();
+                c.Password = Helper.KeyGen.Encrypt(txtPassword.Password);
+               
+                User u = client.SecureAuthenticate(c);
                 var admForm = new frmMain(u, this);
                 this.Visibility = Visibility.Collapsed;
                 this.txtPassword.Clear();

@@ -1264,6 +1264,57 @@ namespace evmsService.entities
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Credentials", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Credentials : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string PasswordField;
+        
+        private string UserIDField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this.PasswordField;
+            }
+            set
+            {
+                this.PasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserID
+        {
+            get
+            {
+                return this.UserIDField;
+            }
+            set
+            {
+                this.UserIDField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EnumRoles", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
     public enum EnumRoles : int
@@ -4237,6 +4288,10 @@ public interface IAdministration
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/AuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User Authenticate(string userid, string password);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/SecureAuthenticate", ReplyAction="http://tempuri.org/IAdministration/SecureAuthenticateResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/SecureAuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/AssignLocationAdmin", ReplyAction="http://tempuri.org/IAdministration/AssignLocationAdminResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/AssignLocationAdminSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void AssignLocationAdmin(evmsService.entities.User assigner, string userid, evmsService.entities.Faculty fac);
@@ -4307,6 +4362,11 @@ public partial class AdministrationClient : System.ServiceModel.ClientBase<IAdmi
     public evmsService.entities.User Authenticate(string userid, string password)
     {
         return base.Channel.Authenticate(userid, password);
+    }
+    
+    public evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials)
+    {
+        return base.Channel.SecureAuthenticate(credentials);
     }
     
     public void AssignLocationAdmin(evmsService.entities.User assigner, string userid, evmsService.entities.Faculty fac)
