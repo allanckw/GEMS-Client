@@ -28,6 +28,7 @@
 *.vspscc
 !*.dll
 .builds
+GemsClientApp.exe
 
 # Visual C++ cache files
 ipch/
