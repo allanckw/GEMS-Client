@@ -799,7 +799,8 @@ namespace Gems.UIWPF
 
         private void mnuWiz_Click(object sender, RoutedEventArgs e)
         {
-
+            frmWizard w = new frmWizard();
+            w.ShowDialog();
         }
 
         private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)

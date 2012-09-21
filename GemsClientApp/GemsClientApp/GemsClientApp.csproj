@@ -211,6 +211,12 @@
       <DependentUpon>frmViewTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="tasks\TaskAssignmentState.cs" />
+    <Compile Include="Wizard\frmWizard.xaml.cs">
+      <DependentUpon>frmWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmWizEvent.xaml.cs">
+      <DependentUpon>frmWizEvent.xaml</DependentUpon>
+    </Compile>
     <Page Include="admin\frmGST.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -397,6 +403,14 @@
     <Page Include="tasks\frmViewTask.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wizard\frmWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
