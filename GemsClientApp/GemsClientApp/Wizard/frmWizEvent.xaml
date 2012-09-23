@@ -1,4 +1,5 @@
-﻿<Page x:Class="Gems.UIWPF.frmWizEvent"
+﻿<src:GemsWizPage xmlns:src="clr-namespace:Gems.UIWPF" x:Class="Gems.UIWPF.frmWizEvent"
+   
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +7,7 @@
       xmlns:local="clr-namespace:Gems.UIWPF.CustomCtrl"
       mc:Ignorable="d" 
       Width="750" Height="600" Background="{x:Null}"
-	Title="frmWizEvent">
+	Title="frmWizEvent" Loaded="Page_Loaded">
 
     <GroupBox Header="Create Event" FontSize="21" FontWeight="Medium">
 
@@ -35,12 +36,7 @@
                 <Label Canvas.Left="69" Canvas.Top="6" Content="Website:" Height="28" x:Name="label7" FontSize="12" FontFamily="Tahoma" />
                 <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="297" FontSize="12" FontFamily="Tahoma" />
             </Canvas>
-            <StackPanel Height="40" Orientation="Horizontal">
-                <Button x:Name="btnEventCreate" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="150,0,20,0" />
-                <Button x:Name="btnEventEdit" Content="Update" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" />
-                <Button x:Name="btnEventDelete" Content="Delete" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0"  />
-                <Button x:Name="btnEventClear" Content="Clear" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0"  />
-            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal"></StackPanel>
         </StackPanel>
     </GroupBox>
-</Page>
+</src:GemsWizPage>

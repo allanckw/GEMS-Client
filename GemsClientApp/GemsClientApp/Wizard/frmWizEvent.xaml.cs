@@ -11,17 +11,122 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using evmsService.entities;
 
 namespace Gems.UIWPF
 {
     /// <summary>
     /// Interaction logic for frmWizEvent.xaml
     /// </summary>
-    public partial class frmWizEvent : Page
+    public partial class frmWizEvent : GemsWizPage
     {
-        public frmWizEvent()
+        Events evnt;
+        List<EventDay> days;
+        List<List<Program>> programs;
+        List<List<Guest>> guests;
+
+        public frmWizEvent(frmWizard c)
         {
+            evnt = c._event;
+            days = c._days;
+            programs = c._programs;
+            guests = c._guests;
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtEventName.Focus();
+        }
+        private bool validateInput()
+        {
+            if (txtEventName.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please Enter an Event Name",
+                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+            else if (dtpStart.SelectedDateTime == default(DateTime))
+            {
+                MessageBox.Show("Invalid Event Start Date",
+                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+            else if (dtpEnd.SelectedDateTime == default(DateTime))
+            {
+                MessageBox.Show("Invalid Event End Date",
+                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void createDays(DateTime EventStartDateTime, DateTime EventEndDatetime)
+        {
+            days.Clear();
+            programs.Clear();
+            guests.Clear();
+
+            DateTime current_date = EventStartDateTime;
+            int day = 1;
+            do
+            {
+                EventDay tempday = new EventDay();
+                tempday.DayNumber = day;
+
+                days.Add(tempday);
+                programs.Add(new List<Program>());
+                guests.Add(new List<Guest>());
+
+                day++;
+
+                current_date = current_date.Date;
+                current_date = current_date.AddDays(1);
+            } while (current_date < EventEndDatetime);
+
+
+
+        }
+
+        
+
+        public override bool Save()
+        {
+            if (!validateInput())
+                return false;
+            try
+            {
+                DateTime startTime = dtpStart.SelectedDateTime;
+                DateTime endTime = dtpEnd.SelectedDateTime;
+
+                if (startTime.CompareTo(endTime) >= 0)
+                {
+                    throw new Exception("Invalid Date Entry, End Date Must be at a Later Date Then Start Date");
+                    
+                }
+                
+                var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
+
+                //evnt = new Events();
+                evnt.Name = txtEventName.Text;
+                evnt.StartDateTime = startTime;
+                evnt.EndDateTime = endTime;
+                evnt.Description = textRange.Text;
+                evnt.Website = txtWebsite.Text;
+                evnt.Tag = txtTag.Text;
+
+                
+                createDays(evnt.StartDateTime, evnt.EndDateTime);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+           
         }
     }
 }

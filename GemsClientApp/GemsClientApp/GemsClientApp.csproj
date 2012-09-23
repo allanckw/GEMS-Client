@@ -217,6 +217,22 @@
     <Compile Include="Wizard\frmWizEvent.xaml.cs">
       <DependentUpon>frmWizEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wizard\frmWizGuest.xaml.cs">
+      <DependentUpon>frmWizGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmWizItem.xaml.cs">
+      <DependentUpon>frmWizItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmWizProgramme.xaml.cs">
+      <DependentUpon>frmWizProgramme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmWizPublish.xaml.cs">
+      <DependentUpon>frmWizPublish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\frmWizTask.xaml.cs">
+      <DependentUpon>frmWizTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\GemsWizPage.cs" />
     <Page Include="admin\frmGST.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -409,6 +425,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Wizard\frmWizEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizProgramme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizPublish.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
