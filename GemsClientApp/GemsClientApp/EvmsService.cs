@@ -5375,6 +5375,10 @@ public interface IRegistration
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ViewEventForPublish", ReplyAction="http://tempuri.org/IRegistration/ViewEventForPublishResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewEventForPublishSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Events[] ViewEventForPublish(System.DateTime start, System.DateTime end);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTag", ReplyAction="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTagResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTagSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Events[] ViewEventForPublishByDateAndTag(System.DateTime start, System.DateTime end, string tag);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -5479,6 +5483,11 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
     public evmsService.entities.Events[] ViewEventForPublish(System.DateTime start, System.DateTime end)
     {
         return base.Channel.ViewEventForPublish(start, end);
+    }
+    
+    public evmsService.entities.Events[] ViewEventForPublishByDateAndTag(System.DateTime start, System.DateTime end, string tag)
+    {
+        return base.Channel.ViewEventForPublishByDateAndTag(start, end, tag);
     }
 }
 
@@ -5610,5 +5619,54 @@ public partial class BudgetClient : System.ServiceModel.ClientBase<IBudget>, IBu
     public evmsService.entities.BudgetIncome[] ViewBudgetIncome(evmsService.entities.User user, int eventID)
     {
         return base.Channel.ViewBudgetIncome(user, eventID);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IMobile")]
+public interface IMobile
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/GetDataInt", ReplyAction="http://tempuri.org/IMobile/GetDataIntResponse")]
+    string GetDataInt(int value);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IMobileChannel : IMobile, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class MobileClient : System.ServiceModel.ClientBase<IMobile>, IMobile
+{
+    
+    public MobileClient()
+    {
+    }
+    
+    public MobileClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public MobileClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public MobileClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public MobileClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public string GetDataInt(int value)
+    {
+        return base.Channel.GetDataInt(value);
     }
 }
