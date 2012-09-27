@@ -23,6 +23,7 @@ namespace Gems.UIWPF
         private Type currPageType;
         private GEMSPage currPage;
         private int selectedIndex = -1;
+        private int selectedDayIndex = -1;
 
         #region menuBarDictionary
         private static Dictionary<Type, Tuple<string, EnumFunctions[]>> pageFunctions = new Dictionary<Type, Tuple<string, EnumFunctions[]>>
@@ -820,7 +821,10 @@ namespace Gems.UIWPF
                 EventHelper clientEvent = new EventHelper();
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 clientEvent.Close();
-                
+
+                if (dayDependentForm() == true)
+                    return;
+
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
                     .MakeGenericMethod(currPageType)
@@ -863,9 +867,78 @@ namespace Gems.UIWPF
             }
         }
 
+        private bool dayDependentForm()
+        {
+            if (currPageType == typeof(frmGuestList))
+                return true;
+            if (currPageType == typeof(frmProgramManagement))
+                return true;
+
+            return false;
+        }
+
         private void lstEventDayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dayDependentForm()==false)
+                return;
 
+            if (lstEventDayList.SelectedIndex == -1)
+            {
+                //lstEventDayList.Items.Clear();
+                //lstEventDayList.ItemsSource = null;
+                //selectedIndex = -1;
+                return;
+            }
+
+            if (selectedDayIndex == lstEventDayList.SelectedIndex)
+                return;
+            try
+            {
+                Events ev = (Events)cboEventList.SelectedItem;
+                EventHelper clientEvent = new EventHelper();
+                ////lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
+                ////clientEvent.Close();
+
+                if (!(bool)typeof(frmMain)
+                    .GetMethod("navigateByEventDay", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .MakeGenericMethod(currPageType)
+                    .Invoke(this, null))
+                {
+                    lstEventDayList.SelectedIndex = selectedDayIndex;
+                    return;
+                }
+
+                if (user.UserID == ev.Organizerid)
+                    EnableAllRight();
+                else
+                {
+                    RoleHelper client = new RoleHelper();
+
+                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
+                    {
+                        EnableAllRight();
+                    }
+                    else if (user.isFacilityAdmin)
+                    {
+                        DisableAllRight();
+                        mnuLocation.Visibility = Visibility.Visible;
+
+                        mnuViewBookings.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+                    }
+                    client.Close();
+
+                }
+                selectedIndex = cboEventList.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                DisableAllRight();
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }
