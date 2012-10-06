@@ -15,7 +15,7 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
     					<DataTemplate>
     						<StackPanel Margin="10" Orientation="Vertical">
     							<WrapPanel Orientation="Horizontal"  >
-    								<TextBlock Text="{Binding m_Item2}" TextWrapping="Wrap"/>
+    								<TextBlock Text="{Binding user}" TextWrapping="Wrap"/>
     							</WrapPanel>
 
     						</StackPanel>

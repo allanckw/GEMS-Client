@@ -9,6 +9,7 @@ using dragonz.actb.core;
 using dragonz.actb.provider;
 using System.Windows.Media;
 using System.Windows.Threading;
+using evmsService.Controllers;
 
 namespace Gems.UIWPF
 {
@@ -214,10 +215,10 @@ namespace Gems.UIWPF
         {
             try
             {
-                //WCFHelperClient client = new WCFHelperClient();
-                //lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<Tuple<Role,string>>();
-                 
-                //client.Close();
+                RoleClient client = new RoleClient();
+                lstRole.ItemsSource = client.ViewEventRoles(user, event_);// ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
+                
+                client.Close();
             }
             catch (Exception ex)
             {
@@ -276,11 +277,13 @@ namespace Gems.UIWPF
             try
             {
                 RoleHelper client = new RoleHelper();
-                Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
-                Role selectedRole = selectedItem.Item1;
+                RoleWithUser selectedItem = (RoleWithUser)lstRole.SelectedItem;
+               // Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
+                //Role selectedRole = selectedItem.Item1;
+                Role selectedRole = selectedItem.role;
                 txtPost.Text = selectedRole.Post;
                 txtDescription.Text = selectedRole.Description;
-                accbUsers.AutoCompleteManager.UpdateText(selectedItem.Item2 + " (" + selectedRole.UserID + ")", false);
+                accbUsers.AutoCompleteManager.UpdateText(selectedItem.user + " (" + selectedRole.UserID + ")", false);
                 btnAdd.Content = "Save";
                 List<EnumFunctions> rights = client.GetRights(event_.EventID, selectedRole.UserID).ToList();
                 foreach (var pair in checkBoxes)
