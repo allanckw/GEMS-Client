@@ -5,8 +5,107 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       Width="750" Height="600" Background="{x:Null}"
-	Title="frmWizItem">
+	Title="frmWizItem" xmlns:my="clr-namespace:Gems.UIWPF.CustomCtrl">
 
     <GroupBox Header="Manage Item" FontSize="21" FontWeight="Medium">
+        <StackPanel>
+            <GroupBox FontSize="18" Header="Item Type List" Height="230" HorizontalAlignment="Center" Margin="40,0,0,0" Width="665">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="30,0,0,0" Width="251">
+                        <RadioButton Content="Item Type" FontSize="13" GroupName="ItemType" Height="25" Name="radItemType" />
+                        <ComboBox FontSize="13" Height="25" HorizontalAlignment="Left" Margin="15,0,0,0" Name="cboItemType" SelectionChanged="cboItemType_SelectionChanged" Width="229" />
+                        <RadioButton Content="Others" FontSize="13" GroupName="ItemType" Height="25" Margin="0,0,88.86,0" Name="radOthers" />
+                        <TextBox FontSize="13" Height="25" HorizontalAlignment="Left" Margin="15,0,0,0" Name="txtOthers" TextChanged="txtOthers_TextChanged" TextWrapping="Wrap" Width="229" />
+                        <CheckBox Content="Is Necessary?" FontSize="13" Margin="0,10,0,0" Name="chkNecessary" />
+                        <Button Click="btnAddItemType_Click" Content="Add" FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,10,0,0" Name="btnAddItemType" Width="70" />
+                    </StackPanel>
+                    <StackPanel Margin="50,0,0,0" Width="320">
+                        <Label Content="Collection of Item Types" FontSize="13" Height="25" HorizontalAlignment="Left" Width="268" />
+                        <ListView Height="130" Name="lvItemType" FontSize="13" Width="280">
+                            <ListView.View>
+                                <GridView x:Name="GridViewControl">
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid HorizontalAlignment="Stretch">
+                                                    <TextBlock Text="{Binding typeString}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumnHeader 
+											Content="ItemType" />
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid HorizontalAlignment="Stretch">
+                                                    <TextBlock Text="{Binding IsImportantType}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumnHeader  
+											Content="Is Important?" />
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel Height="50" HorizontalAlignment="Right" Margin="0" Orientation="Horizontal">
+                            <Button Click="btnToggleItemTypeImpt_Click" Content="Toggle" FontSize="13" Height="25" Margin="0,12.5" Name="btnToggleItemTypeImpt" Width="70" />
+                            <Button Click="btnDeleteItemType_Click" Content="Delete" FontSize="13" Height="25" Margin="10,0,0,0" Name="btnDeleteItemType" Width="70" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox FontSize="18" Header="Item List" Height="280" HorizontalAlignment="Left" Margin="40,10,0,0">
+                <StackPanel Margin="0" Orientation="Horizontal">
+                    <StackPanel Width="200">
+                        <Label Content="Item Name" FontSize="13" Height="26" />
+                        <TextBox FontSize="13" Height="25" Margin="15,0,0,0" Name="txtItemName" TextWrapping="Wrap" Width="180" />
+                        <Label Content="Item Type" FontSize="13" Height="26" />
+                        <ComboBox FontSize="13" Height="25" HorizontalAlignment="Left" Margin="15,0,0,0" Name="cboItemTypeIL" Width="180" />
+                        <Label Content="Item Price" FontSize="13" Height="26" />
+                        <TextBox FontSize="13" Height="25" Margin="17.5,0,2.5,0" Name="txtItemPrice" TextWrapping="Wrap" Width="180" />
+                        <Label Content="Satisfaction Value" FontSize="13" Height="26" />
+                        <TextBox FontSize="13" Height="25" Margin="15,0,0,0" Name="txtItemSatisfaction" TextWrapping="Wrap" Width="180" />
+                        <StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Click="btnAddItem_Click" Content="Add" FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,10,5,0" Name="btnAddItem" Width="70" />
+                            <Button Click="btnEditItem_Click" Content="Edit" FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,10,5,0" Name="btnEditItem" Width="70" />
+                            <Button Click="btnCancelEditItem_Click" Content="Cancel" FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,10,5,0" Name="btnCancelEditItem" Visibility="Collapsed" Width="50" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="15,0,0,0" Width="440">
+                        <Label Content="Collection of Item" FontSize="13" Height="25" HorizontalAlignment="Left" Width="300" />
+                        <ListView Height="180" HorizontalAlignment="Left"  Name="lvItem" FontSize="13" Width="425">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumnHeader 
+											Content="ItemName" />
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="80">
+                                        <GridViewColumnHeader  
+											Content="ItemType" />
+                                    </GridViewColumn>
+                                    
+                                    <GridViewColumn Width="80">
+                                        <GridViewColumnHeader  
+											Content="ItemPrice" />
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="80">
+                                        <GridViewColumnHeader  
+											Content="Satisfaction" />
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>                            
+                        
+                        <Button Click="btnDeleteItem_Click" Content="Delete" FontSize="13" Height="25" HorizontalAlignment="Right" Margin="0,10,18,0" Name="btnDeleteItem" Width="70" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
     </GroupBox>
 </src:GemsWizPage>

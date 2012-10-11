@@ -26,11 +26,11 @@ namespace Gems.UIWPF
         public List<ItemTypes> _itemTypes;
         public List<List<Guest>> _guests;
         public Publish _publish;
-
+        public User _user;
         GemsWizPage Curpage;
 
         
-        public frmWizard()
+        public frmWizard(User u)
         {
 
             //_event = null;
@@ -40,6 +40,7 @@ namespace Gems.UIWPF
             //_itemTypes = null;
             //_guests = null;
             //_publish = null;
+            _user = u;
             _event = new Events();
             _days = new List<EventDay>();
             _programs = new List<List<Program>>();

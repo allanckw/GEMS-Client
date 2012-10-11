@@ -8,5 +8,38 @@
 	Title="frmWizGuest">
 
     <GroupBox Header="Manage Guest" FontSize="21" FontWeight="Medium">
+        <StackPanel Orientation="Horizontal">
+            <GroupBox FontSize="18" Header="Guest List" HorizontalAlignment="Left" Margin="0,0,10,8" Width="350">
+                <ListView FontSize="13" Name="lstGuestList" SelectionChanged="lstGuestList_SelectionChanged" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="190" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Contact}" Header="Contact" Width="130" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+            <GroupBox FontSize="18" Header="Guest Details" Margin="0,0,0,8" Width="376">
+                <StackPanel>
+                    <StackPanel Height="31.313" Orientation="Horizontal">
+                        <Label Content="Name:" FontSize="13" Width="66.803" />
+                        <TextBox FontSize="13" Name="txtName" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
+                    </StackPanel>
+                    <StackPanel Height="31.314" Orientation="Horizontal">
+                        <Label Content="Contact:" FontSize="13" Width="66.803" />
+                        <TextBox FontSize="13" Name="txtContact" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
+                    </StackPanel>
+                    <StackPanel Height="304">
+                        <Label Content="Description:" FontSize="13" />
+                        <TextBox FontSize="13" Height="268.267" Margin="8,0" Name="txtDescription" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" />
+                    </StackPanel>
+                    <DockPanel Height="25" HorizontalAlignment="Right" LastChildFill="False">
+                        <Button Click="btnSave_Click" Content="Add" FontSize="13" Margin="0,0,10,0" Name="btnAdd" Width="75" />
+                        <Button Click="btnDelete_Click" Content="Delete" FontSize="13" Margin="0,0,10,0" Width="75" />
+                        <Button Click="clearAll" Content="Cancel" FontSize="13" Margin="0,0,10,0" Width="75" />
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
     </GroupBox>
 </src:GemsWizPage>

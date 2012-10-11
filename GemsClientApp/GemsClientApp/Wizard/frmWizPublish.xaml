@@ -5,8 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       Width="750" Height="600" Background="{x:Null}"
-	Title="frmWizPublish">
+	Title="frmWizPublish" xmlns:my="clr-namespace:Gems.UIWPF.CustomCtrl">
 
     <GroupBox Header="Manage Publish" FontSize="21" FontWeight="Medium">
+        <StackPanel>
+            <StackPanel Height="31.314" Orientation="Horizontal">
+                <Label Content="Registration Start Date:" FontSize="13" HorizontalContentAlignment="Right" Width="156.803" />
+                <my:DateTimePicker FontFamily="Tahoma" FontSize="12" x:Name="dtpStart" />
+            </StackPanel>
+            <StackPanel Height="31.314" Orientation="Horizontal">
+                <Label Content="Registration End Date:" FontSize="13" HorizontalContentAlignment="Right" Width="156.803" />
+                <my:DateTimePicker FontFamily="Tahoma" FontSize="12" x:Name="dtpEnd" />
+            </StackPanel>
+            <StackPanel Height="31.314" Orientation="Horizontal">
+                <Label Content="Is Payable:" FontSize="13" HorizontalContentAlignment="Right" Width="156.803" />
+                <CheckBox Checked="cboIsPayable_Checked" Margin="0,1,0,0" Name="cboIsPayable" Unchecked="cboIsPayable_Unchecked" VerticalAlignment="Center" />
+                <Label Content="Amount:" FontSize="13" Height="28" HorizontalContentAlignment="Right" Margin="0,0,0,0" Width="141" />
+                <TextBox FontSize="14" Height="25" IsEnabled="False" LostFocus="txtamount_LostFocus" Name="txtamount" Text="" TextChanged="txtamount_TextChanged" Width="125" />
+            </StackPanel>
+            <StackPanel Height="250">
+                <Label Content="Remarks (Can be displayed on website):" FontSize="13" />
+                <TextBox AcceptsReturn="True" FontSize="12" Height="208" Margin="8,0" Name="txtRemarks" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" />
+            </StackPanel>
+            <DockPanel LastChildFill="False" Margin="8,0,0,0">
+                <StackPanel>
+                    <Label Content="Note: Event will be viewable on website when published. " FontSize="12" />
+                    <Label Content="However, participant will only be able to Register " FontSize="12" />
+                    <Label Content="during the registration period defined above." FontSize="12" />
+                </StackPanel>
+                <Button Click="btnDelete_Click" Content="Delete" DockPanel.Dock="Right" FontSize="12" Height="25" Margin="0,0,10,0" Name="btnDelete" Width="75" />
+                <Button Click="btnSave_Click" Content="Save" DockPanel.Dock="Right" FontSize="12" Height="25" Margin="0,0,10,0" Width="75" />
+                <Button Click="btnClear_Click" Content="Clear" DockPanel.Dock="Right" FontSize="12" Height="25" Margin="0,0,10,0" Width="75" />
+            </DockPanel>
+        </StackPanel>
     </GroupBox>
 </src:GemsWizPage>
