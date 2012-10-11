@@ -41,7 +41,12 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
 						<Label Content="Name:" Width="76.803" FontSize="13"/>
 						<TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="12" x:Name="txtName" Height="24" Margin="0,0,8,0" Width="232" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Height="31.314">
+                    <StackPanel Height="31.313" Orientation="Horizontal">
+                        <Label Content="Location:" Width="76.803" FontSize="13"/>
+                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="12" x:Name="txtLocation" Height="24" Margin="0,0,8,0" Width="232" />
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" Height="31.314">
 						<Label Content="Start Time:" Width="76.803" FontSize="13"/>
 						<ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="12" SelectionChanged="cboStartHr_SelectionChanged" />
 						<ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="12"/>

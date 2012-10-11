@@ -1154,6 +1154,8 @@ namespace evmsService.entities
         
         private int EventIDField;
         
+        private string LocationField;
+        
         private string NameField;
         
         private int ProgramIDField;
@@ -1221,6 +1223,19 @@ namespace evmsService.entities
             set
             {
                 this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location
+        {
+            get
+            {
+                return this.LocationField;
+            }
+            set
+            {
+                this.LocationField = value;
             }
         }
         
@@ -3711,6 +3726,117 @@ namespace evmsService.entities
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ParticipantTransaction", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class ParticipantTransaction : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private decimal AmountField;
+        
+        private string EmailField;
+        
+        private int EventIDField;
+        
+        private string RemarksField;
+        
+        private System.DateTime TransactionDateTimeField;
+        
+        private string TransactionIDField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount
+        {
+            get
+            {
+                return this.AmountField;
+            }
+            set
+            {
+                this.AmountField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email
+        {
+            get
+            {
+                return this.EmailField;
+            }
+            set
+            {
+                this.EmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TransactionDateTime
+        {
+            get
+            {
+                return this.TransactionDateTimeField;
+            }
+            set
+            {
+                this.TransactionDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TransactionID
+        {
+            get
+            {
+                return this.TransactionIDField;
+            }
+            set
+            {
+                this.TransactionIDField = value;
+            }
+        }
+    }
 }
 namespace evmsService.Controllers
 {
@@ -3905,6 +4031,117 @@ namespace evmsService.Controllers
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ParticipantEvent", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    public partial class ParticipantEvent : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private decimal EventCostField;
+        
+        private System.DateTime EventEndDateField;
+        
+        private int EventIDField;
+        
+        private string EventNameField;
+        
+        private System.DateTime EventStartDateField;
+        
+        private bool isPaidField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal EventCost
+        {
+            get
+            {
+                return this.EventCostField;
+            }
+            set
+            {
+                this.EventCostField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EventEndDate
+        {
+            get
+            {
+                return this.EventEndDateField;
+            }
+            set
+            {
+                this.EventEndDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EventName
+        {
+            get
+            {
+                return this.EventNameField;
+            }
+            set
+            {
+                this.EventNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EventStartDate
+        {
+            get
+            {
+                return this.EventStartDateField;
+            }
+            set
+            {
+                this.EventStartDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isPaid
+        {
+            get
+            {
+                return this.isPaidField;
+            }
+            set
+            {
+                this.isPaidField = value;
+            }
+        }
+    }
 }
 
 
@@ -4064,7 +4301,7 @@ public interface IProgramme
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/AddProgram", ReplyAction="http://tempuri.org/IProgramme/AddProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/AddProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    int AddProgram(evmsService.entities.User user, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramDayID);
+    int AddProgram(evmsService.entities.User user, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramDayID, string ProgramLocaton);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/ViewProgram", ReplyAction="http://tempuri.org/IProgramme/ViewProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/ViewProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4072,7 +4309,7 @@ public interface IProgramme
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/EditProgram", ReplyAction="http://tempuri.org/IProgramme/EditProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/EditProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void EditProgram(evmsService.entities.User user, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription);
+    void EditProgram(evmsService.entities.User user, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, string ProgramLocaton);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/DeleteProgram", ReplyAction="http://tempuri.org/IProgramme/DeleteProgramResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/DeleteProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4117,9 +4354,9 @@ public partial class ProgrammeClient : System.ServiceModel.ClientBase<IProgramme
     {
     }
     
-    public int AddProgram(evmsService.entities.User user, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramDayID)
+    public int AddProgram(evmsService.entities.User user, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, int ProgramDayID, string ProgramLocaton)
     {
-        return base.Channel.AddProgram(user, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription, ProgramDayID);
+        return base.Channel.AddProgram(user, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription, ProgramDayID, ProgramLocaton);
     }
     
     public evmsService.entities.Program[] ViewProgram(int dayID)
@@ -4127,9 +4364,9 @@ public partial class ProgrammeClient : System.ServiceModel.ClientBase<IProgramme
         return base.Channel.ViewProgram(dayID);
     }
     
-    public void EditProgram(evmsService.entities.User user, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription)
+    public void EditProgram(evmsService.entities.User user, int ProgramID, string ProgramName, System.DateTime ProgramStartDateTime, System.DateTime ProgramEndDatetime, string ProgramDescription, string ProgramLocaton)
     {
-        base.Channel.EditProgram(user, ProgramID, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription);
+        base.Channel.EditProgram(user, ProgramID, ProgramName, ProgramStartDateTime, ProgramEndDatetime, ProgramDescription, ProgramLocaton);
     }
     
     public void DeleteProgram(evmsService.entities.User user, int ProgramID)
@@ -5379,6 +5616,22 @@ public interface IRegistration
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTag", ReplyAction="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTagResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ViewEventForPublishByDateAndTagSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Events[] ViewEventForPublishByDateAndTag(System.DateTime start, System.DateTime end, string tag);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/ParticipantViewEvents", ReplyAction="http://tempuri.org/IRegistration/ParticipantViewEventsResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/ParticipantViewEventsSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.Controllers.ParticipantEvent[] ParticipantViewEvents(string participantEmail, System.DateTime start, System.DateTime end, bool Paid);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/SetPaid", ReplyAction="http://tempuri.org/IRegistration/SetPaidResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/SetPaidSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void SetPaid(string Email, int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/isRegistered", ReplyAction="http://tempuri.org/IRegistration/isRegisteredResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/isRegisteredSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    bool isRegistered(string Email);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRegistration/isEventRegistered", ReplyAction="http://tempuri.org/IRegistration/isEventRegisteredResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRegistration/isEventRegisteredSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    bool isEventRegistered(string Email, int EventID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -5488,6 +5741,26 @@ public partial class RegistrationClient : System.ServiceModel.ClientBase<IRegist
     public evmsService.entities.Events[] ViewEventForPublishByDateAndTag(System.DateTime start, System.DateTime end, string tag)
     {
         return base.Channel.ViewEventForPublishByDateAndTag(start, end, tag);
+    }
+    
+    public evmsService.Controllers.ParticipantEvent[] ParticipantViewEvents(string participantEmail, System.DateTime start, System.DateTime end, bool Paid)
+    {
+        return base.Channel.ParticipantViewEvents(participantEmail, start, end, Paid);
+    }
+    
+    public void SetPaid(string Email, int eventID)
+    {
+        base.Channel.SetPaid(Email, eventID);
+    }
+    
+    public bool isRegistered(string Email)
+    {
+        return base.Channel.isRegistered(Email);
+    }
+    
+    public bool isEventRegistered(string Email, int EventID)
+    {
+        return base.Channel.isEventRegistered(Email, EventID);
     }
 }
 
@@ -5619,6 +5892,106 @@ public partial class BudgetClient : System.ServiceModel.ClientBase<IBudget>, IBu
     public evmsService.entities.BudgetIncome[] ViewBudgetIncome(evmsService.entities.User user, int eventID)
     {
         return base.Channel.ViewBudgetIncome(user, eventID);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IParticipantsTransactions")]
+public interface IParticipantsTransactions
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IParticipantsTransactions/SaveTransaction", ReplyAction="http://tempuri.org/IParticipantsTransactions/SaveTransactionResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IParticipantsTransactions/SaveTransactionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void SaveTransaction(evmsService.entities.ParticipantTransaction[] trans);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IParticipantsTransactionsChannel : IParticipantsTransactions, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class ParticipantsTransactionsClient : System.ServiceModel.ClientBase<IParticipantsTransactions>, IParticipantsTransactions
+{
+    
+    public ParticipantsTransactionsClient()
+    {
+    }
+    
+    public ParticipantsTransactionsClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public ParticipantsTransactionsClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ParticipantsTransactionsClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ParticipantsTransactionsClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public void SaveTransaction(evmsService.entities.ParticipantTransaction[] trans)
+    {
+        base.Channel.SaveTransaction(trans);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IWizard")]
+public interface IWizard
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWizard/WizardAddEvent", ReplyAction="http://tempuri.org/IWizard/WizardAddEventResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IWizard/WizardAddEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void WizardAddEvent(evmsService.entities.User user, evmsService.entities.Events evnt, evmsService.entities.Program[][] programs, evmsService.entities.Guest[][] guests, evmsService.entities.ItemTypes[] itemtypes, evmsService.entities.Items[] items, evmsService.entities.Publish pub, evmsService.entities.Task[] tasks);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IWizardChannel : IWizard, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class WizardClient : System.ServiceModel.ClientBase<IWizard>, IWizard
+{
+    
+    public WizardClient()
+    {
+    }
+    
+    public WizardClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public WizardClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public WizardClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public WizardClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public void WizardAddEvent(evmsService.entities.User user, evmsService.entities.Events evnt, evmsService.entities.Program[][] programs, evmsService.entities.Guest[][] guests, evmsService.entities.ItemTypes[] itemtypes, evmsService.entities.Items[] items, evmsService.entities.Publish pub, evmsService.entities.Task[] tasks)
+    {
+        base.Channel.WizardAddEvent(user, evnt, programs, guests, itemtypes, items, pub, tasks);
     }
 }
 

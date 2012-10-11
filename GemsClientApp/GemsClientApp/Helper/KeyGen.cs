@@ -19,7 +19,7 @@ namespace Gems.UIWPF.Helper
 
         #region "Private variables and Constants"
 
-        private const string seedToUse = "T7GNacCS3213_t3@mO1_GEMS_@SkY1904@";
+        private const string seedToUse = "T1GNacCS3213_t3@mO1_GEMS_@SkY1904@";
 
         /// The salt value used to strengthen the encryption.
         private static readonly byte[] SALT = Encoding.ASCII.GetBytes(seedToUse);

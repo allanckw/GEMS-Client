@@ -172,7 +172,7 @@ namespace Gems.UIWPF
 
                     if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
                     {
-                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text);
+                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, txtLocation.Text);
 
                     }
                     else
@@ -187,7 +187,7 @@ namespace Gems.UIWPF
                         }
                         else
                         {
-                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID);
+                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID,txtLocation.Text);
                         }
                     }
 
@@ -273,10 +273,10 @@ namespace Gems.UIWPF
             {
                 ProgrammeHelper client = new ProgrammeHelper();
                 if (p1.ProgramID != 0)
-                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description);
+                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description,p1.Location);
 
                 if (p2.ProgramID != 0)
-                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description);
+                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description,p2.Location);
             }
             catch (Exception ex)
             {

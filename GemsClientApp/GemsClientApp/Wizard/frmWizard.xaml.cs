@@ -42,6 +42,8 @@ namespace Gems.UIWPF
             //_publish = null;
             _user = u;
             _event = new Events();
+            _event.StartDateTime = DateTime.Now;
+            _event.EndDateTime = DateTime.Now;
             _days = new List<EventDay>();
             _programs = new List<List<Program>>();
             _items = new List<Items>();
@@ -64,7 +66,7 @@ namespace Gems.UIWPF
             listlabel.Add(btnguest);
             listlabel.Add(btnpublish);
                 
-                
+            
                 
                
             Navigation_MouseClick(listlabel[0], null);
@@ -125,10 +127,24 @@ namespace Gems.UIWPF
         
         private void Navigation_MouseClick(object sender, RoutedEventArgs e)
         {
-            curindex = HighLight_Navigation((Button)sender);
+            if (Curpage == null)
+            {
+                curindex = HighLight_Navigation((Button)sender);
+                NavigateFrame(curindex);
 
 
-            NavigateFrame(curindex);
+            }
+            else if (Curpage.Save())
+            {
+                curindex = HighLight_Navigation((Button)sender);
+                //curindex = HighLight_Navigation(curindex + 1);
+                NavigateFrame(curindex);
+            }
+            
+            //curindex = HighLight_Navigation((Button)sender);
+
+
+            //NavigateFrame(curindex);
         }
 
         public void NavigateFrame(int index)

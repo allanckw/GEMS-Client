@@ -25,6 +25,7 @@ namespace Gems.UIWPF
         List<List<Program>> programs;
         List<List<Guest>> guests;
 
+
         public frmWizEvent(frmWizard c)
         {
             evnt = c._event;
@@ -37,6 +38,14 @@ namespace Gems.UIWPF
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             txtEventName.Focus();
+
+            txtEventName.Text = evnt.Name;
+            txtDesc.AppendText(evnt.Description);
+            txtTag.Text = evnt.Tag;
+            txtWebsite.Text = evnt.Website;
+
+            dtpStart.SelectedDateTime = evnt.StartDateTime;
+            dtpEnd.SelectedDateTime = evnt.EndDateTime;
         }
         private bool validateInput()
         {
@@ -76,8 +85,8 @@ namespace Gems.UIWPF
                 tempday.DayNumber = day;
 
                 days.Add(tempday);
-                programs.Add(new List<Program>());
-                guests.Add(new List<Guest>());
+                //programs.Add(new List<Program>());
+                //guests.Add(new List<Guest>());
 
                 day++;
 
@@ -118,6 +127,39 @@ namespace Gems.UIWPF
 
                 
                 createDays(evnt.StartDateTime, evnt.EndDateTime);
+
+                //make sure days array match the rest.
+
+                while(programs.Count() != days.Count())
+                {
+                    if (programs.Count() < days.Count())
+                    {
+                        programs.Add(new List<Program>());
+                    }
+
+                    if (programs.Count() > days.Count())
+                    {
+                        programs.RemoveAt(programs.Count - 1);
+                    }
+                }
+
+                while (guests.Count() != guests.Count())
+                {
+                    if (guests.Count() < days.Count())
+                    {
+                        guests.Add(new List<Guest>());
+                    }
+
+                    if (guests.Count() > days.Count())
+                    {
+                        guests.RemoveAt(guests.Count - 1);
+                    }
+                }
+
+
+                days.Count();
+
+
 
                 return true;
             }

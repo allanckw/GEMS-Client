@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using evmsService.entities;
 using System.Windows.Controls.Primitives;
+using Gems.UIWPF.Helper;
 
 
 namespace Gems.UIWPF
@@ -172,6 +173,33 @@ namespace Gems.UIWPF
             return true;
         }
 
+        private bool ChkClash(List<Program> p, DateTime segmentStart, DateTime segmentEnd)
+        {
+            RequestClashingChecker checker = new RequestClashingChecker(segmentStart);
+
+
+            foreach (Program prog in p)
+            {
+                
+                checker.SetTimeSlotTaken(prog.StartDateTime, prog.EndDateTime);
+            }
+
+            return checker.HaveClash(segmentStart, segmentEnd);
+            
+        }
+
+        private List<Program> copylist(List<Program> p)
+        {
+            List<Program> newp = new List<Program>();
+
+            foreach(Program prog in p)
+            {
+                newp.Add(prog);
+            }
+
+            return newp;
+        }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
@@ -181,13 +209,18 @@ namespace Gems.UIWPF
                 List<Program> p = _programs[cboDay.SelectedIndex];
               
                 DateTime SegmentStartDateTime = GetStartDateTime(d);
-                DateTime SegmentEndDateTime = GetStartDateTime(d);
+                DateTime SegmentEndDateTime = GetEndDateTime(d);
 
-                SegmentStartDateTime = SegmentStartDateTime
+
+                DateTime startpro = SegmentStartDateTime.Date;
+                DateTime endpro = SegmentStartDateTime.Date;
+
+
+                startpro = startpro
                     .AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
                     .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
 
-                SegmentEndDateTime = SegmentEndDateTime
+                endpro = endpro
                     .AddHours(int.Parse(cboEndHr.SelectedValue.ToString()))
                     .AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
 
@@ -201,7 +234,17 @@ namespace Gems.UIWPF
                     }
                     else
                     {
+                        //asa
+                        //    //add temp
+                        //List<Program> temp_program = copylist(p);
+                        //if (ChkClash(temp_program, SegmentStartDateTime, SegmentEndDateTime))
+                        //{
+                        //    throw new Exception("Error, clashed!");
+                        //}
                         //chk clash
+
+                        if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
+                            throw new Exception("Error, Invalid time");
                         //add
                         Program tempp = new Program();
                         tempp.StartDateTime = SegmentStartDateTime;
@@ -217,13 +260,14 @@ namespace Gems.UIWPF
                     MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     clearAll();
+                    loadPrograms(_day[cboDay.SelectedIndex]);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
 
-                loadPrograms(_day[cboDay.SelectedIndex]);
+                
             }
         }
         private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -513,6 +557,11 @@ namespace Gems.UIWPF
             CreateDTPData();
             lstProgram.SelectedValuePath = "ProgramId";
             loadPrograms();
+            cboDay.Focus();
+            cboStartHr.SelectedIndex = 0;
+            cboEndHr.SelectedIndex = 0;
+            cboStartMin.SelectedIndex = 0;
+            cboEndMin.SelectedIndex = 0;
         }
 
         private void cboDay_SelectionChanged(object sender, SelectionChangedEventArgs e)

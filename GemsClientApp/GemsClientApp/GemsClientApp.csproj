@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Helper\ConfigHelper.cs" />
     <Compile Include="Helper\KeyGen.cs" />
+    <Compile Include="Helper\RequestClashingChecker.cs" />
     <Compile Include="Helper\WCFHelper.cs" />
     <Compile Include="LogMS\FacBooking\frmFacBooking.xaml.cs">
       <DependentUpon>frmFacBooking.xaml</DependentUpon>

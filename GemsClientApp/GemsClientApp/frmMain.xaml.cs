@@ -800,7 +800,7 @@ namespace Gems.UIWPF
 
         private void mnuWiz_Click(object sender, RoutedEventArgs e)
         {
-            frmWizard w = new frmWizard();
+            frmWizard w = new frmWizard(user);
             w.ShowDialog();
         }
 
