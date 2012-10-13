@@ -69,7 +69,7 @@ namespace Gems.UIWPF
                     list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
                       (EnumRoles)cboRole.SelectedIndex - 1).ToList<User>();
                 }
-                lstUsers.SelectedValuePath = "userID";
+                lstUsers.SelectedValuePath = "UserID";
                 lstUsers.ItemsSource = list;
             }
             catch (Exception ex)
@@ -91,7 +91,9 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please select a user!");
                 return;
             }
+            
             string uid = lstUsers.SelectedValue.ToString();
+            
             if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Nil)
             {
                 AdminHelper client = new AdminHelper();
