@@ -23,20 +23,20 @@
                 <StackPanel>
                     <StackPanel Height="31.313" Orientation="Horizontal">
                         <Label Content="Name:" FontSize="13" Width="66.803" />
-                        <TextBox FontSize="13" Name="txtName" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
+                        <TextBox FontSize="13" Name="txtName" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
                     </StackPanel>
                     <StackPanel Height="31.314" Orientation="Horizontal">
                         <Label Content="Contact:" FontSize="13" Width="66.803" />
-                        <TextBox FontSize="13" Name="txtContact" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
+                        <TextBox FontSize="13" Name="txtContact" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
                     </StackPanel>
                     <StackPanel Height="304">
                         <Label Content="Description:" FontSize="13" />
-                        <TextBox FontSize="13" Height="268.267" Margin="8,0" Name="txtDescription" Text="" TextChanged="onChanged" TextWrapping="Wrap" VerticalAlignment="Top" />
+                        <TextBox FontSize="13" Height="268.267" Margin="8,0" Name="txtDescription" Text="" TextWrapping="Wrap" VerticalAlignment="Top" />
                     </StackPanel>
                     <DockPanel Height="25" HorizontalAlignment="Right" LastChildFill="False">
-                        <Button Click="btnSave_Click" Content="Add" FontSize="13" Margin="0,0,10,0" Name="btnAdd" Width="75" />
-                        <Button Click="btnDelete_Click" Content="Delete" FontSize="13" Margin="0,0,10,0" Width="75" />
-                        <Button Click="clearAll" Content="Cancel" FontSize="13" Margin="0,0,10,0" Width="75" />
+                        <Button Click="btnAdd_Click" Content="Add" FontSize="13" Margin="0,0,10,0" Name="btnAdd" Width="75" />
+                        <Button Click="btnDelete_Click" Content="Delete" FontSize="13" Margin="0,0,10,0" Name="btnDelete" Width="75" />
+                        <Button Click="btnCancel_Click" Content="Cancel" FontSize="13" Margin="0,0,10,0" Name="btnCancel" Width="75" />
                     </DockPanel>
                 </StackPanel>
             </GroupBox>

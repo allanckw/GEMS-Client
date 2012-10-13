@@ -20,16 +20,27 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmWizTask : GemsWizPage
     {
-        User user;
-        Events event_; 
+        private User user;
+        private Events event_;
+        private List<Task> tasks;
         public frmWizTask(frmWizard c)
         {
+            user = c._user;
+            event_ = c._event;
+            tasks = c._task;
             InitializeComponent();
+            loadExisting();
+            txtTaskName.Focus();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void loadExisting()
         {
-            txtTaskName.Focus();
+            for (int i = 0; i < tasks.Count(); i++)
+            {
+                Task t = tasks[i];
+                lstManageTasks.Items.Add(t);
+            }
+
         }
 
         private void btnAddTask_Click(object sender, RoutedEventArgs e)
@@ -46,15 +57,22 @@ namespace Gems.UIWPF
                  MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            TasksHelper client = new TasksHelper();
+            //TasksHelper client = new TasksHelper();
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
-                client.CreateTask(user, event_.EventID, txtTaskName.Text.Trim(),
-                    textRange.Text.Trim(), dtpDueDate.SelectedDateTime);
+                //client.CreateTask(user, event_.EventID, txtTaskName.Text.Trim(),
+                    //textRange.Text.Trim(), dtpDueDate.SelectedDateTime);
                 //int currIdx = cboRole.SelectedIndex;
                 //cboRole.SelectedIndex = -1;
                 //cboRole.SelectedIndex = currIdx;
+                Task t = new Task();
+                t.TaskName = txtTaskName.Text.Trim();
+                t.TaskDesc = textRange.Text.Trim();
+                t.DueDate = dtpDueDate.SelectedDateTime;
+                lstManageTasks.Items.Add(t);
+                tasks.Add(t);
+
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -63,7 +81,7 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            client.Close();
+            //client.Close();
             LoadTasks();
         }
 
@@ -76,15 +94,23 @@ namespace Gems.UIWPF
                 return;
             }
             Task t = (Task)lstManageTasks.SelectedItem;
-            TasksHelper client = new TasksHelper();
+            //TasksHelper client = new TasksHelper();
             var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
             try
             {
-                client.UpdateTask(user, event_.EventID, t.TaskID, txtTaskName.Text.Trim(), textRange.Text.Trim(),
-                    dtpDueDate.SelectedDateTime);
+                //client.UpdateTask(user, event_.EventID, t.TaskID, txtTaskName.Text.Trim(), textRange.Text.Trim(),
+                    //dtpDueDate.SelectedDateTime);
                 //int currIdx = cboRole.SelectedIndex;
                 //cboRole.SelectedIndex = -1;
                 //cboRole.SelectedIndex = currIdx;
+                t.TaskName = txtTaskName.Text;
+                t.TaskDesc = textRange.Text;
+                t.DueDate = dtpDueDate.SelectedDateTime;
+
+                // to refresh the listview
+                lstManageTasks.BeginInit();
+                lstManageTasks.EndInit();
+
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -92,7 +118,7 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            //client.Close();
             LoadTasks();
         }
 
@@ -104,14 +130,16 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            Task t = (Task)lstManageTasks.SelectedItem;
-            TasksHelper client = new TasksHelper();
+            //Task t = (Task)lstManageTasks.SelectedItem;
+            //TasksHelper client = new TasksHelper();
             try
             {
-                client.DeleteTask(user, event_.EventID, t.TaskID);
+                //client.DeleteTask(user, event_.EventID, t.TaskID);
                 //int currIdx = cboRole.SelectedIndex;
                 //cboRole.SelectedIndex = -1;
                 //cboRole.SelectedIndex = currIdx;
+                lstManageTasks.Items.RemoveAt(lstManageTasks.SelectedIndex);
+                Save();
                 MessageBox.Show("Operation Succeeded");
             }
             catch (Exception ex)
@@ -119,7 +147,7 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            //client.Close();
             LoadTasks();
         }
 
@@ -143,9 +171,9 @@ namespace Gems.UIWPF
 
         private void LoadTasks()
         {
-            TasksHelper client = new TasksHelper();
+            //TasksHelper client = new TasksHelper();
             //lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = client.GetTasksByEvent(event_.EventID);
-            client.Close();
+            //client.Close();
             ClearAll();
         }
 
@@ -154,9 +182,21 @@ namespace Gems.UIWPF
             lstManageTasks.SelectedIndex = -1;
             //lstOverviewAllTask.SelectedIndex = -1;
             //ClearOverview();
-            txtDesc.Document.Blocks.Clear();
             txtTaskName.Text = "";
+            txtDesc.Document.Blocks.Clear();
             dtpDueDate.clear();
+        }
+
+        public override bool Save()
+        {
+            tasks.Clear();
+            for (int i = 0; i < lstManageTasks.Items.Count; i++)
+            {
+                Task t = (Task)lstManageTasks.Items[i];
+                tasks.Add(t);
+            }
+
+            return true;
         }
     }
 }

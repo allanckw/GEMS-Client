@@ -20,41 +20,55 @@ namespace Gems.UIWPF
     /// </summary>
     public partial class frmWizGuest : GemsWizPage
     {
-        User user;
-        //List<List<Guest>> _guests;
-        List<Guest> guestList;
+        private User user;
+        private List<List<Guest>> guests;
+        //List<Guest> guestList;
         //List<EventDay> _day;
-        EventDay eventDay_;
-        int selectedIndex = -1;
+        //EventDay eventDay_;
+        //int selectedIndex = -1;
 
         public frmWizGuest(frmWizard c)
         {
             //_guests = c._guests;
             //_day = c._days;
+            user = c._user;
+            guests = c._guests;
 
             InitializeComponent();
+            loadExisting();
+            txtName.Focus();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void loadExisting()
         {
-            txtName.Focus();
+            for (int i = 0; i < guests.Count(); i++)
+            {
+                List<Guest> guest = guests[i];
+
+                for (int x = 0; x < guest.Count(); x++)
+                {
+                    Guest g = guest[x];
+                    lstGuestList.Items.Add(g);
+                }
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lstGuestList.SelectedValuePath = "GuestId";
-            loadGuests();
+            //lstGuestList.SelectedValuePath = "GuestId";
+            clearAll();
+            //loadGuests();
         }
 
         private void lstGuestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lstGuestList.SelectedIndex == -1)
             {
-                selectedIndex = -1;
+                //selectedIndex = -1;
                 return;
             }
-            if (selectedIndex == lstGuestList.SelectedIndex)
-                return;
+            //if (selectedIndex == lstGuestList.SelectedIndex)
+            //    return;
             //if (changed)
             //{
             //    MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
@@ -70,21 +84,16 @@ namespace Gems.UIWPF
             txtDescription.Text = selectedGuest.Description;
             btnAdd.Content = "Save";
             //changed = false;
-            selectedIndex = lstGuestList.SelectedIndex;
-        }
-
-        private void onChanged(object sender, TextChangedEventArgs e)
-        {
-
+            //selectedIndex = lstGuestList.SelectedIndex;
         }
 
         private void loadGuests()
         {
             try
             {
-                GuestHelper client = new GuestHelper();
-                guestList = client.ViewGuest(eventDay_.DayID).ToList<Guest>();
-                lstGuestList.ItemsSource = guestList;
+                //GuestHelper client = new GuestHelper();
+                //guestList = client.ViewGuest(eventDay_.DayID).ToList<Guest>();
+                //lstGuestList.ItemsSource = guestList;
             }
             catch (Exception ex)
             {
@@ -93,7 +102,7 @@ namespace Gems.UIWPF
             clearAll();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (txtName.Text.Trim() == "")
             {
@@ -102,30 +111,51 @@ namespace Gems.UIWPF
             }
             try
             {
-                GuestHelper client = new GuestHelper();
-                if (selectedIndex == -1)
+                //GuestHelper client = new GuestHelper();
+
+                // adds guest info to listview and clear all info in textboxes
+                if (lstGuestList.SelectedIndex == -1)
                 {
                     Guest g = new Guest();
                     g.Name = txtName.Text;
-                    g.Description = txtDescription.Text;
                     g.Contact = txtContact.Text;
-                    g.GuestId = client.AddGuest(user, eventDay_.DayID, g.Name, g.Contact, g.Description);
+                    g.Description = txtDescription.Text;
+                    //g.GuestId = client.AddGuest(user, eventDay_.DayID, g.Name, g.Contact, g.Description);
+                    //guestList.Add(g);
+                    //CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
+                    lstGuestList.Items.Add(g);
+
+
+                    List<Guest> guestList = new List<Guest>();
                     guestList.Add(g);
-                    CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
+
+                        //for (int i = 0; i < guests.Count(); i++)
+                        //{
+                        //    List<Guest> guest = guests[i];
+                        //    //List<Guest> guest;
+                        //    guest.Add(g);
+                        //    guests.Add(guest);
+
+                    guests.Add(guestList);
+                    //guests.Add(
                     clearAll();
                 }
                 else
                 {
-                    Guest g = guestList[selectedIndex];
+                    Guest g = (Guest)lstGuestList.SelectedItem;
                     g.Name = txtName.Text;
                     g.Description = txtDescription.Text;
                     g.Contact = txtContact.Text;
-                    client.EditGuest(user, g.GuestId, g.Name, g.Description, g.Contact);
-                    guestList[selectedIndex] = g;
-                    CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
+                    // to refresh the listview
+                    lstGuestList.BeginInit();
+                    lstGuestList.EndInit();
+
+                    //client.EditGuest(user, g.GuestId, g.Name, g.Description, g.Contact);
+                    //guestList[selectedIndex] = g;
+                    //CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
                     //changed = false;
                 }
-                client.Close();
+                //client.Close();
 
                 MessageBox.Show("Operation succeeded!");
             }
@@ -138,19 +168,23 @@ namespace Gems.UIWPF
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (lstGuestList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a guest to delete.");
                 return;
+            }
             try
             {
-                GuestHelper client = new GuestHelper();
-                client.DeleteGuest(user, (int)lstGuestList.SelectedValue);
-                client.Close();
+                lstGuestList.Items.RemoveAt(lstGuestList.SelectedIndex);
+
+                Save();
+                clearAll();
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            loadGuests();
+            //loadGuests();
         }
 
         private void clearAll()
@@ -159,12 +193,35 @@ namespace Gems.UIWPF
             txtName.Text = "";
             txtContact.Text = "";
             txtDescription.Text = "";
-            //btnAdd.Content = "Add";
+            btnAdd.Content = "Add";
         }
 
-        private void clearAll(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             clearAll();
+        }
+
+        public override bool Save()
+        {
+            guests.Clear();
+            List<Guest> guestList = new List<Guest>();
+            for (int i = 0; i < lstGuestList.Items.Count; i++)
+            {
+                Guest g = (Guest)lstGuestList.Items[i];
+                guestList.Add(g);
+
+                //for (int i = 0; i < guests.Count(); i++)
+                //{
+                //    List<Guest> guest = guests[i];
+                //    //List<Guest> guest;
+                //    guest.Add(g);
+                //    guests.Add(guest);
+
+            }
+
+            guests.Add(guestList);
+
+            return true;
         }
     }
 }
