@@ -5902,7 +5902,7 @@ public interface IParticipantsTransactions
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IParticipantsTransactions/SaveTransaction", ReplyAction="http://tempuri.org/IParticipantsTransactions/SaveTransactionResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IParticipantsTransactions/SaveTransactionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void SaveTransaction(evmsService.entities.ParticipantTransaction[] trans);
+    void SaveTransaction(string transID, evmsService.entities.ParticipantTransaction[] trans);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -5939,9 +5939,9 @@ public partial class ParticipantsTransactionsClient : System.ServiceModel.Client
     {
     }
     
-    public void SaveTransaction(evmsService.entities.ParticipantTransaction[] trans)
+    public void SaveTransaction(string transID, evmsService.entities.ParticipantTransaction[] trans)
     {
-        base.Channel.SaveTransaction(trans);
+        base.Channel.SaveTransaction(transID, trans);
     }
 }
 

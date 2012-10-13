@@ -27,6 +27,7 @@ namespace Gems.UIWPF
         public List<List<Guest>> _guests;
         public Publish _publish;
         public User _user;
+        public List<Task> _task;
         GemsWizPage Curpage;
 
         
@@ -50,7 +51,7 @@ namespace Gems.UIWPF
             _itemTypes = new List<ItemTypes>();
             _guests = new List<List<Guest>>();
             _publish = new Publish();
-
+            _task = new List<Task>();
 
  
             this.InitializeComponent();
@@ -239,10 +240,82 @@ namespace Gems.UIWPF
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            curindex = HighLight_Navigation(curindex - 1);
+            if (Curpage.Save())
+            {
+                curindex = HighLight_Navigation(curindex - 1);
+                NavigateFrame(curindex);
+            }
+            
+            //NavigateFrame(curindex);
+        }
+
+        private void btnSkip_Click(object sender, RoutedEventArgs e)
+        {
+            curindex = HighLight_Navigation(curindex + 1);
             NavigateFrame(curindex);
         }
 
+        private T[][] ToArray<T>(List<List<T>> list)
+        {
+            List<T[]> temp = new List<T[]>();
+            foreach(List<T> pro in list)
+            {
+                temp.Add(pro.ToArray());
+            }
+            return temp.ToArray();
+        }
+        private void btnFinish_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Curpage.Save())
+                return;
+            System.Threading.Thread thread = new System.Threading.Thread(
+                new System.Threading.ThreadStart(
+                delegate()
+                {
+                    System.Windows.Threading.DispatcherOperation
+                    dispatcherOp = this.Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                    new Action(delegate()
+                    {
+                        try
+                        {
+                            Mouse.OverrideCursor = Cursors.Wait;
+                            MessageBox.Show("Please wait while we process your request...");
+
+                            WizardClient client = new WizardClient();
+
+
+                            client.WizardAddEvent(_user, _event, ToArray<Program>(_programs), ToArray<Guest>(_guests), _itemTypes.ToArray(), _items.ToArray(), _publish, _task.ToArray());
+                            client.Close();
+
+                            MessageBox.Show("Operation Completed",
+                                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            this.Close();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                            //this.Close();
+                        }
+                    }
+                ));
+
+                    dispatcherOp.Completed += new EventHandler(Completed);
+                }
+            ));
+
+            thread.Start();
+
+            
+        }
+
+        void Completed(object sender, EventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+
+            
+        }
       
     }
 }

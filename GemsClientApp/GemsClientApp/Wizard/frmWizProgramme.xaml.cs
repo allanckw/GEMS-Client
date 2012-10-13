@@ -34,16 +34,47 @@ namespace Gems.UIWPF
         // Events event_;
         List<EventDay> _day;
         List<List<Program>> _programs;
+
+        List<List<Program>> _programs_Original;
         Events _event;
         frmWizard parent;
+
+
+
+        private List<List<Program>> clone(List<List<Program>> old, List<List<Program>> newp)
+        {
+            newp.Clear();
+            for (int i = 0; i < old.Count(); i++)
+            {
+                List<Program> ps = old[i];
+                List<Program> newps = new List<Program>();
+                for (int x = 0; x < ps.Count(); x++)
+                {
+                    Program p = new Program();
+                    p.Name = ps[x].Name;
+                    p.Location = ps[x].Location;
+                    p.StartDateTime = ps[x].StartDateTime;
+                    p.EndDateTime = ps[x].EndDateTime;
+                    p.Description = ps[x].Description;
+                    newps.Add(p);
+                }
+
+                newp.Add(newps);
+
+            }
+
+            return newp;
+        }
 
         public frmWizProgramme(frmWizard c)
         {
             _day = c._days;
             _event = c._event;
-            _programs = c._programs;
+            _programs_Original = c._programs;
             parent = c;
-            
+            _programs = new List<List<Program>>();
+            clone(_programs_Original, _programs);
+
             InitializeComponent();
 
             lstProgram.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(lstProgram_PreviewMouseLeftButtonDown);
@@ -103,6 +134,9 @@ namespace Gems.UIWPF
                         {
                             newprogList.Add(progList[i]);
                             curr = progList[i].EndDateTime;
+
+
+
                             goto next;
                         }
                     }
@@ -118,9 +152,10 @@ namespace Gems.UIWPF
                     continue;
 
                 }
-
+                //lstProgram.SelectedIndex = -1;
                 lstProgram.ItemsSource = newprogList.OrderBy(x => x.StartDateTime)
                                                  .ThenBy(x => x.EndDateTime).ToList<Program>();
+                lstProgram_SelectionChanged(null, null);
             }
             catch (Exception ex)
             {
@@ -228,29 +263,53 @@ namespace Gems.UIWPF
                 {
 
 
-                    if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
+                    if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).Name.Trim() != "")
                     {
+                        if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
+                            throw new Exception("Error, Invalid time");
+                        if(startpro >= endpro)
+                            throw new Exception("Error, Invalid time");
+
+                        
                         //edit
+                        List<Program> temp_program = copylist(p);
+                        temp_program.Remove(((Program)lstProgram.SelectedItem));
+                        if (ChkClash(temp_program, startpro, endpro))
+                        {
+                            throw new Exception("Error, clashed!");
+                        }
+                        ((Program)lstProgram.SelectedItem).StartDateTime = startpro;
+                        ((Program)lstProgram.SelectedItem).EndDateTime = endpro;
+
+                        ((Program)lstProgram.SelectedItem).Name = txtName.Text;
+                        ((Program)lstProgram.SelectedItem).Location = txtLocation.Text;
+                        ((Program)lstProgram.SelectedItem).Description = txtDescription.Text;
+
+
                     }
                     else
                     {
                         //asa
                         //    //add temp
+                        Program tempp = new Program();
+                        tempp.StartDateTime = startpro;
+                        tempp.EndDateTime = endpro;
+                        tempp.Name = txtName.Text;
+                        tempp.Description = txtDescription.Text;
+                        tempp.Location = txtLocation.Text;
+
                         //List<Program> temp_program = copylist(p);
-                        //if (ChkClash(temp_program, SegmentStartDateTime, SegmentEndDateTime))
-                        //{
-                        //    throw new Exception("Error, clashed!");
-                        //}
+                        //temp_program.Add(tempp);
+                        if (ChkClash(p, startpro, endpro))
+                        {
+                            throw new Exception("Error, clashed!");
+                        }
                         //chk clash
 
                         if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
                             throw new Exception("Error, Invalid time");
                         //add
-                        Program tempp = new Program();
-                        tempp.StartDateTime = SegmentStartDateTime;
-                        tempp.EndDateTime = SegmentEndDateTime;
-                        tempp.Name = txtName.Text;
-                        tempp.Description = txtDescription.Text;
+                        
                         p.Add(tempp);
 
                         //txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text
@@ -283,9 +342,13 @@ namespace Gems.UIWPF
                 //ProgrammeHelper client = new ProgrammeHelper();
                 Program selectedProgram = (Program)lstProgram.SelectedItem;
                 txtName.Text = selectedProgram.Name;
+                txtLocation.Text = selectedProgram.Location;
                 cboStartHr.SelectedIndex = selectedProgram.StartDateTime.Hour;
                 cboStartMin.SelectedIndex = selectedProgram.StartDateTime.Minute / 30;
-                cboEndHr.SelectedIndex = selectedProgram.EndDateTime.Hour;
+                if (selectedProgram.EndDateTime.Date != selectedProgram.StartDateTime.Date)
+                    cboEndHr.SelectedIndex = cboEndHr.Items.Count - 1;
+                else
+                    cboEndHr.SelectedIndex = selectedProgram.EndDateTime.Hour;
                 cboEndMin.SelectedIndex = selectedProgram.EndDateTime.Minute / 30;
                 txtDescription.Text = selectedProgram.Description;
                 btnAdd.Content = "Save";
@@ -327,58 +390,115 @@ namespace Gems.UIWPF
 
         private void Program_Swap(Program p1, Program p2)
         {
+            EventDay d = _day[cboDay.SelectedIndex];
+            DateTime SegmentStartDateTime = GetStartDateTime(d);
+            DateTime SegmentEndDateTime = GetEndDateTime(d);
 
-            DateTime tempstart;
-            tempstart = p1.StartDateTime;
+            List<Program> p = _programs[cboDay.SelectedIndex];
+            List<Program> temp_program = copylist(p);
+
+            temp_program.Remove(p1);
+            temp_program.Remove(p2);
+
+            DateTime tempstart = p1.StartDateTime;
 
             TimeSpan p1ts = p1.EndDateTime - p1.StartDateTime;
             TimeSpan p2ts = p2.EndDateTime - p2.StartDateTime;
 
-            p1.StartDateTime = p2.StartDateTime;
-            p1.EndDateTime = p2.StartDateTime.AddMinutes(p1ts.TotalMinutes);
+            Program first = new Program(), second = new Program();
 
-            p2.StartDateTime = tempstart;
-            p2.EndDateTime = tempstart.AddMinutes(p2ts.TotalMinutes);
 
-            List<Program> temp = new List<Program>();
+            first.StartDateTime = p2.StartDateTime;
+            first.EndDateTime = p2.StartDateTime.AddMinutes(p1ts.TotalMinutes);
+            first.Name = p1.Name;
+            first.Location = p1.Location;
+            first.Description = p1.Description;
 
-            if (p1.ProgramID != 0)
-                temp.Add(p1);
 
-            if (p2.ProgramID != 0)
-                temp.Add(p2);
+            second.StartDateTime = tempstart;
+            second.EndDateTime = tempstart.AddMinutes(p2ts.TotalMinutes);
+            second.Name = p2.Name;
+            second.Location = p2.Location;
+            second.Description = p2.Description;
 
-            for (int i = 0; i < lstProgram.Items.Count; i++)
+            if(first.Name.Trim() != "")
             {
-                if (((Program)lstProgram.Items[i]).ProgramID != 0 &&
-                    ((Program)lstProgram.Items[i]).ProgramID != p1.ProgramID &&
-                    ((Program)lstProgram.Items[i]).ProgramID != p2.ProgramID)
-                    temp.Add((Program)lstProgram.Items[i]);
+            if(ChkClash(temp_program, first.StartDateTime, first.EndDateTime))
+                throw new Exception("Error!, time clash");
+
+            temp_program.Add(first);
             }
 
-            if (Check_OverWrite(temp))
+            if(second.Name.Trim() != "")
+            {
+            if(ChkClash(temp_program, second.StartDateTime, second.EndDateTime))
+                throw new Exception("Error!, time clash");
+            temp_program.Add(second);
+            }
+
+            if (SegmentStartDateTime > first.StartDateTime || SegmentEndDateTime < first.EndDateTime)
+                throw new Exception("Error, Invalid time");
+            if (first.StartDateTime >= first.EndDateTime)
+                throw new Exception("Error, Invalid time");
+
+            if (SegmentStartDateTime > second.StartDateTime || SegmentEndDateTime < second.EndDateTime)
+                throw new Exception("Error, Invalid time");
+            if (second.StartDateTime >= second.EndDateTime)
+                throw new Exception("Error, Invalid time");
+
+            ////
+
+            //List<Program> temp = new List<Program>();
+
+            //if (p1.Name.Trim() != "")
+            //    temp.Add(p1);
+
+            //if (p2.Name.Trim() != "")
+            //    temp.Add(p2);
+
+            //for (int i = 0; i < lstProgram.Items.Count; i++)
+            //{
+            //    if (((Program)lstProgram.Items[i]).ProgramID != 0 &&
+            //        ((Program)lstProgram.Items[i]).ProgramID != p1.ProgramID &&
+            //        ((Program)lstProgram.Items[i]).ProgramID != p2.ProgramID)
+            //        temp.Add((Program)lstProgram.Items[i]);
+            //}
+
+            p.Remove(p1);
+            p.Remove(p2);
+            
+
+            if(first.Name != "")
+            p.Add(first);
+            if (second.Name != "")
+            p.Add(second);
+
+
+
+
+            if (Check_OverWrite(temp_program))
             {
                 MessageBox.Show("OverLap or is over the event time boundary");
                 return;
             }
 
-            try
-            {
+            //try
+            //{
                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
-            loadPrograms();
+            loadPrograms(_day[cboDay.SelectedIndex]);
         }
 
        
 
         private void clearAll()
         {
-
+            txtLocation.Text = "";
             txtName.Text = "";
             cboStartHr.SelectedIndex = 0;
             cboStartMin.SelectedIndex = 0;
@@ -418,12 +538,12 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            loadPrograms();
+            loadPrograms(_day[cboDay.SelectedIndex]);
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            loadPrograms();
+            loadPrograms(_day[cboDay.SelectedIndex]);
         }
         int oldIndex = -1;
 
@@ -504,7 +624,7 @@ namespace Gems.UIWPF
 
             Program_Swap((Program)lstProgram.Items[oldIndex], (Program)lstProgram.Items[index]);
 
-            loadPrograms();
+            loadPrograms(_day[cboDay.SelectedIndex]);
         }
 
         private void lstProgram_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -575,6 +695,14 @@ namespace Gems.UIWPF
                 lbldaydate.Content = _event.StartDateTime.AddDays(cboDay.SelectedIndex).ToShortDateString();
                 loadPrograms(_day[cboDay.SelectedIndex]);
             }
+        }
+
+        public override bool Save()
+        {
+             clone(_programs,_programs_Original);
+
+
+            return true;
         }
     }
 }
