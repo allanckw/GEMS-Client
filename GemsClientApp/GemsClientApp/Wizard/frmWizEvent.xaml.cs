@@ -74,8 +74,7 @@ namespace Gems.UIWPF
         private void createDays(DateTime EventStartDateTime, DateTime EventEndDatetime)
         {
             days.Clear();
-            programs.Clear();
-            guests.Clear();
+            
 
             DateTime current_date = EventStartDateTime;
             int day = 1;

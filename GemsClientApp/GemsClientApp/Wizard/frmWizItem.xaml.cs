@@ -22,22 +22,43 @@ namespace Gems.UIWPF
     {
         private User user;
         private Events event_;
+        private List<ItemTypes> itemtypes;
+        private List<Items> items;
 
         public frmWizItem(frmWizard c)
         {
             InitializeComponent();
             user = c._user;
             event_ = c._event;
+            items = c._items;
+            itemtypes = c._itemTypes;
 
             radItemType.IsChecked = true;
             refreshItemTypes();
-            ExistingLoad();
+            
             cboItemType.Focus();
+            loadExisting();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void loadExisting()
+        {
+            for (int i = 0; i < items.Count(); i++)
+            {
+                Items item = items[i];
+                lvItem.Items.Add(item);
+            }
+
+            for (int i = 0; i < itemtypes.Count(); i++)
+            {
+                ItemTypes it = itemtypes[i];
+                lvItemType.Items.Add(it);
+            }
+            rebindcboItemType4Item();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -50,25 +71,23 @@ namespace Gems.UIWPF
             EventItemsHelper client = new EventItemsHelper();
             cboItemType.ItemsSource = client.GetItemsTypes();
             client.Close();
+
+
+
         }
 
-        private void ExistingLoad()
-        {
-            EventItemsHelper client = new EventItemsHelper();
-            List<ItemTypes> TypeList = client.GetEventSpecificItemType(event_.EventID).ToList<ItemTypes>();
-            List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
-            client.Close();
-
-            if (TypeList.Count > 0)
-                //lvItemType.SetExistingSource(TypeList);
-            if (ItemList.Count > 0)
-                //lvItem.SetExistingSource(ItemList);
-            rebindcboItemType4Item();
-        }
+        
 
         private void rebindcboItemType4Item()
         {
-            //cboItemTypeIL.ItemsSource = lvItemType.GetItemTypeList();
+            List<ItemTypes> itemtypes = new List<ItemTypes>();
+
+            for (int i = 0; i < lvItemType.Items.Count; i++)
+            {
+                itemtypes.Add((ItemTypes)lvItemType.Items[i]);
+            }
+
+            cboItemTypeIL.ItemsSource = itemtypes;
 
             // to bind items to here
 
@@ -103,8 +122,7 @@ namespace Gems.UIWPF
             txtItemPrice.Text = "";
             txtItemSatisfaction.Text = "";
             cboItemTypeIL.SelectedIndex = -1;
-            EventItemsHelper client = new EventItemsHelper();
-            List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
+            lvItem.SelectedIndex = -1;
             //lvItem.SetExistingSource(ItemList);
         }
 
@@ -157,6 +175,19 @@ namespace Gems.UIWPF
                 refreshItemTypes();
             }
             
+            //check if got already
+            for (int i = 0; i < lvItemType.Items.Count; i++)
+            {
+                ItemTypes itemtype = (ItemTypes)lvItemType.Items[i];
+                if (itemtype.typeString == itemType2Add)
+                {
+                    MessageBox.Show("item type already added");
+                    return;
+
+                }
+            }
+
+
             //lvItemType.AddNewItemType(user, event_, itemType2Add, chkNecessary.IsChecked.Value);
             //lvItemType.Items.Add("Column1Text").SubItems.AddRange(row1);
 
@@ -203,7 +234,7 @@ namespace Gems.UIWPF
             //int selected = lvItemType.SelectedIndex;
             //lvItemType.Items.GetItemAt(lvItemType.SelectedIndex);
 
-            ExistingLoad();
+            
             rebindcboItemType4Item();
         }
 
@@ -216,9 +247,23 @@ namespace Gems.UIWPF
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            ItemTypes it = ((ItemTypes)lvItemType.Items[lvItemType.SelectedIndex]);
+            for (int i = 0; i < lvItem.Items.Count; i++)
+            {
+
+                if (((Items)lvItem.Items[i]).typeString == it.typeString)
+                {
+                    MessageBox.Show("Please Delete the items with this item type first","Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    return;
+                }
+            }
+
+
             lvItemType.Items.RemoveAt(lvItemType.SelectedIndex);
             rebindcboItemType4Item();
-
+            lvItemType.SelectedIndex = -1;
             //EventItemsHelper client = new EventItemsHelper();
             //List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             //lvItem.SetExistingSource(ItemList);
@@ -246,6 +291,13 @@ namespace Gems.UIWPF
                     txtItemSatisfaction.Focus();
                     return;
                 }
+                Items i = new Items();
+                i.ItemName = txtItemName.Text;
+                i.typeString = ((ItemTypes)cboItemTypeIL.SelectedItem).typeString;
+                i.EstimatedPrice = price;
+                i.Satisfaction = satisfactionValue;
+
+                lvItem.Items.Add(i);
                 //lvItem.AddNewItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, txtItemName.Text, cboItemTypeIL.SelectedValue.ToString(), price, satisfactionValue);
                 clearItemInput();
             }
@@ -257,6 +309,13 @@ namespace Gems.UIWPF
 
         private void btnDeleteItem_Click(object sender, RoutedEventArgs e)
         {
+            if (lvItem.SelectedIndex > -1)
+            {
+                lvItem.Items.RemoveAt(lvItem.SelectedIndex);
+                lvItem.SelectedIndex = -1;
+            }
+
+
             //lvItem.DeleteItem(user, (ItemTypes)cboItemTypeIL.SelectedItem);
         }
 
@@ -298,16 +357,20 @@ namespace Gems.UIWPF
         private void btnEditItem_Click(object sender, RoutedEventArgs e)
         {
             //Items Item2Edit = lvItem.GetEditItem();
-            //if (Item2Edit == null)
-            //{
-            //    MessageBox.Show("Please Select An Item!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-            //    return;
-            //}
+            if (lvItem.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select An Item!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
             string FunctionName = btnEditItem.Content.ToString().Trim();
             if (FunctionName.CompareTo("Edit") == 0)
             {
-               // mapItem(Item2Edit);
+
+
+                Items item = (Items)lvItem.Items[lvItem.SelectedIndex];
+                mapItem(item);
+
                 EnabledItemControl(false);
             }
             else
@@ -330,7 +393,17 @@ namespace Gems.UIWPF
                     txtItemSatisfaction.Focus();
                     return;
                 }
+                int index = lvItem.SelectedIndex;
 
+                lvItem.Items.RemoveAt(index);
+
+                Items i = new Items();
+                i.ItemName = txtItemName.Text;
+                i.typeString = ((ItemTypes)cboItemTypeIL.SelectedItem).typeString;
+                i.EstimatedPrice = price;
+                i.Satisfaction = satisfactionValue;
+
+                lvItem.Items.Insert(index, i);
                 //lvItem.EditItem(user, (ItemTypes)cboItemTypeIL.SelectedItem, price, satisfactionValue);
                 EnabledItemControl(true);
                 clearItemInput();
@@ -345,6 +418,50 @@ namespace Gems.UIWPF
         private void txtOthers_TextChanged(object sender, TextChangedEventArgs e)
         {
             radOthers.IsChecked = true;
+        }
+
+        private void lvItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvItem.SelectedIndex > -1)
+            {
+                Items item = (Items)lvItem.Items[lvItem.SelectedIndex];
+
+                mapItem(item);
+
+                //txtItemName.Text = item.ItemName;
+                //txtItemPrice.Text = item.EstimatedPrice.ToString();
+                //txtItemSatisfaction.Text = item.Satisfaction.ToString();
+
+                //for (int i = 0; i < cboItemTypeIL.Items.Count ; i++)
+                //{
+                //    if (((ItemTypes)cboItemTypeIL.Items[i]).typeString == item.typeString)
+                //    {
+                //        cboItemTypeIL.SelectedIndex = i;
+                //    }
+
+                //}
+
+                //EnabledItemControl(false);
+            }
+        }
+
+        public override bool Save()
+        {
+            itemtypes.Clear();
+            items.Clear();
+            for (int i = 0; i < lvItemType.Items.Count; i++)
+            {
+                ItemTypes it = (ItemTypes)lvItemType.Items[i];
+                itemtypes.Add(it);
+            }
+
+            for (int i = 0; i < lvItem.Items.Count; i++)
+            {
+                Items item = (Items)lvItem.Items[i];
+                items.Add(item);
+            }
+
+            return true;
         }
     }
 }

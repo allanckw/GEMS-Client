@@ -39,8 +39,8 @@
                     <StackPanel Margin="10,10,25,0" Orientation="Horizontal" Height="30" HorizontalAlignment="Right" >
                         <Button x:Name="btnPrevious" Width="80" Margin="5,0,0,0" Click="btnPrevious_Click">Previous</Button>
                         <Button x:Name="btnNext" Width="80" Margin="5,0,0,0" Click="btnNext_Click">Next</Button>
-                        <Button x:Name="btnSkip" Width="80" Margin="5,0,0,0">Skip</Button>
-                        <Button x:Name="btnFinish" Width="80" Margin="5,0,0,0">Finish</Button>
+                        <Button x:Name="btnSkip" Width="80" Margin="5,0,0,0" Click="btnSkip_Click">Skip</Button>
+                        <Button x:Name="btnFinish" Width="80" Margin="5,0,0,0" Click="btnFinish_Click">Finish</Button>
                     </StackPanel>
                     
                 </StackPanel>

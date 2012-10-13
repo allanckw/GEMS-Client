@@ -23,31 +23,23 @@ namespace Gems.UIWPF
         User user;
         Events event_;
         Publish publish;
+        //Publish orginal_publish;
 
         public frmWizPublish(frmWizard c)
         {
             InitializeComponent();
-        }
+            publish = c._publish;
+            user = c._user;
+            event_ = c._event;
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
+            //publish.StartDateTime = orginal_publish.StartDateTime;
+            //publish.Remarks = orginal_publish.Remarks;
+            //publish.EndDateTime = orginal_publish.EndDateTime;
+            //publish.IsPayable = orginal_publish.IsPayable;
+            //publish.PaymentAMount = orginal_publish.PaymentAMount;
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                RegistrationHelper client = new RegistrationHelper();
-                publish = client.ViewPublish(event_.EventID);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            if (publish != null)
+            if (publish.Remarks != null)
             {
                 txtRemarks.Text = publish.Remarks;
                 dtpStart.SelectedDateTime = publish.StartDateTime;
@@ -72,27 +64,25 @@ namespace Gems.UIWPF
             dtpStart.cboHr.SelectionChanged += starthourChanged;
 
             dtpEnd.cboHr.SelectionChanged += endhourChanged;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+
+           
 
             //changed = false;
         }
 
         private void dateChanged(object sender, RoutedEventArgs e)
         {
-            if (publish != null)
-            {
-                DateTime start = dtpStart.dtpDate.SelectedDate.Value.AddHours(Double.Parse(dtpStart.cboHr.SelectedValue.ToString())).AddMinutes(Double.Parse(dtpStart.cboMin.SelectedValue.ToString()));
-                DateTime end = dtpEnd.dtpDate.SelectedDate.Value.AddHours(Double.Parse(dtpEnd.cboHr.SelectedValue.ToString())).AddMinutes(Double.Parse(dtpEnd.cboMin.SelectedValue.ToString()));
-
-
-                //if (txtRemarks.Text.Equals(publish.Remarks) &&
-                //    start.Equals(publish.StartDateTime) &&
-                //    end.Equals(publish.EndDateTime))
-                //changed = false;
-                //else
-                //changed = true;
-            }
-            //else
-                //changed = true;
+           
         }
 
         private void starthourChanged(object sender, RoutedEventArgs e)
@@ -129,7 +119,7 @@ namespace Gems.UIWPF
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            publish = null;
+            
             txtRemarks.Text = "";
             //dtpStart.clear();
             dtpStart.dtpDate.SelectedDate = DateTime.Now;
@@ -147,12 +137,14 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("Invalid publish start date.",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
                 //return false;
             }
             if (dtpEnd.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid publish end date.",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
                 //return false;
             }
             try
@@ -162,31 +154,31 @@ namespace Gems.UIWPF
 
                 if (endTime > event_.StartDateTime)
                 {
-                    MessageBox.Show("Event starts at " + event_.EndDateTime + ", publish date must end before that.");
-                    //return false;
+                    MessageBox.Show("Event end at " + event_.EndDateTime + ", publish date must end before that.");
+                    return;
                 }
                 if (endTime <= startTime)
                 {
                     MessageBox.Show("Publish end date must be after its start date.");
-                    //return false;
+                    return;
                 }
-                RegistrationHelper client = new RegistrationHelper();
+                
+                decimal result=0;
 
-                decimal result;
-                if (!decimal.TryParse(txtamount.Text, out result))
+                if (cboIsPayable.IsChecked.Value && !decimal.TryParse(txtamount.Text, out result))
                 {
                     MessageBox.Show("invalid amount");
-                   // return false;
+                    return;
                 }
-                if (publish == null)
-                {// need to change here
-
-
-                    client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
-                }
-                else
-                    client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
-                client.Close();
+                //if (publish.Remarks == null)
+                
+                publish.StartDateTime = startTime;
+                publish.EndDateTime = endTime;
+                publish.Remarks = txtRemarks.Text;
+                publish.IsPayable = cboIsPayable.IsChecked.Value;
+                publish.PaymentAMount = result;
+                    //client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
+                //client.Close();
                 btnDelete.IsEnabled = true;
                 //changed = false;
                 MessageBox.Show("Operation succeeded!");
@@ -203,9 +195,11 @@ namespace Gems.UIWPF
         {
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
-                client.DeletePublish(user, event_.EventID);
-                client.Close();
+                publish.StartDateTime = DateTime.Now;
+                publish.Remarks = null;
+                publish.EndDateTime = DateTime.Now;
+                publish.IsPayable = false;
+                publish.PaymentAMount = 0;
                 btnClear_Click(null, null);
                 btnDelete.IsEnabled = false;
                 MessageBox.Show("Operation succeeded!");
