@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using evmsService.entities;
+using evmsService.Controllers;
 using System.Windows.Controls;
 using System.Data;
 using Gems.UIWPF.CustomCtrl;
@@ -15,8 +16,9 @@ namespace Gems.UIWPF
     {
         private User user;
         private Events event_;
-        List<Tuple<Role, string>> roleByEvent;
-
+        //List<Tuple<Role, string>> roleByEvent;
+        List<RoleWithUser> roleByEvent;
+        
         public frmTaskAllocation()
         {
             this.InitializeComponent();
@@ -51,9 +53,9 @@ namespace Gems.UIWPF
             RoleHelper client = new RoleHelper();
             try
             {
-                cboRole.DisplayMemberPath = "m_Item2";
-                cboRole.SelectedValuePath = "m_Item1.RoleID";
-                //roleByEvent = client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
+                cboRole.DisplayMemberPath = "user";
+                cboRole.SelectedValuePath = "role.RoleID";
+                roleByEvent = client.ViewEventRoles(user, event_).ToList<RoleWithUser>();//client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
                 cboRole.ItemsSource = roleByEvent;
             }
             catch (Exception ex)
@@ -313,12 +315,12 @@ namespace Gems.UIWPF
             List<TaskAssignmentState> lstTAS = new List<TaskAssignmentState>();
             foreach (TaskAssignment taskAssignment in tAssns)
             {
-                foreach (Tuple<Role, string> item in roleByEvent)
+                foreach (RoleWithUser item in roleByEvent)
                 {
-                    if (item.Item1.RoleID == taskAssignment.AssignedRoleID)
+                    if (item.role.RoleID == taskAssignment.AssignedRoleID)
                     {
                         //String name=
-                        TaskAssignmentState newTAS = new TaskAssignmentState(taskAssignment, item.Item2);
+                        TaskAssignmentState newTAS = new TaskAssignmentState(taskAssignment, item.user);
                         lstTAS.Add(newTAS);
                     }
                 }

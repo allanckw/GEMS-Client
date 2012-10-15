@@ -142,12 +142,16 @@ namespace Gems.UIWPF
                 }
                 RegistrationHelper client = new RegistrationHelper();
 
-                decimal result;
-                if (!decimal.TryParse(txtamount.Text, out result))
+                decimal result=0;
+                if (cboIsPayable.IsChecked==true)
                 {
-                    MessageBox.Show("invalid amount");
-                    return false;
+                    if (!decimal.TryParse(txtamount.Text, out result))
+                    {
+                        MessageBox.Show("invalid amount");
+                        return false;
+                    }
                 }
+               
                 if (publish == null)
                 {// need to change here
 

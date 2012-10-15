@@ -137,7 +137,16 @@ namespace Gems.UIWPF
                     }
                 ));
 
-                    dispatcherOp.Completed += new EventHandler(dispatcherOp_Completed);
+                    //dispatcherOp.Completed += new EventHandler(dispatcherOp_Completed);
+                    dispatcherOp.Completed += (s, e) => 
+                    {
+                        if (success)
+                        {
+                            Mouse.OverrideCursor = Cursors.Arrow;
+                            this.Close();
+                        }
+                    };
+
                 }
             ));
 
