@@ -36,7 +36,7 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="List of Tasks" Height="320" Margin="24.5,22.22,1.5,0" VerticalAlignment="Top">
-                <ListBox FontSize="14" FontWeight="Normal" ItemContainerStyle="{StaticResource TaskItemContStyle}" Margin="1,1,1,1" Name="lstManageTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstManageTasks_SelectionChanged" Width="200">
+                <ListBox FontSize="14" FontWeight="Normal" Margin="1,1,1,1" Name="lstManageTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstManageTasks_SelectionChanged" Width="200">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10" Orientation="Vertical">
