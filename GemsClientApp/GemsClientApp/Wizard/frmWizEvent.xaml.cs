@@ -142,7 +142,7 @@ namespace Gems.UIWPF
                     }
                 }
 
-                while (guests.Count() != guests.Count())
+                while (guests.Count() != days.Count())
                 {
                     if (guests.Count() < days.Count())
                     {

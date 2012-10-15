@@ -65,20 +65,20 @@ namespace Gems.UIWPF
                 txtProgramMsg.Text = "No Programmes Added Yet.";
             else
             {
-                DateTime max = DateTime.MinValue, min = DateTime.MaxValue;
-                for (int i = 0; i < eventday_.Programs.Count(); i++)
-                {
-                    if (max < eventday_.Programs[i].EndDateTime)
-                    {
-                        max = eventday_.Programs[i].EndDateTime;
-                    }
-                    if (min > eventday_.Programs[i].StartDateTime)
-                    {
-                        min = eventday_.Programs[i].StartDateTime;
-                    }
-                }
+                //DateTime max = DateTime.MinValue, min = DateTime.MaxValue;
+                //for (int i = 0; i < eventday_.Programs.Count(); i++)
+                //{
+                //    if (max < eventday_.Programs[i].EndDateTime)
+                //    {
+                //        max = eventday_.Programs[i].EndDateTime;
+                //    }
+                //    if (min > eventday_.Programs[i].StartDateTime)
+                //    {
+                //        min = eventday_.Programs[i].StartDateTime;
+                //    }
+                //}
 
-                txtProgramMsg.Text = "There are " + eventday_.Programs.Count() + " planned programmes from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
+                txtProgramMsg.Text = "There are " + eventday_.Programs.Count() + " planned programmes";// from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
 
             }
         }

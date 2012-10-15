@@ -160,6 +160,7 @@ namespace Gems.UIWPF
                 case 0:
                     navigate<frmWizEvent>();
                     btnPrevious.IsEnabled = false;
+                    btnSkip.IsEnabled = false;
                     break;
                 case 1:
                     navigate<frmWizProgramme>();

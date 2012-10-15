@@ -790,7 +790,13 @@ namespace Gems.UIWPF
                 }
                 currPageType = typeof(frmOverview);
             }
-            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, evday);
+
+            if (currPageType == typeof(frmOverview))
+            {
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday);
+            }
+            else
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, evday);
             frame.Navigate(currPage);
             return true;
         }
@@ -879,6 +885,7 @@ namespace Gems.UIWPF
                 Events ev = (Events)cboEventList.SelectedItem;
                 EventHelper clientEvent = new EventHelper();
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
+                lstEventDayList.SelectedIndex = 0;
                 clientEvent.Close();
 
                 if (dayDependentForm() == true)
@@ -931,6 +938,8 @@ namespace Gems.UIWPF
             if (currPageType == typeof(frmGuestList))
                 return true;
             if (currPageType == typeof(frmProgramManagement))
+                return true;
+            if (currPageType == typeof(frmOverview))
                 return true;
 
             return false;

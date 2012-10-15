@@ -309,7 +309,11 @@ namespace Gems.UIWPF
                 txtLocation.Text = selectedProgram.Location;
                 btnAdd.Content = "Save";
                 client.Close();
+<<<<<<< HEAD
                 cboBookDuration.SelectedIndex=computeDurationIdx(selectedProgram)-1;
+=======
+                this.cboBookDuration.SelectedIndex=computeDuration(selectedProgram)-1;
+>>>>>>> f8e53ce7ada8fd35905055368c0f37cfdb272ffa
             }
             catch (Exception ex)
             {
@@ -317,7 +321,11 @@ namespace Gems.UIWPF
             }
         }
 
+<<<<<<< HEAD
         private int computeDurationIdx(Program p)
+=======
+        private int computeDuration(Program p)
+>>>>>>> f8e53ce7ada8fd35905055368c0f37cfdb272ffa
         {
             TimeSpan ts = p.EndDateTime.Subtract(p.StartDateTime);
             return (int)(ts.TotalMinutes/30);

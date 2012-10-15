@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       Width="750" Height="600" Background="{x:Null}"
-	Title="frmWizGuest">
+	Title="frmWizGuest" Loaded="GemsWizPage_Loaded">
 
-    <GroupBox Header="Manage Guest" FontSize="21" FontWeight="Medium">
+    <GroupBox Header="Manage Guest" FontSize="21" FontWeight="Medium" Loaded="GroupBox_Loaded">
         <StackPanel Orientation="Horizontal">
             <GroupBox FontSize="18" Header="Guest List" HorizontalAlignment="Left" Margin="0,0,10,8" Width="350">
                 <ListView FontSize="13" Name="lstGuestList" SelectionChanged="lstGuestList_SelectionChanged" SelectionMode="Single">
@@ -28,6 +28,11 @@
                     <StackPanel Height="31.314" Orientation="Horizontal">
                         <Label Content="Contact:" FontSize="13" Width="66.803" />
                         <TextBox FontSize="13" Name="txtContact" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" />
+                    </StackPanel>
+                    <StackPanel Height="31.313" Orientation="Horizontal">
+                        <Label Content="Event Date:" Width="76.803" FontSize="13"/>
+                        <ComboBox Width="60" Height="23" x:Name="cboDay" FontSize="12" SelectionChanged="cboDay_SelectionChanged" />
+                        <Label Content=""  Width="76.803" FontSize="13" Name="lbldaydate"/>
                     </StackPanel>
                     <StackPanel Height="304">
                         <Label Content="Description:" FontSize="13" />

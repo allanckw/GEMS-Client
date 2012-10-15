@@ -23,14 +23,37 @@ namespace Gems.UIWPF
         private User user;
         private Events event_;
         private List<Task> tasks;
+        private List<Task> Origtasks;
         public frmWizTask(frmWizard c)
         {
             user = c._user;
             event_ = c._event;
-            tasks = c._task;
+            Origtasks  = c._task;
+            tasks = new List<Task>();
+
+            clone(Origtasks, tasks);
+
             InitializeComponent();
             loadExisting();
             txtTaskName.Focus();
+        }
+
+        private void clone(List<Task> t1, List<Task> t2)
+        {
+            t2.Clear();
+
+            for (int x = 0; x < t1.Count; x++)
+            {
+
+                Task t = new Task();
+                t.DueDate = t1[x].DueDate;
+                t.TaskDesc = t1[x].TaskDesc;
+                t.TaskName = t1[x].TaskName;
+               
+                
+
+                t2.Add(t);
+            }
         }
 
         private void loadExisting()
@@ -189,12 +212,7 @@ namespace Gems.UIWPF
 
         public override bool Save()
         {
-            tasks.Clear();
-            for (int i = 0; i < lstManageTasks.Items.Count; i++)
-            {
-                Task t = (Task)lstManageTasks.Items[i];
-                tasks.Add(t);
-            }
+            clone(tasks, Origtasks);
 
             return true;
         }

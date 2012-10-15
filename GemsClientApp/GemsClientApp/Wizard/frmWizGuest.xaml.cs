@@ -22,6 +22,9 @@ namespace Gems.UIWPF
     {
         private User user;
         private List<List<Guest>> guests;
+        private List<List<Guest>> OrigGuests;
+        private List<EventDay> _day;
+        private Events _event;
         //List<Guest> guestList;
         //List<EventDay> _day;
         //EventDay eventDay_;
@@ -31,32 +34,88 @@ namespace Gems.UIWPF
         {
             //_guests = c._guests;
             //_day = c._days;
+            _event = c._event;
             user = c._user;
-            guests = c._guests;
+            OrigGuests = c._guests;
+            _day = c._days;
 
             InitializeComponent();
-            loadExisting();
-            txtName.Focus();
+            
+            
+            guests = new List<List<Guest>>();
+            clone(OrigGuests, guests);
+           
+          
         }
 
-        private void loadExisting()
+        private void clone(List<List<Guest>> g1, List<List<Guest>> g2)
         {
-            for (int i = 0; i < guests.Count(); i++)
+            g2.Clear();
+
+            for (int x = 0; x < g1.Count; x++)
             {
-                List<Guest> guest = guests[i];
+
+
+                List<Guest> lstguest = new List<Guest>();
+
+                for (int y = 0; y < g1[x].Count; y++)
+                {
+                    Guest g = new Guest();
+
+                    g.Description = g1[x][y].Description;
+                    g.Name = g1[x][y].Name;
+                    g.Contact = g1[x][y].Contact;
+                    
+
+                    lstguest.Add(g);
+                }
+
+                g2.Add(lstguest);
+            }
+        }
+
+        private void loadExisting(int intDay)
+        {
+
+            lstGuestList.Items.Clear();
+            //for (int i = 0; i < guests.Count(); i++)
+            //{
+                List<Guest> guest = guests[intDay];
 
                 for (int x = 0; x < guest.Count(); x++)
                 {
                     Guest g = guest[x];
                     lstGuestList.Items.Add(g);
                 }
+            //}
+        }
+
+        private void PopulateDays()
+        {
+            
+            cboDay.Items.Clear();
+
+            for (int i = 0; i < _day.Count; i++)
+            {
+
+                cboDay.Items.Add(_day[i].DayNumber);
+                //cboDay.Items[cboDay.Items.Count-1]
             }
+
+            cboDay.SelectedIndex = 0;
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //lstGuestList.SelectedValuePath = "GuestId";
             clearAll();
+
+
+            PopulateDays();
+            loadExisting(cboDay.SelectedIndex);
+            txtName.Focus();
+
             //loadGuests();
         }
 
@@ -125,9 +184,9 @@ namespace Gems.UIWPF
                     //CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
                     lstGuestList.Items.Add(g);
 
-
-                    List<Guest> guestList = new List<Guest>();
-                    guestList.Add(g);
+                    guests[cboDay.SelectedIndex].Add(g);
+                    //List<Guest> guestList = new List<Guest>();
+                    //guestList.Add(g);
 
                         //for (int i = 0; i < guests.Count(); i++)
                         //{
@@ -136,7 +195,7 @@ namespace Gems.UIWPF
                         //    guest.Add(g);
                         //    guests.Add(guest);
 
-                    guests.Add(guestList);
+                    //guests.Add(guestList);
                     //guests.Add(
                     clearAll();
                 }
@@ -174,9 +233,9 @@ namespace Gems.UIWPF
             }
             try
             {
-                lstGuestList.Items.RemoveAt(lstGuestList.SelectedIndex);
+                guests[cboDay.SelectedIndex].RemoveAt(lstGuestList.SelectedIndex);
 
-                Save();
+                loadExisting(cboDay.SelectedIndex);
                 clearAll();
                 MessageBox.Show("Operation succeeded!");
             }
@@ -203,25 +262,60 @@ namespace Gems.UIWPF
 
         public override bool Save()
         {
-            guests.Clear();
-            List<Guest> guestList = new List<Guest>();
-            for (int i = 0; i < lstGuestList.Items.Count; i++)
-            {
-                Guest g = (Guest)lstGuestList.Items[i];
-                guestList.Add(g);
+            clone(guests, OrigGuests);
 
-                //for (int i = 0; i < guests.Count(); i++)
-                //{
-                //    List<Guest> guest = guests[i];
-                //    //List<Guest> guest;
-                //    guest.Add(g);
-                //    guests.Add(guest);
-
-            }
-
-            guests.Add(guestList);
 
             return true;
+
+            //guests.Clear();
+            //List<Guest> guestList = new List<Guest>();
+            //for (int i = 0; i < lstGuestList.Items.Count; i++)
+            //{
+            //    Guest g = (Guest)lstGuestList.Items[i];
+            //    guestList.Add(g);
+
+            //    //for (int i = 0; i < guests.Count(); i++)
+            //    //{
+            //    //    List<Guest> guest = guests[i];
+            //    //    //List<Guest> guest;
+            //    //    guest.Add(g);
+            //    //    guests.Add(guest);
+
+            //}
+
+            //guests.Add(guestList);
+
+            //return true;
         }
+
+        private void cboDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboDay.SelectedIndex == -1)
+            {
+                lbldaydate.Content = "";
+            }
+            else
+            {
+                lbldaydate.Content = _event.StartDateTime.AddDays(cboDay.SelectedIndex).ToShortDateString();
+                loadExisting(cboDay.SelectedIndex);
+            }
+            
+        }
+
+        private void GroupBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GemsWizPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            PopulateDays();
+            loadExisting(cboDay.SelectedIndex);
+            txtName.Focus();
+
+        }
+
+        
     }
 }
