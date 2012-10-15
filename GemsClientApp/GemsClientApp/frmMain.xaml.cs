@@ -252,7 +252,8 @@ namespace Gems.UIWPF
             cboEventList.SelectedIndex = 0;
 
             Events ev = (Events)cboEventList.SelectedItem;
-            frame.Navigate(new frmOverview(user, ev));
+            EventDay evd =(EventDay)lstEventDayList.SelectedItem;
+            frame.Navigate(new frmOverview(user, ev, evd));
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
@@ -585,7 +586,7 @@ namespace Gems.UIWPF
             {
                 if (lstEventDayList.Items.Count < 0 || lstEventDayList.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Please select an event to book facility!", "No Day Selected!",
+                    MessageBox.Show("Please select an event day to book facility!", "No Event Day Selected!",
                         MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 else
@@ -656,6 +657,7 @@ namespace Gems.UIWPF
             }
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
+            EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
@@ -676,7 +678,63 @@ namespace Gems.UIWPF
                 }
                 currPageType = typeof(frmOverview);
             }
-            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            if (currPageType == typeof(frmOverview))
+            {
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev,evd);
+            }
+            else
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            
+            frame.Navigate(currPage);
+            return true;
+        }
+
+        private bool navigateByEventAndDay<T>()
+        {
+            Type newPageType = typeof(T);
+            if (newPageType == typeof(frmServiceContactList))
+            {
+                //Do nothing
+            }
+            else
+            {
+                if (cboEventList.Items.Count < 0 || cboEventList.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select an event to " + pageFunctions[newPageType].Item1 + "!", "No Event Selected!",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return false;
+                }
+                if (currPage != null && currPage.isChanged())
+                {
+                    MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
+                        return false;
+                }
+            }
+            currPageType = typeof(T);
+            Events ev = (Events)cboEventList.SelectedItem;
+            EventDay evd = (EventDay)lstEventDayList.SelectedItem;
+            if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
+            {
+                try
+                {
+                    RoleHelper client = new RoleHelper();
+                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
+                        foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
+                            if (ef1 == ef2)
+                            {
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
+                                return true;
+                            }
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                currPageType = typeof(frmOverview);
+            }
+            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd);
             frame.Navigate(currPage);
             return true;
         }
@@ -698,7 +756,7 @@ namespace Gems.UIWPF
                 }
                 if (lstEventDayList.Items.Count < 0 || lstEventDayList.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Please select a day to " + pageFunctions[newPageType].Item1 + "!", "No Day Selected!",
+                    MessageBox.Show("Please select an event day to " + pageFunctions[newPageType].Item1 + "!", "No Event Day Selected!",
                         MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return false;
                 }
@@ -711,7 +769,7 @@ namespace Gems.UIWPF
             }
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
-            EventDay day = (EventDay)lstEventDayList.SelectedItem;
+            EventDay evday = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
                 try
@@ -732,7 +790,13 @@ namespace Gems.UIWPF
                 }
                 currPageType = typeof(frmOverview);
             }
-            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, day);
+
+            if (currPageType == typeof(frmOverview))
+            {
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday);
+            }
+            else
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, evday);
             frame.Navigate(currPage);
             return true;
         }
@@ -740,6 +804,7 @@ namespace Gems.UIWPF
         private void mnuOverview_Click(object sender, RoutedEventArgs e)
         {
             navigate<frmOverview>();
+            //navigateByEventDay<frmOverview>();
         }
 
         private void mnuPublishWebsite_Click(object sender, RoutedEventArgs e)
@@ -820,6 +885,7 @@ namespace Gems.UIWPF
                 Events ev = (Events)cboEventList.SelectedItem;
                 EventHelper clientEvent = new EventHelper();
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
+                lstEventDayList.SelectedIndex = 0;
                 clientEvent.Close();
 
                 if (dayDependentForm() == true)
@@ -872,6 +938,8 @@ namespace Gems.UIWPF
             if (currPageType == typeof(frmGuestList))
                 return true;
             if (currPageType == typeof(frmProgramManagement))
+                return true;
+            if (currPageType == typeof(frmOverview))
                 return true;
 
             return false;

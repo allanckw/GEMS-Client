@@ -49,12 +49,17 @@ Width="750" Height="600" Background="{x:Null}" Loaded="Window_Loaded">
                     <StackPanel Orientation="Horizontal" Height="31.314">
 						<Label Content="Start Time:" Width="76.803" FontSize="13"/>
 						<ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboStartHr" FontSize="12" SelectionChanged="cboStartHr_SelectionChanged" />
-						<ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="12"/>
+						<ComboBox Width="50" Height="23" x:Name="cboStartMin" FontSize="12" SelectionChanged="cboStartMin_SelectionChanged" />
 					</StackPanel>
-					<StackPanel Height="31.314" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Height="31.314">
+                        <Label Content="Duration:" Width="76.803" FontSize="13"/>
+                        <ComboBox Width="120" Height="23" Name="cboBookDuration" SelectionChanged="cboBookDuration_SelectionChanged" FontSize="12" />
+                    </StackPanel>
+                    <StackPanel Height="31.314" Orientation="Horizontal" Visibility="Visible">
 						<Label Content="End Time:" Width="76.803" FontSize="13"/>
-						<ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="12" SelectionChanged="cboEndHr_SelectionChanged" />
-						<ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="12"/>
+                        <TextBox Height="23" Name="txtEndTime" Width="208" FontSize="12" />
+                        <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="12" SelectionChanged="cboEndHr_SelectionChanged" Visibility="Hidden" />
+						<ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="12" Visibility="Hidden" />
 					</StackPanel>
 					<StackPanel Height="250">
 						<Label Content="Description:" FontSize="13"/>

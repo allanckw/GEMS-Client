@@ -255,9 +255,15 @@ namespace Gems.UIWPF
                     .AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
                     .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
 
-                endpro = endpro
-                    .AddHours(int.Parse(cboEndHr.SelectedValue.ToString()))
-                    .AddMinutes(int.Parse(cboEndMin.SelectedValue.ToString()));
+                int idx = cboBookDuration.SelectedIndex + 1;
+                //int duration = idx * 30;
+
+                endpro = startpro.AddMinutes(idx * 30);
+
+                if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
+                    throw new Exception("Error, Invalid time");
+                if (startpro >= endpro)
+                    throw new Exception("Error, Invalid time");
 
                 try
                 {
@@ -265,10 +271,7 @@ namespace Gems.UIWPF
 
                     if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).Name.Trim() != "")
                     {
-                        if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
-                            throw new Exception("Error, Invalid time");
-                        if(startpro >= endpro)
-                            throw new Exception("Error, Invalid time");
+                        
 
                         
                         //edit
@@ -351,6 +354,8 @@ namespace Gems.UIWPF
                     cboEndHr.SelectedIndex = selectedProgram.EndDateTime.Hour;
                 cboEndMin.SelectedIndex = selectedProgram.EndDateTime.Minute / 30;
                 txtDescription.Text = selectedProgram.Description;
+                txtLocation.Text = selectedProgram.Location;
+                cboBookDuration.SelectedIndex = computeDurationIdx(selectedProgram) - 1;
                 btnAdd.Content = "Save";
                 
             }
@@ -358,6 +363,12 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private int computeDurationIdx(Program p)
+        {
+            TimeSpan ts = p.EndDateTime.Subtract(p.StartDateTime);
+            return (int)(ts.TotalMinutes / 30);
         }
 
         private bool Check_OverWrite(List<Program> programList)
@@ -498,6 +509,7 @@ namespace Gems.UIWPF
 
         private void clearAll()
         {
+            lstProgram.SelectedIndex = -1;
             txtLocation.Text = "";
             txtName.Text = "";
             cboStartHr.SelectedIndex = 0;
@@ -505,6 +517,7 @@ namespace Gems.UIWPF
             cboEndHr.SelectedIndex = 0;
             cboEndMin.SelectedIndex = 0;
             txtDescription.Text = "";
+            cboBookDuration.SelectedIndex = 0;
             btnAdd.Content = "Add";
         }
 
@@ -659,6 +672,7 @@ namespace Gems.UIWPF
             }
             else
                 cboStartMin.IsEnabled = true;
+            loadDuration();
         }
 
         private void cboEndHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -703,6 +717,67 @@ namespace Gems.UIWPF
 
 
             return true;
+        }
+
+        private void cboBookDuration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime starttime = _event.StartDateTime.AddDays(cboDay.SelectedIndex).Date.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
+                .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
+            DateTime endtime = getEndDateTime(starttime);
+            txtEndTime.Text = endtime.ToString("dd MMM yyyy HH:mm");
+        }
+
+        private DateTime getEndDateTime(DateTime startTime)
+        {
+            int i = cboBookDuration.SelectedIndex + 1;
+            TimeSpan duration = new TimeSpan(0, i * 30, 0);
+            DateTime bookingEndDateTime = startTime.Add(duration);
+            return bookingEndDateTime;
+        }
+
+        private void loadDuration()
+        {
+            int pidx = cboBookDuration.SelectedIndex;
+            cboBookDuration.Items.Clear();
+            if (cboStartHr.SelectedIndex == -1 || cboStartMin.SelectedIndex == -1)
+            {
+                cboBookDuration.IsEnabled = false;
+                return;
+            }
+            cboBookDuration.IsEnabled = true;
+            int hr;
+            int.TryParse(cboStartHr.SelectedValue.ToString(), out hr);
+            int min;
+            int.TryParse(cboStartMin.SelectedValue.ToString(), out min);
+            int maxIdx = (24 - hr) * 2;
+            if (min > 0)
+            {
+                maxIdx -= 1;
+            }
+
+
+            //TimeSpan duration = new TimeSpan(0,0,0);
+
+            for (int i = 0; i <= maxIdx; i++)
+            {
+                TimeSpan duration = new TimeSpan(0, i * 30, 0);
+                if (i == 48)
+                    cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
+                else
+                    cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
+
+                //duration.Add(new TimeSpan(0, 30, 0));
+            }
+            cboBookDuration.Items.RemoveAt(0);
+            cboBookDuration.SelectedIndex = 0;
+            if (pidx != -1)
+                cboBookDuration.SelectedIndex = pidx;
+            cboBookDuration.IsEnabled = true;
+        }
+
+        private void cboStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadDuration();
         }
     }
 }

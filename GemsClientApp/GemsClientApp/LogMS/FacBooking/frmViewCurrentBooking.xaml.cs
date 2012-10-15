@@ -56,7 +56,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            loadEvents();
+         //   loadEvents();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -172,6 +172,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("Please Select a request!", "Invalid input",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
             }
             else
             {

@@ -34,15 +34,15 @@
         			<TextBox Height="25" x:Name="txtTag" Margin="0,0,66,0" Width="150"/>
         		</StackPanel>
         		<Button Content="Get Events" Height="23" x:Name="btnGetEvents" Width="75" Click="btnGetEvents_Click" HorizontalAlignment="Right" BorderThickness="1" Margin="0,3,10,0" />
-        		<GroupBox Header="List of Events" Height="115" FontFamily="Stencil" Foreground="Black" FontSize="13.333" Margin="0" Width="200" HorizontalAlignment="Left">
-                    <ComboBox x:Name="cboEventList" Margin="0" VerticalAlignment="Top" Width="180" HorizontalAlignment="Left" Height="90" FontFamily="Tahoma" FontSize="12" SelectionChanged="cboEventList_SelectionChanged">
+        		<GroupBox Header="List of Events" Height="115" FontFamily="Stencil" Foreground="Black" FontSize="13.333" Margin="0" Width="205" HorizontalAlignment="Left">
+                    <ComboBox x:Name="cboEventList" Margin="0" VerticalAlignment="Top" Width="190" HorizontalAlignment="Left" Height="90" FontFamily="Tahoma" FontSize="12" SelectionChanged="cboEventList_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5" Orientation="Vertical">
                                     <WrapPanel Orientation="Horizontal"  >
                                         <TextBlock Text="{Binding Name}" TextWrapping="Wrap"  Foreground="DarkBlue" FontWeight="Bold"/>
                                     </WrapPanel>
-                                    <WrapPanel Orientation="Horizontal" >
+                                    <WrapPanel Orientation="Horizontal"  Width="190"   MaxHeight="30" >
                                         <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Foreground="DarkBlue"/>
                                     </WrapPanel>
                                     <WrapPanel Orientation="Horizontal" >
@@ -56,9 +56,9 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </GroupBox>
-        		<GroupBox Header="List of Days" HorizontalAlignment="Left" Width="200" Height="380" Foreground="Black" FontSize="13.333" FontFamily="Stencil">
+        		<GroupBox Header="List of Days" HorizontalAlignment="Left" Width="204" Height="380" Foreground="Black" FontSize="13.333" FontFamily="Stencil">
         			<ListBox x:Name="lstEventDayList" Margin="1,1,0,0" FontFamily="Tahoma" FontSize="12" 
-        				FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventDayList_SelectionChanged"  Height="350" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top">
+        				FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventDayList_SelectionChanged"  Height="350" Width="188" HorizontalAlignment="Left" VerticalAlignment="Top">
         				<ListBox.ItemTemplate>
         					<DataTemplate>
         						<StackPanel Margin="5" Orientation="Vertical">
