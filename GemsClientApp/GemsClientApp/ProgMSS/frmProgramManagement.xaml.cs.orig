@@ -1,0 +1,567 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using evmsService.entities;
+
+namespace Gems.UIWPF
+{
+    /// <summary>
+    /// Interaction logic for frmProgramList.xaml
+    /// </summary>
+
+    delegate Point GetPositionDelegate(IInputElement element);
+    /// 
+
+    public partial class frmProgramManagement : GEMSPage
+    {
+
+        User user;
+       // Events event_;
+        EventDay eventDay_;
+
+        public frmProgramManagement()
+        {
+            InitializeComponent();
+
+            lstProgram.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(lstProgram_PreviewMouseLeftButtonDown);
+            lstProgram.Drop += new DragEventHandler(lstProgram_Drop);
+
+            lstProgram.DragOver += new DragEventHandler(lstProgram_DragOver);
+        }
+
+        public void CreateDTPData()
+        {
+            for (int i = 0; i <= 24; i++)
+            {
+                cboStartHr.Items.Add(string.Format("{0:00}", i));
+                cboEndHr.Items.Add(string.Format("{0:00}", i));
+            }
+
+            for (int i = 0; i <= 55; i += 30)
+            {
+                cboStartMin.Items.Add(string.Format("{0:00}", i));
+                cboEndMin.Items.Add(string.Format("{0:00}", i));
+            }
+            cboStartHr.SelectedIndex = 0;
+            cboStartMin.SelectedIndex = 0;
+        }
+        public frmProgramManagement(User u, EventDay day)
+            : this()
+        {
+            this.user = u;
+            this.eventDay_ = day;
+        }
+
+
+        //public frmProgramManagement(User u, Events e)
+        //    : this()
+        //{
+        //    this.user = u;
+        //    this.event_ = e;
+        //}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CreateDTPData();
+            txtDate.Content = eventDay_.StartDateTime.ToString("dd MMM yyyy");
+            lstProgram.SelectedValuePath = "ProgramId";
+            loadPrograms();
+        }
+
+        private void loadPrograms()
+        {
+            try
+            {
+                ProgrammeHelper client = new ProgrammeHelper();
+                List<Program> progList = client.ViewProgram(eventDay_.DayID).ToList<Program>();
+
+                client.Close();
+                DateTime curr = eventDay_.StartDateTime;
+                DateTime end = eventDay_.EndDateTime;
+
+                List<Program> newprogList = new List<Program>();
+                while (curr.CompareTo(end) < 0)
+                {
+                    for (int i = 0; i < progList.Count; i++)
+                    {
+                        if (progList[i].StartDateTime.CompareTo(curr) == 0)
+                        {
+                            newprogList.Add(progList[i]);
+                            curr = progList[i].EndDateTime;
+                            goto next;
+                        }
+                    }
+
+                    Program p = new Program();
+                    p.Name = "";
+                    p.StartDateTime = curr;
+                    p.EndDateTime = curr.AddMinutes(30);
+                    newprogList.Add(p);
+                    curr = curr.AddMinutes(30);
+
+                next:
+                    continue;
+
+                }
+
+                lstProgram.ItemsSource = newprogList.OrderBy(x => x.StartDateTime)
+                                                 .ThenBy(x => x.EndDateTime).ToList<Program>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private bool validateInputs()
+        {
+            if (txtName.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter programme segment name.");
+                return false;
+            }
+            if (cboStartHr.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please enter starting hour of programme segment.");
+                return false;
+            }
+            if (cboStartMin.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please enter starting minute of programme segment.");
+                return false;
+            }
+            if (cboEndHr.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please enter ending hour of programme segment.");
+                return false;
+            }
+            if (cboEndMin.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please enter ending minute of programme segment.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (validateInputs())
+            {
+                DateTime SegmentStartDateTime = eventDay_.StartDateTime.Date;
+                DateTime SegmentEndDateTime = eventDay_.StartDateTime.Date;
+
+                SegmentStartDateTime = SegmentStartDateTime
+                    .AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
+                    .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
+
+                int idx = cboBookDuration.SelectedIndex+1;
+                //int duration = idx * 30;
+                SegmentEndDateTime = SegmentStartDateTime.AddMinutes(idx * 30);
+
+                try
+                {
+                    ProgrammeHelper client = new ProgrammeHelper();
+
+
+                    if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
+                    {
+                        client.EditProgram(user, ((Program)lstProgram.SelectedItem).ProgramID, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, txtLocation.Text);
+
+                    }
+                    else
+                    {
+                        bool clashed = client.ValidateProgramTime(eventDay_.DayID, SegmentStartDateTime, SegmentEndDateTime);
+
+                        if (clashed)
+                        {
+                            MessageBox.Show("Program cannot be overlapped!",
+                        "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            return;
+                        }
+                        else
+                        {
+                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID,txtLocation.Text);
+                        }
+                    }
+
+                    client.Close();
+                    MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    clearAll();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                loadPrograms();
+            }
+        }
+
+
+        private bool Check_OverWrite(List<Program> programList)
+        {
+
+            for (int i = 0; i < programList.Count; i++)
+            {
+                if (programList[i].StartDateTime.CompareTo(eventDay_.StartDateTime) < 0)
+                    return true;
+                if (programList[i].EndDateTime.CompareTo(eventDay_.EndDateTime) > 0)
+                    return true;
+                for (int j = 0; j < programList.Count; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    if ((programList[i].StartDateTime.CompareTo(programList[j].StartDateTime) >= 0
+                        && programList[i].StartDateTime.CompareTo(programList[j].EndDateTime) < 0)
+                        ||
+                        (programList[i].EndDateTime.CompareTo(programList[j].StartDateTime) > 0
+                        && programList[i].EndDateTime.CompareTo(programList[j].EndDateTime) <= 0)
+                        )
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        private void Program_Swap(Program p1, Program p2)
+        {
+
+            DateTime tempstart;
+            tempstart = p1.StartDateTime;
+
+            TimeSpan p1ts = p1.EndDateTime - p1.StartDateTime;
+            TimeSpan p2ts = p2.EndDateTime - p2.StartDateTime;
+
+            p1.StartDateTime = p2.StartDateTime;
+            p1.EndDateTime = p2.StartDateTime.AddMinutes(p1ts.TotalMinutes);
+
+            p2.StartDateTime = tempstart;
+            p2.EndDateTime = tempstart.AddMinutes(p2ts.TotalMinutes);
+
+            List<Program> temp = new List<Program>();
+
+            if (p1.ProgramID != 0)
+                temp.Add(p1);
+
+            if (p2.ProgramID != 0)
+                temp.Add(p2);
+
+            for (int i = 0; i < lstProgram.Items.Count; i++)
+            {
+                if (((Program)lstProgram.Items[i]).ProgramID != 0 &&
+                    ((Program)lstProgram.Items[i]).ProgramID != p1.ProgramID &&
+                    ((Program)lstProgram.Items[i]).ProgramID != p2.ProgramID)
+                    temp.Add((Program)lstProgram.Items[i]);
+            }
+
+            if (Check_OverWrite(temp))
+            {
+                MessageBox.Show("OverLap or is over the event time boundary");
+                return;
+            }
+
+            try
+            {
+                ProgrammeHelper client = new ProgrammeHelper();
+                if (p1.ProgramID != 0)
+                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description,p1.Location);
+
+                if (p2.ProgramID != 0)
+                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description,p2.Location);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            loadPrograms();
+        }
+
+        private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstProgram.SelectedIndex == -1)
+            {
+                clearAll();
+                btnAdd.Content = "Add";
+                return;
+            }
+            try
+            {
+                ProgrammeHelper client = new ProgrammeHelper();
+                Program selectedProgram = (Program)lstProgram.SelectedItem;
+                txtName.Text = selectedProgram.Name;
+                cboStartHr.SelectedIndex = selectedProgram.StartDateTime.Hour;
+                cboStartMin.SelectedIndex = selectedProgram.StartDateTime.Minute / 30;
+                cboEndHr.SelectedIndex = selectedProgram.EndDateTime.Hour;
+                cboEndMin.SelectedIndex = selectedProgram.EndDateTime.Minute / 30;
+                txtDescription.Text = selectedProgram.Description;
+                txtLocation.Text = selectedProgram.Location;
+                btnAdd.Content = "Save";
+                client.Close();
+<<<<<<< HEAD
+                cboBookDuration.SelectedIndex=computeDurationIdx(selectedProgram)-1;
+=======
+                this.cboBookDuration.SelectedIndex=computeDuration(selectedProgram)-1;
+>>>>>>> f8e53ce7ada8fd35905055368c0f37cfdb272ffa
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+<<<<<<< HEAD
+        private int computeDurationIdx(Program p)
+=======
+        private int computeDuration(Program p)
+>>>>>>> f8e53ce7ada8fd35905055368c0f37cfdb272ffa
+        {
+            TimeSpan ts = p.EndDateTime.Subtract(p.StartDateTime);
+            return (int)(ts.TotalMinutes/30);
+        }
+
+        private void clearAll()
+        {
+
+            txtName.Text = "";
+            txtLocation.Text = "";
+            cboStartHr.SelectedIndex = 0;
+            cboStartMin.SelectedIndex = 0;
+            cboEndHr.SelectedIndex = 0;
+            cboEndMin.SelectedIndex = 0;
+            txtDescription.Text = "";
+            btnAdd.Content = "Add";
+            cboBookDuration.SelectedIndex = 0;
+        }
+
+        private void clearAll(object sender, RoutedEventArgs e)
+        {
+
+            lstProgram.SelectedIndex = -1;
+            clearAll();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstProgram.SelectedIndex == -1)
+                return;
+            try
+            {
+                ProgrammeHelper client = new ProgrammeHelper();
+                client.DeleteProgram(user, ((Program)lstProgram.SelectedItem).ProgramID);
+                client.Close();
+                MessageBox.Show("Operation succeeded!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            loadPrograms();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            loadPrograms();
+        }
+        int oldIndex = -1;
+
+        ListViewItem GetListViewItem(int index)
+        {
+            if (lstProgram.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+                return null;
+
+            return lstProgram.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
+        }
+        bool IsMouseOverTarget(Visual target, GetPositionDelegate getPosition)
+        {
+            if (target == null)
+                return false;
+            Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
+            Point mousePos = getPosition((IInputElement)target);
+            return bounds.Contains(mousePos);
+        }
+        int GetCurrentIndex(GetPositionDelegate getPosition)
+        {
+
+            int index = -1;
+            for (int i = 0; i < this.lstProgram.Items.Count; ++i)
+            {
+                ListViewItem item = GetListViewItem(i);
+                if (this.IsMouseOverTarget(item, getPosition))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        private void lstProgram_DragOver(object sender, DragEventArgs e)
+        {
+            try
+            {
+                double i = TranslatePoint(new Point(0, 0), lstProgram).Y;
+                i = Math.Abs(i);
+
+
+                if (e.GetPosition(this).Y <= i + 10)// && e.GetPosition(this).Y >= i)
+                {
+                    int aaa = this.GetCurrentIndex(e.GetPosition);
+                    if (this.GetCurrentIndex(e.GetPosition) != 0)
+                    {
+                        lstProgram.ScrollIntoView(lstProgram.Items[this.GetCurrentIndex(e.GetPosition) - 1]);
+
+                    }
+                }
+
+                else if (e.GetPosition(this).Y >= i - 10)// && e.GetPosition(this).Y <= i)
+                {
+                    double zz = e.GetPosition(this).Y;
+                    if (this.GetCurrentIndex(e.GetPosition) != lstProgram.Items.Count - 1)
+                    {
+                        lstProgram.ScrollIntoView(lstProgram.Items[this.GetCurrentIndex(e.GetPosition) + 1]);
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void lstProgram_Drop(object sender, DragEventArgs e)
+        {
+            if (oldIndex < 0)
+                return;
+
+            int index = this.GetCurrentIndex(e.GetPosition);
+
+            if (index < 0)
+                return;
+
+            if (index == oldIndex)
+                return;
+
+            Program_Swap((Program)lstProgram.Items[oldIndex], (Program)lstProgram.Items[index]);
+
+            loadPrograms();
+        }
+
+        private void lstProgram_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            oldIndex = this.GetCurrentIndex(e.GetPosition);
+
+            if (oldIndex < 0)
+                return;
+
+            lstProgram.SelectedIndex = oldIndex;
+            Program selectedItem = this.lstProgram.Items[oldIndex] as Program;
+
+            if (selectedItem == null)
+                return;
+
+            // this will create the drag "rectangle"
+            DragDropEffects allowedEffects = DragDropEffects.Move;
+            if (DragDrop.DoDragDrop(this.lstProgram, selectedItem, allowedEffects) != DragDropEffects.None)
+            {
+                // The item was dropped into a new location,
+                // so make it the new selected item.
+                this.lstProgram.SelectedItem = selectedItem;
+            }
+        }
+
+        private void cboStartHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboStartHr.SelectedValue.ToString() == "24")
+            {
+                cboStartMin.SelectedIndex = 0;
+                cboStartMin.IsEnabled = false;
+            }
+            else
+                cboStartMin.IsEnabled = true;
+
+                loadDuration();
+        }
+
+        private void cboEndHr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboEndHr.SelectedValue.ToString() == "24")
+            {
+                cboEndMin.SelectedIndex = 0;
+                cboEndMin.IsEnabled = false;
+            }
+            else
+                cboEndMin.IsEnabled = true;
+        }
+
+        private void cboBookDuration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime starttime = eventDay_.StartDateTime.Date.AddHours(int.Parse(cboStartHr.SelectedValue.ToString()))
+                .AddMinutes(int.Parse(cboStartMin.SelectedValue.ToString()));
+            DateTime endtime = getEndDateTime(starttime);
+            txtEndTime.Text = endtime.ToString("dd MMM yyyy HH:mm");
+        }
+
+        private DateTime getEndDateTime(DateTime startTime)
+        {
+            int i = cboBookDuration.SelectedIndex + 1;
+            TimeSpan duration = new TimeSpan(0, i * 30, 0);
+            DateTime bookingEndDateTime = startTime.Add(duration);
+            return bookingEndDateTime;
+        }
+
+        private void loadDuration()
+        {
+            int pidx = cboBookDuration.SelectedIndex;
+            cboBookDuration.Items.Clear();
+            if (cboStartHr.SelectedIndex==-1 || cboStartMin.SelectedIndex==-1)
+            {
+                cboBookDuration.IsEnabled = false;
+                return;
+            }
+            cboBookDuration.IsEnabled = true;
+            int hr;
+            int.TryParse(cboStartHr.SelectedValue.ToString(), out hr);
+            int min;
+            int.TryParse(cboStartMin.SelectedValue.ToString(), out min);
+            int maxIdx = (24 - hr) * 2;
+            if (min > 0)
+            {
+                maxIdx -= 1;
+            }
+
+
+            //TimeSpan duration = new TimeSpan(0,0,0);
+
+            for (int i = 0; i <= maxIdx; i++)
+            {
+                TimeSpan duration = new TimeSpan(0, i * 30, 0);
+                if (i == 48)
+                    cboBookDuration.Items.Add(string.Format("{0:00}", 24) + " H " + string.Format("{0:00}", 0) + " Min");
+                else
+                    cboBookDuration.Items.Add(string.Format("{0:00}", duration.Hours) + " H " + string.Format("{0:00}", duration.Minutes) + " Min");
+
+                //duration.Add(new TimeSpan(0, 30, 0));
+            }
+            cboBookDuration.Items.RemoveAt(0);
+            cboBookDuration.SelectedIndex = 0;
+            if (pidx!=-1)
+                cboBookDuration.SelectedIndex = pidx;
+            cboBookDuration.IsEnabled = true;
+        }
+
+        private void cboStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadDuration();
+        }
+    }
+}
