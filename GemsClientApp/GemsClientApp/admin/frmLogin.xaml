@@ -13,13 +13,13 @@
 		<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
         <Label Canvas.Left="138" Canvas.Top="116" Height="28" Name="label1" Width="50
                " Content="User ID:"></Label>
-        <TextBox Canvas.Left="186" Canvas.Top="118" Height="23" Name="txtUserID" Width="200" />
+        <TextBox Canvas.Left="186" Canvas.Top="118" Height="23" Name="txtUserID" Width="200"  ToolTip="Enter your NUSNET user id" />
         <Label Canvas.Left="125" Canvas.Top="153" Height="28" Name="label2" Width="66" Content="Password:"></Label>
-        <PasswordBox PasswordChar="*" Canvas.Left="186" Canvas.Top="153" Height="23" Name="txtPassword" Width="200" />
+        <PasswordBox PasswordChar="*" Canvas.Left="186" Canvas.Top="153" Height="23" Name="txtPassword" Width="200" ToolTip="Enter your NUSNET password"/>
 
         <Button Canvas.Left="232" Canvas.Top="225" Content="Login" Height="23" Name="btnLogin" Width="75" BorderBrush="Black" BorderThickness="0" Click="btnLogin_Click" IsDefault="True" />
         <Label Canvas.Left="35" Canvas.Top="176" Content="Server Address:" Height="28" Name="label4" Width="92" />
-        <TextBox Canvas.Left="35" Canvas.Top="196" Height="23" Name="txtSvAddr" Width="465" />
+        <TextBox Canvas.Left="35" Canvas.Top="196" Height="23" Name="txtSvAddr" Width="465" ToolTip="Server URL Address, do not change unless you know what you are doing" />
         <Label Canvas.Left="16" Canvas.Top="44" Content="GEMS Events Management System" FontSize="29.333" FontWeight="Bold">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="1" />
