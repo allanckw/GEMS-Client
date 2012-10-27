@@ -3837,6 +3837,246 @@ namespace evmsService.entities
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string DescriptionField;
+        
+        private int EventIDField;
+        
+        private string RemarkField;
+        
+        private int RequestIDField;
+        
+        private evmsService.entities.RequestStatus StatusField;
+        
+        private string TargetEmailField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark
+        {
+            get
+            {
+                return this.RemarkField;
+            }
+            set
+            {
+                this.RemarkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestID
+        {
+            get
+            {
+                return this.RequestIDField;
+            }
+            set
+            {
+                this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.RequestStatus Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TargetEmail
+        {
+            get
+            {
+                return this.TargetEmailField;
+            }
+            set
+            {
+                this.TargetEmailField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestStatus", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum RequestStatus : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pending = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Approved = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rejected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cancelled = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestLog", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class RequestLog : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string DescriptionField;
+        
+        private string RemarkField;
+        
+        private System.DateTime RequestDateTimeField;
+        
+        private int RequestIDField;
+        
+        private int RequestLogIDField;
+        
+        private evmsService.entities.RequestStatus StatusField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark
+        {
+            get
+            {
+                return this.RemarkField;
+            }
+            set
+            {
+                this.RemarkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RequestDateTime
+        {
+            get
+            {
+                return this.RequestDateTimeField;
+            }
+            set
+            {
+                this.RequestDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestID
+        {
+            get
+            {
+                return this.RequestIDField;
+            }
+            set
+            {
+                this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestLogID
+        {
+            get
+            {
+                return this.RequestLogIDField;
+            }
+            set
+            {
+                this.RequestLogIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.RequestStatus Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+    }
 }
 namespace evmsService.Controllers
 {
@@ -4611,10 +4851,6 @@ public partial class GuestClient : System.ServiceModel.ClientBase<IGuest>, IGues
 public interface IAdministration
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/Authenticate", ReplyAction="http://tempuri.org/IAdministration/AuthenticateResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/AuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.User Authenticate(string userid, string password);
-    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/SecureAuthenticate", ReplyAction="http://tempuri.org/IAdministration/SecureAuthenticateResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/SecureAuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials);
@@ -4684,11 +4920,6 @@ public partial class AdministrationClient : System.ServiceModel.ClientBase<IAdmi
     public AdministrationClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
             base(binding, remoteAddress)
     {
-    }
-    
-    public evmsService.entities.User Authenticate(string userid, string password)
-    {
-        return base.Channel.Authenticate(userid, password);
     }
     
     public evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials)
@@ -5996,12 +6227,143 @@ public partial class WizardClient : System.ServiceModel.ClientBase<IWizard>, IWi
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IRequest")]
+public interface IRequest
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/CreateNewRequest", ReplyAction="http://tempuri.org/IRequest/CreateNewRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/CreateNewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/GetRequest", ReplyAction="http://tempuri.org/IRequest/GetRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/GetRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Request GetRequest(int requestID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/EditRequest", ReplyAction="http://tempuri.org/IRequest/EditRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/EditRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void EditRequest(evmsService.entities.User user, int requestID, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ViewRequest", ReplyAction="http://tempuri.org/IRequest/ViewRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ViewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Request[] ViewRequest(string targetEmail, string OTP);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ChangeStatus", ReplyAction="http://tempuri.org/IRequest/ChangeStatusResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ChangeStatusSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void ChangeStatus(string targetEmail, int requestID, string otp, evmsService.entities.RequestStatus status, string remark);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ValidateRequestee", ReplyAction="http://tempuri.org/IRequest/ValidateRequesteeResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ValidateRequesteeSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void ValidateRequestee(string targetEmail, string OTP);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/GetOtp", ReplyAction="http://tempuri.org/IRequest/GetOtpResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/GetOtpSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string GetOtp(string targetEmail);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ViewRequestLog", ReplyAction="http://tempuri.org/IRequest/ViewRequestLogResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ViewRequestLogSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.RequestLog[] ViewRequestLog(string TargetEmail, string otp, int RequestID);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IRequestChannel : IRequest, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class RequestClient : System.ServiceModel.ClientBase<IRequest>, IRequest
+{
+    
+    public RequestClient()
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public RequestClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description)
+    {
+        return base.Channel.CreateNewRequest(user, eventid, targetEmail, description);
+    }
+    
+    public evmsService.entities.Request GetRequest(int requestID)
+    {
+        return base.Channel.GetRequest(requestID);
+    }
+    
+    public void EditRequest(evmsService.entities.User user, int requestID, string description)
+    {
+        base.Channel.EditRequest(user, requestID, description);
+    }
+    
+    public evmsService.entities.Request[] ViewRequest(string targetEmail, string OTP)
+    {
+        return base.Channel.ViewRequest(targetEmail, OTP);
+    }
+    
+    public void ChangeStatus(string targetEmail, int requestID, string otp, evmsService.entities.RequestStatus status, string remark)
+    {
+        base.Channel.ChangeStatus(targetEmail, requestID, otp, status, remark);
+    }
+    
+    public void ValidateRequestee(string targetEmail, string OTP)
+    {
+        base.Channel.ValidateRequestee(targetEmail, OTP);
+    }
+    
+    public string GetOtp(string targetEmail)
+    {
+        return base.Channel.GetOtp(targetEmail);
+    }
+    
+    public evmsService.entities.RequestLog[] ViewRequestLog(string TargetEmail, string otp, int RequestID)
+    {
+        return base.Channel.ViewRequestLog(TargetEmail, otp, RequestID);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 [System.ServiceModel.ServiceContractAttribute(ConfigurationName="IMobile")]
 public interface IMobile
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/GetDataInt", ReplyAction="http://tempuri.org/IMobile/GetDataIntResponse")]
-    string GetDataInt(int value);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventsWithTag", ReplyAction="http://tempuri.org/IMobile/m_GetEventsWithTagResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventsWithTag(System.DateTime fromDate, System.DateTime toDate, string tag);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEvents", ReplyAction="http://tempuri.org/IMobile/m_GetEventsResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEvents(System.DateTime fromDate, System.DateTime toDate);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventObj", ReplyAction="http://tempuri.org/IMobile/m_GetEventObjResponse")]
+    evmsService.entities.Events m_GetEventObj(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventProgramme", ReplyAction="http://tempuri.org/IMobile/m_GetEventProgrammeResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventProgramme(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetProgramme", ReplyAction="http://tempuri.org/IMobile/m_GetProgrammeResponse")]
+    evmsService.entities.Program m_GetProgramme(int progID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventGuests", ReplyAction="http://tempuri.org/IMobile/m_GetEventGuestsResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventGuests(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetGuest", ReplyAction="http://tempuri.org/IMobile/m_GetGuestResponse")]
+    evmsService.entities.Guest m_GetGuest(int guestID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6038,8 +6400,38 @@ public partial class MobileClient : System.ServiceModel.ClientBase<IMobile>, IMo
     {
     }
     
-    public string GetDataInt(int value)
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventsWithTag(System.DateTime fromDate, System.DateTime toDate, string tag)
     {
-        return base.Channel.GetDataInt(value);
+        return base.Channel.m_GetEventsWithTag(fromDate, toDate, tag);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEvents(System.DateTime fromDate, System.DateTime toDate)
+    {
+        return base.Channel.m_GetEvents(fromDate, toDate);
+    }
+    
+    public evmsService.entities.Events m_GetEventObj(int eventID)
+    {
+        return base.Channel.m_GetEventObj(eventID);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventProgramme(int eventID)
+    {
+        return base.Channel.m_GetEventProgramme(eventID);
+    }
+    
+    public evmsService.entities.Program m_GetProgramme(int progID)
+    {
+        return base.Channel.m_GetProgramme(progID);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventGuests(int eventID)
+    {
+        return base.Channel.m_GetEventGuests(eventID);
+    }
+    
+    public evmsService.entities.Guest m_GetGuest(int guestID)
+    {
+        return base.Channel.m_GetGuest(guestID);
     }
 }
