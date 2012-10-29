@@ -7,6 +7,7 @@ using System;
 using System.Windows.Documents;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.IO;
 
 
 namespace Gems.UIWPF
@@ -29,6 +30,9 @@ namespace Gems.UIWPF
         public User _user;
         public List<Task> _task;
         GemsWizPage Curpage;
+
+        private AxAgentObjects.AxAgent axAgent1;
+        private AgentObjects.IAgentCtlCharacter speaker;
 
         
         public frmWizard(User u)
@@ -120,9 +124,58 @@ namespace Gems.UIWPF
             return index;
         }
 
+        public void WizHelpTalk(string talk)
+        {
+            try
+            {
+                
+                this.speaker.Speak(talk, null);
+            }
+            catch { }
+        }
+
         private void Canvas_Loaded(object sender, RoutedEventArgs e)
         {
             curindex = 0;
+
+            
+            axAgent1 = null;
+            try
+            {
+                System.Windows.Forms.Integration.WindowsFormsHost host = new System.Windows.Forms.Integration.WindowsFormsHost();
+                // Create an object of your User control.
+                axAgent1 = new AxAgentObjects.AxAgent();
+                // Assign MyWebcam control as the host control's child.
+                host.Child = axAgent1;
+                // Add the interop host control to the Grid
+                // control's collection of child controls.
+                this.gridwiz.Children.Add(host);
+
+                this.axAgent1.Characters.Load("merlin", "merlin.acs");    //load the character  in the axAgent1 object  -- axAgent1 can load more than one character
+                //this.speaker.SoundEffectsOn = false;
+                //speaker.SoundEffectsOn = false;
+                this.speaker = this.axAgent1.Characters["merlin"];     //give the speaker object the character to show it
+                this.speaker.Show(0);
+
+                
+
+                cbwiz.IsChecked = true;
+                cbwizsound.IsChecked = true;
+
+                WizHelpTalk("Welcome to the GEMS Wizard, Please Enter your new event information.");
+            }
+            //catch (FileNotFoundException)   //if the charater not found  // using IO 
+            //{
+            //    MessageBox.Show("Invalid charater location");
+            //}
+            catch
+            {
+                cbwiz.Visibility = Visibility.Collapsed;
+                cbwizsound.Visibility = Visibility.Collapsed;
+                //dont load wiz stuff
+            }
+
+
         }
 
         
@@ -230,6 +283,8 @@ namespace Gems.UIWPF
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            
+            WizHelpTalk("HIII");
             if (Curpage.Save())
             {
                 curindex = HighLight_Navigation(curindex + 1);
@@ -316,6 +371,67 @@ namespace Gems.UIWPF
             Mouse.OverrideCursor = Cursors.Arrow;
 
             
+        }
+
+        private void cbwiz_Checked(object sender, RoutedEventArgs e)
+        {
+            //this.axAgent1.Characters.Load("merlin", "merlin.acs");    //load the character  in the axAgent1 object  -- axAgent1 can load more than one character
+
+            //    this.speaker = this.axAgent1.Characters["merlin"];     //give the speaker object the character to show it
+            //    this.speaker.Show(0);
+            
+            cbwizsound.Visibility = Visibility.Visible;
+            cbwiz.IsChecked = true;
+            try
+            {
+                this.axAgent1.Characters.Load("merlin", "merlin.acs");    //load the character  in the axAgent1 object  -- axAgent1 can load more than one character
+
+                this.speaker = this.axAgent1.Characters["merlin"];     //give the speaker object the character to show it
+                this.speaker.Show(0);
+
+                speaker.SoundEffectsOn = false;
+                
+                this.speaker.Speak("ahhhhhhh", null);
+                
+                
+            }
+            catch { }
+                
+            
+        }
+
+        private void cbwizsound_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
+
+        private void cbwiz_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbwizsound.Visibility = Visibility.Collapsed;
+            try
+            {
+                axAgent1.Characters.Unload("Merlin");
+
+                this.speaker.StopAll(0);
+            }
+            catch { }
+        }
+
+        private void cbwizsound_Unchecked(object sender, RoutedEventArgs e)
+        {
+            speaker.SoundEffectsOn = false;
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                axAgent1.Characters.Unload("Merlin");
+
+                this.speaker.StopAll(0);
+            }
+            catch { }
         }
       
     }
