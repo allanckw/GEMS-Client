@@ -255,7 +255,7 @@ namespace Gems.UIWPF
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
                     client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID, txtPost.Text.Trim(),
+                        ((RoleWithUser)lstRole.SelectedItem).role.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 client.Close();
                 MessageBox.Show("Operation succeeded!");

@@ -3837,6 +3837,555 @@ namespace evmsService.entities
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string DescriptionField;
+        
+        private int EventIDField;
+        
+        private string RemarkField;
+        
+        private int RequestIDField;
+        
+        private evmsService.entities.RequestStatus StatusField;
+        
+        private string TargetEmailField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark
+        {
+            get
+            {
+                return this.RemarkField;
+            }
+            set
+            {
+                this.RemarkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestID
+        {
+            get
+            {
+                return this.RequestIDField;
+            }
+            set
+            {
+                this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.RequestStatus Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TargetEmail
+        {
+            get
+            {
+                return this.TargetEmailField;
+            }
+            set
+            {
+                this.TargetEmailField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestStatus", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public enum RequestStatus : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pending = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Approved = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rejected = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cancelled = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Requestee", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class Requestee : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string OtpField;
+        
+        private string TargetEmailField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Otp
+        {
+            get
+            {
+                return this.OtpField;
+            }
+            set
+            {
+                this.OtpField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TargetEmail
+        {
+            get
+            {
+                return this.TargetEmailField;
+            }
+            set
+            {
+                this.TargetEmailField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestLog", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class RequestLog : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string DescriptionField;
+        
+        private string RemarkField;
+        
+        private System.DateTime RequestDateTimeField;
+        
+        private int RequestIDField;
+        
+        private int RequestLogIDField;
+        
+        private evmsService.entities.RequestStatus StatusField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark
+        {
+            get
+            {
+                return this.RemarkField;
+            }
+            set
+            {
+                this.RemarkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RequestDateTime
+        {
+            get
+            {
+                return this.RequestDateTimeField;
+            }
+            set
+            {
+                this.RequestDateTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestID
+        {
+            get
+            {
+                return this.RequestIDField;
+            }
+            set
+            {
+                this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestLogID
+        {
+            get
+            {
+                return this.RequestLogIDField;
+            }
+            set
+            {
+                this.RequestLogIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.RequestStatus Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkspaceFolders", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class WorkspaceFolders : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string CreatedByField;
+        
+        private System.DateTime CreatedOnField;
+        
+        private int EventIDField;
+        
+        private string FolderDescriptionField;
+        
+        private string FolderNameField;
+        
+        private string RemarksField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatedBy
+        {
+            get
+            {
+                return this.CreatedByField;
+            }
+            set
+            {
+                this.CreatedByField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedOn
+        {
+            get
+            {
+                return this.CreatedOnField;
+            }
+            set
+            {
+                this.CreatedOnField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FolderDescription
+        {
+            get
+            {
+                return this.FolderDescriptionField;
+            }
+            set
+            {
+                this.FolderDescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FolderName
+        {
+            get
+            {
+                return this.FolderNameField;
+            }
+            set
+            {
+                this.FolderNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkspaceFiles", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class WorkspaceFiles : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int EventIDField;
+        
+        private string FileDescriptionField;
+        
+        private string FileNameField;
+        
+        private string FolderNameField;
+        
+        private string RemarksField;
+        
+        private string UploadedByField;
+        
+        private System.DateTime UploadedOnField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EventID
+        {
+            get
+            {
+                return this.EventIDField;
+            }
+            set
+            {
+                this.EventIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileDescription
+        {
+            get
+            {
+                return this.FileDescriptionField;
+            }
+            set
+            {
+                this.FileDescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName
+        {
+            get
+            {
+                return this.FileNameField;
+            }
+            set
+            {
+                this.FileNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FolderName
+        {
+            get
+            {
+                return this.FolderNameField;
+            }
+            set
+            {
+                this.FolderNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks
+        {
+            get
+            {
+                return this.RemarksField;
+            }
+            set
+            {
+                this.RemarksField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UploadedBy
+        {
+            get
+            {
+                return this.UploadedByField;
+            }
+            set
+            {
+                this.UploadedByField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UploadedOn
+        {
+            get
+            {
+                return this.UploadedOnField;
+            }
+            set
+            {
+                this.UploadedOnField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExportData", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class ExportData : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
 }
 namespace evmsService.Controllers
 {
@@ -4411,7 +4960,7 @@ public interface ITasks
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITasks/GetTasksByEvent", ReplyAction="http://tempuri.org/ITasks/GetTasksByEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/ITasks/GetTasksByEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.Task[] GetTasksByEvent(int eventID);
+    evmsService.entities.Task[] GetTasksByEvent(string userid, int eventID);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITasks/GetTaskByRole", ReplyAction="http://tempuri.org/ITasks/GetTaskByRoleResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/ITasks/GetTaskByRoleSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -4494,9 +5043,9 @@ public partial class TasksClient : System.ServiceModel.ClientBase<ITasks>, ITask
         base.Channel.SetTaskIncomplete(user, task, roleID, remarks);
     }
     
-    public evmsService.entities.Task[] GetTasksByEvent(int eventID)
+    public evmsService.entities.Task[] GetTasksByEvent(string userid, int eventID)
     {
-        return base.Channel.GetTasksByEvent(eventID);
+        return base.Channel.GetTasksByEvent(userid, eventID);
     }
     
     public evmsService.entities.Task[] GetTaskByRole(int eventID, int roleID)
@@ -4611,10 +5160,6 @@ public partial class GuestClient : System.ServiceModel.ClientBase<IGuest>, IGues
 public interface IAdministration
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/Authenticate", ReplyAction="http://tempuri.org/IAdministration/AuthenticateResponse")]
-    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/AuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.User Authenticate(string userid, string password);
-    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/SecureAuthenticate", ReplyAction="http://tempuri.org/IAdministration/SecureAuthenticateResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/SecureAuthenticateSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials);
@@ -4684,11 +5229,6 @@ public partial class AdministrationClient : System.ServiceModel.ClientBase<IAdmi
     public AdministrationClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
             base(binding, remoteAddress)
     {
-    }
-    
-    public evmsService.entities.User Authenticate(string userid, string password)
-    {
-        return base.Channel.Authenticate(userid, password);
     }
     
     public evmsService.entities.User SecureAuthenticate(evmsService.entities.Credentials credentials)
@@ -5903,6 +6443,12 @@ public interface IParticipantsTransactions
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IParticipantsTransactions/SaveTransaction", ReplyAction="http://tempuri.org/IParticipantsTransactions/SaveTransactionResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IParticipantsTransactions/SaveTransactionSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void SaveTransaction(string transID, evmsService.entities.ParticipantTransaction[] trans);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IParticipantsTransactions/ViewParticipantsTransactions", ReplyAction="http://tempuri.org/IParticipantsTransactions/ViewParticipantsTransactionsResponse" +
+        "")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IParticipantsTransactions/ViewParticipantsTransactionsSExcepti" +
+        "onFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.ParticipantTransaction[] ViewParticipantsTransactions(string email, System.DateTime fromDate, System.DateTime toDate);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -5942,6 +6488,11 @@ public partial class ParticipantsTransactionsClient : System.ServiceModel.Client
     public void SaveTransaction(string transID, evmsService.entities.ParticipantTransaction[] trans)
     {
         base.Channel.SaveTransaction(transID, trans);
+    }
+    
+    public evmsService.entities.ParticipantTransaction[] ViewParticipantsTransactions(string email, System.DateTime fromDate, System.DateTime toDate)
+    {
+        return base.Channel.ViewParticipantsTransactions(email, fromDate, toDate);
     }
 }
 
@@ -5996,12 +6547,333 @@ public partial class WizardClient : System.ServiceModel.ClientBase<IWizard>, IWi
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IRequest")]
+public interface IRequest
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/CreateNewRequest", ReplyAction="http://tempuri.org/IRequest/CreateNewRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/CreateNewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/GetRequest", ReplyAction="http://tempuri.org/IRequest/GetRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/GetRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Request GetRequest(int requestID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/EditRequest", ReplyAction="http://tempuri.org/IRequest/EditRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/EditRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void EditRequest(evmsService.entities.User user, int requestID, string description);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ViewRequest", ReplyAction="http://tempuri.org/IRequest/ViewRequestResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ViewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Request[] ViewRequest(evmsService.entities.Requestee requestee);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ChangeStatus", ReplyAction="http://tempuri.org/IRequest/ChangeStatusResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ChangeStatusSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void ChangeStatus(evmsService.entities.Requestee requestee, int requestID, evmsService.entities.RequestStatus status, string remark);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ValidateRequestee", ReplyAction="http://tempuri.org/IRequest/ValidateRequesteeResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ValidateRequesteeSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Requestee ValidateRequestee(string targetEmail, string OTP);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/GetOtp", ReplyAction="http://tempuri.org/IRequest/GetOtpResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/GetOtpSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    string GetOtp(string targetEmail);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ViewRequestLog", ReplyAction="http://tempuri.org/IRequest/ViewRequestLogResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ViewRequestLogSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.RequestLog[] ViewRequestLog(evmsService.entities.Requestee requestee, int RequestID);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IRequestChannel : IRequest, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class RequestClient : System.ServiceModel.ClientBase<IRequest>, IRequest
+{
+    
+    public RequestClient()
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public RequestClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public RequestClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description)
+    {
+        return base.Channel.CreateNewRequest(user, eventid, targetEmail, description);
+    }
+    
+    public evmsService.entities.Request GetRequest(int requestID)
+    {
+        return base.Channel.GetRequest(requestID);
+    }
+    
+    public void EditRequest(evmsService.entities.User user, int requestID, string description)
+    {
+        base.Channel.EditRequest(user, requestID, description);
+    }
+    
+    public evmsService.entities.Request[] ViewRequest(evmsService.entities.Requestee requestee)
+    {
+        return base.Channel.ViewRequest(requestee);
+    }
+    
+    public void ChangeStatus(evmsService.entities.Requestee requestee, int requestID, evmsService.entities.RequestStatus status, string remark)
+    {
+        base.Channel.ChangeStatus(requestee, requestID, status, remark);
+    }
+    
+    public evmsService.entities.Requestee ValidateRequestee(string targetEmail, string OTP)
+    {
+        return base.Channel.ValidateRequestee(targetEmail, OTP);
+    }
+    
+    public string GetOtp(string targetEmail)
+    {
+        return base.Channel.GetOtp(targetEmail);
+    }
+    
+    public evmsService.entities.RequestLog[] ViewRequestLog(evmsService.entities.Requestee requestee, int RequestID)
+    {
+        return base.Channel.ViewRequestLog(requestee, RequestID);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IArtefact")]
+public interface IArtefact
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/CreateFolder", ReplyAction="http://tempuri.org/IArtefact/CreateFolderResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/CreateFolderSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void CreateFolder(evmsService.entities.User user, int eventID, string folderName, string folderDesc, string remarks);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/DeleteFolder", ReplyAction="http://tempuri.org/IArtefact/DeleteFolderResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/DeleteFolderSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void DeleteFolder(evmsService.entities.User user, int eventID, string folderName);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/UpdateFolder", ReplyAction="http://tempuri.org/IArtefact/UpdateFolderResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/UpdateFolderSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void UpdateFolder(evmsService.entities.User user, int eventID, string folderName, string folderDesc, string remarks);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/GetWorkSpaceFolders", ReplyAction="http://tempuri.org/IArtefact/GetWorkSpaceFoldersResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/GetWorkSpaceFoldersSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.WorkspaceFolders[] GetWorkSpaceFolders(evmsService.entities.User user, int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/UploadFile", ReplyAction="http://tempuri.org/IArtefact/UploadFileResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/UploadFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/DeleteFile", ReplyAction="http://tempuri.org/IArtefact/DeleteFileResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/DeleteFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void DeleteFile(evmsService.entities.User user, int eventID, string FolderName, string fileName);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/UpdateFile", ReplyAction="http://tempuri.org/IArtefact/UpdateFileResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/UpdateFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/GetWorkSpaceFile", ReplyAction="http://tempuri.org/IArtefact/GetWorkSpaceFileResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/GetWorkSpaceFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.WorkspaceFiles GetWorkSpaceFile(int eventID, string folderName, string fileName);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/GetWorkSpaceFiles", ReplyAction="http://tempuri.org/IArtefact/GetWorkSpaceFilesResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/GetWorkSpaceFilesSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.WorkspaceFiles[] GetWorkSpaceFiles(evmsService.entities.User user, int eventID, string folderName);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/GetWorkSpaceFolder", ReplyAction="http://tempuri.org/IArtefact/GetWorkSpaceFolderResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/GetWorkSpaceFolderSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.WorkspaceFolders GetWorkSpaceFolder(int eventID, string folderName);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IArtefactChannel : IArtefact, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class ArtefactClient : System.ServiceModel.ClientBase<IArtefact>, IArtefact
+{
+    
+    public ArtefactClient()
+    {
+    }
+    
+    public ArtefactClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public ArtefactClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ArtefactClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ArtefactClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public void CreateFolder(evmsService.entities.User user, int eventID, string folderName, string folderDesc, string remarks)
+    {
+        base.Channel.CreateFolder(user, eventID, folderName, folderDesc, remarks);
+    }
+    
+    public void DeleteFolder(evmsService.entities.User user, int eventID, string folderName)
+    {
+        base.Channel.DeleteFolder(user, eventID, folderName);
+    }
+    
+    public void UpdateFolder(evmsService.entities.User user, int eventID, string folderName, string folderDesc, string remarks)
+    {
+        base.Channel.UpdateFolder(user, eventID, folderName, folderDesc, remarks);
+    }
+    
+    public evmsService.entities.WorkspaceFolders[] GetWorkSpaceFolders(evmsService.entities.User user, int eventID)
+    {
+        return base.Channel.GetWorkSpaceFolders(user, eventID);
+    }
+    
+    public void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks)
+    {
+        base.Channel.UploadFile(user, eventID, folderName, fileName, fileDesc, remarks);
+    }
+    
+    public void DeleteFile(evmsService.entities.User user, int eventID, string FolderName, string fileName)
+    {
+        base.Channel.DeleteFile(user, eventID, FolderName, fileName);
+    }
+    
+    public void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks)
+    {
+        base.Channel.UpdateFile(user, eventID, folderName, fileName, fileDesc, remarks);
+    }
+    
+    public evmsService.entities.WorkspaceFiles GetWorkSpaceFile(int eventID, string folderName, string fileName)
+    {
+        return base.Channel.GetWorkSpaceFile(eventID, folderName, fileName);
+    }
+    
+    public evmsService.entities.WorkspaceFiles[] GetWorkSpaceFiles(evmsService.entities.User user, int eventID, string folderName)
+    {
+        return base.Channel.GetWorkSpaceFiles(user, eventID, folderName);
+    }
+    
+    public evmsService.entities.WorkspaceFolders GetWorkSpaceFolder(int eventID, string folderName)
+    {
+        return base.Channel.GetWorkSpaceFolder(eventID, folderName);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="IExport")]
+public interface IExport
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IExport/GetExportData", ReplyAction="http://tempuri.org/IExport/GetExportDataResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IExport/GetExportDataSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedEvent, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public interface IExportChannel : IExport, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+public partial class ExportClient : System.ServiceModel.ClientBase<IExport>, IExport
+{
+    
+    public ExportClient()
+    {
+    }
+    
+    public ExportClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public ExportClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ExportClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public ExportClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedEvent, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant)
+    {
+        return base.Channel.GetExportData(u, eventID, NeedEvent, NeedFacilities, NeedPrograms, NeedIncome, NeedItems, NeedTasks, NeedGuest, NeedParticipant);
+    }
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 [System.ServiceModel.ServiceContractAttribute(ConfigurationName="IMobile")]
 public interface IMobile
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/GetDataInt", ReplyAction="http://tempuri.org/IMobile/GetDataIntResponse")]
-    string GetDataInt(int value);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventsWithTag", ReplyAction="http://tempuri.org/IMobile/m_GetEventsWithTagResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventsWithTag(System.DateTime fromDate, System.DateTime toDate, string tag);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEvents", ReplyAction="http://tempuri.org/IMobile/m_GetEventsResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEvents(System.DateTime fromDate, System.DateTime toDate);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventObj", ReplyAction="http://tempuri.org/IMobile/m_GetEventObjResponse")]
+    evmsService.entities.Events m_GetEventObj(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventProgramme", ReplyAction="http://tempuri.org/IMobile/m_GetEventProgrammeResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventProgramme(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetProgramme", ReplyAction="http://tempuri.org/IMobile/m_GetProgrammeResponse")]
+    evmsService.entities.Program m_GetProgramme(int progID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetEventGuests", ReplyAction="http://tempuri.org/IMobile/m_GetEventGuestsResponse")]
+    System.Collections.Generic.Dictionary<int, string> m_GetEventGuests(int eventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetGuest", ReplyAction="http://tempuri.org/IMobile/m_GetGuestResponse")]
+    evmsService.entities.Guest m_GetGuest(int guestID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_Authenticate", ReplyAction="http://tempuri.org/IMobile/m_AuthenticateResponse")]
+    string m_Authenticate(string uid, string pwd);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/ViewMyTask", ReplyAction="http://tempuri.org/IMobile/ViewMyTaskResponse")]
+    evmsService.entities.Task[] ViewMyTask(string key, int evID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/ViewEventTask", ReplyAction="http://tempuri.org/IMobile/ViewEventTaskResponse")]
+    evmsService.entities.Task[] ViewEventTask(string key, int evID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6038,8 +6910,53 @@ public partial class MobileClient : System.ServiceModel.ClientBase<IMobile>, IMo
     {
     }
     
-    public string GetDataInt(int value)
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventsWithTag(System.DateTime fromDate, System.DateTime toDate, string tag)
     {
-        return base.Channel.GetDataInt(value);
+        return base.Channel.m_GetEventsWithTag(fromDate, toDate, tag);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEvents(System.DateTime fromDate, System.DateTime toDate)
+    {
+        return base.Channel.m_GetEvents(fromDate, toDate);
+    }
+    
+    public evmsService.entities.Events m_GetEventObj(int eventID)
+    {
+        return base.Channel.m_GetEventObj(eventID);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventProgramme(int eventID)
+    {
+        return base.Channel.m_GetEventProgramme(eventID);
+    }
+    
+    public evmsService.entities.Program m_GetProgramme(int progID)
+    {
+        return base.Channel.m_GetProgramme(progID);
+    }
+    
+    public System.Collections.Generic.Dictionary<int, string> m_GetEventGuests(int eventID)
+    {
+        return base.Channel.m_GetEventGuests(eventID);
+    }
+    
+    public evmsService.entities.Guest m_GetGuest(int guestID)
+    {
+        return base.Channel.m_GetGuest(guestID);
+    }
+    
+    public string m_Authenticate(string uid, string pwd)
+    {
+        return base.Channel.m_Authenticate(uid, pwd);
+    }
+    
+    public evmsService.entities.Task[] ViewMyTask(string key, int evID)
+    {
+        return base.Channel.ViewMyTask(key, evID);
+    }
+    
+    public evmsService.entities.Task[] ViewEventTask(string key, int evID)
+    {
+        return base.Channel.ViewEventTask(key, evID);
     }
 }

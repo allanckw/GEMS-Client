@@ -43,7 +43,7 @@ namespace Gems.UIWPF
         private void LoadTasks()
         {
             TasksHelper client = new TasksHelper();
-            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = client.GetTasksByEvent(event_.EventID);
+            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = client.GetTasksByEvent(user.UserID, event_.EventID);
             client.Close();
             ClearAll();
         }
@@ -76,7 +76,7 @@ namespace Gems.UIWPF
             //Throw in All Task Here
             List<Task> IndividualTask = new List<Task>();
             TasksHelper client = new TasksHelper();
-            List<Task> AllTask = client.GetTasksByEvent(event_.EventID).ToList<Task>();
+            List<Task> AllTask = client.GetTasksByEvent(user.UserID, event_.EventID).ToList<Task>();
 
             lstAllTask.IsEnabled = true;
             IndividualTask = client.GetTaskByRole(event_.EventID, int.Parse(cboRole.SelectedValue.ToString())).ToList<Task>();
