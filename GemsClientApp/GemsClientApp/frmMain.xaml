@@ -137,9 +137,9 @@
                 <MenuItem Header="View Participants Data" Background="{x:Null}" Width="280" x:Name="mnuParticipants" Click="mnuParticipants_Click" ToolTip="View Participants Data"/>
             </MenuItem>
 
-            <!--<MenuItem Header="Service Contact List" FontSize="14" Margin="0,2,0,0" x:Name="mnuContactList" Click="mnuContactList_Click" Height="26"/>
-            
-            <MenuItem Header="Notifications" Margin="0,2,0,0" FontSize="14" x:Name="mnuNotify" Click="mnuNotify_Click" Height="26"/>-->
+            <MenuItem Header="Export" FontSize="14" Margin="0,2,0,0" x:Name="mnuExport" Click="mnuExport_Click"  Height="26" ToolTip="Export Event Related Item to An Excel File"/>
+
+            <!-- <MenuItem Header="Notifications" Margin="0,2,0,0" FontSize="14" x:Name="mnuNotify" Click="mnuNotify_Click" Height="26"/>-->
         </Menu>
     </Canvas>
 </Window>
