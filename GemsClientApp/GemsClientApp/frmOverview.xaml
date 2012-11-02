@@ -4,29 +4,28 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="700"
-	Title="Overview" Width="750" Height="600">
-
-    <GroupBox x:Name="grpbxEventOverview" Header="Event Overview"  FontSize="21" FontWeight="Medium">
-
-        <StackPanel Height="544">
-            <GroupBox Header="Programmes" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+	Title="Overview" Width="750" Height="620">
+    <GroupBox x:Name="grpbxEventOverview" Header="Event Overview"  FontSize="18" FontWeight="Medium" Margin="0,0,0,0">
+        <StackPanel Height="580">
+            <GroupBox Header="Manpower" Height="90" Foreground="Black" Margin="5, 0" FontSize="15">
+                <ScrollViewer>
+                    <TextBlock x:Name="txtManpowerMsg" VerticalAlignment="Top" Margin="0" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma" TextWrapping="Wrap" />
+                </ScrollViewer>
+            </GroupBox>
+            <GroupBox Header="Task Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="15">
+                <TextBlock x:Name="txtTaskMsg" Text="No Task has been assigned" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold" TextWrapping="Wrap" />
+            </GroupBox>
+            <GroupBox Header="Item Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="15">
+                <TextBlock x:Name="txtItemMsg" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold" TextWrapping="Wrap" />
+            </GroupBox>
+            <Label  Content="Items Dependent On Day" FontSize="18" FontWeight="Medium"/>
+            <GroupBox Header="Programmes" Height="90" Foreground="Black" Margin="10,0" FontSize="15">
                 <TextBlock  x:Name="txtProgramMsg"  FontSize="14" FontFamily="Tahoma"  FontWeight="SemiBold" TextWrapping="Wrap"  />
             </GroupBox>
-            <GroupBox Header="Facility" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
+            <GroupBox Header="Facilities Bookings" Height="90" Foreground="Black" Margin="10,0" FontSize="15">
                 <ScrollViewer>
                     <TextBlock  x:Name="txtLocationMsg" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma"  TextWrapping="Wrap"  />
                 </ScrollViewer>
-            </GroupBox>
-            <GroupBox Header="Manpower" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <ScrollViewer>
-                    <TextBlock x:Name="txtManpowerMsg"  VerticalAlignment="Top" Margin="0" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma" TextWrapping="Wrap" />
-                </ScrollViewer>
-            </GroupBox>
-            <GroupBox Header="Item Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <TextBlock x:Name="txtItemMsg"  FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap"  />
-            </GroupBox>
-            <GroupBox Header="Task Lists" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
-                <TextBlock x:Name="txtTaskMsg" Text="No Task has been assigned" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap"  />
             </GroupBox>
             <GroupBox Header="Guest" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
                 <TextBlock  x:Name="txtGuestMsg"  Margin="0" FontSize="14" FontFamily="Tahoma" FontWeight="SemiBold"  TextWrapping="Wrap" />

@@ -3850,13 +3850,21 @@ namespace evmsService.entities
         
         private int EventIDField;
         
+        private string EventNameField;
+        
         private string RemarkField;
         
+        private System.DateTime RequestDateField;
+        
         private int RequestIDField;
+        
+        private string RequestorField;
         
         private evmsService.entities.RequestStatus StatusField;
         
         private string TargetEmailField;
+        
+        private string URLField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -3897,6 +3905,19 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EventName
+        {
+            get
+            {
+                return this.EventNameField;
+            }
+            set
+            {
+                this.EventNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Remark
         {
             get
@@ -3910,6 +3931,19 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RequestDate
+        {
+            get
+            {
+                return this.RequestDateField;
+            }
+            set
+            {
+                this.RequestDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int RequestID
         {
             get
@@ -3919,6 +3953,19 @@ namespace evmsService.entities
             set
             {
                 this.RequestIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Requestor
+        {
+            get
+            {
+                return this.RequestorField;
+            }
+            set
+            {
+                this.RequestorField = value;
             }
         }
         
@@ -3945,6 +3992,19 @@ namespace evmsService.entities
             set
             {
                 this.TargetEmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string URL
+        {
+            get
+            {
+                return this.URLField;
+            }
+            set
+            {
+                this.URLField = value;
             }
         }
     }
@@ -4038,6 +4098,8 @@ namespace evmsService.entities
         
         private evmsService.entities.RequestStatus StatusField;
         
+        private string URLField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -4125,6 +4187,19 @@ namespace evmsService.entities
             set
             {
                 this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string URL
+        {
+            get
+            {
+                return this.URLField;
+            }
+            set
+            {
+                this.URLField = value;
             }
         }
     }
@@ -4254,9 +4329,9 @@ namespace evmsService.entities
         
         private string FileNameField;
         
-        private string FolderNameField;
+        private string FileURLField;
         
-        private string RemarksField;
+        private string FolderNameField;
         
         private string UploadedByField;
         
@@ -4314,6 +4389,19 @@ namespace evmsService.entities
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileURL
+        {
+            get
+            {
+                return this.FileURLField;
+            }
+            set
+            {
+                this.FileURLField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string FolderName
         {
             get
@@ -4323,19 +4411,6 @@ namespace evmsService.entities
             set
             {
                 this.FolderNameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks
-        {
-            get
-            {
-                return this.RemarksField;
-            }
-            set
-            {
-                this.RemarksField = value;
             }
         }
         
@@ -4374,6 +4449,24 @@ namespace evmsService.entities
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private evmsService.entities.BudgetIncome[] budgetincomesField;
+        
+        private evmsService.entities.EventDay[] daysField;
+        
+        private evmsService.entities.Events evntsField;
+        
+        private evmsService.entities.FacilityBookingConfirmed[][] facilitiesField;
+        
+        private evmsService.entities.Guest[][] guestsField;
+        
+        private evmsService.entities.OptimizedBudgetItems optitemsField;
+        
+        private evmsService.entities.Participant[] participantsField;
+        
+        private evmsService.entities.Program[][] programsField;
+        
+        private evmsService.entities.Task[] tasksField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -4383,6 +4476,123 @@ namespace evmsService.entities
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.BudgetIncome[] budgetincomes
+        {
+            get
+            {
+                return this.budgetincomesField;
+            }
+            set
+            {
+                this.budgetincomesField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.EventDay[] days
+        {
+            get
+            {
+                return this.daysField;
+            }
+            set
+            {
+                this.daysField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Events evnts
+        {
+            get
+            {
+                return this.evntsField;
+            }
+            set
+            {
+                this.evntsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.FacilityBookingConfirmed[][] facilities
+        {
+            get
+            {
+                return this.facilitiesField;
+            }
+            set
+            {
+                this.facilitiesField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Guest[][] guests
+        {
+            get
+            {
+                return this.guestsField;
+            }
+            set
+            {
+                this.guestsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.OptimizedBudgetItems optitems
+        {
+            get
+            {
+                return this.optitemsField;
+            }
+            set
+            {
+                this.optitemsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Participant[] participants
+        {
+            get
+            {
+                return this.participantsField;
+            }
+            set
+            {
+                this.participantsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Program[][] programs
+        {
+            get
+            {
+                return this.programsField;
+            }
+            set
+            {
+                this.programsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.Task[] tasks
+        {
+            get
+            {
+                return this.tasksField;
+            }
+            set
+            {
+                this.tasksField = value;
             }
         }
     }
@@ -4746,6 +4956,10 @@ public interface IEvent
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/GetDays", ReplyAction="http://tempuri.org/IEvent/GetDaysResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvent/GetDaysSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.EventDay[] GetDays(int EventID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/isEventExist", ReplyAction="http://tempuri.org/IEvent/isEventExistResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvent/isEventExistSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    bool isEventExist(int eventID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -4840,6 +5054,11 @@ public partial class EventClient : System.ServiceModel.ClientBase<IEvent>, IEven
     public evmsService.entities.EventDay[] GetDays(int EventID)
     {
         return base.Channel.GetDays(EventID);
+    }
+    
+    public bool isEventExist(int eventID)
+    {
+        return base.Channel.isEventExist(eventID);
     }
 }
 
@@ -6553,7 +6772,7 @@ public interface IRequest
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/CreateNewRequest", ReplyAction="http://tempuri.org/IRequest/CreateNewRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/CreateNewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description);
+    string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description, string url);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/GetRequest", ReplyAction="http://tempuri.org/IRequest/GetRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/GetRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -6561,7 +6780,7 @@ public interface IRequest
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/EditRequest", ReplyAction="http://tempuri.org/IRequest/EditRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/EditRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void EditRequest(evmsService.entities.User user, int requestID, string description);
+    void EditRequest(evmsService.entities.User user, int requestID, string description, string url);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequest/ViewRequest", ReplyAction="http://tempuri.org/IRequest/ViewRequestResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IRequest/ViewRequestSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -6618,9 +6837,9 @@ public partial class RequestClient : System.ServiceModel.ClientBase<IRequest>, I
     {
     }
     
-    public string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description)
+    public string CreateNewRequest(evmsService.entities.User user, int eventid, string targetEmail, string description, string url)
     {
-        return base.Channel.CreateNewRequest(user, eventid, targetEmail, description);
+        return base.Channel.CreateNewRequest(user, eventid, targetEmail, description, url);
     }
     
     public evmsService.entities.Request GetRequest(int requestID)
@@ -6628,9 +6847,9 @@ public partial class RequestClient : System.ServiceModel.ClientBase<IRequest>, I
         return base.Channel.GetRequest(requestID);
     }
     
-    public void EditRequest(evmsService.entities.User user, int requestID, string description)
+    public void EditRequest(evmsService.entities.User user, int requestID, string description, string url)
     {
-        base.Channel.EditRequest(user, requestID, description);
+        base.Channel.EditRequest(user, requestID, description, url);
     }
     
     public evmsService.entities.Request[] ViewRequest(evmsService.entities.Requestee requestee)
@@ -6682,7 +6901,7 @@ public interface IArtefact
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/UploadFile", ReplyAction="http://tempuri.org/IArtefact/UploadFileResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/UploadFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks);
+    void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string url);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/DeleteFile", ReplyAction="http://tempuri.org/IArtefact/DeleteFileResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/DeleteFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -6690,7 +6909,7 @@ public interface IArtefact
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/UpdateFile", ReplyAction="http://tempuri.org/IArtefact/UpdateFileResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/UpdateFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks);
+    void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string url);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IArtefact/GetWorkSpaceFile", ReplyAction="http://tempuri.org/IArtefact/GetWorkSpaceFileResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IArtefact/GetWorkSpaceFileSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
@@ -6759,9 +6978,9 @@ public partial class ArtefactClient : System.ServiceModel.ClientBase<IArtefact>,
         return base.Channel.GetWorkSpaceFolders(user, eventID);
     }
     
-    public void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks)
+    public void UploadFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string url)
     {
-        base.Channel.UploadFile(user, eventID, folderName, fileName, fileDesc, remarks);
+        base.Channel.UploadFile(user, eventID, folderName, fileName, fileDesc, url);
     }
     
     public void DeleteFile(evmsService.entities.User user, int eventID, string FolderName, string fileName)
@@ -6769,9 +6988,9 @@ public partial class ArtefactClient : System.ServiceModel.ClientBase<IArtefact>,
         base.Channel.DeleteFile(user, eventID, FolderName, fileName);
     }
     
-    public void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string remarks)
+    public void UpdateFile(evmsService.entities.User user, int eventID, string folderName, string fileName, string fileDesc, string url)
     {
-        base.Channel.UpdateFile(user, eventID, folderName, fileName, fileDesc, remarks);
+        base.Channel.UpdateFile(user, eventID, folderName, fileName, fileDesc, url);
     }
     
     public evmsService.entities.WorkspaceFiles GetWorkSpaceFile(int eventID, string folderName, string fileName)
@@ -6797,7 +7016,7 @@ public interface IExport
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IExport/GetExportData", ReplyAction="http://tempuri.org/IExport/GetExportDataResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IExport/GetExportDataSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
-    evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedEvent, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant);
+    evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedOptItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6834,9 +7053,9 @@ public partial class ExportClient : System.ServiceModel.ClientBase<IExport>, IEx
     {
     }
     
-    public evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedEvent, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant)
+    public evmsService.entities.ExportData GetExportData(evmsService.entities.User u, int eventID, bool NeedFacilities, bool NeedPrograms, bool NeedIncome, bool NeedOptItems, bool NeedTasks, bool NeedGuest, bool NeedParticipant)
     {
-        return base.Channel.GetExportData(u, eventID, NeedEvent, NeedFacilities, NeedPrograms, NeedIncome, NeedItems, NeedTasks, NeedGuest, NeedParticipant);
+        return base.Channel.GetExportData(u, eventID, NeedFacilities, NeedPrograms, NeedIncome, NeedOptItems, NeedTasks, NeedGuest, NeedParticipant);
     }
 }
 
