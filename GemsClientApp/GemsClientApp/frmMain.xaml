@@ -6,7 +6,7 @@
     x:Class="Gems.UIWPF.frmMain"	x:Name="Window" Activated="Window_Activated"
 	Title="GEMS Event Management System" Closed="Window_Closed"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Width="1000" Height="730" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+	Width="1000" Height="765" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
@@ -19,8 +19,8 @@
             </Label.Effect>
         </Label>
 
-        <StackPanel Height="605" Canvas.Left="15" Canvas.Top="106" Width="968" Orientation="Horizontal">
-        	<StackPanel Height="605" Width="210" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <StackPanel Height="615" Canvas.Left="15" Canvas.Top="106" Width="968" Orientation="Horizontal">
+        	<StackPanel Height="615" Width="210" VerticalAlignment="Top" HorizontalAlignment="Left">
         		<StackPanel Height="25" Orientation="Horizontal">
         			<Label Content="From:" Height="28" x:Name="label1" FontFamily="Verdana" VerticalAlignment="Top" Width="50" />
         			<DatePicker Height="25" x:Name="dtpFrom" Width="150" VerticalAlignment="Top" />
@@ -56,9 +56,9 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </GroupBox>
-        		<GroupBox Header="List of Days" HorizontalAlignment="Left" Width="204" Height="380" Foreground="Black" FontSize="13.333" FontFamily="Stencil">
+        		<GroupBox Header="List of Days" HorizontalAlignment="Left" Width="204" Height="390" Foreground="Black" FontSize="13.333" FontFamily="Stencil">
         			<ListBox x:Name="lstEventDayList" Margin="1,1,0,0" FontFamily="Tahoma" FontSize="12" 
-        				FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventDayList_SelectionChanged"  Height="350" Width="188" HorizontalAlignment="Left" VerticalAlignment="Top">
+        				FontWeight="Normal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstEventDayList_SelectionChanged"  Height="367" Width="188" HorizontalAlignment="Left" VerticalAlignment="Top">
         				<ListBox.ItemTemplate>
         					<DataTemplate>
         						<StackPanel Margin="5" Orientation="Vertical">
@@ -79,7 +79,7 @@
         		</GroupBox>
         	</StackPanel>
         	<StackPanel Width="764">
-        		<Frame x:Name="frame" Width="756" Height="605" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
+        		<Frame x:Name="frame" Width="756" Height="610" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
         	</StackPanel>
         </StackPanel>
 		
