@@ -114,7 +114,7 @@ namespace Gems.UIWPF
             taskbarNotifier.OpeningMilliseconds = 2000;
             taskbarNotifier.StayOpenMilliseconds = 4000;
             taskbarNotifier.HidingMilliseconds = 2000;
-            
+
             this.taskbarNotifier.Show();
         }
 
@@ -207,7 +207,7 @@ namespace Gems.UIWPF
 
         private void loadEventsInThread()
         {
-            
+
             System.Threading.Thread thread = new System.Threading.Thread(
                     new System.Threading.ThreadStart(
                     delegate()
@@ -252,7 +252,7 @@ namespace Gems.UIWPF
             cboEventList.SelectedIndex = 0;
 
             Events ev = (Events)cboEventList.SelectedItem;
-            EventDay evd =(EventDay)lstEventDayList.SelectedItem;
+            EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             frame.Navigate(new frmOverview(user, ev, evd));
             Mouse.OverrideCursor = Cursors.Arrow;
         }
@@ -290,7 +290,7 @@ namespace Gems.UIWPF
                                 }
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                 {
-                                    list = client.ViewEventsByTag(user,txtTag.Text.Trim()).ToList<Events>();
+                                    list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
                                 }
                                 else
                                     list = client.ViewAllUserEvent(user).ToList<Events>();
@@ -306,22 +306,15 @@ namespace Gems.UIWPF
                                         {
                                             cboEventList.SelectionChanged += cboEventList_SelectionChanged;
                                             cboEventList.SelectedIndex = i;
-                                            
+
                                             return;
                                         }
                                     }
                                 }
 
-
-                                
-                                
                                 cboEventList.SelectionChanged += cboEventList_SelectionChanged;
 
-                                //selectedIndex = cboEventList.SelectedIndex;
-                                //if (selectedIndex == -1)
-                                //    lstEventDayList.ItemsSource = null;
-                                //else
-                                    cboEventList_SelectionChanged(null, null);
+                                cboEventList_SelectionChanged(null, null);
                             }
                             catch (Exception ex)
                             {
@@ -680,11 +673,11 @@ namespace Gems.UIWPF
             }
             if (currPageType == typeof(frmOverview))
             {
-                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev,evd);
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd);
             }
             else
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
-            
+
             frame.Navigate(currPage);
             return true;
         }
@@ -947,7 +940,7 @@ namespace Gems.UIWPF
 
         private void lstEventDayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dayDependentForm()==false)
+            if (dayDependentForm() == false)
                 return;
 
             if (lstEventDayList.SelectedIndex == -1)
