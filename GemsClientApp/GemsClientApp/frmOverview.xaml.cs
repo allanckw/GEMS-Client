@@ -148,7 +148,7 @@ namespace Gems.UIWPF
                 txtLocationMsg.Text = "The venue to hold this event are (is) " + Environment.NewLine;
                 foreach (FacilityBookingConfirmed confirmedReq in fbc)
                 {
-                    txtLocationMsg.Text += confirmedReq.Faculty.ToString() + " " + " at " + confirmedReq.Venue
+                    txtLocationMsg.Text += confirmedReq.Faculty.ToString().Replace('_', ' ') + " " + " at " + confirmedReq.Venue
                         + "  booked from " + confirmedReq.RequestStartDateTime.ToString("HH:mm")
                         + " to " + confirmedReq.RequestEndDateTime.ToString("HH:mm") + Environment.NewLine
                         ;

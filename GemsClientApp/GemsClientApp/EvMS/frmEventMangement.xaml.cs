@@ -47,7 +47,7 @@ namespace Gems.UIWPF
         private void Load_Event()
         {
             EventHelper client = new EventHelper();
-            List<Events> list = client.ViewEvent(user).ToList<Events>();
+            List<Events> list = client.ViewAllUserEvent(user).ToList<Events>();
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;

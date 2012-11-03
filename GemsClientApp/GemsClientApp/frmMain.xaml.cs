@@ -223,7 +223,7 @@ namespace Gems.UIWPF
                                 EventHelper client = new EventHelper();
                                 List<Events> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
-                                    list = client.ViewEvent(user).ToList<Events>();
+                                    list = client.ViewAllUserEvent(user).ToList<Events>();
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                     list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
                                 else
@@ -283,17 +283,17 @@ namespace Gems.UIWPF
                                 List<Events> list;
 
                                 //if valid date range.
-                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null && txtTag.Text.Trim() == "")
+                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
                                 {
-                                    list = client.ViewEventsbyDate(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value).ToList<Events>();
+                                    list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
+                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
                                 }
-                                else if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+                                else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                 {
                                     list = client.ViewEventsByTag(user,txtTag.Text.Trim()).ToList<Events>();
                                 }
                                 else
-                                    list = client.ViewEvent(user).ToList<Events>();
+                                    list = client.ViewAllUserEvent(user).ToList<Events>();
 
                                 cboEventList.ItemsSource = list;
                                 client.Close();

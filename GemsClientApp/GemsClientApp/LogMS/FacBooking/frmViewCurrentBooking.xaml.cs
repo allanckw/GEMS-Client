@@ -44,7 +44,7 @@ namespace Gems.UIWPF
             }
             else
             {
-               elist = client.ViewEvent(user).ToList<Events>();
+               elist = client.ViewAllUserEvent(user).ToList<Events>();
             }
              
             this.cboEventList.ItemsSource = elist;
