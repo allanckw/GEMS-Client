@@ -110,6 +110,7 @@
     <Compile Include="EvMS\frmEventMangement.xaml.cs">
       <DependentUpon>frmEventMangement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Export\Export.cs" />
     <Compile Include="GEMSPage.cs" />
     <Compile Include="ContactList\frmAddEditReview.xaml.cs">
       <DependentUpon>frmAddEditReview.xaml</DependentUpon>
