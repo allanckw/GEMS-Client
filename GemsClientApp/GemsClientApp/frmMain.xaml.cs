@@ -772,7 +772,7 @@ namespace Gems.UIWPF
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
                             {
-                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
+                                frame.Navigate(Activator.CreateInstance(currPageType, user, evday));
                                 return true;
                             }
                     client.Close();
