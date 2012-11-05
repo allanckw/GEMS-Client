@@ -56,6 +56,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>bin\Debug\Interop.AgentObjects.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -111,6 +114,9 @@
       <DependentUpon>frmEventMangement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Export\Export.cs" />
+    <Compile Include="Export\frmExport.xaml.cs">
+      <DependentUpon>frmExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GEMSPage.cs" />
     <Compile Include="ContactList\frmAddEditReview.xaml.cs">
       <DependentUpon>frmAddEditReview.xaml</DependentUpon>
@@ -341,6 +347,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EvMS\frmEventMangement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Export\frmExport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
