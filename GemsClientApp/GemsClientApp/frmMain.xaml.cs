@@ -126,6 +126,8 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+
             if (!user.isSystemAdmin)
             {
                 this.mnuAdmin.Visibility = Visibility.Collapsed;
@@ -136,8 +138,12 @@ namespace Gems.UIWPF
                 this.mnuManageFac.Visibility = Visibility.Collapsed;
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
+            if (user.isEventOrganizer)
+            {
+                EnableAllRight();
+            }
             loadEvents();
-            DisableAllRight();
+
             getHourlyNotifications();
         }
 
@@ -239,8 +245,13 @@ namespace Gems.UIWPF
                                     list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
                                                     dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
 
-                                cboEventList.ItemsSource = list;
                                 client.Close();
+
+                                if (list.Count > 0)
+                                    cboEventList.ItemsSource = list;
+                                else
+                                    DisableAllRight();
+
                             }
                             catch (Exception ex)
                             {
@@ -360,7 +371,7 @@ namespace Gems.UIWPF
         {
             DisableAllRight();
 
-            
+
             if (user.isEventOrganizer)
             {
                 mnuLocation.Visibility = Visibility.Visible;
@@ -907,7 +918,9 @@ namespace Gems.UIWPF
                 }
 
                 if (user.UserID == ev.Organizerid)
+                {
                     EnableAllRight();
+                }
                 else
                 {
                     RoleHelper client = new RoleHelper();
