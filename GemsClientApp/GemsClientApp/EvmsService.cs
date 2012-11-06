@@ -1510,79 +1510,73 @@ namespace evmsService.entities
     {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Delete_Event = 0,
+        Create_Programmes = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Edit_Event = 1,
+        Delete_Programmes = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Create_Programmes = 2,
+        Edit_Programmes = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Delete_Programmes = 3,
+        Add_Guest = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Edit_Programmes = 4,
+        Delete_Guest = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Add_Guest = 5,
+        Edit_Guest = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Delete_Guest = 6,
+        Add_Role = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Edit_Guest = 7,
+        Delete_Role = 7,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Add_Role = 8,
+        Edit_Role = 8,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Delete_Role = 9,
+        View_Role = 9,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Edit_Role = 10,
+        Manage_ItemTypes = 10,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        View_Role = 11,
+        Manage_Items = 11,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_ItemTypes = 12,
+        OptimizeItemList = 12,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Items = 13,
+        Manage_Income = 13,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        OptimizeItemList = 14,
+        Add_Task = 14,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Income = 15,
+        Update_Task = 15,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Add_Task = 16,
+        Delete_Task = 16,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Update_Task = 17,
+        Assign_Task = 17,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Delete_Task = 18,
+        View_Budget_Report = 18,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Assign_Task = 19,
+        Manage_Participant = 19,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        View_Budget_Report = 20,
+        Manage_Requests = 20,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Participant = 21,
+        Manage_Artefacts = 21,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Requests = 22,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Artefacts = 23,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Manage_Facility_Bookings = 24,
+        Manage_Facility_Bookings = 22,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -5328,6 +5322,48 @@ namespace evmsService.entities
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="M_ShortTask", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class M_ShortTask : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="M_Task", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class M_Task : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+    }
 }
 namespace evmsService.Controllers
 {
@@ -7736,14 +7772,17 @@ public interface IMobile
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_Authenticate", ReplyAction="http://tempuri.org/IMobile/m_AuthenticateResponse")]
     string m_Authenticate(string uid, string pwd);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/CanViewTask", ReplyAction="http://tempuri.org/IMobile/CanViewTaskResponse")]
-    bool CanViewTask(string key, int evID);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_CanViewTask", ReplyAction="http://tempuri.org/IMobile/m_CanViewTaskResponse")]
+    bool m_CanViewTask(string key, int evID);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/ViewMyTask", ReplyAction="http://tempuri.org/IMobile/ViewMyTaskResponse")]
-    evmsService.entities.Task[] ViewMyTask(string key, int evID);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_ViewMyTask", ReplyAction="http://tempuri.org/IMobile/m_ViewMyTaskResponse")]
+    evmsService.entities.M_ShortTask[] m_ViewMyTask(string key, int evID);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/ViewEventTask", ReplyAction="http://tempuri.org/IMobile/ViewEventTaskResponse")]
-    evmsService.entities.Task[] ViewEventTask(string key, int evID);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_ViewEventTask", ReplyAction="http://tempuri.org/IMobile/m_ViewEventTaskResponse")]
+    evmsService.entities.M_ShortTask[] m_ViewEventTask(string key, int evID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMobile/m_GetTask", ReplyAction="http://tempuri.org/IMobile/m_GetTaskResponse")]
+    evmsService.entities.M_Task m_GetTask(string key, int taskID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -7820,18 +7859,23 @@ public partial class MobileClient : System.ServiceModel.ClientBase<IMobile>, IMo
         return base.Channel.m_Authenticate(uid, pwd);
     }
     
-    public bool CanViewTask(string key, int evID)
+    public bool m_CanViewTask(string key, int evID)
     {
-        return base.Channel.CanViewTask(key, evID);
+        return base.Channel.m_CanViewTask(key, evID);
     }
     
-    public evmsService.entities.Task[] ViewMyTask(string key, int evID)
+    public evmsService.entities.M_ShortTask[] m_ViewMyTask(string key, int evID)
     {
-        return base.Channel.ViewMyTask(key, evID);
+        return base.Channel.m_ViewMyTask(key, evID);
     }
     
-    public evmsService.entities.Task[] ViewEventTask(string key, int evID)
+    public evmsService.entities.M_ShortTask[] m_ViewEventTask(string key, int evID)
     {
-        return base.Channel.ViewEventTask(key, evID);
+        return base.Channel.m_ViewEventTask(key, evID);
+    }
+    
+    public evmsService.entities.M_Task m_GetTask(string key, int taskID)
+    {
+        return base.Channel.m_GetTask(key, taskID);
     }
 }

@@ -137,7 +137,7 @@ namespace Gems.UIWPF
                 this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
             }
             loadEvents();
-
+            DisableAllRight();
             getHourlyNotifications();
         }
 
@@ -166,6 +166,10 @@ namespace Gems.UIWPF
             mnuGuests.Visibility = Visibility.Collapsed;
             //
             mnuPublish.Visibility = Visibility.Collapsed;
+            //
+            mnuWiz.Visibility = Visibility.Collapsed;
+            //
+            mnuExport.Visibility = Visibility.Collapsed;
         }
 
         private void EnableAllRight()
@@ -193,6 +197,10 @@ namespace Gems.UIWPF
             mnuGuests.Visibility = Visibility.Visible;
             //
             mnuPublish.Visibility = Visibility.Visible;
+            //
+            mnuWiz.Visibility = Visibility.Visible;
+            //
+            mnuExport.Visibility = Visibility.Visible;
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -352,17 +360,15 @@ namespace Gems.UIWPF
         {
             DisableAllRight();
 
-            if (user.isEventOrganizer || ef.Contains(EnumFunctions.Delete_Event)
-                || ef.Contains(EnumFunctions.Edit_Event))
-            {
-                mnuEvent.Visibility = Visibility.Visible;
-            }
+            
             if (user.isEventOrganizer)
             {
                 mnuLocation.Visibility = Visibility.Visible;
                 mnuSearchFac.Visibility = Visibility.Visible;
                 mnuViewBookings.Visibility = Visibility.Visible;
                 mnuRoleTemplates.Visibility = Visibility.Visible;
+                mnuExport.Visibility = Visibility.Visible;
+                mnuWiz.Visibility = Visibility.Visible;
             }
             //
             if (ef.Contains(EnumFunctions.Edit_Programmes) ||
