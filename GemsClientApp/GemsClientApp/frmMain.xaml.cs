@@ -1004,7 +1004,8 @@ namespace Gems.UIWPF
 
         private void mnuExport_Click(object sender, RoutedEventArgs e)
         {
-
+            frmExport export = new frmExport(user, (Events)cboEventList.SelectedItem);
+            export.ShowDialog();
         }
 
     }
