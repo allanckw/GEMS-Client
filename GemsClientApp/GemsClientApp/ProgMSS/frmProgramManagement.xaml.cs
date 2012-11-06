@@ -137,16 +137,6 @@ namespace Gems.UIWPF
                 MessageBox.Show("Please enter starting minute of programme segment.");
                 return false;
             }
-            if (cboEndHr.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please enter ending hour of programme segment.");
-                return false;
-            }
-            if (cboEndMin.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please enter ending minute of programme segment.");
-                return false;
-            }
 
             return true;
         }
