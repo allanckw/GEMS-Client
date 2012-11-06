@@ -49,9 +49,10 @@ namespace Gems.UIWPF
              
             this.cboEventList.ItemsSource = elist;
             client.Close();
-            cboEventList.SelectedIndex = 0;
+
             cboEventList.SelectedValuePath = "EventID";
             cboEventList.DisplayMemberPath = "Name";
+            cboEventList.SelectedIndex = 0;
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -73,6 +74,11 @@ namespace Gems.UIWPF
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             ClearDetail();
+            retreiveBookingInformation();
+        }
+
+        private void retreiveBookingInformation()
+        {
             FacilityBookingsHelper client = new FacilityBookingsHelper();
 
             if (cboEventList.SelectedIndex == -1)
@@ -97,8 +103,8 @@ namespace Gems.UIWPF
             }
 
             EventDay evDay = (EventDay)cboEventDay.SelectedItem;
-            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex, 
-                chkAllStatus.IsChecked.Value,chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
+            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex,
+                chkAllStatus.IsChecked.Value, chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
             //if ((bool)chkAllEventDay.IsChecked == true)
             //{
             //    this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEvent(user,
@@ -112,7 +118,6 @@ namespace Gems.UIWPF
             //        cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value, false, evDay.StartDateTime);
             //}
             client.Close();
-            
         }
 
         private void ClearDetail()
@@ -130,6 +135,7 @@ namespace Gems.UIWPF
             //    chkAllEvent.IsChecked.Value);
             client.Close();
             lvCurrentBooking.ClearSource();
+            
         }
 
         private void lstRequest_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -196,8 +202,20 @@ namespace Gems.UIWPF
                         == MessageBoxResult.Yes)
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for cancelling", "Remarks", "");
-                        client.CancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
+                        try
+                        {
+                            client.CancelFacilityBooking(user, fbr.RequestID, fbr.EventID, remarks);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString(), "Cancel Booking!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
+                        finally
+                        {
+                            client.Close();
+                        }
                         ClearDetail();
+                        retreiveBookingInformation();
                     }
                 }
 

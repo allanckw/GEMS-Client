@@ -1580,6 +1580,9 @@ namespace evmsService.entities
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Manage_Artefacts = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Manage_Facility_Bookings = 24,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

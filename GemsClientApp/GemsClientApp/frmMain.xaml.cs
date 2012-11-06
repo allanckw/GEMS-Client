@@ -371,6 +371,13 @@ namespace Gems.UIWPF
             {
                 mnuPrograms.Visibility = Visibility.Visible;
             }
+
+            if (ef.Contains(EnumFunctions.Manage_Facility_Bookings))
+            {
+                mnuLocation.Visibility = Visibility.Visible;
+                mnuSearchFac.Visibility = Visibility.Visible;
+                mnuViewBookings.Visibility = Visibility.Visible;
+            }
             //
             if (ef.Contains(EnumFunctions.Manage_ItemTypes) ||
                 ef.Contains(EnumFunctions.Manage_Items) ||

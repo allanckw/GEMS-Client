@@ -37,32 +37,36 @@
         </GroupBox>
         <GroupBox Header="Event Detail" Canvas.Left="235" Canvas.Top="47" Height="592" Width="455" FontFamily="Stencil" FontSize="16">
             <StackPanel Margin="0,8,0,0" Height="370" VerticalAlignment="Top" >
-                <Canvas Height="40">
-                    <Label Canvas.Left="41" Canvas.Top="6" Content="Event Name:" Height="28" x:Name="label1" FontSize="12" FontFamily="Tahoma" />
-                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtEventName" Width="294" FontSize="12" FontFamily="Tahoma" />
-                </Canvas>
-                <Canvas Height="85">
-                    <Label Canvas.Left="51" Canvas.Top="14" Content="Start Date:" Height="28" x:Name="label2" FontSize="12" FontFamily="Tahoma" />
-                    <Label Canvas.Left="57" Canvas.Top="54" Content="End Date:" Height="28" x:Name="label4" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
-                    <local:DateTimePicker x:Name="dtpStart" Canvas.Left="120" Canvas.Top="10" FontFamily="Tahoma" FontSize="12" />
-                    <local:DateTimePicker Canvas.Left="120" Canvas.Top="50" FontFamily="Tahoma" FontSize="12" x:Name="dtpEnd"  />
-                </Canvas>
-                <Canvas Height="115">
-                    <Label Canvas.Top="5" Content="Description:" Height="23" x:Name="label6" Canvas.Left="51" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
-                    <RichTextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="294" FontSize="12" FontFamily="Tahoma" />
-                </Canvas>
-                <Canvas Height="45">
-                    <Label Canvas.Top="5" Content="Tag:" Height="30
-                           " x:Name="lbltype" Canvas.Left="80" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
-                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtTag" Width="294" FontSize="12" FontFamily="Tahoma" />
-                </Canvas>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Event Name:" Height="28" Width="100" x:Name="label1" FontSize="12" FontFamily="Tahoma" />
+                    <TextBox Height="23" x:Name="txtEventName" Width="300" FontSize="12" FontFamily="Tahoma" />
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Start Date:" Height="28" Width="100" x:Name="label2" FontSize="12" FontFamily="Tahoma" />
+                        <local:DateTimePicker x:Name="dtpStart" Canvas.Left="120" Canvas.Top="10" FontFamily="Tahoma" FontSize="12" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Width="100" Content="End Date:" Height="28" x:Name="label4" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
 
-                <Canvas Height="40">
-                    <Label Canvas.Left="69" Canvas.Top="6" Content="Website:" Height="28" x:Name="label7" FontSize="12" FontFamily="Tahoma" />
-                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="297" FontSize="12" FontFamily="Tahoma" />
-                </Canvas>
+                        <local:DateTimePicker Canvas.Left="120" Canvas.Top="50" FontFamily="Tahoma" FontSize="12" x:Name="dtpEnd"  />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Canvas.Top="5" Content="Description:" Width="100"  Height="23" x:Name="label6" Canvas.Left="51" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <RichTextBox Canvas.Left="120" Canvas.Top="8" Height="98" x:Name="txtDesc" Width="300" FontSize="12" FontFamily="Tahoma" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100" Content="Tag:" Height="30
+                           " x:Name="lbltype" FontSize="12" FontFamily="Tahoma" HorizontalAlignment="Left" />
+                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtTag" Width="300" FontSize="12" FontFamily="Tahoma" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label  Width="100" Content="Website:" Height="28" x:Name="label7" FontSize="12" FontFamily="Tahoma" />
+                    <TextBox Canvas.Left="120" Canvas.Top="8" Height="23" x:Name="txtWebsite" Width="300" FontSize="12" FontFamily="Tahoma" />
+                </StackPanel>
                 <StackPanel Height="40" Orientation="Horizontal">
-                    <Button x:Name="btnEventCreate" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="150,0,20,0" Click="btnEventCreate_Click" />
+                    <Button x:Name="btnEventCreate" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="100,0,20,0" Click="btnEventCreate_Click" />
                     <Button x:Name="btnEventEdit" Content="Update" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventEdit_Click" />
                     <Button x:Name="btnEventDelete" Content="Delete" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventDelete_Click" />
                     <Button x:Name="btnEventClear" Content="Clear" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Margin="0,0,20,0" Click="btnEventClear_Click" />
