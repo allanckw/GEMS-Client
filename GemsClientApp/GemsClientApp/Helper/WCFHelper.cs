@@ -173,4 +173,27 @@ namespace Gems.UIWPF
         }
     }
 
+    class ExportHelper : ExportClient
+    {
+        public ExportHelper()
+        {
+            var endpointAddress = Endpoint.Address;
+
+            EndpointAddressBuilder newEndpointAddress = new EndpointAddressBuilder(endpointAddress);
+            newEndpointAddress.Uri = new Uri(ConfigHelper.GetEndpointAddress());
+            this.Endpoint.Address = newEndpointAddress.ToEndpointAddress();
+        }
+    }
+
+    class WizardHelper : WizardClient
+    {
+        public WizardHelper()
+        {
+            var endpointAddress = Endpoint.Address;
+
+            EndpointAddressBuilder newEndpointAddress = new EndpointAddressBuilder(endpointAddress);
+            newEndpointAddress.Uri = new Uri(ConfigHelper.GetEndpointAddress());
+            this.Endpoint.Address = newEndpointAddress.ToEndpointAddress();
+        }
+    }
 }

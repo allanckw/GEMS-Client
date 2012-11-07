@@ -5331,6 +5331,12 @@ namespace evmsService.entities
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private string DateField;
+        
+        private int KeyField;
+        
+        private string NameField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -5340,6 +5346,45 @@ namespace evmsService.entities
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Date
+        {
+            get
+            {
+                return this.DateField;
+            }
+            set
+            {
+                this.DateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Key
+        {
+            get
+            {
+                return this.KeyField;
+            }
+            set
+            {
+                this.KeyField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
             }
         }
     }
@@ -5352,6 +5397,18 @@ namespace evmsService.entities
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private evmsService.entities.M_TaskAssignment[] AssignmentField;
+        
+        private string DescriptionField;
+        
+        private string DueDateField;
+        
+        private string DueTimeField;
+        
+        private string NameField;
+        
+        private double PercentageCompletedField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -5361,6 +5418,180 @@ namespace evmsService.entities
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public evmsService.entities.M_TaskAssignment[] Assignment
+        {
+            get
+            {
+                return this.AssignmentField;
+            }
+            set
+            {
+                this.AssignmentField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DueDate
+        {
+            get
+            {
+                return this.DueDateField;
+            }
+            set
+            {
+                this.DueDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DueTime
+        {
+            get
+            {
+                return this.DueTimeField;
+            }
+            set
+            {
+                this.DueTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double PercentageCompleted
+        {
+            get
+            {
+                return this.PercentageCompletedField;
+            }
+            set
+            {
+                this.PercentageCompletedField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="M_TaskAssignment", Namespace="http://schemas.datacontract.org/2004/07/evmsService.entities")]
+    public partial class M_TaskAssignment : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private bool IsCompletedField;
+        
+        private bool IsReadField;
+        
+        private string RoleNameField;
+        
+        private string RoleUserIDField;
+        
+        private string RoleUserNameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsCompleted
+        {
+            get
+            {
+                return this.IsCompletedField;
+            }
+            set
+            {
+                this.IsCompletedField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsRead
+        {
+            get
+            {
+                return this.IsReadField;
+            }
+            set
+            {
+                this.IsReadField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleName
+        {
+            get
+            {
+                return this.RoleNameField;
+            }
+            set
+            {
+                this.RoleNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleUserID
+        {
+            get
+            {
+                return this.RoleUserIDField;
+            }
+            set
+            {
+                this.RoleUserIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleUserName
+        {
+            get
+            {
+                return this.RoleUserNameField;
+            }
+            set
+            {
+                this.RoleUserNameField = value;
             }
         }
     }

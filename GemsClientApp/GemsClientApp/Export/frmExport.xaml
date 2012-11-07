@@ -11,6 +11,33 @@
     <Canvas Opacity="1.0">
     	<Label Canvas.Left="8" Canvas.Top="15" Content="GEMS Event Management System - Export" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
     			<Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
-    	<GroupBox Header="Export Option" Canvas.Left="8" Canvas.Top="50" Height="282" Width="524" Foreground="Black" FontSize="16"/>
+    	<GroupBox Header="Export Option" Canvas.Left="8" Canvas.Top="40" Height="260" Width="504" Foreground="Black" FontSize="16">
+            <StackPanel Margin="10"   HorizontalAlignment="Center" Width="450">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
+                    <CheckBox Name="cboFacilities" Content="Facilities" />
+                    <CheckBox Name="cboProgrammes" Content="Programmes"/>
+                    <CheckBox Name="cboIncome" Content="Income"/>
+                </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
+                    <CheckBox Name="cboOptItem" Content="Optimist Item"/>
+                    <CheckBox Name="cboTask" Content="Task"/>
+                    <CheckBox Name="cboGuest" Content="Guest"/>
+                </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
+                    <CheckBox Name="cboParticipant" Content="Participant"/>
+                    
+                </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel>
+                </StackPanel>
+                <Button x:Name="btnEventExport" Content="Create" Width="60" Height="30" FontSize="12" FontFamily="Tahoma" Click="btnEventExport_Click" />
+                
+            </StackPanel>
+            
+        </GroupBox>
     </Canvas>
 </Window>
