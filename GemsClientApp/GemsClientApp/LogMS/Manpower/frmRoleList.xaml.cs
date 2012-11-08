@@ -92,9 +92,9 @@ namespace Gems.UIWPF
         {
             lstRole.SelectedValuePath = "RoleId";
             loadRoles();
+            RoleHelper client = new RoleHelper();
             try
-            {
-                RoleHelper client = new RoleHelper();
+            {  
                 List<RoleTemplate> roleTemplates = client.ViewTemplateRole(user, null).ToList();
                 roleTemplates.AddRange(client.ViewTemplateRole(user, event_));
                 cbRoleTemplate.ItemsSource = roleTemplates;
@@ -105,6 +105,7 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
+            client.Close();
         }
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
@@ -211,19 +212,36 @@ namespace Gems.UIWPF
             }
         }
 
+        //private void loadRoles()
+        //{
+        //    RoleClient client = new RoleClient();
+        //    try
+        //    {
+        //        lstRole.ItemsSource = client.ViewEventRoles(user, event_);// ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    client.Close();
+        //    clearAll();
+        //}
+
         private void loadRoles()
         {
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleClient client = new RoleClient();
-                lstRole.ItemsSource = client.ViewEventRoles(user, event_);// ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
-                
-                client.Close();
+                //cboRole.DisplayMemberPath = "user";
+                //cboRole.SelectedValuePath = "role.RoleID";
+                //roleByEvent = //client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
+                lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<RoleWithUser>();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            client.Close();
             clearAll();
         }
 

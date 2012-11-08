@@ -219,16 +219,16 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            try
-            {
-                loadEventsAuto();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
-                this.Close();
-                mainFrame.Visibility = Visibility.Visible;
-            }
+            //try
+            //{
+            //    loadEventsAuto();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    this.Close();
+            //    mainFrame.Visibility = Visibility.Visible;
+            //}
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
