@@ -6,14 +6,15 @@
     x:Class="Gems.UIWPF.frmMain"	x:Name="Window" Activated="Window_Activated"
 	Title="GEMS Event Management System" Closed="Window_Closed"  
     Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-	Width="1000" Height="765" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"  >
+	Width="1000" Height="765" ResizeMode="NoResize" Foreground="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Icon="/GemsClientApp;component/favicon.ico">
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
 
     <Canvas Opacity="1.0" Margin="0">
         <Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
-        <Label Content="GEMS Events Management System" FontSize="28" FontWeight="Bold" Canvas.Left="462" Canvas.Top="20" Height="50">
+        <Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="90" x:Name="btnMinimize" Click="btnMinimize_Click" />
+        <Label Content="GEMS Events Management System" FontSize="28" FontWeight="Bold" Canvas.Left="416" Canvas.Top="12" Height="50">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
             </Label.Effect>

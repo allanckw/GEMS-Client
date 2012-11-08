@@ -36,19 +36,22 @@ namespace Gems.UIWPF
 
         private void loadEvents()
         {
-            EventHelper client = new EventHelper();
+            
             List<Events> elist;
             if (user.isFacilityAdmin || user.isSystemAdmin)
             {
-                elist =client.ViewAllEvents(user).ToList<Events>();
+                EventHelper client = new EventHelper();
+                elist = client.ViewAllEvents(user).ToList<Events>();
+                client.Close();
             }
             else
             {
-               elist = client.ViewAllUserEvent(user).ToList<Events>();
+                FacilityBookingsHelper client = new FacilityBookingsHelper();
+                elist = client.ViewAuthorizedEventsForFacBookings(user).ToList<Events>();
+                client.Close();
             }
              
             this.cboEventList.ItemsSource = elist;
-            client.Close();
 
             cboEventList.SelectedValuePath = "EventID";
             cboEventList.DisplayMemberPath = "Name";

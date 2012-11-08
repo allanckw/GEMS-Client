@@ -100,6 +100,8 @@ namespace Gems.UIWPF
             hourlyTimer.Interval = TimeSpan.FromMinutes(59.99);
             hourlyTimer.Tick += new EventHandler(hourlyTimer1_Tick);
             hourlyTimer.Start();
+
+            MinimizeToTray.Enable(this);
         }
 
         public frmMain(User u, frmLogin mainFrame)
@@ -244,7 +246,7 @@ namespace Gems.UIWPF
                                 List<Events> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
                                 {
-                                    list = client.ViewAllUserEvent(user).ToList<Events>();
+                                    list = client.ViewUserAssociatedEvent(user).ToList<Events>();
                                 }
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                 {
@@ -312,7 +314,7 @@ namespace Gems.UIWPF
                                 List<Events> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
                                 {
-                                    list = client.ViewAllUserEvent(user).ToList<Events>();
+                                    list = client.ViewUserAssociatedEvent(user).ToList<Events>();
                                 }
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                 {
@@ -1046,5 +1048,13 @@ namespace Gems.UIWPF
             export.ShowDialog();
         }
 
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        #region "Context Menu, Task Bar Icon"
+
+        #endregion
     }
 }
