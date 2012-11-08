@@ -98,7 +98,7 @@ namespace Gems.UIWPF
             else
             {
                 //Save to item type repository here
-                itemType2Add = txtOthers.Text.ToString().Trim();
+                itemType2Add = txtOthers.Text.ToString().Trim().ToUpper();
                 EventItemsHelper client = new EventItemsHelper();
                 client.AddItemsTypes(itemType2Add);
                 client.Close();

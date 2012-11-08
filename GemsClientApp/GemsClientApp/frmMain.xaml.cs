@@ -478,8 +478,11 @@ namespace Gems.UIWPF
 
         private void notify()
         {
-            if (taskbarNotifier.NotifyContent.Count > 0)
-                taskbarNotifier.Notify();
+            if (this.taskbarNotifier != null)
+            {
+                if (taskbarNotifier.NotifyContent.Count > 0)
+                    taskbarNotifier.Notify();
+            }
         }
 
         private void hourlyTimer1_Tick(object sender, EventArgs e)
