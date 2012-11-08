@@ -103,20 +103,15 @@ namespace Gems.UIWPF
             }
 
             EventDay evDay = (EventDay)cboEventDay.SelectedItem;
-            this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex,
-                chkAllStatus.IsChecked.Value, chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
-            //if ((bool)chkAllEventDay.IsChecked == true)
-            //{
-            //    this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEvent(user,
-            //    int.Parse(cboEventList.SelectedValue.ToString()),
-            //    cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,false);
-            //}
-            //else
-            //{
-            //    this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user,
-            //        int.Parse(cboEventList.SelectedValue.ToString()),
-            //        cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value, false, evDay.StartDateTime);
-            //}
+            try
+            {
+                this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex,
+    chkAllStatus.IsChecked.Value, chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             client.Close();
         }
 

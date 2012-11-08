@@ -47,7 +47,7 @@ namespace Gems.UIWPF
         private void Load_Event()
         {
             EventHelper client = new EventHelper();
-            List<Events> list = client.ViewAllUserEvent(user).ToList<Events>();
+            List<Events> list = client.ViewUserEvent(user).ToList<Events>();
             lstEventList.ItemsSource = list;
             client.Close();
             lstEventList.SelectedIndex = 0;
@@ -181,6 +181,7 @@ namespace Gems.UIWPF
             txtDesc.Document.Blocks.Clear();
             txtEventName.Text = "";
             txtWebsite.Text = "";
+            txtTag.Text = "";
             dtpStart.clear();
             dtpEnd.clear();
         }

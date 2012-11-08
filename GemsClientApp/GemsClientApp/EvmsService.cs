@@ -5814,6 +5814,10 @@ public interface IEvent
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvent/ViewAllUserEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Events[] ViewAllUserEvent(evmsService.entities.User user);
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/ViewUserEvent", ReplyAction="http://tempuri.org/IEvent/ViewUserEventResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvent/ViewUserEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Events[] ViewUserEvent(evmsService.entities.User user);
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEvent/EditEvent", ReplyAction="http://tempuri.org/IEvent/EditEventResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IEvent/EditEventSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     void EditEvent(evmsService.entities.User user, evmsService.entities.Events evnt, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite, string EventTag);
@@ -5897,6 +5901,11 @@ public partial class EventClient : System.ServiceModel.ClientBase<IEvent>, IEven
     public evmsService.entities.Events[] ViewAllUserEvent(evmsService.entities.User user)
     {
         return base.Channel.ViewAllUserEvent(user);
+    }
+    
+    public evmsService.entities.Events[] ViewUserEvent(evmsService.entities.User user)
+    {
+        return base.Channel.ViewUserEvent(user);
     }
     
     public void EditEvent(evmsService.entities.User user, evmsService.entities.Events evnt, string EventName, System.DateTime EventStartDateTime, System.DateTime EventEndDatetime, string EventDescription, string EventWebsite, string EventTag)

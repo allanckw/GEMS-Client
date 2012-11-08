@@ -119,6 +119,28 @@ namespace Gems.UIWPF
             //    //this.Close();
             //}
         }
+
+        private void btnCheckAll_Click(object sender, RoutedEventArgs e)
+        {
+            cboFacilities.IsChecked = true;
+            cboGuest.IsChecked = true;
+            cboIncome.IsChecked = true;
+            cboOptItem.IsChecked = true;
+            cboParticipant.IsChecked = true;
+            cboProgrammes.IsChecked = true;
+            cboTask.IsChecked = true;
+        }
+
+        private void btnUnCheckAll_Click(object sender, RoutedEventArgs e)
+        {
+            cboFacilities.IsChecked = false;
+            cboGuest.IsChecked = false;
+            cboIncome.IsChecked = false;
+            cboOptItem.IsChecked = false;
+            cboParticipant.IsChecked = false;
+            cboProgrammes.IsChecked = false;
+            cboTask.IsChecked = false;
+        }
     }
 }
 

@@ -126,17 +126,21 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-
-            if (!user.isSystemAdmin)
+            DisableAllRight();
+            this.mnuAdmin.Visibility = Visibility.Collapsed;
+            this.mnuGlobalRoleTemplates.Visibility = Visibility.Collapsed;
+            this.mnuManageFac.Visibility = Visibility.Collapsed;
+            this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
+            if (user.isSystemAdmin)
             {
-                this.mnuAdmin.Visibility = Visibility.Collapsed;
-                this.mnuGlobalRoleTemplates.Visibility = Visibility.Collapsed;
+                this.mnuAdmin.Visibility = Visibility.Visible;
+                this.mnuGlobalRoleTemplates.Visibility = Visibility.Visible;
             }
-            if (!user.isFacilityAdmin)
+            if (user.isFacilityAdmin)
             {
-                this.mnuManageFac.Visibility = Visibility.Collapsed;
-                this.mnuManageFacBookings.Visibility = Visibility.Collapsed;
+                this.mnuLocation.Visibility = Visibility.Visible;
+                this.mnuManageFac.Visibility = Visibility.Visible;
+                this.mnuManageFacBookings.Visibility = Visibility.Visible;
             }
             if (user.isEventOrganizer)
             {
@@ -163,6 +167,7 @@ namespace Gems.UIWPF
             mnuManageBudgetItem.Visibility = Visibility.Collapsed;
             mnuBudgetReport.Visibility = Visibility.Collapsed;
             //Tasks and View Tasks Are Global
+            mnuTasks.Visibility = Visibility.Collapsed;
             mnuManageTasks.Visibility = Visibility.Collapsed;
             //
             mnuManpower.Visibility = Visibility.Collapsed;
@@ -194,6 +199,7 @@ namespace Gems.UIWPF
             mnuManageBudgetItem.Visibility = Visibility.Visible;
             mnuBudgetReport.Visibility = Visibility.Visible;
             //Tasks and View Tasks Are Global
+            mnuTasks.Visibility = Visibility.Visible;
             mnuManageTasks.Visibility = Visibility.Visible;
             //
             mnuManpower.Visibility = Visibility.Visible;
@@ -237,20 +243,24 @@ namespace Gems.UIWPF
                                 EventHelper client = new EventHelper();
                                 List<Events> list;
                                 if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
+                                {
                                     list = client.ViewAllUserEvent(user).ToList<Events>();
+                                }
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
+                                {
                                     list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
+                                }
                                 else
-
+                                {
                                     list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
+                                     dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
+                                }
 
                                 client.Close();
 
                                 if (list.Count > 0)
                                     cboEventList.ItemsSource = list;
-                                else
-                                    DisableAllRight();
+
 
                             }
                             catch (Exception ex)
@@ -300,19 +310,19 @@ namespace Gems.UIWPF
                                 }
                                 EventHelper client = new EventHelper();
                                 List<Events> list;
-
-                                //if valid date range.
-                                if (dtpFrom.SelectedDate != null && dtpTo.SelectedDate != null)
+                                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
                                 {
-                                    list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
-                                                    dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
+                                    list = client.ViewAllUserEvent(user).ToList<Events>();
                                 }
                                 else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
                                 {
                                     list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
                                 }
                                 else
-                                    list = client.ViewAllUserEvent(user).ToList<Events>();
+                                {
+                                    list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
+                                     dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
+                                }
 
                                 cboEventList.ItemsSource = list;
                                 client.Close();
@@ -371,15 +381,17 @@ namespace Gems.UIWPF
         {
             DisableAllRight();
 
-
             if (user.isEventOrganizer)
             {
-                mnuLocation.Visibility = Visibility.Visible;
-                mnuSearchFac.Visibility = Visibility.Visible;
-                mnuViewBookings.Visibility = Visibility.Visible;
-                mnuRoleTemplates.Visibility = Visibility.Visible;
-                mnuExport.Visibility = Visibility.Visible;
-                mnuWiz.Visibility = Visibility.Visible;
+                mnuEvent.Visibility = Visibility.Visible;
+                mnuItemManageEvent.Visibility = Visibility.Visible;
+                //mnu
+                //mnuLocation.Visibility = Visibility.Visible;
+                //mnuSearchFac.Visibility = Visibility.Visible;
+                //mnuViewBookings.Visibility = Visibility.Visible;
+                //mnuRoleTemplates.Visibility = Visibility.Visible;
+                //mnuExport.Visibility = Visibility.Visible;
+                //mnuWiz.Visibility = Visibility.Visible;
             }
             //
             if (ef.Contains(EnumFunctions.Edit_Programmes) ||

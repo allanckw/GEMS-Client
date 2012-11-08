@@ -38,6 +38,9 @@ namespace Gems.UIWPF
             FacilityBookingsHelper client = new FacilityBookingsHelper();
             lstRequestor.ItemsSource = client.GetFacBookingRequestList(user);
             client.Close();
+            txtEventName.Text = "";
+            txtRemarks.Text = "";
+            txtRequestor.Text = "";
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
