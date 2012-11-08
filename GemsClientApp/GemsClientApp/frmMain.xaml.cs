@@ -219,7 +219,16 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            loadEventsAuto();
+            try
+            {
+                loadEventsAuto();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+                mainFrame.Visibility = Visibility.Visible;
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -349,7 +358,9 @@ namespace Gems.UIWPF
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
+                                this.Close();
+                                mainFrame.Visibility = Visibility.Visible;
                             }
                         }
                     ));
@@ -539,7 +550,9 @@ namespace Gems.UIWPF
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Close();
+                            mainFrame.Visibility = Visibility.Visible;
                         }
                     }
                 ));
@@ -1053,8 +1066,6 @@ namespace Gems.UIWPF
             WindowState = WindowState.Minimized;
         }
 
-        #region "Context Menu, Task Bar Icon"
 
-        #endregion
     }
 }
