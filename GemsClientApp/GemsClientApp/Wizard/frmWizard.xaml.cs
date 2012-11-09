@@ -398,7 +398,7 @@ namespace Gems.UIWPF
                             Mouse.OverrideCursor = Cursors.Wait;
                             MessageBox.Show("Please wait while we process your request...");
 
-                            WizardClient client = new WizardClient();
+                            WizardHelper client = new WizardHelper();
 
 
                             client.WizardAddEvent(_user, _event, ToArray<Program>(_programs), ToArray<Guest>(_guests), _itemTypes.ToArray(), _items.ToArray(), _publish, _task.ToArray());
