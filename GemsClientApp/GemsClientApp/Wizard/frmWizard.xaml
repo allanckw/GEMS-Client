@@ -1,46 +1,41 @@
-﻿
-    
-    
-    <Window x:Class="Gems.UIWPF.frmWizard"
+﻿<Window x:Class="Gems.UIWPF.frmWizard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Name="Window" WindowStyle="SingleBorderWindow" AllowsTransparency="False" WindowStartupLocation="CenterScreen"
+        x:Name="Window"  AllowsTransparency="False" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
         Title="" Width="980" Height="695" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown" Unloaded="Window_Unloaded" Topmost="True">
-
-    
 
     <!--<Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>-->
 
     <Canvas Opacity="1.0" Margin="0" Loaded="Canvas_Loaded">
-        <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Wizard" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="20" />
+        <Label Canvas.Left="12" Canvas.Top="12" Content="GEMS Event Management System - Quick start Wizard" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="20" />
 
         <StackPanel Height="655" Canvas.Left="15" Canvas.Top="56" Width="938" Orientation="Horizontal">
-            <StackPanel Height="655" Width="180" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Height="655" Width="180" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Black">
 
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnevent" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" >Create Event</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnprogramme" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Manage Programme</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnitem" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Manage Item</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btntask" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Manage Task</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnguest" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Manage Guest</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnpublish" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Manage Publish</Button>
-                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Name="btnsummary" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick">Summary</Button>
-                <!--<Button Margin="10,15,0,0" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left" Name="test" Height="25" FontFamily="Stencil" FontSize="14" MouseLeftButtonUp="Navigation_MouseClick">Manage Publish</Button>-->
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnevent" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" >Create Event</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnprogramme" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Manage Programme</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnitem" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Manage Item</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btntask" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Manage Task</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnguest" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Manage Guest</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnpublish" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Manage Publish</Button>
+                <Button Margin="10,15,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False" HorizontalAlignment="Left" Name="btnsummary" Height="25" FontFamily="Stencil" FontSize="14" Click="Navigation_MouseClick" Foreground="White">Summary</Button>
               
-                <GroupBox FontSize="14" Name="gbEvtDetails" Header="Event Details" Margin="0,20,0,0" FontWeight="Bold" Visibility="Hidden">
+                <GroupBox FontSize="16" Name="gbEvtDetails" Header="Event Details"  Margin="0,20,0,0" FontWeight="Bold" Foreground="Yellow" Background="Black"
+                          Visibility="Hidden" Height="199">
                     <StackPanel Width="175">
-                        <Label Height="50" x:Name="lblEvtName" FontFamily="Stencil" FontSize="12" FontWeight="Bold" />
-                        <Label Height="50" x:Name="lblEvtStartDate" FontFamily="Stencil" FontSize="12" FontWeight="Bold" />
-                        <Label Height="50" x:Name="lblEvtEndDate" FontFamily="Stencil" FontSize="12" FontWeight="Bold" />
+                        <Label Height="50" x:Name="lblEvtName"  FontSize="12" FontWeight="Bold"  Foreground="Yellow" />
+                        <Label Height="50" x:Name="lblEvtStartDate" FontSize="12" FontWeight="Bold" Foreground="Yellow" />
+                        <Label Height="50" x:Name="lblEvtEndDate"  FontSize="12" FontWeight="Bold" Foreground="Yellow" />
                     </StackPanel>
                 </GroupBox>
 
 
             </StackPanel>
-            
+
             <StackPanel Orientation="Vertical" Width="764" Height="655">
                 <StackPanel Width="764">
-                <Frame x:Name="frame" Width="756" Height="550" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
+                    <Frame x:Name="frame" Width="756" Height="550" NavigationUIVisibility="Hidden" TabIndex="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False" UseLayoutRounding="True" />
                 </StackPanel>
 
                 <StackPanel  Width="764" Height="50" Orientation="Horizontal">
@@ -54,11 +49,11 @@
                         <Button x:Name="btnSkip" Width="80" Margin="5,0,0,0" Click="btnSkip_Click">Skip</Button>
                         <Button x:Name="btnFinish" Width="80" Margin="5,0,0,0" Click="btnFinish_Click">Finish</Button>
                         <Grid Name="gridwiz" />
-                        
+
                     </StackPanel>
-                    
+
                 </StackPanel>
-        </StackPanel>
+            </StackPanel>
         </StackPanel>
 
     </Canvas>

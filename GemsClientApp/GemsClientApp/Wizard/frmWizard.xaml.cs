@@ -37,14 +37,6 @@ namespace Gems.UIWPF
         
         public frmWizard(User u)
         {
-
-            //_event = null;
-            //_days = null;
-            //_programs = null;
-            //_items = null;
-            //_itemTypes = null;
-            //_guests = null;
-            //_publish = null;
             _user = u;
             _event = new Events();
             _event.StartDateTime = DateTime.Now;
@@ -56,14 +48,10 @@ namespace Gems.UIWPF
             _guests = new List<List<Guest>>();
             _publish = new Publish();
             _task = new List<Task>();
-
  
             this.InitializeComponent();
 
             listlabel = new List<Button>();
-            
-            //btnevent
-            //btnevent
             listlabel.Add(btnevent);
             listlabel.Add(btnprogramme);
             listlabel.Add(btnitem);
@@ -71,14 +59,9 @@ namespace Gems.UIWPF
             listlabel.Add(btnguest);
             listlabel.Add(btnpublish);
             listlabel.Add(btnsummary);
-                
-            
-                
                
             Navigation_MouseClick(listlabel[0], null);
-           // navigate<frmWizEvent>();
-            //listlabel.Add(
-            //InitializeComponent();
+
         }
 
         public int HighLight_Navigation(Button lbl)
@@ -89,14 +72,14 @@ namespace Gems.UIWPF
 
                 if (listlabel[i] == lbl)
                 {
-                    listlabel[i].Foreground = Brushes.Green;
+                    listlabel[i].Foreground = Brushes.GreenYellow;
                     //listlabel[i].Background = Brushes.Transparent;
                     //listlabel[i].BorderBrush = Brushes.Transparent;
                     
                     index = i;
                 }
                 else
-                    listlabel[i].Foreground = Brushes.Black;
+                    listlabel[i].Foreground = Brushes.White;
 
                 
             }
@@ -111,14 +94,14 @@ namespace Gems.UIWPF
 
                 if (i == index)
                 {
-                    listlabel[i].Foreground = Brushes.Green;
+                    listlabel[i].Foreground = Brushes.GreenYellow;
                     //listlabel[i].Background = Brushes.Transparent;
                     //listlabel[i].BorderBrush = Brushes.Transparent;
 
                     index = i;
                 }
                 else
-                    listlabel[i].Foreground = Brushes.Black;
+                    listlabel[i].Foreground = Brushes.White;
 
 
             }
@@ -183,27 +166,21 @@ namespace Gems.UIWPF
         
         private void Navigation_MouseClick(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
             if (Curpage == null)
             {
-                curindex = HighLight_Navigation((Button)sender);
+                
+                curindex = HighLight_Navigation(btn);
                 NavigateFrame(curindex);
-
-
             }
             else if (Curpage.Save())
             {
-                curindex = HighLight_Navigation((Button)sender);
+                curindex = HighLight_Navigation(btn);
                 //curindex = HighLight_Navigation(curindex + 1);
                 NavigateFrame(curindex);
-
                 UpdateSideEventInfo();
-
             }
-            
-            //curindex = HighLight_Navigation((Button)sender);
 
-
-            //NavigateFrame(curindex);
         }
 
         public void NavigateFrame(int index)
