@@ -63,7 +63,7 @@ namespace Gems.UIWPF
                             Mouse.OverrideCursor = Cursors.Wait;
                             MessageBox.Show("Please wait while we process Export your data...");
 
-                            ExportClient c = new ExportClient();
+                            ExportHelper c = new ExportHelper();
                             try
                             {
 
@@ -102,7 +102,7 @@ namespace Gems.UIWPF
 
 
             //try{
-            //    ExportClient c = new ExportClient();
+            //    ExportHelper c = new ExportHelper();
             //    c.Open();
             //    ExportData data = c.GetExportData(user, event_.EventID, cboFacilities.IsChecked.Value,
             //        cboProgrammes.IsChecked.Value, cboIncome.IsChecked.Value, cboOptItem.IsChecked.Value, cboTask.IsChecked.Value, cboGuest.IsChecked.Value, cboParticipant.IsChecked.Value);

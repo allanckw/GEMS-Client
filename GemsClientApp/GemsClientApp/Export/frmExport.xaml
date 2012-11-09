@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Gems.UIWPF.frmExport"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="GEMS Client" Height="280" Width="465" 
+    Title="GEMS Helper" Height="280" Width="465" 
     AllowsTransparency="True"  WindowStyle="None" WindowState="Normal"
     MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" 
     Foreground="{x:Null}" WindowStartupLocation="CenterScreen"  >

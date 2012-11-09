@@ -5,9 +5,9 @@ using System.ServiceModel;
 
 namespace Gems.UIWPF
 {
-    //class WCFHelperClient : EvmsServiceClient
+    //class WCFClientClient : EvmsServiceClient
     //{
-    //    public WCFHelperClient()
+    //    public WCFClientHelper()
     //    {
     //        var endpointAddress = Endpoint.Address;
            

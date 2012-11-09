@@ -90,7 +90,7 @@ namespace Gems.UIWPF
 
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //WCFHelperClient client = new WCFHelperClient();
+            //WCFHelperHelper client = new WCFHelperHelper();
             if (cboRole.SelectedIndex == -1)
             {
                 lstAllTask.ItemsSource = null;
