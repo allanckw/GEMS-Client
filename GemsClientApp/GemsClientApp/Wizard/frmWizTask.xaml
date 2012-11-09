@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      Width="750" Height="600" Background="{x:Null}"
+      Width="750" Height="545" Background="{x:Null}"
 	Title="frmWizTask" xmlns:my="clr-namespace:Gems.UIWPF.CustomCtrl" xmlns:my1="clr-namespace:evmsService.entities">
 
     <GroupBox Header="Manage Task" FontSize="21" FontWeight="Medium">
@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="0.322*" />
                 <ColumnDefinition Width="0.678*" />
             </Grid.ColumnDefinitions>
-            <GroupBox Grid.Column="1" Header="Task Information" Height="320" Margin="22,22.22,38.584,0" VerticalAlignment="Top">
+            <GroupBox Grid.Column="1" Header="Task Information" FontSize="18" Height="503" Margin="22,0,6,0" VerticalAlignment="Top">
                 <StackPanel Height="320" Margin="0" VerticalAlignment="Top">
                     <StackPanel Height="35" Orientation="Horizontal">
                         <Label Content="Name:" FontSize="14" VerticalAlignment="Top" Width="100" />
@@ -35,7 +35,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="List of Tasks" Height="320" Margin="24.5,22.22,1.5,0" VerticalAlignment="Top">
+            <GroupBox Header="List of Tasks" FontSize="18" Height="503" Margin="0,0,484,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
                 <ListBox FontSize="14" FontWeight="Normal" Margin="1,1,1,1" Name="lstManageTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lstManageTasks_SelectionChanged" Width="200">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

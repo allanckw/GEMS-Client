@@ -181,7 +181,7 @@ namespace Gems.UIWPF
                 ItemTypes itemtype = (ItemTypes)lvItemType.Items[i];
                 if (itemtype.typeString == itemType2Add)
                 {
-                    MessageBox.Show("item type already added");
+                    MessageBox.Show("Item type already added");
                     return;
 
                 }
@@ -204,7 +204,7 @@ namespace Gems.UIWPF
         {
             if (lvItemType.SelectedIndex == -1)
             {
-                MessageBox.Show("Please Select an Item Type to toggle!", "Error!",
+                MessageBox.Show("Please select an item type to toggle!", "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -243,7 +243,7 @@ namespace Gems.UIWPF
             //lvItemType.DeleteItemType(user, event_);
             if (lvItemType.SelectedIndex == -1)
             {
-                MessageBox.Show("Please Select an Item Type to delete!", "Error!",
+                MessageBox.Show("Please select an item type to delete!", "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -253,7 +253,7 @@ namespace Gems.UIWPF
 
                 if (((Items)lvItem.Items[i]).typeString == it.typeString)
                 {
-                    MessageBox.Show("Please Delete the items with this item type first","Error!",
+                    MessageBox.Show("Please delete the items with this item type first","Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
                     return;
@@ -277,7 +277,7 @@ namespace Gems.UIWPF
                 bool isdecimal = decimal.TryParse(txtItemPrice.Text, out price);
                 if (!isdecimal)
                 {
-                    MessageBox.Show("Invalid Price");
+                    MessageBox.Show("Invalid price");
                     txtItemPrice.Text = "";
                     txtItemPrice.Focus();
                     return;
@@ -286,7 +286,7 @@ namespace Gems.UIWPF
                 bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
                 if (!isInt)
                 {
-                    MessageBox.Show("Invalid Satisfaction Value");
+                    MessageBox.Show("Invalid satisfaction value");
                     txtItemSatisfaction.Text = "";
                     txtItemSatisfaction.Focus();
                     return;
@@ -359,7 +359,7 @@ namespace Gems.UIWPF
             //Items Item2Edit = lvItem.GetEditItem();
             if (lvItem.SelectedIndex == -1)
             {
-                MessageBox.Show("Please Select An Item!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Please select an item!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -379,7 +379,7 @@ namespace Gems.UIWPF
                 bool isdecimal = decimal.TryParse(txtItemPrice.Text, out price);
                 if (!isdecimal)
                 {
-                    MessageBox.Show("Invalid Price");
+                    MessageBox.Show("Invalid price");
                     txtItemPrice.Text = "";
                     txtItemPrice.Focus();
                     return;
@@ -388,7 +388,7 @@ namespace Gems.UIWPF
                 bool isInt = int.TryParse(txtItemSatisfaction.Text, out satisfactionValue);
                 if (!isInt)
                 {
-                    MessageBox.Show("Invalid Satisfaction Value");
+                    MessageBox.Show("Invalid satisfaction value");
                     txtItemSatisfaction.Text = "";
                     txtItemSatisfaction.Focus();
                     return;

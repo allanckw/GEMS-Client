@@ -70,6 +70,7 @@ namespace Gems.UIWPF
             listlabel.Add(btntask);
             listlabel.Add(btnguest);
             listlabel.Add(btnpublish);
+            listlabel.Add(btnsummary);
                 
             
                 
@@ -162,7 +163,8 @@ namespace Gems.UIWPF
                 cbwiz.IsChecked = true;
                 cbwizsound.IsChecked = true;
 
-                WizHelpTalk("Welcome to the GEMS Wizard, Please Enter your new event information.");
+                WizHelpTalk("Welcome to the GEMS Wizard. Please enter the information for your new event. " + 
+                    "After which, you can click \"Next\" or \"Skip\" button to proceed.");
             }
             //catch (FileNotFoundException)   //if the charater not found  // using IO 
             //{
@@ -193,6 +195,9 @@ namespace Gems.UIWPF
                 curindex = HighLight_Navigation((Button)sender);
                 //curindex = HighLight_Navigation(curindex + 1);
                 NavigateFrame(curindex);
+
+                UpdateSideEventInfo();
+
             }
             
             //curindex = HighLight_Navigation((Button)sender);
@@ -206,7 +211,7 @@ namespace Gems.UIWPF
             btnPrevious.IsEnabled = true;
             btnNext.IsEnabled = true;
             btnSkip.IsEnabled = true;
-            btnFinish.IsEnabled = true;
+            btnFinish.IsEnabled = false;
 
             switch (curindex)
             {
@@ -214,33 +219,81 @@ namespace Gems.UIWPF
                     navigate<frmWizEvent>();
                     btnPrevious.IsEnabled = false;
                     btnSkip.IsEnabled = false;
+                    this.Title = "Quick Start Wizard - Step 1 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter your new event information.");
+                    }
+
                     break;
                 case 1:
                     navigate<frmWizProgramme>();
+                    this.Title = "Quick Start Wizard - Step 2 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter your planned programmes details for the respective event days.");
+                    }
+
                     break;
                 case 2:
                     navigate<frmWizItem>();
+                    this.Title = "Quick Start Wizard - Step 3 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter the items needed for your event.");
+                    }
+
                     break;
                 case 3:
                     navigate<frmWizTask>();
+                    this.Title = "Quick Start Wizard - Step 4 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter the tasks to be completed for your event.");
+                    }
+
                     break;
                 case 4:
                     navigate<frmWizGuest>();
+                    this.Title = "Quick Start Wizard - Step 5 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter the guests who are attending on the respective event days.");
+                    }
+
                     break;
                 case 5:
                     navigate<frmWizPublish>();
+                    this.Title = "Quick Start Wizard - Step 6 of 7";
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("Enter the publish information for your event.");
+                    }
+
+                    //btnSkip.IsEnabled = false;
+                    //btnNext.IsEnabled = false;
+                    break;
+                case 6:
+                    navigate<frmWizSummary>();
+                    this.Title = "Quick Start Wizard - Step 7 of 7";
                     btnSkip.IsEnabled = false;
                     btnNext.IsEnabled = false;
+                    btnFinish.IsEnabled = true;
+
+                    if (cbwizsound.IsChecked == true)
+                    {
+                        WizHelpTalk("This page summarises all the information that you have added so far. " + 
+                            "Do look through them before clicking the Finish button. If you have any changes to make, " + 
+                            "either click the \"Previous\" button or the left menu bar.");
+                    }
                     break;
-
             }
-        }
-
-        
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -284,11 +337,17 @@ namespace Gems.UIWPF
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             
-            WizHelpTalk("HIII");
+            //WizHelpTalk("HIII");
+            //if (cbwizsound.IsChecked==true)
+            //{
+            //    WizHelpTalk("Ni Hao");
+            //}
+             
             if (Curpage.Save())
             {
                 curindex = HighLight_Navigation(curindex + 1);
                 NavigateFrame(curindex);
+                UpdateSideEventInfo();
             }
         }
 
@@ -309,6 +368,7 @@ namespace Gems.UIWPF
         {
             curindex = HighLight_Navigation(curindex + 1);
             NavigateFrame(curindex);
+            UpdateSideEventInfo();
         }
 
         private T[][] ToArray<T>(List<List<T>> list)
@@ -344,7 +404,7 @@ namespace Gems.UIWPF
                             client.WizardAddEvent(_user, _event, ToArray<Program>(_programs), ToArray<Guest>(_guests), _itemTypes.ToArray(), _items.ToArray(), _publish, _task.ToArray());
                             client.Close();
 
-                            MessageBox.Show("Operation Completed",
+                            MessageBox.Show("Operation completed!",
                                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                             this.Close();
                         }
@@ -391,7 +451,7 @@ namespace Gems.UIWPF
 
                 speaker.SoundEffectsOn = false;
                 
-                this.speaker.Speak("ahhhhhhh", null);
+                //this.speaker.Speak("ahhhhhhh", null);
                 
                 
             }
@@ -432,6 +492,23 @@ namespace Gems.UIWPF
                 this.speaker.StopAll(0);
             }
             catch { }
+        }
+
+        private void UpdateSideEventInfo()
+        {
+            if (curindex == 6)
+                gbEvtDetails.Visibility = Visibility.Hidden;
+            else
+            {
+                gbEvtDetails.Visibility = Visibility.Visible;
+                lblEvtName.Content = "Event Name: \n" + _event.Name;
+                lblEvtStartDate.Content = "Event Start Date: \n" + _event.StartDateTime.ToString();
+                lblEvtEndDate.Content = "Event End Date: \n" + _event.EndDateTime.ToString();
+            }
+            //gbEvtDetails.Visibility = Visibility.Visible;
+            //lblEvtName.Content = "Event Name: \n" + _event.Name;
+            //lblEvtStartDate.Content = "Event Start Date: \n" + _event.StartDateTime.ToString();
+            //lblEvtEndDate.Content = "Event End Date: \n" + _event.EndDateTime.ToString();
         }
       
     }

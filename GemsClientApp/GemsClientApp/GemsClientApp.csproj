@@ -248,6 +248,9 @@
     <Compile Include="Wizard\frmWizPublish.xaml.cs">
       <DependentUpon>frmWizPublish.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wizard\frmWizSummary.xaml.cs">
+      <DependentUpon>frmWizSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wizard\frmWizTask.xaml.cs">
       <DependentUpon>frmWizTask.xaml</DependentUpon>
     </Compile>
@@ -466,6 +469,10 @@
     <Page Include="Wizard\frmWizPublish.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizard\frmWizSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Wizard\frmWizTask.xaml">
       <SubType>Designer</SubType>

@@ -136,14 +136,14 @@ namespace Gems.UIWPF
             if (dtpStart.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid publish start date.",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    "Invalid input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
                 //return false;
             }
             if (dtpEnd.SelectedDateTime == default(DateTime))
             {
                 MessageBox.Show("Invalid publish end date.",
-                    "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    "Invalid input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
                 //return false;
             }
@@ -167,7 +167,7 @@ namespace Gems.UIWPF
 
                 if (cboIsPayable.IsChecked.Value && !decimal.TryParse(txtamount.Text, out result))
                 {
-                    MessageBox.Show("invalid amount");
+                    MessageBox.Show("Invalid amount");
                     return;
                 }
                 //if (publish.Remarks == null)
@@ -195,7 +195,8 @@ namespace Gems.UIWPF
         {
             try
             {
-                publish.StartDateTime = DateTime.Now;
+                publish.StartDateTime = Convert.ToDateTime("1/1/0001 12:00:00 AM");
+                //publish.StartDateTime = DateTime.Now;
                 publish.Remarks = null;
                 publish.EndDateTime = DateTime.Now;
                 publish.IsPayable = false;

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      Width="750" Height="600" Background="{x:Null}"
+      Width="750" Height="545" Background="{x:Null}"
 	Title="frmWizProgramme" Loaded="Page_Loaded">
 
     <GroupBox Header="Manage Programme" FontSize="21" FontWeight="Medium">
@@ -75,9 +75,9 @@
                         <ComboBox Width="50" Margin="0,0,10,0" Height="23" x:Name="cboEndHr" FontSize="12" SelectionChanged="cboEndHr_SelectionChanged" />
                         <ComboBox Width="50" Height="23" x:Name="cboEndMin" FontSize="12"/>
                     </StackPanel>-->
-                    <StackPanel Height="250">
+                    <StackPanel Height="195">
                         <Label Content="Description:" FontSize="13"/>
-                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="208" FontSize="12" Margin="8,0" x:Name="txtDescription" />
+                        <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="150" FontSize="12" Margin="8,0" x:Name="txtDescription" />
                     </StackPanel>
                     <DockPanel LastChildFill="False" Height="25" HorizontalAlignment="Right">
                         <Button x:Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,10,0" Click="btnSave_Click" />

@@ -70,7 +70,7 @@ namespace Gems.UIWPF
         {
             if (txtTaskName.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Please enter the task Name", "Invalid input",
+                MessageBox.Show("Please enter the task name", "Invalid input",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
@@ -96,11 +96,11 @@ namespace Gems.UIWPF
                 lstManageTasks.Items.Add(t);
                 tasks.Add(t);
 
-                MessageBox.Show("Operation Succeeded");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
@@ -134,11 +134,11 @@ namespace Gems.UIWPF
                 lstManageTasks.BeginInit();
                 lstManageTasks.EndInit();
 
-                MessageBox.Show("Operation Succeeded");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             //client.Close();
@@ -163,11 +163,11 @@ namespace Gems.UIWPF
                 //cboRole.SelectedIndex = currIdx;
                 lstManageTasks.Items.RemoveAt(lstManageTasks.SelectedIndex);
                 Save();
-                MessageBox.Show("Operation Succeeded");
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error have occured: " + ex.Message, "Error",
+                MessageBox.Show("An error has occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             //client.Close();

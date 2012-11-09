@@ -51,19 +51,19 @@ namespace Gems.UIWPF
         {
             if (txtEventName.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Please Enter an Event Name",
+                MessageBox.Show("Please enter an event name",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             else if (dtpStart.SelectedDateTime == default(DateTime))
             {
-                MessageBox.Show("Invalid Event Start Date",
+                MessageBox.Show("Invalid event start date",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             else if (dtpEnd.SelectedDateTime == default(DateTime))
             {
-                MessageBox.Show("Invalid Event End Date",
+                MessageBox.Show("Invalid event end date",
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
@@ -110,7 +110,7 @@ namespace Gems.UIWPF
 
                 if (startTime.CompareTo(endTime) >= 0)
                 {
-                    throw new Exception("Invalid Date Entry, End Date Must be at a Later Date Then Start Date");
+                    throw new Exception("Invalid date entry, end date must be at a later date than start date");
                     
                 }
                 

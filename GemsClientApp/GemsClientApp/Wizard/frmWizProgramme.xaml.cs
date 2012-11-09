@@ -259,27 +259,22 @@ namespace Gems.UIWPF
                 //int duration = idx * 30;
 
                 endpro = startpro.AddMinutes(idx * 30);
-
-                if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
-                    throw new Exception("Error, Invalid time");
-                if (startpro >= endpro)
-                    throw new Exception("Error, Invalid time");
-
                 try
                 {
 
+                    if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
+                        throw new Exception("Error, invalid time");
+                    if (startpro >= endpro)
+                        throw new Exception("Error, invalid time");
 
                     if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).Name.Trim() != "")
                     {
-                        
-
-                        
                         //edit
                         List<Program> temp_program = copylist(p);
                         temp_program.Remove(((Program)lstProgram.SelectedItem));
                         if (ChkClash(temp_program, startpro, endpro))
                         {
-                            throw new Exception("Error, clashed!");
+                            throw new Exception("Error, time clash!");
                         }
                         ((Program)lstProgram.SelectedItem).StartDateTime = startpro;
                         ((Program)lstProgram.SelectedItem).EndDateTime = endpro;
@@ -292,7 +287,6 @@ namespace Gems.UIWPF
                     }
                     else
                     {
-                        //asa
                         //    //add temp
                         Program tempp = new Program();
                         tempp.StartDateTime = startpro;
@@ -305,12 +299,12 @@ namespace Gems.UIWPF
                         //temp_program.Add(tempp);
                         if (ChkClash(p, startpro, endpro))
                         {
-                            throw new Exception("Error, clashed!");
+                            throw new Exception("Error, time clash!");
                         }
                         //chk clash
 
                         if (SegmentStartDateTime > startpro || SegmentEndDateTime < endpro)
-                            throw new Exception("Error, Invalid time");
+                            throw new Exception("Error, invalid time");
                         //add
                         
                         p.Add(tempp);
@@ -435,7 +429,7 @@ namespace Gems.UIWPF
             if(first.Name.Trim() != "")
             {
             if(ChkClash(temp_program, first.StartDateTime, first.EndDateTime))
-                throw new Exception("Error!, time clash");
+                throw new Exception("Error, time clash");
 
             temp_program.Add(first);
             }
@@ -443,19 +437,25 @@ namespace Gems.UIWPF
             if(second.Name.Trim() != "")
             {
             if(ChkClash(temp_program, second.StartDateTime, second.EndDateTime))
-                throw new Exception("Error!, time clash");
+                throw new Exception("Error, time clash");
             temp_program.Add(second);
             }
 
+            if (Check_OverWrite(temp_program))
+            {
+                MessageBox.Show("OverLap or timing is over the event time boundary");
+                return;
+            }
+
             if (SegmentStartDateTime > first.StartDateTime || SegmentEndDateTime < first.EndDateTime)
-                throw new Exception("Error, Invalid time");
+                throw new Exception("Error, invalid time");
             if (first.StartDateTime >= first.EndDateTime)
-                throw new Exception("Error, Invalid time");
+                throw new Exception("Error, invalid time");
 
             if (SegmentStartDateTime > second.StartDateTime || SegmentEndDateTime < second.EndDateTime)
-                throw new Exception("Error, Invalid time");
+                throw new Exception("Error, invalid time");
             if (second.StartDateTime >= second.EndDateTime)
-                throw new Exception("Error, Invalid time");
+                throw new Exception("Error, invalid time");
 
             ////
 
@@ -487,11 +487,11 @@ namespace Gems.UIWPF
 
 
 
-            if (Check_OverWrite(temp_program))
-            {
-                MessageBox.Show("OverLap or is over the event time boundary");
-                return;
-            }
+            //if (Check_OverWrite(temp_program))
+            //{
+            //    MessageBox.Show("OverLap or is over the event time boundary");
+            //    return;
+            //}
 
             //try
             //{
