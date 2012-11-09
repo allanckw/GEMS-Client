@@ -34,7 +34,7 @@ namespace Gems.UIWPF
         private AxAgentObjects.AxAgent axAgent1;
         private AgentObjects.IAgentCtlCharacter speaker;
 
-        
+
         public frmWizard(User u)
         {
             _user = u;
@@ -48,7 +48,7 @@ namespace Gems.UIWPF
             _guests = new List<List<Guest>>();
             _publish = new Publish();
             _task = new List<Task>();
- 
+
             this.InitializeComponent();
 
             listlabel = new List<Button>();
@@ -59,49 +59,60 @@ namespace Gems.UIWPF
             listlabel.Add(btnguest);
             listlabel.Add(btnpublish);
             listlabel.Add(btnsummary);
-               
+
             Navigation_MouseClick(listlabel[0], null);
 
         }
 
         public int HighLight_Navigation(Button lbl)
         {
-            int index=0;
+            int index = 0;
             for (int i = 0; i < listlabel.Count; i++)
             {
 
                 if (listlabel[i] == lbl)
                 {
                     listlabel[i].Foreground = Brushes.GreenYellow;
+                    listlabel[i].Focusable = false;
+                    listlabel[i].IsEnabled = false;
                     //listlabel[i].Background = Brushes.Transparent;
                     //listlabel[i].BorderBrush = Brushes.Transparent;
-                    
+
                     index = i;
                 }
                 else
+                {
                     listlabel[i].Foreground = Brushes.White;
+                    listlabel[i].Focusable = true;
+                    listlabel[i].IsEnabled = true;
+                }
 
-                
             }
             return index;
         }
 
         public int HighLight_Navigation(int index)
         {
-            
+
             for (int i = 0; i < listlabel.Count; i++)
             {
 
                 if (i == index)
                 {
                     listlabel[i].Foreground = Brushes.GreenYellow;
+                    listlabel[i].Focusable = false;
+                    listlabel[i].IsEnabled = false;
                     //listlabel[i].Background = Brushes.Transparent;
                     //listlabel[i].BorderBrush = Brushes.Transparent;
 
                     index = i;
                 }
                 else
+                {
                     listlabel[i].Foreground = Brushes.White;
+                    listlabel[i].Focusable = true;
+                    listlabel[i].IsEnabled = true;
+                }
 
 
             }
@@ -112,7 +123,7 @@ namespace Gems.UIWPF
         {
             try
             {
-                
+
                 this.speaker.Speak(talk, null);
             }
             catch { }
@@ -122,7 +133,7 @@ namespace Gems.UIWPF
         {
             curindex = 0;
 
-            
+
             axAgent1 = null;
             try
             {
@@ -141,12 +152,12 @@ namespace Gems.UIWPF
                 this.speaker = this.axAgent1.Characters["merlin"];     //give the speaker object the character to show it
                 this.speaker.Show(0);
 
-                
+
 
                 cbwiz.IsChecked = true;
                 cbwizsound.IsChecked = true;
 
-                WizHelpTalk("Welcome to the GEMS Wizard. Please enter the information for your new event. " + 
+                WizHelpTalk("Welcome to the GEMS Wizard. Please enter the information for your new event. " +
                     "After which, you can click \"Next\" or \"Skip\" button to proceed.");
             }
             //catch (FileNotFoundException)   //if the charater not found  // using IO 
@@ -163,13 +174,12 @@ namespace Gems.UIWPF
 
         }
 
-        
+
         private void Navigation_MouseClick(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             if (Curpage == null)
             {
-                
                 curindex = HighLight_Navigation(btn);
                 NavigateFrame(curindex);
             }
@@ -252,7 +262,6 @@ namespace Gems.UIWPF
                     {
                         WizHelpTalk("Enter the publish information for your event.");
                     }
-
                     //btnSkip.IsEnabled = false;
                     //btnNext.IsEnabled = false;
                     break;
@@ -265,8 +274,8 @@ namespace Gems.UIWPF
 
                     if (cbwizsound.IsChecked == true)
                     {
-                        WizHelpTalk("This page summarises all the information that you have added so far. " + 
-                            "Do look through them before clicking the Finish button. If you have any changes to make, " + 
+                        WizHelpTalk("This page summarises all the information that you have added so far. " +
+                            "Do look through them before clicking the Finish button. If you have any changes to make, " +
                             "either click the \"Previous\" button or the left menu bar.");
                     }
                     break;
@@ -295,7 +304,7 @@ namespace Gems.UIWPF
             //            foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
             //                if (ef1 == ef2)
             //                {
-                                
+
             //                    return true;
             //                }
             //        client.Close();
@@ -313,13 +322,13 @@ namespace Gems.UIWPF
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            
+
             //WizHelpTalk("HIII");
             //if (cbwizsound.IsChecked==true)
             //{
             //    WizHelpTalk("Ni Hao");
             //}
-             
+
             if (Curpage.Save())
             {
                 curindex = HighLight_Navigation(curindex + 1);
@@ -328,7 +337,7 @@ namespace Gems.UIWPF
             }
         }
 
-        
+
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
@@ -337,7 +346,7 @@ namespace Gems.UIWPF
                 curindex = HighLight_Navigation(curindex - 1);
                 NavigateFrame(curindex);
             }
-            
+
             //NavigateFrame(curindex);
         }
 
@@ -351,7 +360,7 @@ namespace Gems.UIWPF
         private T[][] ToArray<T>(List<List<T>> list)
         {
             List<T[]> temp = new List<T[]>();
-            foreach(List<T> pro in list)
+            foreach (List<T> pro in list)
             {
                 temp.Add(pro.ToArray());
             }
@@ -385,7 +394,7 @@ namespace Gems.UIWPF
                                     "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                             this.Close();
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
                                 MessageBoxImage.Error);
@@ -400,14 +409,14 @@ namespace Gems.UIWPF
 
             thread.Start();
 
-            
+
         }
 
         void Completed(object sender, EventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Arrow;
 
-            
+
         }
 
         private void cbwiz_Checked(object sender, RoutedEventArgs e)
@@ -416,7 +425,7 @@ namespace Gems.UIWPF
 
             //    this.speaker = this.axAgent1.Characters["merlin"];     //give the speaker object the character to show it
             //    this.speaker.Show(0);
-            
+
             cbwizsound.Visibility = Visibility.Visible;
             cbwiz.IsChecked = true;
             try
@@ -427,20 +436,20 @@ namespace Gems.UIWPF
                 this.speaker.Show(0);
 
                 speaker.SoundEffectsOn = false;
-                
+
                 //this.speaker.Speak("ahhhhhhh", null);
-                
-                
+
+
             }
             catch { }
-                
-            
+
+
         }
 
         private void cbwizsound_Checked(object sender, RoutedEventArgs e)
         {
-            
-            
+
+
         }
 
         private void cbwiz_Unchecked(object sender, RoutedEventArgs e)
@@ -487,6 +496,6 @@ namespace Gems.UIWPF
             //lblEvtStartDate.Content = "Event Start Date: \n" + _event.StartDateTime.ToString();
             //lblEvtEndDate.Content = "Event End Date: \n" + _event.EndDateTime.ToString();
         }
-      
+
     }
 }

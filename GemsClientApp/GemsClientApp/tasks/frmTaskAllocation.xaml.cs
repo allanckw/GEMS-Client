@@ -208,8 +208,10 @@ namespace Gems.UIWPF
 
         private void lstManageTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstManageTasks.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 return;
             }
             txtDesc.Document.Blocks.Clear();

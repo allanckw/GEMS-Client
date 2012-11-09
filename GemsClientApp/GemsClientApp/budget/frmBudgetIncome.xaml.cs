@@ -144,8 +144,10 @@ namespace Gems.UIWPF
 
         private void lstIncomeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstIncomeList.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 selectedIndex = -1;
                 return;
             }

@@ -198,28 +198,31 @@ namespace Gems.UIWPF
                     if (chkBoxes[i].IsChecked == true)
                        selectedFunctions.Add(((Tuple<EnumFunctions, string>)chkBoxes[i].Tag).Item1);
             }
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
                 if (lstRole.SelectedIndex == -1)
                     client.AddRoleTemplate(user, event_, txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
                     client.EditRightsTemplate(user, ((RoleTemplate)lstRole.SelectedItem).RoleTemplateID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
-                client.Close();
+
+                MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            MessageBox.Show("Operation succeded!");
+            client.Close();
             loadRoles();
         }
 
         private void lstRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstRole.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 btnAdd.Content = "Add";
                 return;
             }

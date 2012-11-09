@@ -102,7 +102,10 @@ namespace Gems.UIWPF
         public override bool Save()
         {
             if (!validateInput())
+            {
+                txtEventName.Focus();
                 return false;
+            }
             try
             {
                 DateTime startTime = dtpStart.SelectedDateTime;
@@ -110,8 +113,8 @@ namespace Gems.UIWPF
 
                 if (startTime.CompareTo(endTime) >= 0)
                 {
-                    throw new Exception("Invalid date entry, end date must be at a later date than start date");
-                    
+                    dtpEnd.dtpDate.Focus();
+                    throw new Exception("Invalid date entry, end date must be at a later date than start date");                    
                 }
                 
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);

@@ -68,7 +68,7 @@ namespace Gems.UIWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

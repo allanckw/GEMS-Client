@@ -112,6 +112,7 @@ namespace Gems.UIWPF
 
                 lstProgram.ItemsSource = newprogList.OrderBy(x => x.StartDateTime)
                                                  .ThenBy(x => x.EndDateTime).ToList<Program>();
+                lstProgram.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -280,9 +281,11 @@ namespace Gems.UIWPF
 
         private void lstProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstProgram.SelectedIndex == -1)
             {
                 clearAll();
+                Helper.IdleHelper.stopIdleTimer();
                 btnAdd.Content = "Add";
                 return;
             }

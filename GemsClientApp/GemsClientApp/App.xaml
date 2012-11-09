@@ -17,7 +17,18 @@
                     </Canvas>
 	        </Button>
 		</ControlTemplate>
-		
+
+        <ControlTemplate x:Key="Minimize" TargetType="Button">
+            <Button Width="0" Height="0">
+                <Canvas>
+                    <Rectangle Width="30" Height="30">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/GemsClientApp;component/minimize.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Canvas>
+            </Button>
+        </ControlTemplate>
         <!--For Style apply on highlighting function using bool -->
         <Style x:Key="BudgetItemContStyle" TargetType="{x:Type ListViewItem}">
             <Style.Resources>

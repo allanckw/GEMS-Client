@@ -13,7 +13,7 @@
 
     <Canvas Opacity="1.0" Margin="0">
         <Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="45" x:Name="btnClose" Click="btnClose_Click" />
-        <Button Template="{StaticResource Close}" Canvas.Top="15" Canvas.Right="90" x:Name="btnMinimize" Click="btnMinimize_Click" />
+        <Button Template="{StaticResource Minimize}" Canvas.Top="15" Canvas.Right="80" x:Name="btnMinimize" Click="btnMinimize_Click" />
         <Label Content="GEMS Events Management System" FontSize="28" FontWeight="Bold" Canvas.Left="416" Canvas.Top="12" Height="50">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="1"/>

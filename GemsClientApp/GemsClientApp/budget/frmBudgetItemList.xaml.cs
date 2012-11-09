@@ -39,8 +39,10 @@ namespace Gems.UIWPF
 
         private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lvBItem.lv.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 clearBudgetItemForm();
                 return;
             }
@@ -100,6 +102,7 @@ namespace Gems.UIWPF
                 btnCancelEditItem.IsEnabled = btnUpdateItem.IsEnabled = true;
                 //loadList
                 lvBItem.SetExistingSource(budget.BudgetItemsList.ToList<OptimizedBudgetItemsDetails>());
+                lvBItem.lv.SelectedIndex = -1;
 
             }
             catch (NullReferenceException)
@@ -108,6 +111,7 @@ namespace Gems.UIWPF
                 txtTotalSat.Text = "N.A";
                 txtGenDate.Text = "N.A";
                 btnCancelEditItem.IsEnabled = btnUpdateItem.IsEnabled = false;
+                lvBItem.lv.SelectedIndex = -1;
                 MessageBox.Show("There is no optimized list yet");
 
             }
@@ -117,6 +121,7 @@ namespace Gems.UIWPF
                 txtTotalSat.Text = "N.A";
                 txtGenDate.Text = "N.A";
                 btnCancelEditItem.IsEnabled = btnUpdateItem.IsEnabled = false;
+                lvBItem.lv.SelectedIndex = -1;
                 MessageBox.Show("An error has occured: " + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

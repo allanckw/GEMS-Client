@@ -85,6 +85,7 @@ namespace Gems.UIWPF
                     guestList[selectedIndex] = g;
                     CollectionViewSource.GetDefaultView(lstGuestList.ItemsSource).Refresh();
                     changed = false;
+                    clearAll();
                 }
                 client.Close();
 
@@ -106,8 +107,10 @@ namespace Gems.UIWPF
 
         private void lstGuestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstGuestList.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 selectedIndex = -1;
                 return;
             }

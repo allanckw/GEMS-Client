@@ -265,9 +265,10 @@ namespace Gems.UIWPF
                     if (chkBoxes[i].IsChecked == true)
                        selectedFunctions.Add(((Tuple<EnumFunctions, string>)chkBoxes[i].Tag).Item1);
             }
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 if (lstRole.SelectedIndex == -1)
                     client.AddRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
@@ -275,26 +276,30 @@ namespace Gems.UIWPF
                     client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         ((RoleWithUser)lstRole.SelectedItem).role.RoleID, txtPost.Text.Trim(),
                         txtDescription.Text.Trim(), selectedFunctions.ToArray());
-                client.Close();
+
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            client.Close();
             loadRoles();
         }
 
         private void lstRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Helper.IdleHelper.startIdleTimer();
             if (lstRole.SelectedIndex == -1)
             {
+                Helper.IdleHelper.stopIdleTimer();
                 btnAdd.Content = "Add";
                 return;
             }
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 RoleWithUser selectedItem = (RoleWithUser)lstRole.SelectedItem;
                // Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
                 //Role selectedRole = selectedItem.Item1;
@@ -308,21 +313,23 @@ namespace Gems.UIWPF
                     foreach (CheckBox chkBox in pair.Value)
                         if (chkBox.Tag is Tuple<EnumFunctions, string>)
                             chkBox.IsChecked = rights.Contains(((Tuple<EnumFunctions, string>)chkBox.Tag).Item1);
-                client.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            client.Close();
         }
 
         private void cbRoleTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbRoleTemplate.SelectedIndex == -1)
                 return;
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 List<RightTemplate> rights = client.GetTemplateRight((int)cbRoleTemplate.SelectedValue).ToList();
                 List<EnumFunctions> functions = new List<EnumFunctions>();
                 foreach (RightTemplate right in rights)
@@ -333,13 +340,13 @@ namespace Gems.UIWPF
                             chkBox.IsChecked = functions.Contains(((Tuple<EnumFunctions, string>)chkBox.Tag).Item1);
                 txtPost.Text = ((RoleTemplate)cbRoleTemplate.SelectedItem).Post;
                 txtDescription.Text = ((RoleTemplate)cbRoleTemplate.SelectedItem).Description;
-                client.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+            client.Close();
         }
 
         private void clearAll()

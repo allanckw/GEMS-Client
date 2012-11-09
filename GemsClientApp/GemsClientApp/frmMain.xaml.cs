@@ -123,6 +123,7 @@ namespace Gems.UIWPF
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Helper.IdleHelper.stopIdleTimer();
             mainFrame.Visibility = Visibility.Visible;
         }
 
@@ -641,6 +642,7 @@ namespace Gems.UIWPF
                     Events ev = (Events)cboEventList.SelectedItem;
                     EventDay evD = (EventDay)lstEventDayList.SelectedItem;
                     var frmFacSearch = new frmFacBooking(user, ev, evD, this);
+                    Helper.IdleHelper.stopIdleTimer();
                     frmFacSearch.ShowDialog();
                 }
             }
@@ -671,11 +673,13 @@ namespace Gems.UIWPF
         {
             currPageType = typeof(frmRoleTemplates);
             currPage = new frmRoleTemplates(user, null);
+            Helper.IdleHelper.stopIdleTimer();
             frame.Navigate(currPage);
         }
 
         private void mnuViewBookings_Click(object sender, RoutedEventArgs e)
         {
+            Helper.IdleHelper.stopIdleTimer();
             var frmViewBookings = new frmViewCurrentBooking(user, this);
             frmViewBookings.ShowDialog();
         }
@@ -702,6 +706,7 @@ namespace Gems.UIWPF
                         return false;
                 }
             }
+            Helper.IdleHelper.stopIdleTimer();
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
@@ -758,6 +763,7 @@ namespace Gems.UIWPF
                         return false;
                 }
             }
+            Helper.IdleHelper.stopIdleTimer();
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
@@ -814,6 +820,7 @@ namespace Gems.UIWPF
                         return false;
                 }
             }
+            Helper.IdleHelper.stopIdleTimer();
             currPageType = typeof(T);
             Events ev = (Events)cboEventList.SelectedItem;
             EventDay evday = (EventDay)lstEventDayList.SelectedItem;
