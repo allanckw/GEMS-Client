@@ -87,7 +87,7 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            client.Close();
         }
 
 
@@ -112,6 +112,7 @@ namespace Gems.UIWPF
 
                 dgLocation.ItemsSource = fbr.RequestDetails;
                 client.Close();
+                admHelper.Close();
                 lvTimeslot.Reset();
             }
             catch (Exception ex)
@@ -211,7 +212,7 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            client.Close();
         }
 
     }

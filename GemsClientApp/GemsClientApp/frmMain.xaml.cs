@@ -1019,7 +1019,7 @@ namespace Gems.UIWPF
             try
             {
                 Events ev = (Events)cboEventList.SelectedItem;
-                EventHelper clientEvent = new EventHelper();
+                //EventHelper clientEvent = new EventHelper();
                 ////lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 ////clientEvent.Close();
 

@@ -46,11 +46,13 @@ namespace Gems.UIWPF
                 GuestHelper client = new GuestHelper();
                 guestList = client.ViewGuest(eventDay_.DayID).ToList<Guest>();
                 lstGuestList.ItemsSource = guestList;
+                client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
             clearAll();
         }
 

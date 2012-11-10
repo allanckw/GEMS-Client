@@ -158,7 +158,7 @@ namespace Gems.UIWPF
 
                 lvCurrentBooking.setSource(fbr);
                 client.Close();
-
+                admHelper.Close();
                 if ((fbr.Status == BookingStatus.Pending) || (fbr.Status == BookingStatus.Approved))
                 {
                     btnDrop.IsEnabled = true;
@@ -216,6 +216,7 @@ namespace Gems.UIWPF
                         retreiveBookingInformation();
                     }
                 }
+                client.Close();
 
             }
         }

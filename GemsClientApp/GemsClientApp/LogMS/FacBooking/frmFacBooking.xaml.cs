@@ -120,6 +120,7 @@ namespace Gems.UIWPF
                 //    string type2display = fac.ToString().Replace("_", " ");
                 //    cboType.Items.Add(type2display);
                 //}
+                client.Close();
                 string[] names = Enum.GetNames(typeof(Faculty));
                 Array values = Enum.GetValues(typeof(Faculty));
                 Hashtable htFaculty = new Hashtable();

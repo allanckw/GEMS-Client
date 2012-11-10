@@ -82,7 +82,10 @@ namespace Gems.UIWPF
                                     MessageBoxImage.Error);
                                 //this.Close();
                             }
-                            c.Close();
+                            finally
+                            {
+                                c.Close();
+                            }
 
                         }
                         catch (Exception ex)

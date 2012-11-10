@@ -80,6 +80,7 @@ namespace Gems.UIWPF
 
                 MessageBox.Show("Role have been added/updated", "Updated Role",
                     MessageBoxButton.OK, MessageBoxImage.Information);
+                client.Close();
                 this.Close();
                 admFrame.Visibility = Visibility.Visible;
             }

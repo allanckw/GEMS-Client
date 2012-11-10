@@ -270,12 +270,13 @@ namespace Gems.UIWPF
 
                 if (p2.ProgramID != 0)
                     client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description,p2.Location);
+                client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+            
             loadPrograms();
         }
 

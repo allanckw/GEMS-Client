@@ -48,6 +48,7 @@ namespace Gems.UIWPF
                     lstParticipants.SelectedIndex = 0;
 
                 //ParticipantWithName a;
+                client.Close();
                 
             }
             catch (Exception ex)

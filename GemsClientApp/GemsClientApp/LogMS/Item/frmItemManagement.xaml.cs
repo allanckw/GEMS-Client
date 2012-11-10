@@ -48,6 +48,7 @@ namespace Gems.UIWPF
             {
                 budgetPanel.Visibility = Visibility.Collapsed;
             }
+            client.Close();
         }
 
         private void refreshItemTypes()
@@ -123,6 +124,7 @@ namespace Gems.UIWPF
             EventItemsHelper client = new EventItemsHelper();
             List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
+            client.Close();
         }
 
         private void cboItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -272,6 +274,7 @@ namespace Gems.UIWPF
             EventItemsHelper client = new EventItemsHelper();
             List<Items> ItemList = client.GetItemsByEvent(event_.EventID).ToList<Items>();
             lvItem.SetExistingSource(ItemList);
+            client.Close();
         }
 
         private void btnCalculateBudget_Click(object sender, RoutedEventArgs e)
