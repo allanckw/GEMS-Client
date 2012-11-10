@@ -86,7 +86,6 @@ namespace Gems.UIWPF
 
                 client.Close();
 
-
                 lstContactList.ItemsSource = POCList
                                                  .OrderBy(x => x.Name)
                                                  .ThenBy(x => x.Position)
@@ -112,7 +111,6 @@ namespace Gems.UIWPF
 
 
                 client.Close();
-
 
                 lstReviewList.ItemsSource = reviewList
                                                 .OrderBy(x => x.ReviewDate)

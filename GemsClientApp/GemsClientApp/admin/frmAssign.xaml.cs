@@ -34,8 +34,6 @@ namespace Gems.UIWPF
 
             this.txtCurrRole.Text = ((EnumRoles)client.ViewUserRole(uid)).ToString();
             client.Close();
-
-
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

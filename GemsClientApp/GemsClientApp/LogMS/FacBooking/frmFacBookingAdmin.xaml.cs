@@ -87,7 +87,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
 
@@ -96,23 +99,21 @@ namespace Gems.UIWPF
             if (lstRequestor.SelectedIndex == -1)
             {
                 //MessageBox.Show("Please select a booking request", "No request selected",
-                    //MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+            EventHelper client = new EventHelper();
+            AdminHelper admHelper = new AdminHelper();
             try
             {
-                
                 FacilityBookingRequest fbr = (FacilityBookingRequest)lstRequestor.SelectedItem;
-                EventHelper client = new EventHelper();
-                AdminHelper admHelper = new AdminHelper();
                 txtEventName.Text = client.GetEventName(fbr.EventID);
                 txtRequestor.Text = admHelper.GetUserName(fbr.RequestorID);
                 lblStartTime.Content = fbr.RequestStartDateTime.ToString("dd MMM yyyy HH:mm");
                 lblEndTime.Content = fbr.RequestEndDateTime.ToString("dd MMM yyyy HH:mm");
 
                 dgLocation.ItemsSource = fbr.RequestDetails;
-                client.Close();
-                admHelper.Close();
+
                 lvTimeslot.Reset();
             }
             catch (Exception ex)
@@ -120,8 +121,12 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                client.Close();
+                admHelper.Close();
+            }
         }
-
         private void btnApprove_Click(object sender, RoutedEventArgs e)
         {
             if (this.dgLocation.SelectedIndex == -1)
@@ -157,7 +162,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error have occured with the following message: " + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void btnReject_Click(object sender, RoutedEventArgs e)
@@ -183,7 +191,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error have occured with the following message: " + ex.Message,
                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void dgLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -212,7 +223,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
     }

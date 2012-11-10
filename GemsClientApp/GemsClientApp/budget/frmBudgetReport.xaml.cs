@@ -63,7 +63,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void loadBudgetItems()
@@ -105,7 +108,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 	}
 }

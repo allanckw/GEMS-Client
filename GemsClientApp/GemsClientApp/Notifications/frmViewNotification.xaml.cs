@@ -71,7 +71,7 @@ namespace Gems.UIWPF
             try
             {
                 client.SendNotification(user.UserID, txtSenderID.Text, title, message);
-                client.Close();
+
                 MessageBox.Show("Replied Sent", "Sent", MessageBoxButton.OK, MessageBoxImage.Information);
                 btnClose_Click(sender, e);
             }
@@ -79,6 +79,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show("An error has occured with the error message: " + ex.Message,
                 "Error Sending Reply", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                client.Close();
             }
         }
     }

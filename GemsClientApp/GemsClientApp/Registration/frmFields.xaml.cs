@@ -32,11 +32,12 @@ namespace Gems.UIWPF
             this.event_ = e;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void Window_Loaded(object sender, RoutedEventArgs e){
+        
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
+
                 List<StaticField> staticFields = new List<StaticField>() {
                     new StaticField() { FieldName = "Custom", FieldLabel = "Custom" }
                 };
@@ -44,7 +45,7 @@ namespace Gems.UIWPF
                 cbStaticFields.ItemsSource = staticFields;
                 Publish publish = client.ViewPublish(event_.EventID);
                 fields = new ObservableCollection<Field>(client.ViewField(event_.EventID));
-                client.Close();
+
                 if (fields.Count == 0)
                 {
                     Field firstName = new Field();
@@ -82,6 +83,10 @@ namespace Gems.UIWPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -193,11 +198,12 @@ namespace Gems.UIWPF
                     return false;
                 }
             }
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
+
                 client.AddField(user, event_.EventID, fields.ToArray());
-                client.Close();
+
                 changed = false;
                 MessageBox.Show("Operation succeeded!");
                 return true;
@@ -206,6 +212,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
                 return false;
+            }
+            finally
+            {
+                client.Close();
             }
         }
 

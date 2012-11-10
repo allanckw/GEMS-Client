@@ -67,7 +67,7 @@ namespace Gems.UIWPF.CustomCtrl
             int taskID = (int)System.Convert.ChangeType(value, typeof(int));
             TasksHelper client = new TasksHelper();
             Task task = client.GetTask(taskID);
-            //System.Diagnostics.Trace.WriteLine("Debug : " + taskID + "\n");
+
             client.Close();
             DateTime dueDate = task.DueDate;
             double percentageCompleted = task.PercentageCompletion;
@@ -80,11 +80,6 @@ namespace Gems.UIWPF.CustomCtrl
                 else
                     return 0;
             }
-            //System.Diagnostics.Trace.WriteLine("Debug : DueDate = " + DueDate.ToString("dd MMM yyyy HH:mm") + "\n");
-            //System.Diagnostics.Trace.WriteLine("Debug : " + DueDate.CompareTo(DateTime.Now) + "\n");
-            //if (DueDate.CompareTo(DateTime.Now) < 0)
-            //    return -1;//red meaning overdue date
-
             return 1;//normal
         }
 

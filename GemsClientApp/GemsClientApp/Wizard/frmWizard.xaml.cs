@@ -174,7 +174,6 @@ namespace Gems.UIWPF
 
         }
 
-
         private void Navigation_MouseClick(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -293,42 +292,12 @@ namespace Gems.UIWPF
 
             Curpage = (GemsWizPage)Activator.CreateInstance(newPageType, this);
             frame.Navigate(Curpage);
-            //currPageType = typeof(T);
-            //Events ev = (Events)cboEventList.SelectedItem;
-            //if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
-            //{
-            //    try
-            //    {
-            //        RoleHelper client = new RoleHelper();
-            //        foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
-            //            foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
-            //                if (ef1 == ef2)
-            //                {
 
-            //                    return true;
-            //                }
-            //        client.Close();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //    currPageType = typeof(frmOverview);
-            //}
-            //currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
-            //frame.Navigate(currPage);
             return true;
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-
-            //WizHelpTalk("HIII");
-            //if (cbwizsound.IsChecked==true)
-            //{
-            //    WizHelpTalk("Ni Hao");
-            //}
-
             if (Curpage.Save())
             {
                 curindex = HighLight_Navigation(curindex + 1);
@@ -346,8 +315,6 @@ namespace Gems.UIWPF
                 curindex = HighLight_Navigation(curindex - 1);
                 NavigateFrame(curindex);
             }
-
-            //NavigateFrame(curindex);
         }
 
         private void btnSkip_Click(object sender, RoutedEventArgs e)
@@ -398,7 +365,6 @@ namespace Gems.UIWPF
                         {
                             MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
                                 MessageBoxImage.Error);
-                            //this.Close();
                         }
                     }
                 ));

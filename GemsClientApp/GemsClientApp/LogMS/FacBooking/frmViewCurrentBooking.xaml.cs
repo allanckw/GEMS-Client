@@ -9,17 +9,17 @@ using evmsService.entities;
 
 namespace Gems.UIWPF
 {
-	/// <summary>
-	/// Interaction logic for frmViewCurrentBooking.xaml
-	/// </summary>
-	public partial class frmViewCurrentBooking : Window
-	{
+    /// <summary>
+    /// Interaction logic for frmViewCurrentBooking.xaml
+    /// </summary>
+    public partial class frmViewCurrentBooking : Window
+    {
         private Window mainFrame;
         private User user;
-		public frmViewCurrentBooking()
-		{
-			this.InitializeComponent();
-		}
+        public frmViewCurrentBooking()
+        {
+            this.InitializeComponent();
+        }
         public frmViewCurrentBooking(User u, Window f)
             : this()
         {
@@ -36,7 +36,7 @@ namespace Gems.UIWPF
 
         private void loadEvents()
         {
-            
+
             List<Events> elist;
             if (user.isFacilityAdmin || user.isSystemAdmin)
             {
@@ -50,7 +50,7 @@ namespace Gems.UIWPF
                 elist = client.ViewAuthorizedEventsForFacBookings(user).ToList<Events>();
                 client.Close();
             }
-             
+
             this.cboEventList.ItemsSource = elist;
 
             cboEventList.SelectedValuePath = "EventID";
@@ -60,7 +60,7 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-         //   loadEvents();
+            //   loadEvents();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -109,13 +109,16 @@ namespace Gems.UIWPF
             try
             {
                 this.lstRequest.ItemsSource = client.ViewFacilityBookingRequestsByEventDay(user, int.Parse(cboEventList.SelectedValue.ToString()), (BookingStatus)cboStatus.SelectedIndex,
-    chkAllStatus.IsChecked.Value, chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
+                 chkAllStatus.IsChecked.Value, chkAllEventDay.IsChecked.Value, evDay.StartDateTime);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void ClearDetail()
@@ -126,14 +129,14 @@ namespace Gems.UIWPF
             txtStatus.Text = "";
             lblEndTime.Content = "";
             lblStartTime.Content = "";
-            FacilityBookingsHelper client = new FacilityBookingsHelper();
+            //FacilityBookingsHelper client = new FacilityBookingsHelper();
             //this.lstRequest.ItemsSource = client.ViewFacilityBookingRequests(user,
             //    int.Parse(cboEventList.SelectedValue.ToString()),
             //    cboStatus.SelectedIndex, chkAllStatus.IsChecked.Value,
             //    chkAllEvent.IsChecked.Value);
-            client.Close();
+            //client.Close();
             lvCurrentBooking.ClearSource();
-            
+
         }
 
         private void lstRequest_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -141,7 +144,7 @@ namespace Gems.UIWPF
             if (lstRequest.SelectedIndex == -1)
             {
                 //MessageBox.Show("Please Select a request!", "Invalid input",
-                    //MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -196,8 +199,7 @@ namespace Gems.UIWPF
                 else if (fbr.Status == BookingStatus.Pending)
                 {
                     if (MessageBox.Show("Are you sure you want to cancel this pending booking?, It Cannot be undone!",
-                        "Confirm Cancel Request", MessageBoxButton.YesNo, MessageBoxImage.Question)
-                        == MessageBoxResult.Yes)
+                        "Confirm Cancel Request", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         string remarks = Microsoft.VisualBasic.Interaction.InputBox("Please Enter Remarks for cancelling", "Remarks", "");
                         try
@@ -207,10 +209,6 @@ namespace Gems.UIWPF
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.ToString(), "Cancel Booking!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        }
-                        finally
-                        {
-                            client.Close();
                         }
                         ClearDetail();
                         retreiveBookingInformation();
@@ -238,35 +236,11 @@ namespace Gems.UIWPF
         private void chkAllStatus_Checked(object sender, RoutedEventArgs e)
         {
             cboStatus.Visibility = Visibility.Collapsed;
-            //if (cboStatus==null)
-            //{
-            //    return;
-            //}
-
-            //if ((bool)chkAllStatus.IsChecked == true)
-            //{
-                
-            //}
-            //else
-            //    cboStatus.Visibility = Visibility.Visible;
-
         }
 
         private void chkAllEventDay_Checked(object sender, RoutedEventArgs e)
         {
             cboEventDay.Visibility = Visibility.Collapsed;
-            //if (cboEventDay == null)
-            //{
-            //    return;
-            //}
-
-            //if ((bool)chkAllEventDay.IsChecked == true)
-            //{
-            //    cboEventDay.Visibility = Visibility.Collapsed;
-                
-            //}
-            //else
-            //    cboEventDay.Visibility = Visibility.Visible;
         }
 
         private void chkAllStatus_Unchecked(object sender, RoutedEventArgs e)
@@ -278,5 +252,5 @@ namespace Gems.UIWPF
         {
             cboEventDay.Visibility = Visibility.Visible;
         }
-	}
+    }
 }

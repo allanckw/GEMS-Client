@@ -10,9 +10,9 @@ using evmsService.entities;
 
 namespace Gems.UIWPF
 {
-     //<summary>
-     //Interaction logic for frmGuestList.xaml
-     //</summary>
+    //<summary>
+    //Interaction logic for frmGuestList.xaml
+    //</summary>
     public partial class frmGuestList : GEMSPage
     {
 
@@ -41,16 +41,19 @@ namespace Gems.UIWPF
 
         private void loadGuests()
         {
+            GuestHelper client = new GuestHelper();
             try
             {
-                GuestHelper client = new GuestHelper();
                 guestList = client.ViewGuest(eventDay_.DayID).ToList<Guest>();
                 lstGuestList.ItemsSource = guestList;
-                client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
 
             clearAll();
@@ -93,7 +96,7 @@ namespace Gems.UIWPF
 
                 MessageBox.Show("Operation succeeded!");
                 return true;
-                
+
             }
             catch (Exception ex)
             {
@@ -155,16 +158,19 @@ namespace Gems.UIWPF
         {
             if (lstGuestList.SelectedIndex == -1)
                 return;
+            GuestHelper client = new GuestHelper();
             try
             {
-                GuestHelper client = new GuestHelper();
                 client.DeleteGuest(user, (int)lstGuestList.SelectedValue);
-                client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             loadGuests();
         }

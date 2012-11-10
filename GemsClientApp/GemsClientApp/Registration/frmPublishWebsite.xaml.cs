@@ -31,15 +31,20 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
+
                 publish = client.ViewPublish(event_.EventID);
-                client.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
 
             if (publish != null)
@@ -125,6 +130,7 @@ namespace Gems.UIWPF
                     "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
+            RegistrationHelper client = new RegistrationHelper(); 
             try
             {
                 DateTime startTime = dtpStart.SelectedDateTime;
@@ -140,10 +146,10 @@ namespace Gems.UIWPF
                     MessageBox.Show("Publish end date must be after its start date.");
                     return false;
                 }
-                RegistrationHelper client = new RegistrationHelper();
+                
 
-                decimal result=0;
-                if (cboIsPayable.IsChecked==true)
+                decimal result = 0;
+                if (cboIsPayable.IsChecked == true)
                 {
                     if (!decimal.TryParse(txtamount.Text, out result))
                     {
@@ -151,16 +157,14 @@ namespace Gems.UIWPF
                         return false;
                     }
                 }
-               
+
                 if (publish == null)
                 {// need to change here
-
-                    
-                    client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text,cboIsPayable.IsChecked.Value,result);
+                    client.AddPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
                 }
                 else
                     client.EditPublish(user, event_.EventID, startTime, endTime, txtRemarks.Text, cboIsPayable.IsChecked.Value, result);
-                client.Close();
+
                 btnDelete.IsEnabled = true;
                 changed = false;
                 MessageBox.Show("Operation succeeded!");
@@ -170,7 +174,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
                 return false;
+            }finally{
+                client.Close();
             }
+
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -180,11 +187,10 @@ namespace Gems.UIWPF
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
                 client.DeletePublish(user, event_.EventID);
-                client.Close();
                 btnClear_Click(null, null);
                 btnDelete.IsEnabled = false;
                 MessageBox.Show("Operation succeeded!");
@@ -192,6 +198,10 @@ namespace Gems.UIWPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 

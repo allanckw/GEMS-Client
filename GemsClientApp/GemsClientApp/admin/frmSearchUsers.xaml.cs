@@ -44,13 +44,13 @@ namespace Gems.UIWPF
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             AdminHelper client = new AdminHelper();
- 
+
             //Add Constraints here.. txtName or txtUserID must have some value
             //Or it will retrieve the entire NUSNET DB D: D: D:
             //TODO: Enhancement to search f(x) 
             //Add Staff/Students constraint (differing domains)? Add Faculty Filter?
             //TO be finalized later
-            
+
             if ((txtName.Text.Length == 0) && (txtUserID.Text.Length == 0))
             {
                 MessageBox.Show("Please enter name or user id!", "Enter Filters",
@@ -76,9 +76,11 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
-
         private void btnAssign_Click(object sender, RoutedEventArgs e)
         {
             if (cboAssign.SelectedIndex < 0)
@@ -108,9 +110,12 @@ namespace Gems.UIWPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
-                client.Close();
+                finally
+                {
+                    client.Close();
+                }
             }
             else if ((EnumRoles)cboAssign.SelectedIndex == EnumRoles.Facility_Admin)
             {

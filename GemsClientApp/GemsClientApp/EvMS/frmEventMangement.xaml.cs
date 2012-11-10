@@ -108,6 +108,7 @@ namespace Gems.UIWPF
         {
             if (!validateInput())
                 return;
+            EventHelper client = new EventHelper();
             try
             {
                 DateTime startTime = dtpStart.SelectedDateTime;
@@ -118,15 +119,19 @@ namespace Gems.UIWPF
                     MessageBox.Show("Invalid Date Entry, End Date Must be at a Later Date Then Start Date");
                     return;
                 }
-                EventHelper client = new EventHelper();
+
                 var textRange = new TextRange(txtDesc.Document.ContentStart, txtDesc.Document.ContentEnd);
-                client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text,txtTag.Text);
-                client.Close();
+                client.CreateEvent(user, txtEventName.Text, startTime, endTime, textRange.Text, txtWebsite.Text, txtTag.Text);
+
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             Load_Event();
         }
@@ -136,17 +141,22 @@ namespace Gems.UIWPF
             if (lstEventList.SelectedIndex == -1)
                 return;
 
-            Events E = ((Events)lstEventList.SelectedItem);
+            Events evnt = ((Events)lstEventList.SelectedItem);
+            EventHelper client = new EventHelper();
             try
             {
-                EventHelper client = new EventHelper();
-                client.DeleteEvent(user, E);
-                client.Close();
+              
+                client.DeleteEvent(user, evnt);
+
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             Load_Event();
         }

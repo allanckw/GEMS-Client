@@ -1,31 +1,31 @@
 ﻿<Window x:Class="Gems.UIWPF.frmExport"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="GEMS Helper" Height="280" Width="465" 
+    Title="GEMS Helper" Height="280" Width="533" 
     AllowsTransparency="True"  WindowStyle="None" WindowState="Normal"
     MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" 
     Foreground="{x:Null}" WindowStartupLocation="CenterScreen"  >
     <Window.Background>
         <ImageBrush ImageSource="/GemsClientApp;component/Gems.png"/>
     </Window.Background>
-    <Canvas Opacity="1.0">
+    <Canvas Opacity="1.0" Width="496">
     	<Label Canvas.Left="8" Canvas.Top="15" Content="GEMS Event Management System - Export" Height="38" x:Name="label3" FontFamily="Stencil" FontSize="16" />
     			<Button Template="{StaticResource Close}" Canvas.Top="12" Canvas.Right="43" x:Name="btnClose" Click="btnClose_Click" />
-    	<GroupBox Header="Export Option" Canvas.Left="8" Canvas.Top="40" Height="191" Width="425" Foreground="Black" FontSize="18">
-            <StackPanel Margin="10"   HorizontalAlignment="Center" Width="450" Height="188">
+    	<GroupBox Header="Export Options" Canvas.Left="8" Canvas.Top="40" Height="191" Width="478" Foreground="Black" FontSize="18">
+            <StackPanel Margin="10"   HorizontalAlignment="Center" Width="450" Height="154">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
                     <CheckBox Name="cboFacilities" Content="Facilities" FontSize="16" />
                     <CheckBox Name="cboProgrammes" Content="Programmes" FontSize="16" />
                     <CheckBox Name="cboIncome" Content="Income" FontSize="16" />
                 </StackPanel>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
-                    <CheckBox Name="cboOptItem" Content="Optimist Item" FontSize="16" />
-                    <CheckBox Name="cboTask" Content="Task" FontSize="16" />
-                    <CheckBox Name="cboGuest" Content="Guest" FontSize="16" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="188">
+                    <CheckBox Name="cboOptItem" Content="Items To Buy / Bought" FontSize="16" />
+                    <CheckBox Name="cboTask" Content="Tasks" FontSize="16" />
+                    <CheckBox Name="cboGuest" Content="Guests" FontSize="16" />
                 </StackPanel>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="100" Width="130">
-                    <CheckBox Name="cboParticipant" Content="Participant" FontSize="16" />
+                    <CheckBox Name="cboParticipant" Content="Participants" FontSize="16" />
                     
                 </StackPanel>
                 </StackPanel>

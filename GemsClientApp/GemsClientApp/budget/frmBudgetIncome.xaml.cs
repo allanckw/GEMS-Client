@@ -53,7 +53,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             clearAll();
             CalculateNettIncome();
         }
@@ -187,17 +190,21 @@ namespace Gems.UIWPF
         {
             if (lstIncomeList.SelectedIndex == -1)
                 return;
+            BudgetHelper client = new BudgetHelper();
+           
             try
             {
                 BudgetIncome bIncome = (BudgetIncome)lstIncomeList.SelectedItem;
-                BudgetHelper client = new BudgetHelper();
                 client.DeleteBudgetIncome(user, bIncome.IncomeID, event_.EventID);
-                client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             loadIncome();
             CalculateNettIncome();

@@ -31,12 +31,12 @@ namespace Gems.UIWPF
             this.user = u;
             this.event_ = e;
             this.checkBoxes = new Dictionary<string, List<CheckBox>>();
-
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 List<Function> functions = client.ViewFunction().ToList();
-                client.Close();
+
                 TreeViewItem root = new TreeViewItem() { Header = "All Rights", IsExpanded = true };
                 tvFunctions.Items.Add(root);
                 string currGroup = "";
@@ -49,12 +49,16 @@ namespace Gems.UIWPF
                         parent = new TreeViewItem() { Header = function.Grouping, IsExpanded = true };
                         root.Items.Add(parent);
                     }
-                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.FunctionEnum }); 
+                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.FunctionEnum });
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -170,15 +174,18 @@ namespace Gems.UIWPF
 
         private void loadRoles()
         {
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
                 lstRole.ItemsSource = client.ViewTemplateRole(user, event_).ToList();
-                client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             clearAll();
         }
@@ -269,15 +276,22 @@ namespace Gems.UIWPF
         {
             if (lstRole.SelectedIndex == -1)
                 return;
+
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 client.DeleteRoleTemplate(user, ((RoleTemplate)lstRole.SelectedItem).RoleTemplateID);
-                client.Close();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
+            }
+            finally
+            {
+                client.Close();
             }
             MessageBox.Show("Operation succeded!");
             loadRoles();

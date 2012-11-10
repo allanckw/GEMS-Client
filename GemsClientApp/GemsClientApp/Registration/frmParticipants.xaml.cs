@@ -38,22 +38,24 @@ namespace Gems.UIWPF
 
         private void loadParticipants()
         {
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-               RegistrationHelper client = new RegistrationHelper();
-              
                 participants = client.ViewEventParticipantWithName(user, event_.EventID);
                 lstParticipants.ItemsSource = participants;
-                if (participants != null && participants.Count<ParticipantWithName>() > 0)
-                    lstParticipants.SelectedIndex = 0;
 
-                //ParticipantWithName a;
-                client.Close();
-                
+                if (participants != null && participants.Count<ParticipantWithName>() > 0)
+                {
+                    lstParticipants.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -65,12 +67,13 @@ namespace Gems.UIWPF
                 dgParticipant.ItemsSource = null;
                 return;
             }
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
+
                 List<FieldAnswer> fieldAnswers = client.GetParticipantFieldAnswer(user, event_.EventID, (int)lstParticipants.SelectedValue).ToList();
                 List<Field> fields = client.ViewField(event_.EventID).ToList();
-                client.Close();
+
                 List<Tuple<Field, FieldAnswer>> answers = new List<Tuple<Field, FieldAnswer>>();
                 foreach (Field field in fields)
                 {
@@ -96,13 +99,17 @@ namespace Gems.UIWPF
                 cboPaid.Checked += cboPaid_Checked;
                 cboPaid.Unchecked += cboPaid_Unchecked;
                 dgParticipant.ItemsSource = answers;
-                
-               
+
+
                 btnDelete.IsEnabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -110,11 +117,10 @@ namespace Gems.UIWPF
         {
             if (lstParticipants.SelectedIndex == -1)
                 return;
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
                 client.DeleteParticipant(user, event_.EventID, (int)lstParticipants.SelectedValue);
-                client.Close();
                 loadParticipants();
                 MessageBox.Show("Operation succeeded!");
                 lstParticipants_SelectionChanged(null, null);
@@ -122,6 +128,10 @@ namespace Gems.UIWPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -132,12 +142,11 @@ namespace Gems.UIWPF
 
         private void edit_participant_paid(bool paid)
         {
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
                 ParticipantWithName p = (ParticipantWithName)lstParticipants.SelectedItem;
                 client.EditParticipant(p.participant.ParticipantID, paid);
-                client.Close();
                 loadParticipants();
                 MessageBox.Show("Operation succeeded!");
                 lstParticipants_SelectionChanged(null, null);
@@ -151,14 +160,16 @@ namespace Gems.UIWPF
                         lstParticipants.SelectedIndex = i;
                         return;
                     }
-
-
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 

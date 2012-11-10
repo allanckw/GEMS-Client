@@ -62,7 +62,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         public void refreshTaskList()
@@ -130,8 +133,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             LoadTasks();
         }
 
@@ -160,7 +165,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             LoadTasks();
         }
 
@@ -187,7 +195,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             LoadTasks();
         }
 
@@ -253,8 +264,10 @@ namespace Gems.UIWPF
                                 MessageBox.Show("An error have occured: " + ex.Message, "Error",
                                     MessageBoxButton.OK, MessageBoxImage.Error);
                             }
-                            client.Close();
-
+                            finally
+                            {
+                                client.Close();
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -384,7 +397,7 @@ namespace Gems.UIWPF
                 cboRole.SelectedIndex = -1;
                 lstOverviewAllTask.SelectedIndex = selectedTaskIdx;
                 MessageBox.Show("Operation Succeeded");
-                
+
                 //lvOverViewRoleView.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -392,8 +405,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An Error have occured: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void ClearOverview()

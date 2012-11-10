@@ -211,8 +211,10 @@ namespace Gems.UIWPF
                             MessageBox.Show("An Expection has occured: " + ex.Message, "Exception while saving optimal item list",
                                 MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-
-                        client.Close();
+                        finally
+                        {
+                            client.Close();
+                        }
                     }
                 ));
 

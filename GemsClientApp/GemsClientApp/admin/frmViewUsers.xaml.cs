@@ -50,7 +50,7 @@ namespace Gems.UIWPF
         {
             if (cboRole.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a role!", "Invalid selection", 
+                MessageBox.Show("Please select a role!", "Invalid selection",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
@@ -58,7 +58,7 @@ namespace Gems.UIWPF
             AdminHelper client = new AdminHelper();
             try
             {
-                List<User> list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(), 
+                List<User> list = client.SearchUserByRole(txtName.Text.Trim(), txtUserID.Text.Trim(),
                     (EnumRoles)cboRole.SelectedIndex).ToList<User>();
                 lstUsers.SelectedValuePath = "userID";
                 lstUsers.ItemsSource = list;
@@ -67,7 +67,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void cboRole_SelectionChanged(object sender, SelectionChangedEventArgs e)

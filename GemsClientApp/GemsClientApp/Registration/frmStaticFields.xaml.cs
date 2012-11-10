@@ -38,16 +38,19 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            RegistrationHelper client = new RegistrationHelper();
             try
             {
-                RegistrationHelper client = new RegistrationHelper();
                 List<StaticField> staticFields = client.ViewStaticField().ToList();
-                client.Close();
                 dgStaticFields.ItemsSource = staticFields;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
     }

@@ -30,7 +30,7 @@ namespace Gems.UIWPF
                     MessageBoxImage.Exclamation);
                 return;
             }
-            
+
             if (txtPassword.Password.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter your password!", "Invalid Input", MessageBoxButton.OK,
@@ -50,7 +50,7 @@ namespace Gems.UIWPF
                 Credentials c = new Credentials();
                 c.UserID = txtUserID.Text.Trim();
                 c.Password = Helper.KeyGen.Encrypt(txtPassword.Password);
-               
+
                 User u = client.SecureAuthenticate(c);
                 var admForm = new frmMain(u, this);
                 this.Visibility = Visibility.Collapsed;
@@ -58,13 +58,16 @@ namespace Gems.UIWPF
                 this.txtUserID.Clear();
                 this.txtUserID.Focus();
                 admForm.Show();
-               
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();  // Always close the client.
+            finally
+            {
+                client.Close();  // Always close the client.
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -80,7 +80,6 @@ namespace Gems.UIWPF
                             {
                                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
                                     MessageBoxImage.Error);
-                                //this.Close();
                             }
                             finally
                             {
@@ -102,25 +101,6 @@ namespace Gems.UIWPF
 
             thread.Start();
 
-
-
-            //try{
-            //    ExportHelper c = new ExportHelper();
-            //    c.Open();
-            //    ExportData data = c.GetExportData(user, event_.EventID, cboFacilities.IsChecked.Value,
-            //        cboProgrammes.IsChecked.Value, cboIncome.IsChecked.Value, cboOptItem.IsChecked.Value, cboTask.IsChecked.Value, cboGuest.IsChecked.Value, cboParticipant.IsChecked.Value);
-
-            //    Exporter.PrintExcel(data, cboFacilities.IsChecked.Value,
-            //        cboProgrammes.IsChecked.Value, cboIncome.IsChecked.Value, cboOptItem.IsChecked.Value, cboTask.IsChecked.Value, cboGuest.IsChecked.Value, cboParticipant.IsChecked.Value);
-
-            //    c.Close();
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
-            //        MessageBoxImage.Error);
-            //    //this.Close();
-            //}
         }
 
         private void btnCheckAll_Click(object sender, RoutedEventArgs e)

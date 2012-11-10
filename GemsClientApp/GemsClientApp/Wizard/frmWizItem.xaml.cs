@@ -72,8 +72,6 @@ namespace Gems.UIWPF
             cboItemType.ItemsSource = client.GetItemsTypes();
             client.Close();
 
-
-
         }
 
         

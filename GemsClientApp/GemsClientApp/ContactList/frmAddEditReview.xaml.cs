@@ -157,8 +157,6 @@ namespace Gems.UIWPF
                 client.Close();
 
                 MessageBox.Show("Operation Success");
-               // this.Close();
-
             }
             catch (Exception ex)
             {
@@ -175,7 +173,6 @@ namespace Gems.UIWPF
                 client.Close();
 
                 MessageBox.Show("Operation Success");
-                // this.Close();
                 this.Close();
             }
             catch (Exception ex)

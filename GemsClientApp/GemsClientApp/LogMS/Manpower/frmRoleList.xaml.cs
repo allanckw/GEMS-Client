@@ -22,11 +22,12 @@ namespace Gems.UIWPF
             {
                 return null;
             }
+            AdminHelper client = new AdminHelper();
             try
             {
-                AdminHelper client = new AdminHelper();
+
                 List<User> users = client.SearchUser(textPattern, "").ToList<User>();
-                client.Close();
+
                 List<String> results = new List<string>();
                 foreach (User user in users)
                     results.Add(user.Name.ToString() + " (" + user.UserID.ToString() + ")");
@@ -35,6 +36,10 @@ namespace Gems.UIWPF
             catch
             {
                 return null;
+            }
+            finally
+            {
+                client.Close();
             }
         }
     }
@@ -62,11 +67,12 @@ namespace Gems.UIWPF
             accbUsers.AutoCompleteManager.DataProvider = new UserDataProvider();
             accbUsers.AutoCompleteManager.AutoAppend = true;
 
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 List<Function> functions = client.ViewFunction().ToList();
-                client.Close();
+
                 TreeViewItem root = new TreeViewItem() { Header = "All Rights", IsExpanded = true };
                 tvFunctions.Items.Add(root);
                 string currGroup = "";
@@ -79,12 +85,16 @@ namespace Gems.UIWPF
                         parent = new TreeViewItem() { Header = function.Grouping, IsExpanded = true };
                         root.Items.Add(parent);
                     }
-                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.FunctionEnum }); 
+                    parent.Items.Add(new TreeViewItem() { Header = function.Description, Tag = function.FunctionEnum });
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -94,7 +104,7 @@ namespace Gems.UIWPF
             loadRoles();
             RoleHelper client = new RoleHelper();
             try
-            {  
+            {
                 List<RoleTemplate> roleTemplates = client.ViewTemplateRole(user, null).ToList();
                 roleTemplates.AddRange(client.ViewTemplateRole(user, event_));
                 cbRoleTemplate.ItemsSource = roleTemplates;
@@ -105,7 +115,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
@@ -212,20 +225,6 @@ namespace Gems.UIWPF
             }
         }
 
-        //private void loadRoles()
-        //{
-        //    RoleClient client = new RoleClient();
-        //    try
-        //    {
-        //        lstRole.ItemsSource = client.ViewEventRoles(user, event_);// ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    client.Close();
-        //    clearAll();
-        //}
 
         private void loadRoles()
         {
@@ -241,7 +240,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             clearAll();
         }
 
@@ -271,7 +273,7 @@ namespace Gems.UIWPF
 
                 if (lstRole.SelectedIndex == -1)
                     client.AddRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
-                        event_.EventID,txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
+                        event_.EventID, txtPost.Text.Trim(), txtDescription.Text.Trim(), selectedFunctions.ToArray());
                 else
                     client.EditRole(user, accbUsers.Text.Substring(accbUsers.Text.LastIndexOf('(') + 1).TrimEnd(')'),
                         ((RoleWithUser)lstRole.SelectedItem).role.RoleID, txtPost.Text.Trim(),
@@ -283,7 +285,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
             loadRoles();
         }
 
@@ -301,7 +306,7 @@ namespace Gems.UIWPF
             {
 
                 RoleWithUser selectedItem = (RoleWithUser)lstRole.SelectedItem;
-               // Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
+                // Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
                 //Role selectedRole = selectedItem.Item1;
                 Role selectedRole = selectedItem.role;
                 txtPost.Text = selectedRole.Post;
@@ -319,7 +324,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void cbRoleTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -346,7 +354,10 @@ namespace Gems.UIWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void clearAll()
@@ -371,16 +382,21 @@ namespace Gems.UIWPF
         {
             if (lstRole.SelectedIndex == -1)
                 return;
+            RoleHelper client = new RoleHelper();
             try
             {
-                RoleHelper client = new RoleHelper();
+
                 client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
-                client.Close();
+
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             loadRoles();
         }

@@ -32,7 +32,7 @@ namespace Gems.UIWPF.CustomCtrl
             lv.ItemsSource = ItemTypeCollection;
         }
 
-        public void AddNewItemType(User u,Events event_, String ItemType, Boolean Important)
+        public void AddNewItemType(User u, Events event_, String ItemType, Boolean Important)
         {
             EventItemsHelper client = new EventItemsHelper();
             try
@@ -45,7 +45,10 @@ namespace Gems.UIWPF.CustomCtrl
                 MessageBox.Show("Error have occured: " + ex.Message, "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         public void ToggleItemTypeImpt(User u, Events event_)

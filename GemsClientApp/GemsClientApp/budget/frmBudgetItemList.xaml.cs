@@ -62,7 +62,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void clearBudgetItemForm()
@@ -125,7 +128,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            finally
+            {
+                client.Close();
+            }
         }
 
         private void btnUpdateItem_Click(object sender, RoutedEventArgs e)
@@ -157,8 +163,10 @@ namespace Gems.UIWPF
                 MessageBox.Show("An error has occured: " + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
-
+            finally
+            {
+                client.Close();
+            }
             loadBudgetItems();
         }
 

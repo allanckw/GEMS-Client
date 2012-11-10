@@ -76,12 +76,12 @@ namespace Gems.UIWPF
 
         private void loadPrograms()
         {
+            ProgrammeHelper client = new ProgrammeHelper();
             try
             {
-                ProgrammeHelper client = new ProgrammeHelper();
+
                 List<Program> progList = client.ViewProgram(eventDay_.DayID).ToList<Program>();
 
-                client.Close();
                 DateTime curr = eventDay_.StartDateTime;
                 DateTime end = eventDay_.EndDateTime;
 
@@ -117,6 +117,10 @@ namespace Gems.UIWPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
 
         }
@@ -158,10 +162,9 @@ namespace Gems.UIWPF
                 //int duration = idx * 30;
                 SegmentEndDateTime = SegmentStartDateTime.AddMinutes(idx * 30);
 
+                ProgrammeHelper client = new ProgrammeHelper();
                 try
                 {
-                    ProgrammeHelper client = new ProgrammeHelper();
-
 
                     if (lstProgram.SelectedIndex != -1 && ((Program)lstProgram.SelectedItem).ProgramID != 0)
                     {
@@ -175,16 +178,16 @@ namespace Gems.UIWPF
                         if (clashed)
                         {
                             MessageBox.Show("Program cannot be overlapped!",
-                        "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                 "Overlapping Program Detected", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                             return;
                         }
                         else
                         {
-                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID,txtLocation.Text);
+                            client.AddProgram(user, txtName.Text, SegmentStartDateTime, SegmentEndDateTime, txtDescription.Text, eventDay_.DayID, txtLocation.Text);
                         }
                     }
 
-                    client.Close();
+
                     MessageBox.Show("Operation succeeded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     clearAll();
@@ -193,7 +196,10 @@ namespace Gems.UIWPF
                 {
                     MessageBox.Show(ex.Message);
                 }
-
+                finally
+                {
+                    client.Close();
+                }
                 loadPrograms();
             }
         }
@@ -261,20 +267,24 @@ namespace Gems.UIWPF
                 MessageBox.Show("OverLap or is over the event time boundary");
                 return;
             }
-
+            ProgrammeHelper client = new ProgrammeHelper();
             try
             {
-                ProgrammeHelper client = new ProgrammeHelper();
+
                 if (p1.ProgramID != 0)
-                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description,p1.Location);
+                    client.EditProgram(user, p1.ProgramID, p1.Name, p1.StartDateTime, p1.EndDateTime, p1.Description, p1.Location);
 
                 if (p2.ProgramID != 0)
-                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description,p2.Location);
-                client.Close();
+                    client.EditProgram(user, p2.ProgramID, p2.Name, p2.StartDateTime, p2.EndDateTime, p2.Description, p2.Location);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             
             loadPrograms();
@@ -290,9 +300,10 @@ namespace Gems.UIWPF
                 btnAdd.Content = "Add";
                 return;
             }
+            ProgrammeHelper client = new ProgrammeHelper();
             try
             {
-                ProgrammeHelper client = new ProgrammeHelper();
+
                 Program selectedProgram = (Program)lstProgram.SelectedItem;
                 txtName.Text = selectedProgram.Name;
                 cboStartHr.SelectedIndex = selectedProgram.StartDateTime.Hour;
@@ -302,12 +313,16 @@ namespace Gems.UIWPF
                 txtDescription.Text = selectedProgram.Description;
                 txtLocation.Text = selectedProgram.Location;
                 btnAdd.Content = "Save";
-                client.Close();
-                cboBookDuration.SelectedIndex=computeDurationIdx(selectedProgram)-1;
+
+                cboBookDuration.SelectedIndex = computeDurationIdx(selectedProgram) - 1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
         }
 
@@ -342,16 +357,19 @@ namespace Gems.UIWPF
         {
             if (lstProgram.SelectedIndex == -1)
                 return;
+            ProgrammeHelper client = new ProgrammeHelper();
             try
             {
-                ProgrammeHelper client = new ProgrammeHelper();
                 client.DeleteProgram(user, ((Program)lstProgram.SelectedItem).ProgramID);
-                client.Close();
                 MessageBox.Show("Operation succeeded!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                client.Close();
             }
             loadPrograms();
         }

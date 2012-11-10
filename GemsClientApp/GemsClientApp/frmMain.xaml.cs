@@ -712,9 +712,10 @@ namespace Gems.UIWPF
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
+                RoleHelper client = new RoleHelper();
                 try
                 {
-                    RoleHelper client = new RoleHelper();
+
                     foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
@@ -722,11 +723,15 @@ namespace Gems.UIWPF
                                 frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
                                 return true;
                             }
-                    client.Close();
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    client.Close();
                 }
                 currPageType = typeof(frmOverview);
             }
@@ -769,9 +774,10 @@ namespace Gems.UIWPF
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
+                RoleHelper client = new RoleHelper();
                 try
                 {
-                    RoleHelper client = new RoleHelper();
+
                     foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
@@ -779,14 +785,20 @@ namespace Gems.UIWPF
                                 frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
                                 return true;
                             }
-                    client.Close();
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                finally
+                {
+                    client.Close();
+                } 
                 currPageType = typeof(frmOverview);
+
             }
+
             currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd);
             frame.Navigate(currPage);
             return true;
@@ -826,9 +838,10 @@ namespace Gems.UIWPF
             EventDay evday = (EventDay)lstEventDayList.SelectedItem;
             if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
             {
+                RoleHelper client = new RoleHelper();
                 try
                 {
-                    RoleHelper client = new RoleHelper();
+
                     foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
                         foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
                             if (ef1 == ef2)
@@ -836,11 +849,15 @@ namespace Gems.UIWPF
                                 frame.Navigate(Activator.CreateInstance(currPageType, user, evday));
                                 return true;
                             }
-                    client.Close();
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    client.Close();
                 }
                 currPageType = typeof(frmOverview);
             }
@@ -934,13 +951,13 @@ namespace Gems.UIWPF
             }
             if (selectedIndex == cboEventList.SelectedIndex)
                 return;
+            EventHelper clientEvent = new EventHelper();
             try
             {
                 Events ev = (Events)cboEventList.SelectedItem;
-                EventHelper clientEvent = new EventHelper();
+                
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 lstEventDayList.SelectedIndex = 0;
-                clientEvent.Close();
 
                 if (dayDependentForm() == true)
                     return;
@@ -1019,9 +1036,6 @@ namespace Gems.UIWPF
             try
             {
                 Events ev = (Events)cboEventList.SelectedItem;
-                //EventHelper clientEvent = new EventHelper();
-                ////lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
-                ////clientEvent.Close();
 
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigateByEventDay", BindingFlags.NonPublic | BindingFlags.Instance)
