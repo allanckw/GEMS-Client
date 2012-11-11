@@ -1081,8 +1081,13 @@ namespace Gems.UIWPF
 
         private void mnuExport_Click(object sender, RoutedEventArgs e)
         {
-            frmExport export = new frmExport(user, (Events)cboEventList.SelectedItem);
-            export.ShowDialog();
+            if (cboEventList.SelectedIndex == -1)
+                MessageBox.Show("No Event Selected");
+            else
+            {
+                frmExport export = new frmExport(user, (Events)cboEventList.SelectedItem);
+                export.ShowDialog();
+            }
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
