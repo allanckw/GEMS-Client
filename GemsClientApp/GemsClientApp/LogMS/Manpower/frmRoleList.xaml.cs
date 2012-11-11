@@ -231,9 +231,6 @@ namespace Gems.UIWPF
             RoleHelper client = new RoleHelper();
             try
             {
-                //cboRole.DisplayMemberPath = "user";
-                //cboRole.SelectedValuePath = "role.RoleID";
-                //roleByEvent = //client.ViewEventRoles(user, event_).ToList<Tuple<Role, string>>();
                 lstRole.ItemsSource = client.ViewEventRoles(user, event_).ToList<RoleWithUser>();
             }
             catch (Exception ex)
@@ -306,8 +303,7 @@ namespace Gems.UIWPF
             {
 
                 RoleWithUser selectedItem = (RoleWithUser)lstRole.SelectedItem;
-                // Tuple<Role, string> selectedItem = ((Tuple<Role, string>)lstRole.SelectedItem);
-                //Role selectedRole = selectedItem.Item1;
+
                 Role selectedRole = selectedItem.role;
                 txtPost.Text = selectedRole.Post;
                 txtDescription.Text = selectedRole.Description;
@@ -386,7 +382,7 @@ namespace Gems.UIWPF
             try
             {
 
-                client.DeleteRole(user, (((Tuple<Role, string>)lstRole.SelectedItem)).Item1.RoleID);
+                client.DeleteRole(user, ((RoleWithUser)lstRole.SelectedItem).role.RoleID);
 
                 MessageBox.Show("Operation succeeded!");
             }
