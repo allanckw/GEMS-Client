@@ -6315,6 +6315,10 @@ public interface IAdministration
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/GetUserEmail", ReplyAction="http://tempuri.org/IAdministration/GetUserEmailResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/GetUserEmailSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     string GetUserEmail(string userid);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministration/GetClientTimeOut", ReplyAction="http://tempuri.org/IAdministration/GetClientTimeOutResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IAdministration/GetClientTimeOutSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    int GetClientTimeOut();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6399,6 +6403,11 @@ public partial class AdministrationClient : System.ServiceModel.ClientBase<IAdmi
     public string GetUserEmail(string userid)
     {
         return base.Channel.GetUserEmail(userid);
+    }
+    
+    public int GetClientTimeOut()
+    {
+        return base.Channel.GetClientTimeOut();
     }
 }
 

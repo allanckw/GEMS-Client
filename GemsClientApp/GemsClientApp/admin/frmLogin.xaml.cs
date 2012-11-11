@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using evmsService.entities;
-
+using System.Configuration;
 namespace Gems.UIWPF
 {
     public partial class frmLogin : Window
@@ -46,6 +46,15 @@ namespace Gems.UIWPF
             AdminHelper client = new AdminHelper();
             try
             {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                KeyValueConfigurationCollection settings = config.AppSettings.Settings;
+
+                settings["timeout"].Value = client.GetClientTimeOut().ToString();
+
+                config.Save(ConfigurationSaveMode.Modified);
+                //relaod the section you modified
+                ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+
                 //User u = client.Authenticate(txtUserID.Text.Trim(), txtPassword.Password);
                 Credentials c = new Credentials();
                 c.UserID = txtUserID.Text.Trim();
@@ -86,7 +95,7 @@ namespace Gems.UIWPF
             {
                 txtPassword.Focus();
             }
-           
+
         }
 
     }

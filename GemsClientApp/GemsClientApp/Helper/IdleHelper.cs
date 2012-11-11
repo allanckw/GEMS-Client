@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Gems.UIWPF.Helper
 {
@@ -19,6 +20,8 @@ namespace Gems.UIWPF.Helper
 
         private static void timer1_Tick(object sender, EventArgs e)
         {
+            int mins = int.Parse(ConfigurationManager.AppSettings["timeout"]);
+
             tagLASTINPUTINFO LastInput = new tagLASTINPUTINFO();
             Int32 IdleTime;
             LastInput.cbSize = (uint)Marshal.SizeOf(LastInput);
@@ -28,10 +31,10 @@ namespace Gems.UIWPF.Helper
             {
                 IdleTime = System.Environment.TickCount - LastInput.dwTime;
                 //label1.Text = IdleTime + "ms";
-                if (IdleTime > (60000*10))
+                if (IdleTime > (60000*mins))
                 {
                     timer1.Stop();
-                    MessageBox.Show("You have been idle for 10 mins, please Refresh Your Data before continue!","Idle",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("You have been idle for " +  mins + ", please Refresh Your Data before continue!","Idle",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     //stopIdleTimer();
                 }
             }
