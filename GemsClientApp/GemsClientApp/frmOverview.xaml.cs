@@ -22,7 +22,7 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
-        public frmOverview(User u, Events e, EventDay evd)
+        public frmOverview(User u, Events e, EventDay evd, Events pEvent)
             : this()
         {
             this.user = u;

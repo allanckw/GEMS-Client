@@ -22,6 +22,7 @@ namespace Gems.UIWPF
         private Notifier taskbarNotifier;
         private Type currPageType;
         private GEMSPage currPage;
+        private Events prevEvent;
         private int selectedIndex = -1;
         private int selectedDayIndex = -1;
 
@@ -107,6 +108,7 @@ namespace Gems.UIWPF
         public frmMain(User u, frmLogin mainFrame)
             : this()
         {
+            prevEvent = null;
             this.user = u;
             this.mainFrame = mainFrame;
             currPageType = typeof(frmOverview);
@@ -286,7 +288,7 @@ namespace Gems.UIWPF
 
             Events ev = (Events)cboEventList.SelectedItem;
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
-            frame.Navigate(new frmOverview(user, ev, evd));
+            frame.Navigate(new frmOverview(user, ev, evd, prevEvent));
             Mouse.OverrideCursor = Cursors.Arrow;
             loadUserRights(ev);
 
@@ -668,7 +670,7 @@ namespace Gems.UIWPF
             }
             if (currPageType == typeof(frmOverview))
             {
-                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd);
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd, prevEvent);
             }
             else
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
@@ -884,6 +886,15 @@ namespace Gems.UIWPF
             if (selectedIndex == cboEventList.SelectedIndex)
                 return;
 
+            if (selectedIndex == -1)
+            {
+                prevEvent=null;
+            }
+            else
+            {
+                prevEvent = (Events)cboEventList.Items[selectedIndex];
+            }
+
             EventHelper clientEvent = new EventHelper();
             try
             {
@@ -954,8 +965,6 @@ namespace Gems.UIWPF
             if (currPageType == typeof(frmGuestList))
                 return true;
             if (currPageType == typeof(frmProgramManagement))
-                return true;
-            if (currPageType == typeof(frmOverview))
                 return true;
 
             return false;
