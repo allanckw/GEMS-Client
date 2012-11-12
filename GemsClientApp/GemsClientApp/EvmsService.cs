@@ -235,8 +235,6 @@ namespace evmsService.entities
         
         private string NameField;
         
-        private evmsService.entities.User OrganizerField;
-        
         private string OrganizeridField;
         
         private System.DateTime StartDateTimeField;
@@ -319,19 +317,6 @@ namespace evmsService.entities
             set
             {
                 this.NameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public evmsService.entities.User Organizer
-        {
-            get
-            {
-                return this.OrganizerField;
-            }
-            set
-            {
-                this.OrganizerField = value;
             }
         }
         

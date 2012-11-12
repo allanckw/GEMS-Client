@@ -151,7 +151,7 @@ namespace Gems.UIWPF
             }
             loadEvents();
 
-            getHourlyNotifications();
+            //
         }
 
         private void DisableAllRight()
@@ -220,16 +220,6 @@ namespace Gems.UIWPF
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    loadEventsAuto();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    this.Close();
-            //    mainFrame.Visibility = Visibility.Visible;
-            //}
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -273,7 +263,6 @@ namespace Gems.UIWPF
                                 if (list.Count > 0)
                                     cboEventList.ItemsSource = list;
 
-
                             }
                             catch (Exception ex)
                             {
@@ -296,80 +285,8 @@ namespace Gems.UIWPF
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             frame.Navigate(new frmOverview(user, ev, evd));
             Mouse.OverrideCursor = Cursors.Arrow;
-        }
 
-        private void loadEventsAutoInThread()
-        {
-            System.Threading.Thread thread = new System.Threading.Thread(
-                    new System.Threading.ThreadStart(
-                    delegate()
-                    {
-                        System.Windows.Threading.DispatcherOperation
-                        dispatcherOp = this.Dispatcher.BeginInvoke(
-                        System.Windows.Threading.DispatcherPriority.Loaded,
-                        new Action(delegate()
-                        {
-                            try
-                            {
-                                bool nthselected = (cboEventList.SelectedIndex == -1);
-                                //SelectionChanged="lstEventList_SelectionChanged"
-
-                                cboEventList.SelectionChanged -= cboEventList_SelectionChanged;
-                                int Eid = 0;
-                                if (!nthselected)
-                                {
-                                    Eid = ((Events)cboEventList.SelectedItem).EventID;
-                                }
-                                EventHelper client = new EventHelper();
-                                List<Events> list;
-                                if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null && txtTag.Text.Trim() == "")
-                                {
-                                    list = client.ViewUserAssociatedEvent(user).ToList<Events>();
-                                }
-                                else if (dtpFrom.SelectedDate == null && dtpTo.SelectedDate == null)
-                                {
-                                    list = client.ViewEventsByTag(user, txtTag.Text.Trim()).ToList<Events>();
-                                }
-                                else
-                                {
-                                    list = client.ViewEventsByDateAndTag(user, dtpFrom.SelectedDate.Value,
-                                     dtpTo.SelectedDate.Value, txtTag.Text.Trim()).ToList<Events>();
-                                }
-
-                                cboEventList.ItemsSource = list;
-                                client.Close();
-                                if (!nthselected)
-                                {
-
-                                    for (int i = 0; i < cboEventList.Items.Count; i++)
-                                    {
-                                        if (((Events)cboEventList.Items[i]).EventID == Eid)
-                                        {
-                                            cboEventList.SelectionChanged += cboEventList_SelectionChanged;
-                                            cboEventList.SelectedIndex = i;
-
-                                            return;
-                                        }
-                                    }
-                                }
-
-                                cboEventList.SelectionChanged += cboEventList_SelectionChanged;
-
-                                cboEventList_SelectionChanged(null, null);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
-                                this.Close();
-                                mainFrame.Visibility = Visibility.Visible;
-                            }
-                        }
-                    ));
-
-                    }
-                ));
-
-            thread.Start();
+            getHourlyNotifications();
         }
 
         public void loadEvents()
@@ -384,13 +301,6 @@ namespace Gems.UIWPF
                 loadEventsInThread();
             }
         }
-
-        private void loadEventsAuto()
-        {
-            this.loadEventsAutoInThread();
-
-        }
-
         private void SetRight(List<EnumFunctions> ef)
         {
             DisableAllRight();
@@ -524,9 +434,10 @@ namespace Gems.UIWPF
                     System.Windows.Threading.DispatcherPriority.Normal,
                     new Action(delegate()
                     {
+                        NotifHelper client = new NotifHelper();
                         try
                         {
-                            NotifHelper client = new NotifHelper();
+
                             taskbarNotifier.NotifyContent.Clear();
                             if (newMessages)
                             {
@@ -550,13 +461,17 @@ namespace Gems.UIWPF
                                 }
                             }
 
-                            client.Close();
+
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message, "An error has occured", MessageBoxButton.OK, MessageBoxImage.Error);
                             this.Close();
                             mainFrame.Visibility = Visibility.Visible;
+                        }
+                        finally
+                        {
+                            client.Close();
                         }
                     }
                 ));
@@ -968,7 +883,7 @@ namespace Gems.UIWPF
             try
             {
                 Events ev = (Events)cboEventList.SelectedItem;
-                
+
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 lstEventDayList.SelectedIndex = 0;
 
@@ -1017,6 +932,10 @@ namespace Gems.UIWPF
                 DisableAllRight();
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                clientEvent.Close();
+            }
         }
 
         private bool dayDependentForm()
@@ -1048,7 +967,7 @@ namespace Gems.UIWPF
                 return;
             try
             {
-                Events ev = (Events)cboEventList.SelectedItem;
+                //Events ev = (Events)cboEventList.SelectedItem;
 
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigateByEventDay", BindingFlags.NonPublic | BindingFlags.Instance)
@@ -1059,35 +978,11 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                if (user.UserID == ev.Organizerid)
-                    EnableAllRight();
-                else
-                {
-                    RoleHelper client = new RoleHelper();
-
-                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
-                    {
-                        EnableAllRight();
-                    }
-                    else if (user.isFacilityAdmin)
-                    {
-                        DisableAllRight();
-                        mnuLocation.Visibility = Visibility.Visible;
-
-                        mnuViewBookings.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
-                    }
-                    client.Close();
-
-                }
-                selectedIndex = cboEventList.SelectedIndex;
+                selectedDayIndex = lstEventDayList.SelectedIndex;
             }
             catch (Exception ex)
             {
-                DisableAllRight();
+                //DisableAllRight();
                 MessageBox.Show(ex.Message);
             }
         }

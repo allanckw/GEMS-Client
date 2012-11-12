@@ -96,7 +96,11 @@ namespace Gems.UIWPF
                 PrintToCell(sheetEvent, 2, 1, data.evnts.Name);
 
                 PrintToCell(sheetEvent, 1, 2, "Organizer Name:");
-                PrintToCell(sheetEvent, 2, 2, data.evnts.Organizer.Name);
+                AdminHelper client = new AdminHelper();
+
+                PrintToCell(sheetEvent, 2, 2, client.GetUserName(data.evnts.Organizerid));
+
+                client.Close();
 
                 PrintToCell(sheetEvent, 1, 3, "Start:");
                 PrintToCell(sheetEvent, 2, 3, data.evnts.StartDateTime.ToString());
