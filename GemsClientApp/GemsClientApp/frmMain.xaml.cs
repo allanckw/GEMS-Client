@@ -920,26 +920,31 @@ namespace Gems.UIWPF
 
         private void loadUserRights(Events ev)
         {
-            
+
             if (ev != null)
             {
-                RoleHelper client = new RoleHelper();
-                if (user.UserID == ev.Organizerid || user.isSystemAdmin)
-                {
+                if (user.isSystemAdmin)
                     EnableAllRight();
-                }
-                else if (user.isFacilityAdmin)
-                {
-                    DisableAllRight();
-                    mnuLocation.Visibility = Visibility.Visible;
-
-                    mnuViewBookings.Visibility = Visibility.Visible;
-                }
                 else
                 {
-                    SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+                    RoleHelper client = new RoleHelper();
+                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
+                    {
+                        EnableAllRight();
+                    }
+                    else if (user.isFacilityAdmin)
+                    {
+                        DisableAllRight();
+                        mnuLocation.Visibility = Visibility.Visible;
+
+                        mnuViewBookings.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+                    }
+                    client.Close();
                 }
-                client.Close();
             }
             
         }
