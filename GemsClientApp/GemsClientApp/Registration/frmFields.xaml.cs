@@ -50,12 +50,15 @@ namespace Gems.UIWPF
                 {
                     Field firstName = new Field();
                     firstName.FieldName = firstName.FieldLabel = "First Name";
+                    firstName.Remarks = "";
                     Field lastName = new Field();
                     lastName.FieldName = lastName.FieldLabel = "Last Name";
+                    lastName.Remarks = "";
                     firstName.IsRequired = lastName.IsRequired = true;
                     Field email = new Field();
                     email.FieldName = email.FieldLabel = "Email";
                     email.IsRequired = email.IsRequired = true;
+                    email.Remarks = "";
 
                     fields = new ObservableCollection<Field>() { firstName, lastName, email };
 

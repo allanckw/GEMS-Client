@@ -5983,6 +5983,10 @@ public interface IProgramme
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/ValidateProgramTime", ReplyAction="http://tempuri.org/IProgramme/ValidateProgramTimeResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/ValidateProgramTimeSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     bool ValidateProgramTime(int dayID, System.DateTime segmentStart, System.DateTime segmentEnd);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProgramme/SwapProgram", ReplyAction="http://tempuri.org/IProgramme/SwapProgramResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/IProgramme/SwapProgramSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    void SwapProgram(evmsService.entities.User user, int ProgramID1, int ProgramID2);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6042,6 +6046,11 @@ public partial class ProgrammeClient : System.ServiceModel.ClientBase<IProgramme
     public bool ValidateProgramTime(int dayID, System.DateTime segmentStart, System.DateTime segmentEnd)
     {
         return base.Channel.ValidateProgramTime(dayID, segmentStart, segmentEnd);
+    }
+    
+    public void SwapProgram(evmsService.entities.User user, int ProgramID1, int ProgramID2)
+    {
+        base.Channel.SwapProgram(user, ProgramID1, ProgramID2);
     }
 }
 
