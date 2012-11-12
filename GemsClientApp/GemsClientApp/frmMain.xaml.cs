@@ -797,10 +797,11 @@ namespace Gems.UIWPF
 
             if (currPageType == typeof(frmOverview))
             {
-                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday);
+                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday, prevEvent);
             }
             else
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, evday);
+
             frame.Navigate(currPage);
             return true;
         }
@@ -888,7 +889,7 @@ namespace Gems.UIWPF
 
             if (selectedIndex == -1)
             {
-                prevEvent=null;
+                prevEvent = null;
             }
             else
             {
@@ -903,8 +904,6 @@ namespace Gems.UIWPF
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 lstEventDayList.SelectedIndex = 0;
                 loadUserRights(ev);
-                if (dayDependentForm() == true)
-                    return;
 
                 if (!(bool)typeof(frmMain)
                     .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
@@ -957,7 +956,7 @@ namespace Gems.UIWPF
                     client.Close();
                 }
             }
-            
+
         }
 
         private bool dayDependentForm()
@@ -966,8 +965,10 @@ namespace Gems.UIWPF
                 return true;
             if (currPageType == typeof(frmProgramManagement))
                 return true;
-
-            return false;
+            if (currPageType == typeof(frmOverview))
+                return true;
+            else
+                return false;
         }
 
         private void lstEventDayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
