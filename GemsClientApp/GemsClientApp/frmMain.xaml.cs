@@ -110,8 +110,9 @@ namespace Gems.UIWPF
             this.user = u;
             this.mainFrame = mainFrame;
             currPageType = typeof(frmOverview);
+            load_rights(null, null);
+            Loaded += new RoutedEventHandler(load_rights);
 
-            Loaded += new RoutedEventHandler(Window_Loaded);
             taskbarNotifier = new Notifier(user, this);
             taskbarNotifier.OpeningMilliseconds = 2000;
             taskbarNotifier.StayOpenMilliseconds = 4000;
@@ -129,6 +130,11 @@ namespace Gems.UIWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            getHourlyNotifications();
+        }
+        private void load_rights(object sender, RoutedEventArgs e)
+        {
+            loadEvents();
             DisableAllRight();
             this.mnuAdmin.Visibility = Visibility.Collapsed;
             this.mnuGlobalRoleTemplates.Visibility = Visibility.Collapsed;
@@ -149,9 +155,6 @@ namespace Gems.UIWPF
             {
                 EnableAllRight();
             }
-            loadEvents();
-
-            //
         }
 
         private void DisableAllRight()
@@ -285,8 +288,8 @@ namespace Gems.UIWPF
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
             frame.Navigate(new frmOverview(user, ev, evd));
             Mouse.OverrideCursor = Cursors.Arrow;
-
-            getHourlyNotifications();
+            loadUserRights(ev);
+           
         }
 
         public void loadEvents()
@@ -517,7 +520,7 @@ namespace Gems.UIWPF
             {
                 int tempe = ((Events)cboEventList.SelectedItem).EventID;
 
-                for (int i = 0;i< cboEventList.Items.Count; i++)
+                for (int i = 0; i < cboEventList.Items.Count; i++)
                 {
                     if (((Events)cboEventList.Items[i]).EventID == tempe)
                         cboEventList.SelectedIndex = i;
@@ -722,7 +725,7 @@ namespace Gems.UIWPF
                 finally
                 {
                     client.Close();
-                } 
+                }
                 currPageType = typeof(frmOverview);
 
             }
@@ -735,7 +738,7 @@ namespace Gems.UIWPF
         private bool navigateByEventDay<T>()
         {
             Type newPageType = typeof(T);
-            if (newPageType == typeof(frmServiceContactList))
+            if (newPageType == typeof(frmServiceContactList) || (newPageType == typeof(frmOverview)))
             {
                 //Do nothing
             }
@@ -870,6 +873,7 @@ namespace Gems.UIWPF
 
         private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lstEventDayList.SelectedIndex = -1;
             if (cboEventList.SelectedIndex == -1)
             {
                 //lstEventDayList.Items.Clear();
@@ -879,6 +883,7 @@ namespace Gems.UIWPF
             }
             if (selectedIndex == cboEventList.SelectedIndex)
                 return;
+
             EventHelper clientEvent = new EventHelper();
             try
             {
@@ -905,27 +910,11 @@ namespace Gems.UIWPF
                 }
                 else
                 {
-                    RoleHelper client = new RoleHelper();
-
-                    if (user.UserID == ev.Organizerid || user.isSystemAdmin)
-                    {
-                        EnableAllRight();
-                    }
-                    else if (user.isFacilityAdmin)
-                    {
-                        DisableAllRight();
-                        mnuLocation.Visibility = Visibility.Visible;
-
-                        mnuViewBookings.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
-                    }
-                    client.Close();
-
+                    loadUserRights(ev);
                 }
                 selectedIndex = cboEventList.SelectedIndex;
+
+                lstEventDayList.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -935,7 +924,30 @@ namespace Gems.UIWPF
             finally
             {
                 clientEvent.Close();
+
             }
+        }
+
+        private void loadUserRights(Events ev)
+        {
+            RoleHelper client = new RoleHelper();
+
+            if (user.UserID == ev.Organizerid || user.isSystemAdmin)
+            {
+                EnableAllRight();
+            }
+            else if (user.isFacilityAdmin)
+            {
+                DisableAllRight();
+                mnuLocation.Visibility = Visibility.Visible;
+
+                mnuViewBookings.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+            }
+            client.Close();
         }
 
         private bool dayDependentForm()
@@ -957,14 +969,9 @@ namespace Gems.UIWPF
 
             if (lstEventDayList.SelectedIndex == -1)
             {
-                //lstEventDayList.Items.Clear();
-                //lstEventDayList.ItemsSource = null;
-                //selectedIndex = -1;
-                return;
+                lstEventDayList.SelectedIndex = 0;
             }
 
-            if (selectedDayIndex == lstEventDayList.SelectedIndex)
-                return;
             try
             {
                 //Events ev = (Events)cboEventList.SelectedItem;

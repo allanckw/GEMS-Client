@@ -28,8 +28,10 @@ namespace Gems.UIWPF
             this.user = u;
             this.event_ = e;
             this.eventday_ = evd;
-            if (e != null && evd != null)
+            if (e != null && evd != null && e.EventID != evd.EventID)
                 loadEventItems();
+            else if (e != null && evd != null && e.EventID == evd.EventID)
+                loadDayItems();
         }
 
         private void loadEventItems()
@@ -38,10 +40,21 @@ namespace Gems.UIWPF
             {
                 loadFacilityBooking();//Need To Remap
                 loadGuests();//Need To Remap
-                loadTasks();
                 loadPrograms();//Need To Remap
-                loadRoles();
-                loadItems();
+                loadDayItems();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void loadDayItems()
+        {
+            try
+            {
+                loadFacilityBooking();//Need To Remap
+                loadGuests();//Need To Remap
+                loadPrograms();//Need To Remap
             }
             catch (Exception ex)
             {
