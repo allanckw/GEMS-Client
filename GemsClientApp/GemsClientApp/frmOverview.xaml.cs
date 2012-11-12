@@ -33,6 +33,7 @@ namespace Gems.UIWPF
             {
                 //when evd and e are not null, pEvent not null or pEvent ID is not equal to EID
                 loadEventItems();
+                
             }
             else if (e != null && evd != null && e.EventID == evd.EventID)
             {
