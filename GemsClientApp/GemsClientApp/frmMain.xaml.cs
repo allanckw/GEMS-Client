@@ -110,7 +110,7 @@ namespace Gems.UIWPF
             this.user = u;
             this.mainFrame = mainFrame;
             currPageType = typeof(frmOverview);
-            load_rights(null, null);
+            //load_rights(null, null);
             Loaded += new RoutedEventHandler(load_rights);
 
             taskbarNotifier = new Notifier(user, this);
@@ -289,7 +289,7 @@ namespace Gems.UIWPF
             frame.Navigate(new frmOverview(user, ev, evd));
             Mouse.OverrideCursor = Cursors.Arrow;
             loadUserRights(ev);
-           
+
         }
 
         public void loadEvents()
@@ -873,7 +873,7 @@ namespace Gems.UIWPF
 
         private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lstEventDayList.SelectedIndex = -1;
+            //lstEventDayList.SelectedIndex = -1;
             if (cboEventList.SelectedIndex == -1)
             {
                 //lstEventDayList.Items.Clear();
@@ -891,7 +891,7 @@ namespace Gems.UIWPF
 
                 lstEventDayList.ItemsSource = clientEvent.GetDays(ev.EventID);
                 lstEventDayList.SelectedIndex = 0;
-
+                loadUserRights(ev);
                 if (dayDependentForm() == true)
                     return;
 
@@ -904,17 +904,7 @@ namespace Gems.UIWPF
                     return;
                 }
 
-                if (user.UserID == ev.Organizerid)
-                {
-                    EnableAllRight();
-                }
-                else
-                {
-                    loadUserRights(ev);
-                }
                 selectedIndex = cboEventList.SelectedIndex;
-
-                lstEventDayList.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -930,24 +920,28 @@ namespace Gems.UIWPF
 
         private void loadUserRights(Events ev)
         {
-            RoleHelper client = new RoleHelper();
+            
+            if (ev != null)
+            {
+                RoleHelper client = new RoleHelper();
+                if (user.UserID == ev.Organizerid || user.isSystemAdmin)
+                {
+                    EnableAllRight();
+                }
+                else if (user.isFacilityAdmin)
+                {
+                    DisableAllRight();
+                    mnuLocation.Visibility = Visibility.Visible;
 
-            if (user.UserID == ev.Organizerid || user.isSystemAdmin)
-            {
-                EnableAllRight();
+                    mnuViewBookings.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
+                }
+                client.Close();
             }
-            else if (user.isFacilityAdmin)
-            {
-                DisableAllRight();
-                mnuLocation.Visibility = Visibility.Visible;
-
-                mnuViewBookings.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                SetRight(client.GetRights(ev.EventID, user.UserID).ToList<EnumFunctions>());
-            }
-            client.Close();
+            
         }
 
         private bool dayDependentForm()
