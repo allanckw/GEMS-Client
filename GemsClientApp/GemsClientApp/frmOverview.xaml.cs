@@ -31,12 +31,15 @@ namespace Gems.UIWPF
 
             if (e != null && evd != null && (pEvent == null || pEvent.EventID != e.EventID))
             {
+                //when evd and e are not null, pEvent not null or pEvent ID is not equal to EID
                 loadEventItems();
             }
             else if (e != null && evd != null && e.EventID == evd.EventID)
             {
+                //when both id are the same
                 loadDayItems();
             }
+
         }
 
         private void loadEventItems()
@@ -70,7 +73,7 @@ namespace Gems.UIWPF
         private void loadGuests()
         {
             GuestHelper client = new GuestHelper();
-            txtGuestMsg.Text = "There are a total of " + client.ViewGuest(eventday_.DayID).ToList<Guest>().Count +" guest(s) ";
+            txtGuestMsg.Text = "There are a total of " + client.ViewGuest(eventday_.DayID).ToList<Guest>().Count + " guest(s) ";
             client.Close();
         }
 
@@ -151,9 +154,9 @@ namespace Gems.UIWPF
         private void loadFacilityBooking()
         {//Need To Remap
             FacilityBookingsHelper client = new FacilityBookingsHelper();
-            List<FacilityBookingConfirmed> fbc = client.GetConfirmedFacBookings(event_.EventID, 
+            List<FacilityBookingConfirmed> fbc = client.GetConfirmedFacBookings(event_.EventID,
                 eventday_.StartDateTime.Date).ToList<FacilityBookingConfirmed>();
-                //eventday_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
+            //eventday_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
             if (fbc.Count == 0)
             {
                 txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";

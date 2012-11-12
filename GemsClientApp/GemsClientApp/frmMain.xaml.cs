@@ -25,6 +25,7 @@ namespace Gems.UIWPF
         private Events prevEvent;
         private int selectedIndex = -1;
         private int selectedDayIndex = -1;
+        private bool firstLoad = true;
 
         #region menuBarDictionary
         private static Dictionary<Type, Tuple<string, EnumFunctions[]>> pageFunctions = new Dictionary<Type, Tuple<string, EnumFunctions[]>>
@@ -291,7 +292,7 @@ namespace Gems.UIWPF
             frame.Navigate(new frmOverview(user, ev, evd, prevEvent));
             Mouse.OverrideCursor = Cursors.Arrow;
             loadUserRights(ev);
-
+            firstLoad = false;
         }
 
         public void loadEvents()
@@ -552,6 +553,7 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
+            firstLoad = true;
             loadEvents();
         }
 
@@ -679,64 +681,6 @@ namespace Gems.UIWPF
             return true;
         }
 
-        private bool navigateByEventAndDay<T>()
-        {
-            Type newPageType = typeof(T);
-            if (newPageType == typeof(frmServiceContactList))
-            {
-                //Do nothing
-            }
-            else
-            {
-                if (cboEventList.Items.Count < 0 || cboEventList.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Please select an event to " + pageFunctions[newPageType].Item1 + "!", "No Event Selected!",
-                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    return false;
-                }
-                if (currPage != null && currPage.isChanged())
-                {
-                    MessageBoxResult answer = MessageBox.Show("There are unsaved changes. Would you like to save your changes now?", "Unsaved Changes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                    if ((answer == MessageBoxResult.Yes && !currPage.saveChanges()) || answer == MessageBoxResult.Cancel)
-                        return false;
-                }
-            }
-            Helper.IdleHelper.stopIdleTimer();
-            currPageType = typeof(T);
-            Events ev = (Events)cboEventList.SelectedItem;
-            EventDay evd = (EventDay)lstEventDayList.SelectedItem;
-            if (pageFunctions[currPageType].Item2.Length > 0 && user.UserID != ev.Organizerid && !user.isSystemAdmin)
-            {
-                RoleHelper client = new RoleHelper();
-                try
-                {
-
-                    foreach (EnumFunctions ef1 in client.GetRights(ev.EventID, user.UserID).ToArray<EnumFunctions>())
-                        foreach (EnumFunctions ef2 in pageFunctions[currPageType].Item2)
-                            if (ef1 == ef2)
-                            {
-                                frame.Navigate(Activator.CreateInstance(currPageType, user, (Events)cboEventList.SelectedItem));
-                                return true;
-                            }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    client.Close();
-                }
-                currPageType = typeof(frmOverview);
-
-            }
-
-            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd);
-            frame.Navigate(currPage);
-            return true;
-        }
-
         private bool navigateByEventDay<T>()
         {
             Type newPageType = typeof(T);
@@ -797,7 +741,9 @@ namespace Gems.UIWPF
 
             if (currPageType == typeof(frmOverview))
             {
+
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday, prevEvent);
+
             }
             else
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, evday);
@@ -876,6 +822,7 @@ namespace Gems.UIWPF
 
         private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             //lstEventDayList.SelectedIndex = -1;
             if (cboEventList.SelectedIndex == -1)
             {
@@ -891,10 +838,6 @@ namespace Gems.UIWPF
             {
                 prevEvent = null;
             }
-            else
-            {
-                prevEvent = (Events)cboEventList.Items[selectedIndex];
-            }
 
             EventHelper clientEvent = new EventHelper();
             try
@@ -905,13 +848,16 @@ namespace Gems.UIWPF
                 lstEventDayList.SelectedIndex = 0;
                 loadUserRights(ev);
 
-                if (!(bool)typeof(frmMain)
-                    .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
-                    .MakeGenericMethod(currPageType)
-                    .Invoke(this, null))
+                if (!firstLoad)
                 {
-                    cboEventList.SelectedIndex = selectedIndex;
-                    return;
+                    if (!(bool)typeof(frmMain)
+                        .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
+                        .MakeGenericMethod(currPageType)
+                        .Invoke(this, null))
+                    {
+                        cboEventList.SelectedIndex = selectedIndex;
+                        return;
+                    }
                 }
 
                 selectedIndex = cboEventList.SelectedIndex;
@@ -924,7 +870,6 @@ namespace Gems.UIWPF
             finally
             {
                 clientEvent.Close();
-
             }
         }
 
@@ -981,17 +926,23 @@ namespace Gems.UIWPF
                 lstEventDayList.SelectedIndex = 0;
             }
 
+            if (selectedIndex != -1)
+            {
+                prevEvent = (Events)cboEventList.Items[selectedIndex];
+            }
+
             try
             {
-                //Events ev = (Events)cboEventList.SelectedItem;
-
-                if (!(bool)typeof(frmMain)
-                    .GetMethod("navigateByEventDay", BindingFlags.NonPublic | BindingFlags.Instance)
-                    .MakeGenericMethod(currPageType)
-                    .Invoke(this, null))
+                if (!firstLoad)
                 {
-                    lstEventDayList.SelectedIndex = selectedDayIndex;
-                    return;
+                    if (!(bool)typeof(frmMain)
+                     .GetMethod("navigateByEventDay", BindingFlags.NonPublic | BindingFlags.Instance)
+                     .MakeGenericMethod(currPageType)
+                     .Invoke(this, null))
+                    {
+                        lstEventDayList.SelectedIndex = selectedDayIndex;
+                        return;
+                    }
                 }
 
                 selectedDayIndex = lstEventDayList.SelectedIndex;
