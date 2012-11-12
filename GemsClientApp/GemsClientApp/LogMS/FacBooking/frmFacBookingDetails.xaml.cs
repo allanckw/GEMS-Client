@@ -232,6 +232,7 @@ namespace Gems.UIWPF
 
             if (exist)
             {
+                Mouse.OverrideCursor = Cursors.Arrow;
                 MessageBox.Show("The event already have a pending or confirmed request at the selected time frame!",
                     "Request already Exist", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -245,6 +246,7 @@ namespace Gems.UIWPF
             }
             catch (Exception ex)
             {
+                Mouse.OverrideCursor = Cursors.Arrow;
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
