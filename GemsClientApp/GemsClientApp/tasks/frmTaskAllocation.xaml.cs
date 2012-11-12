@@ -35,7 +35,9 @@ namespace Gems.UIWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             refreshTaskList();
-            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = event_.Tasks;
+            TasksHelper taskClient = new TasksHelper();
+            lstManageTasks.ItemsSource = lstOverviewAllTask.ItemsSource = taskClient.GetTasksByEvent(user.UserID, event_.EventID).ToList<Task>();
+            taskClient.Close();
             LoadRoles();
             
         }

@@ -51,36 +51,30 @@ namespace Gems.UIWPF
 
         private void loadGuests()
         {
-            txtGuestMsg.Text = "There are a total of " + eventday_.Guests.Count() + " guest(s) ";
+            GuestHelper client = new GuestHelper();
+            txtGuestMsg.Text = "There are a total of " + client.ViewGuest(eventday_.DayID).ToList<Guest>().Count +" guest(s) ";
+            client.Close();
         }
 
         private void loadTasks()
         {
-            txtTaskMsg.Text = "There are a total of " + event_.Tasks.Count() + " task(s)";
+            TasksHelper client = new TasksHelper();
+            txtTaskMsg.Text = "There are a total of " + client.GetTasksByEvent(user.UserID, this.event_.EventID).ToList<Task>().Count() + " task(s)";
+            client.Close();
         }
 
         private void loadPrograms()
         {
-            if (eventday_.Programs.Count() == 0)
+            ProgrammeHelper client = new ProgrammeHelper();
+            List<Program> progs = client.ViewProgram(this.eventday_.DayID).ToList<Program>();
+
+            if (progs.Count() == 0)
                 txtProgramMsg.Text = "No Programmes Added Yet.";
             else
             {
-                //DateTime max = DateTime.MinValue, min = DateTime.MaxValue;
-                //for (int i = 0; i < eventday_.Programs.Count(); i++)
-                //{
-                //    if (max < eventday_.Programs[i].EndDateTime)
-                //    {
-                //        max = eventday_.Programs[i].EndDateTime;
-                //    }
-                //    if (min > eventday_.Programs[i].StartDateTime)
-                //    {
-                //        min = eventday_.Programs[i].StartDateTime;
-                //    }
-                //}
-
-                txtProgramMsg.Text = "There are " + eventday_.Programs.Count() + " planned programmes";// from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
-
+                txtProgramMsg.Text = "There are " + progs.Count + " planned programmes";// from " + min.ToShortTimeString() + " to " + max.ToShortTimeString();
             }
+            client.Close();
         }
 
         private void loadRoles()
@@ -125,11 +119,11 @@ namespace Gems.UIWPF
 
         private void loadItems()
         {
-            if (event_.ItemCount > 0)
+            EventItemsHelper client = new EventItemsHelper();
+            List<Items> iten = client.GetItemsByEvent(event_.EventID).ToList<Items>();
+            if (iten.Count > 0)
             {
-                txtItemMsg.Text = "A total of " + event_.ItemCount + " Item(s) have been added";
-                //Add Budget Allocation, after choice list is set
-                //Check how many bought, and how many not bought.
+                txtItemMsg.Text = "A total of " + iten.Count + " Item(s) have been added";
             }
             else
             {
@@ -138,7 +132,10 @@ namespace Gems.UIWPF
         }
         private void loadFacilityBooking()
         {//Need To Remap
-            List<FacilityBookingConfirmed> fbc = eventday_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
+            List<FacilityBookingConfirmed> fbc = client.GetConfirmedFacBookings(event_.EventID, 
+                eventday_.StartDateTime.Date).ToList<FacilityBookingConfirmed>();
+                //eventday_.ConfirmedFacilityBooking.ToList<FacilityBookingConfirmed>();
             if (fbc.Count == 0)
             {
                 txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";

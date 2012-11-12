@@ -43,7 +43,7 @@ namespace Gems.UIWPF
             dgFacility.AutoGenerateColumns = false;
             dgFacility.CanUserAddRows = false;
             cboAdd();
-
+            dtpStart.cboHr.Items.RemoveAt(dtpStart.cboHr.Items.Count - 1);
             dtpStart.cboHr.SelectionChanged += OnChanged;
             dtpStart.cboMin.SelectionChanged += OnChanged;
 
