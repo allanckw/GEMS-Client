@@ -103,7 +103,7 @@
             </Menu.Background>
 <MenuItem Header="Quick Start Wizard" FontSize="14" Margin="0,2,0,0" x:Name="mnuWiz" Click="mnuWiz_Click"  Height="26" ToolTip="Wizard to get you started to create an event"/>
             <MenuItem Header="Event Overview" FontSize="14" Margin="0,2,0,0" x:Name="mnuOverview" Click="mnuOverview_Click" Height="26" ToolTip="Displays the overview of an Event"/>
-            <MenuItem Header="1. Event" FontSize="14" Margin="0,2,0,0" x:Name="mnuEvent" Height="26" ToolTip="Allows you to Create / Update / Delete an Event">
+            <MenuItem Header="1. Event" FontSize="14" Margin="0,2,0,0" x:Name="mnuEvent" Height="26" ToolTip="Allows you to Create / Update / Delete an Event" Click="mnuEvent_Click">
                 <MenuItem Header="Manage Event" Background="{x:Null}" Width="250" x:Name="mnuItemManageEvent" Click="mnuItemManageEvent_Click"/>
             </MenuItem>
             <MenuItem Header="2. Programmes" FontSize="14" Margin="0,2,0,0" x:Name="mnuPrograms" Click="mnuProgram_Click" Height="26" ToolTip="Allows you to Add / Edit / Update Programme for an Event Day"/>

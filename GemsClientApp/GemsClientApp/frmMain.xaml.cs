@@ -372,7 +372,7 @@ namespace Gems.UIWPF
             thread.Start();
         }
 
-        private void loadEvents()
+        public void loadEvents()
         {
             if ((dtpFrom.SelectedDate == null && dtpTo.SelectedDate != null) ||
                 (dtpFrom.SelectedDate != null && dtpTo.SelectedDate == null))
@@ -597,6 +597,19 @@ namespace Gems.UIWPF
         {
             var frmManageEvent = new frmEventMangement(user, this);
             frmManageEvent.ShowDialog();
+
+            if (cboEventList.SelectedIndex > -1)
+            {
+                int tempe = ((Events)cboEventList.SelectedItem).EventID;
+
+                for (int i = 0;i< cboEventList.Items.Count; i++)
+                {
+                    if (((Events)cboEventList.Items[i]).EventID == tempe)
+                        cboEventList.SelectedIndex = i;
+                }
+
+            }
+            loadEvents();
         }
 
         private void mnuManageFac_Click(object sender, RoutedEventArgs e)
@@ -1093,6 +1106,11 @@ namespace Gems.UIWPF
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void mnuEvent_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
