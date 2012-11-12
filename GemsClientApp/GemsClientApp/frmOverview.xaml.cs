@@ -59,7 +59,7 @@ namespace Gems.UIWPF
         private void loadTasks()
         {
             TasksHelper client = new TasksHelper();
-            txtTaskMsg.Text = "There are a total of " + client.GetTasksByEvent(user.UserID, this.event_.EventID).ToList<Task>().Count() + " task(s)";
+            txtTaskMsg.Text = "There are a total of " + client.GetEventTasks(this.event_.EventID).ToList<Task>().Count() + " task(s)";
             client.Close();
         }
 

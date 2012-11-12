@@ -5997,6 +5997,10 @@ public interface ITasks
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITasks/GetTask", ReplyAction="http://tempuri.org/ITasks/GetTaskResponse")]
     [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/ITasks/GetTaskSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
     evmsService.entities.Task GetTask(int taskID);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITasks/GetEventTasks", ReplyAction="http://tempuri.org/ITasks/GetEventTasksResponse")]
+    [System.ServiceModel.FaultContractAttribute(typeof(evmsService.Controllers.SException), Action="http://tempuri.org/ITasks/GetEventTasksSExceptionFault", Name="SException", Namespace="http://schemas.datacontract.org/2004/07/evmsService.Controllers")]
+    evmsService.entities.Task[] GetEventTasks(int eventID);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -6086,6 +6090,11 @@ public partial class TasksClient : System.ServiceModel.ClientBase<ITasks>, ITask
     public evmsService.entities.Task GetTask(int taskID)
     {
         return base.Channel.GetTask(taskID);
+    }
+    
+    public evmsService.entities.Task[] GetEventTasks(int eventID)
+    {
+        return base.Channel.GetEventTasks(eventID);
     }
 }
 
