@@ -675,7 +675,7 @@ namespace Gems.UIWPF
             //    currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd, prevEvent);
             //}
             //else
-                currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
+            currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev);
 
             frame.Navigate(currPage);
             return true;
@@ -815,7 +815,8 @@ namespace Gems.UIWPF
 
         private void cboEventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
+
             //lstEventDayList.SelectedIndex = -1;
             if (cboEventList.SelectedIndex == -1)
             {
@@ -832,6 +833,7 @@ namespace Gems.UIWPF
                 prevEvent = null;
             }
 
+
             EventHelper clientEvent = new EventHelper();
             try
             {
@@ -843,13 +845,16 @@ namespace Gems.UIWPF
 
                 if (!firstLoad)
                 {
-                    if (!(bool)typeof(frmMain)
-                        .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
-                        .MakeGenericMethod(currPageType)
-                        .Invoke(this, null))
+                    if (!dayDependentForm())
                     {
-                        cboEventList.SelectedIndex = selectedIndex;
-                        return;
+                        if (!(bool)typeof(frmMain)
+                            .GetMethod("navigate", BindingFlags.NonPublic | BindingFlags.Instance)
+                            .MakeGenericMethod(currPageType)
+                            .Invoke(this, null))
+                        {
+                            cboEventList.SelectedIndex = selectedIndex;
+                            return;
+                        }
                     }
                 }
 
@@ -902,8 +907,6 @@ namespace Gems.UIWPF
             if (currPageType == typeof(frmGuestList))
                 return true;
             if (currPageType == typeof(frmProgramManagement))
-                return true;
-            if (currPageType == typeof(frmOverView))
                 return true;
             else
                 return false;
