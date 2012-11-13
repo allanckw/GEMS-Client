@@ -22,23 +22,42 @@ namespace Gems.UIWPF
             InitializeComponent();
         }
 
+        public void loadFacilityBookings(EventDay day)
+        {
+            FacilityBookingsHelper client = new FacilityBookingsHelper();
+            List<FacilityBookingConfirmed> fbc = client.GetConfirmedFacBookings(day.EventID,
+                day.StartDateTime.Date).ToList<FacilityBookingConfirmed>();
+
+            if (fbc.Count == 0)
+            {
+                txtLocationMsg.Text = "The venue to hold the event is not confirmed yet";
+            }
+            else
+            {
+                txtLocationMsg.Text = "The venue to hold this event are (is) " + Environment.NewLine;
+                foreach (FacilityBookingConfirmed confirmedReq in fbc)
+                {
+                    txtLocationMsg.Text += confirmedReq.Faculty.ToString().Replace('_', ' ') + " " + " at " + confirmedReq.Venue
+                        + "  booked from " + confirmedReq.RequestStartDateTime.ToString("HH:mm")
+                        + " to " + confirmedReq.RequestEndDateTime.ToString("HH:mm") + Environment.NewLine
+                        ;
+
+
+                }
+            }
+            client.Close();
+        }
+
         public frmOverView(User u, Events e)
             : this()
         {
             this.user = u;
             this.event_ = e;
-            loadDays();
 
-            if (e != null)// && (pEvent == null || pEvent.EventID != e.EventID))
+            if (e != null)
             {
-                //when evd and e are not null, pEvent not null or pEvent ID is not equal to EID
                 loadEventItems();
             }
-            //else if (e != null && evd != null && e.EventID == evd.EventID)
-            //{
-            //    //when both id are the same
-            //    loadDayItems();
-            //}
 
         }
 
@@ -59,15 +78,6 @@ namespace Gems.UIWPF
             }
         }
 
-        private void loadDays()
-        {
-            EventHelper clientEvent = new EventHelper();
-            DayList = clientEvent.GetDays(event_.EventID).ToList<EventDay>();
-            clientEvent.Close();
-
-            cboSelectBookingDay.ItemsSource = DayList;
-            cboSelectBookingDay.SelectedIndex = 0;
-        }
 
         private void loadRoles()
         {

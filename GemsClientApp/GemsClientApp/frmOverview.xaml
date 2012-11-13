@@ -76,19 +76,10 @@
             <!--<GroupBox Header="Programmes" Height="90" Foreground="Black" Margin="10,0" FontSize="15">
                 <TextBlock  x:Name="txtProgramMsg"  FontSize="14" FontFamily="Tahoma"  FontWeight="SemiBold" TextWrapping="Wrap"  />
             </GroupBox>-->
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Select A Day To View Facility Booking : " FontSize="15" />
-                <ComboBox Width="150" Name="cboSelectBookingDay">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                                    <TextBlock Text="{Binding StartDateTime, StringFormat=dd MMM yyyy}"  />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </StackPanel>
-            <GroupBox Header="Facilities Bookings" Height="137" Foreground="Black" Margin="10,0" FontSize="15">
+            <StackPanel Orientation="Horizontal"></StackPanel>
+            <GroupBox Header="Facilities Bookings" Height="171" Foreground="Black" Margin="10,0" FontSize="15">
                 <ScrollViewer Height="107">
-                    <TextBlock  x:Name="txtLocationMsg" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma"  TextWrapping="Wrap" Height="104" />
+                    <TextBlock  x:Name="txtLocationMsg" FontSize="14" FontWeight="SemiBold" FontFamily="Tahoma"  TextWrapping="Wrap" Height="130" />
                 </ScrollViewer>
             </GroupBox>
             <!--<GroupBox Header="Guest" Height="90" Foreground="Black" Margin="10,0" FontSize="16">
