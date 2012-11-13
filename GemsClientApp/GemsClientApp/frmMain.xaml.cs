@@ -437,7 +437,7 @@ namespace Gems.UIWPF
                 }
 
                 selectedIndex = cboEventList.SelectedIndex;
-
+               
             }
             catch (Exception ex)
             {
@@ -466,11 +466,12 @@ namespace Gems.UIWPF
             if (frame.Content != null && currPageType == typeof(frmOverView))
             {
                 EventDay day = (EventDay)lstEventDayList.SelectedItem;
-                if (day != null)
+                if(day!=null)
                     ((frmOverView)frame.Content).loadFacilityBookings(day);
 
                 return;
             }
+
 
             if (dayDependentForm() == false)
                 return;
@@ -795,7 +796,8 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
-            currPageType = typeof(frmOverView);
+            navigate<frmOverView>();
+            //currPageType = typeof(frmOverView); 
             firstLoad = true;
             loadEvents();
         }
