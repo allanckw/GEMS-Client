@@ -53,12 +53,22 @@ namespace Gems.UIWPF
         {
             this.user = u;
             this.event_ = e;
-
+            
             if (e != null)
             {
+                loadDays();
                 loadEventItems();
             }
 
+        }
+
+        private void loadDays()
+        {
+            EventHelper clientEvent = new EventHelper();
+            DayList = clientEvent.GetDays(event_.EventID).ToList<EventDay>();
+            clientEvent.Close();
+            //cboSelectBookingDay.ItemsSource = DayList;
+            //cboSelectBookingDay.SelectedIndex = 0;
         }
 
         private void loadEventItems()
