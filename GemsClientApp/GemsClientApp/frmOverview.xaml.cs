@@ -58,6 +58,8 @@ namespace Gems.UIWPF
             {
                 loadDays();
                 loadEventItems();
+                EventDay firstDay=DayList[0];
+                loadFacilityBookings(firstDay);
             }
 
         }
