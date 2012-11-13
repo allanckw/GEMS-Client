@@ -119,6 +119,9 @@
     <Compile Include="Export\frmExport.xaml.cs">
       <DependentUpon>frmExport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="frmOverView.xaml.cs">
+      <DependentUpon>frmOverView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GEMSPage.cs" />
     <Compile Include="ContactList\frmAddEditReview.xaml.cs">
       <DependentUpon>frmAddEditReview.xaml</DependentUpon>
@@ -203,8 +206,8 @@
     <Compile Include="Notifications\Notifier.xaml.cs">
       <DependentUpon>Notifier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="frmOverview.xaml.cs">
-      <DependentUpon>frmOverview.xaml</DependentUpon>
+    <Compile Include="frmOverview_Old.xaml.cs">
+      <DependentUpon>frmOverview_Old.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgMSS\frmProgramManagement.xaml.cs">
       <DependentUpon>frmProgramManagement.xaml</DependentUpon>
@@ -365,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="frmOverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogMS\FacBooking\frmFacBooking.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -417,7 +424,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="frmOverview.xaml">
+    <Page Include="frmOverview_Old.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

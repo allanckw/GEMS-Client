@@ -30,7 +30,7 @@ namespace Gems.UIWPF
         #region menuBarDictionary
         private static Dictionary<Type, Tuple<string, EnumFunctions[]>> pageFunctions = new Dictionary<Type, Tuple<string, EnumFunctions[]>>
         {
-            { typeof(frmOverview), Tuple.Create("Overview", new EnumFunctions[] {})},
+            { typeof(frmOverview_Old), Tuple.Create("Overview", new EnumFunctions[] {})},
             { typeof(frmRoleTemplates), Tuple.Create("manage role templates", new EnumFunctions[] {
                 EnumFunctions.Add_Role,
                 EnumFunctions.Edit_Role,
@@ -112,7 +112,7 @@ namespace Gems.UIWPF
             prevEvent = null;
             this.user = u;
             this.mainFrame = mainFrame;
-            currPageType = typeof(frmOverview);
+            currPageType = typeof(frmOverview_Old);
             //load_rights(null, null);
             Loaded += new RoutedEventHandler(load_rights);
 
@@ -289,7 +289,7 @@ namespace Gems.UIWPF
 
             Events ev = (Events)cboEventList.SelectedItem;
             EventDay evd = (EventDay)lstEventDayList.SelectedItem;
-            frame.Navigate(new frmOverview(user, ev, evd, prevEvent));
+            frame.Navigate(new frmOverview_Old(user, ev, evd, prevEvent));
             Mouse.OverrideCursor = Cursors.Arrow;
             loadUserRights(ev);
             firstLoad = false;
@@ -668,9 +668,9 @@ namespace Gems.UIWPF
                 {
                     client.Close();
                 }
-                currPageType = typeof(frmOverview);
+                currPageType = typeof(frmOverview_Old);
             }
-            if (currPageType == typeof(frmOverview))
+            if (currPageType == typeof(frmOverview_Old))
             {
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evd, prevEvent);
             }
@@ -684,7 +684,7 @@ namespace Gems.UIWPF
         private bool navigateByEventDay<T>()
         {
             Type newPageType = typeof(T);
-            if (newPageType == typeof(frmServiceContactList) || (newPageType == typeof(frmOverview)))
+            if (newPageType == typeof(frmServiceContactList) || (newPageType == typeof(frmOverview_Old)))
             {
                 //Do nothing
             }
@@ -736,10 +736,10 @@ namespace Gems.UIWPF
                 {
                     client.Close();
                 }
-                currPageType = typeof(frmOverview);
+                currPageType = typeof(frmOverview_Old);
             }
 
-            if (currPageType == typeof(frmOverview))
+            if (currPageType == typeof(frmOverview_Old))
             {
 
                 currPage = (GEMSPage)Activator.CreateInstance(currPageType, user, ev, evday, prevEvent);
@@ -754,7 +754,7 @@ namespace Gems.UIWPF
 
         private void mnuOverview_Click(object sender, RoutedEventArgs e)
         {
-            navigate<frmOverview>();
+            navigate<frmOverview_Old>();
             //navigateByEventDay<frmOverview>();
         }
 
@@ -910,7 +910,7 @@ namespace Gems.UIWPF
                 return true;
             if (currPageType == typeof(frmProgramManagement))
                 return true;
-            if (currPageType == typeof(frmOverview))
+            if (currPageType == typeof(frmOverview_Old))
                 return true;
             else
                 return false;
