@@ -796,7 +796,8 @@ namespace Gems.UIWPF
 
         private void btnGetEvents_Click(object sender, RoutedEventArgs e)
         {
-            currPageType = typeof(frmOverView); 
+            navigate<frmOverView>();
+            //currPageType = typeof(frmOverView); 
             firstLoad = true;
             loadEvents();
         }
